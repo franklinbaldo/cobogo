@@ -11,14 +11,14 @@ describe('Grid Atom', () => {
 			display: 'grid',
 			gap: '2rem'
 		});
-		expect(grid.style.gridTemplateColumns).toBe('repeat(12, 1fr)');
+		expect(grid.style.gridTemplateColumns).toBe('repeat(12,1fr)');
 		expect(screen.getByTestId('grid-child')).toBeInTheDocument();
 	});
 
 	it('should allow overriding columns and gap', () => {
 		render(GridTest, { props: { columns: 4, gap: '1rem' } });
 		const grid = screen.getByTestId('grid');
-		expect(grid.style.gridTemplateColumns).toBe('repeat(4, 1fr)');
+		expect(grid.style.gridTemplateColumns).toBe('repeat(4,1fr)');
 		expect(grid).toHaveStyle({ gap: '1rem' });
 	});
 
