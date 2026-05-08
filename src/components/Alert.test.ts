@@ -10,12 +10,12 @@ describe('Alert Component', () => {
 
   it('renders correctly with default variant', () => {
     const { container } = render(Alert);
-    expect(container.querySelector('.alert.variant-info')).toBeInTheDocument();
+    expect(container.querySelector('aside[data-intent="info"]')).toBeInTheDocument();
   });
 
   it('renders correctly with warning variant', () => {
     const { container } = render(Alert, { props: { variant: 'warning' } });
-    expect(container.querySelector('.alert.variant-warning')).toBeInTheDocument();
+    expect(container.querySelector('aside[data-intent="warning"]')).toBeInTheDocument();
   });
 
   it('calls onDismiss when dismiss button is clicked', async () => {
