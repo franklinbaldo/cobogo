@@ -28,11 +28,11 @@ Feature: cobogo Doctrine: Defining the Brazilian Modernist Design System
   Scenario: Permanent Epics - Stable Structural Movements
     Given I maintain a roadmap
     Then the roadmap must always carry these stable permanent epics:
-      | Epic ID             | Description                                                                  |
-      |---------------------|------------------------------------------------------------------------------|
-      | epic-c0b0-vitrine   | GitHub Pages site as cobogo's public manifesto (beauty, currency, alignment) |
-      | epic-a70m-atomic-system | Atomic design system (tokens, atoms, molecules, composition, API coherence)  |
-    | epic-d0c5-doctrine  | DESIGN.md, doctrine, canon alignment, rules, refusal patterns              |
+      | Epic ID                     | Description                                                                  |
+      |-----------------------------|------------------------------------------------------------------------------|
+      | epic-c0b0-vitrine           | GitHub Pages site as cobogo's public manifesto (beauty, currency, alignment) |
+      | epic-a70m-atomic-system     | Atomic design system (tokens, atoms, molecules, composition, API coherence)  |
+      | epic-d0c5-doctrine          | DESIGN.md, doctrine, canon alignment, rules, refusal patterns              |
       | epic-v151-visual-governance | Visual accountability (screenshots, accessibility, regression evidence)        |
     And additional epics may only be created for multi-session structural concerns not fitting permanent epics
 
