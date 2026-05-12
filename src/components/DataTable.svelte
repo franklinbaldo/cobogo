@@ -38,7 +38,7 @@
     <thead>
       <tr>
         {#each headers as header}
-          <th style:text-align={header.align || 'left'}>{header.label}</th>
+          <th scope="col" style:text-align={header.align || 'left'}>{header.label}</th>
         {/each}
       </tr>
     </thead>

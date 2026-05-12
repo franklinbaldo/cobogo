@@ -227,6 +227,14 @@ a { color: inherit; text-decoration: none; }
   color: var(--fg-muted);
 }
 
+/* --- Theme toggle (BaseLayout.astro) -------------------------- */
+[data-region="theme-toggle"] {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+}
+
 /* --- Site nav (SiteNav.astro) --------------------------------- */
 [data-site-nav] {
   display: flex;
@@ -1078,9 +1086,10 @@ a { color: inherit; text-decoration: none; }
    No component class names. Variants live on data-intent / data-size.
    ============================================================ */
 
-/* --- Buttons (button, [role="button"]) ----------------------- */
+/* --- Buttons (button, [role="button"], a[data-intent]) -------- */
 button,
-[role="button"] {
+[role="button"],
+a[data-intent] {
   --pico-border-radius: var(--r-1);
   --pico-font-weight: 800;
   font-family: var(--font-display);
@@ -1091,41 +1100,49 @@ button,
   transition: transform 0.1s var(--ease-out), box-shadow 0.1s var(--ease-out), background-color 0.1s var(--ease-out);
 }
 button:hover,
-[role="button"]:hover {
+[role="button"]:hover,
+a[data-intent]:hover {
   transform: translate(-1px, -1px);
   box-shadow: var(--shadow-2);
 }
 button:active,
-[role="button"]:active {
+[role="button"]:active,
+a[data-intent]:active {
   transform: translate(2px, 2px);
   box-shadow: 0 0 0 var(--concreto-90);
 }
 button:focus-visible,
-[role="button"]:focus-visible {
+[role="button"]:focus-visible,
+a[data-intent]:focus-visible {
   outline: 2px solid var(--azul);
   outline-offset: 3px;
 }
 
 button[data-intent="primary"],
-[role="button"][data-intent="primary"] {
+[role="button"][data-intent="primary"],
+a[data-intent="primary"] {
   --pico-background-color: var(--azul);
   --pico-border-color: var(--azul);
   --pico-color: var(--papel-00);
 }
 button[data-intent="primary"]:hover,
-[role="button"][data-intent="primary"]:hover {
+[role="button"][data-intent="primary"]:hover,
+a[data-intent="primary"]:hover {
   --pico-background-color: var(--azul-bright);
 }
 button[data-intent="secondary"],
 button[data-intent="outline"],
 [role="button"][data-intent="secondary"],
-[role="button"][data-intent="outline"] {
+[role="button"][data-intent="outline"],
+a[data-intent="secondary"],
+a[data-intent="outline"] {
   --pico-background-color: transparent;
   --pico-border-color: var(--concreto-80);
   --pico-color: var(--concreto-80);
 }
 button[data-intent="link"],
-[role="button"][data-intent="link"] {
+[role="button"][data-intent="link"],
+a[data-intent="link"] {
   --pico-background-color: transparent;
   --pico-border-color: transparent;
   --pico-color: inherit;
@@ -1136,13 +1153,15 @@ button[data-intent="link"],
   letter-spacing: 0;
 }
 button[data-intent="link"]:hover,
-[role="button"][data-intent="link"]:hover {
+[role="button"][data-intent="link"]:hover,
+a[data-intent="link"]:hover {
   transform: none;
   box-shadow: none;
   text-decoration: underline;
 }
 button[data-size="small"],
-[role="button"][data-size="small"] {
+[role="button"][data-size="small"],
+a[data-size="small"] {
   padding: 0.5rem 1.25rem;
   font-size: 0.7rem;
 }
@@ -1299,10 +1318,11 @@ dialog {
 }
 dialog::backdrop { background: rgba(26, 24, 20, 0.6); }
 dialog > header,
-dialog > article > header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+dialog [data-dialog-panel] > header,
+dialog [data-search-panel] > header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
 dialog > footer,
-dialog > article > footer { padding: 1.5rem; border-top: 1px solid var(--border); display: flex; gap: 0.75rem; justify-content: flex-end; }
-dialog > article > section,
+dialog [data-dialog-panel] > footer { padding: 1.5rem; border-top: 1px solid var(--border); display: flex; gap: 0.75rem; justify-content: flex-end; }
+dialog [data-dialog-panel] > [data-dialog-body],
 dialog > section { padding: 1.5rem; }
 
 /* --- Breadcrumbs (<nav aria-label="breadcrumb"> > <ol>) ------ */
@@ -1912,7 +1932,7 @@ dialog {
   background: transparent;
 }
 dialog[open] { display: block; }
-dialog > article {
+dialog [data-dialog-panel] {
   background: var(--papel-00);
   color: var(--concreto-80);
   border: 0;
@@ -1926,8 +1946,8 @@ dialog > article {
   display: flex;
   flex-direction: column;
 }
-@media (min-width: 480px) { dialog > article { max-width: 500px; } }
-@media (min-width: 768px) { dialog > article { max-width: 600px; } }
+@media (min-width: 480px) { dialog [data-dialog-panel] { max-width: 500px; } }
+@media (min-width: 768px) { dialog [data-dialog-panel] { max-width: 600px; } }
 
 dialog[data-drawer] {
   width: 100%;
@@ -1936,20 +1956,21 @@ dialog[data-drawer] {
   max-height: 100vh;
   margin: 0;
 }
-dialog[data-drawer] > article {
+dialog[data-drawer] [data-drawer-panel] {
   height: 100vh;
   max-height: 100vh;
   max-width: 90vw;
   width: 100%;
   border-radius: 0;
 }
-@media (min-width: 480px) { dialog[data-drawer] > article { max-width: 400px; } }
-dialog[data-drawer][data-position="right"] > article { margin-left: auto; }
-dialog[data-drawer][data-position="left"]  > article { margin-right: auto; }
+@media (min-width: 480px) { dialog[data-drawer] [data-drawer-panel] { max-width: 400px; } }
+dialog[data-drawer][data-position="right"] [data-drawer-panel] { margin-left: auto; }
+dialog[data-drawer][data-position="left"]  [data-drawer-panel] { margin-right: auto; }
 
 dialog::backdrop { background: rgba(26, 24, 20, 0.4); backdrop-filter: blur(2px); }
 
-dialog > article > header {
+dialog [data-dialog-panel] > header,
+dialog [data-drawer-panel] > header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1957,16 +1978,20 @@ dialog > article > header {
   border-bottom: 2px solid var(--concreto-80);
   background: transparent;
 }
-dialog > article > header h2,
-dialog > article > header h3,
-dialog > article > header h4 {
+dialog [data-dialog-panel] > header h2,
+dialog [data-dialog-panel] > header h3,
+dialog [data-dialog-panel] > header h4,
+dialog [data-drawer-panel] > header h2,
+dialog [data-drawer-panel] > header h3,
+dialog [data-drawer-panel] > header h4 {
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--t-h3);
   color: var(--concreto-90);
   line-height: 1.1;
 }
-dialog > article > section {
+dialog [data-dialog-panel] > [data-dialog-body],
+dialog [data-drawer-panel] > [data-drawer-body] {
   padding: 1.5rem;
   overflow-y: auto;
   flex-shrink: 1;
@@ -1974,7 +1999,8 @@ dialog > article > section {
   font-size: var(--t-body);
   line-height: 1.6;
 }
-dialog > article > footer {
+dialog [data-dialog-panel] > footer,
+dialog [data-drawer-panel] > footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -1985,10 +2011,14 @@ dialog > article > footer {
   flex-shrink: 0;
 }
 @media (max-width: 480px) {
-  dialog > article > header,
-  dialog > article > section,
-  dialog > article > footer { padding: 1rem; }
-  dialog > article > footer { flex-direction: column-reverse; align-items: stretch; }
+  dialog [data-dialog-panel] > header,
+  dialog [data-dialog-panel] > [data-dialog-body],
+  dialog [data-dialog-panel] > footer,
+  dialog [data-drawer-panel] > header,
+  dialog [data-drawer-panel] > [data-drawer-body],
+  dialog [data-drawer-panel] > footer { padding: 1rem; }
+  dialog [data-dialog-panel] > footer,
+  dialog [data-drawer-panel] > footer { flex-direction: column-reverse; align-items: stretch; }
 }
 
 /* --- Icons ([data-icon]) ------------------------------------- */
@@ -2225,7 +2255,7 @@ h2:hover [data-header-anchor], h3:hover [data-header-anchor] { opacity: 1; }
   [data-search-trigger] kbd { display: none; }
   [data-search-trigger] { padding: 0.5rem; border-radius: 50%; }
 }
-[data-search-modal] > article { max-height: 80vh; }
+[data-search-modal] [data-search-panel] { max-height: 80vh; }
 [data-search-modal] [id="pagefind-container"] { padding: 1rem; overflow-y: auto; }
 
 /* DocsPropsTable: distinguish type token */

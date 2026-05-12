@@ -1,6 +1,7 @@
 <script lang="ts">
   type TimelineItem = {
     date: string;
+    dateIso?: string;
     title: string;
     description?: string;
     status?: 'done' | 'active' | 'pending';
@@ -13,7 +14,7 @@
 <ol data-timeline>
   {#each items as item}
     <li data-status={item.status || 'pending'}>
-      <time>{item.date}</time>
+      <time datetime={item.dateIso}>{item.date}</time>
       <strong>{item.title}</strong>
       {#if item.description}<p>{item.description}</p>{/if}
     </li>

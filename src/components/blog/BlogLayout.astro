@@ -6,6 +6,7 @@ interface Props {
   title: string;
   slug?: string;
   pubDate?: string;
+  pubDateIso?: string;
   author?: string;
   tags?: string[];
   heroImage?: string;
@@ -15,6 +16,7 @@ const {
   title,
   slug = '',
   pubDate,
+  pubDateIso,
   author = 'Redação',
   tags = [],
   heroImage
@@ -66,7 +68,7 @@ const {
               <p class="article-meta">
                 {author && <span class="meta-author">{author}</span>}
                 {author && pubDate && <span class="meta-sep" aria-hidden="true">·</span>}
-                {pubDate && <time class="meta-date">{pubDate}</time>}
+                {pubDate && <time class="meta-date" datetime={pubDateIso}>{pubDate}</time>}
               </p>
             )}
           </header>
