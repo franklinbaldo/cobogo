@@ -85,7 +85,7 @@
 
 {#if visible}
   <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-  <aside
+  <div
     {id}
     role={roleAttr}
     aria-live={ariaLiveAttr}
@@ -117,5 +117,5 @@
         <span aria-hidden="true">&times;</span>
       </button>
     {/if}
-  </aside>
+  </div>
 {/if}

@@ -34,10 +34,10 @@
 
     <h3><a href={`/cobogo/blog/${slug}`}>{title}</a></h3>
     {#if description}<p>{description}</p>{/if}
-
-    <footer>
-      <time>{pubDate}</time>
-      <span aria-hidden="true">→</span>
-    </footer>
   </header>
+
+  <footer>
+    <time>{pubDate}</time>
+    <span aria-hidden="true">→</span>
+  </footer>
 </article>

@@ -65,7 +65,8 @@
 >
   {#if open}
     <FocusTrap active={true}>
-      <article
+      <div
+        data-dialog-panel
         in:fly={{ y: 20, duration: 220, opacity: 0 }}
         out:fade={{ duration: 150 }}
         onoutroend={() => {
@@ -73,7 +74,7 @@
         }}
       >
         {@render children()}
-      </article>
+      </div>
     </FocusTrap>
   {/if}
 </dialog>

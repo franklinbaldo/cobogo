@@ -1,0 +1,137 @@
+---
+const { currentPath = '' } = Astro.props;
+
+const links = [
+  { href: '/cobogo/manifesto/', label: 'Manifesto' },
+  { href: '/cobogo/componentes/', label: 'Componentes' },
+  { href: '/cobogo/patterns/', label: 'Padrões' },
+  { href: '/cobogo/composition/', label: 'Composição' },
+  { href: '/cobogo/recipes/', label: 'Receitas' },
+  { href: '/cobogo/docs/getting-started/', label: 'Docs' },
+];
+
+function isActive(href: string) {
+  const a = currentPath.replace(/\/$/, '');
+  const b = href.replace(/\/$/, '');
+  return a === b;
+}
+---
+
+<header data-region="site-header">
+  <nav data-site-nav>
+    <a href="/cobogo/" data-logo aria-label="COBOGÓ — página inicial">COBOGÓ</a>
+
+    <!-- Desktop links -->
+    <ul data-nav-links>
+      {links.map(({ href, label }) => (
+        <li>
+          <a href={href} aria-current={isActive(href) ? 'page' : undefined}>{label}</a>
+        </li>
+      ))}
+      <li data-nav-cta>
+        <a href="https://github.com/franklinbaldo/cobogo" target="_blank" rel="noopener noreferrer"
+           role="button" data-intent="outline" data-size="small">GitHub</a>
+      </li>
+    </ul>
+
+    <!-- Hamburger (mobile only) -->
+    <button
+      type="button"
+      data-nav-toggle
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="site-mobile-menu"
+    >
+      <span data-hamburger aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer: nav landmark, not a dialog — it's a disclosure of the site nav -->
+  <nav id="site-mobile-menu" data-nav-drawer aria-hidden="true" aria-label="Menu principal">
+    <ul>
+      {links.map(({ href, label }) => (
+        <li>
+          <a href={href} aria-current={isActive(href) ? 'page' : undefined}>{label}</a>
+        </li>
+      ))}
+      <li>
+        <a href="https://github.com/franklinbaldo/cobogo" target="_blank" rel="noopener noreferrer">
+          GitHub ↗
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Backdrop -->
+  <div data-nav-backdrop aria-hidden="true"></div>
+</header>
+
+<script is:inline>
+  (function () {
+    var header  = document.querySelector('[data-region="site-header"]');
+    var toggle  = document.querySelector('[data-nav-toggle]');
+    var drawer  = document.querySelector('[data-nav-drawer]');
+    var backdrop = document.querySelector('[data-nav-backdrop]');
+    if (!header || !toggle || !drawer || !backdrop) return;
+
+    function openMenu() {
+      header.setAttribute('data-nav-open', '');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Fechar menu');
+      drawer.removeAttribute('aria-hidden');
+      document.body.style.overflow = 'hidden';
+      // Focus first link
+      var firstLink = drawer.querySelector('a');
+      if (firstLink) firstLink.focus();
+    }
+
+    function closeMenu() {
+      header.removeAttribute('data-nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menu');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      toggle.focus();
+    }
+
+    var FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    function getFocusable() {
+      return Array.from(drawer.querySelectorAll(FOCUSABLE));
+    }
+
+    function trapFocus(e) {
+      if (!header.hasAttribute('data-nav-open') || e.key !== 'Tab') return;
+      var els = getFocusable();
+      if (!els.length) return;
+      var first = els[0];
+      var last = els[els.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+
+    toggle.addEventListener('click', function () {
+      if (header.hasAttribute('data-nav-open')) closeMenu();
+      else openMenu();
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.hasAttribute('data-nav-open')) closeMenu();
+      trapFocus(e);
+    });
+
+    // Close on any nav link click (handles same-page navigation)
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+  })();
+</script>

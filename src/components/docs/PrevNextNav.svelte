@@ -7,20 +7,16 @@
 
 <nav data-prev-next aria-label="Anterior e próximo">
   {#if prev}
-    <a href={`/cobogo/docs/${prev.slug}/`} rel="prev">
+    <a href={`/cobogo/docs/${prev.slug}/`} rel="prev" data-prev-link>
       <small data-kicker>← Anterior</small>
       <strong>{prev.title}</strong>
     </a>
-  {:else}
-    <span></span>
   {/if}
 
   {#if next}
-    <a href={`/cobogo/docs/${next.slug}/`} rel="next">
+    <a href={`/cobogo/docs/${next.slug}/`} rel="next" data-next-link>
       <small data-kicker>Próximo →</small>
       <strong>{next.title}</strong>
     </a>
-  {:else}
-    <span></span>
   {/if}
 </nav>

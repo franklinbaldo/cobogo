@@ -2,7 +2,7 @@
   import type { Snippet } from 'svelte';
 
   /**
-   * Alert renders <aside role="alert"> styled by Pico + global.css.
+   * Alert: live region for feedback messages.
    * Variant is forwarded as data-intent. Dismiss button is a native <button>.
    */
   type Props = {
@@ -34,7 +34,7 @@
 </script>
 
 {#if !dismissed}
-  <aside role="alert" aria-live="polite" data-intent={dataIntent}>
+  <div role="alert" aria-live="polite" data-alert data-intent={dataIntent}>
     <span aria-hidden="true">
       {#if dataIntent === 'success'}
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
@@ -57,5 +57,5 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
       </button>
     {/if}
-  </aside>
+  </div>
 {/if}

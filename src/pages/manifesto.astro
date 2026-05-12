@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
 import Button from '../components/Button.svelte';
 import Card from '../components/Card.svelte';
 import Badge from '../components/Badge.svelte';
@@ -8,17 +9,7 @@ import Badge from '../components/Badge.svelte';
 <BaseLayout title="Manifesto do Sistema | COBOGÓ">
   <aside aria-hidden="true" data-pattern="cobogo-hexagonal" data-region="tile-sidebar"></aside>
 
-  <header data-region="site-header">
-    <nav>
-      <ul><li><strong>COBOGÓ</strong></li></ul>
-      <ul>
-        <li><a href="/cobogo/">Homepage</a></li>
-        <li><a href="/cobogo/manifesto/">Manifesto</a></li>
-        <li><a href="/cobogo/componentes/">Components</a></li>
-        <li><a href="/cobogo/composition/">Composition</a></li>
-      </ul>
-    </nav>
-  </header>
+  <SiteNav currentPath={Astro.url.pathname} />
 
   <main>
     <section data-section="manifesto-intro">

@@ -22,325 +22,88 @@ const {
 ---
 
 <BaseLayout title={`${title} | COBOGÓ Blog`}>
-  <div class="blog-app-wrapper">
-    <!-- Header with wordmark -->
-    <header class="blog-header">
-      <div class="blog-container">
-        <div class="blog-header__inner">
-          <a href="/cobogo/" class="blog-wordmark">COBOGÓ</a>
-          <span class="blog-header__divider"></span>
-          <nav class="blog-breadcrumb">
-            <a href="/cobogo/blog-application">Blog</a>
-            {slug && (
-              <>
-                <span class="breadcrumb-sep">/</span>
-                <span class="breadcrumb-current">{slug}</span>
-              </>
-            )}
-          </nav>
-        </div>
+  <!-- Header with wordmark -->
+  <header class="blog-header">
+    <div class="blog-container">
+      <div class="blog-header__inner">
+        <a href="/cobogo/" class="blog-wordmark">COBOGÓ</a>
+        <span class="blog-header__divider" aria-hidden="true"></span>
+        <nav class="blog-breadcrumb" aria-label="breadcrumb">
+          <ol>
+            <li><a href="/cobogo/blog-application">Blog</a></li>
+            {slug && <li aria-current="page">{slug}</li>}
+          </ol>
+        </nav>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- Main Content Area -->
-    <main class="blog-main">
-      <div class="blog-container">
-        <div class="blog-layout">
-          <!-- Optional Sidebar / Navigation -->
-          <aside class="blog-sidebar">
-            <slot name="sidebar">
-              <div class="sidebar-widget">
-                <h4 class="widget-title">Sobre</h4>
-                <p class="widget-desc">Sistema visual brasileiro para interfaces públicas. Uma iniciativa focada em acessibilidade e densidade de informação.</p>
-              </div>
-            </slot>
-          </aside>
+  <!-- Main Content Area -->
+  <main class="blog-main">
+    <div class="blog-container">
+      <div class="blog-layout">
+        <!-- Optional Sidebar -->
+        <aside class="blog-sidebar">
+          <slot name="sidebar">
+            <div class="sidebar-widget">
+              <h2 class="widget-title">Sobre</h2>
+              <p class="widget-desc">Sistema visual brasileiro para interfaces públicas. Uma iniciativa focada em acessibilidade e densidade de informação.</p>
+            </div>
+          </slot>
+        </aside>
 
-          <!-- Core Article Area -->
-          <div class="blog-content-area">
-            {heroImage && (
-              <div class="blog-hero">
-                <img src={heroImage} alt="" class="blog-hero__img" />
-              </div>
+        <!-- Core Article Area -->
+        <article class="blog-content-area">
+          {heroImage && (
+            <div class="blog-hero">
+              <img src={heroImage} alt="" class="blog-hero__img" />
+            </div>
+          )}
+
+          <header class="article-header">
+            <h1 class="article-title">{title}</h1>
+            {(pubDate || author) && (
+              <p class="article-meta">
+                {author && <span class="meta-author">{author}</span>}
+                {author && pubDate && <span class="meta-sep" aria-hidden="true">·</span>}
+                {pubDate && <time class="meta-date">{pubDate}</time>}
+              </p>
             )}
+          </header>
 
-            <header class="article-header">
-              <h1 class="article-title">{title}</h1>
-              {(pubDate || author) && (
-                <div class="article-meta">
-                  {author && <span class="meta-author">{author}</span>}
-                  {author && pubDate && <span class="meta-sep">·</span>}
-                  {pubDate && <time class="meta-date">{pubDate}</time>}
+          <slot />
+
+          <footer class="article-footer">
+            <ProseOrnament />
+
+            <div class="article-footer__inner">
+              {tags.length > 0 && (
+                <div class="article-tags">
+                  {tags.map(tag => (
+                    <span class="tag-pill">{tag}</span>
+                  ))}
                 </div>
               )}
-            </header>
 
-            <slot />
-
-            <footer class="article-footer">
-              <ProseOrnament />
-
-              <div class="article-footer__inner">
-                {tags.length > 0 && (
-                  <div class="article-tags">
-                    {tags.map(tag => (
-                      <span class="tag-pill">{tag}</span>
-                    ))}
-                  </div>
-                )}
-
-                <div class="author-bio">
-                  <div class="author-bio__avatar">
-                    <!-- Placeholder avatar -->
-                    <div class="avatar-placeholder"></div>
-                  </div>
-                  <div class="author-bio__info">
-                    <h5 class="author-name">{author}</h5>
-                    <p class="author-desc">Publicado no COBOGÓ Blog, explorando a interseção entre design brasileiro, tecnologia e serviço público.</p>
-                  </div>
+              <div class="author-bio">
+                <span class="avatar-placeholder" aria-hidden="true"></span>
+                <div class="author-bio__info">
+                  <p class="author-name">{author}</p>
+                  <p class="author-desc">Publicado no COBOGÓ Blog, explorando a interseção entre design brasileiro, tecnologia e serviço público.</p>
                 </div>
               </div>
-            </footer>
-          </div>
-        </div>
+            </div>
+          </footer>
+        </article>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <!-- Footer -->
-    <footer class="blog-site-footer">
-      <div class="blog-container">
-        <div class="footer-inner">
-          <div class="footer-brand">COBOGÓ</div>
-          <p class="footer-text">Um sistema visual brasileiro.</p>
-        </div>
-      </div>
-    </footer>
-  </div>
+  <!-- Footer -->
+  <footer class="blog-site-footer">
+    <div class="blog-container">
+      <p class="footer-brand" aria-hidden="true">COBOGÓ</p>
+      <p class="footer-text">Um sistema visual brasileiro.</p>
+    </div>
+  </footer>
 </BaseLayout>
-
-<style>
-  .blog-app-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: var(--bg);
-  }
-
-  .blog-container {
-    width: 100%;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  /* Header */
-  .blog-header {
-    background: var(--bg-raised);
-    border-bottom: 1px solid var(--border);
-    padding: 1.5rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .blog-header__inner {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .blog-wordmark {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    color: var(--accent);
-  }
-
-  .blog-header__divider {
-    width: 1px;
-    height: 24px;
-    background: var(--border-strong);
-    opacity: 0.3;
-  }
-
-  .blog-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--fg-muted);
-  }
-
-  .blog-breadcrumb a {
-    color: var(--fg);
-    transition: color 0.2s;
-  }
-  .blog-breadcrumb a:hover {
-    color: var(--accent);
-  }
-
-  .breadcrumb-sep {
-    opacity: 0.5;
-  }
-
-  .breadcrumb-current {
-    color: var(--fg);
-  }
-
-  /* Main Layout */
-  .blog-main {
-    flex: 1;
-    padding: 4rem 0 8rem;
-  }
-
-  .blog-layout {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  @media (max-width: 900px) {
-    .blog-layout {
-      grid-template-columns: 1fr;
-    }
-    .blog-sidebar {
-      display: none;
-    }
-  }
-
-  .blog-sidebar {
-    position: sticky;
-    top: 6rem;
-  }
-
-  .widget-title {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: var(--fg-heading);
-  }
-
-  .widget-desc {
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--fg-muted);
-  }
-
-  .blog-content-area {
-    max-width: 720px;
-  }
-
-  .blog-hero {
-    margin-bottom: 3rem;
-    border-radius: var(--r-soft);
-    overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .blog-hero__img {
-    width: 100%;
-    height: auto;
-    display: block;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-  }
-
-  .article-header {
-    margin-bottom: 3rem;
-  }
-
-  .article-title {
-    font-size: var(--t-h1);
-    margin-bottom: 1rem;
-  }
-
-  .article-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--fg-muted);
-  }
-
-  /* Footer */
-  .article-footer {
-    margin-top: 5rem;
-  }
-
-  .article-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 4rem;
-  }
-
-  .tag-pill {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.25rem 0.75rem;
-    background: var(--papel-20);
-    border-radius: var(--r-pill);
-    color: var(--fg-muted);
-  }
-
-  .author-bio {
-    display: flex;
-    gap: 1.5rem;
-    padding: 2rem;
-    background: var(--bg-raised);
-    border: 1px solid var(--border);
-    border-radius: var(--r-soft);
-  }
-
-  .avatar-placeholder {
-    width: 64px;
-    height: 64px;
-    border-radius: var(--r-pill);
-    background: var(--azul-soft);
-    border: 1px solid var(--border-strong);
-  }
-
-  .author-name {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .author-desc {
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--fg-muted);
-  }
-
-  .blog-site-footer {
-    background: var(--bg-sunken);
-    border-top: 1px solid var(--border);
-    padding: 4rem 0;
-    text-align: center;
-  }
-
-  .footer-brand {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    color: var(--concreto-60);
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-text {
-    font-size: 0.875rem;
-    color: var(--fg-muted);
-  }
-</style>

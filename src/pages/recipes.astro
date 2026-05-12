@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
 import Card from '../components/Card.svelte';
 import ProfileCard from '../components/ProfileCard.svelte';
 import DataTable from '../components/DataTable.svelte';
@@ -8,19 +9,7 @@ import MetricCard from '../components/MetricCard.svelte';
 ---
 
 <BaseLayout title="Recipes | COBOGÓ">
-  <header data-region="site-header">
-    <nav>
-      <ul><li><strong>COBOGÓ</strong></li></ul>
-      <ul>
-        <li><a href="/cobogo/">Home</a></li>
-        <li><a href="/cobogo/manifesto/">Manifesto</a></li>
-        <li><a href="/cobogo/componentes/">Components</a></li>
-        <li><a href="/cobogo/patterns/">Patterns</a></li>
-        <li><a href="/cobogo/composition/">Composition</a></li>
-        <li><a href="/cobogo/recipes/" aria-current="page">Recipes</a></li>
-      </ul>
-    </nav>
-  </header>
+  <SiteNav currentPath={Astro.url.pathname} />
 
   <main>
     <header data-page-header>

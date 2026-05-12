@@ -2,8 +2,7 @@
   import type { Snippet } from 'svelte';
 
   /**
-   * Inline status pill. Renders <mark> so Pico's element selector applies.
-   * Variants are forwarded as data-intent — never as classes.
+   * Inline status pill. Variants are forwarded as data-intent — never as classes.
    */
   type Props = {
     children?: Snippet;
@@ -17,4 +16,4 @@
   let dataIntent = $derived(intent ?? variant ?? 'default');
 </script>
 
-<mark data-intent={dataIntent} {...rest}>{@render children?.()}</mark>
+<span data-badge data-intent={dataIntent} {...rest}>{@render children?.()}</span>

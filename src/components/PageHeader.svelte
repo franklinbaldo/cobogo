@@ -16,7 +16,7 @@
 
 <header data-page-header data-align={align}>
   <hgroup>
-    {#if kicker}<p><small data-kicker>{kicker}</small></p>{/if}
+    {#if kicker}<small data-kicker>{kicker}</small>{/if}
     <h1>{title}</h1>
     {#if lede}<p>{lede}</p>{/if}
   </hgroup>

@@ -34,7 +34,7 @@
 </script>
 
 <nav data-toc aria-label="Table of Contents">
-  <p><strong>On this page</strong></p>
+  <h2 data-toc-heading>On this page</h2>
   <ul>
     {#each headings.filter((h) => h.depth === 2 || h.depth === 3) as heading}
       <li data-depth={heading.depth}>

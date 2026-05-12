@@ -17,7 +17,8 @@
 
 <search>
   <form role="search" data-search-bar>
-    <label aria-label={placeholder}>
+    <label>
+      <span class="sr-only">{placeholder}</span>
       <span aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
@@ -29,7 +30,7 @@
   </form>
 
   {#if filters.length > 0}
-    <fieldset role="group" aria-label="Filtros disponíveis" data-filter-list>
+    <fieldset aria-label="Filtros disponíveis" data-filter-list>
       <legend><small data-kicker>Filtrar por</small></legend>
       {#each filters as filter}
         <button
