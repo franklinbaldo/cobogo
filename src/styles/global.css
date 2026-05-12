@@ -227,6 +227,14 @@ a { color: inherit; text-decoration: none; }
   color: var(--fg-muted);
 }
 
+/* --- Theme toggle (BaseLayout.astro) -------------------------- */
+[data-region="theme-toggle"] {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+}
+
 /* --- Site nav (SiteNav.astro) --------------------------------- */
 [data-site-nav] {
   display: flex;

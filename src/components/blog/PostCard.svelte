@@ -3,6 +3,7 @@
     title,
     description,
     pubDate,
+    pubDateIso,
     tags = [],
     slug,
     heroImage,
@@ -11,6 +12,7 @@
     title: string;
     description: string;
     pubDate: string;
+    pubDateIso?: string;
     tags?: string[];
     slug: string;
     heroImage?: string;
@@ -37,7 +39,7 @@
   </header>
 
   <footer>
-    <time>{pubDate}</time>
+    <time datetime={pubDateIso}>{pubDate}</time>
     <span aria-hidden="true">→</span>
   </footer>
 </article>
