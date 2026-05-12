@@ -56,9 +56,9 @@ const allTags = ['Design System', 'História', 'UX', 'Estudo de Caso', 'Desenvol
         <h1>{title}</h1>
         <p>{description}</p>
       </hgroup>
-      <p data-archive-search>
+      <div data-archive-search>
         <SearchBar client:load placeholder="Buscar no acervo..." />
-      </p>
+      </div>
     </header>
 
     <div data-archive-layout>
@@ -84,9 +84,9 @@ const allTags = ['Design System', 'História', 'UX', 'Estudo de Caso', 'Desenvol
           />
         ))}
 
-        <p data-archive-pagination>
+        <div data-archive-pagination>
           <button type="button" data-intent="secondary">Carregar mais antigos</button>
-        </p>
+        </div>
       </section>
     </div>
   </main>

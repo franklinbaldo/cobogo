@@ -11,7 +11,9 @@ const links = [
 ];
 
 function isActive(href: string) {
-  return currentPath === href || currentPath === href.replace(/\/$/, '');
+  const a = currentPath.replace(/\/$/, '');
+  const b = href.replace(/\/$/, '');
+  return a === b;
 }
 ---
 
@@ -20,7 +22,7 @@ function isActive(href: string) {
     <a href="/cobogo/" data-logo aria-label="COBOGÓ — página inicial">COBOGÓ</a>
 
     <!-- Desktop links -->
-    <ul data-nav-links role="list">
+    <ul data-nav-links>
       {links.map(({ href, label }) => (
         <li>
           <a href={href} aria-current={isActive(href) ? 'page' : undefined}>{label}</a>
@@ -48,9 +50,9 @@ function isActive(href: string) {
     </button>
   </nav>
 
-  <!-- Mobile drawer -->
-  <div id="site-mobile-menu" data-nav-drawer aria-hidden="true" role="dialog" aria-label="Menu de navegação">
-    <ul role="list">
+  <!-- Mobile drawer: nav landmark, not a dialog — it's a disclosure of the site nav -->
+  <nav id="site-mobile-menu" data-nav-drawer aria-hidden="true" aria-label="Menu principal">
+    <ul>
       {links.map(({ href, label }) => (
         <li>
           <a href={href} aria-current={isActive(href) ? 'page' : undefined}>{label}</a>
@@ -62,7 +64,7 @@ function isActive(href: string) {
         </a>
       </li>
     </ul>
-  </div>
+  </nav>
 
   <!-- Backdrop -->
   <div data-nav-backdrop aria-hidden="true"></div>
@@ -96,6 +98,25 @@ function isActive(href: string) {
       toggle.focus();
     }
 
+    var FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    function getFocusable() {
+      return Array.from(drawer.querySelectorAll(FOCUSABLE));
+    }
+
+    function trapFocus(e) {
+      if (!header.hasAttribute('data-nav-open') || e.key !== 'Tab') return;
+      var els = getFocusable();
+      if (!els.length) return;
+      var first = els[0];
+      var last = els[els.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+
     toggle.addEventListener('click', function () {
       if (header.hasAttribute('data-nav-open')) closeMenu();
       else openMenu();
@@ -105,6 +126,7 @@ function isActive(href: string) {
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && header.hasAttribute('data-nav-open')) closeMenu();
+      trapFocus(e);
     });
 
     // Close on any nav link click (handles same-page navigation)

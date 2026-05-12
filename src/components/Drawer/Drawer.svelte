@@ -61,7 +61,8 @@
 >
   {#if open}
     <FocusTrap active={true}>
-      <article
+      <div
+        data-drawer-panel
         in:fly={{ x: flyX, duration: 220, opacity: 1 }}
         out:fly={{ x: flyX, duration: 150, opacity: 1 }}
         onoutroend={() => {
@@ -69,7 +70,7 @@
         }}
       >
         {@render children()}
-      </article>
+      </div>
     </FocusTrap>
   {/if}
 </dialog>

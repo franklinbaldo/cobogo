@@ -3,4 +3,4 @@
   let { children }: { children: Snippet } = $props();
 </script>
 
-<section>{@render children()}</section>
+<div data-drawer-body>{@render children()}</div>

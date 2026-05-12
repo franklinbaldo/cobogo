@@ -9,7 +9,7 @@
   let dataStatus = $derived(status === 'success' ? 'active' : status);
 </script>
 
-<small data-status={dataStatus}>
+<span data-status={dataStatus}>
   <span aria-hidden="true" data-status-dot></span>
   {resolvedLabel}
-</small>
+</span>

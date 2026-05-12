@@ -68,7 +68,7 @@
 
   <nav>
     {#each sections as section}
-      <section>
+      <div data-nav-section>
         <h3>{section}</h3>
         <ul>
           {#each groupedEntries[section] as entry}
@@ -84,7 +84,7 @@
             </li>
           {/each}
         </ul>
-      </section>
+      </div>
     {/each}
   </nav>
 </aside>
