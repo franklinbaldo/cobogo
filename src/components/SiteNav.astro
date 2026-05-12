@@ -16,19 +16,306 @@ function isActive(href: string) {
 ---
 
 <header data-region="site-header">
-  <nav>
-    <ul>
-      <li><a href="/cobogo/" data-logo>COBOGÓ</a></li>
+  <nav data-site-nav>
+    <a href="/cobogo/" data-logo aria-label="COBOGÓ — página inicial">COBOGÓ</a>
+
+    <!-- Desktop links -->
+    <ul data-nav-links role="list">
+      {links.map(({ href, label }) => (
+        <li>
+          <a href={href} aria-current={isActive(href) ? 'page' : undefined}>{label}</a>
+        </li>
+      ))}
+      <li data-nav-cta>
+        <a href="https://github.com/franklinbaldo/cobogo" target="_blank" rel="noopener noreferrer"
+           role="button" data-intent="outline" data-size="small">GitHub</a>
+      </li>
     </ul>
-    <ul>
+
+    <!-- Hamburger (mobile only) -->
+    <button
+      type="button"
+      data-nav-toggle
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="site-mobile-menu"
+    >
+      <span data-hamburger aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div id="site-mobile-menu" data-nav-drawer aria-hidden="true" role="dialog" aria-label="Menu de navegação">
+    <ul role="list">
       {links.map(({ href, label }) => (
         <li>
           <a href={href} aria-current={isActive(href) ? 'page' : undefined}>{label}</a>
         </li>
       ))}
       <li>
-        <a href="https://github.com/franklinbaldo/cobogo" role="button" data-intent="outline" data-size="small">GitHub</a>
+        <a href="https://github.com/franklinbaldo/cobogo" target="_blank" rel="noopener noreferrer">
+          GitHub ↗
+        </a>
       </li>
     </ul>
-  </nav>
+  </div>
+
+  <!-- Backdrop -->
+  <div data-nav-backdrop aria-hidden="true"></div>
 </header>
+
+<script is:inline>
+  (function () {
+    var header  = document.querySelector('[data-region="site-header"]');
+    var toggle  = document.querySelector('[data-nav-toggle]');
+    var drawer  = document.querySelector('[data-nav-drawer]');
+    var backdrop = document.querySelector('[data-nav-backdrop]');
+    if (!header || !toggle || !drawer || !backdrop) return;
+
+    function openMenu() {
+      header.setAttribute('data-nav-open', '');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Fechar menu');
+      drawer.removeAttribute('aria-hidden');
+      document.body.style.overflow = 'hidden';
+      // Focus first link
+      var firstLink = drawer.querySelector('a');
+      if (firstLink) firstLink.focus();
+    }
+
+    function closeMenu() {
+      header.removeAttribute('data-nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menu');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      toggle.focus();
+    }
+
+    toggle.addEventListener('click', function () {
+      if (header.hasAttribute('data-nav-open')) closeMenu();
+      else openMenu();
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.hasAttribute('data-nav-open')) closeMenu();
+    });
+
+    // Close on any nav link click (handles same-page navigation)
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+  })();
+</script>
+
+<style>
+  /* ── Desktop layout ─────────────────────────────────────────── */
+  [data-site-nav] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1240px;
+    margin: 0 auto;
+    gap: 2rem;
+  }
+
+  [data-nav-links] {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap;
+  }
+
+  [data-nav-links] a {
+    display: block;
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--r-1, 4px);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: var(--fg-muted);
+    transition: color 0.15s, background 0.15s;
+    white-space: nowrap;
+  }
+
+  [data-nav-links] a:hover {
+    color: var(--fg-heading);
+    background: color-mix(in srgb, var(--fg) 6%, transparent);
+  }
+
+  [data-nav-links] a[aria-current="page"] {
+    color: var(--fg-heading);
+    background: color-mix(in srgb, var(--azul) 8%, transparent);
+    font-weight: 700;
+  }
+
+  [data-nav-cta] {
+    margin-left: 0.5rem;
+  }
+
+  /* ── Hamburger button ───────────────────────────────────────── */
+  [data-nav-toggle] {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--r-1, 4px);
+    background: transparent;
+    cursor: pointer;
+    color: var(--fg-heading);
+    flex-shrink: 0;
+    box-shadow: none;
+  }
+
+  [data-nav-toggle]:hover {
+    background: color-mix(in srgb, var(--fg) 6%, transparent);
+    transform: none;
+    box-shadow: none;
+  }
+
+  [data-hamburger] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 18px;
+    height: 18px;
+  }
+
+  [data-hamburger] span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transform-origin: center;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity   0.2s ease,
+                width     0.25s ease;
+  }
+
+  /* X animation when open */
+  [data-nav-open] [data-hamburger] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  [data-nav-open] [data-hamburger] span:nth-child(2) {
+    opacity: 0;
+    width: 0;
+  }
+  [data-nav-open] [data-hamburger] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* ── Mobile drawer ──────────────────────────────────────────── */
+  [data-nav-drawer] {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: color-mix(in srgb, var(--bg) 97%, transparent);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem clamp(1rem, 4vw, 2rem) 1.5rem;
+    transform: translateY(-0.5rem);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity   0.2s ease,
+                visibility 0s   linear 0.25s;
+    z-index: 99;
+  }
+
+  [data-nav-open] [data-nav-drawer] {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity   0.2s ease,
+                visibility 0s   linear 0s;
+  }
+
+  [data-nav-drawer] ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  [data-nav-drawer] a {
+    display: block;
+    padding: 0.75rem 0.75rem;
+    border-radius: var(--r-1, 4px);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--fg);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  [data-nav-drawer] a:hover {
+    background: color-mix(in srgb, var(--fg) 6%, transparent);
+    color: var(--fg-heading);
+  }
+
+  [data-nav-drawer] a[aria-current="page"] {
+    background: color-mix(in srgb, var(--azul) 8%, transparent);
+    color: var(--azul);
+    font-weight: 700;
+  }
+
+  /* ── Backdrop ───────────────────────────────────────────────── */
+  [data-nav-backdrop] {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  [data-nav-open] [data-nav-backdrop] {
+    opacity: 1;
+  }
+
+  /* ── Responsive breakpoint ──────────────────────────────────── */
+  @media (max-width: 860px) {
+    [data-nav-links] {
+      display: none;
+    }
+
+    [data-nav-toggle] {
+      display: flex;
+    }
+
+    [data-nav-backdrop] {
+      display: block;
+    }
+  }
+
+  /* ── Reduced motion ─────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    [data-nav-drawer],
+    [data-hamburger] span,
+    [data-nav-backdrop] {
+      transition: none;
+    }
+  }
+</style>

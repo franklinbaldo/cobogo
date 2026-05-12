@@ -205,11 +205,6 @@ a { color: inherit; text-decoration: none; }
   backdrop-filter: blur(8px);
   padding: 0.75rem clamp(1rem, 4vw, 2rem);
 }
-[data-region="site-header"] nav {
-  max-width: 1240px;
-  margin: 0 auto;
-}
-[data-region="site-header"] nav ul + ul { gap: 2rem; }
 [data-region="site-header"] strong {
   font-family: var(--font-display);
   font-weight: 900;
