@@ -1307,7 +1307,8 @@ dialog {
 }
 dialog::backdrop { background: rgba(26, 24, 20, 0.6); }
 dialog > header,
-dialog [data-dialog-panel] > header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+dialog [data-dialog-panel] > header,
+dialog [data-search-panel] > header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
 dialog > footer,
 dialog [data-dialog-panel] > footer { padding: 1.5rem; border-top: 1px solid var(--border); display: flex; gap: 0.75rem; justify-content: flex-end; }
 dialog [data-dialog-panel] > [data-dialog-body],
