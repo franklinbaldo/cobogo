@@ -8,327 +8,931 @@ import Button from '../components/Button.svelte';
 import Badge from '../components/Badge.svelte';
 import Alert from '../components/Alert.svelte';
 
+const principles = [
+  { letter: 'C', title: 'Cívico',     desc: 'Design orientado ao interesse e serviço público.' },
+  { letter: 'O', title: 'Organizado', desc: 'Informação estruturada com hierarquia editorial forte.' },
+  { letter: 'B', title: 'Brasileiro', desc: 'Referências locais com sofisticação contemporânea, sem caricatura.' },
+  { letter: 'O', title: 'Objetivo',   desc: 'Clareza em primeiro lugar; ornamento apenas com função.' },
+  { letter: 'G', title: 'Geométrico', desc: 'Grids, blocos e padrões que constroem interfaces sólidas.' },
+  { letter: 'Ó', title: 'Ótimo',      desc: 'Performance, acessibilidade e modularidade para o software moderno.' },
+];
+
 const colors = [
-  { name: '--papel-00',    hex: '#FBF8F1' },
-  { name: '--papel-20',    hex: '#EDE7D8' },
-  { name: '--concreto-60', hex: '#6B6455' },
-  { name: '--concreto-90', hex: '#1A1814' },
-  { name: '--azul',        hex: '#1B2B4B' },
-  { name: '--vermelho',    hex: '#C8472E' },
-  { name: '--ocre',        hex: '#D9A441' },
-  { name: '--verde',       hex: '#2E6B4A' },
+  { name: '--papel-00',    hex: '#FBF8F1', label: 'Papel' },
+  { name: '--papel-20',    hex: '#EDE7D8', label: 'Areia' },
+  { name: '--concreto-60', hex: '#6B6455', label: 'Mudo' },
+  { name: '--concreto-90', hex: '#1A1814', label: 'Carvão' },
+  { name: '--azul',        hex: '#1B2B4B', label: 'Azul' },
+  { name: '--vermelho',    hex: '#C8472E', label: 'Vermelho' },
+  { name: '--ocre',        hex: '#D9A441', label: 'Ocre' },
+  { name: '--verde',       hex: '#2E6B4A', label: 'Verde' },
 ];
 ---
 
-<BaseLayout title="COBOGÓ — Galeria">
+<BaseLayout title="COBOGÓ — Sistema Visual Brasileiro">
+  <!-- ─── Nav ─────────────────────────────────────────────────── -->
   <header data-region="site-header">
     <nav>
-      <ul><li><strong>COBOGÓ</strong></li></ul>
       <ul>
-        <li><a href="#patterns">Padrões</a></li>
-        <li><a href="#tokens">Tokens</a></li>
-        <li><a href="#components">Componentes</a></li>
+        <li><a href="/cobogo/" data-logo>COBOGÓ</a></li>
+      </ul>
+      <ul>
+        <li><a href="#padroes">Padrões</a></li>
+        <li><a href="#componentes">Componentes</a></li>
         <li><a href="/cobogo/manifesto/">Manifesto</a></li>
         <li><a href="/cobogo/docs/getting-started/">Docs</a></li>
-        <li><a href="https://github.com/franklinbaldo/cobogo" role="button">Github</a></li>
+        <li><a href="https://github.com/franklinbaldo/cobogo" role="button" data-intent="outline" data-size="small">GitHub</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Wall: the artwork is the pitch. -->
-    <section data-section="wall" aria-labelledby="wall-title">
-      <div data-region="wall-art" aria-hidden="true">
-        <CobogoCircular tile={true} size={120} color="var(--papel-00)" density={0.18} />
+    <!-- ─── Hero ─────────────────────────────────────────────── -->
+    <section data-section="hero" aria-labelledby="hero-title">
+      <div data-region="hero-pattern" aria-hidden="true">
+        <CobogoCircular tile={true} size={140} color="var(--papel-00)" density={0.15} />
       </div>
-      <hgroup>
-        <h1 id="wall-title">COBOGÓ</h1>
-        <p>Um sistema visual brasileiro, escrito em HTML semântico sobre <a href="https://picocss.com/">Pico CSS</a>.</p>
-      </hgroup>
+
+      <div data-region="hero-content">
+        <p data-kicker>Sistema Visual · v0.1</p>
+        <h1 id="hero-title">COBOGÓ</h1>
+        <p data-region="hero-lead">
+          Modernismo brasileiro traduzido em interface.<br />
+          HTML semântico. Sem classes. Sem carnavalizar.
+        </p>
+        <div data-region="hero-actions">
+          <a href="/cobogo/docs/getting-started/" role="button">Começar →</a>
+          <a href="/cobogo/manifesto/" role="button" data-intent="outline">Ler o manifesto</a>
+        </div>
+      </div>
     </section>
 
-    <!-- Patterns gallery: the namesake, full size. -->
-    <section id="patterns" aria-labelledby="patterns-title">
-      <hgroup>
+    <!-- ─── Patterns strip ───────────────────────────────────── -->
+    <section id="padroes" data-section="patterns" aria-labelledby="patterns-title">
+      <hgroup data-region="section-hgroup">
         <h2 id="patterns-title">Padrões</h2>
-        <p>Quatro cobogós tileáveis. Renderizados em SVG, controlados por <code>size</code>, <code>color</code>, <code>density</code>.</p>
+        <p>Quatro cobogós tileáveis — a linguagem visual do sistema.</p>
       </hgroup>
 
-      <div data-region="pattern-grid">
+      <div data-region="pattern-strip">
         <figure data-pattern-card>
-          <div data-region="pattern-tile">
-            <CobogoCircular tile={true} size={96} color="var(--azul)" density={0.5} />
+          <div data-region="pattern-tile" style="--tile-color: var(--azul)">
+            <CobogoCircular tile={true} size={96} color="var(--papel-00)" density={0.5} />
           </div>
-          <figcaption><strong>Circular</strong><small>A curva. Niemeyer.</small></figcaption>
+          <figcaption>
+            <strong>Circular</strong>
+            <small>A curva. Niemeyer.</small>
+          </figcaption>
         </figure>
+
         <figure data-pattern-card>
-          <div data-region="pattern-tile">
-            <CobogoHexagonal tile={true} size={96} color="var(--vermelho)" density={0.5} />
+          <div data-region="pattern-tile" style="--tile-color: var(--vermelho)">
+            <CobogoHexagonal tile={true} size={96} color="var(--papel-00)" density={0.5} />
           </div>
-          <figcaption><strong>Hexagonal</strong><small>A colmeia. Bulcão.</small></figcaption>
+          <figcaption>
+            <strong>Hexagonal</strong>
+            <small>A colmeia. Bulcão.</small>
+          </figcaption>
         </figure>
+
         <figure data-pattern-card>
-          <div data-region="pattern-tile">
-            <CobogoLosango tile={true} size={96} color="var(--ocre)" density={0.5} />
+          <div data-region="pattern-tile" style="--tile-color: var(--ocre)">
+            <CobogoLosango tile={true} size={96} color="var(--concreto-90)" density={0.5} />
           </div>
-          <figcaption><strong>Losango</strong><small>A calçada. Burle Marx.</small></figcaption>
+          <figcaption>
+            <strong>Losango</strong>
+            <small>A calçada. Burle Marx.</small>
+          </figcaption>
         </figure>
+
         <figure data-pattern-card>
-          <div data-region="pattern-tile">
-            <CobogoCruz tile={true} size={96} color="var(--verde)" density={0.5} />
+          <div data-region="pattern-tile" style="--tile-color: var(--verde)">
+            <CobogoCruz tile={true} size={96} color="var(--papel-00)" density={0.5} />
           </div>
-          <figcaption><strong>Cruz</strong><small>A grelha. Costa.</small></figcaption>
+          <figcaption>
+            <strong>Cruz</strong>
+            <small>A grelha. Costa.</small>
+          </figcaption>
         </figure>
       </div>
     </section>
 
-    <!-- Tokens: color, type, radius, shadow specimens. -->
-    <section id="tokens" aria-labelledby="tokens-title">
-      <hgroup>
-        <h2 id="tokens-title">Tokens</h2>
-        <p>Definidos uma vez, mapeados em <code>--pico-*</code>. Componentes nunca leem cor crua.</p>
+    <!-- ─── Principles ───────────────────────────────────────── -->
+    <section data-section="principles" aria-labelledby="principles-title">
+      <hgroup data-region="section-hgroup">
+        <h2 id="principles-title">O que é COBOGÓ</h2>
+        <p>Cada letra é um princípio de design para interfaces públicas brasileiras.</p>
       </hgroup>
 
-      <h3>Cor</h3>
-      <dl data-region="swatches">
-        {colors.map(({ name, hex }) => (
-          <>
-            <dt><span data-region="swatch" style={`background:var(${name})`} aria-hidden="true"></span>{name}</dt>
-            <dd><code data-token-value={name}>{hex}</code></dd>
-          </>
+      <dl data-region="principles-grid">
+        {principles.map(({ letter, title, desc }) => (
+          <div data-principle>
+            <dt>
+              <span data-principle-letter>{letter}</span>
+              {title}
+            </dt>
+            <dd>{desc}</dd>
+          </div>
         ))}
       </dl>
+    </section>
+
+    <!-- ─── Manifesto pull-quote ─────────────────────────────── -->
+    <section data-section="quote" aria-label="Manifesto">
+      <blockquote>
+        <p>"COBOGÓ não é nostalgia modernista. É uma gramática visual para software brasileiro contemporâneo. Usa cor sem carnavalizar, geometria sem endurecer, ornamento sem ruído, e serviço público sem cara de repartição."</p>
+        <footer>
+          <cite>Manifesto do Sistema</cite>
+          <a href="/cobogo/manifesto/">Ler completo →</a>
+        </footer>
+      </blockquote>
+    </section>
+
+    <!-- ─── Component showcase ───────────────────────────────── -->
+    <section id="componentes" data-section="components" aria-labelledby="components-title">
+      <hgroup data-region="section-hgroup">
+        <h2 id="components-title">Componentes</h2>
+        <p>HTML semântico. Classes proibidas. Variantes via <code>data-intent</code>.</p>
+      </hgroup>
+
+      <div data-region="component-grid">
+        <article data-component-card>
+          <header><h3>Ações</h3></header>
+          <div data-region="demo-row">
+            <Button intent="primary">Primário</Button>
+            <Button intent="secondary">Secundário</Button>
+            <Button intent="outline">Outline</Button>
+            <Button intent="link">Link</Button>
+          </div>
+        </article>
+
+        <article data-component-card>
+          <header><h3>Estados</h3></header>
+          <div data-region="demo-row">
+            <Badge intent="azul">Info</Badge>
+            <Badge intent="verde">Sucesso</Badge>
+            <Badge intent="ocre">Atenção</Badge>
+            <Badge intent="vermelho">Erro</Badge>
+            <Badge intent="neutral">Neutro</Badge>
+          </div>
+        </article>
+
+        <article data-component-card data-span="full">
+          <header><h3>Alertas</h3></header>
+          <div data-region="alert-stack">
+            <Alert intent="info" title="Info">Painel cívico publicado.</Alert>
+            <Alert intent="success" title="Sucesso">Compra pública indexada.</Alert>
+            <Alert intent="warning" title="Atenção">Dado parcial — fonte em revisão.</Alert>
+            <Alert intent="danger" title="Erro">Falha ao carregar série temporal.</Alert>
+          </div>
+        </article>
+
+        <article data-component-card>
+          <header><h3>Formulário</h3></header>
+          <form onsubmit="event.preventDefault()">
+            <label>
+              Buscar contrato
+              <input type="search" placeholder="ex.: Secretaria de Saúde" />
+            </label>
+            <label>
+              Órgão
+              <select>
+                <option>Todos</option>
+                <option>Educação</option>
+                <option>Saúde</option>
+                <option>Transporte</option>
+              </select>
+            </label>
+            <fieldset>
+              <legend>Período</legend>
+              <label><input type="radio" name="periodo" checked /> 30 dias</label>
+              <label><input type="radio" name="periodo" /> 90 dias</label>
+              <label><input type="radio" name="periodo" /> Tudo</label>
+            </fieldset>
+            <Button intent="primary">Buscar</Button>
+          </form>
+        </article>
+
+        <article data-component-card>
+          <header><h3>Tabela</h3></header>
+          <figure>
+            <table>
+              <thead>
+                <tr>
+                  <th>Órgão</th>
+                  <th>Contrato</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Saúde</td>
+                  <td>Insumos UBS</td>
+                  <td>R$&nbsp;1.240.000</td>
+                  <td><Badge intent="verde">Ativo</Badge></td>
+                </tr>
+                <tr>
+                  <td>Educação</td>
+                  <td>Merenda escolar</td>
+                  <td>R$&nbsp;980.500</td>
+                  <td><Badge intent="ocre">Em análise</Badge></td>
+                </tr>
+                <tr>
+                  <td>Transporte</td>
+                  <td>Sinalização viária</td>
+                  <td>R$&nbsp;432.100</td>
+                  <td><Badge intent="vermelho">Suspenso</Badge></td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <!-- ─── Type & Color specimen ────────────────────────────── -->
+    <section data-section="tokens" aria-labelledby="tokens-title">
+      <hgroup data-region="section-hgroup">
+        <h2 id="tokens-title">Tipografia &amp; Cor</h2>
+        <p>Tokens definidos uma vez. Mapeados em <code>--pico-*</code>. Nunca codificados.</p>
+      </hgroup>
+
+      <div data-region="specimen-layout">
+        <figure data-region="type-specimen">
+          <p data-specimen="display">Aa</p>
+          <p data-specimen="h1">Modernismo<br />brasileiro</p>
+          <p data-specimen="h2-italic">traduzido em interface</p>
+          <p data-specimen="lede">Lede em Archivo: a tipografia carrega o ritmo cívico do sistema.</p>
+          <p data-specimen="body">Corpo em Piazzolla, com serifa para densidade documental.</p>
+          <p data-specimen="kicker">Micro · kicker · rótulo · sistema</p>
+        </figure>
+
+        <div data-region="color-palette">
+          {colors.map(({ name, hex, label }) => (
+            <div data-swatch-item>
+              <span
+                data-swatch
+                style={`background: var(${name})`}
+                aria-hidden="true"
+              ></span>
+              <dl>
+                <dt>{label}</dt>
+                <dd>
+                  <code data-token={name}>{hex}</code>
+                </dd>
+              </dl>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <script is:inline>
         (() => {
           const update = () => {
             const cs = getComputedStyle(document.documentElement);
-            for (const el of document.querySelectorAll('[data-token-value]')) {
-              const v = cs.getPropertyValue(el.getAttribute('data-token-value')).trim();
+            for (const el of document.querySelectorAll('[data-token]')) {
+              const v = cs.getPropertyValue(el.getAttribute('data-token')).trim();
               if (v) el.textContent = v;
             }
           };
           update();
-          new MutationObserver(update).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+          new MutationObserver(update).observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme'],
+          });
         })();
       </script>
-
-      <h3>Tipografia</h3>
-      <figure data-region="type-specimen">
-        <p style="font: 800 var(--t-display)/1 var(--font-display); letter-spacing:-0.04em">Aa</p>
-        <p style="font: 800 var(--t-h1)/1.05 var(--font-display)">Modernismo brasileiro</p>
-        <p style="font: 400 var(--t-h2)/1.1 var(--font-display-alt); font-style: italic">traduzido em interface</p>
-        <p style="font: 400 var(--t-lede)/1.5 var(--font-sans); color: var(--fg-muted)">Lede em Archivo: a tipografia carrega o ritmo cívico do sistema.</p>
-        <p style="font: 400 var(--t-body)/1.6 var(--font-serif)">Corpo em Piazzolla, com serifa para densidade documental.</p>
-        <p style="font: 700 var(--t-small)/1.4 var(--font-sans); text-transform:uppercase; letter-spacing:0.1em">Micro · kicker · micro</p>
-      </figure>
-
-      <h3>Raio &amp; Sombra</h3>
-      <div data-region="elevation">
-        <figure>
-          <div style="border-radius: var(--r-1); background: var(--azul); box-shadow: var(--shadow-1)"></div>
-          <figcaption><code>--r-1</code> · <code>--shadow-1</code></figcaption>
-        </figure>
-        <figure>
-          <div style="border-radius: var(--r-soft); background: var(--vermelho); box-shadow: var(--shadow-2)"></div>
-          <figcaption><code>--r-soft</code> · <code>--shadow-2</code></figcaption>
-        </figure>
-        <figure>
-          <div style="border-radius: var(--r-pill); background: var(--ocre)"></div>
-          <figcaption><code>--r-pill</code></figcaption>
-        </figure>
-      </div>
     </section>
 
-    <!-- Components: live, semantic. -->
-    <section id="components" aria-labelledby="components-title">
-      <hgroup>
-        <h2 id="components-title">Componentes</h2>
-        <p>HTML semântico, classes proibidas. Variantes via <code>data-intent</code>.</p>
-      </hgroup>
-
-      <article>
-        <header><h3>Botões</h3></header>
-        <p>
-          <Button intent="primary">Primário</Button>{' '}
-          <Button intent="secondary">Secundário</Button>{' '}
-          <Button intent="outline">Outline</Button>{' '}
-          <Button intent="link">Link</Button>
-        </p>
-      </article>
-
-      <article>
-        <header><h3>Badges</h3></header>
-        <p>
-          <Badge intent="azul">Info</Badge>{' '}
-          <Badge intent="verde">Sucesso</Badge>{' '}
-          <Badge intent="ocre">Atenção</Badge>{' '}
-          <Badge intent="vermelho">Erro</Badge>{' '}
-          <Badge intent="neutral">Neutro</Badge>
-        </p>
-      </article>
-
-      <article>
-        <header><h3>Alertas</h3></header>
-        <Alert intent="info" title="Info">Painel cívico publicado.</Alert>
-        <Alert intent="success" title="Sucesso">Compra pública indexada.</Alert>
-        <Alert intent="warning" title="Atenção">Dado parcial — fonte em revisão.</Alert>
-        <Alert intent="danger" title="Erro">Falha ao carregar série temporal.</Alert>
-      </article>
-
-      <article>
-        <header><h3>Formulário</h3></header>
-        <form onsubmit="event.preventDefault()">
-          <label>
-            Buscar contrato
-            <input type="search" placeholder="ex.: Secretaria de Saúde" />
-          </label>
-          <label>
-            Órgão
-            <select>
-              <option>Todos</option>
-              <option>Educação</option>
-              <option>Saúde</option>
-              <option>Transporte</option>
-            </select>
-          </label>
-          <fieldset>
-            <legend>Período</legend>
-            <label><input type="radio" name="p" checked /> 30 dias</label>
-            <label><input type="radio" name="p" /> 90 dias</label>
-            <label><input type="radio" name="p" /> Tudo</label>
-          </fieldset>
-          <Button intent="primary">Buscar</Button>
-        </form>
-      </article>
-
-      <article>
-        <header><h3>Tabela</h3></header>
-        <figure>
-          <table>
-            <thead>
-              <tr><th>Órgão</th><th>Contrato</th><th>Valor</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Saúde</td><td>Insumos UBS</td><td>R$ 1.240.000</td><td><Badge intent="verde">Ativo</Badge></td></tr>
-              <tr><td>Educação</td><td>Merenda escolar</td><td>R$ 980.500</td><td><Badge intent="ocre">Em análise</Badge></td></tr>
-              <tr><td>Transporte</td><td>Sinalização viária</td><td>R$ 432.100</td><td><Badge intent="vermelho">Suspenso</Badge></td></tr>
-            </tbody>
-          </table>
-        </figure>
-      </article>
+    <!-- ─── Get started CTA ──────────────────────────────────── -->
+    <section data-section="cta" aria-labelledby="cta-title">
+      <div data-region="cta-pattern" aria-hidden="true">
+        <CobogoHexagonal tile={true} size={80} color="var(--papel-00)" density={0.12} />
+      </div>
+      <div data-region="cta-content">
+        <h2 id="cta-title">Pronto para começar?</h2>
+        <p>Instale o pacote, importe os estilos e use HTML semântico.</p>
+        <pre data-region="install-block"><code>npm install cobogo</code></pre>
+        <div data-region="cta-actions">
+          <a href="/cobogo/docs/getting-started/" role="button">Documentação →</a>
+          <a href="https://github.com/franklinbaldo/cobogo" role="button" data-intent="outline">Código no GitHub</a>
+        </div>
+      </div>
     </section>
   </main>
 
+  <!-- ─── Footer ───────────────────────────────────────────── -->
   <footer data-region="site-footer">
-    <p>© 2026 COBOGÓ — sistema visual aberto para interfaces públicas. <a href="https://github.com/franklinbaldo/cobogo">Código no GitHub</a>.</p>
+    <nav data-region="footer-nav">
+      <ul>
+        <li><strong>COBOGÓ</strong></li>
+        <li><small>Sistema visual aberto para interfaces públicas brasileiras.</small></li>
+      </ul>
+      <ul>
+        <li><a href="/cobogo/docs/getting-started/">Docs</a></li>
+        <li><a href="/cobogo/manifesto/">Manifesto</a></li>
+        <li><a href="/cobogo/componentes/">Componentes</a></li>
+        <li><a href="https://github.com/franklinbaldo/cobogo">GitHub</a></li>
+      </ul>
+    </nav>
+    <p data-region="footer-copy"><small>© 2026 COBOGÓ — MIT License.</small></p>
   </footer>
 </BaseLayout>
 
 <style>
-  /* Header — keep it boring; Pico already styles nav+ul. */
+  /* ── Nav ────────────────────────────────────────────────────── */
   [data-region="site-header"] {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     border-bottom: 1px solid var(--border);
-    padding: 1rem clamp(1rem, 4vw, 2rem);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    padding: 0.75rem clamp(1rem, 4vw, 2rem);
   }
-  [data-region="site-header"] strong {
+
+  [data-logo] {
     font-family: var(--font-display);
     font-weight: 900;
-    letter-spacing: -0.04em;
     font-size: 1.25rem;
+    letter-spacing: -0.04em;
+    text-decoration: none;
+    color: var(--fg-heading);
   }
 
-  main { max-width: 1180px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); }
-  main > section { padding-block: clamp(3rem, 8vw, 6rem); }
-  main > section + section { border-top: 1px solid var(--border); }
-  main > section > hgroup { margin-bottom: 2.5rem; }
-  main > section > hgroup h2 { font-family: var(--font-display); font-size: var(--t-h2); margin: 0 0 .5rem; }
-  main > section > hgroup p { color: var(--fg-muted); max-width: 60ch; margin: 0; }
-  main h3 { font-family: var(--font-display); margin-top: 2.5rem; }
-
-  /* Wall hero */
-  [data-section="wall"] {
+  /* ── Hero ───────────────────────────────────────────────────── */
+  [data-section="hero"] {
     position: relative;
     isolation: isolate;
-    padding-block: clamp(5rem, 14vw, 9rem);
-    text-align: left;
-  }
-  [data-region="wall-art"] {
-    position: absolute; inset: 0; z-index: -1;
+    min-height: 90svh;
+    display: flex;
+    align-items: center;
+    padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 4vw, 2rem);
     background: var(--azul);
     overflow: hidden;
   }
-  [data-region="wall-art"] > :global(div) { width: 100%; height: 100%; opacity: 0.9 !important; }
-  /* Wall background is theme-invariant (--azul stays dark in both themes),
-     so text uses fixed light values rather than --papel-* tokens that flip. */
-  [data-section="wall"] hgroup h1 {
+
+  [data-region="hero-pattern"] {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.18;
+  }
+
+  [data-region="hero-pattern"] > :global(div) {
+    width: 100%;
+    height: 100%;
+  }
+
+  [data-region="hero-content"] {
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  [data-section="hero"] [data-kicker] {
+    font-family: var(--font-sans);
+    font-size: var(--t-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ocre);
+    margin: 0 0 1.25rem;
+  }
+
+  [data-section="hero"] h1 {
     font-family: var(--font-display);
-    font-size: var(--t-display);
-    line-height: .9;
+    font-size: clamp(5rem, 18vw, var(--t-display));
+    font-weight: 900;
+    line-height: 0.88;
     letter-spacing: -0.05em;
     color: #FBF8F1;
-    margin: 0 0 1rem;
+    margin: 0 0 1.5rem;
   }
-  [data-section="wall"] hgroup p { color: #EDE7D8; max-width: 48ch; font-size: var(--t-lede); margin: 0; }
-  [data-section="wall"] hgroup p a { color: #FBF8F1; }
 
-  /* Patterns */
-  [data-region="pattern-grid"] {
+  [data-region="hero-lead"] {
+    font-size: var(--t-lede);
+    line-height: 1.45;
+    color: #C8C0B0;
+    max-width: 44ch;
+    margin: 0 0 2.5rem;
+  }
+
+  [data-region="hero-actions"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  [data-region="hero-actions"] [role="button"] {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  [data-region="hero-actions"] [role="button"][data-intent="outline"] {
+    border-color: rgba(251,248,241,0.35);
+    color: #FBF8F1;
+    background: transparent;
+  }
+
+  [data-region="hero-actions"] [role="button"][data-intent="outline"]:hover {
+    background: rgba(251,248,241,0.08);
+  }
+
+  /* ── Shared section layout ──────────────────────────────────── */
+  main > section:not([data-section="hero"]):not([data-section="cta"]) {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(3.5rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+  }
+
+  main > section + section:not([data-section="cta"]) {
+    border-top: 1px solid var(--border);
+  }
+
+  [data-region="section-hgroup"] {
+    margin-bottom: 3rem;
+  }
+
+  [data-region="section-hgroup"] h2 {
+    font-family: var(--font-display);
+    font-size: var(--t-h2);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin: 0 0 0.5rem;
+  }
+
+  [data-region="section-hgroup"] p {
+    color: var(--fg-muted);
+    font-size: var(--t-lede);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  /* ── Patterns ───────────────────────────────────────────────── */
+  [data-section="patterns"] {
+    border-top: 1px solid var(--border);
+  }
+
+  [data-region="pattern-strip"] {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
   }
-  [data-pattern-card] { margin: 0; background: var(--bg-raised); display: flex; flex-direction: column; }
+
+  [data-pattern-card] {
+    margin: 0;
+    background: var(--bg-raised);
+    display: flex;
+    flex-direction: column;
+  }
+
   [data-region="pattern-tile"] {
     aspect-ratio: 1;
-    background: var(--papel-20);
+    background: var(--tile-color, var(--azul));
     position: relative;
     overflow: hidden;
   }
-  [data-region="pattern-tile"] > :global(div) { position: absolute; inset: 0; opacity: 0.65 !important; }
-  [data-pattern-card] figcaption { padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: .25rem; }
-  [data-pattern-card] figcaption strong { font-family: var(--font-display); font-size: 1.125rem; }
-  [data-pattern-card] figcaption small { color: var(--fg-muted); }
 
-  /* Tokens — swatches */
-  [data-region="swatches"] {
+  [data-region="pattern-tile"] > :global(div) {
+    position: absolute;
+    inset: 0;
+    opacity: 0.55 !important;
+  }
+
+  [data-pattern-card] figcaption {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  [data-pattern-card] figcaption strong {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  [data-pattern-card] figcaption small {
+    color: var(--fg-muted);
+    font-size: var(--t-small);
+  }
+
+  /* ── Principles ─────────────────────────────────────────────── */
+  [data-region="principles-grid"] {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: .5rem 2rem;
-  }
-  [data-region="swatches"] dt {
-    display: flex; align-items: center; gap: .75rem;
-    font-weight: 600;
-  }
-  [data-region="swatches"] dd { margin: 0 0 .5rem 2.25rem; color: var(--fg-muted); }
-  [data-region="swatch"] {
-    display: inline-block; width: 1.5rem; height: 1.5rem;
-    border: 1px solid var(--border); border-radius: var(--r-1);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border);
   }
 
-  [data-region="type-specimen"] { margin: 0; }
-  [data-region="type-specimen"] > p { margin: 0 0 1.25rem; }
+  [data-principle] {
+    padding: 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 
-  [data-region="elevation"] {
+  [data-principle]:nth-child(odd):not(:last-child) {
+    border-right: 1px solid var(--border);
+  }
+
+  [data-principle] dt {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--t-h4);
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    letter-spacing: -0.02em;
+  }
+
+  [data-principle-letter] {
+    font-size: var(--t-h1);
+    line-height: 1;
+    color: var(--azul);
+    font-style: italic;
+    font-family: var(--font-display-alt);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+  }
+
+  [data-principle] dd {
+    color: var(--fg-muted);
+    font-size: var(--t-body);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 36ch;
+  }
+
+  /* ── Quote ──────────────────────────────────────────────────── */
+  [data-section="quote"] {
+    padding: clamp(3.5rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+    background: var(--bg-sunken);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  [data-section="quote"] blockquote {
+    max-width: 760px;
+    margin: 0 auto;
+    border-left: 4px solid var(--azul);
+    padding-left: 2rem;
+  }
+
+  [data-section="quote"] blockquote p {
+    font-family: var(--font-display-alt);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-style: italic;
+    line-height: 1.45;
+    margin: 0 0 1.5rem;
+  }
+
+  [data-section="quote"] blockquote footer {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: none;
+    padding: 0;
+  }
+
+  [data-section="quote"] cite {
+    font-style: normal;
+    font-size: var(--t-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-muted);
+  }
+
+  /* ── Components ─────────────────────────────────────────────── */
+  [data-region="component-grid"] {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
   }
-  [data-region="elevation"] figure { margin: 0; }
-  [data-region="elevation"] div { width: 100%; aspect-ratio: 3/2; }
-  [data-region="elevation"] figcaption { margin-top: 1rem; color: var(--fg-muted); font-size: var(--t-small); }
 
-  /* Components — let Pico style article/form/table; just add rhythm */
-  [id="components"] > article { margin-bottom: 2rem; }
-  [id="components"] > article > p { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+  [data-component-card] {
+    background: var(--bg-raised);
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
 
+  [data-component-card][data-span="full"] {
+    grid-column: 1 / -1;
+  }
+
+  [data-component-card] > header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-sunken);
+  }
+
+  [data-component-card] > header h3 {
+    font-family: var(--font-display);
+    font-size: var(--t-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  [data-component-card] > form,
+  [data-component-card] > figure,
+  [data-region="demo-row"],
+  [data-region="alert-stack"] {
+    padding: 1.5rem;
+  }
+
+  [data-region="demo-row"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  [data-region="alert-stack"] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  [data-component-card] > figure {
+    margin: 0;
+    overflow-x: auto;
+  }
+
+  [data-component-card] > figure table {
+    margin: 0;
+  }
+
+  /* ── Type & Color specimen ──────────────────────────────────── */
+  [data-region="specimen-layout"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  [data-region="type-specimen"] {
+    margin: 0;
+  }
+
+  [data-specimen="display"] {
+    font: 900 var(--t-display)/1 var(--font-display);
+    letter-spacing: -0.05em;
+    color: var(--fg-heading);
+    margin: 0 0 1rem;
+    line-height: 0.9;
+  }
+
+  [data-specimen="h1"] {
+    font: 900 var(--t-h1)/1.0 var(--font-display);
+    letter-spacing: -0.04em;
+    margin: 0 0 0.75rem;
+  }
+
+  [data-specimen="h2-italic"] {
+    font: 400 var(--t-h2)/1.1 var(--font-display-alt);
+    font-style: italic;
+    letter-spacing: -0.01em;
+    margin: 0 0 1rem;
+  }
+
+  [data-specimen="lede"] {
+    font: 400 var(--t-lede)/1.5 var(--font-sans);
+    color: var(--fg-muted);
+    margin: 0 0 0.75rem;
+  }
+
+  [data-specimen="body"] {
+    font: 400 var(--t-body)/1.6 var(--font-serif);
+    margin: 0 0 0.75rem;
+  }
+
+  [data-specimen="kicker"] {
+    font: 700 var(--t-small)/1.4 var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  [data-region="color-palette"] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    align-self: start;
+  }
+
+  [data-swatch-item] {
+    background: var(--bg-raised);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  [data-swatch] {
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--r-1);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  [data-swatch-item] dl {
+    margin: 0;
+  }
+
+  [data-swatch-item] dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--t-small);
+  }
+
+  [data-swatch-item] dd {
+    margin: 0;
+    font-size: var(--t-micro);
+    color: var(--fg-muted);
+  }
+
+  /* ── CTA band ───────────────────────────────────────────────── */
+  [data-section="cta"] {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(4rem, 10vw, 7rem) clamp(1rem, 4vw, 2rem);
+    background: var(--azul);
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  [data-region="cta-pattern"] {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.1;
+  }
+
+  [data-region="cta-pattern"] > :global(div) {
+    width: 100%;
+    height: 100%;
+  }
+
+  [data-region="cta-content"] {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  [data-section="cta"] h2 {
+    font-family: var(--font-display);
+    font-size: var(--t-h1);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: #FBF8F1;
+    margin: 0 0 1rem;
+  }
+
+  [data-section="cta"] p {
+    color: #C8C0B0;
+    font-size: var(--t-lede);
+    margin: 0 0 2rem;
+  }
+
+  [data-region="install-block"] {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(251,248,241,0.15);
+    border-radius: var(--r-1);
+    padding: 0.875rem 1.25rem;
+    margin: 0 0 2rem;
+    text-align: left;
+    display: inline-block;
+  }
+
+  [data-region="install-block"] code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: var(--t-body);
+    color: var(--ocre);
+    background: none;
+    padding: 0;
+  }
+
+  [data-region="cta-actions"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  [data-region="cta-actions"] [role="button"] {
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  [data-region="cta-actions"] [role="button"][data-intent="outline"] {
+    border-color: rgba(251,248,241,0.35);
+    color: #FBF8F1;
+    background: transparent;
+  }
+
+  [data-region="cta-actions"] [role="button"][data-intent="outline"]:hover {
+    background: rgba(251,248,241,0.08);
+  }
+
+  /* ── Footer ─────────────────────────────────────────────────── */
   [data-region="site-footer"] {
     padding: 2.5rem clamp(1rem, 4vw, 2rem);
     border-top: 1px solid var(--border);
-    color: var(--fg-muted);
     max-width: 1180px;
     margin: 0 auto;
+  }
+
+  [data-region="footer-nav"] {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  [data-region="footer-nav"] strong {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.125rem;
+    letter-spacing: -0.04em;
+  }
+
+  [data-region="footer-nav"] small {
+    color: var(--fg-muted);
+    font-size: var(--t-small);
+    margin-left: 1rem;
+  }
+
+  [data-region="footer-copy"] {
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  /* ── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    [data-region="specimen-layout"] {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    [data-region="pattern-strip"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    [data-region="component-grid"] {
+      grid-template-columns: 1fr;
+    }
+
+    [data-component-card][data-span="full"] {
+      grid-column: auto;
+    }
+
+    [data-region="principles-grid"] {
+      grid-template-columns: 1fr;
+    }
+
+    [data-principle]:nth-child(odd) {
+      border-right: none;
+    }
+
+    [data-region="color-palette"] {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    [data-region="pattern-strip"] {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    [data-section="hero"] h1 {
+      font-size: clamp(3.5rem, 18vw, 5rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
   }
 </style>
