@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
 import Ornaments from '../components/Ornaments.astro';
 import ProfileCard from '../components/ProfileCard.svelte';
 import DataTable from '../components/DataTable.svelte';
@@ -37,18 +38,7 @@ const mockOptions = [
 <BaseLayout title="Vitrine de Componentes | COBOGÓ">
   <aside aria-hidden="true" data-pattern="cobogo-circular" data-region="tile-sidebar"></aside>
 
-  <header data-region="site-header">
-    <nav>
-      <ul><li><strong>COBOGÓ</strong></li></ul>
-      <ul>
-        <li><a href="/cobogo/">Home</a></li>
-        <li><a href="/cobogo/docs/getting-started/">Documentação</a></li>
-        <li><a href="/cobogo/componentes/" aria-current="page">Vitrine</a></li>
-        <li><a href="/cobogo/patterns/">Patterns</a></li>
-        <li><a href="/cobogo/composition/">Composition</a></li>
-      </ul>
-    </nav>
-  </header>
+  <SiteNav currentPath={Astro.url.pathname} />
 
   <main>
     <header data-page-header>

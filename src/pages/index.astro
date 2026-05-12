@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
 import CobogoCircular from '../components/patterns/CobogoCircular.svelte';
 import CobogoHexagonal from '../components/patterns/CobogoHexagonal.svelte';
 import CobogoLosango from '../components/patterns/CobogoLosango.svelte';
@@ -31,20 +32,7 @@ const colors = [
 
 <BaseLayout title="COBOGÓ — Sistema Visual Brasileiro">
   <!-- ─── Nav ─────────────────────────────────────────────────── -->
-  <header data-region="site-header">
-    <nav>
-      <ul>
-        <li><a href="/cobogo/" data-logo>COBOGÓ</a></li>
-      </ul>
-      <ul>
-        <li><a href="#padroes">Padrões</a></li>
-        <li><a href="#componentes">Componentes</a></li>
-        <li><a href="/cobogo/manifesto/">Manifesto</a></li>
-        <li><a href="/cobogo/docs/getting-started/">Docs</a></li>
-        <li><a href="https://github.com/franklinbaldo/cobogo" role="button" data-intent="outline" data-size="small">GitHub</a></li>
-      </ul>
-    </nav>
-  </header>
+  <SiteNav currentPath={Astro.url.pathname} />
 
   <main>
     <!-- ─── Hero ─────────────────────────────────────────────── -->
@@ -341,26 +329,6 @@ const colors = [
 </BaseLayout>
 
 <style>
-  /* ── Nav ────────────────────────────────────────────────────── */
-  [data-region="site-header"] {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid var(--border);
-    background: color-mix(in srgb, var(--bg) 92%, transparent);
-    backdrop-filter: blur(8px);
-    padding: 0.75rem clamp(1rem, 4vw, 2rem);
-  }
-
-  [data-logo] {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 1.25rem;
-    letter-spacing: -0.04em;
-    text-decoration: none;
-    color: var(--fg-heading);
-  }
-
   /* ── Hero ───────────────────────────────────────────────────── */
   [data-section="hero"] {
     position: relative;

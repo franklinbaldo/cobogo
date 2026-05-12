@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
 import CobogoCircular from '../components/patterns/CobogoCircular.svelte';
 import CobogoHexagonal from '../components/patterns/CobogoHexagonal.svelte';
 import CobogoLosango from '../components/patterns/CobogoLosango.svelte';
@@ -9,18 +10,7 @@ import CobogoCruz from '../components/patterns/CobogoCruz.svelte';
 <BaseLayout title="Padrões | COBOGÓ">
   <aside aria-hidden="true" data-pattern="cobogo-cruz" data-region="tile-sidebar"></aside>
 
-  <header data-region="site-header">
-    <nav>
-      <ul><li><strong>COBOGÓ</strong></li></ul>
-      <ul>
-        <li><a href="/cobogo/">Home</a></li>
-        <li><a href="/cobogo/manifesto/">Manifesto</a></li>
-        <li><a href="/cobogo/componentes/">Components</a></li>
-        <li><a href="/cobogo/patterns/">Patterns</a></li>
-        <li><a href="/cobogo/composition/">Composition</a></li>
-      </ul>
-    </nav>
-  </header>
+  <SiteNav currentPath={Astro.url.pathname} />
 
   <main>
     <header data-page-header>
