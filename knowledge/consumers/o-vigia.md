@@ -1,26 +1,43 @@
 ---
 type: consumer
 title: O Vigia
-context: Interface editorial para leitura, matérias, arquivo, imagem e narrativa
+repository: https://github.com/franklinbaldo/ovigia-redacao
+adoption_status: candidate
+surface: editorial reading, archive and provenance
 interaction_profile: editorial reading and browsing
-needs: long-form reading, narrative rhythm, imagery, archive navigation, source/evidence hierarchy
-must_not_become: Dashboard administrativo com skin editorial
+runtime: product-specific publication pipeline and public static surface
+constraints:
+  - text remains the primary narrative structure
+  - provenance and source hierarchy must stay visible
+  - editorial rhythm may be more open than administrative/data surfaces
+capabilities_used: []
+unmet_needs:
+  - editorial typography and rhythm profile over shared foundations
+  - provenance and evidence patterns
+  - long-form reading patterns
+  - image and archive composition guidance
+local_identity: independent local-journal identity and narrative voice
+last_verified: 2026-08-10
 ---
 
 # O Vigia
 
-O Vigia testa o Cobogó em um contexto editorial de leitura e narrativa.
+O Vigia tests Cobogó in an editorial reading and narrative context. Its current adoption state is **candidate**: it contributes requirements and evidence, but does not yet consume the reconstructed Cobogó implementation surface.
 
-## Necessidades visuais
+## Visual needs
 
-- texto como estrutura principal, não como preenchimento de cards;
-- ritmo mais aberto que interfaces administrativas;
-- hierarquia entre matéria, evidência, fonte, contexto e arquivo;
-- imagens capazes de participar da narrativa sem competir com legibilidade;
-- identidade editorial própria.
+- text as primary structure, not filler inside cards;
+- more open rhythm than administrative interfaces;
+- hierarchy among story, evidence, source, context and archive;
+- images able to participate in narrative without competing with readability;
+- independent editorial identity.
 
-## Grammar esperada
+## Grammar relationship
 
-Usa [Vão antes de massa](../canon/vao-antes-de-massa.md) para produzir hierarquia por ritmo e respiro e [Módulo sem monotonia](../canon/modulo-sem-monotonia.md) para permitir variedade editorial sem virar coleção de templates arbitrários.
+It uses [Vão antes de massa](../canon/vao-antes-de-massa.md) to create hierarchy through rhythm and breathing room and [Módulo sem monotonia](../canon/modulo-sem-monotonia.md) to permit editorial variety without becoming a collection of arbitrary templates.
 
-Deve obedecer [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md): compartilhar família com Astronauta sem herdar sua densidade administrativa.
+It must obey [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md): sharing grammar with Astronauta and CausaGanha does not imply sharing their density, components or visual skin.
+
+Its current specimen is [O Vigia story surface](../specimens/vigia-story-surface.md).
+
+Reusable editorial needs may become Cobogó patterns only after the corpus has enough evidence to distinguish a shared grammar from O Vigia-specific publication choices.
