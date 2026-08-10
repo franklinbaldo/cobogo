@@ -19,6 +19,8 @@ unmet_needs:
   - data-reading patterns for tables metadata provenance and status
   - consumer theming and override contract
   - incremental brownfield migration guidance
+integration_evidence:
+  - https://github.com/franklinbaldo/causaganha/issues/861
 local_identity: green/gold product identity, judicial-data purpose, existing typography and information architecture
 last_verified: 2026-08-10
 ---
@@ -65,6 +67,10 @@ Its current reusable unmet needs drive the Cobogó backlog:
 - [Framework-agnostic core web #266](https://github.com/franklinbaldo/cobogo/issues/266)
 - [Data-reading patterns #267](https://github.com/franklinbaldo/cobogo/issues/267)
 - [Consumer registry #268](https://github.com/franklinbaldo/cobogo/issues/268)
+
+## Integration evidence
+
+The first `cobogo-consumer-synergy` pass opened [CausaGanha #861](https://github.com/franklinbaldo/causaganha/issues/861) to select one real data-reading surface for incremental adoption once the shared foundations/core are ready. This is evidence of active evaluation, not evidence that Cobogó code is already consumed.
 
 It should not inherit a universal Cobogó skin. Its judicial-data purpose, green/gold identity, static delivery model, existing typographic choices and dense public-data surfaces remain legitimate local context.
 
