@@ -1,0 +1,106 @@
+/* COBOGÓ experimental patterns
+ * These compose semantic foundations; they are not framework components.
+ */
+
+:where([data-cobogo-pattern="data-table"]) {
+  overflow-x: auto;
+  border: 1px solid var(--cobogo-border);
+  border-radius: var(--cobogo-radius-surface);
+  background: var(--cobogo-surface);
+}
+
+:where([data-cobogo-pattern="data-table"] table) {
+  margin: 0;
+  min-inline-size: 100%;
+}
+
+:where([data-cobogo-pattern="data-table"] caption) {
+  padding: var(--cobogo-space-group);
+  color: var(--cobogo-text-muted);
+  font-family: var(--cobogo-font-inscription);
+  text-align: start;
+}
+
+:where([data-cobogo-pattern="data-table"] tbody tr:focus-within) {
+  outline: 0.1875rem solid var(--cobogo-focus);
+  outline-offset: -0.1875rem;
+}
+
+:where([data-cobogo-pattern="inscription"]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cobogo-space-adjacent) var(--cobogo-space-group);
+  color: var(--cobogo-text-muted);
+  font-family: var(--cobogo-font-inscription);
+  font-size: 0.875rem;
+}
+
+:where([data-cobogo-pattern="inscription"] > *) {
+  margin: 0;
+}
+
+:where([data-cobogo-pattern="provenance"]) {
+  display: grid;
+  gap: var(--cobogo-space-group);
+  padding-block: var(--cobogo-space-group);
+  border-block: 1px solid var(--cobogo-border);
+}
+
+:where([data-cobogo-pattern="provenance"] [data-cobogo-source]) {
+  overflow-wrap: anywhere;
+  color: var(--cobogo-text-muted);
+  font-family: var(--cobogo-font-inscription);
+}
+
+:where([data-cobogo-pattern="metric"]) {
+  display: grid;
+  gap: var(--cobogo-space-adjacent);
+  align-content: start;
+}
+
+:where([data-cobogo-pattern="metric"] [data-cobogo-value]) {
+  color: var(--cobogo-text);
+  font-family: var(--cobogo-font-data);
+  font-size: clamp(1.25rem, 1rem + 1vw, 2rem);
+  font-weight: 700;
+  line-height: var(--cobogo-leading-tight);
+}
+
+:where([data-cobogo-pattern="metric"] [data-cobogo-label]) {
+  color: var(--cobogo-text-muted);
+  font-family: var(--cobogo-font-inscription);
+  font-size: 0.875rem;
+}
+
+:where([data-cobogo-pattern="state"]) {
+  display: inline-flex;
+  gap: var(--cobogo-space-adjacent);
+  align-items: center;
+  font-family: var(--cobogo-font-inscription);
+  font-size: 0.875rem;
+  font-weight: 650;
+}
+
+:where([data-cobogo-pattern="state"])::before {
+  inline-size: 0.55em;
+  block-size: 0.55em;
+  flex: none;
+  border: 0.125rem solid currentColor;
+  border-radius: 50%;
+  content: "";
+}
+
+:where([data-cobogo-pattern="state"][data-cobogo-state="info"]) { color: var(--cobogo-info); }
+:where([data-cobogo-pattern="state"][data-cobogo-state="success"]) { color: var(--cobogo-success); }
+:where([data-cobogo-pattern="state"][data-cobogo-state="warning"]) { color: var(--cobogo-warning); }
+:where([data-cobogo-pattern="state"][data-cobogo-state="danger"]) { color: var(--cobogo-danger); }
+
+@media (forced-colors: active) {
+  :where([data-cobogo-pattern="data-table"], [data-cobogo-pattern="provenance"]) {
+    border-color: CanvasText;
+  }
+
+  :where([data-cobogo-pattern="state"])::before {
+    forced-color-adjust: auto;
+  }
+}
