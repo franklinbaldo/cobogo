@@ -10,7 +10,7 @@ last_verified: 2026-08-10
 
 This file records the broad repository inventory used to discover potential Cobogó consumers. It is a screening artifact, not a declaration that every listed repository is a consumer.
 
-## Already registered / actively evaluated
+## Registered / actively evaluated
 
 - `causaganha` — evaluating; public analytical/data-reading site.
 - `astronauta` — candidate; dense OKF admin/review surface.
@@ -19,21 +19,17 @@ This file records the broad repository inventory used to discover potential Cobo
 - `sisprev` — candidate; legal audit/review site.
 - `baliza-site` — candidate; public-contract analysis site.
 - `quem-sao-eles` — candidate; editorial political profile catalog.
+- `franklinbaldo.github.io` — candidate; personal blog/digital garden.
+- `adibaldo.github.io` — candidate; small personal Astro blog.
+- `the-theater` — candidate; collaborative fiction/narrative publication.
+- `sites_prefeituras` — candidate; large municipal audit/comparison dashboard.
+- `intuit` — candidate; interactive editor/visual-preview tool.
+- `formatolegal` — candidate; legal editor/A4 preview/print tool.
+- `rationality-club-latam` — candidate; community diary/archive publication.
 
-## Confirmed Pages/site surfaces — next individual consumer review
+## Confirmed Pages/site surface still awaiting product-purpose classification
 
-Evidence of GitHub Pages or dedicated deploy workflow was found for:
-
-- `franklinbaldo.github.io`
-- `adibaldo.github.io`
-- `the-theater`
-- `sites_prefeituras`
-- `ecos-do-pampa`
-- `intuit`
-- `formatolegal`
-- `rationality-club-latam`
-
-These should be inspected individually before receiving a durable consumer concept. A deploy workflow proves a human-facing surface exists; it does not prove Cobogó should serve it.
+- `ecos-do-pampa` — GitHub Pages deploy and Astro build are confirmed, but current package metadata appears inherited/ambiguous; inspect actual pages/content before assigning a durable consumer identity.
 
 ## Strong UI/product candidates requiring surface verification
 
@@ -43,10 +39,7 @@ Repository name/history/structure suggests a human-facing product or site, but t
 - `Exploreon`
 - `textura`
 - `hronir`
-- `minha-receita`
-- `egregora-v3`
 - `the-lab`
-- `papers`
 - `tembiu`
 - `aleph-the-game`
 - `hilda`
@@ -65,10 +58,21 @@ Repository name/history/structure suggests a human-facing product or site, but t
 - `manifold-football`
 - `querido-diario-cobertura`
 - `ppi`
-- `todos`
 - `caixaaberta`
 
 Each needs one evidence pass: actual human-facing surface, deployment, product job and whether shared visual grammar would reduce real duplication or improve task quality.
+
+## Screened adjacent / currently not direct Cobogó consumers
+
+These were inspected enough to avoid treating a web-related word as proof of a Cobogó consumer:
+
+- `todos` — **not a direct consumer** in its current product form. It is an MCP/CLI server for SEI; “web-first” describes the scraper/backend transport against SEI's existing frontend, not a user-facing UI owned by this repository.
+- `papers` — **not a current direct consumer**. It is a Markdown/OKF research corpus. A future Astronauta/static projection may consume Cobogó, but the corpus itself does not currently own a human visual surface.
+- `minha-receita` — **not currently a Franklin Cobogó consumer on present evidence**. The repo is an API/data service with external documentation/status surfaces; no Franklin-owned product UI was identified in this scan.
+- `egregora-v3` — **adjacent producer, not necessarily a direct consumer**. It generates MkDocs publication sites. Cobogó integration would make more sense as an optional output/theme capability for generated sites than by treating the generator engine itself as a visual consumer.
+- `portfolio` — README describes a portfolio of projects, but no current deploy/product surface was confirmed; keep as weak candidate until actual site evidence appears.
+
+Negative classification is evidence. Do not create consumer concepts merely to make the registry exhaustive.
 
 ## Technical / service / agent repositories — screen before excluding
 
@@ -106,7 +110,6 @@ Current inventory suggests these are primarily CLI, MCP, infrastructure, data, a
 - `ireneo-funes`
 - `quizseal`
 - `sigad-mcp`
-- `claw-memory`
 - `private`
 - `AutoResearchClaw`
 - `pge-ro`
@@ -125,7 +128,6 @@ Current inventory suggests these are primarily CLI, MCP, infrastructure, data, a
 - `lagrange-mandelbrot`
 - `okf-parser`
 - `bob-woodward`
-- `intuit` (site confirmed; kept here only if a non-site service layer also exists — review should resolve)
 - `riobaldo`
 - `craig-mod`
 - `openclaw-config`
@@ -156,26 +158,28 @@ These are neither safely technical nor clearly UI from current evidence and shou
 - `livro-panorama`
 - `judicial`
 - `locus`
-- `rationality-club-latam` (site confirmed; deeper product fit still needed)
-- `formatolegal` (site confirmed; deeper product fit still needed)
 
 ## Current synergy clusters
 
 ### Public analytical / data-reading
 
-CausaGanha, Ficha and Baliza Site are already strong evidence for shared table/filter/status/provenance/freshness semantics. Other likely additions: Minha Receita, Caixa Aberta and Querido Diário Cobertura after inspection.
+CausaGanha, Ficha, Baliza Site and Sites Prefeituras now provide independent evidence for shared table/filter/status/provenance/comparison semantics at different scales.
 
 ### Dense review / audit
 
-Astronauta and Sisprev are proven candidates for dense state/evidence/relation reading. Possible additions: Todos, IPERON/PPI and other internal review tools if they expose human-facing surfaces.
+Astronauta and Sisprev are proven candidates for dense state/evidence/relation reading. Possible additions: PPI/IPERON or other internal review tools only if they own real human-facing surfaces.
 
-### Editorial / provenance
+### Editorial / provenance / archive
 
-O Vigia and Quem São Eles? are the first strong pair. Possible additions: `franklinbaldo.github.io`, The Theater, Mind Fragments and other publishing surfaces after identity/context review.
+O Vigia, Quem São Eles?, Franklin blog, The Theater, Rationality Club LatAm and Adi blog provide a much broader publication family. This generated Cobogó #278 rather than forcing editorial needs into the data-reading issue.
 
-### Public/institutional information
+### Document / print
 
-Sites Prefeituras, Ecos do Pampa, Rationality Club LATAM and Formato Legal may exercise navigation, public-information hierarchy, documentation and local identity patterns that are not well-covered by the initial data/editorial/admin trio.
+Formato Legal + Sisprev generated Cobogó #276: screen-to-paginated-document grammar is now a separate shared capability candidate.
+
+### Authoring / preview workspace
+
+Intuit + Formato Legal generated Cobogó #277: source/editor ↔ rendered preview is a reusable relation independent of either product's aesthetic.
 
 ## Screening rule
 
