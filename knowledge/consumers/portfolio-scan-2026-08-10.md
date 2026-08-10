@@ -1,7 +1,7 @@
 ---
 type: consumer-discovery
 title: Franklin repository consumer scan — 2026-08-10
-status: in-progress
+status: first-round-complete
 related_issue: https://github.com/franklinbaldo/cobogo/issues/273
 last_verified: 2026-08-10
 ---
@@ -22,10 +22,12 @@ This file records the broad repository inventory used to discover potential Cobo
 - `franklinbaldo.github.io` — candidate; personal blog/digital garden.
 - `adibaldo.github.io` — candidate; small personal Astro blog.
 - `the-theater` — candidate; collaborative fiction/narrative publication.
+- `the-lab` — candidate; public research-lab publication.
 - `sites_prefeituras` — candidate; large municipal audit/comparison dashboard.
 - `intuit` — candidate; interactive editor/visual-preview tool.
 - `formatolegal` — candidate; legal editor/A4 preview/print tool.
 - `rationality-club-latam` — candidate; community diary/archive publication.
+- `aleph-the-game` — candidate; React/Vite interactive AI-assisted game.
 
 ## Confirmed Pages/site surface still awaiting product-purpose classification
 
@@ -39,9 +41,7 @@ Repository name/history/structure suggests a human-facing product or site, but t
 - `Exploreon`
 - `textura`
 - `hronir`
-- `the-lab`
 - `tembiu`
-- `aleph-the-game`
 - `hilda`
 - `autonovel`
 - `nanochat`
@@ -60,7 +60,9 @@ Repository name/history/structure suggests a human-facing product or site, but t
 - `ppi`
 - `caixaaberta`
 
-Each needs one evidence pass: actual human-facing surface, deployment, product job and whether shared visual grammar would reduce real duplication or improve task quality.
+`tembiu` describes a real digital-menu/order product vision, but its README contains template/stale repository URLs; verify the current implementation before promoting it.
+
+Each remaining candidate needs one evidence pass: actual human-facing surface, deployment, product job and whether shared visual grammar would reduce real duplication or improve task quality.
 
 ## Screened adjacent / currently not direct Cobogó consumers
 
@@ -163,24 +165,30 @@ These are neither safely technical nor clearly UI from current evidence and shou
 
 ### Public analytical / data-reading
 
-CausaGanha, Ficha, Baliza Site and Sites Prefeituras now provide independent evidence for shared table/filter/status/provenance/comparison semantics at different scales.
+CausaGanha, Ficha, Baliza Site and Sites Prefeituras provide independent evidence for shared table/filter/status/provenance/comparison semantics at different scales.
 
 ### Dense review / audit
 
-Astronauta and Sisprev are proven candidates for dense state/evidence/relation reading. Possible additions: PPI/IPERON or other internal review tools only if they own real human-facing surfaces.
+Astronauta and Sisprev provide independent evidence for dense state/evidence/relation reading. Possible additions: PPI/IPERON or other internal review tools only if they own real human-facing surfaces.
 
 ### Editorial / provenance / archive
 
-O Vigia, Quem São Eles?, Franklin blog, The Theater, Rationality Club LatAm and Adi blog provide a much broader publication family. This generated Cobogó #278 rather than forcing editorial needs into the data-reading issue.
+O Vigia, Quem São Eles?, Franklin blog, The Theater, The Lab, Rationality Club LatAm and Adi blog provide a broad publication family. This generated Cobogó #278 rather than forcing editorial needs into the data-reading issue.
 
 ### Document / print
 
-Formato Legal + Sisprev generated Cobogó #276: screen-to-paginated-document grammar is now a separate shared capability candidate.
+Formato Legal + Sisprev generated Cobogó #276: screen-to-paginated-document grammar is a separate shared capability candidate.
 
 ### Authoring / preview workspace
 
 Intuit + Formato Legal generated Cobogó #277: source/editor ↔ rendered preview is a reusable relation independent of either product's aesthetic.
 
+### Immersive / game interaction
+
+Aleph the Game provides a first consumer pressure case for purposeful motion, game state and expressive interactive identity. One consumer is enough for experimental evidence, but not enough yet for a stable new Cobogó pattern.
+
 ## Screening rule
 
 Do not promote a repository from this scan into the canonical consumer registry merely because it has Pages. Promote it when inspection identifies a real human task and at least one plausible Cobogó relation/capability that could serve it while preserving local identity.
+
+`first-round-complete` means every accessible repository found in the broad inventory has a screening destination in this artifact; it does **not** mean every unresolved repo has received a deep product review. Those follow-up reviews remain tracked by #273.
