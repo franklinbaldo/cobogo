@@ -1,10 +1,10 @@
 {
   "name": "cobogo",
-  "description": "A Brazilian modernist design system for public-interest software.",
+  "description": "A Brazilian visual grammar and design system for public-interest software.",
   "keywords": [
     "cobogo",
     "design-system",
-    "brazilian-modernism",
+    "brazilian-design",
     "astro",
     "svelte",
     "civic-tech"
@@ -21,6 +21,7 @@
       "svelte": "./dist/index.js",
       "default": "./dist/index.js"
     },
+    "./core": "./src/styles/core.css",
     "./styles": "./src/styles/global.css",
     "./components/*": {
       "svelte": "./dist/components/*.svelte",
