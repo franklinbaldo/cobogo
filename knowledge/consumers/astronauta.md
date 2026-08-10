@@ -16,6 +16,8 @@ unmet_needs:
   - data administration patterns for tables filters forms status relations and review
   - clear focus and interaction states
   - optional framework binding only after core semantics exist
+integration_evidence:
+  - https://github.com/franklinbaldo/astronauta/issues/24
 local_identity: generic OKF admin and exploration product, not editorial publication skin
 last_verified: 2026-08-10
 ---
@@ -39,6 +41,10 @@ Astronauta uses [Vão antes de massa](../canon/vao-antes-de-massa.md) to avoid n
 It must obey [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md): it may share Cobogó family relationships with CausaGanha and O Vigia without inheriting their density, brand or publication structure.
 
 Its concrete composition test is [Astronauta concept review](../specimens/astronauta-concept-review.md).
+
+## Integration evidence
+
+The first `cobogo-consumer-synergy` pass opened [Astronauta #24](https://github.com/franklinbaldo/astronauta/issues/24) to validate shared data-reading semantics under an administrative density profile. It deliberately tests shared semantics with different interaction density rather than copying CausaGanha styling.
 
 ## Architectural role
 
