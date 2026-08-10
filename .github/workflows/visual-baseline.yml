@@ -1,0 +1,36 @@
+name: Visual baseline capture
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - run: npx playwright install --with-deps chromium
+      - name: Capture deployed Pages
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({headless: true});
+          const page = await browser.newPage({ viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 1 });
+          await page.goto('https://franklinbaldo.github.io/cobogo/', { waitUntil: 'networkidle' });
+          await page.screenshot({ path: 'cobogo-pages.png', fullPage: true });
+          console.log('TITLE=' + await page.title());
+          console.log('URL=' + page.url());
+          await browser.close();
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cobogo-pages-screenshot
+          path: cobogo-pages.png
