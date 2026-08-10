@@ -22,6 +22,7 @@
       "default": "./dist/index.js"
     },
     "./core": "./src/styles/core.css",
+    "./patterns": "./src/styles/patterns.css",
     "./styles": "./src/styles/global.css",
     "./components/*": {
       "svelte": "./dist/components/*.svelte",
