@@ -1,15 +1,33 @@
 ---
 type: consumer
 title: CausaGanha
-status: active-reference
-context: public data-reading interface over Brazilian judicial datasets
 repository: https://github.com/franklinbaldo/causaganha
-surface: web-public
+adoption_status: evaluating
+surface: public data-reading web
+interaction_profile: judicial data reading, comparison, provenance and status
+runtime: Astro static SSG on GitHub Pages with selective Svelte islands and Pico baseline
+constraints:
+  - HTML first, CSS second, JavaScript last
+  - preserve static GitHub Pages deployment
+  - avoid appifying reading tasks
+  - expose structure instead of hiding it behind interaction
+  - speed is part of aesthetics
+capabilities_used: []
+unmet_needs:
+  - reconciled semantic foundations
+  - framework-agnostic core web primitives
+  - data-reading patterns for tables metadata provenance and status
+  - consumer theming and override contract
+  - incremental brownfield migration guidance
+local_identity: green/gold product identity, judicial-data purpose, existing typography and information architecture
+last_verified: 2026-08-10
 ---
 
 # CausaGanha
 
-CausaGanha is a primary brownfield consumer for Cobogó because it already has a functioning public web surface, its own design constitution, real data-reading workflows, and a substantial local token/style layer.
+CausaGanha is the primary brownfield consumer for the current Cobogó reconstruction because it already has a functioning public web surface, its own design constitution, real data-reading workflows, and a substantial local token/style layer.
+
+Its current `adoption_status` is **evaluating**, not active: Cobogó is using CausaGanha to derive and test reusable capabilities, but the reconstructed Cobogó package surface has not yet been adopted by the production site.
 
 Its frontend deliberately follows several product constraints that Cobogó must preserve rather than overwrite:
 
@@ -36,7 +54,17 @@ That overlap is valuable brownfield evidence. It should be reconciled, not mecha
 
 ## Cobogó relationship
 
-CausaGanha should use shared Cobogó grammar where it improves information relationships, especially [Vão](../grammar/vao.md), [Ritmo](../grammar/ritmo.md), [Faixa](../grammar/faixa.md), [Inscrição](../grammar/inscricao.md), [Texto é arquitetura](../canon/texto-e-arquitetura.md), and [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md).
+CausaGanha exercises [Vão](../grammar/vao.md), [Ritmo](../grammar/ritmo.md), [Faixa](../grammar/faixa.md), [Inscrição](../grammar/inscricao.md), [Texto é arquitetura](../canon/texto-e-arquitetura.md), and [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md).
+
+Its concrete composition test is [CausaGanha — data reading](../specimens/causaganha-data-reading.md). The token overlap is tracked by the CausaGanha foundations reconciliation decision in this stack.
+
+Its current reusable unmet needs drive the Cobogó backlog:
+
+- [Foundations #263](https://github.com/franklinbaldo/cobogo/issues/263)
+- [Consumer contract #265](https://github.com/franklinbaldo/cobogo/issues/265)
+- [Framework-agnostic core web #266](https://github.com/franklinbaldo/cobogo/issues/266)
+- [Data-reading patterns #267](https://github.com/franklinbaldo/cobogo/issues/267)
+- [Consumer registry #268](https://github.com/franklinbaldo/cobogo/issues/268)
 
 It should not inherit a universal Cobogó skin. Its judicial-data purpose, green/gold identity, static delivery model, existing typographic choices and dense public-data surfaces remain legitimate local context.
 
