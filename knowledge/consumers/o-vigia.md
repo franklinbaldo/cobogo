@@ -16,6 +16,8 @@ unmet_needs:
   - provenance and evidence patterns
   - long-form reading patterns
   - image and archive composition guidance
+integration_evidence:
+  - https://github.com/franklinbaldo/ovigia-redacao/issues/26
 local_identity: independent local-journal identity and narrative voice
 last_verified: 2026-08-10
 ---
@@ -39,5 +41,9 @@ It uses [Vão antes de massa](../canon/vao-antes-de-massa.md) to create hierarch
 It must obey [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md): sharing grammar with Astronauta and CausaGanha does not imply sharing their density, components or visual skin.
 
 Its current specimen is [O Vigia story surface](../specimens/vigia-story-surface.md).
+
+## Integration evidence
+
+The first `cobogo-consumer-synergy` pass opened [O Vigia #26](https://github.com/franklinbaldo/ovigia-redacao/issues/26) to test a shared provenance/freshness relation against an editorial surface. The test explicitly forbids turning editorial output into a monitoring dashboard.
 
 Reusable editorial needs may become Cobogó patterns only after the corpus has enough evidence to distinguish a shared grammar from O Vigia-specific publication choices.
