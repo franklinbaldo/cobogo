@@ -1,0 +1,23 @@
+name: Knowledge
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'knowledge/**'
+      - '.github/workflows/knowledge.yml'
+  pull_request:
+    paths:
+      - 'knowledge/**'
+      - '.github/workflows/knowledge.yml'
+
+jobs:
+  okf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate Cobogó knowledge with okf-parser
+        uses: franklinbaldo/okf-parser@8cf97286868aafd8fbda8e82f7b32bf342324fdd
+        with:
+          path: knowledge
