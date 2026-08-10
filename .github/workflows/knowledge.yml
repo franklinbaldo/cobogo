@@ -18,6 +18,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Validate Cobogó knowledge with okf-parser
-        uses: franklinbaldo/okf-parser@v0.38.0
+        uses: franklinbaldo/okf-parser@8cf97286868aafd8fbda8e82f7b32bf342324fdd
         with:
           path: knowledge
