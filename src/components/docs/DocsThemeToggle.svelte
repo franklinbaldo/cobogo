@@ -5,8 +5,10 @@
 
   function applyTheme(dark: boolean) {
     const root = document.documentElement;
-    root.setAttribute('data-theme', dark ? 'dark' : 'light');
-    // Keep legacy class in sync for any selectors still using .dark-mode
+    const theme = dark ? 'dark' : 'light';
+    root.setAttribute('data-theme', theme);
+    root.setAttribute('data-cobogo-theme', theme);
+    // Keep legacy class in sync for selectors that have not migrated yet.
     root.classList.toggle('dark-mode', dark);
   }
 
