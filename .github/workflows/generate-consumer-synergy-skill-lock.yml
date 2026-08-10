@@ -1,0 +1,45 @@
+name: Generate consumer synergy skill lock
+
+on:
+  push:
+    branches:
+      - feat/consumer-synergy-skill-lock
+
+permissions:
+  contents: write
+
+jobs:
+  generate-lock:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/consumer-synergy-skill-lock
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install skill with canonical CLI
+        run: >-
+          npx --yes skills@latest add
+          https://github.com/franklinbaldo/skills/tree/feat/cobogo-consumer-synergy/cobogo-consumer-synergy
+          --skill cobogo-consumer-synergy
+          --agent codex
+          -y
+
+      - name: Keep dependency metadata only
+        run: |
+          test -f skills-lock.json
+          rm -rf .agents/skills .codex/skills
+          git add skills-lock.json
+          if git diff --cached --quiet; then
+            echo 'skills-lock.json already up to date'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: lock Cobogó consumer synergy skill'
+          git push origin HEAD:feat/consumer-synergy-skill-lock
