@@ -1,0 +1,163 @@
+---
+import GreenfieldLayout from '../../layouts/GreenfieldLayout.astro';
+---
+
+<GreenfieldLayout title="COBOGÓ — gramática visual brasileira">
+  <div class="gf-shell">
+    <header class="gf-nav" aria-label="Navegação principal">
+      <div class="gf-nav-inner">
+        <a class="gf-brand" href="/cobogo/next/">COBOGÓ</a>
+        <nav class="gf-links" aria-label="Seções da referência">
+          <a href="#gramatica">Gramática</a>
+          <a href="#core">Core</a>
+          <a href="#patterns">Patterns</a>
+          <a href="#consumers">Consumers</a>
+          <a href="#knowledge">Knowledge</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="gf-hero" aria-labelledby="gf-title">
+        <div class="gf-section">
+          <p class="gf-kicker">Gramática compartilhada · identidade local</p>
+          <h1 id="gf-title">COBOGÓ</h1>
+          <p class="gf-hero-lead">Design brasileiro como relação, não como skin.</p>
+          <p class="gf-hero-explain">
+            Cobogó reúne gramática visual, conhecimento reutilizável e um core web
+            framework-agnostic para projetos que precisam ser parentes sem virar clones.
+          </p>
+          <div class="gf-actions">
+            <a class="gf-action" data-primary href="#gramatica">Entender a gramática →</a>
+            <a class="gf-action" href="#core">Usar o core</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="gf-section" aria-labelledby="orientacao-title">
+        <div class="gf-section-head">
+          <h2 id="orientacao-title">Cinco portas de entrada.</h2>
+          <p>
+            A home orienta. A referência densa fica em superfícies próprias. Nenhuma dessas
+            áreas é uma aparência obrigatória para os consumidores.
+          </p>
+        </div>
+        <div class="gf-route-grid">
+          <a class="gf-route" href="#gramatica">
+            <strong>Gramática</strong><small>canon, relações e specimens</small>
+          </a>
+          <a class="gf-route" href="#core">
+            <strong>Core</strong><small>papéis semânticos e CSS público</small>
+          </a>
+          <a class="gf-route" href="#patterns">
+            <strong>Patterns</strong><small>soluções relation-first com status explícito</small>
+          </a>
+          <a class="gf-route" href="#consumers">
+            <strong>Consumers</strong><small>evidência de adoção e identidade local</small>
+          </a>
+          <a class="gf-route" href="#knowledge">
+            <strong>Knowledge</strong><small>corpus OKF, referências e decisões</small>
+          </a>
+        </div>
+      </section>
+
+      <section id="gramatica" class="gf-section" aria-labelledby="gramatica-title">
+        <div class="gf-section-head">
+          <h2 id="gramatica-title">Da evidência à interface.</h2>
+          <p>
+            Cobogó não começa em componentes. Referências produzem regras; regras restringem
+            gramática; gramática informa foundations e implementação; o consumidor preserva sua
+            identidade.
+          </p>
+        </div>
+        <div class="gf-chain" aria-label="Cadeia de autoridade do Cobogó">
+          <div><b>Referências</b><span>fenômenos observados, contexto e contraexemplos</span></div>
+          <div><b>Canon</b><span>regras pequenas que realmente restringem decisões</span></div>
+          <div><b>Grammar</b><span>Vão, Ritmo, Faixa, Inscrição e relações de composição</span></div>
+          <div><b>Foundations</b><span>papéis semânticos, tipografia, espaço, estados</span></div>
+          <div><b>Core + Patterns</b><span>contratos públicos antes de bindings</span></div>
+          <div><b>Identidade local</b><span>tema, densidade, voz e memória do consumidor</span></div>
+        </div>
+      </section>
+
+      <section id="core" class="gf-section" aria-labelledby="core-title">
+        <div class="gf-section-head">
+          <h2 id="core-title">Um core que não escolhe seu produto.</h2>
+          <p>
+            `cobogo/core` fornece papéis semânticos e comportamento acessível em CSS puro. Este
+            próprio site usa o mesmo contrato e só mapeia valores locais por cima dele.
+          </p>
+        </div>
+        <div class="gf-role-map">
+          <div class="gf-role"><code>--cobogo-canvas</code><span>papel quente neste consumer</span></div>
+          <div class="gf-role"><code>--cobogo-surface</code><span>superfície clara editorial</span></div>
+          <div class="gf-role"><code>--cobogo-text</code><span>carvão de alta leitura</span></div>
+          <div class="gf-role"><code>--cobogo-accent</code><span>azul-marinho estrutural</span></div>
+        </div>
+      </section>
+
+      <section id="patterns" class="gf-section" aria-labelledby="patterns-title">
+        <div class="gf-section-head">
+          <h2 id="patterns-title">Patterns são relações comprovadas.</h2>
+          <p>
+            Tabela, inscrição, provenance, estado e métrica entram como patterns quando sobreviverem
+            a contextos reais. Ornamento geométrico não é automaticamente pattern nem identidade.
+          </p>
+        </div>
+      </section>
+
+      <section id="consumers" class="gf-section" aria-labelledby="consumers-title">
+        <div class="gf-section-head">
+          <h2 id="consumers-title">Parentes, não clones.</h2>
+          <p>
+            O valor do Cobogó aparece quando o mesmo contrato sobrevive a produtos visualmente
+            distintos. Abaixo, três pressões diferentes sobre a gramática.
+          </p>
+        </div>
+        <div class="gf-consumers">
+          <article class="gf-consumer">
+            <div>
+              <p class="gf-inscription">Public data · brownfield</p>
+              <h3>CausaGanha</h3>
+              <p>Leitura de dados judiciais, HTML-first, verde/dourado local e ritmo público.</p>
+            </div>
+            <small>Compartilha papéis semânticos; aparência permanece do produto.</small>
+          </article>
+          <article class="gf-consumer" data-dense>
+            <div>
+              <p class="gf-inscription">Admin · high density</p>
+              <h3>Astronauta</h3>
+              <p>Review, relações, estados e interação densa em identidade escura operacional.</p>
+            </div>
+            <small>Mesma gramática, intensidade completamente diferente.</small>
+          </article>
+          <article class="gf-consumer" data-editorial>
+            <div>
+              <p class="gf-inscription">Editorial · provenance</p>
+              <h3>O Vigia</h3>
+              <p>Leitura longa, arquivo, evidência e ritmo tipográfico mais aberto.</p>
+            </div>
+            <small>Texto como arquitetura, sem virar dashboard.</small>
+          </article>
+        </div>
+      </section>
+
+      <section id="knowledge" class="gf-section gf-dogfood" aria-labelledby="knowledge-title">
+        <div class="gf-section-head">
+          <h2 id="knowledge-title">Conhecimento é parte do produto.</h2>
+          <p>
+            O corpus OKF guarda referências, canon, decisões, consumers e counterevidence. O site
+            deve projetar esse conhecimento sem virar uma segunda fonte de verdade.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="gf-footer">
+      <div class="gf-footer-inner">
+        <strong>COBOGÓ</strong>
+        <span>Este website é um consumer do próprio Cobogó.</span>
+      </div>
+    </footer>
+  </div>
+</GreenfieldLayout>
