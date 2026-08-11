@@ -78,6 +78,10 @@ Motion roles precede duration/easing values:
 
 Motion must remain optional where the task does not require it and must respect reduced-motion preferences.
 
+This invariant is **observable**, and Cobogó checks itself against it (`scripts/check-reduced-motion.mjs`, run in CI): under `prefers-reduced-motion: reduce`, no animation or transition should remain active unless it is marked `data-motion="essential"`. Reduced motion means reduced, not none — a progress indicator may legitimately keep moving — but that has to be a recorded decision rather than an oversight.
+
+The check exists because prose was not enough: a registered consumer shipped 21 animation/transition rules with no reduced-motion handling at all, and nothing failed until someone looked by hand. See [The Lab](../consumers/the-lab.md) and issue #302. The script is framework-agnostic and takes only a base URL plus routes, so a consumer can copy it without adopting anything else from Cobogó.
+
 ## States and accessibility
 
 State must never depend on color alone. Focus, selected, warning, invalid, destructive, disabled, loading and stale/partial states need textual, structural, iconographic or behavioral redundancy appropriate to context.
