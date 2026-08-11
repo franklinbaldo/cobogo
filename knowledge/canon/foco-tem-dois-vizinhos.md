@@ -35,6 +35,8 @@ Escolher "um azul com contraste maior" para o anel. Isso conserta uma adjacênci
 
 Isto é uma regra sobre a estrutura do indicador, não sobre sua expressão. Anel, espessura e geometria continuam sendo identidade local; o que não é local é precisar de dois tons.
 
+A declaração da região é explícita, e CSS não tem como inferi-la: uma região invertida que esquecer de se declarar falha exatamente como antes, e falha em silêncio. O contrato torna a correção possível e barata, não automática. Vale tratar "faixa/hero/banner invertido sem declaração" como item de revisão quando um consumer introduzir uma superfície dessas.
+
 ## Evidência negativa
 
 Duas hipóteses foram testadas e rejeitadas no mesmo loop:
