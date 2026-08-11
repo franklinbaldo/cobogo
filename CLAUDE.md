@@ -1,246 +1,242 @@
-# COBOGÓ — Development Standards
+# COBOGÓ — Agent & Development Guide
 
-Brazilian modernist design system built with Astro + Svelte 5 + Pico CSS v2 (classless).
+Cobogó is a **Brazilian visual grammar + reusable design knowledge system** for software.
+It is not one shared look, one framework, or a component catalog.
 
----
+The governing architecture is:
 
-## Project structure
-
-```
-src/
-  components/       Svelte 5 + Astro components (no styles inside — see below)
-  layouts/          BaseLayout.astro (Pico + global.css imported here)
-  pages/            Astro routes
-  styles/
-    global.css      Single source of truth for all CSS
-  content/docs/     MDX documentation
+```text
+Brazilian/reference evidence
+  → canonical OKF knowledge
+  → canon + grammar
+  → semantic foundations
+  → framework-agnostic core + patterns
+  → consumer-local identity
 ```
 
----
+Consumers should be recognizably related without becoming clones: **parentesco sem uniformidade**.
 
-## CSS rules
+## Canonical authority
 
-### 1. All styles belong in `src/styles/global.css`
+`knowledge/` is the canonical knowledge corpus. Use the current `okf-parser` directly for
+validation, inventory, graph/query and typed projection. Do not create a second knowledge
+registry/database/graph because the website or an agent wants a more convenient projection.
 
-No `<style>` blocks in Svelte or Astro files (except decorative SVG components in
-`src/components/decorative/` which have isolated animation concerns).
+The website is a **consumer of Cobogó**, not a privileged authority over it. `src/pages/**`
+projects the canonical knowledge and uses the same public core contract available to other
+consumers.
 
-```svelte
-<!-- ✗ Wrong -->
-<style>
-  .my-thing { color: red; }
-</style>
+## Required project skills
 
-<!-- ✓ Correct: add the rule to global.css -->
+The Cobogó-specific skills are installed in project scope for Claude Code and committed under
+`.claude/skills/`. Their installation provenance is recorded by the CLI-generated
+`skills-lock.json`.
+
+Canonical install/update command:
+
+```bash
+npx skills add franklinbaldo/skills \
+  --skill brazilian-web-design \
+  --skill cobogo-design-review \
+  --skill cobogo-consumer-synergy \
+  --agent claude-code \
+  --copy \
+  --yes
 ```
 
-### 2. Customize Pico through CSS variables, never by overriding element rules
+Use the installed skills as follows:
 
-Pico v2 exposes every knob as a `--pico-*` variable. Override those, not the elements.
+- **`cobogo-design-review`** — default method for material visual work on a website, page,
+  section, pattern, component, or UI state. It owns the speculative visual-gap loop.
+- **`brazilian-web-design`** — use when the work needs a new Brazilian visual/cultural
+  reference or a new derived grammar claim not already supported by the Cobogó corpus.
+- **`cobogo-consumer-synergy`** — use when a design-system decision depends on comparing real
+  consumers, routing authority across repositories, extracting shared capability, or feeding
+  adoption/negative evidence back into the registry.
 
-```css
-/* ✗ Wrong — breaks on Pico upgrades */
-button { padding: 0.25rem 0.75rem; }
+Do **not** hand-edit installed skill copies or `skills-lock.json` to simulate an update. Re-run
+`npx skills add ...` and commit the real CLI output.
 
-/* ✓ Correct */
-:root {
-  --pico-form-element-spacing-vertical: 0.25rem;
-  --pico-form-element-spacing-horizontal: 0.75rem;
-}
+## Mandatory visual design loop
+
+For any **material visual decision**, do not stop at static code review.
+
+Choose the smallest useful review scale:
+
+- whole website;
+- page;
+- section;
+- pattern;
+- component;
+- one meaningful component/interaction state.
+
+Then run:
+
+```text
+product job
+→ canonical Cobogó evidence
+→ Brazilian-grammar imagination brief
+→ concept image
+→ real rendered capture
+→ semantic gap comparison
+→ smallest useful convergence
+→ recapture
+→ reusable learning
 ```
 
-All Pico variables are prefixed `--pico-` and won't collide with our own `--azul`, `--papel-*` etc.
+### 1. State the job before styling
 
-### 3. We use the **classless** Pico variant
+Name the relation the surface must make perceptible or actionable. Do not begin from
+"make it more Brazilian" or from a desired component type.
 
-```js
-import '@picocss/pico/css/pico.classless.css'; // BaseLayout.astro
+### 2. Imagine through Brazilian grammar, not skin
+
+Consult `knowledge/` and choose normally **2–4 operative ideas**. Examples:
+
+- `Vão` / vão antes de massa;
+- `Faixa`;
+- `Inscrição`;
+- `Ritmo`;
+- módulo sem monotonia;
+- texto é arquitetura;
+- estrutura explícita + gesto localizado;
+- ornamento deve trabalhar;
+- acessibilidade é forma;
+- parentesco sem uniformidade.
+
+The imagination stage should ask what makes the design structurally differentiated, not how to
+add Brazilian colors, azulejo/cobogó motifs, concrete texture, xilogravura, or famous-designer
+references after the fact.
+
+If a new cultural reference is needed, route through `brazilian-web-design` and persist the
+reference/evidence before treating it as design authority.
+
+### 3. Generate a concept image when image generation is available
+
+The concept is a **speculative probe**, not a target screenshot and never factual authority.
+It may invent composition, hierarchy, rhythm, geometry and materiality. It must not be used as
+evidence for adoption, users, metrics, partners, logos, history, product capabilities or other
+facts that were not independently verified.
+
+For component work, generate the component at component scale and include only relevant states
+(default/focus/selected/error/empty/dense/overflow, etc.). Do not redesign an entire page merely
+because component capture is inconvenient.
+
+### 4. Capture reality in pixels
+
+Prefer a real browser capture:
+
+1. deployed artifact when judging what users see;
+2. branch preview before deploy;
+3. isolated component harness only when product context cannot provide a reliable capture.
+
+Keep viewport, color scheme, font loading, fixture/data and state stable enough for comparison.
+
+### 5. Compare semantically, not by pixel similarity
+
+Useful gap classes include:
+
+- preserve real;
+- concept insight;
+- bug/regression;
+- information-architecture gap;
+- grammar gap;
+- generic-design gap;
+- over-abstracted concept;
+- invented-authority rejection;
+- negative evidence.
+
+The goal is **not** to make reality match the generated image. Preserve what the real product
+does better and implement only the concept insights that improve the actual product job.
+
+### 6. Recapture and learn
+
+After implementation, compare:
+
+```text
+real-before
+speculative-concept
+real-after
 ```
 
-This means: **no** `.container`, `.grid`, `.secondary` utility classes. Layout comes from
-semantic HTML + `data-*` attributes + custom CSS. Do not add class-based layout helpers.
+Persist only reusable learning in the appropriate layer: reference, canon/grammar, specimen,
+pattern evidence, core contract, consumer registry, skill, test/spec, or negative evidence.
 
----
+## Public core and local identity
 
-## Semantic HTML rules
+`cobogo/core` is framework-agnostic CSS. Shared contracts should express semantic roles and
+relations before framework/component APIs.
 
-Pico classless styles HTML elements directly — the more semantic the markup, the less
-custom CSS you need.
+Consumers own their concrete identity: palette, typography choices, density, voice,
+materiality, domain-specific states and product workflows unless cross-consumer evidence
+supports promotion upstream.
 
-### Landmark structure (every page)
+Do not turn Pico, Astro, Svelte, React, Tailwind or another consumer's implementation into
+Cobogó semantics.
 
-```html
-<body>
-  <header>     <!-- site header, sticky nav -->
-  <main>       <!-- one per page, sibling of header/footer -->
-  <footer>     <!-- site footer -->
-</body>
+The current Greenfield reference website deliberately uses Cobogó's public core plus a local
+paper/navy editorial theme. The historical first home remains available as legacy/history
+evidence; it is not the template for new work.
+
+## Website structure
+
+Important current surfaces include:
+
+```text
+src/pages/index.astro       public orientation/home
+src/pages/grammar/**        canon + grammar reference
+src/pages/core/**           semantic core/foundations reference
+src/pages/patterns/**       pattern status/evidence
+src/pages/consumers/**      consumer registry projection
+src/pages/knowledge/**      typed corpus projection
+src/pages/legacy-home.astro preserved historical home
+src/styles/core.css         public framework-agnostic core
+src/styles/greenfield-site.css local website theme/composition
+knowledge/**                canonical OKF corpus
 ```
 
-- Exactly **one `<main>`** per page.
-- `<header>` and `<footer>` can also appear inside `<article>` as article metadata.
-- `<nav>` only for **major navigation** (primary menu, TOC, breadcrumb, pagination). A list
-  of social links in a footer is not `<nav>`.
-- `<aside>` is for tangentially related content (sidebars, pull quotes). Not for layout.
+Do not infer ontology from directories alone. Website projections must use explicit concept
+`type`/relations from the corpus where semantics matter.
 
-### Interactive elements — use the native one
+## Semantic HTML and accessibility
 
-| Intent | Element |
-|--------|---------|
-| Perform action on current page | `<button type="button">` |
-| Navigate to URL | `<a href="...">` |
-| Submit form | `<button type="submit">` inside `<form>` |
+Accessibility is part of the form, not a cleanup pass.
 
-Never `<div onClick>`. Never `<a href="#">` as a button. You lose keyboard activation,
-focus ring, and correct screen-reader announcement.
+- Use native interactive elements (`button`, `a`, form controls) before ARIA.
+- Keep one meaningful `main` landmark per page.
+- Use heading levels for document structure, not font size.
+- Sections need a real heading/label; use plain layout containers when there is no semantic
+  section.
+- Inputs require real labels; state/error relationships must be programmatically available.
+- Tables need captions/headers/scopes appropriate to the data.
+- Focus must be visible and designed as part of component state.
+- State must not rely on color alone.
+- Respect reduced-motion preferences.
+- Decorative images/geometry must not create noisy accessibility semantics.
 
-### Headings are an outline, not a font-size menu
+## Development checks
 
-- One `<h1>` per page — the page title.
-- Descend without skipping: `h2` under `h1`, `h3` under `h2`.
-- Fix visual size with CSS, never by choosing a lower heading level.
+For website/code changes, run the strongest applicable current checks, normally:
 
-### `<article>` vs `<section>` vs `<div>`
-
-| Element | Use when |
-|---------|----------|
-| `<article>` | Independently distributable — card, post, comment, product |
-| `<section>` | Thematic group **that has a heading** (`aria-labelledby` or visible `<h*>`) |
-| `<div>` | Pure layout/styling, no semantic meaning |
-
-### Forms
-
-- Every `<input>`, `<select>`, `<textarea>` must have a `<label for="id">` or be wrapped
-  in one. `placeholder` is **not** a label.
-- Group related inputs in `<fieldset>` + `<legend>` (radio sets, address blocks).
-- Use specific input types: `type="email"`, `type="tel"`, `type="number"`, etc.
-- Error messages: `aria-describedby` pointing to the error element + `aria-invalid="true"`.
-- Use the `FormField.svelte` component — it handles all of the above automatically.
-
-### Tables
-
-- `<caption>` describes the table.
-- `<thead>` / `<tbody>` / `<tfoot>` for segmentation.
-- `<th scope="col">` for column headers, `<th scope="row">` for row headers.
-
-### Under-used elements worth reaching for
-
-```html
-<!-- Machine-readable date — always provide datetime in ISO 8601 -->
-<time datetime="2026-05-12">12 de maio de 2026</time>
-
-<!-- Image/chart/code block with caption -->
-<figure>
-  <img src="..." alt="..." />
-  <figcaption>Description</figcaption>
-</figure>
-
-<!-- Native collapsible — no JS needed -->
-<details>
-  <summary>Show more</summary>
-  <p>Hidden content</p>
-</details>
-
-<!-- Native modal — handles focus trap + Escape for free -->
-<dialog>...</dialog>
-
-<!-- Key-value pairs / glossary -->
-<dl>
-  <dt>Term</dt>
-  <dd>Definition</dd>
-</dl>
-
-<!-- Button + input cluster (search bar, segmented buttons) — Pico v2 feature -->
-<role="group">
-  <input type="search" />
-  <button type="submit">Buscar</button>
-</div>
+```bash
+npm ci --legacy-peer-deps
+npm run check
+npm run build
 ```
 
-### ARIA is the patch, not the foundation
+For knowledge changes, run current `okf-parser` validation/inventory/graph (and typed/DuckDB
+checks when the change affects those contracts).
 
-Use ARIA only when no native HTML element exists for the pattern. Wrong ARIA is worse
-than no ARIA — it silently lies to assistive tech.
+For material website visual changes, use the existing browser screenshot/preview workflows in
+addition to build checks. A green build is not visual evidence.
 
-Good ARIA uses in this codebase:
-- `aria-current="page"` on active nav links
-- `aria-label` on icon-only buttons and unlabeled landmarks
-- `aria-live` on status regions that update asynchronously
-- `aria-labelledby` linking `<section>` to its heading
-- `aria-invalid` / `aria-describedby` on form validation
+## Agent operating rules
 
-### Common foot-guns
-
-1. `<div onClick>` instead of `<button>` — inaccessible, untabbable
-2. Heading levels chosen for visual size — use CSS for size, levels for structure
-3. `<br><br>` for spacing — use `<p>` + margin
-4. `placeholder` as label — disappears on type, fails contrast
-5. `<a href="#">` for buttons — pollutes history, focus wrong
-6. `<section>` without a heading — use `<div>` instead
-7. Tables for layout — CSS Grid/Flexbox is always the right tool
-
----
-
-## Pico v2 specifics
-
-### Color scheme
-
-```html
-<!-- BaseLayout.astro <head> — already set -->
-<meta name="color-scheme" content="light dark" />
-```
-
-Use `data-theme="dark"` / `"light"` only when you need a manual toggle. Do not write
-custom dark-mode CSS — override `[data-theme="dark"]` Pico variables.
-
-### Scale for app UIs
-
-If UI elements feel too large, adjust these three variables (not element rules):
-
-```css
-:root {
-  --pico-font-size: 87.5%;                        /* shrinks everything proportionally */
-  --pico-form-element-spacing-vertical: 0.5rem;
-  --pico-form-element-spacing-horizontal: 0.75rem;
-}
-```
-
-### What changed in Pico v2 (common foot-guns)
-
-- Buttons are **not** `width: 100%` by default. Only form buttons are full-width.
-- Dropdowns now require `.dropdown` class (we don't use dropdowns).
-- Grid columns collapse at `<768px` — don't expect mobile multi-column grids without a breakpoint.
-- `role="group"` is the Pico v2 pattern for button+input clusters (search bars).
-
----
-
-## Svelte 5 patterns
-
-```svelte
-<!-- Props -->
-let { foo, bar = 'default' } = $props();
-
-<!-- Reactive state -->
-let count = $state(0);
-let doubled = $derived(count * 2);
-
-<!-- Side effects -->
-$effect(() => { /* runs after mount and on dependency change */ });
-
-<!-- Snippets (not slots) -->
-{#snippet mySnippet(arg)}...{/snippet}
-{@render mySnippet(value)}
-```
-
----
-
-## Component authoring checklist
-
-- [ ] No `<style>` block — styles go in `global.css`
-- [ ] Uses semantic HTML — `<article>` for cards, `<nav>` for navs, etc.
-- [ ] Interactive elements use `<button>` or `<a>`, never `<div>`
-- [ ] `<time>` elements include `datetime` in ISO 8601 (`YYYY-MM-DD`)
-- [ ] Tables have `<caption>`, `<thead>`, and `scope="col"` on `<th>`
-- [ ] All form inputs have associated `<label>` (use `FormField.svelte`)
-- [ ] Decorative images have `alt=""`, informational images have descriptive alt
-- [ ] ARIA used only when no native element exists
+- Read the relevant installed skill before improvising a method already encoded there.
+- Prefer canonical OKF evidence over stale prose/docs.
+- Preserve negative evidence; rejected concepts are useful when they prevent repeated mistakes.
+- Do not promote one generated concept or one consumer implementation into universal core.
+- One consumer can justify experimentation; stabilization needs stronger cross-context evidence.
+- Do not invent adoption claims merely because an issue, specimen or PR exists.
+- Keep shared semantic authority in Cobogó and product-specific authority downstream.
+- Make the smallest reviewable change that proves the next relation.
