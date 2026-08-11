@@ -127,6 +127,18 @@ Control:
 
 For repeated rounds, reuse the same capture contract so later differences are meaningful.
 
+### Data-driven consumers
+
+Many real consumers render their surface from a pipeline, so a checkout does not produce the page. Take evidence in this order:
+
+```text
+deployed artifact → real consumer pipeline → faithful fixture
+```
+
+A fixture is the last resort, never the first. It must not materially alter distribution, density, states or provenance for the surface being studied — a table of 5 invented rows says nothing about a table of 96 real ones, and a fixture with no stale/failed records erases exactly the states worth studying.
+
+Record which level the evidence came from, and any part of the surface that did not load. Capture conditions are part of the finding.
+
 ## 6. Compare semantically before pixel-wise
 
 Pixel difference is useful for deployment verification, not for judging a speculative concept.
