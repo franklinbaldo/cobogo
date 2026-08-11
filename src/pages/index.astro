@@ -7,6 +7,8 @@ import {
   knowledgeEntries,
   patternEntries,
 } from '../lib/knowledgeProjection';
+import { coreRoleTokens } from '../lib/coreContract';
+import { count } from '../lib/plural';
 ---
 
 <GreenfieldLayout title="COBOGÓ — gramática visual brasileira">
@@ -77,31 +79,31 @@ import {
           <a class="gf-route" href="/cobogo/grammar/">
             <span class="gf-route-index">01 · GRAMÁTICA</span>
             <strong>Canon e relações</strong>
-            <span class="gf-route-fact">{canonEntries.length} regras · {grammarEntries.length} operações</span>
+            <span class="gf-route-fact">{count(canonEntries.length, 'regra', 'regras')} · {count(grammarEntries.length, 'operação', 'operações')}</span>
             <small>Princípios que restringem decisões e relações que organizam composição.</small>
           </a>
           <a class="gf-route" href="/cobogo/core/">
             <span class="gf-route-index">02 · CORE</span>
             <strong>Foundations da web</strong>
-            <span class="gf-route-fact">CSS puro · sem runtime</span>
+            <span class="gf-route-fact">{count(coreRoleTokens.length, 'papel semântico', 'papéis semânticos')} · CSS puro</span>
             <small>Papéis semânticos, tipografia, espaço, foco, estado e theming.</small>
           </a>
           <a class="gf-route" href="/cobogo/patterns/">
             <span class="gf-route-index">03 · PATTERNS</span>
             <strong>Relações comprovadas</strong>
-            <span class="gf-route-fact">{patternEntries.length} concepts tipados</span>
+            <span class="gf-route-fact">{count(patternEntries.length, 'pattern tipado', 'patterns tipados')}</span>
             <small>Soluções experimentais promovidas por evidência entre contextos.</small>
           </a>
           <a class="gf-route" href="/cobogo/consumers/">
             <span class="gf-route-index">04 · CONSUMERS</span>
             <strong>Parentes, não clones</strong>
-            <span class="gf-route-fact">{consumerEntries.length} consumers registrados</span>
+            <span class="gf-route-fact">{count(consumerEntries.length, 'consumer registrado', 'consumers registrados')}</span>
             <small>Adoção factual, pressão real e identidade local preservada.</small>
           </a>
           <a class="gf-route" href="/cobogo/knowledge/">
             <span class="gf-route-index">05 · KNOWLEDGE</span>
             <strong>Corpo de conhecimento</strong>
-            <span class="gf-route-fact">{knowledgeEntries.length} conceitos tipados</span>
+            <span class="gf-route-fact">{count(knowledgeEntries.length, 'conceito tipado', 'conceitos tipados')}</span>
             <small>Corpus OKF: referências, decisões, evidência e counterevidence.</small>
           </a>
         </div>
@@ -199,13 +201,28 @@ import {
             <a href="/cobogo/knowledge/">Explorar o corpus →</a>
           </p>
         </div>
-        <div class="gf-knowledge-summary" aria-label="Resumo factual do corpus">
-          <div><strong>{knowledgeEntries.length}</strong><span>conceitos tipados</span></div>
-          <div><strong>{canonEntries.length}</strong><span>regras de canon</span></div>
-          <div><strong>{grammarEntries.length}</strong><span>operações de gramática</span></div>
-          <div><strong>{patternEntries.length}</strong><span>patterns</span></div>
-          <div><strong>{consumerEntries.length}</strong><span>consumers</span></div>
-        </div>
+        <dl class="gf-knowledge-summary" aria-label="Resumo factual do corpus">
+          <div>
+            <dt>{knowledgeEntries.length === 1 ? 'conceito tipado' : 'conceitos tipados'}</dt>
+            <dd>{knowledgeEntries.length}</dd>
+          </div>
+          <div>
+            <dt>{canonEntries.length === 1 ? 'regra de canon' : 'regras de canon'}</dt>
+            <dd>{canonEntries.length}</dd>
+          </div>
+          <div>
+            <dt>{grammarEntries.length === 1 ? 'operação de gramática' : 'operações de gramática'}</dt>
+            <dd>{grammarEntries.length}</dd>
+          </div>
+          <div>
+            <dt>{patternEntries.length === 1 ? 'pattern' : 'patterns'}</dt>
+            <dd>{patternEntries.length}</dd>
+          </div>
+          <div>
+            <dt>{consumerEntries.length === 1 ? 'consumer' : 'consumers'}</dt>
+            <dd>{consumerEntries.length}</dd>
+          </div>
+        </dl>
       </section>
     </main>
 
