@@ -1,0 +1,56 @@
+name: Materialize Cobogó agent skills
+
+on:
+  push:
+    branches:
+      - chore/cobogo-agent-skills
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    if: github.event.head_commit.message != 'chore: materialize Cobogó agent skills'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: chore/cobogo-agent-skills
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Cobogó skills with canonical CLI
+        env:
+          DISABLE_TELEMETRY: '1'
+        run: |
+          npx --yes skills add franklinbaldo/skills \
+            --skill brazilian-web-design \
+            --skill cobogo-design-review \
+            --skill cobogo-consumer-synergy \
+            --agent claude-code \
+            --copy \
+            --yes
+
+      - name: Show materialized installation
+        run: |
+          printf '%s\n' '--- skills-lock.json ---'
+          if test -f skills-lock.json; then cat skills-lock.json; else echo '(none)'; fi
+          printf '%s\n' '--- installed paths ---'
+          find .agents .claude -maxdepth 4 \( -type f -o -type l \) -print 2>/dev/null | sort || true
+
+      - name: Commit CLI output
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A .agents .claude skills-lock.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo 'CLI produced no tracked project installation; failing closed.'
+            exit 1
+          fi
+          git commit -m 'chore: materialize Cobogó agent skills'
+          git push origin HEAD:chore/cobogo-agent-skills
