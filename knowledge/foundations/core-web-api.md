@@ -19,6 +19,8 @@ It has no JavaScript runtime and no dependency on Svelte, Astro or Pico semantic
 
 Color roles use `--cobogo-canvas`, `--cobogo-surface`, `--cobogo-surface-muted`, `--cobogo-text`, `--cobogo-text-muted`, `--cobogo-border`, `--cobogo-accent`, `--cobogo-focus`, `--cobogo-info`, `--cobogo-success`, `--cobogo-warning`, `--cobogo-danger`.
 
+Focus is a **relation between two tones**, not a single colour: `--cobogo-focus` is the ring and `--cobogo-focus-contrast` fills the offset gap, so the ring always has something to separate from regardless of what sits behind it. `--cobogo-focus-inverted` and `--cobogo-focus-contrast-inverted` carry the same relation re-toned for inverted regions; both are derived from existing roles, so a retheme propagates and the pair flips by itself under a dark theme.
+
 Typography roles use `--cobogo-font-body`, `--cobogo-font-display`, `--cobogo-font-inscription`, `--cobogo-font-data` and reading/leading roles.
 
 Spatial relationships use `--cobogo-space-adjacent`, `--cobogo-space-group`, `--cobogo-space-section`, `--cobogo-space-pause`.
@@ -36,6 +38,7 @@ The core intentionally keeps the surface small:
 - `data-cobogo-stack` — grouped vertical rhythm;
 - `data-cobogo-flow` — section rhythm;
 - `data-cobogo-pause` — deliberate larger break;
+- `data-cobogo-inverted` — a region whose background is inverted relative to the document (a dark hero or context band in a light page, or the reverse). It paints nothing and the consumer keeps owning the region's colours; it only re-derives the focus pair, which is otherwise chosen against the document canvas and fails silently inside such a region.
 - `data-cobogo-theme="dark"` — explicit dark semantic mapping.
 
 These are not component names and do not imply a framework.

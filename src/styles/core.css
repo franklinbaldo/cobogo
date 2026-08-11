@@ -15,7 +15,16 @@
   --cobogo-text-muted: #666158;
   --cobogo-border: #d3cec4;
   --cobogo-accent: #1b4d6b;
+  /* Focus is a relation between two tones, not one colour: the ring plus the tone
+   * that fills the offset gap so the ring always has something to separate from. */
   --cobogo-focus: #1769aa;
+  --cobogo-focus-contrast: var(--cobogo-canvas);
+  /* The same relation re-toned for regions marked `data-cobogo-inverted`. Derived from
+   * existing roles, so a consumer that rethemes gets a coherent inverted pair for free —
+   * and so the pair flips by itself under a dark theme, where an inverted region is the
+   * light one. */
+  --cobogo-focus-inverted: var(--cobogo-surface);
+  --cobogo-focus-contrast-inverted: var(--cobogo-text);
   --cobogo-info: #1b4d6b;
   --cobogo-success: #2e6b4a;
   --cobogo-warning: #8a5a00;
@@ -57,6 +66,7 @@
   --cobogo-border: #4b4740;
   --cobogo-accent: #8fc2df;
   --cobogo-focus: #9ed2ff;
+  --cobogo-focus-contrast: var(--cobogo-canvas);
   --cobogo-info: #8fc2df;
   --cobogo-success: #83c69f;
   --cobogo-warning: #e6bc62;
@@ -96,6 +106,7 @@
 :where(:focus-visible) {
   outline: 0.1875rem solid var(--cobogo-focus);
   outline-offset: 0.1875rem;
+  box-shadow: 0 0 0 0.1875rem var(--cobogo-focus-contrast);
 }
 
 :where(button, input, select, textarea) {
@@ -144,6 +155,16 @@
 
 :where([data-cobogo-surface="muted"]) {
   background: var(--cobogo-surface-muted);
+}
+
+/* A region whose background is inverted relative to the document: a dark hero, banner or
+ * context band inside an otherwise light page. This marker paints nothing — the consumer
+ * still owns the region's own colours. It exists because the document-level focus tones
+ * are chosen against the document-level canvas and silently fail on such a region, and a
+ * consumer has no way to know it must re-derive them. */
+:where([data-cobogo-inverted]) {
+  --cobogo-focus: var(--cobogo-focus-inverted);
+  --cobogo-focus-contrast: var(--cobogo-focus-contrast-inverted);
 }
 
 :where([data-cobogo-state]) {
