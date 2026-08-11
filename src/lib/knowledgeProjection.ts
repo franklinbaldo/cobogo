@@ -33,8 +33,9 @@ function scalar(raw: string, key: string) {
   return raw.match(new RegExp(`^${key}:\\s*([^\\n]+)$`, 'm'))?.[1]?.trim().replace(/^['"]|['"]$/g, '');
 }
 
-function project(source: Record<string, string>): KnowledgeEntry[] {
+function project(source: Record<string, string>, expectedType: string): KnowledgeEntry[] {
   return Object.entries(source)
+    .filter(([, raw]) => scalar(raw, 'type') === expectedType)
     .map(([path, raw]) => ({
       path,
       slug: path.split('/').pop()?.replace(/\.md$/, '') ?? path,
@@ -44,6 +45,6 @@ function project(source: Record<string, string>): KnowledgeEntry[] {
     .sort((a, b) => a.title.localeCompare(b.title, 'pt-BR'));
 }
 
-export const canonEntries = project(canon);
-export const grammarEntries = project(grammar);
-export const consumerEntries = project(consumers);
+export const canonEntries = project(canon, 'canon-rule');
+export const grammarEntries = project(grammar, 'design-grammar');
+export const consumerEntries = project(consumers, 'consumer');
