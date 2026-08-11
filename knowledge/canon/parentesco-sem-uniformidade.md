@@ -48,6 +48,38 @@ Se importar o core elimina implementação própria relevante, prefira padroniza
 
 O caso trabalhado está em [The Lab](../consumers/the-lab.md): core adoption recusada porque removeria ~9 linhas de 1598 adicionando 174, com 11 de 24 seletores sem correspondência na superfície real. Recusa por medição, não por princípio.
 
+## Autoridade de design nos consumidores
+
+Identidade local também **não** é escudo para conservar design claramente ruim. O consumer é autoridade sobre domínio, conteúdo, regras de negócio, prioridades do produto e fatos que a interface precisa representar. Cobogó é autoridade sobre a qualidade de design quando a questão é visual, compositiva, semântica ou de interação.
+
+Isso inclui, entre outras coisas:
+
+- hierarquia e arquitetura visual;
+- `Vão`, `Ritmo`, `Faixa`, `Inscrição` e densidade;
+- legibilidade, comparação e leitura sustentada;
+- semântica de HTML quando ela muda a qualidade da experiência;
+- foco, teclado, contraste, reduced motion e outros estados de acessibilidade;
+- affordances, estados vazios/erro/loading e feedback de interação;
+- redundância não cromática;
+- coerência entre informação, controle e superfície;
+- qualidade de tabelas, filtros, formulários, navegação e provenance.
+
+Quando uma inspeção encontra um defeito claro nesses eixos, a ação preferida é **corrigir o consumer** com issue ou PR pequena, não apenas registrar o defeito como evidência para Cobogó. O corpus deve aprender com o caso, mas o usuário do consumer não deve continuar pagando por um erro conhecido apenas para preservar a pureza do experimento.
+
+### Fronteira de autoridade
+
+Cobogó pode decidir e implementar uma correção de design sem pedir ao consumer para inventar a solução visual. Mas não deve usar autoridade de design para decidir fatos ou semântica de domínio que não conhece.
+
+Quando uma mudança exige escolher, por exemplo, qual estado jurídico existe, qual métrica é correta, qual dado deve ser prioritário para a tarefa ou qual ação de negócio é permitida, essa decisão permanece com o domínio do consumer. Cobogó então projeta a melhor forma de tornar essa decisão perceptível e utilizável.
+
+### Inspeção de consumer deve produzir melhoria
+
+Uma consumer review não termina em diagnóstico quando existe correção segura e localizada. O fluxo esperado é:
+
+`inspecionar → identificar erro de design → classificar autoridade → corrigir no consumer → capturar/medir → alimentar evidência de volta ao Cobogó`
+
+Negative evidence continua valendo: nem toda diferença é defeito, e nem toda solução Cobogó é melhor que a local. Mas um erro conhecido não deve sobreviver só porque nasceu downstream.
+
 ## Formas legítimas de adoção
 
 As quatro não são níveis obrigatórios de maturidade. Um consumer pode legitimamente parar em qualquer uma se aquela for a fronteira correta de autoridade.
@@ -58,4 +90,3 @@ As quatro não são níveis obrigatórios de maturidade. Um consumer pode legiti
 - **bindings/adapters adoption** — quando existirem, seguem downstream e opcionais.
 
 Registrar a forma importa: `capabilities_used` deve dizer **como** a capacidade foi adotada, e não marcar `cobogo/core` quando o consumer não o consome.
-
