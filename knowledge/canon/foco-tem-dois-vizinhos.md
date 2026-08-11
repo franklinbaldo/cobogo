@@ -27,20 +27,25 @@ Medido no próprio website do Cobogó, no botão primário claro dentro do hero 
 
 Com um tom só, o anel falhava contra a superfície e era idêntico ao controle ao mesmo tempo. Com dois tons, cada tom carrega exatamente uma adjacência: o anel separa da superfície, o vão separa do controle. O par claro/papel não mudou (6,03:1 antes e depois), então a correção não custou nada onde já funcionava.
 
-## Confirmação independente
+## Tentativa de confirmação independente — falhou, e o erro é instrutivo
 
-A regra foi derivada do hero navy do próprio website do Cobogó. Depois disso ela **previu** a mesma falha em [The Lab](../consumers/the-lab.md), um consumer que não a motivou: outra paleta, outro stack, outro autor e uma camada de acessibilidade já considerada — o produto tem skip link, tratamento de `prefers-reduced-motion` e um anel de foco deliberado.
+Uma primeira análise afirmou que [The Lab](../consumers/the-lab.md) reproduzia esta regra. **Estava errada.** A correção fica registrada porque o modo de errar é reutilizável.
 
-O `.skip-link` do The Lab é o primeiro tab stop de 673 páginas. Ele é preenchido com `var(--accent-primary)` e o anel global usa `--focus-ring`, e os dois valores são o mesmo `#2d7d9a`:
+A medição usou `getComputedStyle` para comparar a cor do anel com o `background-color` do elemento e obteve 1,00:1 — o anel e o `.skip-link` usam o mesmo `#2d7d9a`. Parecia o mesmo defeito.
 
-| adjacência | medido |
-|---|---|
-| anel × elemento que ele cerca | 1,00:1 |
-| anel × página atrás | 4,51:1 |
+A captura de pixels desmentiu. Varredura horizontal na borda do skip link em foco:
 
-O indicador sobrevive por acidente — só porque o vão de 2px deixa aparecer o fundo da página. Não havia como aquele projeto expressar o segundo tom.
+```text
+teal(45,125,154) ×6 │ claro(250,251,249) ×2 │ anel teal ×2 │ página(250,250,250)
+```
 
-Isso move a regra de *uma observação em um consumer* para *uma relação confirmada em dois consumers independentes*, que é o limiar que o registry usa para tratar evidência como reutilizável e não como gosto local.
+Com `outline-offset: 2px` e o elemento sobre a página, **o vão já revelava a página**. O vizinho do anel nunca foi o preenchimento do controle; era o vão claro, a 4,3:1 dos dois lados. O anel do The Lab sempre foi perceptível.
+
+A lição metodológica: `cor-do-anel × background-do-elemento` **não é uma adjacência** quando há offset e o elemento está sobre um fundo contrastante. A adjacência real é com o que o vão expõe. O caso do Cobogó era genuíno justamente porque ali o vão expunha a própria região navy — navy dos dois lados do anel.
+
+Isto estreita o alcance da regra, e é bom que estreite: o defeito exige **elemento dentro de uma região invertida**, não apenas um controle preenchido com a cor de destaque. Um controle accent sobre página clara já resolve sozinho.
+
+A regra permanece confirmada em um consumer. Não promova para evidência multi-consumer até que outra região invertida real apareça.
 
 ## Contraexemplo
 

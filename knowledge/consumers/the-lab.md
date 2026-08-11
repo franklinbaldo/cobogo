@@ -10,12 +10,12 @@ constraints:
   - preserve research provenance and source-repo relationships
   - papers and logs remain readable as documents rather than generic cards
   - automation/sync metadata should orient rather than dominate content
-capabilities_used: []
+capabilities_used:
+  - reduced-motion invariant (canon/grammar adoption, implemented locally)
 unmet_needs:
   - research publication and document-reading rhythm
   - provenance/source-repository inscription
   - archive/navigation across papers logs and research state
-  - surface-aware focus treatment for its accent-filled interactive regions
 last_verified: 2026-08-11
 ---
 
@@ -31,25 +31,35 @@ Inspected at real source and in a real browser capture, not inferred from the re
 
 The site is materially larger than the rest of the editorial cluster: 21 route files, 673 built pages and a 1597-line `global.css` with its own light/dark token system and a per-persona colour palette. Its identity — Inter/JetBrains Mono, glass surfaces, glow, teal/violet/warm accents — is strong, specific and must remain local. It is not a small-adoption target.
 
-## Independent reproduction of `foco tem dois vizinhos`
+## Correction — it did not reproduce the focus defect
 
-The Lab independently declares almost exactly Cobogó's semantic role vocabulary: `--bg`, `--bg-card`, `--bg-surface`, `--text`, `--text-muted`, `--border`, `--accent-primary`, `--focus-ring`. Nobody coordinated this. Two consumers converging on the same role set without contact is the strongest available evidence that the role model in [the foundations contract](../foundations/contract.md) describes something real rather than one project's taste.
+An earlier inspection recorded The Lab as independently reproducing [Foco tem dois vizinhos](../canon/foco-tem-dois-vizinhos.md). That was wrong and is corrected here rather than quietly edited away.
 
-It also reproduces the defect the role model was missing. The Lab sets `--focus-ring: #2d7d9a` and applies it globally through `*:focus-visible`. Its `.skip-link` — the **first tab stop on all 673 pages** — is filled with `var(--accent-primary)`, which is the same `#2d7d9a`.
+The claim rested on `getComputedStyle`: ring colour and `.skip-link` fill are both `#2d7d9a`, giving 1,00:1. But with `outline-offset: 2px` the ring's neighbour is the offset gap, and the gap exposes the page. Pixel scan at the focused element's edge: `teal ×6 │ 250,251,249 ×2 │ teal ring ×2 │ page`. The ring sits on light on both sides, ~4,3:1. It was never broken.
 
-Measured in Chromium at 1280×900, tabbing once from page load:
+What *is* still true, and is the durable part: The Lab independently declares nearly the same semantic role vocabulary as the foundations contract — `--bg`, `--bg-card`, `--bg-surface`, `--text`, `--text-muted`, `--border`, `--accent-primary`, `--focus-ring` — with no contact with Cobogó. That remains real evidence for the role model, and it is independent of the focus question.
 
-| adjacency | measured |
+## Real gap found instead: no reduced-motion handling
+
+The stylesheet declares 21 animation/transition rules and a 385-line animation section, and had **no** `prefers-reduced-motion` block anywhere in `src`.
+
+Measured in Chromium with the preference set to reduce, on the home route: 1 element still animating and 148 still transitioning. This violates an invariant the [foundations contract](../foundations/contract.md) already states.
+
+Adopted as **canon/grammar adoption** in `franklinbaldo/the-lab`: a local 15-line block, The Lab's own idiom, no Cobogó tokens, no `cobogo/core` import. After: 0 animating, 0 transitioning. No effect for users who have not expressed the preference.
+
+## Core adoption assessed and declined, with numbers
+
+| measure | value |
 |---|---|
-| ring × the element it surrounds | **1,00:1** |
-| ring × page behind it | 4,51:1 |
+| local `global.css` | 1598 lines, 20 sections |
+| lines `cobogo/core` could remove | ~9 (a 5-line reset, a 4-line focus rule) |
+| core selectors matching nothing across 6 real routes | **11 of 24** — all 8 `data-cobogo-*` contracts plus the 3 table selectors |
+| local `:root` tokens with a core equivalent | 10 of 32 |
+| local tokens with none | 22 — persona palette, status, glow, glass, `--nav-height`, `--card-radius` |
+| core lines added | 174 |
 
-The ring is exactly the colour of the control it is marking. Only the 2px offset gap, showing page background, keeps it perceptible at all — and that gap is unfilled, so the indicator survives by accident rather than by contract.
-
-This matters because The Lab did not motivate [Foco tem dois vizinhos](../canon/foco-tem-dois-vizinhos.md). The rule was derived from Cobogó's own navy hero, then predicted a failure in a product with a different palette, a different stack, a different author intent and an already-considered accessibility layer — The Lab has a skip link, `prefers-reduced-motion` handling and a deliberate focus ring, so this is not a project that ignored accessibility. It is a project that had no way to express the second tone.
-
-That is independent confirmation rather than a second example of the same authorship.
+The 10 mappable tokens carry different values, so they would survive as overrides: a rename, not a removal. Importing core here would add 174 lines to remove ~9, and 46% of its selectors would match nothing. That is a nominal dependency, so core adoption was declined on measurement rather than on principle.
 
 ## Adoption note
 
-The useful first adoption here is **not** importing `cobogo/core` wholesale over 1597 lines of working CSS. It is the narrow one: adopt the two-tone focus relation and mark the accent-filled interactive regions as inverted, keeping every local value. Everything else stays local identity.
+Re-evaluate core adoption when The Lab grows a surface core actually serves — tabular/data reading, or an inverted region. Neither exists today.
