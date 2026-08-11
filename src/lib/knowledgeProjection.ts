@@ -23,18 +23,21 @@ function scalar(raw: string, key: string) {
 }
 
 export const knowledgeEntries: KnowledgeEntry[] = Object.entries(knowledge)
-  .map(([path, raw]) => {
+  .flatMap(([path, raw]) => {
     const type = scalar(raw, 'type');
-    if (!type) return null;
-    return {
+    if (!type) return [];
+
+    const status = scalar(raw, 'adoption_status') ?? scalar(raw, 'status');
+    const entry: KnowledgeEntry = {
       path,
       slug: path.split('/').pop()?.replace(/\.md$/, '') ?? path,
       title: titleFrom(raw, path),
       type,
-      status: scalar(raw, 'adoption_status') ?? scalar(raw, 'status'),
-    } satisfies KnowledgeEntry;
+      ...(status ? { status } : {}),
+    };
+
+    return [entry];
   })
-  .filter((entry): entry is KnowledgeEntry => entry !== null)
   .sort((a, b) => a.title.localeCompare(b.title, 'pt-BR'));
 
 function byType(type: string) {
