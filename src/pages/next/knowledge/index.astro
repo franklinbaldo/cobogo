@@ -1,0 +1,57 @@
+---
+import GreenfieldLayout from '../../../layouts/GreenfieldLayout.astro';
+import { knowledgeEntries } from '../../../lib/knowledgeProjection';
+
+const groups = Object.entries(
+  knowledgeEntries.reduce<Record<string, typeof knowledgeEntries>>((acc, entry) => {
+    (acc[entry.type] ??= []).push(entry);
+    return acc;
+  }, {}),
+).sort(([a], [b]) => a.localeCompare(b));
+---
+
+<GreenfieldLayout title="COBOGÓ — Knowledge">
+  <main id="conteudo" class="gf-section">
+    <p class="gf-kicker">Explorer · corpus OKF tipado</p>
+    <h1>Knowledge</h1>
+    <p>
+      Este índice é uma projeção de build do corpus. Ele mostra apenas conceitos com
+      <code>type</code> explícito e não tenta reconstruir a ontologia a partir de diretórios.
+    </p>
+
+    <section data-cobogo-pause aria-labelledby="summary-title">
+      <h2 id="summary-title">{knowledgeEntries.length} conceitos tipados</h2>
+      <div class="gf-role-map">
+        {groups.map(([type, entries]) => (
+          <div class="gf-role">
+            <code>{type}</code>
+            <span>{entries.length} {entries.length === 1 ? 'conceito' : 'conceitos'}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {groups.map(([type, entries]) => (
+      <section data-cobogo-pause aria-labelledby={`type-${type}`}>
+        <h2 id={`type-${type}`}>{type}</h2>
+        <div class="gf-reference-list">
+          {entries.map((entry) => (
+            <article class="gf-reference-row">
+              <div>
+                <span class="gf-inscription">{entry.type}</span>
+                <h3>{entry.title}</h3>
+              </div>
+              <div>
+                {entry.status && <span class="gf-status">{entry.status}</span>}
+                {' '}
+                <a href={`https://github.com/franklinbaldo/cobogo/blob/main${entry.path}`}>fonte ↗</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <p><a href="/cobogo/next/">← voltar à orientação</a></p>
+  </main>
+</GreenfieldLayout>
