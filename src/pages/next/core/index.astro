@@ -1,0 +1,41 @@
+---
+import GreenfieldLayout from '../../../layouts/GreenfieldLayout.astro';
+---
+
+<GreenfieldLayout title="COBOGÓ — Core">
+  <main id="conteudo" class="gf-section">
+    <p class="gf-kicker">Referência · contrato público</p>
+    <h1>Core</h1>
+    <p>
+      O core é a camada framework-agnostic. Ele define papéis semânticos, relações espaciais,
+      tipografia, foco, estados e comportamento de motion sem escolher a identidade do produto.
+    </p>
+
+    <section data-cobogo-pause aria-labelledby="entrypoints-title">
+      <h2 id="entrypoints-title">Entrypoints</h2>
+      <pre class="gf-code-block"><code>import 'cobogo/core';
+import 'cobogo/patterns'; // camada experimental, quando aplicável</code></pre>
+    </section>
+
+    <section data-cobogo-pause aria-labelledby="roles-title">
+      <h2 id="roles-title">Papéis semânticos</h2>
+      <div class="gf-reference-list">
+        <article class="gf-reference-row"><div><span class="gf-inscription">color</span><h3>canvas · surface · text · accent · focus</h3></div><code>--cobogo-*</code></article>
+        <article class="gf-reference-row"><div><span class="gf-inscription">type</span><h3>body · display · inscription · data</h3></div><code>--cobogo-font-*</code></article>
+        <article class="gf-reference-row"><div><span class="gf-inscription">space</span><h3>adjacent · group · section · pause</h3></div><code>--cobogo-space-*</code></article>
+        <article class="gf-reference-row"><div><span class="gf-inscription">state</span><h3>info · success · warning · danger</h3></div><code>data-cobogo-state</code></article>
+      </div>
+    </section>
+
+    <section data-cobogo-pause aria-labelledby="theme-title">
+      <h2 id="theme-title">Tema local é downstream</h2>
+      <p>
+        Este próprio site mapeia <code>--cobogo-canvas</code> para papel quente e
+        <code>--cobogo-accent</code> para azul-marinho. CausaGanha e Astronauta usam valores
+        diferentes sem alterar o significado dos papéis.
+      </p>
+    </section>
+
+    <p><a href="/cobogo/next/">← voltar à orientação</a></p>
+  </main>
+</GreenfieldLayout>
