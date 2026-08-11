@@ -35,6 +35,8 @@ Escolher "um azul com contraste maior" para o anel. Isso conserta uma adjacênci
 
 Isto é uma regra sobre a estrutura do indicador, não sobre sua expressão. Anel, espessura e geometria continuam sendo identidade local; o que não é local é precisar de dois tons.
 
+O core inteiro é escrito em `:where()`, então o consumer sempre vence. Isso vale também para o segundo tom: uma regra local de `box-shadow` no mesmo elemento desloca o vão e sobra só o anel. Onde o anel sozinho já resolve — superfície normal — isso é degradação limpa e medida (5,38:1 claro, 11,08:1 escuro). Dentro de região invertida com controle claro, não é: ali o vão é justamente quem separa do controle, então componente com `box-shadow` próprio dentro de região invertida é ponto de verificação, não suposição.
+
 A declaração da região é explícita, e CSS não tem como inferi-la: uma região invertida que esquecer de se declarar falha exatamente como antes, e falha em silêncio. O contrato torna a correção possível e barata, não automática. Vale tratar "faixa/hero/banner invertido sem declaração" como item de revisão quando um consumer introduzir uma superfície dessas.
 
 ## Evidência negativa
