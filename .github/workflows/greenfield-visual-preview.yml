@@ -38,7 +38,14 @@ jobs:
           mkdirSync('artifacts/greenfield', { recursive: true });
           const browser = await chromium.launch({ headless: true });
           const page = await browser.newPage({ viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 1 });
-          for (const route of ['next/', 'next/grammar/', 'next/core/', 'next/consumers/']) {
+          for (const route of [
+            'next/',
+            'next/grammar/',
+            'next/core/',
+            'next/patterns/',
+            'next/consumers/',
+            'next/knowledge/',
+          ]) {
             await page.goto(`http://127.0.0.1:4321/cobogo/${route}`, { waitUntil: 'networkidle' });
             const name = route.replaceAll('/', '-').replace(/-$/, '') || 'home';
             await page.screenshot({ path: `artifacts/greenfield/${name}.png`, fullPage: true });
