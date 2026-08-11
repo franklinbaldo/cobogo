@@ -1,36 +1,69 @@
 ---
 import GreenfieldLayout from '../layouts/GreenfieldLayout.astro';
+import {
+  canonEntries,
+  consumerEntries,
+  grammarEntries,
+  knowledgeEntries,
+  patternEntries,
+} from '../lib/knowledgeProjection';
+import { coreRoleTokens } from '../lib/coreContract';
+import { count } from '../lib/plural';
 ---
 
 <GreenfieldLayout title="COBOGÓ — gramática visual brasileira">
   <div class="gf-shell">
+    <div class="gf-context-bar">
+      <div class="gf-context-inner">
+        <span>Referência viva · corpus OKF projetado</span>
+        <a href="/cobogo/legacy-home/">Ver primeira home →</a>
+      </div>
+    </div>
+
     <header class="gf-nav" aria-label="Navegação principal">
       <div class="gf-nav-inner">
-        <a class="gf-brand" href="/cobogo/">COBOGÓ</a>
+        <a class="gf-brand" href="/cobogo/">
+          <strong>COBOGÓ</strong>
+          <small>gramática visual brasileira</small>
+        </a>
         <nav class="gf-links" aria-label="Seções da referência">
-          <a href="/cobogo/grammar/">Gramática</a>
-          <a href="/cobogo/core/">Core</a>
-          <a href="/cobogo/patterns/">Patterns</a>
-          <a href="/cobogo/consumers/">Consumers</a>
-          <a href="/cobogo/knowledge/">Knowledge</a>
+          <a href="/cobogo/grammar/"><strong>Gramática</strong><small>canon + relações</small></a>
+          <a href="/cobogo/core/"><strong>Core</strong><small>foundations</small></a>
+          <a href="/cobogo/patterns/"><strong>Patterns</strong><small>evidência</small></a>
+          <a href="/cobogo/consumers/"><strong>Consumers</strong><small>quem usa</small></a>
+          <a href="/cobogo/knowledge/"><strong>Knowledge</strong><small>corpus</small></a>
         </nav>
       </div>
     </header>
 
     <main id="conteudo">
       <section class="gf-hero" aria-labelledby="gf-title">
-        <div class="gf-section">
-          <p class="gf-kicker">Gramática compartilhada · identidade local</p>
-          <h1 id="gf-title">COBOGÓ</h1>
-          <p class="gf-hero-lead">Design brasileiro como relação, não como skin.</p>
-          <p class="gf-hero-explain">
-            Cobogó reúne gramática visual, conhecimento reutilizável e um core web
-            framework-agnostic para projetos que precisam ser parentes sem virar clones.
-          </p>
-          <div class="gf-actions">
-            <a class="gf-action" data-primary href="/cobogo/grammar/">Entender a gramática →</a>
-            <a class="gf-action" href="/cobogo/core/">Usar o core</a>
+        <div class="gf-section gf-hero-grid">
+          <div class="gf-hero-copy">
+            <p class="gf-kicker">Gramática compartilhada · identidade local</p>
+            <h1 id="gf-title">COBOGÓ</h1>
+            <p class="gf-hero-lead">Design brasileiro como relação, não como skin.</p>
+            <p class="gf-hero-explain">
+              Cobogó reúne gramática visual, conhecimento reutilizável e um core web
+              framework-agnostic para projetos que precisam ser parentes sem virar clones.
+            </p>
+            <div class="gf-actions">
+              <a class="gf-action" data-primary href="/cobogo/grammar/">Entender a gramática →</a>
+              <a class="gf-action" href="/cobogo/core/">Usar o core</a>
+            </div>
           </div>
+
+          <figure class="gf-hero-specimen" aria-labelledby="gf-specimen-caption">
+            <div class="gf-specimen-canvas" aria-hidden="true">
+              <div class="gf-specimen-mass"></div>
+              <div class="gf-specimen-opening"></div>
+              <div class="gf-specimen-band">FAIXA</div>
+              <div class="gf-specimen-rhythm"><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="gf-specimen-inscription">INSCRIÇÃO</div>
+              <div class="gf-specimen-void">VÃO</div>
+            </div>
+            <figcaption id="gf-specimen-caption">Vão · Ritmo · Faixa · Inscrição — relações que organizam, não uma estampa.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -44,19 +77,34 @@ import GreenfieldLayout from '../layouts/GreenfieldLayout.astro';
         </div>
         <div class="gf-route-grid">
           <a class="gf-route" href="/cobogo/grammar/">
-            <strong>Gramática</strong><small>canon, relações e specimens</small>
+            <span class="gf-route-index">01 · GRAMÁTICA</span>
+            <strong>Canon e relações</strong>
+            <span class="gf-route-fact">{count(canonEntries.length, 'regra', 'regras')} · {count(grammarEntries.length, 'operação', 'operações')}</span>
+            <small>Princípios que restringem decisões e relações que organizam composição.</small>
           </a>
           <a class="gf-route" href="/cobogo/core/">
-            <strong>Core</strong><small>papéis semânticos e CSS público</small>
+            <span class="gf-route-index">02 · CORE</span>
+            <strong>Foundations da web</strong>
+            <span class="gf-route-fact">{count(coreRoleTokens.length, 'papel semântico', 'papéis semânticos')} · CSS puro</span>
+            <small>Papéis semânticos, tipografia, espaço, foco, estado e theming.</small>
           </a>
           <a class="gf-route" href="/cobogo/patterns/">
-            <strong>Patterns</strong><small>soluções relation-first com status explícito</small>
+            <span class="gf-route-index">03 · PATTERNS</span>
+            <strong>Relações comprovadas</strong>
+            <span class="gf-route-fact">{count(patternEntries.length, 'pattern tipado', 'patterns tipados')}</span>
+            <small>Soluções experimentais promovidas por evidência entre contextos.</small>
           </a>
           <a class="gf-route" href="/cobogo/consumers/">
-            <strong>Consumers</strong><small>evidência de adoção e identidade local</small>
+            <span class="gf-route-index">04 · CONSUMERS</span>
+            <strong>Parentes, não clones</strong>
+            <span class="gf-route-fact">{count(consumerEntries.length, 'consumer registrado', 'consumers registrados')}</span>
+            <small>Adoção factual, pressão real e identidade local preservada.</small>
           </a>
           <a class="gf-route" href="/cobogo/knowledge/">
-            <strong>Knowledge</strong><small>corpus OKF, referências e decisões</small>
+            <span class="gf-route-index">05 · KNOWLEDGE</span>
+            <strong>Corpo de conhecimento</strong>
+            <span class="gf-route-fact">{count(knowledgeEntries.length, 'conceito tipado', 'conceitos tipados')}</span>
+            <small>Corpus OKF: referências, decisões, evidência e counterevidence.</small>
           </a>
         </div>
       </section>
@@ -153,6 +201,28 @@ import GreenfieldLayout from '../layouts/GreenfieldLayout.astro';
             <a href="/cobogo/knowledge/">Explorar o corpus →</a>
           </p>
         </div>
+        <dl class="gf-knowledge-summary" aria-label="Resumo factual do corpus">
+          <div>
+            <dt>{knowledgeEntries.length === 1 ? 'conceito tipado' : 'conceitos tipados'}</dt>
+            <dd>{knowledgeEntries.length}</dd>
+          </div>
+          <div>
+            <dt>{canonEntries.length === 1 ? 'regra de canon' : 'regras de canon'}</dt>
+            <dd>{canonEntries.length}</dd>
+          </div>
+          <div>
+            <dt>{grammarEntries.length === 1 ? 'operação de gramática' : 'operações de gramática'}</dt>
+            <dd>{grammarEntries.length}</dd>
+          </div>
+          <div>
+            <dt>{patternEntries.length === 1 ? 'pattern' : 'patterns'}</dt>
+            <dd>{patternEntries.length}</dd>
+          </div>
+          <div>
+            <dt>{consumerEntries.length === 1 ? 'consumer' : 'consumers'}</dt>
+            <dd>{consumerEntries.length}</dd>
+          </div>
+        </dl>
       </section>
     </main>
 
