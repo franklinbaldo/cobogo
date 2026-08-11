@@ -27,6 +27,21 @@ Medido no próprio website do Cobogó, no botão primário claro dentro do hero 
 
 Com um tom só, o anel falhava contra a superfície e era idêntico ao controle ao mesmo tempo. Com dois tons, cada tom carrega exatamente uma adjacência: o anel separa da superfície, o vão separa do controle. O par claro/papel não mudou (6,03:1 antes e depois), então a correção não custou nada onde já funcionava.
 
+## Confirmação independente
+
+A regra foi derivada do hero navy do próprio website do Cobogó. Depois disso ela **previu** a mesma falha em [The Lab](../consumers/the-lab.md), um consumer que não a motivou: outra paleta, outro stack, outro autor e uma camada de acessibilidade já considerada — o produto tem skip link, tratamento de `prefers-reduced-motion` e um anel de foco deliberado.
+
+O `.skip-link` do The Lab é o primeiro tab stop de 673 páginas. Ele é preenchido com `var(--accent-primary)` e o anel global usa `--focus-ring`, e os dois valores são o mesmo `#2d7d9a`:
+
+| adjacência | medido |
+|---|---|
+| anel × elemento que ele cerca | 1,00:1 |
+| anel × página atrás | 4,51:1 |
+
+O indicador sobrevive por acidente — só porque o vão de 2px deixa aparecer o fundo da página. Não havia como aquele projeto expressar o segundo tom.
+
+Isso move a regra de *uma observação em um consumer* para *uma relação confirmada em dois consumers independentes*, que é o limiar que o registry usa para tratar evidência como reutilizável e não como gosto local.
+
 ## Contraexemplo
 
 Escolher "um azul com contraste maior" para o anel. Isso conserta uma adjacência e deixa a outra quebrada, e volta a quebrar assim que o consumer inverte uma faixa, um hero ou um banner.
