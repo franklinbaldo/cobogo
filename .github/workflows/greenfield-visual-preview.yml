@@ -53,6 +53,10 @@ jobs:
           }
           await browser.close();
           NODE
+      - name: Reduced-motion conformance
+        run: |
+          node scripts/check-reduced-motion.mjs http://127.0.0.1:4321/cobogo \
+            / grammar/ core/ patterns/ consumers/ knowledge/ docs/
       - uses: actions/upload-artifact@v4
         with:
           name: cobogo-greenfield-preview
