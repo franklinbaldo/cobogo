@@ -21,7 +21,7 @@ capabilities_used:
   - active-city interaction continuity
 unmet_needs:
   - client-only analytical surfaces still need rendered review when runtime access permits
-last_verified: 2026-08-12
+last_verified: 2026-08-13
 ---
 
 # Baliza
@@ -47,14 +47,16 @@ Cobogó review now produces consumer fixes, not only observations.
 
 These fixes preserve Baliza's visual identity and domain logic. Several produce little or zero pixel change; that still counts as design because interaction semantics and accessible communication are part of consumer quality.
 
-## Validation caveat
+## Deployment and validation — 2026-08-13
 
-The Baliza Pages job still stops at a pre-existing `npm audit` gate tracked in #644 before downstream web lint/test/build steps execute. For the small semantic PRs above, the separate test workflow passed and merge rationale was documented under Cobogó's gate-blocked evidence rule. The audit debt remains separate from design PRs.
+The former `npm audit` deployment blocker is closed. Baliza #664 migrated the web surface from Astro 6 to Astro 7.2.1, regenerated the dependency graph with npm, kept the production audit gate enabled, recalculated the emitted-script CSP hashes from the real `dist`, and updated the stale theme-toggle test contract without changing the component semantics established by #659.
+
+The final PR head passed the normal web pipeline with runtime audit clean, lint/check, PNCP contracts, 655/655 web tests, static build of 21 pages and the bundle guard. After merge (`5f7bc663`), the `main` GitHub Pages workflow run 796 completed successfully. This restores current deploy/build evidence for Baliza; it does **not** by itself upgrade a client-only analytical route to rendered evidence when archive-backed hydration cannot be observed in the review environment.
 
 ## Relation to #267
 
 Baliza is promising data-reading evidence, but the live routes available in this environment still do not provide a second independently rendered comparison surface equivalent to CausaGanha's 96-row tribunal grid. `CoverageReport` is client-derived and may not render under the current external-data constraint; source alone does not cross the promotion threshold.
 
-The archive freshness `<time>` correction independently resembles CausaGanha's provenance/freshness gap, but here its current evidentiary tier is still source-backed rather than fully rendered. Do not promote that relation solely from code similarity.
+The archive freshness `<time>` correction independently resembles CausaGanha's provenance/freshness gap. The restored deployment means the consumer is no longer blocked at CI/artifact production, but promotion still requires the matching relationship to be observed in the rendered surface rather than inferred from source alone.
 
 Do not derive a generic table, status, filter or provenance pattern merely from tag similarity. The user task and rendered evidence must match.
