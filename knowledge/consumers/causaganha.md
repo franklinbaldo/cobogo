@@ -12,7 +12,10 @@ constraints:
   - avoid appifying reading tasks
   - expose structure instead of hiding it behind interaction
   - speed is part of aesthetics
-capabilities_used: []
+capabilities_used:
+  - semantic comparison-table accessibility
+  - machine-readable temporal provenance
+  - non-colour continuous-state redundancy
 unmet_needs:
   - reconciled semantic foundations
   - framework-agnostic core web primitives
@@ -21,8 +24,9 @@ unmet_needs:
   - incremental brownfield migration guidance
 integration_evidence:
   - https://github.com/franklinbaldo/causaganha/issues/861
+  - https://github.com/franklinbaldo/causaganha/pull/865
 local_identity: green/gold product identity, judicial-data purpose, existing typography and information architecture
-last_verified: 2026-08-11
+last_verified: 2026-08-13
 ---
 
 # CausaGanha
@@ -98,21 +102,30 @@ So this is a **partial, largely nominal bridge**, not core adoption. It is not m
 
 ## Real surfaces — captured 2026-08-11
 
-The site does not build from a checkout: it requires `site-status.json` from `uv run python scripts/render_queries.py`, and the build aborts on the missing contract. Evidence was taken from the **deployed artifact** instead, per the evidence order in the design-review reference.
+The site does not build from a bare checkout: it requires `site-status.json` from `uv run python scripts/render_queries.py`. The 2026-08-11 campaign therefore used the deployed artifact for primary evidence.
 
-`/stats` is server-rendered and captured faithfully. Inventory of the data-reading vocabulary actually in use:
+`/stats` is server-rendered and was captured faithfully. The historical capture showed:
 
 - **metrics/comparison** — headline figures (`67,2%`, `65/96`, `64/96`) with label plus a secondary qualifier, and Top-5 most/least reliable ordered lists;
-- **provenance/freshness** — a real inscription carrying source and both timestamps: *"Fonte DJEN: Atrasado — última tentativa … · último sucesso …"*. Genuinely good, and better than most consumers do;
-- **status** — coverage percentages tinted green/red;
+- **provenance/freshness** — a real inscription carrying source and both timestamps: *"Fonte DJEN: Atrasado — última tentativa … · último sucesso …"*;
 - **table** — 1 table, 96 `tbody` rows, 7 `th`;
-- **dates** — `<time>` count is **0** across all four routes.
+- **historical gaps** — no `<time>`, no table caption, no `scope` attributes, and uncertainty about whether coverage state survived loss of color.
 
-Concrete gaps against contracts Cobogó already has:
+Those gaps are retained here as **historical evidence**, not current facts.
 
-- `th` elements carry **no `scope`**, and the table has **no `caption`**, on a 96-row table. The repo's own accessibility rules require both.
-- Dates and timestamps are rendered as text with no `<time datetime>`, so freshness is human-readable but not machine-readable.
-- Status appears to be carried by colour tint; whether non-colour redundancy exists needs a closer state-level pass.
+`/explorador` is a client-side DuckDB-WASM query surface and could not be fully exercised in that capture because its worker loads from a CDN unavailable to the review environment. Its filter controls hydrated, but query results did not run. Treat its inventory as incomplete rather than empty.
 
-`/explorador` is a client-side DuckDB-WASM query surface and could not be fully exercised here — its worker loads from a CDN the browser cannot reach in this environment. Its filter controls hydrated (2 inputs) but query results did not run. Treat its inventory as incomplete rather than empty.
+## `/stats` follow-up — verified 2026-08-13
 
+CausaGanha #865 closed the mechanical semantic gaps and was validated against a real rendered pipeline/build in Chromium rather than a fixture:
+
+- all **7/7** comparison headers now carry `scope="col"`;
+- the 96-row table has a descriptive, visually hidden `<caption>`;
+- `generated_at`, DJEN last attempt, and DJEN last success render as **three `<time datetime>` elements**, preserving the visible pt-BR labels;
+- current `main` gives every tribunal coverage `<progress>` an accessible name containing tribunal + percentage;
+- the numeric percentage remains visible beside the color treatment;
+- the weekly low is explicitly marked with the text **`Menor`**.
+
+This means the current surface should **not** be described as color-only or as lacking machine-readable provenance/table semantics without new counter-evidence.
+
+The important lesson is not “every consumer needs this exact table component.” It is the relation: a homogeneous cross-row comparison benefits from native table structure, and external-source freshness benefits from authority + exact recoverable time. #267 still requires a second independent rendered consumer before either relation becomes a derived Cobogó pattern.
