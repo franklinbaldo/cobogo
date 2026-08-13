@@ -18,8 +18,8 @@ capabilities_used:
   - visible keyboard skip navigation
   - machine-readable temporal provenance
   - consistent aria-activedescendant combobox focus model
+  - active-city interaction continuity
 unmet_needs:
-  - city-scoped MonitorGrid CTAs should preserve the active city context (#657 / #658)
   - client-only analytical surfaces still need rendered review when runtime access permits
 last_verified: 2026-08-12
 ---
@@ -43,14 +43,9 @@ Cobogó review now produces consumer fixes, not only observations.
 - **Baliza #652** — merged as `dae4def`: changed `.sr-only` so focusable hidden controls become visible on `:focus-visible`; the real skip link can now be seen when reached by keyboard while non-focusable sr-only labels remain hidden.
 - **Baliza #654** — merged as `04ed268`: preserved the exact Internet Archive freshness timestamp with native `<time datetime>` semantics while keeping the existing relative visible wording.
 - **Baliza #656** — merged as `8da87d2`: made the city picker use one coherent `aria-activedescendant` focus model; the option itself owns `role=option` and is removed from the tab order instead of nesting a separate focusable button inside an option.
+- **Baliza #658** — merged as `787ffad`: converted only MonitorGrid into a small hydrated Svelte island so its two city-scoped CTAs reuse the existing `cityState`; a selected/saved city now remains the context for those questions while cold visitors still SSR with the default city. No parallel localStorage authority or new framework/runtime was introduced.
 
 These fixes preserve Baliza's visual identity and domain logic. Several produce little or zero pixel change; that still counts as design because interaction semantics and accessible communication are part of consumer quality.
-
-## Active city continuity
-
-The home establishes an active city through `CityHero` and `CityWowStrip`, but the static MonitorGrid previously sent two city-scoped questions back to the hard-coded default city. Baliza #657 records the continuity defect and #658 proposes the smallest coherent implementation: reuse the existing shared Svelte `cityState` in a small MonitorGrid island. Because the home already loads Svelte and the same city state, this adds no new framework/runtime and avoids a second localStorage authority.
-
-Do not record #658 as adopted until it merges.
 
 ## Validation caveat
 
