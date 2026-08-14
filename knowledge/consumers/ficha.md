@@ -3,8 +3,8 @@ type: consumer
 title: Ficha
 repository: https://github.com/franklinbaldo/ficha
 adoption_status: candidate
-surface: public data exploration web
-interaction_profile: company lookup, analytical filtering, temporal comparison and relationship exploration
+surface: live public data exploration web over a versioned CNPJ dataset
+interaction_profile: company lookup, analytical filtering, provenance/freshness framing, temporal comparison and relationship exploration
 runtime: Astro + Svelte 5 static frontend on GitHub Pages with DuckDB-WASM
 constraints:
   - serverless public delivery
@@ -14,53 +14,65 @@ capabilities_used: []
 unmet_needs:
   - data-reading patterns
   - analytical filters and comparison grammar
-  - provenance and snapshot freshness presentation
-last_verified: 2026-08-11
+  - dataset discovery and dual access paths
+  - multi-snapshot temporal comparison grammar
+integration_evidence:
+  - https://github.com/franklinbaldo/ficha/pull/143
+  - https://github.com/franklinbaldo/ficha/pull/210
+last_verified: 2026-08-14
 ---
 
 # Ficha
 
 Ficha is a high-confidence Cobogó consumer candidate. It has a real Astro/Svelte frontend deployed to GitHub Pages and mixes direct company lookup with in-browser analytical exploration over Parquet/DuckDB-WASM.
 
-Its strongest likely synergy is with CausaGanha: both are static public data-reading products that need tables, filters, metadata, status/freshness and comparison without becoming generic dashboards.
+Its strongest current synergy is with CausaGanha: both are static public data-reading products that need tables, filters, metadata, status/freshness and comparison without becoming generic dashboards. Candidate status still does not imply `cobogo/core` adoption: the changes below are consumer-local implementation of grammar and accessibility relations, not a package dependency.
 
-Candidate status does not imply adoption. Before opening an integration PR, inspect the current Ficha web surface and determine which needs are truly shared versus domain-specific.
+## Current public contract — verified 2026-08-14
 
-## Real surfaces — captured 2026-08-11
+The earlier 2026-08-11 state is no longer current. `web/public/manifest.json` now publishes `current: 2026-05`, with a real snapshot backed by Internet Archive URLs and per-file checksums. The public Pages workflow for Ficha #210 completed build, deploy and a smoke test successfully after merge.
 
-Captured from the deployed artifact via local mirror, assets verified (one 404 on `manifest.json` remains; the stylesheet and both Svelte bundles are present).
+The search surface now exposes a provenance band as a real definition list with the relation:
 
-**The data-reading surface does not exist in production yet.** `/` renders a search shell whose body reads *"Os dados ainda não foram publicados. Volte em breve."* That is the real deployed state, not a mirror artefact. Only two routes exist: `/` and `/sobre`.
+- **Origem** — Receita Federal do Brasil;
+- **Competência** — visible month/year plus `<time datetime="YYYY-MM">`;
+- **Preservação** — Internet Archive when supported by the loaded manifest;
+- **Verificação** — checksum claim derived from the loaded manifest contract;
+- **Estado** — explicit textual `Atual` / `Desatualizada`, with the explanatory stale warning preserved.
 
-Rendered inventory of what is live:
+The competence correction landed in Ficha #210 as a one-line semantic change after Ficha #143 had already made provenance structural through `Faixa + Inscrição`. Both changes preserve the existing search behavior and local identity.
 
-| axis | `/` | `/sobre` |
-|---|---|---|
-| tables / th / caption | 0 / 0 / 0 | 0 / 0 / 0 |
-| inputs | 1 | 0 |
-| `<label>` | **0** | 0 |
-| live region (`aria-live`/`role=status`) | **0** | 0 |
-| `<time>` | 0 | 0 |
-| `<dl>` | 0 | 0 |
-| focusables | 4 | 3 |
+## Accessibility state
 
-## Intended surface, read from source
+The mechanical gaps recorded on 2026-08-11 are also no longer current:
 
-`EmpresaFicha.svelte` (668 lines) is the unpublished data surface. Its markup vocabulary is 41 `<span>`, 36 `<div>`, 3 `<h4>`, 1 `<h2>`, 3 `<button>` — and **zero** `<table>`, `<dl>`, `<dt>`, `<time>`, `<ul>` or `<li>`. Records render as `div.list-item` with an `item-header` and an `item-meta` line of spans separated by `·`.
+- search fields have explicit labels that remain in the accessibility tree;
+- lifecycle/search-result changes use scoped `role="status"` / `aria-live` regions;
+- provenance uses `dl/dt/dd` semantics;
+- snapshot competence is machine-readable with `<time datetime>`;
+- state remains textual rather than colour-only.
 
-This is source evidence, not rendered evidence, and is weaker for that reason.
+Do not reopen these as if they were current defects without new counter-evidence.
 
-## What Ficha already does better than CausaGanha
+## Evidence strength
 
-Status is **not colour-alone by construction**. The badge carries the status word as its text content (`badge-sit-{situacao}` with `{f.situacao_cadastral}` inside), with a distinct palette per state — ativa, baixada, suspensa, inapta, nula. A user who cannot separate the greens and reds still reads the word.
+This update is supported by current source, manifest data, CI, Pages deploy and the deployed-site smoke test. No independent pixel recapture was produced in this verification pass, so do not treat it as new visual-composition evidence for the #267 pattern gate merely because deployment succeeded.
 
-CausaGanha, by contrast, tints coverage percentages green/red. Ficha's approach satisfies the non-colour-redundancy rule that CausaGanha's does not obviously satisfy.
+That distinction matters: Ficha now supplies strong implementation/deployment evidence for the provenance/freshness relation, but promotion of a shared Cobogó pattern still requires the independent rendered-consumer evidence required by #267.
 
-## Local gaps found, deliberately not fixed here
+## What remains local or unresolved
 
-Recorded as evidence; authority and a separate PR come later, so as not to contaminate pattern derivation:
+The Greenfield review in Ficha #141 still identifies consumer-local work beyond the completed provenance slice:
 
-- the search input is labelled by `placeholder` only — no `<label>`, no `aria-label`;
-- there is no live region, so search results and the empty state are not announced;
-- `<time>` is absent, so publication/freshness state is prose only.
+- expose the two real access paths — direct consultation and taking the dataset — without inventing navigation;
+- represent multiple published snapshots when the product has enough real temporal history to justify the comparison surface;
+- improve the generic card composition later through `Vão`, only after the higher-information-value slices are proven;
+- inspect dense result/detail surfaces in rendered form before deriving shared table/filter patterns.
 
+Ficha should continue to look like a **dated public archive**, not a CausaGanha clone or a generic Cobogó demo.
+
+## Cross-consumer interpretation
+
+The useful reusable signal is the relation, not the component: external-source data should keep source, relevant time, preservation/verifiability and state recoverable, with exact displayed time represented machine-readably when possible.
+
+Ficha's categorical textual state and CausaGanha's continuous coverage metrics remain different expressions. That negative evidence still argues against a universal status component while supporting the narrower non-colour and provenance/freshness invariants.
