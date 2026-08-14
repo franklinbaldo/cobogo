@@ -25,8 +25,9 @@ unmet_needs:
 integration_evidence:
   - https://github.com/franklinbaldo/causaganha/issues/861
   - https://github.com/franklinbaldo/causaganha/pull/865
+  - https://github.com/franklinbaldo/causaganha/pull/871
 local_identity: green/gold product identity, judicial-data purpose, existing typography and information architecture
-last_verified: 2026-08-13
+last_verified: 2026-08-14
 ---
 
 # CausaGanha
@@ -115,17 +116,19 @@ Those gaps are retained here as **historical evidence**, not current facts.
 
 `/explorador` is a client-side DuckDB-WASM query surface and could not be fully exercised in that capture because its worker loads from a CDN unavailable to the review environment. Its filter controls hydrated, but query results did not run. Treat its inventory as incomplete rather than empty.
 
-## `/stats` follow-up — verified 2026-08-13
+## `/stats` follow-up — verified 2026-08-14
 
 CausaGanha #865 closed the mechanical semantic gaps and was validated against a real rendered pipeline/build in Chromium rather than a fixture:
 
 - all **7/7** comparison headers now carry `scope="col"`;
 - the 96-row table has a descriptive, visually hidden `<caption>`;
-- `generated_at`, DJEN last attempt, and DJEN last success render as **three `<time datetime>` elements**, preserving the visible pt-BR labels;
+- `generated_at`, DJEN last attempt, and DJEN last success render as `<time datetime>` elements, preserving the visible pt-BR labels;
 - current `main` gives every tribunal coverage `<progress>` an accessible name containing tribunal + percentage;
 - the numeric percentage remains visible beside the color treatment;
 - the weekly low is explicitly marked with the text **`Menor`**.
 
-This means the current surface should **not** be described as color-only or as lacking machine-readable provenance/table semantics without new counter-evidence.
+CausaGanha #871 then extended the same provenance rule to the per-tribunal archived period: each present `earliest_upload` / `latest_upload` bound is now a native `<time datetime>` while preserving the existing visible ISO date and arrow. The change was one-file, semantic-only, passed the normal lint/web/build/TJRO CI, and was verified on `main` after merge.
 
-The important lesson is not “every consumer needs this exact table component.” It is the relation: a homogeneous cross-row comparison benefits from native table structure, and external-source freshness benefits from authority + exact recoverable time. #267 still requires a second independent rendered consumer before either relation becomes a derived Cobogó pattern.
+This strengthens the evidence for the **relation**, not for a universal component: when a data-reading surface presents temporal provenance used for comparison, exact machine-readable bounds should remain recoverable alongside the human presentation. #267 still requires an independent rendered consumer exercising the same underlying task before promoting that relation into shared Cobogó pattern knowledge.
+
+The important lesson is not “every consumer needs this exact table component.” It is the relation: a homogeneous cross-row comparison benefits from native table structure, and external-source freshness benefits from authority + exact recoverable time.
