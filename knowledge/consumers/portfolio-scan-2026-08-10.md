@@ -3,7 +3,7 @@ type: consumer-discovery
 title: Franklin repository consumer scan — 2026-08-10
 status: first-round-complete
 related_issue: https://github.com/franklinbaldo/cobogo/issues/273
-last_verified: 2026-08-10
+last_verified: 2026-08-14
 ---
 
 # Franklin repository consumer scan — 2026-08-10
@@ -28,6 +28,7 @@ This file records the broad repository inventory used to discover potential Cobo
 - `formatolegal` — candidate; legal editor/A4 preview/print tool.
 - `rationality-club-latam` — candidate; community diary/archive publication.
 - `aleph-the-game` — candidate; React/Vite interactive AI-assisted game.
+- `leizilla` — candidate; public Brazilian legislation search, evidence, coverage and dataset surface; promoted after verifying the Astro/Svelte web application and operational workflows on 2026-08-14.
 
 ## Confirmed Pages/site surface still awaiting product-purpose classification
 
@@ -81,7 +82,6 @@ Negative classification is evidence. Do not create consumer concepts merely to m
 Current inventory suggests these are primarily CLI, MCP, infrastructure, data, agent, orchestration or library repos. They are **not yet classified `not-a-consumer`** because some may still expose human-facing admin/docs/report surfaces:
 
 - `baliza`
-- `leizilla`
 - `sei-mcp`
 - `verne`
 - `dinossauro`
@@ -165,7 +165,7 @@ These are neither safely technical nor clearly UI from current evidence and shou
 
 ### Public analytical / data-reading
 
-CausaGanha, Ficha, Baliza Site and Sites Prefeituras provide independent evidence for shared table/filter/status/provenance/comparison semantics at different scales.
+CausaGanha, Ficha, Baliza Site, Sites Prefeituras and Leizilla provide independent evidence for shared table/filter/status/provenance/comparison semantics at different scales. Leizilla additionally pressures source→capture→parse→release provenance and explicit coverage states; treat those as evidence to compare, not automatically promoted patterns.
 
 ### Dense review / audit
 
