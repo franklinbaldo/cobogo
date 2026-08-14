@@ -18,8 +18,10 @@ unmet_needs:
   - optional framework binding only after core semantics exist
 integration_evidence:
   - https://github.com/franklinbaldo/astronauta/issues/24
+  - https://github.com/franklinbaldo/astronauta/pull/25
+  - https://github.com/franklinbaldo/astronauta/pull/28
 local_identity: generic OKF admin and exploration product, not editorial publication skin
-last_verified: 2026-08-10
+last_verified: 2026-08-14
 ---
 
 # Astronauta
@@ -45,6 +47,10 @@ Its concrete composition test is [Astronauta concept review](../specimens/astron
 ## Integration evidence
 
 The first `cobogo-consumer-synergy` pass opened [Astronauta #24](https://github.com/franklinbaldo/astronauta/issues/24) to validate shared data-reading semantics under an administrative density profile. It deliberately tests shared semantics with different interaction density rather than copying CausaGanha styling.
+
+[Astronauta #25](https://github.com/franklinbaldo/astronauta/pull/25) then mapped the product's existing dark, high-density theme onto Cobogó semantic foundation roles while preserving local values and composition. This remains adoption evidence at the semantic-mapping level, not proof that the product consumes a released Cobogó package surface.
+
+A project-surface pass on 2026-08-14 found that the repository README still described the older generated admin panel without separating shipped behavior from the active live SSR/editor stack. [Astronauta #28](https://github.com/franklinbaldo/astronauta/pull/28) corrected that public entry surface: current `main` capabilities are now distinguished from unmerged development work, and the README makes the `okf-parser` authority boundary and Cobogó relationship explicit. This is documentation/public-surface evidence only; adoption status is unchanged.
 
 ## Architectural role
 
