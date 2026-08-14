@@ -21,11 +21,30 @@ Consumer concepts should record, when known:
 - `runtime`: relevant runtime/framework constraints;
 - `constraints`: product constraints Cobogó must preserve;
 - `capabilities_used`: Cobogó capabilities actually adopted, not merely desired;
+- `operational_capabilities`: factual actions the repository can execute today, independently of Cobogó adoption;
 - `unmet_needs`: reusable capabilities missing from Cobogó;
 - `local_identity`: product-specific identity that must not be centralized;
 - `last_verified`: date of the latest brownfield verification when useful.
 
 Free-form Markdown explains nuance and links the consumer to canon, grammar, specimens, decisions and capability issues. We deliberately use ordinary Markdown links so `okf-parser` remains the relationship/graph engine.
+
+## Operational capabilities
+
+`operational_capabilities` answers a different question from `capabilities_used`: **what can this repository actually do today?** It may include public deploy/Pages, rendered capture, smoke tests, package/release publication, live collection, access to external sources, Internet Archive upload/Save Page Now or other preservation workflows.
+
+Only record a capability after verifying it from current workflow/configuration/documentation plus recent execution evidence when available. Keep the frontmatter value small and factual; put provenance, caveats and `last_verified` evidence in the consumer Markdown. A configured workflow is evidence of implementation, while a recent successful run is stronger evidence that the capability currently works.
+
+Secrets are never knowledge-corpus data. Do not read, print, copy, transport or persist their values. When a capability depends on GitHub Actions secrets, the only relevant fact is that the workflow is wired to consume the secret through GitHub's protected mechanism and, ideally, that a run using that capability has succeeded.
+
+Before adding infrastructure during a consumer review, check the consumer's operational capabilities: an existing capture, preservation, deploy or collection path may already solve the problem.
+
+### Historical checkpoints
+
+When a public surface or evidence source changes materially, a repository with preservation capability may create a semantic checkpoint with Internet Archive Save Page Now/Wayback and/or an appropriate screenshot tool. Prefer moments such as before/after redesign, important deploy, dataset publication, navigation change or substantial state change rather than archiving every commit.
+
+A persisted checkpoint should record, when known: original URL, archived/Wayback URL, timestamp, route/surface, related commit or deploy, capture type and why that state was worth preserving. Future reviews may compare Git history, current rendered capture and historical rendered evidence; none of those evidence classes substitutes for the others.
+
+Operational techniques also flow upstream. If a consumer has a capture, preservation, deploy or validation technique that Cobogó itself lacks, treat it as candidate evidence for Cobogó rather than rebuilding it automatically. Preserve provenance and apply the same cross-context promotion gate used for visual patterns.
 
 ## Factual adoption states
 

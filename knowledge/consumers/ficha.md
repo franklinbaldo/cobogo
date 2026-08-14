@@ -11,6 +11,12 @@ constraints:
   - large analytical datasets in browser
   - preserve fast direct lookup and analytical modes
 capabilities_used: []
+operational_capabilities:
+  - github-pages-deploy
+  - published-site-smoke-test
+  - internet-archive-upload
+  - internet-archive-backed-snapshots
+  - external-source-etl
 unmet_needs:
   - data-reading patterns
   - analytical filters and comparison grammar
@@ -42,6 +48,19 @@ The search surface now exposes a provenance band as a real definition list with 
 
 The competence correction landed in Ficha #210 as a one-line semantic change after Ficha #143 had already made provenance structural through `Faixa + Inscrição`. Both changes preserve the existing search behavior and local identity.
 
+## Operational capabilities — verified 2026-08-14
+
+These are repository capabilities, not claims of Cobogó adoption:
+
+- **GitHub Pages deploy + published-site smoke test** — the deploy workflow is exercised on `main`; the post-merge run for Ficha #213 completed successfully for commit `330d6b8`.
+- **Internet Archive upload** — `.github/workflows/etl-bootstrap.yml` wires the ETL pipeline to `IA_ACCESS_KEY` and `IA_SECRET_KEY` through GitHub Actions secrets and supports an explicit `skip_upload` dry-run. The secret values are neither needed nor recorded here.
+- **Internet Archive-backed snapshots** — the current public manifest points to preserved snapshot assets and checksums, so preservation is part of the product's public data contract rather than an unused credential path.
+- **External-source ETL** — the workflow resolves and transforms Receita Federal snapshot data and can reuse IA-mirrored raw ZIPs.
+
+This makes Ficha a useful upstream operational specimen for Cobogó: before inventing a separate preservation mechanism for a Ficha UI/data checkpoint, prefer its existing Actions/Internet Archive path when it fits the artifact. The same technique may inform Cobogó or another consumer only after its assumptions are checked in that repository.
+
+No Save Page Now checkpoint of the rendered Ficha UI is claimed by this entry yet. Internet Archive dataset preservation and rendered-page historical capture are distinct capabilities/evidence classes.
+
 ## Accessibility state
 
 The mechanical gaps recorded on 2026-08-11 are also no longer current:
@@ -50,7 +69,8 @@ The mechanical gaps recorded on 2026-08-11 are also no longer current:
 - lifecycle/search-result changes use scoped `role="status"` / `aria-live` regions;
 - provenance uses `dl/dt/dd` semantics;
 - snapshot competence is machine-readable with `<time datetime>`;
-- state remains textual rather than colour-only.
+- state remains textual rather than colour-only;
+- global header links have an explicit non-colour `:focus-visible` treatment; Ficha #213 is merged and both post-merge CI and deploy completed successfully.
 
 Do not reopen these as if they were current defects without new counter-evidence.
 
