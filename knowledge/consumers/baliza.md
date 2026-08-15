@@ -20,7 +20,7 @@ capabilities_used:
   - consistent aria-activedescendant combobox focus model
   - active-city interaction continuity
 unmet_needs:
-  - comparison-specific analytical surfaces still need independently rendered evidence before #267 can promote a shared comparison relationship
+  - comparison-specific analytical surfaces still need independently rendered factual peer evidence before #267 can promote a shared comparison relationship
 last_verified: 2026-08-15
 ---
 
@@ -67,11 +67,21 @@ The final pre-merge capture hydrated the real chain `Internet Archive manifest �
 
 This is independent supporting evidence for the operational relation already observed in Ficha #218: **rendered ≠ hydrated**. Baliza happened to reach `hydrated` in these runs, while the workflow still preserves explicit negative states; therefore the useful shared learning is the evidence taxonomy, not an assumption that archive hydration always succeeds. Do not promote the consumer-specific Playwright script as a shared Cobogó component merely because two consumers now classify hydration.
 
+## Comparison surface negative evidence — 2026-08-15
+
+Baliza #673/#674 tested `/comparar` specifically because #267 needs a second independently rendered comparison task before promoting the CausaGanha relationship. Brownfield inspection found that the selected municipality's per-capita value comes from PNCP results, but the three apparent “Municípios Semelhantes” were not municipalities at all: they were synthetic `−10%`, `+10%` and `−20%` transformations of that same value.
+
+#674 corrected the project surface without inventing a domain algorithm. The route now says that real peer comparison is not yet available, names the synthetic block **Referências simuladas**, and states visibly that those values do not represent real municipalities or a real population-based peer selection. The visual-capture workflow now exercises `/comparar` as well as `/publicacoes` and records whether it reached `hydrated-with-explicit-simulation`, `remote-data-unavailable` or `incomplete`, plus desktop/narrow screenshots and JSON evidence.
+
+A pre-merge rendered run reached `hydrated-with-explicit-simulation` with all three scenario cards and the disclaimer visible. Its screenshot exposed one remaining overclaim in the page lede (“comparação com municípios do mesmo porte”), which was then corrected before merge. On the final PR head, the remote PNCP request returned no results; the capture correctly classified that run as `remote-data-unavailable` while still rendering the corrected lede and explicit error state. This is useful **negative evidence**, not a failed review: the route now distinguishes real data, simulated reference, and external-load failure instead of collapsing them into one apparent comparison result.
+
+Therefore `/comparar` still does **not** satisfy the second-consumer evidence gate for #267. The missing evidence is now narrower and factual: a rendered Baliza surface must compare genuinely observed peers (or another consumer must provide the same task) before Cobogó can infer a shared comparison relationship. Do not promote the synthetic scenario-card presentation itself.
+
 ## Relation to #267
 
 Baliza now has independently rendered archive-backed analytical evidence on `/publicacoes`; source-only is no longer the strongest available evidence for every client-only route. That strengthens the corpus around provenance, freshness, archive-backed data reading and truthful hydration state.
 
-It still does **not** provide a second independently rendered comparison surface equivalent to CausaGanha's 96-row tribunal grid. `/publicacoes` is an aggregate-by-modalidade task, not a comparison task, and `/comparar` currently has different domain/runtime constraints. The comparison relation in #267 therefore remains below its promotion threshold.
+It still does **not** provide a second independently rendered comparison surface equivalent to CausaGanha's 96-row tribunal grid. `/publicacoes` is an aggregate-by-modalidade task, not a comparison task, and `/comparar` now explicitly documents that its peer values are simulations rather than observed municipalities. The comparison relation in #267 therefore remains below its promotion threshold.
 
 The archive freshness `<time>` correction independently resembles CausaGanha's provenance/freshness gap. The restored deployment and hydrated capture show that Baliza can produce both artifact and rendered evidence, but promotion still requires the matching user task and relationship to be observed across consumers rather than inferred from tag similarity.
 
