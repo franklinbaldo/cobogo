@@ -21,7 +21,7 @@ capabilities_used:
   - active-city interaction continuity
 unmet_needs:
   - client-only analytical surfaces still need rendered review when runtime access permits
-last_verified: 2026-08-13
+last_verified: 2026-08-15
 ---
 
 # Baliza
@@ -52,6 +52,12 @@ These fixes preserve Baliza's visual identity and domain logic. Several produce 
 The former `npm audit` deployment blocker is closed. Baliza #664 migrated the web surface from Astro 6 to Astro 7.2.1, regenerated the dependency graph with npm, kept the production audit gate enabled, recalculated the emitted-script CSP hashes from the real `dist`, and updated the stale theme-toggle test contract without changing the component semantics established by #659.
 
 The final PR head passed the normal web pipeline with runtime audit clean, lint/check, PNCP contracts, 655/655 web tests, static build of 21 pages and the bundle guard. After merge (`5f7bc663`), the `main` GitHub Pages workflow run 796 completed successfully. This restores current deploy/build evidence for Baliza; it does **not** by itself upgrade a client-only analytical route to rendered evidence when archive-backed hydration cannot be observed in the review environment.
+
+## Public repository surface — 2026-08-15
+
+Baliza #668, merged as `57905a6e`, corrected the repository entry surface after its tests and GitHub Pages deployment gates passed. The README now presents **Baliza** as the product rather than only “Baliza CLI”, links directly to the public site, and distinguishes the public portal, collection/preservation pipeline and CLI as three surfaces of the same project.
+
+This is project-surface evidence rather than a new shared capability: a consumer README is part of the public face seen by people arriving through GitHub, but it should orient them toward the actual product and reusable machinery instead of duplicating the deployed site. Keep this as consumer evidence until the same relationship is deliberately evaluated across enough independent projects to justify a stronger Cobogó claim.
 
 ## Relation to #267
 
