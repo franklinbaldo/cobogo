@@ -22,12 +22,14 @@ operational_capabilities:
 unmet_needs:
   - provenance and freshness semantics spanning source capture parse and dataset release
   - coverage/status patterns that distinguish known absence from pipeline incompleteness
-  - reusable dataset access paths from public explanation to downloadable/queryable artifacts
   - data-reading patterns for search results law detail evidence and version history
 integration_evidence:
   - https://github.com/franklinbaldo/cobogo/issues/323
+  - https://github.com/franklinbaldo/cobogo/issues/325
+  - https://github.com/franklinbaldo/leizilla/issues/143
+  - https://github.com/franklinbaldo/leizilla/pull/144
 local_identity: playful Leizilla dinosaur identity applied to a rigorous public legal-data product
-last_verified: 2026-08-14
+last_verified: 2026-08-15
 ---
 
 # Leizilla
@@ -43,7 +45,9 @@ The repository contains an Astro/Svelte application under `web/` with concrete s
 - reading structured devices/data;
 - inspecting evidence and version history;
 - viewing coverage;
-- representing the explicit unavailable-dataset state.
+- representing the explicit unavailable-dataset state;
+- reaching the released Parquet and release metadata;
+- running a minimal DuckDB query against the public Parquet through a progressive disclosure on the home surface.
 
 This is enough to establish a real human task and therefore a Cobogó consumer relationship. It does **not** establish active Cobogó package adoption.
 
@@ -61,19 +65,31 @@ official source
   -> dataset release
   -> public search / law / evidence / coverage surface
   -> reusable artifact
+  -> reproducible query / metadata check
 ```
 
-Future reviews should test how much of this chain a person can actually understand and traverse from the public portal without requiring repository knowledge.
+The first published reuse path was validated after Leizilla #144: merge `d6d5c31f4ce310cc9119af5d69d18653de11cf79` triggered `Deploy Leizilla Web` run `31878476589`, whose build and deploy jobs both succeeded. The emitted GitHub Pages artifact contains the rendered `Testar o dataset com DuckDB` disclosure, querying the public `versoes.parquet` and directing the reader to compare the result with `row_count` in `dataset_meta.json`.
 
 ## Honest-state constraint
 
-The repository README currently states that the public product is still moving toward its first production dataset/release. Therefore this card records implemented workflows and surface code but does not claim that a production dataset is already published or that the deploy currently exposes complete Rondônia coverage.
+Rondônia v0 is now a **published artifact**, not merely an implemented pipeline. The scheduled `Parse + ETL + Release Dataset` run `31869806760` completed on 2026-08-15 and published `leizilla-dataset-ro-v0` to the Internet Archive; the web deployment following #144 exposes a reproducible path from the public surface to that artifact.
 
-That distinction is itself a useful pressure case for Cobogó: public legal-data products need to distinguish **implemented pipeline**, **published artifact**, **observed coverage** and **verified freshness** rather than collapsing them into a generic success state.
+This does **not** establish complete Rondônia coverage. Published artifact, observed coverage, pipeline state and verified freshness remain separate facts and should remain separately represented.
+
+The repository README was still carrying pre-go-live wording at this verification point; Leizilla #145 tracks that GitHub-entry surface gap separately.
 
 ## Candidate shared evidence
 
-Leizilla may provide independent evidence for provenance, coverage and reusable-dataset patterns already pressured by analytical consumers such as CausaGanha, Ficha and Baliza. Do not promote a Leizilla-specific presentation into shared core merely from this registration; verify the rendered journey and compare independent consumer evidence first.
+Leizilla now provides concrete implementation evidence for the candidate relation tracked in Cobogó #325:
+
+```text
+understand project
+  -> reach canonical artifact
+  -> inspect provenance/freshness
+  -> reuse reproducibly
+```
+
+That is stronger than registration alone, but it is still not enough to stabilize a shared Cobogó pattern. CausaGanha provides an independent pressure case and Ficha provides useful limiting evidence; the semantic contract still needs to be separated from specific technology such as DuckDB before promotion.
 
 ## Local identity
 
