@@ -14,9 +14,9 @@ capabilities_used:
   - reduced-motion invariant (canon/grammar adoption, implemented locally)
 unmet_needs:
   - research publication and document-reading rhythm
-  - provenance/source-repository inscription
+  - deployed provenance/source-repository inscription (implemented in main; public deploy still unverified)
   - archive/navigation across papers logs and research state
-last_verified: 2026-08-11
+last_verified: 2026-08-15
 ---
 
 # The Lab
@@ -59,6 +59,23 @@ Adopted as **canon/grammar adoption** in `franklinbaldo/the-lab`: a local 15-lin
 | core lines added | 174 |
 
 The 10 mappable tokens carry different values, so they would survive as overrides: a rename, not a removal. Importing core here would add 174 lines to remove ~9, and 46% of its selectors would match nothing. That is a nominal dependency, so core adoption was declined on measurement rather than on principle.
+
+## Project-surface review — source snapshot provenance — 2026-08-15
+
+The sync pipeline already cloned `franklinbaldo/rosencrantz-coin` and regenerated The Lab's public `content/`, but it did not persist the exact upstream commit that produced a rendered state. The public surface therefore explained the research but could not identify its source snapshot precisely.
+
+Implemented in The Lab PR #127 and merged to `main` at `468b14f1e1c627eafbc4fc91513a28e6e2521aa3`:
+
+- sync now writes deterministic `content/provenance.json` with upstream repository, exact SHA and source commit timestamp;
+- the global footer reads the record defensively and links `repository@short-sha` to the exact source commit;
+- the current upstream snapshot was seeded so the first successful deploy can expose provenance immediately;
+- no new Cobogó tokens/components were introduced and The Lab's local identity remains unchanged.
+
+**Verification boundary:** code and merge in `main` are verified. Public deployment is **not** verified. The GitHub Actions API reports `Deploy Site` (`.github/workflows/deploy.yml`, workflow id `241991745`) as `disabled_manually`; therefore the missing post-merge run is currently explained by workflow state rather than by the YAML `push`/`paths` trigger. The blocker is tracked in The Lab #128. `Sync from rosencrantz-coin` and `Journalist Heartbeat` are also manually disabled, but re-enabling them is intentionally outside this provenance fix.
+
+Do not treat the provenance need as fully closed until `Deploy Site` is re-enabled, a build/deploy succeeds and the rendered `Source snapshot` is checked on the published surface.
+
+This is one-consumer evidence for a project-surface practice — make generated/public artifacts traceable to the exact upstream snapshot — not enough evidence to promote a shared Cobogó pattern or component.
 
 ## Adoption note
 
