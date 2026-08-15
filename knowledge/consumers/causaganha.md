@@ -36,6 +36,8 @@ integration_evidence:
   - https://github.com/franklinbaldo/causaganha/pull/873
   - https://github.com/franklinbaldo/causaganha/issues/874
   - https://github.com/franklinbaldo/causaganha/pull/875
+  - https://github.com/franklinbaldo/causaganha/issues/879
+  - https://github.com/franklinbaldo/causaganha/pull/880
 local_identity: green/gold product identity, judicial-data purpose, existing typography and information architecture
 last_verified: 2026-08-15
 ---
@@ -163,3 +165,20 @@ The #875 PR passed lint, TJRO tests and web lint/test/build before merge, and th
 This is independent supporting evidence for [Public artifact reuse](../patterns/public-artifact-reuse.md) alongside Leizilla. It also supplies an important non-rule: Cobogó should not standardize DuckDB, SQL or a particular storage engine. The reusable relation is **reachable canonical artifact + recoverable provenance + reproducible handoff**, with materialization kept consumer-local when it is cheaply reconstructible.
 
 CausaGanha #872 remains open for one deliberately literal reason: the current `catalog.sql -> local DuckDB -> query` recipe still needs an independent execution recorded against the public artifact. That pending execution limits the operational claim; it does not invalidate the already deployed project-surface relation.
+
+## Project surface: fontes reais — verified 2026-08-15
+
+CausaGanha #879/#880 closed a second `/sobre` information-architecture gap after the product itself gained an executable knowledge corpus for four sources and four pipelines. The public methodology had continued to read as though the project were essentially the DJEN archive plus a generic list of court systems.
+
+The deployed page now distinguishes the four source roles using the consumer's own canonical knowledge as factual/editorial input:
+
+- **DJEN (CNJ)** — judicial communications and the archive/consolidation flow;
+- **TJRO JURIS** — Rondônia jurisprudence and structured judicial decisions/documents;
+- **STJ Acórdãos** — appellate decisions used in process reconciliation/query surfaces;
+- **DataJud (CNJ)** — process metadata/facets used for enrichment and live queries.
+
+The surface deliberately states that pipeline existence does **not** imply complete coverage or equivalent public publication. Reusable artifacts remain documented separately under `Acesso aos Dados`, so project explanation does not manufacture availability claims for pipelines whose operational/publication evidence differs.
+
+The #880 PR changed only `web/src/pages/sobre.astro`; lint, query-contract validation, TJRO tests, web lint/test/build and the existing Cobogó adoption capture all passed before merge. The post-merge GitHub Pages build and deploy for `570a90dc` also completed successfully.
+
+This is currently **consumer-local project-surface evidence**, not a new shared Cobogó pattern. The reusable observation is only that a public project explanation can be materially stale even while its website remains visually coherent; canonical product knowledge is useful editorial input for keeping `what the project does behind the site` recoverable without turning a public page into internal documentation.
