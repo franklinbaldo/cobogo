@@ -16,6 +16,12 @@ capabilities_used:
   - semantic comparison-table accessibility
   - machine-readable temporal provenance
   - non-colour continuous-state redundancy
+operational_capabilities:
+  - github-pages-deploy
+  - archived-source-and-parquet-publication
+  - sync-manifest-publication
+  - internet-archive-preservation
+  - reconstructible-sql-catalog
 unmet_needs:
   - reconciled semantic foundations
   - framework-agnostic core web primitives
@@ -26,8 +32,12 @@ integration_evidence:
   - https://github.com/franklinbaldo/causaganha/issues/861
   - https://github.com/franklinbaldo/causaganha/pull/865
   - https://github.com/franklinbaldo/causaganha/pull/871
+  - https://github.com/franklinbaldo/causaganha/issues/872
+  - https://github.com/franklinbaldo/causaganha/pull/873
+  - https://github.com/franklinbaldo/causaganha/issues/874
+  - https://github.com/franklinbaldo/causaganha/pull/875
 local_identity: green/gold product identity, judicial-data purpose, existing typography and information architecture
-last_verified: 2026-08-14
+last_verified: 2026-08-15
 ---
 
 # CausaGanha
@@ -132,3 +142,24 @@ CausaGanha #871 then extended the same provenance rule to the per-tribunal archi
 This strengthens the evidence for the **relation**, not for a universal component: when a data-reading surface presents temporal provenance used for comparison, exact machine-readable bounds should remain recoverable alongside the human presentation. #267 still requires an independent rendered consumer exercising the same underlying task before promoting that relation into shared Cobogó pattern knowledge.
 
 The important lesson is not “every consumer needs this exact table component.” It is the relation: a homogeneous cross-row comparison benefits from native table structure, and external-source freshness benefits from authority + exact recoverable time.
+
+## Public artifact reuse — verified 2026-08-15
+
+CausaGanha #873 closed a project-surface gap on `/sobre`: the deployed page now connects the human explanation to real archived source/data products, the canonical synchronization manifest and a reproducible reuse path while preserving the dashboard as the non-technical route. The post-merge Pages artifact for #873 was inspected directly after a successful deploy.
+
+The first implementation taught consumers to attach a remotely published `catalog.duckdb`. That exposed a better architectural boundary and was deliberately revised in CausaGanha #874/#875. The current contract is **text/data first**:
+
+```text
+archived ZIP / Parquet / manifest
+  -> catalog.sql textual view contract
+  -> consumer-local DuckDB materialization
+  -> query
+```
+
+Future catalog publication excludes `*.duckdb`; the binary database may still be created locally/ephemerally for validation, but it is no longer the distributed semantic authority. The historical `.duckdb` already present on Internet Archive is retained as history rather than deleted retroactively.
+
+The #875 PR passed lint, TJRO tests and web lint/test/build before merge, and the post-merge Pages build/deploy for `52885fee` completed successfully. `/sobre` and `DataAccessPanel` no longer recommend attaching the remote binary and instead describe applying `catalog.sql` to a local DuckDB.
+
+This is independent supporting evidence for [Public artifact reuse](../patterns/public-artifact-reuse.md) alongside Leizilla. It also supplies an important non-rule: Cobogó should not standardize DuckDB, SQL or a particular storage engine. The reusable relation is **reachable canonical artifact + recoverable provenance + reproducible handoff**, with materialization kept consumer-local when it is cheaply reconstructible.
+
+CausaGanha #872 remains open for one deliberately literal reason: the current `catalog.sql -> local DuckDB -> query` recipe still needs an independent execution recorded against the public artifact. That pending execution limits the operational claim; it does not invalidate the already deployed project-surface relation.
