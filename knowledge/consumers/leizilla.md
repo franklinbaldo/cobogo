@@ -80,9 +80,9 @@ This does **not** establish complete Rondônia coverage. Published artifact, obs
 
 Leizilla #146 closed the remaining GitHub-entry surface gap after both PR workflows passed and merge `6990719d4acf6a790849aa7f4fcb83681a962859` landed on `main`. The README now links the portal, Internet Archive dataset, public Parquet and release metadata; describes the frontend and data pipeline as current capabilities; preserves the distinction between a published dataset and incomplete coverage; and includes the same minimal external DuckDB reuse path without claiming broader adoption or coverage.
 
-## Candidate shared evidence
+## Shared pattern evidence
 
-Leizilla now provides concrete implementation evidence for the candidate relation tracked in Cobogó #325:
+Leizilla is one of the independent rendered consumers supporting [Public artifact reuse](../patterns/public-artifact-reuse.md):
 
 ```text
 understand project
@@ -91,7 +91,9 @@ understand project
   -> reuse reproducibly
 ```
 
-That is stronger than registration alone, but it is still not enough to stabilize a shared Cobogó pattern. CausaGanha provides an independent pressure case and Ficha provides useful limiting evidence; the semantic contract still needs to be separated from specific technology such as DuckDB before promotion.
+The pattern is deliberately `experimental`. CausaGanha now supplies a second full rendered pressure case with a different materialization boundary, while Ficha supplies limiting evidence that a truthful **Levar a base** route can be sufficient without an inline technical query. This prevents the shared relation from collapsing into “show DuckDB SQL”.
+
+Leizilla's use of DuckDB remains consumer-local implementation evidence. The shared contract is artifact reachability, provenance and a reproducible handoff; another consumer may satisfy it with a notebook, API, text schema or another real artifact path.
 
 ## Local identity
 
