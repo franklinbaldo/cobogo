@@ -27,6 +27,7 @@ integration_evidence:
   - https://github.com/franklinbaldo/ficha/pull/210
   - https://github.com/franklinbaldo/ficha/pull/214
   - https://github.com/franklinbaldo/ficha/pull/217
+  - https://github.com/franklinbaldo/ficha/pull/218
 last_verified: 2026-08-15
 ---
 
@@ -38,7 +39,7 @@ Its strongest current synergy is with CausaGanha: both are static public data-re
 
 ## Current public contract — verified 2026-08-15
 
-The earlier 2026-08-11 state is no longer current. `web/public/manifest.json` now publishes `current: 2026-05`, with a real snapshot backed by Internet Archive URLs and per-file checksums.
+The earlier 2026-08-11 state is no longer current. `web/public/manifest.json` now publishes `current: 2026-06`, with a real snapshot backed by Internet Archive URLs and per-file checksums.
 
 The search surface exposes a provenance band as a real definition list with the relation:
 
@@ -59,14 +60,14 @@ The competence correction landed in Ficha #210 as a one-line semantic change aft
 These are repository capabilities, not claims of Cobogó adoption:
 
 - **GitHub Pages deploy + published-site smoke test** — the deploy workflow is exercised on `main`; after Ficha #214, build, Pages deployment and the deployed-site smoke test completed successfully for merge commit `6af77e9`.
-- **Visual capture** — `.github/workflows/visual-capture.yml`, introduced by Ficha #214, builds the site with the real GitHub Project Pages base path, serves the built artifact in CI, captures the first fold at 1280×900 in Chromium and uploads it as a workflow artifact. The first implementation attempt exposed a false capture caused by the wrong base path; the workflow was corrected before merge, which is useful negative evidence about making capture conditions match deployment conditions.
+- **Visual capture** — `.github/workflows/visual-capture.yml`, introduced by Ficha #214 and hardened by Ficha #218, builds the site with the real GitHub Project Pages base path, serves the built artifact in CI and captures the first fold at 1280×900 in Chromium. The capture now waits for a semantic hydration outcome instead of a fixed delay, emits `capture-state.json`, and names the screenshot `home-hydrated-*`, `home-remote-data-unavailable-*` or `home-incomplete-*` according to the observed state. A screenshot is therefore only labelled hydrated when the UI actually reaches `Pronto para consultas`.
 - **Internet Archive upload** — `.github/workflows/etl-bootstrap.yml` wires the ETL pipeline to `IA_ACCESS_KEY` and `IA_SECRET_KEY` through GitHub Actions secrets and supports an explicit `skip_upload` dry-run. The secret values are neither needed nor recorded here.
 - **Internet Archive-backed snapshots** — the current public manifest points to preserved snapshot assets and checksums, so preservation is part of the product's public data contract rather than an unused credential path.
 - **External-source ETL** — the workflow resolves and transforms Receita Federal snapshot data and can reuse IA-mirrored raw ZIPs.
 
-The visual-capture run for Ficha #214 produced a styled first-fold artifact after building with `BASE_PATH=/ficha/`. It visibly includes the provenance band and the new two-access-path relation. The capture environment could not load the remote Internet Archive parquet and therefore showed the real network-error state from that environment; that limitation is recorded rather than misread as evidence about the deployed data path.
+The first capture implementation exposed two useful negative-evidence cases rather than hiding them. The #214 iteration first revealed a wrong Project Pages base-path assumption, which was corrected before merge. Later, the CI environment could render the Ficha surface but could not load the remote Internet Archive Parquet. Ficha #218 turns that second limitation into machine-recoverable evidence: its validation run classified the state as `remote-data-unavailable`, named the screenshot accordingly and persisted the screenshot plus `capture-state.json`, while the status identified the failed request to the current snapshot's `cnpjs.parquet`. The visual-capture job still passed because its job is to capture and classify reality, not to pretend external network availability.
 
-This makes Ficha a useful upstream operational specimen for Cobogó: before inventing a separate browser-capture mechanism for a similar Astro/Pages consumer, inspect this workflow as evidence. Reuse still depends on the target repository's runtime and deployment assumptions; do not copy it as a universal CI recipe merely because it worked here.
+This makes Ficha a useful upstream operational specimen for Cobogó: before inventing a separate browser-capture mechanism for a similar Astro/Pages consumer, inspect this workflow as evidence. The reusable relation is **capture + explicit semantic readiness classification**, not this exact Playwright script or these status strings. Reuse still depends on the target repository's runtime and deployment assumptions; do not copy it as a universal CI recipe merely because it worked here.
 
 No Save Page Now checkpoint of the rendered Ficha UI is claimed by this entry yet. Internet Archive dataset preservation, CI screenshot capture and rendered-page historical archiving remain distinct capabilities/evidence classes.
 
@@ -86,11 +87,11 @@ Do not reopen these as if they were current defects without new counter-evidence
 
 ## Evidence strength
 
-This update is supported by current source, manifest data, PR CI, a reproducible 1280×900 Chromium capture, `main`, Pages deployment and the deployed-site smoke test. The README reconciliation in #217 was verified against current `SearchCNPJ.svelte` and `manifest.json`, and its repository CI completed successfully before merge.
+This update is supported by current source, manifest data, PR CI, reproducible Chromium capture infrastructure, `main`, Pages deployment and the deployed-site smoke test. The README reconciliation in #217 was verified against current `SearchCNPJ.svelte` and `manifest.json`, and its repository CI completed successfully before merge. Ficha #218 adds a stronger distinction inside rendered evidence itself: a screenshot now carries an explicit machine-readable hydration classification rather than relying on a reviewer to infer readiness from pixels.
 
-The screenshot is evidence of composition under the CI capture environment, not proof that remote Internet Archive data hydrated successfully there. Conversely, the deployed-site smoke test proves reachability of the published site but is not a visual substitute for the screenshot. Keep those evidence classes separate.
+A `remote-data-unavailable` screenshot is evidence of composition and error behavior under the CI capture environment, not proof that the deployed data path is broken. A future `hydrated` screenshot would be stronger evidence that the same rendered capture environment reached the intended data-ready state. Conversely, the deployed-site smoke test proves reachability of the published site but is not a visual substitute for either screenshot class. Keep those evidence classes separate.
 
-Ficha now supplies stronger rendered evidence for the provenance/freshness and discoverable-data-contract relations. Promotion of a shared Cobogó pattern still requires the independent rendered-consumer evidence required by #267; this single consumer implementation is not a universal component template.
+Ficha now supplies stronger rendered evidence for the provenance/freshness and discoverable-data-contract relations, and stronger operational evidence for honest capture-state classification. Promotion of a shared Cobogó pattern still requires the independent rendered-consumer evidence required by #267; this single consumer implementation is not a universal component or CI template.
 
 ## What remains local or unresolved
 
@@ -107,5 +108,7 @@ Ficha should continue to look like a **dated public archive**, not a CausaGanha 
 The useful reusable signal is the relation, not the component: external-source data should keep source, relevant time, preservation/verifiability and state recoverable, with exact displayed time represented machine-readably when possible. Ficha adds a second useful relation for research: a public data product can expose **use in place** and **take the dataset** as distinct access paths without turning them into duplicated card chrome or invented navigation.
 
 The README review adds a narrower project-surface observation: when a repository is itself a common public entry point, its README should not describe an obsolete product state that contradicts the current rendered surface. Keep this as operational evidence for now; it does not yet justify a Cobogó pattern or component.
+
+The #218 capture result adds another operational candidate relation: when a surface depends on remote hydration, visual evidence should preserve the distinction between **rendered**, **hydrated**, and **external-data-unavailable** rather than allowing one green screenshot job to collapse those states. This is evidence from one consumer and should remain an operational concept until another real consumer demonstrates the same need.
 
 Those relations should be compared against independent consumers before promotion. Ficha's categorical textual state and CausaGanha's continuous coverage metrics remain different expressions. That negative evidence still argues against a universal status component while supporting the narrower non-colour and provenance/freshness invariants.
