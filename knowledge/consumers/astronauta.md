@@ -20,8 +20,10 @@ integration_evidence:
   - https://github.com/franklinbaldo/astronauta/issues/24
   - https://github.com/franklinbaldo/astronauta/pull/25
   - https://github.com/franklinbaldo/astronauta/pull/28
+  - https://github.com/franklinbaldo/astronauta/pull/29
+  - https://github.com/franklinbaldo/astronauta/issues/30
 local_identity: generic OKF admin and exploration product, not editorial publication skin
-last_verified: 2026-08-14
+last_verified: 2026-08-15
 ---
 
 # Astronauta
@@ -51,6 +53,8 @@ The first `cobogo-consumer-synergy` pass opened [Astronauta #24](https://github.
 [Astronauta #25](https://github.com/franklinbaldo/astronauta/pull/25) then mapped the product's existing dark, high-density theme onto Cobogó semantic foundation roles while preserving local values and composition. This remains adoption evidence at the semantic-mapping level, not proof that the product consumes a released Cobogó package surface.
 
 A project-surface pass on 2026-08-14 found that the repository README still described the older generated admin panel without separating shipped behavior from the active live SSR/editor stack. [Astronauta #28](https://github.com/franklinbaldo/astronauta/pull/28) corrected that public entry surface: current `main` capabilities are now distinguished from unmerged development work, and the README makes the `okf-parser` authority boundary and Cobogó relationship explicit. This is documentation/public-surface evidence only; adoption status is unchanged.
+
+A distribution pressure test on 2026-08-15 added stronger negative evidence. [Astronauta #29](https://github.com/franklinbaldo/astronauta/pull/29) builds and installs a wheel in a fresh consumer environment, removes Bun, leaves the source checkout, and tries to serve a real OKF fixture through the installed `astronauta PATH` command. The source/runtime path remains healthy (`build`, `gateway`, `live-ssr` passed), but the installed artifact failed because Astro's `entry.mjs` still imports the external Node package `piccolore`, which was not carried by the wheel. [Astronauta #30](https://github.com/franklinbaldo/astronauta/issues/30) now owns that distribution boundary. This is useful negative evidence: **a rendered/buildable SSR surface is not yet a distributable surface**. It does not change Cobogó adoption status and is not evidence for a shared Cobogó capability.
 
 ## Architectural role
 
