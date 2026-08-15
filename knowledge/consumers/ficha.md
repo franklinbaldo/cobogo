@@ -26,7 +26,8 @@ integration_evidence:
   - https://github.com/franklinbaldo/ficha/pull/143
   - https://github.com/franklinbaldo/ficha/pull/210
   - https://github.com/franklinbaldo/ficha/pull/214
-last_verified: 2026-08-14
+  - https://github.com/franklinbaldo/ficha/pull/217
+last_verified: 2026-08-15
 ---
 
 # Ficha
@@ -35,7 +36,7 @@ Ficha is a high-confidence Cobogó consumer candidate. It has a real Astro/Svelt
 
 Its strongest current synergy is with CausaGanha: both are static public data-reading products that need tables, filters, metadata, status/freshness and comparison without becoming generic dashboards. Candidate status still does not imply `cobogo/core` adoption: the changes below are consumer-local implementation of grammar and accessibility relations, not a package dependency.
 
-## Current public contract — verified 2026-08-14
+## Current public contract — verified 2026-08-15
 
 The earlier 2026-08-11 state is no longer current. `web/public/manifest.json` now publishes `current: 2026-05`, with a real snapshot backed by Internet Archive URLs and per-file checksums.
 
@@ -49,9 +50,11 @@ The search surface exposes a provenance band as a real definition list with the 
 
 Ficha #214 now also makes the product's two real access paths discoverable on the public home without inventing a `Dados` page or competing with the primary search: **Consultar aqui** keeps the interactive lookup as the main action, while **Levar a base** links to the real `manifest.json`, whose current snapshot points onward to preserved Internet Archive assets. The implementation uses spacing, inscription and hierarchy rather than two generic cards.
 
+Ficha #217 extends that project-surface correction to the repository entrance itself. The README now points directly to the public site and manifest, summarizes the real company/person/address/CNAE search modes, distinguishes use-in-place from dataset reuse, and describes the current sharded `companies` contract instead of presenting the older product model as current. This is public-surface maintenance, not evidence of a new Cobogó capability.
+
 The competence correction landed in Ficha #210 as a one-line semantic change after Ficha #143 had already made provenance structural through `Faixa + Inscrição`. Ficha #214 then closes the next Greenfield slice from #141: dataset discovery / dual access paths. These changes preserve the existing search behavior and local identity.
 
-## Operational capabilities — verified 2026-08-14
+## Operational capabilities — verified 2026-08-15
 
 These are repository capabilities, not claims of Cobogó adoption:
 
@@ -83,7 +86,7 @@ Do not reopen these as if they were current defects without new counter-evidence
 
 ## Evidence strength
 
-This update is supported by current source, manifest data, PR CI, a reproducible 1280×900 Chromium capture, `main`, Pages deployment and the deployed-site smoke test.
+This update is supported by current source, manifest data, PR CI, a reproducible 1280×900 Chromium capture, `main`, Pages deployment and the deployed-site smoke test. The README reconciliation in #217 was verified against current `SearchCNPJ.svelte` and `manifest.json`, and its repository CI completed successfully before merge.
 
 The screenshot is evidence of composition under the CI capture environment, not proof that remote Internet Archive data hydrated successfully there. Conversely, the deployed-site smoke test proves reachability of the published site but is not a visual substitute for the screenshot. Keep those evidence classes separate.
 
@@ -102,5 +105,7 @@ Ficha should continue to look like a **dated public archive**, not a CausaGanha 
 ## Cross-consumer interpretation
 
 The useful reusable signal is the relation, not the component: external-source data should keep source, relevant time, preservation/verifiability and state recoverable, with exact displayed time represented machine-readably when possible. Ficha adds a second useful relation for research: a public data product can expose **use in place** and **take the dataset** as distinct access paths without turning them into duplicated card chrome or invented navigation.
+
+The README review adds a narrower project-surface observation: when a repository is itself a common public entry point, its README should not describe an obsolete product state that contradicts the current rendered surface. Keep this as operational evidence for now; it does not yet justify a Cobogó pattern or component.
 
 Those relations should be compared against independent consumers before promotion. Ficha's categorical textual state and CausaGanha's continuous coverage metrics remain different expressions. That negative evidence still argues against a universal status component while supporting the narrower non-colour and provenance/freshness invariants.
