@@ -28,6 +28,8 @@ integration_evidence:
   - https://github.com/franklinbaldo/cobogo/issues/325
   - https://github.com/franklinbaldo/leizilla/issues/143
   - https://github.com/franklinbaldo/leizilla/pull/144
+  - https://github.com/franklinbaldo/leizilla/issues/145
+  - https://github.com/franklinbaldo/leizilla/pull/146
 local_identity: playful Leizilla dinosaur identity applied to a rigorous public legal-data product
 last_verified: 2026-08-15
 ---
@@ -76,7 +78,7 @@ Rondônia v0 is now a **published artifact**, not merely an implemented pipeline
 
 This does **not** establish complete Rondônia coverage. Published artifact, observed coverage, pipeline state and verified freshness remain separate facts and should remain separately represented.
 
-The repository README was still carrying pre-go-live wording at this verification point; Leizilla #145 tracks that GitHub-entry surface gap separately.
+Leizilla #146 closed the remaining GitHub-entry surface gap after both PR workflows passed and merge `6990719d4acf6a790849aa7f4fcb83681a962859` landed on `main`. The README now links the portal, Internet Archive dataset, public Parquet and release metadata; describes the frontend and data pipeline as current capabilities; preserves the distinction between a published dataset and incomplete coverage; and includes the same minimal external DuckDB reuse path without claiming broader adoption or coverage.
 
 ## Candidate shared evidence
 
