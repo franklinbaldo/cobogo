@@ -75,6 +75,8 @@ Baliza #673/#674 tested `/comparar` specifically because #267 needs a second ind
 
 A pre-merge rendered run reached `hydrated-with-explicit-simulation` with all three scenario cards and the disclaimer visible. Its screenshot exposed one remaining overclaim in the page lede (“comparação com municípios do mesmo porte”), which was then corrected before merge. On the final PR head, the remote PNCP request returned no results; the capture correctly classified that run as `remote-data-unavailable` while still rendering the corrected lede and explicit error state. This is useful **negative evidence**, not a failed review: the route now distinguishes real data, simulated reference, and external-load failure instead of collapsing them into one apparent comparison result.
 
+After merge (`e898b55c`), the `main` visual-capture run supplied the strongest current evidence: `/comparar` reached `hydrated-with-explicit-simulation`, rendered all 3 scenario cards with the disclaimer visible at desktop and narrow viewports, reported zero page errors, and `/publicacoes` independently remained `hydrated` with 13 rows and `Snapshot: 2026-07`. That confirms the corrected factual boundary on the actual merged artifact rather than only on a PR branch.
+
 Therefore `/comparar` still does **not** satisfy the second-consumer evidence gate for #267. The missing evidence is now narrower and factual: a rendered Baliza surface must compare genuinely observed peers (or another consumer must provide the same task) before Cobogó can infer a shared comparison relationship. Do not promote the synthetic scenario-card presentation itself.
 
 ## Relation to #267
