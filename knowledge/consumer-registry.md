@@ -50,7 +50,9 @@ Operational techniques also flow upstream. If a consumer has a capture, preserva
 
 `active` means the product actually consumes a Cobogó implementation contract. Being used as a specimen or benchmark does not make a project an active dependency.
 
-During reconstruction, CausaGanha is an `evaluating` brownfield reference: it drives requirements but has not yet adopted the reconstructed package surface. Astronauta and O Vigia are `candidate` consumers until concrete integration exists.
+As of 2026-08-15, **CausaGanha is the first active external core consumer** of the reconstructed Cobogó implementation. Its production web surface loads a byte-pinned upstream `core.css`, maps shared roles to CausaGanha-owned values, and removed duplicated generic focus, reduced-motion and data-typography contracts. The adoption is supported by deterministic before/after rendered capture, normal consumer CI and a successful Pages deployment. Because the current published Cobogó package predates the reconstructed core, this first integration uses an immutable vendored snapshot pinned by upstream commit/path/Git-blob SHA; that proves implementation consumption, not that long-term package distribution is already solved.
+
+Astronauta and O Vigia remain `candidate` consumers until concrete integration exists.
 
 Cobogó itself is also an `evaluating` consumer. The design-system repository must not claim active self-adoption until its own human-facing surfaces actually consume the same public implementation contract available to external projects.
 
