@@ -20,7 +20,7 @@ capabilities_used:
   - consistent aria-activedescendant combobox focus model
   - active-city interaction continuity
 unmet_needs:
-  - client-only analytical surfaces still need rendered review when runtime access permits
+  - comparison-specific analytical surfaces still need independently rendered evidence before #267 can promote a shared comparison relationship
 last_verified: 2026-08-15
 ---
 
@@ -30,9 +30,9 @@ last_verified: 2026-08-15
 
 ## Evidence tiers
 
-The deployed `/baliza/` home and `/status` shell render in the current review environment and are valid rendered evidence. Routes such as `/atas`, `/dispensas`, `/comparar` and `/mercado` depend on client-only islands and archive.org-backed data; when that runtime cannot complete, their source remains useful but is explicitly weaker than rendered evidence.
+The deployed `/baliza/` home and `/status` shell render in the current review environment and are valid rendered evidence. Routes such as `/atas`, `/dispensas`, `/comparar` and `/mercado` depend on client-only islands and external data; when that runtime cannot complete, their source remains useful but is explicitly weaker than rendered evidence.
 
-A client-only failure is therefore **incomplete evidence, not an empty interface**.
+That limitation is no longer universal across Baliza's client-only analytical surfaces: `/publicacoes` now has dedicated reproducible evidence that builds the Project Pages artifact, hydrates the real archive-backed data path, and records the resulting state. A client-only failure remains **incomplete evidence, not an empty interface**, and a rendered shell is not equivalent to a hydrated data surface.
 
 ## Consumer corrections — 2026-08-12
 
@@ -59,10 +59,20 @@ Baliza #668, merged as `57905a6e`, corrected the repository entry surface after 
 
 This is project-surface evidence rather than a new shared capability: a consumer README is part of the public face seen by people arriving through GitHub, but it should orient them toward the actual product and reusable machinery instead of duplicating the deployed site. Keep this as consumer evidence until the same relationship is deliberately evaluated across enough independent projects to justify a stronger Cobogó claim.
 
+## Archive-backed rendered evidence — 2026-08-15
+
+Baliza #671 closed the rendered-evidence gap tracked in #666 for one real analytical route. The new visual-capture workflow builds the same static Project Pages artifact, serves it under `/baliza/`, opens `/publicacoes`, and classifies the result as `hydrated`, `remote-data-unavailable`, `no-data` or `incomplete` instead of treating elapsed time or a rendered shell as proof of data availability.
+
+The final pre-merge capture hydrated the real chain `Internet Archive manifest → remote Parquet → DuckDB-WASM → rendered aggregate` with `Snapshot: 2026-07` and 13 modalidade rows. It produced desktop (1280×900) and narrow (390×844) screenshots plus `capture-state.json`, with no page errors. The same capture surfaced #672: the dataset-schema grid fragmented short SQL types at desktop width. #671 then fixed that presentation without changing schema/domain content and recaptured both viewports.
+
+This is independent supporting evidence for the operational relation already observed in Ficha #218: **rendered ≠ hydrated**. Baliza happened to reach `hydrated` in these runs, while the workflow still preserves explicit negative states; therefore the useful shared learning is the evidence taxonomy, not an assumption that archive hydration always succeeds. Do not promote the consumer-specific Playwright script as a shared Cobogó component merely because two consumers now classify hydration.
+
 ## Relation to #267
 
-Baliza is promising data-reading evidence, but the live routes available in this environment still do not provide a second independently rendered comparison surface equivalent to CausaGanha's 96-row tribunal grid. `CoverageReport` is client-derived and may not render under the current external-data constraint; source alone does not cross the promotion threshold.
+Baliza now has independently rendered archive-backed analytical evidence on `/publicacoes`; source-only is no longer the strongest available evidence for every client-only route. That strengthens the corpus around provenance, freshness, archive-backed data reading and truthful hydration state.
 
-The archive freshness `<time>` correction independently resembles CausaGanha's provenance/freshness gap. The restored deployment means the consumer is no longer blocked at CI/artifact production, but promotion still requires the matching relationship to be observed in the rendered surface rather than inferred from source alone.
+It still does **not** provide a second independently rendered comparison surface equivalent to CausaGanha's 96-row tribunal grid. `/publicacoes` is an aggregate-by-modalidade task, not a comparison task, and `/comparar` currently has different domain/runtime constraints. The comparison relation in #267 therefore remains below its promotion threshold.
+
+The archive freshness `<time>` correction independently resembles CausaGanha's provenance/freshness gap. The restored deployment and hydrated capture show that Baliza can produce both artifact and rendered evidence, but promotion still requires the matching user task and relationship to be observed across consumers rather than inferred from tag similarity.
 
 Do not derive a generic table, status, filter or provenance pattern merely from tag similarity. The user task and rendered evidence must match.
