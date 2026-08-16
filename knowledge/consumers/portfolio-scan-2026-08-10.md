@@ -31,13 +31,13 @@ This file records the broad repository inventory used to discover potential Cobo
 - `leizilla` — candidate; public Brazilian legislation search, evidence, coverage and dataset surface; promoted after verifying the Astro/Svelte web application and operational workflows on 2026-08-14.
 - `ecos-do-pampa` — candidate; AI-persona editorial publication with long-form reading, chronological archive, tags, RSS and a persistent reading mode. Source plus current Pages build/deploy evidence was verified on 2026-08-16; rendered browser evidence remains pending.
 - `tembiu` — candidate; static Brazilian digital-menu/order/PWA product. Current source contains a real menu/search/cart/address/order-history surface and GitHub Pages has successful deployment history; public documentation still mixes current behavior with template URLs and simulated/aspirational capabilities, tracked by `franklinbaldo/tembiu#16`. Rendered browser evidence remains pending.
+- `autonovel` — candidate generated-publication producer. The reusable pipeline explicitly targets print-ready PDF, ePub, audiobook and a reader-facing landing page, and the completed `autonovel/bells` branch contains a real landing surface for *The Second Son of the House of Bells*. Current evidence is source/branch-only: GitHub Pages is not configured, and every primary landing CTA (`Download PDF`, `ePub`, `Audiobook`, Hermes Agent and repository) still points to `about:empty`. Treat this as evidence of a real human-facing output with an unfinished artifact→publication boundary, not as a deployed consumer. The repository has Issues disabled, so the gap is preserved here rather than mirrored into a nonexistent downstream tracker.
 
 ## Strong UI/product candidates requiring surface verification
 
 Repository name/history/structure suggests a human-facing product or site, but this scan has not yet confirmed current deployment/role strongly enough to register adoption needs:
 
 - `hronir`
-- `autonovel`
 - `nanochat`
 - `mind-fragments`
 - `life-of-menard`
@@ -176,6 +176,10 @@ Formato Legal + Sisprev generated Cobogó #276: screen-to-paginated-document gra
 ### Authoring / preview workspace
 
 Intuit + Formato Legal generated Cobogó #277: source/editor ↔ rendered preview is a reusable relation independent of either product's aesthetic.
+
+### Generated publication / artifact reachability
+
+Autonovel provides a first pressure case where one pipeline produces several reader-facing outputs (print PDF, ePub, audiobook and landing page) but the generated landing does not yet connect readers to those outputs. The reusable relation to watch is **generated artifact → truthful availability → reachable publication action**. One source-only consumer is not enough to promote a Cobogó pattern; first repair/verify a real publication boundary and compare against another artifact-producing publication.
 
 ### Knowledge-output producers
 
