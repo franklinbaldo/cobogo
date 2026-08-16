@@ -37,7 +37,6 @@ This file records the broad repository inventory used to discover potential Cobo
 Repository name/history/structure suggests a human-facing product or site, but this scan has not yet confirmed current deployment/role strongly enough to register adoption needs:
 
 - `hronir`
-- `hilda`
 - `autonovel`
 - `nanochat`
 - `mind-fragments`
@@ -66,6 +65,7 @@ These were inspected enough to avoid treating a web-related word, product vision
 - `egregora-v3` — **adjacent producer, not necessarily a direct consumer**. It generates MkDocs publication sites. Cobogó integration would make more sense as an optional output/theme capability for generated sites than by treating the generator engine itself as a visual consumer.
 - `portfolio` — **README-only portfolio index, not a current direct Cobogó consumer on 2026-08-16 evidence**. The repository tree contains only `README.md`; no owned web/app build, deploy surface or runtime was found. The README is a human-facing GitHub artifact and is visibly stale (`Última atualização: Janeiro 2025` plus historical project/status claims), but that is documentation/identity maintenance rather than evidence of a Cobogó application surface. Reconsider only if this repository acquires a real rendered portfolio product or generated site.
 - `textura` — **adjacent knowledge-output producer, not a current direct Cobogó consumer on 2026-08-16 evidence**. Textura is a Python CLI/metacognitive agent that ingests document collections and produces an Obsidian-native Markdown knowledge garden (`Narrative.md`, temporal notes, atomic notes, mysteries and `_Meta/`). The repository has CI but no owned web/app UI or deploy surface was found. Its generated vault is a plausible future input to a human-facing knowledge reader, but that reader would be the visual consumer; do not infer Cobogó adoption from the Obsidian-ready output itself.
+- `hilda` — **adjacent research/artifact repository, not a current direct Cobogó consumer on 2026-08-16 evidence**. Despite the repository description still calling it a “Hilda Hilst persona agent”, the current tree is a semantic-identifier research project: evaluation/project plans, Python benchmark code, TeX papers and a generated PDF. The repository has no Pages deployment or owned web/app surface. Its plan describes a future HILDA/SUID system with codebook, semantic UUIDs, APIs, artifact registry and production pilot, but those roadmap items are planning evidence rather than current operational capability. Reconsider if a human-facing explorer, benchmark/report viewer or semantic-ID tool is actually built; that surface, not the research corpus itself, would be the Cobogó consumer.
 - `Exploreon` — **not a current direct consumer on 2026-08-16 evidence**. The repository contains a detailed product/game-development document plus Python modules for QR and World ID flows, but no owned web/app surface, frontend build or deployment surface was found. Reconsider only when the experience-verification product acquires a real human-facing interface.
 - `caixaaberta` — **adjacent public-data producer, not a current direct Cobogó consumer on 2026-08-16 evidence**. The repository owns ingestion/transformation/geocoding/publication machinery for Caixa real-estate data and publishes artifacts, but its current tree exposes pipeline/data assets rather than a Franklin-owned human-facing application. A future search/map/data-reading surface could become a consumer; the dataset itself is useful cross-project input without implying UI adoption.
 
@@ -179,7 +179,7 @@ Intuit + Formato Legal generated Cobogó #277: source/editor ↔ rendered previe
 
 ### Knowledge-output producers
 
-Textura currently belongs adjacent to Cobogó rather than inside the visual consumer registry: its primary product is a transparent, Obsidian-native Markdown knowledge garden generated from a document corpus. If a Franklin-owned reader/browser for that generated vault appears, evaluate that surface as the consumer and preserve the distinction between generator capability and rendered human interface.
+Textura currently belongs adjacent to Cobogó rather than inside the visual consumer registry: its primary product is a transparent, Obsidian-native Markdown knowledge garden generated from a document corpus. Hilda is adjacent for a different reason: its present product is a semantic-identifier research corpus (plans, benchmark code, papers and PDF), while its richer service/artifact system remains roadmap material. If either project acquires a Franklin-owned reader/explorer/tool, evaluate that human-facing surface as the consumer and preserve the distinction between producer/research capability and rendered interface.
 
 ### Commerce / ordering
 
