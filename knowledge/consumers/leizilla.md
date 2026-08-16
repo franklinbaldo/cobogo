@@ -15,6 +15,7 @@ capabilities_used: []
 operational_capabilities:
   - Astro/Svelte human-facing web application
   - GitHub Pages deployment workflow
+  - pull-request Astro/Svelte build gate for web changes
   - automated discovery and harvest workflows
   - parse and dataset release workflow
   - Wayback Save Page Now preservation workflow
@@ -26,10 +27,13 @@ unmet_needs:
 integration_evidence:
   - https://github.com/franklinbaldo/cobogo/issues/323
   - https://github.com/franklinbaldo/cobogo/issues/325
+  - https://github.com/franklinbaldo/leizilla/issues/103
   - https://github.com/franklinbaldo/leizilla/issues/143
   - https://github.com/franklinbaldo/leizilla/pull/144
   - https://github.com/franklinbaldo/leizilla/issues/145
   - https://github.com/franklinbaldo/leizilla/pull/146
+  - https://github.com/franklinbaldo/leizilla/pull/147
+  - https://github.com/franklinbaldo/leizilla/issues/148
 local_identity: playful Leizilla dinosaur identity applied to a rigorous public legal-data product
 last_verified: 2026-08-15
 ---
@@ -44,6 +48,7 @@ The repository contains an Astro/Svelte application under `web/` with concrete s
 
 - searching laws;
 - inspecting an individual law;
+- preserving search context when moving from a matching result into a law, including the term, matching-device count, navigable matching devices and return to the original query;
 - reading structured devices/data;
 - inspecting evidence and version history;
 - viewing coverage;
@@ -53,9 +58,13 @@ The repository contains an Astro/Svelte application under `web/` with concrete s
 
 This is enough to establish a real human task and therefore a Cobogó consumer relationship. It does **not** establish active Cobogó package adoption.
 
+Leizilla #147 closed a concrete continuity gap in that task. Search-result links now preserve `q` together with the first matching-device hash; the law page derives matching current devices from rows it already loads, exposes term + count + a textual navigation list, marks matching device blocks, and offers a return path that restores the query on the search surface. The implementation deliberately treats the published **device** as the highlight unit instead of reconstructing substring-level matching in the DOM.
+
 ## Project machinery behind the surface
 
 Current repository workflows include web deployment, discovery/harvest, parse/release and Wayback Save Page Now. The project also integrates Internet Archive into its capture/release architecture. These are operational capabilities of Leizilla, not Cobogó capabilities used.
+
+Leizilla #148 exposed and closed a surface-validation gap: prior to #147, `web/**` was first compiled by the Pages workflow only after reaching `main`. The same production Astro/Svelte build now runs on pull requests that touch the web app, while the deploy job is skipped for PR events. #147 itself proved the new gate, and merge `bb30f219f3c160336e30b8d472ae3132159cb3d3` then triggered `Deploy Leizilla Web` run `31916630398`, whose build and Pages deploy both succeeded.
 
 The important project-surface relation is:
 
@@ -94,6 +103,8 @@ understand project
 The pattern is deliberately `experimental`. CausaGanha now supplies a second full rendered pressure case with a different materialization boundary, while Ficha supplies limiting evidence that a truthful **Levar a base** route can be sufficient without an inline technical query. This prevents the shared relation from collapsing into “show DuckDB SQL”.
 
 Leizilla's use of DuckDB remains consumer-local implementation evidence. The shared contract is artifact reachability, provenance and a reproducible handoff; another consumer may satisfy it with a notebook, API, text schema or another real artifact path.
+
+The #147 search-context work remains **consumer-local evidence**, not a new Cobogó pattern. It demonstrates that search → document continuity matters on this legal-reading surface, but one consumer is not enough to promote a shared navigation abstraction. A second independent rendered consumer with the same relation would be needed before considering generalization.
 
 ## Local identity
 
