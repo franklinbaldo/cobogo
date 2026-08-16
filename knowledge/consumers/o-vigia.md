@@ -16,10 +16,12 @@ unmet_needs:
   - provenance and evidence patterns
   - long-form reading patterns
   - image and archive composition guidance
+  - distinguish fixture/demo publication from factual verified publication
 integration_evidence:
   - https://github.com/franklinbaldo/ovigia-redacao/issues/26
+  - https://github.com/franklinbaldo/ovigia-redacao/issues/29
 local_identity: independent local-journal identity and narrative voice
-last_verified: 2026-08-10
+last_verified: 2026-08-16
 ---
 
 # O Vigia
@@ -45,5 +47,9 @@ Its current specimen is [O Vigia story surface](../specimens/vigia-story-surface
 ## Integration evidence
 
 The first `cobogo-consumer-synergy` pass opened [O Vigia #26](https://github.com/franklinbaldo/ovigia-redacao/issues/26) to test a shared provenance/freshness relation against an editorial surface. The test explicitly forbids turning editorial output into a monitoring dashboard.
+
+A 2026-08-16 PROJECT-SURFACE REVIEW inspected both the newsroom repository and the public static repository `ovigialocal/ovigialocal.github.io`. The newsroom README still describes `article-ready → article-published` as an unfinished real/auditable boundary. The public repository nevertheless contains a prototype story labelled **“Matéria Factual Verificada”** whose provenance block exposes a fixture-looking CNPJ, the SHA-256 of empty content, and internal pipeline copy (`Evaluation Passed (0 alucinações)`) as reader-facing evidence; its `NewsArticle.datePublished` is also human-formatted instead of ISO 8601. This is actionable **negative evidence**, tracked in [O Vigia #29](https://github.com/franklinbaldo/ovigia-redacao/issues/29).
+
+Therefore the current public story must **not** be counted as positive rendered proof of the shared provenance/freshness relation. It is instead a counterexample showing that provenance UI must preserve the distinction between source evidence and pipeline confidence, and between fixture/demo state and factual publication. The surface remains useful as editorial-composition evidence, but provenance promotion should wait for a real `article-published` artifact with reconstructible evidence.
 
 Reusable editorial needs may become Cobogó patterns only after the corpus has enough evidence to distinguish a shared grammar from O Vigia-specific publication choices.
