@@ -36,7 +36,6 @@ This file records the broad repository inventory used to discover potential Cobo
 Repository name/history/structure suggests a human-facing product or site, but this scan has not yet confirmed current deployment/role strongly enough to register adoption needs:
 
 - `portfolio`
-- `Exploreon`
 - `textura`
 - `hronir`
 - `tembiu`
@@ -56,7 +55,6 @@ Repository name/history/structure suggests a human-facing product or site, but t
 - `manifold-football`
 - `querido-diario-cobertura`
 - `ppi`
-- `caixaaberta`
 
 `tembiu` describes a real digital-menu/order product vision, but its README contains template/stale repository URLs; verify the current implementation before promoting it.
 
@@ -64,13 +62,15 @@ Each remaining candidate needs one evidence pass: actual human-facing surface, d
 
 ## Screened adjacent / currently not direct Cobogó consumers
 
-These were inspected enough to avoid treating a web-related word as proof of a Cobogó consumer:
+These were inspected enough to avoid treating a web-related word, product vision or public dataset as proof of a Cobogó consumer:
 
 - `todos` — **not a direct consumer** in its current product form. It is an MCP/CLI server for SEI; “web-first” describes the scraper/backend transport against SEI's existing frontend, not a user-facing UI owned by this repository.
 - `papers` — **not a current direct consumer**. It is a Markdown/OKF research corpus. A future Astronauta/static projection may consume Cobogó, but the corpus itself does not currently own a human visual surface.
 - `minha-receita` — **not currently a Franklin Cobogó consumer on present evidence**. The repo is an API/data service with external documentation/status surfaces; no Franklin-owned product UI was identified in this scan.
 - `egregora-v3` — **adjacent producer, not necessarily a direct consumer**. It generates MkDocs publication sites. Cobogó integration would make more sense as an optional output/theme capability for generated sites than by treating the generator engine itself as a visual consumer.
 - `portfolio` — README describes a portfolio of projects, but no current deploy/product surface was confirmed; keep as weak candidate until actual site evidence appears.
+- `Exploreon` — **not a current direct consumer on 2026-08-16 evidence**. The repository contains a detailed product/game-development document plus Python modules for QR and World ID flows, but no owned web/app surface, frontend build or deployment surface was found. Reconsider only when the experience-verification product acquires a real human-facing interface.
+- `caixaaberta` — **adjacent public-data producer, not a current direct Cobogó consumer on 2026-08-16 evidence**. The repository owns ingestion/transformation/geocoding/publication machinery for Caixa real-estate data and publishes artifacts, but its current tree exposes pipeline/data assets rather than a Franklin-owned human-facing application. A future search/map/data-reading surface could become a consumer; the dataset itself is useful cross-project input without implying UI adoption.
 
 Negative classification is evidence. Do not create consumer concepts merely to make the registry exhaustive.
 
@@ -162,7 +162,7 @@ These are neither safely technical nor clearly UI from current evidence and shou
 
 ### Public analytical / data-reading
 
-CausaGanha, Ficha, Baliza Site, Sites Prefeituras and Leizilla provide independent evidence for shared table/filter/status/provenance/comparison semantics at different scales. Leizilla additionally pressures source→capture→parse→release provenance and explicit coverage states; treat those as evidence to compare, not automatically promoted patterns.
+CausaGanha, Ficha, Baliza Site, Sites Prefeituras and Leizilla provide independent evidence for shared table/filter/status/provenance/comparison semantics at different scales. Leizilla additionally pressures source→capture→parse→release provenance and explicit coverage states; treat those as evidence to compare, not automatically promoted patterns. Caixa Aberta is adjacent here as a public-data producer: its artifacts may feed future data-reading surfaces, but the pipeline repository itself is not currently UI evidence.
 
 ### Dense review / audit
 
@@ -186,6 +186,6 @@ Aleph the Game provides a first consumer pressure case for purposeful motion, ga
 
 ## Screening rule
 
-Do not promote a repository from this scan into the canonical consumer registry merely because it has Pages. Promote it when inspection identifies a real human task and at least one plausible Cobogó relation/capability that could serve it while preserving local identity.
+Do not promote a repository from this scan into the canonical consumer registry merely because it has Pages, a product brief, or a public dataset. Promote it when inspection identifies a real human task and at least one plausible Cobogó relation/capability that could serve it while preserving local identity.
 
 `first-round-complete` means every accessible repository found in the broad inventory has a screening destination in this artifact; it does **not** mean every unresolved repo has received a deep product review. Those follow-up reviews remain tracked by #273.
