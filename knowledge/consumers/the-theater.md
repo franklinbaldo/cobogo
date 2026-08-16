@@ -36,4 +36,4 @@ Freshness is currently **negative evidence**, not proof of a healthy automation.
 
 Consumer issue [the-theater#278](https://github.com/franklinbaldo/the-theater/issues/278) tracks the product-local correction. Preserve the boundary: automation status can be progressively disclosed, but should not dominate the fictional reading surface.
 
-For Cobogó, this is evidence for the narrower relation **automation claim → observable freshness**. Do not infer a generic status component or promote a pattern from this consumer alone. A configured workflow, historical heartbeat commit and current successful execution are distinct evidence classes.
+For Cobogó, this is evidence for the experimental [Automation claim and observable freshness](../patterns/automation-observable-freshness.md) relation. A configured workflow, historical heartbeat commit and current successful execution are distinct evidence classes. The pattern does not imply a generic status component or change this consumer's `adoption_status`/`capabilities_used`.
