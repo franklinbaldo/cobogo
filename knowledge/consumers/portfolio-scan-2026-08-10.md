@@ -30,6 +30,7 @@ This file records the broad repository inventory used to discover potential Cobo
 - `aleph-the-game` — candidate; React/Vite interactive AI-assisted game.
 - `leizilla` — candidate; public Brazilian legislation search, evidence, coverage and dataset surface; promoted after verifying the Astro/Svelte web application and operational workflows on 2026-08-14.
 - `ecos-do-pampa` — candidate; AI-persona editorial publication with long-form reading, chronological archive, tags, RSS and a persistent reading mode. Source plus current Pages build/deploy evidence was verified on 2026-08-16; rendered browser evidence remains pending.
+- `tembiu` — candidate; static Brazilian digital-menu/order/PWA product. Current source contains a real menu/search/cart/address/order-history surface and GitHub Pages has successful deployment history; public documentation still mixes current behavior with template URLs and simulated/aspirational capabilities, tracked by `franklinbaldo/tembiu#16`. Rendered browser evidence remains pending.
 
 ## Strong UI/product candidates requiring surface verification
 
@@ -37,7 +38,6 @@ Repository name/history/structure suggests a human-facing product or site, but t
 
 - `portfolio`
 - `hronir`
-- `tembiu`
 - `hilda`
 - `autonovel`
 - `nanochat`
@@ -54,8 +54,6 @@ Repository name/history/structure suggests a human-facing product or site, but t
 - `manifold-football`
 - `querido-diario-cobertura`
 - `ppi`
-
-`tembiu` describes a real digital-menu/order product vision, but its README contains template/stale repository URLs; verify the current implementation before promoting it.
 
 Each remaining candidate needs one evidence pass: actual human-facing surface, deployment, product job and whether shared visual grammar would reduce real duplication or improve task quality.
 
@@ -183,6 +181,10 @@ Intuit + Formato Legal generated Cobogó #277: source/editor ↔ rendered previe
 ### Knowledge-output producers
 
 Textura currently belongs adjacent to Cobogó rather than inside the visual consumer registry: its primary product is a transparent, Obsidian-native Markdown knowledge garden generated from a document corpus. If a Franklin-owned reader/browser for that generated vault appears, evaluate that surface as the consumer and preserve the distinction between generator capability and rendered human interface.
+
+### Commerce / ordering
+
+Tembiu provides a first direct consumer pressure case for a Brazilian menu/order workflow: discover items → filter/search → compose cart → provide delivery details → choose/share payment/order state. Its identity and restaurant/payment semantics remain consumer-local. Current evidence is source + Pages deployment history, not rendered-browser proof; documentation truthfulness is tracked downstream before any shared Cobogó relation is promoted from this single consumer.
 
 ### Immersive / game interaction
 
