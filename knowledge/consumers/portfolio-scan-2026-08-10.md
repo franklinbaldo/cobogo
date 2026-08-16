@@ -36,7 +36,6 @@ This file records the broad repository inventory used to discover potential Cobo
 Repository name/history/structure suggests a human-facing product or site, but this scan has not yet confirmed current deployment/role strongly enough to register adoption needs:
 
 - `portfolio`
-- `textura`
 - `hronir`
 - `tembiu`
 - `hilda`
@@ -69,6 +68,7 @@ These were inspected enough to avoid treating a web-related word, product vision
 - `minha-receita` — **not currently a Franklin Cobogó consumer on present evidence**. The repo is an API/data service with external documentation/status surfaces; no Franklin-owned product UI was identified in this scan.
 - `egregora-v3` — **adjacent producer, not necessarily a direct consumer**. It generates MkDocs publication sites. Cobogó integration would make more sense as an optional output/theme capability for generated sites than by treating the generator engine itself as a visual consumer.
 - `portfolio` — README describes a portfolio of projects, but no current deploy/product surface was confirmed; keep as weak candidate until actual site evidence appears.
+- `textura` — **adjacent knowledge-output producer, not a current direct Cobogó consumer on 2026-08-16 evidence**. Textura is a Python CLI/metacognitive agent that ingests document collections and produces an Obsidian-native Markdown knowledge garden (`Narrative.md`, temporal notes, atomic notes, mysteries and `_Meta/`). The repository has CI but no owned web/app UI or deploy surface was found. Its generated vault is a plausible future input to a human-facing knowledge reader, but that reader would be the visual consumer; do not infer Cobogó adoption from the Obsidian-ready output itself.
 - `Exploreon` — **not a current direct consumer on 2026-08-16 evidence**. The repository contains a detailed product/game-development document plus Python modules for QR and World ID flows, but no owned web/app surface, frontend build or deployment surface was found. Reconsider only when the experience-verification product acquires a real human-facing interface.
 - `caixaaberta` — **adjacent public-data producer, not a current direct Cobogó consumer on 2026-08-16 evidence**. The repository owns ingestion/transformation/geocoding/publication machinery for Caixa real-estate data and publishes artifacts, but its current tree exposes pipeline/data assets rather than a Franklin-owned human-facing application. A future search/map/data-reading surface could become a consumer; the dataset itself is useful cross-project input without implying UI adoption.
 
@@ -179,6 +179,10 @@ Formato Legal + Sisprev generated Cobogó #276: screen-to-paginated-document gra
 ### Authoring / preview workspace
 
 Intuit + Formato Legal generated Cobogó #277: source/editor ↔ rendered preview is a reusable relation independent of either product's aesthetic.
+
+### Knowledge-output producers
+
+Textura currently belongs adjacent to Cobogó rather than inside the visual consumer registry: its primary product is a transparent, Obsidian-native Markdown knowledge garden generated from a document corpus. If a Franklin-owned reader/browser for that generated vault appears, evaluate that surface as the consumer and preserve the distinction between generator capability and rendered human interface.
 
 ### Immersive / game interaction
 
