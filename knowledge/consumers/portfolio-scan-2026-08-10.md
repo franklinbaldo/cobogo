@@ -3,7 +3,7 @@ type: consumer-discovery
 title: Franklin repository consumer scan — 2026-08-10
 status: first-round-complete
 related_issue: https://github.com/franklinbaldo/cobogo/issues/273
-last_verified: 2026-08-14
+last_verified: 2026-08-16
 ---
 
 # Franklin repository consumer scan — 2026-08-10
@@ -29,10 +29,7 @@ This file records the broad repository inventory used to discover potential Cobo
 - `rationality-club-latam` — candidate; community diary/archive publication.
 - `aleph-the-game` — candidate; React/Vite interactive AI-assisted game.
 - `leizilla` — candidate; public Brazilian legislation search, evidence, coverage and dataset surface; promoted after verifying the Astro/Svelte web application and operational workflows on 2026-08-14.
-
-## Confirmed Pages/site surface still awaiting product-purpose classification
-
-- `ecos-do-pampa` — GitHub Pages deploy and Astro build are confirmed, but current package metadata appears inherited/ambiguous; inspect actual pages/content before assigning a durable consumer identity.
+- `ecos-do-pampa` — candidate; AI-persona editorial publication with long-form reading, chronological archive, tags, RSS and a persistent reading mode. Source plus current Pages build/deploy evidence was verified on 2026-08-16; rendered browser evidence remains pending.
 
 ## Strong UI/product candidates requiring surface verification
 
@@ -173,7 +170,7 @@ Astronauta and Sisprev provide independent evidence for dense state/evidence/rel
 
 ### Editorial / provenance / archive
 
-O Vigia, Quem São Eles?, Franklin blog, The Theater, The Lab, Rationality Club LatAm and Adi blog provide a broad publication family. This generated Cobogó #278 rather than forcing editorial needs into the data-reading issue.
+O Vigia, Quem São Eles?, Franklin blog, The Theater, The Lab, Rationality Club LatAm, Adi blog and Ecos do Pampa provide a broad publication family. Ecos do Pampa adds a persona-led regional publication with archive/RSS/reading-mode behavior, but currently only source + build/deploy evidence; it must not be counted as independent rendered evidence until captured in-browser. This family generated Cobogó #278 rather than forcing editorial needs into the data-reading issue.
 
 ### Document / print
 
