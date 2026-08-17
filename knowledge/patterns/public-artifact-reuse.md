@@ -7,6 +7,7 @@ consumer_evidence:
   - ../consumers/causaganha.md
   - ../consumers/leizilla.md
   - ../consumers/ficha.md
+  - ../consumers/quem-sao-eles.md
 ---
 
 # Public artifact reuse
@@ -56,11 +57,21 @@ Keep the primary product task primary. A technical reuse path can live behind an
 
 Do not turn a public home into a README, duplicate the same information in generic cards or manufacture a “developer” destination that does not exist.
 
+## Use here and take the artifact are distinct jobs
+
+A public data product may legitimately support both an in-place task and an independent artifact handoff. These should share source/snapshot context without being collapsed into one action.
+
+Ficha demonstrates one end of that relation by separating **Consultar aqui** from **Levar a base** toward the manifest and preserved snapshot assets. Quem São Eles demonstrates another: the same PEP page provides client-side search over the current Parquet and a direct link to that exact Parquet, with authority and competence adjacent. Its reproducible browser gate also proves that the in-place search actually reads the linked snapshot.
+
+Do not standardize those labels or layouts. The reusable relation is **use the product here ↔ take the canonical product with you**, with enough shared context to understand that both refer to the same evidence boundary.
+
 ## Negative / limiting evidence
 
 Ficha demonstrates that external reuse does not always need an inline technical query. Its public surface distinguishes **Consultar aqui** from **Levar a base**, with the latter leading to the real manifest and preserved snapshot assets. That is enough for its current product job; forcing a DuckDB recipe into the same surface would over-specify the pattern.
 
-This limiting evidence is part of the pattern: the invariant is discoverable and truthful handoff, not mandatory query chrome.
+Quem São Eles adds a different limit: even where an interactive DuckDB path exists, the reusable artifact should remain directly reachable rather than being hidden behind the application. The browser gate first exposed a broken Project Pages join in that direct link; preserving the failed capture as evidence prevented the interface from claiming a handoff that did not actually resolve.
+
+These limits are part of the pattern: the invariant is discoverable, truthful handoff and reproducible use where supported, not mandatory query chrome.
 
 ## Evidence boundary
 
@@ -70,5 +81,7 @@ Leizilla and CausaGanha independently exercise the full relation on rendered pub
 - CausaGanha exposes archived source/data products and a reuse path from its project surface; #874/#875 further separate the textual catalog contract from consumer-local DuckDB materialization.
 
 Ficha provides a third, intentionally narrower implementation and prevents overfitting the relation to DuckDB or inline SQL.
+
+Quem São Eles now adds rendered browser evidence from another interaction model: the PEP route exposes the exact monthly Parquet alongside a client-side search, and its capture gate reaches `search-ready` and completes a deliberately empty query against that published snapshot. This strengthens the pattern without changing its abstraction level.
 
 The pattern remains `experimental`: consumer evidence is strong enough to name the semantic relation, but continued use should test other artifact types and whether the same hierarchy remains useful outside public-data products.
