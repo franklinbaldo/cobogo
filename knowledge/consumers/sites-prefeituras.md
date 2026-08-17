@@ -19,9 +19,9 @@ capabilities_used:
   - keyboard focus visibility
   - explicit data-load versus empty-result state semantics
 unmet_needs:
-  - restore main deployment through github-pages environment policy
+  - allow `main` in the `github-pages` environment deployment branch policy; the only allowed branch is stale `master`
   - inspect the rendered Tabulator ranking before deriving shared comparison relations
-last_verified: 2026-08-13
+last_verified: 2026-08-17
 ---
 
 # Sites Prefeituras
@@ -30,9 +30,9 @@ Sites Prefeituras is a data-reading consumer candidate: a MkDocs + Tabulator das
 
 ## Evidence tier
 
-The source and docs build are inspectable, but the deployed dashboard is **not currently live evidence**. The latest verified main deployment built the docs successfully and then GitHub rejected the deployment before runner execution because `main` is not allowed by the `github-pages` environment protection policy. `sites_prefeituras#69` tracks the repository-setting fix.
+The source and docs build are inspectable, but the deployed dashboard is **not currently live evidence**. The latest verified deployment run (`31670359477`, 2026-08-13) built the MkDocs site successfully, then the `Deploy to GitHub Pages` job failed before any runner step (`runner_id: 0`, `steps: []`). Direct inspection of the `github-pages` environment on 2026-08-17 shows `custom_branch_policies: true` with exactly one allowed deployment branch: stale `master`. The maintained/default branch is `main`. `sites_prefeituras#69` tracks the repository-setting fix.
 
-Until that setting is repaired and the resulting artifact is captured, this consumer remains source-tier for Cobogó derivation. Source evidence may justify clear local design corrections; it does not satisfy #267's independent rendered-consumer threshold.
+Until that setting is repaired and the resulting artifact is captured, this consumer remains source/workflow-tier for Cobogó derivation. Source evidence may justify clear local design corrections; it does not satisfy #267's independent rendered-consumer threshold.
 
 ## Consumer corrections — 2026-08-12 to 2026-08-13
 
@@ -51,7 +51,7 @@ These are consumer quality corrections, not a shared component extraction.
 
 The repository still has a pre-existing Python CI failure (`storage.py` F402) unrelated to the dashboard changes, tracked in #70. The dashboard PRs' dedicated Build Docs job remained green; base debt was not folded into the design changes.
 
-The more important remaining limitation is evidentiary, not source correctness: the GitHub Pages environment still rejects `main` before deployment. Therefore the campaign has not yet observed the post-correction Tabulator surface in its deployed form.
+The more important remaining limitation is evidentiary, not source correctness: the `github-pages` environment is configured with one custom branch policy for `master`, while the maintained/default branch is `main`. Therefore the campaign still has not observed the post-correction Tabulator surface in its deployed form. Workflow configuration, a successful build artifact, environment eligibility and a live rendered Pages site remain separate evidence classes.
 
 ## Relation to #267
 
