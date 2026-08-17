@@ -12,7 +12,7 @@ constraints:
   - do not confuse template smoke evidence with browser/runtime or public-deploy proof
 capabilities_used: []
 operational_capabilities:
-  - `perquire serve` local human-facing web surface
+  - "perquire serve local human-facing web surface"
   - manual embedding investigation and file upload
   - batch investigation and status/history surfaces
   - API documentation
