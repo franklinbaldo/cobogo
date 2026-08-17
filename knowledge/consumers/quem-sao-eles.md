@@ -25,9 +25,11 @@ unmet_needs:
 integration_evidence:
   - https://github.com/franklinbaldo/quem-sao-eles/issues/7
   - https://github.com/franklinbaldo/quem-sao-eles/pull/8
+  - https://github.com/franklinbaldo/quem-sao-eles/issues/10
   - https://github.com/franklinbaldo/quem-sao-eles/issues/11
   - https://github.com/franklinbaldo/quem-sao-eles/issues/13
   - https://github.com/franklinbaldo/quem-sao-eles/pull/12
+  - https://github.com/franklinbaldo/quem-sao-eles/pull/14
 last_verified: 2026-08-17
 ---
 
@@ -37,9 +39,11 @@ Quem São Eles? is a high-confidence Cobogó consumer candidate because it combi
 
 ## Editorial surface — negative evidence still current
 
-The 2026-08-11 inspection remains relevant for the editorial catalog itself: a fresh checkout builds, but the home has no populated politician/news collection to exercise the intended profile/chronology surface. Astro starter-template footer boilerplate also remains. This still means the editorial catalog is **not** ready to prove a shared editorial pattern merely from its source structure.
+The 2026-08-11 inspection remains relevant for the editorial catalog itself: a fresh checkout builds, but the home has no populated politician/news collection to exercise the intended profile/chronology surface. This still means the editorial catalog is **not** ready to prove a shared editorial pattern merely from its source structure.
 
-That negative evidence no longer justifies describing the whole project as lacking a real product surface, however. The repository contains a distinct PEP data product with committed Parquet snapshots and a DuckDB-WASM search route.
+The old Astro starter footer no longer belongs to that negative evidence. The full-page PEP capture made `Your name here` plus Astro social links visible as a credibility defect already tracked by #10; PR #14 replaced them with a minimal factual footer (`Quem São Eles?` + the existing repository as `Código e dados no GitHub`) without inventing author identity, social channels or marketing. The PR browser capture passed before merge, and the same capture passed again on `main` after squash merge `1fb2c8eb55e577de07e274386b06ceec7a2bb50f` (run `32075299012`).
+
+That editorial limitation no longer justifies describing the whole project as lacking a real product surface, however. The repository contains a distinct PEP data product with committed Parquet snapshots and a DuckDB-WASM search route.
 
 ## Project-surface reconciliation — 2026-08-15
 
