@@ -34,8 +34,11 @@ integration_evidence:
   - https://github.com/franklinbaldo/leizilla/pull/146
   - https://github.com/franklinbaldo/leizilla/pull/147
   - https://github.com/franklinbaldo/leizilla/issues/148
+  - https://github.com/franklinbaldo/leizilla/issues/129
+  - https://github.com/franklinbaldo/leizilla/pull/150
 local_identity: playful Leizilla dinosaur identity applied to a rigorous public legal-data product
-last_verified: 2026-08-15
+last_verified: 2026-08-17
+last_journey_review: 2026-08-17
 ---
 
 # Leizilla
@@ -59,6 +62,39 @@ The repository contains an Astro/Svelte application under `web/` with concrete s
 This is enough to establish a real human task and therefore a Cobogó consumer relationship. It does **not** establish active Cobogó package adoption.
 
 Leizilla #147 closed a concrete continuity gap in that task. Search-result links now preserve `q` together with the first matching-device hash; the law page derives matching current devices from rows it already loads, exposes term + count + a textual navigation list, marks matching device blocks, and offers a return path that restores the query on the search surface. The implementation deliberately treats the published **device** as the highlight unit instead of reconstructing substring-level matching in the DOM.
+
+## Journey review — 2026-08-17
+
+The highest-value journey reviewed in this pass was a **reader arriving from search or an external link who needs to understand a norm, decide whether the displayed text is trustworthy, and leave with something citable or reusable**. This segment is derived from the product itself: public search, stable law URLs/hashes, structured legal text, URN-LEX identifiers, evidence links, version history and downloadable data all exist in the current surface.
+
+The observed journey is:
+
+```text
+arrival / search
+  -> identify the norm and matching device
+  -> read the current structured text
+  -> understand current/revoked state and compilation date
+  -> inspect versions when chronology matters
+  -> inspect evidence / preserved source when trust matters
+  -> copy a stable identifier or deep link
+  -> download this norm or reuse the full public dataset
+```
+
+The surface already supports most of this unusually well. In particular, search context survives the transition into the law, a direct section nav exposes `Texto / Versões / Evidências / Dados`, the evidence surface links the structured IA item/XML/parse metadata and per-device hashes, and the data surface exports the current law as JSON/CSV while also reaching the same Parquet used by the browser.
+
+### Material journey finding: legal-date truthfulness
+
+A trust-breaking semantic mismatch was found in the law header. The UI rendered the field `data_publicacao` as **“Publicada em”**, but Leizilla #129 documents that this value is currently derived from the representative date encoded in the URN-LEX and represents the act/signature-promulgation date, not necessarily publication in the Diário Oficial. The `Dados` section repeated the same assumption when explaining a missing URN.
+
+That difference is material for a legal reader: two dates can differ, and the surface must not turn a schema naming debt into a stronger public legal claim. Leizilla #150 changes only the presentation boundary to **“Data do ato”** / **“data do ato desconhecida”** while leaving #129 open for the structural ETL/schema decision. This is a consumer-local truthfulness correction, not a new Cobogó component.
+
+### Remaining journey gaps
+
+- **Coverage before absence:** the law-not-found state correctly explains that missing S4 rows do not prove the norm does not exist and offers an IA evidence search. The broader coverage page is honest that S1–S3 counters are not yet exported. A future complete journey should make the boundary between `not in structured dataset` and `not captured` progressively more inspectable once those counters/artifacts exist; do not fake this before the pipeline exports it.
+- **Publication date remains structurally unresolved:** the presentation fix prevents a false claim, but #129 still owns whether the dataset should rename `data_publicacao` to an act-date field or separately capture a true Diário Oficial publication date.
+- **Evidence remains intentionally layered:** the reader can reach evidence from the page nav, but the raw source is not always a direct URL because source identifiers may live inside IA range buckets. This is a real architecture constraint, not a UI bug; avoid pretending every logical source id has a stable direct file URL.
+
+No new shared journey pattern is promoted from this review. The useful cross-consumer lesson is already covered by Cobogó's existing provenance/freshness and public-artifact-reuse knowledge: a public surface must distinguish what the artifact proves from what its pipeline or schema merely intends.
 
 ## Project machinery behind the surface
 
