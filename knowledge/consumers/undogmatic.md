@@ -11,6 +11,10 @@ constraints:
   - do not present experimental token similarity as the canonical LLM-first ShameScore
   - model/provider credentials must remain outside rendered or versioned evidence
 capabilities_used: []
+operational_capabilities:
+  - local Gradio token-heatmap application
+  - versioned Python CI
+local_identity: critical legal-research instrument whose value is explanatory rigor, not decorative authority signaling
 unmet_needs:
   - reconcile the legacy ShameFeeling token-heatmap surface with the current LLM-first ShameScore contract (undogmatic#20)
   - add a smoke/import gate if the Gradio surface remains an active product surface
