@@ -11,22 +11,32 @@ constraints:
   - community identity remains local
   - generated content should remain readable as publication, not pipeline output
 capabilities_used: []
+integration_evidence:
+  - https://github.com/franklinbaldo/rationality-club-latam/issues/4
+  - https://github.com/franklinbaldo/rationality-club-latam/pull/5
 unmet_needs:
   - chronology/archive rhythm
   - provenance inscription for generated editorial content
-  - freshness derived from published content rather than hard-coded metrics
   - lightweight theming over shared reading foundations
-last_verified: 2026-08-16
+last_verified: 2026-08-17
 ---
 
 # Rationality Club LatAm
 
 Rationality Club LatAm is a candidate consumer because it is structured as a GitHub Pages publication of community diaries generated from WhatsApp exports through Egregora/Gemini.
 
-Current source evidence is stronger for the intended publication architecture than for current operational freshness. `mkdocs.yml` configures a chronological blog with archives/categories/authors, and the README documents a scheduled generation pipeline. However, the home currently presents hard-coded project metrics (`42` posts, `12` anonymous participants, `127` enriched links and `Última atualização: 2025-01-12`) as if they were current. The latest inspected `Generate Daily Posts` run (`20155290253`, 2025-12-12) failed, so configured daily automation must not be treated as evidence of recent successful generation.
+Its current source evidence is stronger for the publication architecture than for current generation health. `mkdocs.yml` configures the publication surface and the repository contains a scheduled generation workflow, but capability/configuration is not treated as proof of recent successful generation.
 
-Consumer issue [rationality-club-latam#4](https://github.com/franklinbaldo/rationality-club-latam/issues/4) tracks the smallest surface correction: derive freshness/counts from actually published content where possible and remove or qualify unreconstructible metrics. This is negative evidence for provenance/freshness work: a generated-publication surface needs to distinguish published corpus facts from pipeline capability and from stale seed/demo numbers.
+## Freshness correction — 2026-08-17
 
-This case supports the experimental [Automation claim and observable freshness](../patterns/automation-observable-freshness.md) relation alongside The Theater and adjacent Hrönir evidence. It does not prove current rendered adoption: until a deployed capture is independently verified, treat this review as source + workflow-history evidence, not as current pixel proof or proof of healthy automation.
+The 2026-08-16 review found a concrete truthfulness gap: the home presented hard-coded project metrics (`42` posts, `12` anonymous participants, `127` enriched links and `Última atualização: 2025-01-12`) as if they were current, while the inspected public tree under `docs/daily/` contained only the archive index and the later inspected generation history included failures.
+
+Consumer issue [rationality-club-latam#4](https://github.com/franklinbaldo/rationality-club-latam/issues/4) tracked the correction. [PR #5](https://github.com/franklinbaldo/rationality-club-latam/pull/5) removes unreconstructible current metrics from the public home and rewrites the automation language so that the **published archive is the public source of truth** for what actually exists. The README now preserves the same boundary: scheduled workflow configuration describes a capability; published content proves publication; workflow history is the appropriate place to assess operational health.
+
+The PR also turns the existing strict MkDocs build into a pull-request gate while leaving Pages artifact upload/deploy restricted to `main`. The PR build passed before merge and #5 was merged as `91010aff44ff582a093b1602bd0e488596dd226c`. Post-merge Pages validation is tracked separately and must not be inferred from the successful PR build until the `main` run completes.
+
+This is **positive implementation evidence** for the experimental [Automation claim and observable freshness](../patterns/automation-observable-freshness.md) relation: a generated publication can preserve editorial language while explicitly making `configured automation != successful recent execution != published corpus`. It is still not browser/pixel evidence of the deployed correction until the resulting Pages surface is independently verified.
+
+The case does not imply a shared status widget, GitHub Actions badge or universal freshness component. Its community identity, MkDocs implementation and editorial presentation remain local.
 
 It may share chronology/provenance grammar with O Vigia, Quem São Eles? and other publishing surfaces, while its community identity and MkDocs implementation remain local.
