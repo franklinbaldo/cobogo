@@ -6,6 +6,7 @@ related_issue: https://github.com/franklinbaldo/cobogo/issues/354
 consumer_evidence:
   - ../consumers/the-theater.md
   - ../consumers/rationality-club-latam.md
+  - ../consumers/funes-memories.md
 ---
 
 # Automation claim and observable freshness
@@ -48,6 +49,7 @@ The relation is semantic, not a shared status widget.
 
 - a fiction publication can preserve narrative primacy and disclose automation status backstage;
 - a generated community publication can derive freshness from published posts instead of exposing workflow jargon;
+- an agent-memory archive can show its latest materialized memory without claiming that an external agent is currently running;
 - a data product may legitimately expose timestamps, versions or run identifiers more explicitly;
 - a README-first protocol can qualify operational claims in prose.
 
@@ -67,13 +69,14 @@ One class must not silently substitute for another.
 
 ## Evidence boundary
 
-Three materially different projects support the relation:
+Four materially different projects now support the relation:
 
 - **The Theater** is a registered Cobogó consumer. Its public premise says something happens every 15 minutes, while the inspected repository history did not support a current heartbeat. The local correction is tracked in [the-theater#278](https://github.com/franklinbaldo/the-theater/issues/278). This is source + workflow-history + surface-copy evidence, not proof that the production is broken.
 - **Rationality Club LatAm** is a registered Cobogó consumer. Its generated-publication surface previously presented daily-generation/current-metrics language while the inspected generation history was stale/failing and the displayed metrics were hard-coded. [rationality-club-latam#4](https://github.com/franklinbaldo/rationality-club-latam/issues/4) / [PR #5](https://github.com/franklinbaldo/rationality-club-latam/pull/5) now provide positive implementation evidence: the home removes unreconstructible current metrics, treats the published archive as the public source of truth and explicitly separates configured automation from successful execution and published output. The PR's strict MkDocs build passed before merge. Treat the implementation as source + CI evidence until the merged Pages surface is independently verified.
+- **Funes Memories** is a registered Cobogó consumer whose home previously used a pulsing `SYSTEM LIVE` label even though the repo could prove only a published archive and the dates of materialized memories. [funes-memories#27](https://github.com/franklinbaldo/funes-memories/pull/27) replaces the operational-sounding claim with factual archive status, derives the latest memory from the content collection and explicitly states that publication availability does not imply current agent activity. The same PR adds the production Astro build as a pull-request gate, which passed before merge. This is a second materially different positive implementation, but its evidence remains source + CI + merged implementation until the resulting Pages surface is captured.
 - **Hrönir** is adjacent evidence rather than a registered visual consumer: its present human surface is primarily README + CLI/data artifacts, not a Franklin-owned web application. Its README nevertheless makes autonomous daily generation part of the product premise while inspected scheduled runs were failures. The local correction is tracked in [hronir#112](https://github.com/franklinbaldo/hronir/issues/112). Keeping Hrönir adjacent prevents evidence gathering from inflating the consumer registry.
 
-The three cases are sufficient to name this relation as `experimental` because they share the semantic problem despite very different products and surfaces. They are not enough to standardize a component API or mark the relation stable.
+These cases are sufficient to keep the relation as a well-supported `experimental` pattern because they share the semantic problem despite very different products and surfaces. They are not enough to standardize a component API or mark the relation stable.
 
 ## Counterexamples and non-goals
 
@@ -90,4 +93,4 @@ Automation that is invisible to the product promise may remain entirely operatio
 
 ## Promotion pressure
 
-Before considering stable promotion, look for stronger rendered/adoption evidence: at least two materially different consumers should demonstrate a truthful user-facing treatment backed by current observable execution or publication evidence, while retaining distinct presentation. Rationality Club LatAm now supplies one positive implementation, but stabilization still needs independently verified rendered evidence and another materially different positive treatment. Negative evidence remains useful if a project correctly chooses to suppress or qualify automation claims instead of exposing operational state.
+Before considering stable promotion, require independently verified rendered evidence from at least two materially different positive implementations, backed by observable publication/execution evidence and retaining distinct presentation. Rationality Club LatAm and Funes Memories now provide two positive source/CI implementations, but neither should be silently upgraded to rendered proof without inspecting the merged public surfaces. Negative evidence remains useful if a project correctly chooses to suppress or qualify automation claims instead of exposing operational state.
