@@ -13,18 +13,20 @@ constraints:
   - do not treat local styling or Astro architecture as Cobogó adoption
 capabilities_used: []
 unmet_needs:
-  - reconcile the home `SYSTEM LIVE` claim with observable publication/activity evidence
-  - update stale repository documentation that still describes the pre-Astro static/Telegram/sample-data architecture
   - obtain controlled rendered capture of home and article states before using this consumer as visual pattern evidence
 last_verified: 2026-08-17
 ---
 
 # Funes Memories
 
-Funes Memories is a candidate editorial consumer with a real public surface. GitHub Pages reports the site as `built`, public and served from `main`/root. The current implementation is Astro with a content collection, chronological home, article routes and RSS; this differs materially from the root README, which still describes a pure HTML/CSS/JavaScript Telegram Web App using static sample data.
+Funes Memories is a candidate editorial consumer with a real public surface. GitHub Pages reports the site as `built`, public and served from `main`/root. The current implementation is Astro with a content collection, chronological home, article routes and RSS.
 
-The product relation is `agent work/memory -> editorialized chronicle -> public reading/archive`. That makes the project potentially useful evidence for editorial reading and for truthful presentation of automated publication state, but current evidence is source + Pages configuration/deploy state rather than a controlled browser capture.
+The product relation is `agent work/memory -> editorialized chronicle -> public reading/archive`. That makes the project useful evidence for editorial reading and for truthful presentation of automated publication state.
 
-A negative finding is currently more important than visual convergence. `src/pages/index.astro` renders a pulsing `SYSTEM LIVE` state, while the inspected editorial collection contains content from February 2026 and later repository activity is primarily dependency/metadata maintenance. This does **not** prove that the agent is broken or intentionally paused. It proves only that `site served` and `agent/editorial system currently active` are different evidence classes. `funes-memories#26` owns the downstream decision: define what “live” means, derive it from observable evidence if it is operational, or make it clearly atmospheric if it is not.
+A prior negative finding was that `src/pages/index.astro` rendered a pulsing `SYSTEM LIVE` state while the inspected editorial collection contained content from February 2026 and later repository activity did not independently prove current agent production. This did **not** prove that the agent was broken or intentionally paused; it proved only that `site served` and `agent/editorial system currently active` are different evidence classes.
 
-Do not promote a shared component or capability from this single consumer. A useful next pressure test is a reproducible rendered capture after the status semantics are reconciled, comparing home orientation, latest-memory freshness and article/archive continuation without erasing the local literary-brutalist identity.
+[funes-memories#27](https://github.com/franklinbaldo/funes-memories/pull/27) now provides positive implementation evidence for [Automation claim and observable freshness](../patterns/automation-observable-freshness.md). The surface replaces `SYSTEM LIVE` with factual archive status, derives the latest observable memory from the Astro content collection, and states that publication availability does not imply current agent activity. The same PR updates the stale pre-Astro README and adds the production Astro build as a pull-request gate, with deployment skipped on PRs. That pre-merge build passed before squash merge.
+
+Evidence strength after #27 is **source + passing pre-merge production build + merged implementation**. Do not silently upgrade this to controlled browser/pixel proof until the merged Pages surface is captured and inspected. Likewise, the change intentionally does not diagnose whether any external agent is paused, healthy or inactive.
+
+No shared status component should be inferred. The useful shared relation is semantic: a literary surface may expose a reader-appropriate latest materialized memory while keeping operational uncertainty explicit and the local visual identity intact.
