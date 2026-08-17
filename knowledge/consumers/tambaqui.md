@@ -14,7 +14,7 @@ constraints:
 capabilities_used: []
 unmet_needs:
   - obtain reproducible browser capture of successful and missing-factor states
-  - verify whether the daily EC113 refresh workflow is currently operating or intentionally dormant (tracked in https://github.com/franklinbaldo/tambaqui/issues/6)
+  - decide and restore/document the real EC113 refresh policy; the daily workflow is currently disabled by inactivity (tracked in https://github.com/franklinbaldo/tambaqui/issues/6)
 last_verified: 2026-08-17
 ---
 
@@ -26,6 +26,6 @@ The project has a useful PROJECT-SURFACE split. Behind the page, `gerar_tabelas.
 
 The 2026-08-17 review found that the public `index.html` was not actually using that machinery: `fetchFactor()` returned a constant placeholder `1.1`, while the page presented a generic English/USD finance tracker. Its meta CSP also declared only `default-src 'self'` while depending on inline script/style and a CDN stylesheet, so the declared policy was incompatible with the page implementation. `tambaqui#4` / PR `#5` reconnect the surface to the versioned JSON, expose missing-data failures, make the purpose/source visible, keep the existing formula boundary unchanged, and add the first minimal pre-merge static surface gate.
 
-Evidence strength is Pages configuration + source + workflow/CI. This pass does **not** claim controlled browser/pixel proof. It also does not claim that the daily updater is healthy: the configured `daily_script_run.yml` currently has zero runs in the inspected workflow history. `tambaqui#6` tracks the operational question without assuming whether the schedule is broken, newly introduced, or intentionally dormant. Treat `dataset present`, `scheduled workflow configured`, and `fresh automated update` as separate evidence classes.
+Evidence strength is Pages configuration + source + workflow/CI. This pass does **not** claim controlled browser/pixel proof. The configured `daily_script_run.yml` was created in 2023, has zero recorded runs in the inspected workflow history, and GitHub currently reports the workflow itself as `disabled_inactivity`; the newer static-surface and Pages workflows are active. `tambaqui#6` tracks the product/operations decision: either re-enable the daily refresh and prove a current run, or document a different truthful freshness policy. Treat `dataset present`, `scheduled workflow configured`, and `fresh automated update` as separate evidence classes.
 
-A useful future pressure test is to capture the successful-calculation and missing-factor states against the deployed page, then verify the scheduled refresh independently. Keep legal methodology and factor-source policy downstream unless explicit domain evidence supports a shared abstraction.
+A useful future pressure test is to capture the successful-calculation and missing-factor states against the deployed page, then verify the selected refresh policy independently. Keep legal methodology and factor-source policy downstream unless explicit domain evidence supports a shared abstraction.
