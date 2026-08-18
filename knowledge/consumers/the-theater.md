@@ -14,12 +14,14 @@ capabilities_used: []
 operational_capabilities:
   - Astro publication surface
   - GitHub Actions collaborative-fiction heartbeat infrastructure
+  - pre-merge Astro build and Chromium home-capture gate configured in the repository
 unmet_needs:
   - narrative rhythm and long-form composition
   - archive/episode navigation
   - expressive theming without loss of readability
   - truthful automation freshness without turning the reader surface into an ops dashboard
-last_verified: 2026-08-16
+  - observe and inspect a successful run of the newly configured rendered-home gate
+last_verified: 2026-08-18
 ---
 
 # The Theater
@@ -37,3 +39,22 @@ Freshness is currently **negative evidence**, not proof of a healthy automation.
 Consumer issue [the-theater#278](https://github.com/franklinbaldo/the-theater/issues/278) tracks the product-local correction. Preserve the boundary: automation status can be progressively disclosed, but should not dominate the fictional reading surface.
 
 For Cobogó, this is evidence for the experimental [Automation claim and observable freshness](../patterns/automation-observable-freshness.md) relation. A configured workflow, historical heartbeat commit and current successful execution are distinct evidence classes. The pattern does not imply a generic status component or change this consumer's `adoption_status`/`capabilities_used`.
+
+## Verification follow-up — 2026-08-18
+
+The consumer now has stronger **configured validation infrastructure**, but the evidence boundary remains explicit.
+
+[The Theater #280](https://github.com/franklinbaldo/the-theater/pull/280) added a generic pull-request Astro build and Chromium home-capture path that serves the built artifact under the real `/the-theater/` Project Pages base path and preserves `the-theater-rendered-home` as a workflow artifact. It was squash-merged as `3a4d0dac2e07b7fa97d81f130a18ac2aa42d6cc9`.
+
+The public-copy correction was then reapplied separately in [The Theater #281](https://github.com/franklinbaldo/the-theater/pull/281): the home no longer needs to claim that something is currently happening every 15 minutes, and the README distinguishes configured 15-minute cadence from evidence of current activity. That PR deliberately does **not** diagnose the production as paused or broken.
+
+At the time of this verification, the GitHub connector reported no pull-request workflow runs associated with #281 head `cb4d6eed2f71a4bdc2851be23f87d4d5afec9123`. Therefore:
+
+```text
+capture gate configured -> proven
+capture gate observed executing on #281 -> not yet proven
+copy correction merged -> not yet proven
+heartbeat paused vs broken -> unresolved
+```
+
+Do not upgrade this consumer to positive rendered-browser evidence for automation freshness until the #281 capture actually runs and is inspected. The absence of an observed run is also not evidence that the proposed copy is wrong; it is an incomplete validation state.
