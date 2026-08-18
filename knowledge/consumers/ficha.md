@@ -2,7 +2,7 @@
 type: consumer
 title: Ficha
 repository: https://github.com/franklinbaldo/ficha
-adoption_status: candidate
+adoption_status: adopting
 surface: live public data exploration web over a versioned CNPJ dataset
 interaction_profile: company lookup, analytical filtering, provenance/freshness framing, temporal comparison and relationship exploration
 runtime: Astro + Svelte 5 static frontend on GitHub Pages with DuckDB-WASM
@@ -10,7 +10,10 @@ constraints:
   - serverless public delivery
   - large analytical datasets in browser
   - preserve fast direct lookup and analytical modes
-capabilities_used: []
+capabilities_used:
+  - framework-agnostic core web foundations via immutable pinned snapshot
+  - provenance and freshness
+  - public artifact reuse
 operational_capabilities:
   - github-pages-deploy
   - published-site-smoke-test
@@ -22,93 +25,120 @@ unmet_needs:
   - data-reading patterns
   - analytical filters and comparison grammar
   - multi-snapshot temporal comparison grammar
+  - stable/package distribution path for future core upgrades
 integration_evidence:
   - https://github.com/franklinbaldo/ficha/pull/143
   - https://github.com/franklinbaldo/ficha/pull/210
   - https://github.com/franklinbaldo/ficha/pull/214
   - https://github.com/franklinbaldo/ficha/pull/217
   - https://github.com/franklinbaldo/ficha/pull/218
-last_verified: 2026-08-15
+  - https://github.com/franklinbaldo/ficha/issues/221
+  - https://github.com/franklinbaldo/ficha/pull/222
+last_verified: 2026-08-18
 ---
 
 # Ficha
 
-Ficha is a high-confidence Cobogó consumer candidate. It has a real Astro/Svelte frontend deployed to GitHub Pages and mixes direct company lookup with in-browser analytical exploration over Parquet/DuckDB-WASM.
+Ficha is now a proven Cobogó brownfield core adopter. It remains a distinct public CNPJ archive/search product: Astro/Svelte, DuckDB-WASM, Receita Federal snapshots, preservation through Internet Archive and a dated-public-archive information model all remain consumer authority.
 
-Its strongest current synergy is with CausaGanha: both are static public data-reading products that need tables, filters, metadata, status/freshness and comparison without becoming generic dashboards. Candidate status still does not imply `cobogo/core` adoption: the changes below are consumer-local implementation of grammar and accessibility relations, not a package dependency.
+The current relationship is deliberately layered:
 
-## Current public contract — verified 2026-08-15
+```text
+pinned Cobogó core snapshot
+→ Ficha semantic mapping / theme values
+→ Ficha local page and component CSS
+```
 
-The earlier 2026-08-11 state is no longer current. `web/public/manifest.json` now publishes `current: 2026-06`, with a real snapshot backed by Internet Archive URLs and per-file checksums.
+This is adoption evidence, not a universal visual skin.
 
-The search surface exposes a provenance band as a real definition list with the relation:
+## Core adoption — verified 2026-08-18
+
+[Ficha #222](https://github.com/franklinbaldo/ficha/pull/222) pressure-tested `cobogo/core` on the public home and merged as `50c38b17871b9c1ef00fe3dff196781c8f493aa5` after normal CI and the repository's Project Pages visual-capture gate passed.
+
+Because no suitable package release was used for this pressure test, Ficha vendors the exact `src/styles/core.css` bytes from Cobogó commit `bca94e2da68c23ab36b79453607c3d25eb20100e`. `web/cobogo-core.pin.json` records the upstream repository, commit, path and Git blob SHA `afe206e4c0e82392ed4ee41dddee77e71acbb10e`; the normal Ficha test suite recomputes that Git blob hash and fails if the downstream copy drifts.
+
+### Positive technical delta
+
+The migration did not merely add `--cobogo-*` names. Across the two pre-existing surface files changed (`web/src/pages/index.astro` and `web/src/components/Header.svelte`), it produced a net **12-line reduction** while transferring generic foundation ownership upstream:
+
+- document/body baseline and ordinary font inheritance move to core;
+- the access-path link's local focus ring is removed in favor of the shared two-tone focus relation;
+- the header's local focus outline is removed; the locally dark header declares `data-cobogo-inverted` so the same shared focus relation re-tones correctly;
+- reduced-motion baseline is now inherited from the shared core without a parallel local contract.
+
+Ficha deliberately retains concrete palette values, explicit light color scheme, dark-header appearance, page measure/composition, search/results, archive/provenance copy, DuckDB behavior and all domain-specific state. The mapping layer exists to keep those values local.
+
+### Rendered evidence
+
+The PR's visual-capture run built the real GitHub Project Pages path and captured the home at the same 1280×900 evidence scale used by the existing workflow.
+
+Compared with the pre-adoption capture, the core version preserved the Ficha hierarchy, header identity, provenance/status information and dual access paths. Typography/leading became slightly more relaxed and the known remote-data error wrapped across more lines, but no information was clipped or hidden.
+
+Both baseline and proposed captures were classified `remote-data-unavailable` because the CI browser environment could not fetch the Internet Archive `cnpjs.parquet`; both recorded zero page errors. This is deliberately preserved as negative evidence: the capture proves composition/error behavior under that environment, not deployed-data health.
+
+This second materially different external adoption is the evidence that satisfies the Core Web API's original two-consumer stability gate. It does **not** imply that every consumer should adopt core; The Lab remains a valid measured rejection case when the technical delta is negative.
+
+## Current public contract
+
+The public manifest publishes a current dated snapshot backed by preserved Internet Archive assets and checksums. The search surface exposes provenance as recoverable structure:
 
 - **Origem** — Receita Federal do Brasil;
-- **Competência** — visible month/year plus `<time datetime="YYYY-MM">`;
-- **Preservação** — Internet Archive when supported by the loaded manifest;
+- **Competência** — visible month/year plus machine-readable `<time datetime="YYYY-MM">`;
+- **Preservação** — Internet Archive when supported by the manifest;
 - **Verificação** — checksum claim derived from the loaded manifest contract;
-- **Estado** — explicit textual `Atual` / `Desatualizada`, with the explanatory stale warning preserved.
+- **Estado** — explicit textual current/stale state, with the stale explanation retained.
 
-Ficha #214 now also makes the product's two real access paths discoverable on the public home without inventing a `Dados` page or competing with the primary search: **Consultar aqui** keeps the interactive lookup as the main action, while **Levar a base** links to the real `manifest.json`, whose current snapshot points onward to preserved Internet Archive assets. The implementation uses spacing, inscription and hierarchy rather than two generic cards.
+The home also distinguishes two real user jobs without generic card duplication:
 
-Ficha #217 extends that project-surface correction to the repository entrance itself. The README now points directly to the public site and manifest, summarizes the real company/person/address/CNAE search modes, distinguishes use-in-place from dataset reuse, and describes the current sharded `companies` contract instead of presenting the older product model as current. This is public-surface maintenance, not evidence of a new Cobogó capability.
+- **Consultar aqui** — use the browser interface against the published competence;
+- **Levar a base** — open the real `manifest.json`, which points to preserved snapshot assets.
 
-The competence correction landed in Ficha #210 as a one-line semantic change after Ficha #143 had already made provenance structural through `Faixa + Inscrição`. Ficha #214 then closes the next Greenfield slice from #141: dataset discovery / dual access paths. These changes preserve the existing search behavior and local identity.
+The repository README likewise points to the public site and manifest and describes the current product/data contract rather than an obsolete model.
 
-## Operational capabilities — verified 2026-08-15
+## Operational capabilities — verified 2026-08-18
 
-These are repository capabilities, not claims of Cobogó adoption:
+These are repository capabilities, not extra design-system claims:
 
-- **GitHub Pages deploy + published-site smoke test** — the deploy workflow is exercised on `main`; after Ficha #214, build, Pages deployment and the deployed-site smoke test completed successfully for merge commit `6af77e9`.
-- **Visual capture** — `.github/workflows/visual-capture.yml`, introduced by Ficha #214 and hardened by Ficha #218, builds the site with the real GitHub Project Pages base path, serves the built artifact in CI and captures the first fold at 1280×900 in Chromium. The capture now waits for a semantic hydration outcome instead of a fixed delay, emits `capture-state.json`, and names the screenshot `home-hydrated-*`, `home-remote-data-unavailable-*` or `home-incomplete-*` according to the observed state. A screenshot is therefore only labelled hydrated when the UI actually reaches `Pronto para consultas`.
-- **Internet Archive upload** — `.github/workflows/etl-bootstrap.yml` wires the ETL pipeline to `IA_ACCESS_KEY` and `IA_SECRET_KEY` through GitHub Actions secrets and supports an explicit `skip_upload` dry-run. The secret values are neither needed nor recorded here.
-- **Internet Archive-backed snapshots** — the current public manifest points to preserved snapshot assets and checksums, so preservation is part of the product's public data contract rather than an unused credential path.
-- **External-source ETL** — the workflow resolves and transforms Receita Federal snapshot data and can reuse IA-mirrored raw ZIPs.
+- **GitHub Pages deploy + published-site smoke test** — production is built and deployed from `main`.
+- **Visual capture** — `.github/workflows/visual-capture.yml` builds with the real `/ficha/` base path, serves the artifact and captures Chromium evidence. It classifies `hydrated`, `remote-data-unavailable` or `incomplete` instead of treating every screenshot as hydrated proof.
+- **Internet Archive upload and preservation** — ETL workflows use Actions secrets through the repository's secure mechanism; values are not represented in this corpus. The public manifest points to preserved snapshot assets and checksums.
+- **External-source ETL** — the pipeline resolves/transforms Receita Federal snapshot data and can reuse IA-mirrored inputs.
+- **Core authority ratchet** — normal web tests verify the immutable upstream CSS blob, layer order and the absence of generic local focus/document contracts that were transferred to Cobogó.
 
-The first capture implementation exposed two useful negative-evidence cases rather than hiding them. The #214 iteration first revealed a wrong Project Pages base-path assumption, which was corrected before merge. Later, the CI environment could render the Ficha surface but could not load the remote Internet Archive Parquet. Ficha #218 turns that second limitation into machine-recoverable evidence: its validation run classified the state as `remote-data-unavailable`, named the screenshot accordingly and persisted the screenshot plus `capture-state.json`, while the status identified the failed request to the current snapshot's `cnpjs.parquet`. The visual-capture job still passed because its job is to capture and classify reality, not to pretend external network availability.
-
-This makes Ficha a useful upstream operational specimen for Cobogó: before inventing a separate browser-capture mechanism for a similar Astro/Pages consumer, inspect this workflow as evidence. The reusable relation is **capture + explicit semantic readiness classification**, not this exact Playwright script or these status strings. Reuse still depends on the target repository's runtime and deployment assumptions; do not copy it as a universal CI recipe merely because it worked here.
-
-No Save Page Now checkpoint of the rendered Ficha UI is claimed by this entry yet. Internet Archive dataset preservation, CI screenshot capture and rendered-page historical archiving remain distinct capabilities/evidence classes.
+No Save Page Now checkpoint of the rendered Ficha UI is claimed here. Dataset preservation, CI screenshot capture and historical web archiving remain separate evidence classes.
 
 ## Accessibility state
 
-The mechanical gaps recorded on 2026-08-11 are no longer current:
+Current verified behavior includes:
 
-- search fields have explicit labels that remain in the accessibility tree;
-- lifecycle/search-result changes use scoped `role="status"` / `aria-live` regions;
-- provenance uses `dl/dt/dd` semantics;
-- snapshot competence is machine-readable with `<time datetime>`;
-- state remains textual rather than colour-only;
-- global header links have an explicit non-colour `:focus-visible` treatment;
-- the new dataset link in #214 has explicit `:focus-visible` treatment and the access-path relation remains understandable without colour.
+- explicit search labels;
+- scoped status/live regions for lifecycle and query outcomes;
+- provenance `dl/dt/dd` semantics;
+- machine-readable competence time;
+- textual stale/current state rather than color-only state;
+- shared two-tone keyboard focus from Cobogó core, including the inverted header relation;
+- reduced-motion baseline from Cobogó core;
+- access paths understandable without color.
 
-Do not reopen these as if they were current defects without new counter-evidence.
+Do not reopen older mechanical findings without new counter-evidence.
 
 ## Evidence strength
 
-This update is supported by current source, manifest data, PR CI, reproducible Chromium capture infrastructure, `main`, Pages deployment and the deployed-site smoke test. The README reconciliation in #217 was verified against current `SearchCNPJ.svelte` and `manifest.json`, and its repository CI completed successfully before merge. Ficha #218 adds a stronger distinction inside rendered evidence itself: a screenshot now carries an explicit machine-readable hydration classification rather than relying on a reviewer to infer readiness from pixels.
+Ficha now has current source, manifest evidence, CI, immutable core-pin verification, controlled browser capture infrastructure, Pages deployment and published-site smoke evidence. These classes remain distinct.
 
-A `remote-data-unavailable` screenshot is evidence of composition and error behavior under the CI capture environment, not proof that the deployed data path is broken. A future `hydrated` screenshot would be stronger evidence that the same rendered capture environment reached the intended data-ready state. Conversely, the deployed-site smoke test proves reachability of the published site but is not a visual substitute for either screenshot class. Keep those evidence classes separate.
-
-Ficha now supplies stronger rendered evidence for the provenance/freshness and discoverable-data-contract relations, and stronger operational evidence for honest capture-state classification. Promotion of a shared Cobogó pattern still requires the independent rendered-consumer evidence required by #267; this single consumer implementation is not a universal component or CI template.
+A `remote-data-unavailable` CI screenshot is rendered evidence of composition and the external-data failure state. It is not proof that production data is broken. A deployed-site smoke proves reachability, not pixels. A pinned core snapshot proves shared authority, not healthy upstream package distribution.
 
 ## What remains local or unresolved
 
-The Greenfield review in Ficha #141 still identifies consumer-local work beyond the completed provenance and dual-access slices:
+- represent multiple published snapshots only when real temporal history supports a comparison surface;
+- inspect dense result/detail surfaces before deriving shared table/filter grammar;
+- obtain stronger hydrated browser evidence when the capture environment can reach the preserved data;
+- move future core updates onto a stable package/release transport when available rather than treating vendored snapshots as the permanent distribution model.
 
-- represent multiple published snapshots when the product has enough real temporal history to justify the comparison surface;
-- improve the generic card composition later through `Vão`, only after the higher-information-value slices are proven;
-- inspect dense result/detail surfaces in rendered form before deriving shared table/filter patterns.
-
-Ficha should continue to look like a **dated public archive**, not a CausaGanha clone or a generic Cobogó demo.
+Ficha should continue to look and behave like a **dated public archive**, not a CausaGanha clone or a generic Cobogó demo.
 
 ## Cross-consumer interpretation
 
-The useful reusable signal is the relation, not the component: external-source data should keep source, relevant time, preservation/verifiability and state recoverable, with exact displayed time represented machine-readably when possible. Ficha adds a second useful relation for research: a public data product can expose **use in place** and **take the dataset** as distinct access paths without turning them into duplicated card chrome or invented navigation.
+Ficha and CausaGanha now independently prove the small shared foundation contract under materially different surfaces. The reusable result is not a common page skeleton: it is the authority boundary **shared semantic foundation → local mapping/theme → local product CSS**, with actual duplicate contracts removed and observable behavior preserved.
 
-The README review adds a narrower project-surface observation: when a repository is itself a common public entry point, its README should not describe an obsolete product state that contradicts the current rendered surface. Keep this as operational evidence for now; it does not yet justify a Cobogó pattern or component.
-
-The #218 capture result adds another operational candidate relation: when a surface depends on remote hydration, visual evidence should preserve the distinction between **rendered**, **hydrated**, and **external-data-unavailable** rather than allowing one green screenshot job to collapse those states. This is evidence from one consumer and should remain an operational concept until another real consumer demonstrates the same need.
-
-Those relations should be compared against independent consumers before promotion. Ficha's categorical textual state and CausaGanha's continuous coverage metrics remain different expressions. That negative evidence still argues against a universal status component while supporting the narrower non-colour and provenance/freshness invariants.
+Ficha's categorical freshness state and CausaGanha's continuous coverage metrics remain deliberately different expressions. That negative evidence still argues against a universal status component while supporting narrower provenance, focus and non-colour invariants.
