@@ -16,7 +16,7 @@ unmet_needs:
   - dense review patterns
   - provenance and validation-state semantics
   - legal document and rule comparison rhythm
-last_verified: 2026-08-16
+last_verified: 2026-08-18
 ---
 
 # Sisprev
@@ -29,4 +29,8 @@ Current document/print evidence is stronger than the earlier source-only classif
 
 The repository also makes pagination reviewable before publication: site-affecting pull requests build the report, generate the cycle PDFs and upload them as a short-lived review artifact; pushes to `main` generate the full report set before the Pages deploy. This is concrete evidence for the experimental document/print relation: **screen-readable document -> paginated projection -> review -> publication/circulation**.
 
-The implementation remains Sisprev-local. WeasyPrint, its restrained administrative typography, exact page furniture, report-specific provenance wording and legal/audit document structure are not Cobogó APIs.
+Rendered-browser evidence is now explicit and separate from build/deploy evidence. `sisprev#153` adds a secret-free Chromium gate against the same Astro artifact served under the real `/sisprev/` base path. Run `32130094137` captured both the home and `/relatorio/` at a controlled 1280×900 viewport and uploaded `sisprev-rendered-surfaces`; both captures were inspected. The home makes the audit/non-official status prominent and exposes the PDF plus reusable Repomix/OKF bundles. The report capture shows the formal report surface with the PDF handoff, institutional context, aggregate audit counts and commit-derived origin visible together.
+
+The capture campaign also produced useful negative evidence about review infrastructure: attempting a full-page rasterization of the exceptionally long report pinned Chromium until the workflow timeout even though build and navigation were healthy. Sisprev therefore uses a controlled viewport for browser evidence while leaving whole-document review to the existing paginated PDF artifact. **More pixels are not automatically stronger evidence.**
+
+Evidence boundaries remain deliberate: a successful build is not a browser capture; a browser capture is not proof that the Pages deploy succeeded; and none of those gates asserts legal correctness or institutional validation. The implementation remains Sisprev-local. WeasyPrint, its restrained administrative typography, exact page furniture, report-specific provenance wording and legal/audit document structure are not Cobogó APIs.
