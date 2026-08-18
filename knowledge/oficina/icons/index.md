@@ -2,7 +2,7 @@
 
 Cada ícone é um conceito OKF em Markdown com `type: oficina-icon`.
 
-O contrato detalhado do tipo está em [`../types/oficina-icon.md`](../types/oficina-icon.md). O Markdown é a autoridade semântica; SVG, PNG e previews são recursos visuais associados ao conceito.
+O contrato detalhado do tipo está em [`knowledge/.okf/specs/oficina-icon.md`](../../.okf/specs/oficina-icon.md). O Markdown é a autoridade semântica; SVG, PNG e previews são recursos visuais associados ao conceito.
 
 ## Estados
 
