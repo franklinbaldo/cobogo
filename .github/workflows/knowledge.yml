@@ -36,6 +36,13 @@ jobs:
           parser=(uvx --from okf-parser==0.42.8 okf-parser)
           "${parser[@]}" --version | tee "$evidence/version.txt"
           "${parser[@]}" check knowledge --classify | tee "$evidence/check.json"
+          "${parser[@]}" check knowledge \
+            --require-spec '.okf/specs/{slug}.md' \
+            > "$evidence/spec-check.json"
+          "${parser[@]}" init knowledge \
+            --spec-template '.okf/specs/{slug}.md' \
+            --infer-schema \
+            > "$evidence/type-spec-plan.json"
           "${parser[@]}" inventory knowledge --digests > "$evidence/inventory.json"
           "${parser[@]}" graph knowledge > "$evidence/graph.json"
           "${parser[@]}" schema knowledge --format json --infer-types > "$evidence/inferred-schema.json"
@@ -51,6 +58,8 @@ jobs:
           path: |
             ${{ runner.temp }}/cobogo-okf/version.txt
             ${{ runner.temp }}/cobogo-okf/check.json
+            ${{ runner.temp }}/cobogo-okf/spec-check.json
+            ${{ runner.temp }}/cobogo-okf/type-spec-plan.json
             ${{ runner.temp }}/cobogo-okf/inventory.json
             ${{ runner.temp }}/cobogo-okf/graph.json
             ${{ runner.temp }}/cobogo-okf/inferred-schema.json
