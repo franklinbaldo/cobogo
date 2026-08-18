@@ -1,13 +1,13 @@
 ---
 type: foundation-api
-status: experimental
+status: stable
 title: Core Web CSS API
 related_issue: https://github.com/franklinbaldo/cobogo/issues/266
 ---
 
 # Core Web CSS API
 
-The first implementation of the semantic foundations contract is available as the framework-agnostic package entrypoint:
+The semantic foundations contract is available as the framework-agnostic package entrypoint:
 
 ```css
 @import "cobogo/core";
@@ -38,7 +38,7 @@ The core intentionally keeps the surface small:
 - `data-cobogo-stack` — grouped vertical rhythm;
 - `data-cobogo-flow` — section rhythm;
 - `data-cobogo-pause` — deliberate larger break;
-- `data-cobogo-inverted` — a region whose background is inverted relative to the document (a dark hero or context band in a light page, or the reverse). It paints nothing and the consumer keeps owning the region's colours; it only re-derives the focus pair, which is otherwise chosen against the document canvas and fails silently inside such a region.
+- `data-cobogo-inverted` — a region whose background is inverted relative to the document. It paints nothing and the consumer keeps owning the region's colours; it only re-derives the focus pair;
 - `data-cobogo-theme="dark"` — explicit dark semantic mapping.
 
 These are not component names and do not imply a framework.
@@ -51,14 +51,33 @@ Adapters may map other systems into these roles later. They must remain downstre
 
 ## External adoption evidence
 
+### CausaGanha — dense analytical surface
+
 [CausaGanha #878](https://github.com/franklinbaldo/causaganha/pull/878) is the first real external brownfield adoption. Because no suitable current package release existed for that reconstructed core revision, CausaGanha consumes an **immutable byte-for-byte snapshot** of `src/styles/core.css`, pinned to Cobogó commit `12b08d124d717e0a38f74d98b628ce9af0540a7b` with the Git blob hash verified in CI.
 
-The migration removed 24 lines of duplicated generic foundation behavior from the consumer, transferred generic data-font/focus/reduced-motion ownership to core, preserved product-local values and behavior, and produced deterministic before/after Chromium captures of the real `/stats` surface. This is adoption evidence, not merely an importability test.
+The migration removed 24 lines of duplicated generic foundation behavior from the consumer, transferred generic data-font/focus/reduced-motion ownership to core, preserved product-local values and behavior, and produced deterministic before/after Chromium captures of the real `/stats` surface.
+
+### Ficha — public archive/search surface
+
+[Ficha #222](https://github.com/franklinbaldo/ficha/pull/222) is the second independent external adoption and exercises a materially different surface: an Astro/Svelte public CNPJ archive/search home with provenance, dataset access paths and remote-data hydration.
+
+Ficha also consumes an immutable byte-for-byte snapshot, pinned to Cobogó commit `bca94e2da68c23ab36b79453607c3d25eb20100e` and Git blob `afe206e4c0e82392ed4ee41dddee77e71acbb10e`. Its normal test suite recomputes the Git blob hash, enforces `core → Ficha mapping → local CSS` order and prevents transferred generic document/focus contracts from silently returning.
+
+Across the two pre-existing surface files changed (`index.astro` and `Header.svelte`), the migration removed a net 12 lines while moving generic document baseline and focus ownership to core. Ficha keeps its concrete palette, light-only color scheme, dark header treatment, layout, data/archive copy, search/result behavior and domain state local. The header uses `data-cobogo-inverted` only to inherit the shared two-tone focus relation inside its locally owned dark region.
+
+The PR's normal CI and Project Pages visual-capture gate passed. Controlled before/after review preserved the Ficha composition and information, while the capture remained honestly classified as `remote-data-unavailable` because the CI browser environment could not fetch the Internet Archive parquet; both before and after had zero page errors. That external-network limitation is not counted as a core regression or as proof of deployed-data failure.
 
 The migration method is recorded in [Brownfield core adoption workflow](./brownfield-core-adoption.md).
 
-## Experimental gate
+## Stability evidence
 
-Cobogó dogfoods the core and one materially real external surface now adopts it with positive measured delta. That is enough to satisfy the first-external-proof goal tracked by #266, but **not enough to stabilize the API**.
+The original experimental gate required **two materially different external surfaces** to adopt the core with real technical benefit. CausaGanha and Ficha now satisfy that gate independently:
 
-The core remains experimental until a second materially different external surface independently adopts it with real technical benefit. A consumer is allowed to decline core when the measured delta is negative; The Lab's earlier rejection remains useful counter-evidence rather than a failed migration.
+- both transfer actual generic foundation authority upstream rather than merely importing CSS;
+- both remove local duplicated contracts;
+- both pin shared bytes immutably and ratchet that boundary in CI;
+- both preserve distinct product identity and downstream theme/layout authority;
+- both exercise the shared focus/reduced-motion/document foundation under different composition and runtime pressures;
+- both have controlled rendered evidence, including negative evidence rather than green-check inflation.
+
+The Core Web CSS API is therefore **stable as a small semantic foundations contract**. Stable does **not** mean mandatory or visually normative. The Lab's measured rejection remains valid counter-evidence: a consumer should decline core when adoption adds more contract than it removes. New roles or attributes still require their own evidence before joining the stable surface, and transport/distribution improvements remain separate from semantic stability.
