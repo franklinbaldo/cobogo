@@ -2,7 +2,7 @@
 type: consumer
 title: CausaGanha
 repository: https://github.com/franklinbaldo/causaganha
-adoption_status: evaluating
+adoption_status: adopting
 surface: public data-reading web
 interaction_profile: judicial data reading, comparison, provenance and status
 runtime: Astro static SSG on GitHub Pages with selective Svelte islands and Pico baseline
@@ -13,23 +13,24 @@ constraints:
   - expose structure instead of hiding it behind interaction
   - speed is part of aesthetics
 capabilities_used:
+  - framework-agnostic core web foundations via immutable pinned snapshot
   - semantic comparison-table accessibility
   - machine-readable temporal provenance
   - non-colour continuous-state redundancy
+  - public artifact reuse
 operational_capabilities:
   - github-pages-deploy
   - archived-source-and-parquet-publication
   - sync-manifest-publication
   - internet-archive-preservation
   - reconstructible-sql-catalog
+  - deterministic-core-before-after-capture
 unmet_needs:
-  - reconciled semantic foundations
-  - framework-agnostic core web primitives
-  - data-reading patterns for tables metadata provenance and status
-  - consumer theming and override contract
-  - incremental brownfield migration guidance
+  - data-reading comparison grammar needs another independent rendered comparison consumer
+  - stable/package distribution path for future core upgrades
 integration_evidence:
   - https://github.com/franklinbaldo/causaganha/issues/861
+  - https://github.com/franklinbaldo/causaganha/pull/878
   - https://github.com/franklinbaldo/causaganha/pull/865
   - https://github.com/franklinbaldo/causaganha/pull/871
   - https://github.com/franklinbaldo/causaganha/issues/872
@@ -38,147 +39,98 @@ integration_evidence:
   - https://github.com/franklinbaldo/causaganha/pull/875
   - https://github.com/franklinbaldo/causaganha/issues/879
   - https://github.com/franklinbaldo/causaganha/pull/880
+  - https://github.com/franklinbaldo/causaganha/pull/882
 local_identity: green/gold product identity, judicial-data purpose, existing typography and information architecture
-last_verified: 2026-08-15
+last_verified: 2026-08-18
 ---
 
 # CausaGanha
 
-CausaGanha is the primary brownfield consumer for the current Cobogó reconstruction because it already has a functioning public web surface, its own design constitution, real data-reading workflows, and a substantial local token/style layer.
+CausaGanha is Cobogó's first proven external brownfield `core` adopter. It remains recognizably a judicial-data product: green/gold identity, Astro static delivery, Pico compatibility, dense public-data surfaces and product-specific information architecture stay downstream and local.
 
-Its current `adoption_status` is **evaluating**, not active: Cobogó is using CausaGanha to derive and test reusable capabilities, but the reconstructed Cobogó package surface has not yet been adopted by the production site.
+Its current status is **adopting**, not merely evaluating and not yet a claim of universal/stable Cobogó adoption. Production now renders through an immutable pinned snapshot of the shared framework-agnostic core, while the core API itself remains experimental pending evidence from another materially different external surface.
 
-Its frontend deliberately follows several product constraints that Cobogó must preserve rather than overwrite:
+## Product and project surface
 
-- HTML first, CSS second, JavaScript last;
-- speed is part of aesthetics;
-- reading tasks should not be appified without need;
-- structure should be exposed through headings, tables and inline information instead of hidden behind interaction;
-- deployment is static on GitHub Pages, with islands only where client reactivity is justified.
+The public site exposes three related dimensions:
 
-These are product constraints, not Cobogó rules. Cobogó should provide grammar that strengthens them without turning CausaGanha into Astronauta or another consumer.
+1. **use in place** — dashboards, tribunal comparison, status/provenance and client-side exploration;
+2. **project machinery** — DJEN archive/consolidation plus TJRO JURIS, STJ Acórdãos and DataJud pipelines with different roles and coverage/publication boundaries;
+3. **reuse outside the site** — archived ZIP/Parquet products, synchronization manifest and a textual `catalog.sql` contract intended for consumer-local DuckDB materialization.
 
-## Existing local design knowledge
+Pipeline existence is not treated as complete coverage or equivalent public availability. The site keeps methodology/source explanation separate from the reusable-artifact path.
 
-CausaGanha already carries a large visual foundation in `web/src/styles/tokens.css`, including:
+## Core adoption — verified 2026-08-18
 
-- semantic Pico overrides;
-- green/gold brand colors;
-- spacing, typography, radii, shadows and state colors;
-- dark-mode values;
-- a second, explicitly labelled "Brazilian Modernism Design System" token family with paper/concrete neutrals and modernist colors;
-- legacy aliases retained for existing views.
+[CausaGanha #878](https://github.com/franklinbaldo/causaganha/pull/878) supersedes the earlier 2026-08-11 finding that `cobogo-mapping.css` was a largely nominal bridge.
 
-That overlap is valuable brownfield evidence. It should be reconciled, not mechanically replaced by Cobogó tokens.
+The production CSS now loads:
 
-## Cobogó relationship
+```text
+pinned Cobogó core snapshot
+→ CausaGanha semantic mapping/theme values
+→ CausaGanha local CSS
+```
 
-CausaGanha exercises [Vão](../grammar/vao.md), [Ritmo](../grammar/ritmo.md), [Faixa](../grammar/faixa.md), [Inscrição](../grammar/inscricao.md), [Texto é arquitetura](../canon/texto-e-arquitetura.md), and [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md).
+The shared snapshot is the exact `src/styles/core.css` blob from Cobogó commit `12b08d124d717e0a38f74d98b628ce9af0540a7b`. `cobogo-core.pin.json` records repository, commit, path and Git blob SHA, and repository tests recompute the blob hash so the downstream copy cannot silently become a fork.
 
-Its concrete composition test is [CausaGanha — data reading](../specimens/causaganha-data-reading.md). The token overlap is tracked by the CausaGanha foundations reconciliation decision in this stack.
+### Positive maintenance/accessibility delta
 
-Its current reusable unmet needs drive the Cobogó backlog:
+The migration removed **24 lines** of generic local foundation behavior rather than merely renaming selectors:
 
-- [Foundations #263](https://github.com/franklinbaldo/cobogo/issues/263)
-- [Consumer contract #265](https://github.com/franklinbaldo/cobogo/issues/265)
-- [Framework-agnostic core web #266](https://github.com/franklinbaldo/cobogo/issues/266)
-- [Data-reading patterns #267](https://github.com/franklinbaldo/cobogo/issues/267)
-- [Consumer registry #268](https://github.com/franklinbaldo/cobogo/issues/268)
+- generic code/data-font ownership moved to core;
+- generic `:focus-visible` ring ownership moved to core;
+- global reduced-motion behavior moved to core.
 
-## Integration evidence
+CausaGanha deliberately retained heading hierarchy, Pico adapter behavior, table density/hover, badges, touch targets, branding/marketing CSS and all concrete theme values.
 
-The first `cobogo-consumer-synergy` pass opened [CausaGanha #861](https://github.com/franklinbaldo/causaganha/issues/861) to select one real data-reading surface for incremental adoption once the shared foundations/core are ready. This is evidence of active evaluation, not evidence that Cobogó code is already consumed.
+That is the authority boundary Cobogó wants: shared semantics/foundations upstream, product values and domain presentation downstream.
 
-It should not inherit a universal Cobogó skin. Its judicial-data purpose, green/gold identity, static delivery model, existing typographic choices and dense public-data surfaces remain legitimate local context.
+### Rendered proof
 
-## Review question
+The strongest adoption surface is `/stats`. #878 built the base and proposed states from the **same deterministic data fixture** and captured both at the same 1280×900 viewport in run `31903091090`, artifact `cobogo-core-stats-before-after`.
 
-A successful integration should make it easier to read and compare judicial data while leaving CausaGanha recognizably itself.
+The resting screenshots were intentionally different, proving that core was exercised rather than decoratively imported. Review found no lost data, clipped content, broken table semantics, overflow or identity replacement. Keyboard focus moved to the core's thicker ring + contrast-gap contract.
 
-If adoption mainly changes colors, fonts, border radii or decorative motifs, it has failed the Cobogó model.
+The consumer also ratchets the boundary in CI:
 
-## Measured adoption state — 2026-08-11
+- pinned upstream bytes are verified;
+- import order is enforced;
+- removed generic focus/reduced-motion duplicates are forbidden locally;
+- normal lint/tests/build remain authoritative.
 
-`web/src/styles/cobogo-mapping.css` exists and is imported from `index.css`. It describes itself as "an adoption bridge, not a copy of Cobogó core" and binds shared role names to CausaGanha's own values. That framing is right, and the file is real. What it actually reaches is narrower than it looks:
+This is the empirical basis for [Brownfield core adoption workflow](../foundations/brownfield-core-adoption.md). It satisfies the first-external-adoption evidence required by Cobogó #266/#270 without claiming that all consumers should adopt core.
 
-| measure | value |
-|---|---|
-| `--cobogo-*` roles declared | 30 |
-| `var(--cobogo-*)` used outside the mapping file | **0** |
-| `data-cobogo-*` attributes in markup | **0** |
-| roles load-bearing via local aliases | **4** — surface, text, text-muted, border |
-| inert declarations | **26** |
+## Data-reading semantics
 
-The four live roles reach the product only by indirection: the mapping re-points `--color-surface`, `--color-content`, `--color-content-tertiary` and `--color-border` through Cobogó roles, and those aliases are used 23 times between them. `--color-bg` is re-pointed but used zero times.
+`/stats` is a real cross-tribunal comparison surface. Current verified semantics include:
 
-So this is a **partial, largely nominal bridge**, not core adoption. It is not marked as core adoption in `capabilities_used`, and should not be. Recorded as evidence for issues #266 and #270, and deliberately **not corrected yet** — which contracts ought to bite should be decided from the real surfaces, not from a wish to raise the number.
+- 7/7 comparison headers with `scope="col"`;
+- a descriptive table `<caption>`;
+- machine-readable `<time datetime>` for generated/freshness timestamps and archived-period bounds;
+- accessible names for tribunal coverage progress values;
+- visible numeric redundancy beside color treatment;
+- explicit textual marking of the weekly low.
 
-## Real surfaces — captured 2026-08-11
+This supports Cobogó's provenance/freshness and state-redundancy knowledge. It does **not** by itself close the comparison-table derivation gate: that still needs another independent rendered consumer exercising the same comparison task.
 
-The site does not build from a bare checkout: it requires `site-status.json` from `uv run python scripts/render_queries.py`. The 2026-08-11 campaign therefore used the deployed artifact for primary evidence.
+## Public artifact reuse
 
-`/stats` is server-rendered and was captured faithfully. The historical capture showed:
-
-- **metrics/comparison** — headline figures (`67,2%`, `65/96`, `64/96`) with label plus a secondary qualifier, and Top-5 most/least reliable ordered lists;
-- **provenance/freshness** — a real inscription carrying source and both timestamps: *"Fonte DJEN: Atrasado — última tentativa … · último sucesso …"*;
-- **table** — 1 table, 96 `tbody` rows, 7 `th`;
-- **historical gaps** — no `<time>`, no table caption, no `scope` attributes, and uncertainty about whether coverage state survived loss of color.
-
-Those gaps are retained here as **historical evidence**, not current facts.
-
-`/explorador` is a client-side DuckDB-WASM query surface and could not be fully exercised in that capture because its worker loads from a CDN unavailable to the review environment. Its filter controls hydrated, but query results did not run. Treat its inventory as incomplete rather than empty.
-
-## `/stats` follow-up — verified 2026-08-14
-
-CausaGanha #865 closed the mechanical semantic gaps and was validated against a real rendered pipeline/build in Chromium rather than a fixture:
-
-- all **7/7** comparison headers now carry `scope="col"`;
-- the 96-row table has a descriptive, visually hidden `<caption>`;
-- `generated_at`, DJEN last attempt, and DJEN last success render as `<time datetime>` elements, preserving the visible pt-BR labels;
-- current `main` gives every tribunal coverage `<progress>` an accessible name containing tribunal + percentage;
-- the numeric percentage remains visible beside the color treatment;
-- the weekly low is explicitly marked with the text **`Menor`**.
-
-CausaGanha #871 then extended the same provenance rule to the per-tribunal archived period: each present `earliest_upload` / `latest_upload` bound is now a native `<time datetime>` while preserving the existing visible ISO date and arrow. The change was one-file, semantic-only, passed the normal lint/web/build/TJRO CI, and was verified on `main` after merge.
-
-This strengthens the evidence for the **relation**, not for a universal component: when a data-reading surface presents temporal provenance used for comparison, exact machine-readable bounds should remain recoverable alongside the human presentation. #267 still requires an independent rendered consumer exercising the same underlying task before promoting that relation into shared Cobogó pattern knowledge.
-
-The important lesson is not “every consumer needs this exact table component.” It is the relation: a homogeneous cross-row comparison benefits from native table structure, and external-source freshness benefits from authority + exact recoverable time.
-
-## Public artifact reuse — verified 2026-08-15
-
-CausaGanha #873 closed a project-surface gap on `/sobre`: the deployed page now connects the human explanation to real archived source/data products, the canonical synchronization manifest and a reproducible reuse path while preserving the dashboard as the non-technical route. The post-merge Pages artifact for #873 was inspected directly after a successful deploy.
-
-The first implementation taught consumers to attach a remotely published `catalog.duckdb`. That exposed a better architectural boundary and was deliberately revised in CausaGanha #874/#875. The current contract is **text/data first**:
+The distributed contract is intentionally text/data first:
 
 ```text
 archived ZIP / Parquet / manifest
-  -> catalog.sql textual view contract
-  -> consumer-local DuckDB materialization
-  -> query
+→ catalog.sql textual view contract
+→ consumer-local DuckDB materialization
+→ query
 ```
 
-Future catalog publication excludes `*.duckdb`; the binary database may still be created locally/ephemerally for validation, but it is no longer the distributed semantic authority. The historical `.duckdb` already present on Internet Archive is retained as history rather than deleted retroactively.
+The historical remote `.duckdb` artifact is retained as history, but it is no longer the semantic authority. Cobogó should not standardize DuckDB or SQL from this evidence; the reusable relation is reachable canonical artifact + recoverable provenance + reproducible handoff.
 
-The #875 PR passed lint, TJRO tests and web lint/test/build before merge, and the post-merge Pages build/deploy for `52885fee` completed successfully. `/sobre` and `DataAccessPanel` no longer recommend attaching the remote binary and instead describe applying `catalog.sql` to a local DuckDB.
+CausaGanha #882 added an independent, secret-free public-catalog smoke path after #872 exposed real drift between published SQL and the public manifest. Until the post-publication smoke is observed green against the corrected Internet Archive artifact, publication and independent reuse remain separate evidence classes.
 
-This is independent supporting evidence for [Public artifact reuse](../patterns/public-artifact-reuse.md) alongside Leizilla. It also supplies an important non-rule: Cobogó should not standardize DuckDB, SQL or a particular storage engine. The reusable relation is **reachable canonical artifact + recoverable provenance + reproducible handoff**, with materialization kept consumer-local when it is cheaply reconstructible.
+## Local identity and non-goals
 
-CausaGanha #872 remains open for one deliberately literal reason: the current `catalog.sql -> local DuckDB -> query` recipe still needs an independent execution recorded against the public artifact. That pending execution limits the operational claim; it does not invalidate the already deployed project-surface relation.
+CausaGanha should not inherit a universal Cobogó skin. Its judicial-data purpose, green/gold identity, static delivery model, typography, density and domain terminology remain product authority.
 
-## Project surface: fontes reais — verified 2026-08-15
-
-CausaGanha #879/#880 closed a second `/sobre` information-architecture gap after the product itself gained an executable knowledge corpus for four sources and four pipelines. The public methodology had continued to read as though the project were essentially the DJEN archive plus a generic list of court systems.
-
-The deployed page now distinguishes the four source roles using the consumer's own canonical knowledge as factual/editorial input:
-
-- **DJEN (CNJ)** — judicial communications and the archive/consolidation flow;
-- **TJRO JURIS** — Rondônia jurisprudence and structured judicial decisions/documents;
-- **STJ Acórdãos** — appellate decisions used in process reconciliation/query surfaces;
-- **DataJud (CNJ)** — process metadata/facets used for enrichment and live queries.
-
-The surface deliberately states that pipeline existence does **not** imply complete coverage or equivalent public publication. Reusable artifacts remain documented separately under `Acesso aos Dados`, so project explanation does not manufacture availability claims for pipelines whose operational/publication evidence differs.
-
-The #880 PR changed only `web/src/pages/sobre.astro`; lint, query-contract validation, TJRO tests, web lint/test/build and the existing Cobogó adoption capture all passed before merge. The post-merge GitHub Pages build and deploy for `570a90dc` also completed successfully.
-
-This is currently **consumer-local project-surface evidence**, not a new shared Cobogó pattern. The reusable observation is only that a public project explanation can be materially stale even while its website remains visually coherent; canonical product knowledge is useful editorial input for keeping `what the project does behind the site` recoverable without turning a public page into internal documentation.
+A successful Cobogó relationship reduces duplicated foundation contracts and strengthens reading/accessibility while leaving the product obviously CausaGanha. Importing shared CSS without deleting real duplication, or changing appearance without a semantic/maintenance gain, would not count as adoption evidence.
