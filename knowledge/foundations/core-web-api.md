@@ -49,6 +49,16 @@ These are not component names and do not imply a framework.
 
 Adapters may map other systems into these roles later. They must remain downstream of this API.
 
+## External adoption evidence
+
+[CausaGanha #878](https://github.com/franklinbaldo/causaganha/pull/878) is the first real external brownfield adoption. Because no suitable current package release existed for that reconstructed core revision, CausaGanha consumes an **immutable byte-for-byte snapshot** of `src/styles/core.css`, pinned to Cobogó commit `12b08d124d717e0a38f74d98b628ce9af0540a7b` with the Git blob hash verified in CI.
+
+The migration removed 24 lines of duplicated generic foundation behavior from the consumer, transferred generic data-font/focus/reduced-motion ownership to core, preserved product-local values and behavior, and produced deterministic before/after Chromium captures of the real `/stats` surface. This is adoption evidence, not merely an importability test.
+
+The migration method is recorded in [Brownfield core adoption workflow](./brownfield-core-adoption.md).
+
 ## Experimental gate
 
-This API stays experimental until it is dogfooded by Cobogó itself and adopted on at least two materially different external surfaces.
+Cobogó dogfoods the core and one materially real external surface now adopts it with positive measured delta. That is enough to satisfy the first-external-proof goal tracked by #266, but **not enough to stabilize the API**.
+
+The core remains experimental until a second materially different external surface independently adopts it with real technical benefit. A consumer is allowed to decline core when the measured delta is negative; The Lab's earlier rejection remains useful counter-evidence rather than a failed migration.
