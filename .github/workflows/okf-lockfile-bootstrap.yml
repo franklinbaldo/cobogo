@@ -1,0 +1,27 @@
+name: OKF lockfile bootstrap
+
+on:
+  push:
+    branches: [ refactor/okf-knowledge-projection ]
+
+permissions:
+  contents: read
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Resolve okf-parser v0.42.8 into package metadata
+        run: npm install --save-dev --package-lock-only --ignore-scripts okf-parser@0.42.8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: okf-parser-package-metadata
+          path: |
+            package.json
+            package-lock.json
+          retention-days: 1
