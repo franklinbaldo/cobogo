@@ -23,26 +23,3 @@ jobs:
         run: npx astro check
       - name: Build
         run: npm run build
-
-  okf-lockfile-bootstrap:
-    if: github.event_name == 'pull_request' && github.head_ref == 'refactor/okf-knowledge-projection'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-          cache-dependency-path: package-lock.json
-      - name: Resolve okf-parser v0.42.8
-        run: npm install --save-dev --package-lock-only --ignore-scripts okf-parser@0.42.8
-      - name: Preserve generated package metadata
-        uses: actions/upload-artifact@v4
-        with:
-          name: okf-parser-package-metadata
-          retention-days: 1
-          path: |
-            package.json
-            package-lock.json
