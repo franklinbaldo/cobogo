@@ -5,7 +5,7 @@ repository: https://github.com/franklinbaldo/franklinbaldo.github.io
 adoption_status: candidate
 surface: personal blog and digital garden
 interaction_profile: long-form reading, archive navigation and personal publishing
-runtime: Astro 6 + MDX + Pico CSS on GitHub Pages
+runtime: Astro 7 + MDX + Pico CSS on GitHub Pages
 constraints:
   - preserve strong personal editorial identity
   - content and reading remain primary
@@ -14,11 +14,12 @@ capabilities_used: []
 operational_capabilities:
   - GitHub Pages deploy from main, with manual and scheduled rebuild paths
   - repository CI covering hygiene, formatting, lint, unit tests, links, translations, Astro type checks, build and Lighthouse
+  - public archive, projects index, reading paths, Hrönir ranking, music/books, changelog and RSS exposed from the same Astro publication
 unmet_needs:
   - editorial typography and rhythm roles
   - archive/navigation composition
   - expressive local theming over shared foundations
-last_verified: 2026-08-15
+last_verified: 2026-08-18
 ---
 
 # Franklin blog
@@ -26,6 +27,16 @@ last_verified: 2026-08-15
 The Franklin blog is a strong Cobogó consumer candidate because it is a live personal publishing surface with an explicit typographic and editorial identity.
 
 It should pressure-test whether Cobogó editorial foundations can support sustained reading and archives without flattening a personal site into O Vigia or another publication.
+
+## Verified project-surface follow-up — 2026-08-18
+
+A repository-entry gap tracked in Franklin blog #1543 has been closed by PR #1561 (`2d7e8e8fa09cb476f1384ea4f6290dda247ae8c6`). The README now exposes the live site and the public product surface — archive, reading paths, projects, Hrönir ranking, music, books, changelog and RSS — instead of presenting the repository mainly as stack/commands/layout.
+
+The same change reconciles the public repository description with the runtime actually shipped in `package.json`: Astro 7 (`astro ^7.0.3`) and Node `>=24.0.0`, replacing stale Astro 6 / Node 22 claims. This is PROJECT-SURFACE evidence that explaining a product and accurately describing the machinery behind it are separate factual obligations.
+
+The PR head passed the repository's full `Check` workflow: hygiene, changelog/version checks, dependency check, Prettier, lint, unit tests, Hrönir doctor, link/translation checks, Astro type check, production build and Lighthouse. The repository's merge-policy prose is currently inconsistent with GitHub settings: `CLAUDE.md` requires merge commits while GitHub disables merge/rebase and permits only squash. Franklin blog #1562 tracks that governance drift. The attempted merge-commit path returned HTTP 405; #1561 therefore used the only repository-enabled merge method. This is operational evidence, not a Cobogó design capability.
+
+No new shared pattern is inferred from this README correction. The relevant reusable relation remains the existing editorial/project-surface principle: a public project entry point should expose the real publication and its recoverable products without becoming a technical README dump.
 
 ## Verified project-surface follow-up — 2026-08-15
 
