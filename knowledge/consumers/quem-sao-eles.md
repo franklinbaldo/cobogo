@@ -16,15 +16,21 @@ operational_capabilities:
   - GitHub Pages build/deploy from main
   - monthly PEP refresh workflow writing YYYYMM_pep.parquet snapshots to public/data
   - client-side DuckDB-WASM query over the published PEP Parquet
+  - reproducible Chromium capture that proves the current PEP snapshot is reachable and queryable
 unmet_needs:
   - editorial provenance pattern
   - profile and chronology composition
   - source/archive inscription semantics
-  - reproducible rendered capture of the hydrated PEP search and, later, populated editorial profiles
+  - rendered evidence for populated editorial profiles
 integration_evidence:
   - https://github.com/franklinbaldo/quem-sao-eles/issues/7
   - https://github.com/franklinbaldo/quem-sao-eles/pull/8
-last_verified: 2026-08-15
+  - https://github.com/franklinbaldo/quem-sao-eles/issues/10
+  - https://github.com/franklinbaldo/quem-sao-eles/issues/11
+  - https://github.com/franklinbaldo/quem-sao-eles/issues/13
+  - https://github.com/franklinbaldo/quem-sao-eles/pull/12
+  - https://github.com/franklinbaldo/quem-sao-eles/pull/14
+last_verified: 2026-08-17
 ---
 
 # Quem São Eles?
@@ -33,13 +39,15 @@ Quem São Eles? is a high-confidence Cobogó consumer candidate because it combi
 
 ## Editorial surface — negative evidence still current
 
-The 2026-08-11 inspection remains relevant for the editorial catalog itself: a fresh checkout builds, but the home has no populated politician/news collection to exercise the intended profile/chronology surface. Astro starter-template footer boilerplate also remains. This still means the editorial catalog is **not** ready to prove a shared editorial pattern merely from its source structure.
+The 2026-08-11 inspection remains relevant for the editorial catalog itself: a fresh checkout builds, but the home has no populated politician/news collection to exercise the intended profile/chronology surface. This still means the editorial catalog is **not** ready to prove a shared editorial pattern merely from its source structure.
 
-That negative evidence no longer justifies describing the whole project as lacking a real product surface, however. The repository contains a distinct PEP data product with committed Parquet snapshots and a DuckDB-WASM search route.
+The old Astro starter footer no longer belongs to that negative evidence. The full-page PEP capture made `Your name here` plus Astro social links visible as a credibility defect already tracked by #10; PR #14 replaced them with a minimal factual footer (`Quem São Eles?` + the existing repository as `Código e dados no GitHub`) without inventing author identity, social channels or marketing. The PR browser capture passed before merge, and the same capture passed again on `main` after squash merge `1fb2c8eb55e577de07e274386b06ceec7a2bb50f` (run `32075299012`).
+
+That editorial limitation no longer justifies describing the whole project as lacking a real product surface, however. The repository contains a distinct PEP data product with committed Parquet snapshots and a DuckDB-WASM search route.
 
 ## Project-surface reconciliation — 2026-08-15
 
-A new review found a machinery/surface mismatch in the PEP product:
+A review found a machinery/surface mismatch in the PEP product:
 
 - `.github/workflows/pep.yml` runs a monthly Portal da Transparência PEP pipeline and commits `public/data/{YYYYMM}_pep.parquet`;
 - the latest inspected successful scheduled run was 2026-08-01;
@@ -50,8 +58,27 @@ Quem São Eles #7 tracked that gap and PR #8 corrected it. After #8, the build s
 
 The same pass found that web changes had no causal pre-merge build gate. #9 was folded into #8: pull requests now execute the same `withastro/action` build used by Pages, while deployment is skipped on PRs. The first run correctly falsified the existing workflow because `withastro/action` defaulted to Node 20 while Astro 6 requires Node >=22.12.0; pinning the action to Node 22.12.0 made the next PR build pass. This is useful negative evidence: a deploy recipe existing in source was not equivalent to a currently executable build contract.
 
+## Rendered search and artifact evidence — 2026-08-17
+
+#11 / PR #12 added a browser gate around the same built artifact used by Project Pages. The first capture immediately falsified the visible handoff: the Parquet link rendered as `/quem-sao-elesdata/202606_pep.parquet`, and the same broken URL was being passed to DuckDB. #13 tracked that product bug; #12 normalized the base-path join and kept the test rather than hiding the failure.
+
+The final PR gate then proved, in Chromium and without credentials:
+
+- the page reached `search-ready` rather than merely rendering its shell;
+- Portal da Transparência / CGU remained visible as authority;
+- competence remained machine-readable;
+- the exact snapshot link rendered as `/quem-sao-eles/data/202606_pep.parquet`;
+- a deliberately unmatched query (`zzzxxy`) completed as `empty-success`, which exercises `read_parquet()` against the published snapshot rather than only proving DuckDB initialization;
+- a full-page screenshot, rendered DOM and machine-readable `capture-state.json` were preserved as the run artifact.
+
+After squash merge (`d411ea9b74fcdd3e334262e0fdf8618e454d071a`), both the PEP capture workflow (`32074662777`) and Pages build/deploy (`32074662763`) passed on `main`.
+
+This gives Quem São Eles strong rendered evidence for a useful project-surface relation: a visitor can **use the published dataset in place** through the search and **take the exact underlying artifact** independently through the Parquet link, with source and competence kept adjacent. The two actions share provenance but remain distinct jobs.
+
 ## What this means upstream
 
-This strengthens the existing **provenance/freshness relation**: when a public data surface is backed by periodically regenerated artifacts, the surface must both follow the current published artifact and keep its authority/competence recoverable. It also reinforces the project-surface rule that a useful pipeline hidden behind a stale or undiscoverable UI is not fully represented publicly.
+This strengthens both `Provenance and freshness` and the existing `Public artifact reuse` pattern without requiring a new component. It is especially useful limiting evidence for artifact reuse: an interactive query can sit beside the exact reusable artifact without turning the page into a developer console.
 
-It does **not** close the comparison-table relation in #267: PEP is a search/result-list task, not homogeneous cross-row comparison. It also does not stabilize an editorial pattern from #278, because the populated profile/chronology surface still lacks rendered evidence. `adoption_status` remains `candidate` and `capabilities_used` remains empty.
+It also gives #267 a second independent rendered implementation of the broad `use here ↔ take the artifact` relation alongside Ficha. The implementations remain materially different: Ficha separates **Consultar aqui** from **Levar a base** toward manifest/preserved assets, while Quem São Eles places client-side search next to the exact Parquet snapshot. The invariant is truthful reachability and context, not a shared button label or layout.
+
+It still does **not** close the comparison-table relation in #267: PEP is a search/result-list task, not homogeneous cross-row comparison. It also does not stabilize the editorial reading pattern, because populated profile/chronology evidence is still absent. `adoption_status` remains `candidate` and `capabilities_used` remains empty.
