@@ -14,6 +14,10 @@ source → observed phenomenon → derived rule → software consequence → spe
 
 Toda referência deve registrar contexto, limite de uso e risco de estereótipo. Links Markdown entre conceitos são intencionais: fazem parte do grafo OKF e devem apontar para conceitos reais do bundle.
 
+## Oficina experimental
+
+`knowledge/oficina/` é uma camada experimental dentro do mesmo bundle OKF. Seus conceitos podem preceder adoção consumer, mas não são automaticamente cânone, pattern ou capability de core. A promoção depende de evidência posterior; rejeições e pressure tests negativos permanecem conhecimento útil.
+
 ## Consultas básicas
 
 A partir de um checkout de `franklinbaldo/okf-parser`:
@@ -33,5 +37,6 @@ Agentes devem preferir essas superfícies e o MCP do `okf-parser` diretamente. A
 - `canon-rule`
 - `consumer`
 - `counterexample`
+- `oficina-icon` — conceito iconográfico experimental; contrato documentado em [`oficina/icons/`](oficina/icons/index.md)
 
 Tipos adicionais só devem ser introduzidos quando conceitos concretos exigirem distinção operacional.
