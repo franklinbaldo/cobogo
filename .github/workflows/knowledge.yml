@@ -41,6 +41,7 @@ jobs:
             | tee "$evidence/check.json"
           "${parser[@]}" check knowledge \
             --require-spec '.okf/specs/{slug}.md' \
+            --normative-spec \
             > "$evidence/spec-check.json"
           "${parser[@]}" init knowledge \
             --spec-template '.okf/specs/{slug}.md' \
