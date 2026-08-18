@@ -16,10 +16,13 @@ unmet_needs:
   - provenance and evidence patterns
   - long-form reading patterns
   - image and archive composition guidance
+  - distinguish fixture/demo publication from factual verified publication
 integration_evidence:
   - https://github.com/franklinbaldo/ovigia-redacao/issues/26
+  - https://github.com/franklinbaldo/ovigia-redacao/issues/29
+  - https://github.com/ovigialocal/ovigialocal.github.io/blob/main/porto-velho/2026/07/novo-registro-alimentos-nova-porto-velho/index.html
 local_identity: independent local-journal identity and narrative voice
-last_verified: 2026-08-10
+last_verified: 2026-08-17
 ---
 
 # O Vigia
@@ -45,5 +48,9 @@ Its current specimen is [O Vigia story surface](../specimens/vigia-story-surface
 ## Integration evidence
 
 The first `cobogo-consumer-synergy` pass opened [O Vigia #26](https://github.com/franklinbaldo/ovigia-redacao/issues/26) to test a shared provenance/freshness relation against an editorial surface. The test explicitly forbids turning editorial output into a monitoring dashboard.
+
+A 2026-08-17 re-verification of the public static story preserves a negative evidence case tracked in [O Vigia #29](https://github.com/franklinbaldo/ovigia-redacao/issues/29): the page still labels itself `Matéria Factual Verificada` while presenting fixture-looking values as factual provenance, including the SHA-256 of empty content and internal `Evaluation Passed (0 alucinações)` pipeline state. Its `NewsArticle.datePublished` is also human-formatted instead of machine-readable ISO 8601.
+
+This public story therefore **does not count as positive rendered evidence** for [Provenance and freshness](../patterns/provenance-freshness.md). It remains useful as editorial-composition evidence and as a counterexample showing that provenance-looking UI can overstate what the publication pipeline has actually proved.
 
 Reusable editorial needs may become Cobogó patterns only after the corpus has enough evidence to distinguish a shared grammar from O Vigia-specific publication choices.

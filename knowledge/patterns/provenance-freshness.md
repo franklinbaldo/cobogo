@@ -39,6 +39,7 @@ These products differ in task, framework, density and presentation. The shared e
 - Do not infer a healthy refresh from the existence of a scheduled workflow, a recent deploy, or a versioned dataset.
 - Preserve failure as failure: missing external data must not silently become a legitimate empty value, zero, stale fallback or placeholder.
 - Keep state meaning textual or otherwise non-colour-dependent; visual treatment is consumer-local.
+- A provenance-looking block must not elevate fixture values, synthetic identifiers, or internal pipeline verdicts into public factual evidence.
 
 ## What remains local
 
@@ -52,6 +53,7 @@ Ficha owns its archive language, manifest, preservation model and categorical cu
 - A deploy timestamp describes deployment, not necessarily source-data freshness.
 - Ficha's categorical state and Tambaqui's dataset coverage are different kinds of information. Their visual treatment should not be unified merely because both concern time.
 - Browser rendering proves that the relation is perceptible in a tested state; it does not by itself prove that an upstream pipeline is currently healthy.
+- [O Vigia](../consumers/o-vigia.md) is current negative evidence for another failure mode: its public prototype story still presents fixture-looking values and internal pipeline state inside a factual-provenance treatment. A polished provenance surface cannot substitute for recoverable source evidence or a publication boundary that has actually been proved.
 
 ## Evidence boundary
 
