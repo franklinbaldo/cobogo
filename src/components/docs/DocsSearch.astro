@@ -14,7 +14,7 @@ import Search from 'astro-pagefind/components/Search.astro';
 <dialog data-search-modal>
   <div data-search-panel>
     <header data-search-header>
-      <button type="button" data-search-close data-intent="link" rel="prev" aria-label="Close search">
+      <button type="button" data-search-close data-intent="link" aria-label="Close search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
@@ -35,7 +35,7 @@ import Search from 'astro-pagefind/components/Search.astro';
   const close = document.querySelector<HTMLButtonElement>('[data-search-close]');
   const shortcut = document.querySelector<HTMLElement>('[data-search-shortcut]');
 
-  if (shortcut && navigator.platform.toUpperCase().includes('MAC')) {
+  if (shortcut && /Mac|iPhone|iPad|iPod/.test(navigator.userAgent)) {
     shortcut.textContent = '⌘K';
   }
 
