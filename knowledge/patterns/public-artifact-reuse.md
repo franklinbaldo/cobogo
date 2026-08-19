@@ -71,17 +71,18 @@ Ficha demonstrates that external reuse does not always need an inline technical 
 
 Quem São Eles adds a different limit: even where an interactive DuckDB path exists, the reusable artifact should remain directly reachable rather than being hidden behind the application. The browser gate first exposed a broken Project Pages join in that direct link; preserving the failed capture as evidence prevented the interface from claiming a handoff that did not actually resolve.
 
-These limits are part of the pattern: the invariant is discoverable, truthful handoff and reproducible use where supported, not mandatory query chrome.
+CausaGanha adds a separate evidence limit: a rendered public recipe is not the same thing as independently proving that the current published artifact still satisfies that recipe. Its first public catalog smoke reached the real `catalog.sql` and found schema drift. Until franklinbaldo/causaganha#872 records a green post-republication smoke, treat the rendered handoff as positive project-surface evidence but not as a completed independent-reuse proof.
+
+These limits are part of the pattern: the invariant is discoverable, truthful handoff and reproducible use where supported, not mandatory query chrome or an assumption that documentation alone proves the external contract.
 
 ## Evidence boundary
 
-Leizilla and CausaGanha independently exercise the full relation on rendered public surfaces:
+Leizilla exercises the full relation on a rendered public surface: it exposes the released Parquet, metadata/provenance and a minimal reproducible query while keeping published-artifact status separate from coverage completeness.
 
-- Leizilla exposes the released Parquet, metadata/provenance and a minimal reproducible query while keeping published-artifact status separate from coverage completeness.
-- CausaGanha exposes archived source/data products and a reuse path from its project surface; #874/#875 further separate the textual catalog contract from consumer-local DuckDB materialization.
+CausaGanha independently exercises the rendered project-surface relation — archived source/data products, canonical manifest, `catalog.sql`, a reconstruction recipe and a path back to the dashboard — and #874/#875 establish the textual catalog contract versus consumer-local DuckDB materialization. The final independent-reuse gate remains open in franklinbaldo/causaganha#872 because the first public smoke found real schema drift and a green post-fix smoke has not yet been recorded. Do not count that pending verification as failure of the surface, but do not describe it as completed proof either.
 
-Ficha provides a third, intentionally narrower implementation and prevents overfitting the relation to DuckDB or inline SQL.
+Ficha provides another intentionally narrower implementation and prevents overfitting the relation to DuckDB or inline SQL.
 
-Quem São Eles now adds rendered browser evidence from another interaction model: the PEP route exposes the exact monthly Parquet alongside a client-side search, and its capture gate reaches `search-ready` and completes a deliberately empty query against that published snapshot. This strengthens the pattern without changing its abstraction level.
+Quem São Eles adds rendered browser evidence from another interaction model: the PEP route exposes the exact monthly Parquet alongside a client-side search, and its capture gate reaches `search-ready` and completes a deliberately empty query against that published snapshot. This strengthens the pattern without changing its abstraction level.
 
 The pattern remains `experimental`: consumer evidence is strong enough to name the semantic relation, but continued use should test other artifact types and whether the same hierarchy remains useful outside public-data products.
