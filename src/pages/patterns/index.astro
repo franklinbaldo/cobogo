@@ -14,6 +14,7 @@ import { patternEntries } from '../../lib/knowledgeProjection';
         {patternEntries.map((entry) => <article class="gf-reference-row"><div><span class="gf-inscription">{entry.type}</span><h3>{entry.title}</h3></div><div>{entry.status && <span class="gf-status">{entry.status}</span>} {' '}<a href={`https://github.com/franklinbaldo/cobogo/blob/main${entry.path}`}>fonte ↗</a></div></article>)}
       </div>
     </section>
+    <p><small>A antiga galeria de componentes geométricos foi preservada como <a href="/cobogo/legacy/patterns/">superfície legada</a>; ela demonstra componentes, mas não define o corpus de patterns.</small></p>
     <p><a href="/cobogo/">← voltar à orientação</a></p>
   </main>
 </GreenfieldLayout>
