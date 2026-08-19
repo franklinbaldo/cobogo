@@ -4,7 +4,7 @@ import DocsSidebar from '../components/docs/DocsSidebar.svelte';
 import DocsMobileNav from '../components/docs/DocsMobileNav.svelte';
 import PrevNextNav from '../components/docs/PrevNextNav.svelte';
 import DocsTOC from '../components/docs/DocsTOC.svelte';
-import DocsSearch from '../components/docs/DocsSearch.svelte';
+import DocsSearch from '../components/docs/DocsSearch.astro';
 import DocsEditLink from '../components/docs/DocsEditLink.astro';
 import DocsThemeToggle from '../components/docs/DocsThemeToggle.svelte';
 import Ornaments from '../components/Ornaments.astro';
@@ -68,7 +68,7 @@ const next = currentIndex < entries.length - 1 ? entries[currentIndex + 1] : und
               </svg>
             </button>
           </li>
-          <li><DocsSearch client:load /></li>
+          <li><DocsSearch /></li>
           <li><DocsThemeToggle client:load /></li>
         </ul>
       </nav>
