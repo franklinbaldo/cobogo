@@ -1,22 +1,23 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SiteNav from '../components/SiteNav.astro';
-import CobogoCircular from '../components/patterns/CobogoCircular.svelte';
-import CobogoHexagonal from '../components/patterns/CobogoHexagonal.svelte';
-import CobogoLosango from '../components/patterns/CobogoLosango.svelte';
-import CobogoCruz from '../components/patterns/CobogoCruz.svelte';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import CobogoCircular from '../../components/patterns/CobogoCircular.svelte';
+import CobogoHexagonal from '../../components/patterns/CobogoHexagonal.svelte';
+import CobogoLosango from '../../components/patterns/CobogoLosango.svelte';
+import CobogoCruz from '../../components/patterns/CobogoCruz.svelte';
 ---
 
-<BaseLayout title="Padrões | COBOGÓ">
+<BaseLayout title="Padrões geométricos legados | COBOGÓ">
   <aside aria-hidden="true" data-pattern="cobogo-cruz" data-region="tile-sidebar"></aside>
 
   <SiteNav currentPath={Astro.url.pathname} />
 
   <main>
     <header data-page-header>
+      <p><small data-kicker>Superfície legada · demonstração de componentes</small></p>
       <hgroup>
         <h1>Padrões<br />Geométricos</h1>
-        <p>Texturas visuais de baixa opacidade para compor fundos, sidebars e áreas de respiro. Empregando a filosofia de <em>background honesto</em>.</p>
+        <p>Galeria histórica dos componentes geométricos Svelte. A referência canônica de patterns tipados vive em <a href="/cobogo/patterns/">Patterns</a>.</p>
       </hgroup>
     </header>
 
@@ -62,7 +63,7 @@ import CobogoCruz from '../components/patterns/CobogoCruz.svelte';
   </main>
 
   <footer data-region="site-footer">
-    <p><small data-kicker>DS v0.1.0 — Distribuível via NPM / TypeScript Node</small></p>
+    <p><small data-kicker>Superfície preservada como legado histórico; não é a autoridade do corpus de patterns.</small></p>
   </footer>
 </BaseLayout>
 
