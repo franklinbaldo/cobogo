@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import CobogoCircular from '../../components/patterns/CobogoCircular.svelte';
+import CobogoHexagonal from '../../components/patterns/CobogoHexagonal.svelte';
+import CobogoLosango from '../../components/patterns/CobogoLosango.svelte';
+import CobogoCruz from '../../components/patterns/CobogoCruz.svelte';
+---
+
+<BaseLayout title="Padrões geométricos legados | COBOGÓ">
+  <aside aria-hidden="true" data-pattern="cobogo-cruz" data-region="tile-sidebar"></aside>
+
+  <SiteNav currentPath={Astro.url.pathname} />
+
+  <main>
+    <header data-page-header>
+      <p><small data-kicker>Superfície legada · demonstração de componentes</small></p>
+      <hgroup>
+        <h1>Padrões<br />Geométricos</h1>
+        <p>Galeria histórica dos componentes geométricos Svelte. A referência canônica de patterns tipados vive em <a href="/cobogo/patterns/">Patterns</a>.</p>
+      </hgroup>
+    </header>
+
+    <section data-section="patterns-tiled">
+      <hgroup>
+        <h2>Galeria de Padrões (Background Tiled)</h2>
+        <p>Exibindo os padrões contínuos em contêineres usando Svelte Runes e SVG inline.</p>
+      </hgroup>
+
+      <div data-pattern-gallery>
+        <figure>
+          <figcaption>Circular</figcaption>
+          <CobogoCircular client:load tile={true} size={60} color="var(--azul)" density={0.15} />
+        </figure>
+        <figure>
+          <figcaption>Hexagonal</figcaption>
+          <CobogoHexagonal client:load tile={true} size={60} color="var(--vermelho)" density={0.15} />
+        </figure>
+        <figure>
+          <figcaption>Losango</figcaption>
+          <CobogoLosango client:load tile={true} size={60} color="var(--ocre)" density={0.15} />
+        </figure>
+        <figure>
+          <figcaption>Cruz</figcaption>
+          <CobogoCruz client:load tile={true} size={60} color="var(--verde)" density={0.15} />
+        </figure>
+      </div>
+    </section>
+
+    <section data-section="patterns-isolated">
+      <hgroup>
+        <h2>Isolados (Escalados)</h2>
+        <p>Padrões em formato SVG único, sem repetição, aplicados com cores variadas e opacidade plena.</p>
+      </hgroup>
+
+      <div data-pattern-gallery data-variant="isolated">
+        <figure><CobogoCircular client:load tile={false} size={200} color="var(--azul)" density={1} /></figure>
+        <figure><CobogoHexagonal client:load tile={false} size={200} color="var(--vermelho)" density={1} /></figure>
+        <figure><CobogoLosango client:load tile={false} size={200} color="var(--ocre)" density={1} /></figure>
+        <figure><CobogoCruz client:load tile={false} size={200} color="var(--verde)" density={1} /></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer data-region="site-footer">
+    <p><small data-kicker>Superfície preservada como legado histórico; não é a autoridade do corpus de patterns.</small></p>
+  </footer>
+</BaseLayout>
+
+<style is:global>
+  body:has([data-region="tile-sidebar"]) { padding-left: 80px; }
+  @media (max-width: 600px) { body:has([data-region="tile-sidebar"]) { padding-left: 0; } }
+</style>
+
+<style>
+  main { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
+  main > [data-page-header] { padding: 6rem 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+  main > [data-page-header] hgroup h1 {
+    font-family: var(--font-display-alt);
+    font-size: 5rem;
+    line-height: 0.9;
+    margin: 0 0 2rem;
+  }
+  main > [data-page-header] hgroup p {
+    font-size: 1.25rem;
+    color: var(--fg-muted);
+    max-width: 600px;
+  }
+
+  main > section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
+  main > section hgroup h2 { font-size: 2rem; margin: 0 0 0.5rem; }
+  main > section hgroup p { color: var(--fg-muted); margin: 0 0 3rem; }
+
+  [data-pattern-gallery] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 3rem;
+  }
+  [data-pattern-gallery] figure {
+    margin: 0;
+    background: var(--bg-sunken);
+    border: 1px solid var(--border);
+    border-radius: var(--r-soft);
+    overflow: hidden;
+    height: 160px;
+    position: relative;
+  }
+  [data-pattern-gallery] figcaption {
+    position: absolute;
+    top: 0; left: 0;
+    padding: 0.5rem;
+    background: var(--papel-00);
+    font-weight: 800;
+    font-size: 0.75rem;
+    z-index: 10;
+  }
+  [data-pattern-gallery][data-variant="isolated"] figure {
+    height: auto;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-region="site-footer"] {
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    main > [data-page-header] hgroup h1 { font-size: clamp(3rem, 8vw, 5rem); }
+  }
+</style>
