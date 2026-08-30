@@ -4,7 +4,7 @@ repo: franklinbaldo/causaganha
 site: https://franklinbaldo.github.io/causaganha/
 status: active
 last_reviewed: 2026-08-30
-gap_score: 2
+gap_score: 1
 ---
 
 # CausaGanha
@@ -15,35 +15,35 @@ Preservar a identidade verde/dourada, a finalidade de leitura de dados judiciais
 
 ## D1 — no site
 
-O leitor pode consultar um processo por número CNJ, pesquisar publicações por texto/OAB/parte e explorar cobertura. A PR `franklinbaldo/causaganha#900`, mergeada em `a76ef9a0ba44373d8e3e892c8fa2f5fdef0a6e03`, adicionou navegação global orientada a jobs e tornou consultar, buscar, explorar cobertura e entender/reutilizar alcançáveis por links normais em toda a superfície.
+O leitor pode consultar um processo por número CNJ, pesquisar publicações por texto/OAB/parte e explorar cobertura. A navegação global organiza essas ações por jobs reais. A home multi-fonte entrou por `franklinbaldo/causaganha#901`, merge `1e608dcbd7f8c5a3d4c25bd323d42df5bab66262`, e o deploy desse SHA foi verificado verde: a composição passa a apresentar DJEN, DataJud, TJRO JURIS e STJ sob os papéis Arquivo / Estado / Teor, mantendo métricas DJEN como evidência da camada de preservação e não como definição do produto inteiro.
 
-**Gap [fato] — `/`:** o corpo da home em `main` ainda concentra grande parte do orçamento visual no arquivo DJEN e mantém um calendário explicitamente demonstrativo. Embora o hero já encaminhe CNJ ao dossiê multi-fonte, a composição abaixo ainda não torna o modelo arquivo / estado / teor e as quatro fontes tão legíveis quanto o README incorporado pela #899. `franklinbaldo/causaganha#901` é o trabalho aberto que endereça esse gap; não tratar sua proposta como fato publicado antes do merge.
+**Gap [fato] — `/`:** nenhum gap material contabilizado nesta dimensão após #901. Não inferir cobertura completa nem igualdade de maturidade entre fontes.
 
 ## D2 — por trás
 
-O `ProjectProfile` define CausaGanha como camada cívica verificável sobre rastros judiciais públicos, separando arquivo, estado, teor, significado, proveniência, freshness e limites de cobertura. O README em `main` agora explicita quatro fontes — DJEN, TJRO JURIS, STJ e DataJud — e três interfaces: site, dados públicos e MCP read-only. A navegação global torna a rota de projeto/dados recuperável sem expor nomes de pipeline como arquitetura principal.
+O `ProjectProfile` define CausaGanha como camada cívica verificável sobre rastros judiciais públicos, separando arquivo, estado, teor, significado, proveniência, freshness e limites de cobertura. A PR `franklinbaldo/causaganha#902`, mergeada em `d8c5102e6de42f8391cdedbf3fa83306b41c8142`, transforma `/sobre` em explicação progressiva: tese do produto primeiro, Arquivo / Estado / Teor como modelo mental, uma fronteira explícita de “o que sustenta / limite” para cada fonte, fluxo fonte → artefato → índice → superfície, acesso reproduzível aos dados e interfaces site/dados/MCP.
 
-**Gap [fato] — `/sobre`:** a página publicada ainda abre com uma formulação institucional genérica e organiza a explicação como projeto → metodologia → fontes → dados → licença/governança. Ela contém fatos corretos e uma receita DuckDB reproduzível, mas ainda não ensina primeiro o modelo mental arquivo / estado / teor que o repo passou a assumir. `franklinbaldo/causaganha#902` permanece trabalho aberto para essa explicação progressiva.
+**Gap [fato] — `/sobre`:** a nova superfície está comprovada por captura reproduzível no merge SHA, mas ainda não pode ser tratada como publicada: o workflow `Deploy Web` do merge falhou no passo `Setup Python` antes do build e o deploy foi pulado. O bloqueio está em `franklinbaldo/causaganha#941`. Até um deploy verde do SHA atual (ou descendente contendo a mesma mudança), o leitor público pode continuar vendo a versão anterior.
 
 ## D3 — por conta própria
 
-O repo e a superfície `/sobre` provam artefatos públicos reutilizáveis: ZIPs preservados no Internet Archive, `sync-manifest.parquet`, `catalog.sql` e Parquets por fonte conforme disponibilidade. Existe uma receita reproduzível para materializar o catálogo em DuckDB e consultar as views localmente. O README também registra `indice_processual.parquet` como índice fino entre CNJs e fontes de origem.
+O repo e a superfície explicativa provam artefatos públicos reutilizáveis: ZIPs preservados no Internet Archive, `sync-manifest.parquet`, `catalog.sql` e Parquets por fonte conforme disponibilidade. Existe receita reproduzível para materializar o catálogo em DuckDB e consultar as views localmente. O README também registra `indice_processual.parquet` como índice fino entre CNJs e fontes de origem.
 
-**Gap [fato]:** nenhum gap material contabilizado nesta dimensão nesta rodada. A navegabilidade para projeto/dados melhorou com #900; não prometer igualdade de cobertura entre fontes nem artefatos que ainda não estejam publicados.
+**Gap [fato]:** nenhum gap material contabilizado nesta dimensão. Não prometer igualdade de cobertura entre fontes nem artefatos que ainda não estejam publicados.
 
 ## Capacidades de superfície
 
-- **GitHub Pages / deploy** — `last_verified: 2026-08-30`. O merge `a76ef9a0...` disparou `Deploy Web` run `33332421721`; jobs `build` e `deploy` concluíram com sucesso no mesmo SHA.
-- **Captura visual determinística** — `last_verified: 2026-08-30`. O workflow `Cobogo Core Adoption Capture` constrói base/head com fixtures idênticas e captura `/stats` em Chromium 1280×900. Para #900, run `32532893041`, artifact `9464477484`, digest `sha256:31c4911fdcdfcefa06379969f7260c396277f57ec2c6166d209c8c34a71624a8`.
-- **Limite da recaptura** — `last_verified: 2026-08-30`. O workflow de captura atual só tem trigger `pull_request` e não oferece `workflow_dispatch` nem trigger `push`; portanto a rotina não conseguiu produzir uma nova captura do merge SHA `a76ef9a0...` sem alterar a infraestrutura do consumer em outro PR. O loop desta rodada permanece parcial por esse motivo.
-- **Smoke/build de frontend** — `last_verified: 2026-08-30`. A PR #900 teve `lint`, `tests (tjro)`, `compare-stats` e GitGuardian verdes no head `f8ebb148...`; o deploy pós-merge também construiu o site com sucesso.
-- **Preservação / artefatos públicos** — `last_verified: 2026-08-30`. O card continua tratando Internet Archive + contratos textuais/Parquet como evidência de reuso; publicação de um artefato e smoke independente permanecem classes separadas de evidência.
+- **GitHub Pages / deploy** — `last_verified: 2026-08-30`. #901 (`1e608dcb...`) teve deploy verde. #902 (`d8c5102e...`) falhou em `Deploy Web` run `33338217183`, passo `Setup Python`; o job `deploy` foi pulado. Bloqueio rastreado em `causaganha#941`.
+- **Captura visual determinística** — `last_verified: 2026-08-30`. #902 incorporou `Product Surface Visual Capture`, que usa fixtures idênticas e captura home desktop/mobile, `/sobre` desktop/mobile e `/stats` desktop. No head `2dba1070...`, run `33338105717`, artifact `9739678514`, somente `/sobre` mudou; home e `/stats` ficaram pixel-idênticos.
+- **Recaptura pós-merge** — `last_verified: 2026-08-30`. O workflow agora também roda em `push` para `main`. No merge SHA `d8c5102e...`, run `33338217168` concluiu com sucesso e publicou artifact `9739713589`, digest `sha256:fa5d9f3b3b8dab2bfaada171d1a447e09f610998608f03711537a49f3e54d670`.
+- **Smoke/build de frontend** — `last_verified: 2026-08-30`. O head de #902 passou `lint`, `web`, `tests (tjro)`, CodeQL e `compare-product-surfaces` antes do merge; a falha posterior é exclusiva do workflow de deploy no setup do Python.
+- **Preservação / artefatos públicos** — `last_verified: 2026-08-30`. Internet Archive + contratos textuais/Parquet continuam evidência de reuso; publicação de artefato, surface build e deploy seguem classes separadas de evidência.
 
 ## O que este consumer faz melhor que o Cobogó
 
-- [Brownfield core adoption workflow](../foundations/brownfield-core-adoption.md) — CausaGanha continua sendo a evidência externa mais forte de adoção pinada por bytes com redução real de duplicação local e identidade preservada.
-- A comparação judicial em `/stats` continua fornecendo evidência concreta para semântica de tabelas, provenance/freshness e redundância de estado sem depender apenas de cor.
-- O handoff de artefato público via `catalog.sql` + dados preservados continua uma referência de reuso reproduzível sem tornar DuckDB uma exigência universal do Cobogó.
+- [Brownfield core adoption workflow](../foundations/brownfield-core-adoption.md) — evidência externa forte de adoção pinada por bytes com identidade preservada.
+- [Fronteiras de prova por fonte](../concepts/source-proof-boundaries.md) — `/sobre` torna explícito o que cada fonte sustenta e o que não sustenta, subordinado ao modelo Arquivo / Estado / Teor; conceito ainda abaixo do gate de promoção.
+- O handoff de artefato público via `catalog.sql` + dados preservados continua uma referência de reuso reproduzível sem tornar DuckDB exigência universal do Cobogó.
 
 ## Padrões do Cobogó em uso
 
@@ -53,8 +53,8 @@ O repo e a superfície `/sobre` provam artefatos públicos reutilizáveis: ZIPs 
 
 ## Histórico
 
-- 2026-08-30 — #900 merge `a76ef9a0`: navegação global passa a organizar o site por jobs; deploy pós-merge verde, recaptura bloqueada pelo trigger PR-only do workflow visual.
+- 2026-08-30 — #902 merge `d8c5102e`: `/sobre` passa a explicar Arquivo / Estado / Teor e limites por fonte; recaptura pós-merge verde, deploy bloqueado em `causaganha#941`.
+- 2026-08-30 — #901 merge `1e608dcb`: home passa a representar o produto multi-fonte real; deploy verificado verde.
+- 2026-08-30 — #900 merge `a76ef9a0`: navegação global passa a organizar o site por jobs reais.
 - 2026-08-30 — #899 merge `4d25935c`: README reposicionado em arquivo / estado / teor, quatro fontes e três interfaces.
-- 2026-08-30 — card migrado do schema legado para `ConsumerCard`; `gap_score` recalculado em 2 (home + explicação do sistema).
 - 2026-08-18 — #878 consolidou adoção brownfield do core com snapshot pinado e redução de fundações duplicadas.
-- 2026-08-18 — `/stats` verificado como superfície de comparação com semântica temporal, tabela acessível e redundância não cromática.
