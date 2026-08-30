@@ -33,7 +33,7 @@ fonte/lead
 → article-published + evidência pública
 ```
 
-`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `5d3de1f49f9f23fec218e1f180dc21658cf46283`, registra Multivaccination `draft-v12` e Sine `draft-v8` com **factual-integrity e source-provenance aprovados sobre os mesmos bytes**. O blocker anterior de `source_digest` foi resolvido pelo contrato canônico `okf_parser.digests.source_digest` contra os recursos exatos da branch, sem Git blob SHA nem hash paralelo. A fila de source-provenance registra `eligible=2 · reviewed=2 · pass=2 · promoted=2 · blocked=0`. O próximo gate é `reader-intent`, com nova checagem de viabilidade temporal; nenhuma candidata corrente está em `article-published`. O `ProjectProfile` do workspace continua no snapshot de 24/08 e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
+`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `1906e47c0745cd3df86aa420ec50539abeeb0392`, registra Multivaccination `draft-v12` e Sine `draft-v8` com **factual-integrity, source-provenance, reader-intent e attention-framing aprovados sobre os mesmos bytes**. A fila mais recente registra `eligible=2 · reviewed=2 · pass=2 · needs-work=0 · fail=0 · promoted=2 · blocked=0`. O próximo gate é `headline-context-safety`, novamente com verificação temporal antes de aprovação; nenhuma candidata corrente está em `article-published`. O `ProjectProfile` do workspace continua no snapshot de 24/08 e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
 
 O publisher atual já projeta fontes OKF resolvidas, normaliza `datePublished` para formato machine-readable e não emite `Gatekeeper Editorial`, `Evaluation Passed (0 alucinações)` ou o rótulo `Matéria Factual Verificada`. Portanto o defeito atual está concentrado no artefato público legado, não no template canônico vigente.
 
@@ -48,14 +48,14 @@ A superfície atualmente prova apenas HTML estático público licenciado em CC B
 ## Capacidades de superfície
 
 - **Pages/static surface** — `last_verified: 2026-08-30`. `ovigialocal/ovigialocal.github.io` continua publicando a rota legada; o repo público permanece em `67eb821dcc1ae0c81913b87d14cfe91259ae5d74` e os bytes problemáticos permanecem presentes.
-- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. #42 resolveu o binding canônico de source-provenance e avançou as duas matérias para o próximo gate, `reader-intent`, mas ainda não possui candidata corrente em `article-published` capaz de substituir o artefato legado.
+- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. #42 avançou as duas matérias por quatro gates substantivos até `attention-framing`; a próxima fila é `headline-context-safety`, mas ainda não existe candidata corrente em `article-published` capaz de substituir o artefato legado.
 - **Captura visual** — `last_verified: 2026-08-30`. Busca atual por `screenshot`, `capture` e `Playwright` não encontrou capacidade registrada no consumer; não há pixel proof corrente.
 - **Smoke tests** — `last_verified: 2026-08-30`. GitHub Actions é explicitamente excluído da arquitetura operacional editorial; certificação determinística é local/pre-push via `scripts/ci-local.sh` quando exigida.
 - **Preservação/Wayback** — `last_verified: 2026-08-30`. Nenhum checkpoint arquivado da rota foi verificado nesta rodada.
 
 ## O que este consumer faz melhor que o Cobogó
 
-Nenhum conceito novo foi registrado nesta rodada. O boundary editorial digest-bound, a revalidação de freshness e a separação entre provenance pública e estado interno são evidência operacional importante, mas ainda não possuem solução de superfície fechada com captura antes/depois.
+Nenhum conceito novo foi registrado nesta rodada. O boundary editorial digest-bound, a revalidação temporal por gate e a separação entre provenance pública e estado interno são evidência operacional importante, mas ainda não possuem solução de superfície fechada com captura antes/depois.
 
 ## Padrões do Cobogó em uso
 
@@ -66,8 +66,8 @@ Nenhum conceito novo foi registrado nesta rodada. O boundary editorial digest-bo
 
 ## Histórico
 
-- 2026-08-30 — #42 head 5d3de1f4: digest canônico resolvido; v12/v8 têm factual-integrity + source-provenance aprovados; próxima fila reader-intent; nenhuma article-published.
-- 2026-08-30 — #42 head d66e55d8: Multivaccination v12 e Sine v8 têm pass substantivo de factual-integrity; ambas bloqueadas no source_digest canônico.
+- 2026-08-30 — #42 head 1906e47c: v12/v8 têm factual-integrity + source-provenance + reader-intent + attention-framing aprovados; próxima fila headline-context-safety; nenhuma article-published.
+- 2026-08-30 — #42 head 5d3de1f4: digest canônico resolvido; v12/v8 têm factual-integrity + source-provenance aprovados; próxima fila reader-intent.
+- 2026-08-30 — #42 head d66e55d8: v12/v8 têm pass substantivo de factual-integrity; ambas bloqueadas no source_digest canônico.
 - 2026-08-30 — #42 avança Multivaccination para v12 e factual-integrity após nova fonte confirmar Shopping na campanha corrente.
 - 2026-08-30 — #42 head c4108ad4: Multivaccination v11 volta a needs-revision por erro de escopo de fonte/local.
-- 2026-08-30 — #42 avança Multivaccination para v11 e fila de factual-integrity.
