@@ -33,7 +33,7 @@ fonte/lead
 → article-published + evidência pública
 ```
 
-`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `31a4c4a5952b39ffd93d7539bcf5791e0df4fe60`, registra Multivaccination `draft-v12` e Sine `draft-v8` com **factual-integrity, source-provenance, reader-intent, attention-framing, headline-context-safety e reader-usefulness aprovados sobre os mesmos bytes**. A fila mais recente registra `eligible=2 · reviewed=2 · pass=2 · needs-work=0 · fail=0 · promoted=2 · blocked=0`. O próximo gate é `service-actionability`; nenhuma candidata corrente é `article-published`. O `ProjectProfile` do workspace continua no snapshot de 24/08 e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
+`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `d3a122c12a243b5ebcd3bf0576a2f8ac91f047a1`, drenou `service-actionability` nos drafts correntes. Sine `draft-v8` foi aprovado sem mudar os bytes e segue para o próximo gate aplicável. Multivaccination `draft-v12` recebeu `needs-revision` e voltou a reporter/researcher: o gate encontrou evidência secundária material de possível funcionamento dominical do Shopping das 13h às 21h durante a campanha, mas não recuperou a cadeia governamental primária e não promoveu precisão não governada. O ciclo registra `eligible=2 · reviewed=2 · pass=1 · needs-work=1 · fail=0 · promoted=1 · blocked=0` e `article_published_count: 0`. O `ProjectProfile` do workspace continua no snapshot de 24/08 e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
 
 O publisher atual já projeta fontes OKF resolvidas, normaliza `datePublished` para formato machine-readable e não emite `Gatekeeper Editorial`, `Evaluation Passed (0 alucinações)` ou o rótulo `Matéria Factual Verificada`. Portanto o defeito atual está concentrado no artefato público legado, não no template canônico vigente.
 
@@ -47,8 +47,8 @@ A superfície atualmente prova apenas HTML estático público licenciado em CC B
 
 ## Capacidades de superfície
 
-- **Pages/static surface** — `last_verified: 2026-08-30`. `ovigialocal/ovigialocal.github.io` continua publicando a rota legada; o repo público permanece em `67eb821dcc1ae0c81913b87d14cfe91259ae5d74` e os bytes problemáticos permanecem presentes.
-- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. #42 avançou as duas matérias por seis gates substantivos até `reader-usefulness`; a próxima fila é `service-actionability`, mas ainda não existe candidata corrente em `article-published` capaz de substituir o artefato legado.
+- **Pages/static surface** — `last_verified: 2026-08-30`. `ovigialocal/ovigialocal.github.io` continua publicando a rota legada; `main` permanece em `67eb821dcc1ae0c81913b87d14cfe91259ae5d74`.
+- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. #42 head `d3a122c1`: Sine passou `service-actionability`; Multivaccination voltou a reporter/researcher por lacuna prática estreita; `article_published_count: 0`.
 - **Captura visual** — `last_verified: 2026-08-30`. Busca atual por `screenshot`, `capture` e `Playwright` não encontrou capacidade registrada no consumer; não há pixel proof corrente.
 - **Smoke tests** — `last_verified: 2026-08-30`. GitHub Actions é explicitamente excluído da arquitetura operacional editorial; certificação determinística é local/pre-push via `scripts/ci-local.sh` quando exigida.
 - **Preservação/Wayback** — `last_verified: 2026-08-30`. Nenhum checkpoint arquivado da rota foi verificado nesta rodada.
@@ -66,8 +66,8 @@ Nenhum conceito novo foi registrado nesta rodada. O boundary editorial digest-bo
 
 ## Histórico
 
-- 2026-08-30 — #42 head 31a4c4a5: v12/v8 têm seis gates aprovados até reader-usefulness; próxima fila service-actionability; nenhuma article-published.
-- 2026-08-30 — #42 head 60ba6158: v12/v8 têm cinco gates aprovados até headline-context-safety; próxima fila reader-usefulness; article_published_count=0.
-- 2026-08-30 — #42 head 1906e47c: v12/v8 têm quatro gates aprovados até attention-framing; próxima fila headline-context-safety.
-- 2026-08-30 — #42 head 5d3de1f4: digest canônico resolvido; v12/v8 têm factual-integrity + source-provenance aprovados; próxima fila reader-intent.
-- 2026-08-30 — #42 head d66e55d8: v12/v8 têm pass substantivo de factual-integrity; ambas bloqueadas no source_digest canônico.
+- 2026-08-30 — #42 head d3a122c1: Sine passa service-actionability; Multivaccination volta a reporter/researcher; article_published_count=0.
+- 2026-08-30 — #42 head 31a4c4a5: v12/v8 têm seis gates aprovados até reader-usefulness; próxima fila service-actionability.
+- 2026-08-30 — #42 head 60ba6158: v12/v8 têm cinco gates aprovados até headline-context-safety; próxima fila reader-usefulness.
+- 2026-08-30 — #42 head 5d3de1f4: digest canônico resolvido; v12/v8 têm factual-integrity + source-provenance aprovados.
+- 2026-08-30 — publisher vigente revalidado como não emitindo os sinais internos presentes no artefato público legado.
