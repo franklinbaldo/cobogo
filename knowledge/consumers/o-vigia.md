@@ -33,7 +33,7 @@ fonte/lead
 → article-published + evidência pública
 ```
 
-`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `491f069339c5d6716e67191e332ed1eb19c72303`, resolveu o return de `service-actionability` de Multivaccination criando `draft-v13` com atribuição explícita para o horário dominical. Como os bytes mudaram, o novo digest `sha256:e8a6feb759d790dc97c04cc84e72997108e06dbe1aa94d06046cf54a55728f1e` reentra corretamente em `factual-integrity`; aprovações downstream do digest anterior não são carregadas. Sine `draft-v8` permanece independentemente aprovado em `service-actionability`. O ciclo registra `article_published_count: 0`. O `ProjectProfile` do workspace continua no snapshot de 24/08 e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
+`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `399add1c95fa65e9ae699694104e5c6ff461d91f`, iniciou o ciclo `factual-integrity` para Multivaccination `draft-v13`, digest `sha256:e8a6feb759d790dc97c04cc84e72997108e06dbe1aa94d06046cf54a55728f1e`; no momento da revisão ainda não havia commit de encerramento desse ciclo. Sine `draft-v8` permanece independentemente aprovado em `service-actionability`. O estado de entrada do ciclo registra `article_published_count: 0`. O `ProjectProfile` do workspace continua no snapshot de 24/08 e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
 
 O publisher atual já projeta fontes OKF resolvidas, normaliza `datePublished` para formato machine-readable e não emite `Gatekeeper Editorial`, `Evaluation Passed (0 alucinações)` ou o rótulo `Matéria Factual Verificada`. Portanto o defeito atual está concentrado no artefato público legado, não no template canônico vigente.
 
@@ -48,7 +48,7 @@ A superfície atualmente prova apenas HTML estático público licenciado em CC B
 ## Capacidades de superfície
 
 - **Pages/static surface** — `last_verified: 2026-08-30`. `ovigialocal/ovigialocal.github.io` continua publicando a rota legada; `main` permanece em `67eb821dcc1ae0c81913b87d14cfe91259ae5d74`.
-- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. #42 head `491f0693`: Multivaccination `draft-v13` voltou a `factual-integrity` no novo digest; Sine `draft-v8` permanece aprovado em `service-actionability`; `article_published_count: 0`.
+- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. #42 head `399add1c`: Multivaccination `draft-v13` está em ciclo `factual-integrity` ainda sem encerramento observado; Sine `draft-v8` permanece aprovado em `service-actionability`; `article_published_count: 0` no estado de entrada.
 - **Captura visual** — `last_verified: 2026-08-30`. Busca atual por `screenshot`, `capture` e `Playwright` não encontrou capacidade registrada no consumer; não há pixel proof corrente.
 - **Smoke tests** — `last_verified: 2026-08-30`. GitHub Actions é explicitamente excluído da arquitetura operacional editorial; certificação determinística é local/pre-push via `scripts/ci-local.sh` quando exigida.
 - **Preservação/Wayback** — `last_verified: 2026-08-30`. Nenhum checkpoint arquivado da rota foi verificado nesta rodada.
@@ -66,8 +66,8 @@ Nenhum conceito novo foi registrado nesta rodada. O boundary editorial digest-bo
 
 ## Histórico
 
+- 2026-08-30 — #42 head 399add1c: ciclo factual-integrity de Multivaccination draft-v13 iniciado; encerramento ainda não observado; Sine permanece em service-actionability; article_published_count=0 no estado de entrada.
 - 2026-08-30 — #42 head 491f0693: Multivaccination vira draft-v13 e reentra em factual-integrity; Sine permanece aprovado em service-actionability; article_published_count=0.
 - 2026-08-30 — #42 head d3a122c1: Sine passa service-actionability; Multivaccination volta a reporter/researcher; article_published_count=0.
 - 2026-08-30 — #42 head 31a4c4a5: v12/v8 têm seis gates aprovados até reader-usefulness; próxima fila service-actionability.
-- 2026-08-30 — #42 head 5d3de1f4: digest canônico resolvido; v12/v8 têm factual-integrity + source-provenance aprovados.
 - 2026-08-30 — publisher vigente revalidado como não emitindo os sinais internos presentes no artefato público legado.
