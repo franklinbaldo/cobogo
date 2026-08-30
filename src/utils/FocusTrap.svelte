@@ -17,7 +17,7 @@
 			if (!active || e.key !== 'Tab' || !container) return;
 
 			const elements = container.querySelectorAll<HTMLElement>(
-				'a[href], button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+				'a[href], button:not([disabled]), textarea:not([disabled]), input:not([type="hidden"]):not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
 			);
 
 			// Filter out elements that are hidden or not visible
