@@ -33,7 +33,7 @@ fonte/lead
 → article-published + evidência pública
 ```
 
-`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `d66e55d835cf101be08cd1211502827f564747b6`, registra agora duas matérias com **pass substantivo de factual-integrity**: Multivaccination `draft-v12` e Sine `draft-v8`. As duas continuam bloqueadas no binding governado do `source_digest` canônico do `okf-parser`; a fila registra `promoted=0` e `blocked=2`, e nenhum hash paralelo foi fabricado. Nenhuma candidata corrente está em `article-published`. O `ProjectProfile` do workspace continua no snapshot de 24/08 e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
+`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `5d3de1f49f9f23fec218e1f180dc21658cf46283`, registra Multivaccination `draft-v12` e Sine `draft-v8` com **factual-integrity e source-provenance aprovados sobre os mesmos bytes**. O blocker anterior de `source_digest` foi resolvido pelo contrato canônico `okf_parser.digests.source_digest` contra os recursos exatos da branch, sem Git blob SHA nem hash paralelo. A fila de source-provenance registra `eligible=2 · reviewed=2 · pass=2 · promoted=2 · blocked=0`. O próximo gate é `reader-intent`, com nova checagem de viabilidade temporal; nenhuma candidata corrente está em `article-published`. O `ProjectProfile` do workspace continua no snapshot de 24/08 e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
 
 O publisher atual já projeta fontes OKF resolvidas, normaliza `datePublished` para formato machine-readable e não emite `Gatekeeper Editorial`, `Evaluation Passed (0 alucinações)` ou o rótulo `Matéria Factual Verificada`. Portanto o defeito atual está concentrado no artefato público legado, não no template canônico vigente.
 
@@ -43,13 +43,13 @@ O publisher atual já projeta fontes OKF resolvidas, normaliza `datePublished` p
 
 A superfície atualmente prova apenas HTML estático público licenciado em CC BY 4.0. Para a matéria revisada não há bundle de fonte/evidência público reconstruível nem `article-published` governado comprovado pelo repositório.
 
-**Gap [fato]:** nenhum gap material de reutilização é contado nesta dimensão, porque o projeto ainda não prova ter publicado para essa matéria um dataset, API, bundle ou arquivo independente que a superfície esteja escondendo. Não confundir corpus privado ou `article-ready` histórico com artefato público reutilizável.
+**Gap [fato]:** nenhum gap material de reutilização é contado nesta dimensão, porque o projeto ainda não prova ter publicado para essa matéria um dataset, API, bundle ou arquivo independente que a superfície esteja escondendo. Não confundir corpus privado ou gates intermediários com artefato público reutilizável.
 
 ## Capacidades de superfície
 
 - **Pages/static surface** — `last_verified: 2026-08-30`. `ovigialocal/ovigialocal.github.io` continua publicando a rota legada; o repo público permanece em `67eb821dcc1ae0c81913b87d14cfe91259ae5d74` e os bytes problemáticos permanecem presentes.
-- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. O publisher governado continua separado de `article-ready`; #42 ainda não possui candidata corrente em `article-published` capaz de substituir o artefato legado.
-- **Captura visual** — `last_verified: 2026-08-30`. Nenhuma capacidade de screenshot/capture do consumer foi demonstrada nesta rodada; não há pixel proof corrente.
+- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. #42 resolveu o binding canônico de source-provenance e avançou as duas matérias para o próximo gate, `reader-intent`, mas ainda não possui candidata corrente em `article-published` capaz de substituir o artefato legado.
+- **Captura visual** — `last_verified: 2026-08-30`. Busca atual por `screenshot`, `capture` e `Playwright` não encontrou capacidade registrada no consumer; não há pixel proof corrente.
 - **Smoke tests** — `last_verified: 2026-08-30`. GitHub Actions é explicitamente excluído da arquitetura operacional editorial; certificação determinística é local/pre-push via `scripts/ci-local.sh` quando exigida.
 - **Preservação/Wayback** — `last_verified: 2026-08-30`. Nenhum checkpoint arquivado da rota foi verificado nesta rodada.
 
@@ -66,8 +66,8 @@ Nenhum conceito novo foi registrado nesta rodada. O boundary editorial digest-bo
 
 ## Histórico
 
-- 2026-08-30 — #42 head d66e55d8: Multivaccination v12 e Sine v8 têm pass substantivo de factual-integrity; ambas bloqueadas no source_digest canônico; nenhuma candidata é article-published.
-- 2026-08-30 — #42 avança Multivaccination para v12 e factual-integrity após nova fonte confirmar Shopping na campanha corrente; Sine v8 segue bloqueada no source_digest.
-- 2026-08-30 — #42 head c4108ad4: Multivaccination v11 volta a needs-revision por erro de escopo de fonte/local; Sine v8 segue bloqueada no source_digest.
-- 2026-08-30 — #42 avança Multivaccination para v11 e fila de factual-integrity; Sine v8 segue bloqueada no `source_digest`.
-- 2026-08-29 — card migrado para D1/D2/D3; gap público de verificação revalidado; `gap_score: 2`.
+- 2026-08-30 — #42 head 5d3de1f4: digest canônico resolvido; v12/v8 têm factual-integrity + source-provenance aprovados; próxima fila reader-intent; nenhuma article-published.
+- 2026-08-30 — #42 head d66e55d8: Multivaccination v12 e Sine v8 têm pass substantivo de factual-integrity; ambas bloqueadas no source_digest canônico.
+- 2026-08-30 — #42 avança Multivaccination para v12 e factual-integrity após nova fonte confirmar Shopping na campanha corrente.
+- 2026-08-30 — #42 head c4108ad4: Multivaccination v11 volta a needs-revision por erro de escopo de fonte/local.
+- 2026-08-30 — #42 avança Multivaccination para v11 e fila de factual-integrity.
