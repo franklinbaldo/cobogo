@@ -17,7 +17,7 @@ Preservar a identidade de jornal local independente: texto como estrutura narrat
 
 O leitor pode abrir matérias estáticas, ler título, texto e bloco de proveniência e voltar à home.
 
-**Gap [fato] — `/porto-velho/2026/07/novo-registro-alimentos-nova-porto-velho/`:** a página continua se apresentando como `Matéria Factual Verificada` apesar de expor CNPJ de fixture, SHA-256 do conteúdo vazio e `Evaluation Passed (0 alucinações)` como se fossem evidência factual. `ovigia-redacao#29` rastreia a remediação pelo boundary canônico de publicação.
+**Gap [fato] — `/porto-velho/2026/07/novo-registro-alimentos-nova-porto-velho/`:** a página continua se apresentando como `Matéria Factual Verificada` apesar de expor CNPJ de fixture, SHA-256 do conteúdo vazio e `Evaluation Passed (0 alucinações)` como se fossem evidência factual. O repo público permanece no commit `67eb821dcc1ae0c81913b87d14cfe91259ae5d74`; `ovigia-redacao#29` rastreia a remediação pelo boundary canônico de publicação.
 
 ## D2 — por trás
 
@@ -33,7 +33,7 @@ fonte/lead
 → article-published + evidência pública
 ```
 
-`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42` foi atualizada em 2026-08-29: publication-time freshness invalidou os ready históricos e o reporter produziu Sine `draft-v8` e Multivaccination `draft-v10`; approvals dos bytes anteriores estão stale e nenhuma das duas candidatas atuais está autorizada para publicação. O `ProjectProfile` do workspace ainda descreve o estado anterior e esse drift está rastreado em `franklinbaldo/workspace#20`.
+`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `cb44661115c2b2644e9ca642e7d9cce5c3d0de84`, registra o estado corrente: Sine `draft-v8` passou `factual-integrity` contra a lista oficial viva, mas a promoção downstream permanece bloqueada porque o runtime local não obteve o `source_digest` canônico do `okf-parser`; nenhum hash paralelo foi fabricado. Multivaccination `draft-v10` está em `needs revision` porque ainda não resolve o serviço de domingo no Porto Velho Shopping. Nenhuma candidata corrente está em `article-published`. O `ProjectProfile` do workspace ainda descreve o estado anterior e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
 
 O publisher atual já projeta fontes OKF resolvidas, normaliza `datePublished` para formato machine-readable e não emite `Gatekeeper Editorial`, `Evaluation Passed (0 alucinações)` ou o rótulo `Matéria Factual Verificada`. Portanto o defeito atual está concentrado no artefato público legado, não no template canônico vigente.
 
@@ -47,8 +47,8 @@ A superfície atualmente prova apenas HTML estático público licenciado em CC B
 
 ## Capacidades de superfície
 
-- **Pages/static surface** — `last_verified: 2026-08-30`. `ovigialocal/ovigialocal.github.io` continua publicando a rota legada; o último commit do repo público é `67eb821d` de 2026-08-21 e os bytes problemáticos permanecem presentes.
-- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. `scripts/materialize_article_ready.py` materializa somente depois de `_require_article_ready_gates()` e o renderer atual usa provenance OKF + data machine-readable; #42 não possui candidata corrente autorizada para substituir o artefato legado.
+- **Pages/static surface** — `last_verified: 2026-08-30`. `ovigialocal/ovigialocal.github.io` continua publicando a rota legada; o repo público permanece em `67eb821dcc1ae0c81913b87d14cfe91259ae5d74` e os bytes problemáticos permanecem presentes.
+- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. `scripts/materialize_article_ready.py` materializa somente depois de `_require_article_ready_gates()` e o renderer atual usa provenance OKF + data machine-readable; #42 ainda não possui candidata corrente em `article-published` capaz de substituir o artefato legado.
 - **Captura visual** — `last_verified: 2026-08-30`. Nenhuma capacidade Playwright/screenshot/capture foi encontrada no repo; não há pixel proof corrente registrado.
 - **Smoke tests** — `last_verified: 2026-08-30`. GitHub Actions é explicitamente excluído da arquitetura operacional; certificação determinística é local/pre-push via `scripts/ci-local.sh` quando exigida.
 - **Preservação/Wayback** — `last_verified: 2026-08-30`. Nenhum checkpoint arquivado da rota foi verificado nesta rodada.
@@ -66,8 +66,8 @@ Nenhum conceito novo foi registrado nesta rodada. O boundary editorial digest-bo
 
 ## Histórico
 
+- 2026-08-30 — #42 avança: Sine v8 factual-integrity PASS mas bloqueada no `source_digest` canônico; Multivaccination v10 precisa revisão; artefato público legado continua intacto.
 - 2026-08-30 — publisher atual revalidado: novas materializações já evitam gate-state público e normalizam provenance/data; gap restante é o artefato legado; workspace#20 registra drift do ProjectProfile.
 - 2026-08-29 — card migrado para D1/D2/D3; gap público de verificação revalidado; `gap_score: 2`.
 - 2026-08-29 — #42 devolve readies históricos à apuração por freshness; `article-ready` não autoriza publicação expirável.
 - 2026-08-17 — superfície pública ainda mostrava fixture como `Matéria Factual Verificada`; #29 permaneceu aberta.
-- 2026-08-16 — #29 registrada para alinhar fixture/proveniência sintética ao publisher canônico.
