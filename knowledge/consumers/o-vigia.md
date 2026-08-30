@@ -33,7 +33,7 @@ fonte/lead
 → article-published + evidência pública
 ```
 
-`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `cb44661115c2b2644e9ca642e7d9cce5c3d0de84`, registra o estado corrente: Sine `draft-v8` passou `factual-integrity` contra a lista oficial viva, mas a promoção downstream permanece bloqueada porque o runtime local não obteve o `source_digest` canônico do `okf-parser`; nenhum hash paralelo foi fabricado. Multivaccination `draft-v10` está em `needs revision` porque ainda não resolve o serviço de domingo no Porto Velho Shopping. Nenhuma candidata corrente está em `article-published`. O `ProjectProfile` do workspace ainda descreve o estado anterior e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
+`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42`, no head `79a17f27256a0bc7c319b6d246fa08edcfecd24a`, registra o estado corrente: Sine `draft-v8` mantém pass substantivo de factual-integrity, mas a promoção downstream continua bloqueada porque o runtime não obteve o `source_digest` canônico do `okf-parser`; nenhum hash paralelo foi fabricado. Multivaccination avançou para `draft-v11`: reporter/researcher passou e promoveu os novos bytes para a fila de factual-integrity após remover a afirmação não sustentada de que apenas 31/08 e 01/09 restavam e preservar como não confirmado o horário de domingo no Porto Velho Shopping. Nenhuma candidata corrente está em `article-published`. O `ProjectProfile` do workspace ainda descreve o estado anterior e esse drift permanece rastreado em `franklinbaldo/workspace#20`.
 
 O publisher atual já projeta fontes OKF resolvidas, normaliza `datePublished` para formato machine-readable e não emite `Gatekeeper Editorial`, `Evaluation Passed (0 alucinações)` ou o rótulo `Matéria Factual Verificada`. Portanto o defeito atual está concentrado no artefato público legado, não no template canônico vigente.
 
@@ -66,8 +66,8 @@ Nenhum conceito novo foi registrado nesta rodada. O boundary editorial digest-bo
 
 ## Histórico
 
-- 2026-08-30 — #42 avança: Sine v8 factual-integrity PASS mas bloqueada no `source_digest` canônico; Multivaccination v10 precisa revisão; artefato público legado continua intacto.
-- 2026-08-30 — publisher atual revalidado: novas materializações já evitam gate-state público e normalizam provenance/data; gap restante é o artefato legado; workspace#20 registra drift do ProjectProfile.
+- 2026-08-30 — #42 avança Multivaccination para v11 e fila de factual-integrity; Sine v8 segue bloqueada no `source_digest`; nenhuma candidata é `article-published`.
+- 2026-08-30 — Sine v8 factual-integrity PASS e Multivaccination v10 precisa revisão; artefato público legado continua intacto.
+- 2026-08-30 — publisher atual revalidado: novas materializações já evitam gate-state público e normalizam provenance/data; workspace#20 registra drift do ProjectProfile.
 - 2026-08-29 — card migrado para D1/D2/D3; gap público de verificação revalidado; `gap_score: 2`.
-- 2026-08-29 — #42 devolve readies históricos à apuração por freshness; `article-ready` não autoriza publicação expirável.
 - 2026-08-17 — superfície pública ainda mostrava fixture como `Matéria Factual Verificada`; #29 permaneceu aberta.
