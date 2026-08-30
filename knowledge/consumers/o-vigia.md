@@ -1,56 +1,70 @@
 ---
-type: consumer
-title: O Vigia
-repository: https://github.com/franklinbaldo/ovigia-redacao
-adoption_status: candidate
-surface: editorial reading, archive and provenance
-interaction_profile: editorial reading and browsing
-runtime: product-specific publication pipeline and public static surface
-constraints:
-  - text remains the primary narrative structure
-  - provenance and source hierarchy must stay visible
-  - editorial rhythm may be more open than administrative/data surfaces
-capabilities_used: []
-unmet_needs:
-  - editorial typography and rhythm profile over shared foundations
-  - provenance and evidence patterns
-  - long-form reading patterns
-  - image and archive composition guidance
-  - distinguish fixture/demo publication from factual verified publication
-integration_evidence:
-  - https://github.com/franklinbaldo/ovigia-redacao/issues/26
-  - https://github.com/franklinbaldo/ovigia-redacao/issues/29
-  - https://github.com/ovigialocal/ovigialocal.github.io/blob/main/porto-velho/2026/07/novo-registro-alimentos-nova-porto-velho/index.html
-local_identity: independent local-journal identity and narrative voice
-last_verified: 2026-08-17
+type: ConsumerCard
+repo: franklinbaldo/ovigia-redacao
+site: https://ovigialocal.github.io/
+status: active
+last_reviewed: 2026-08-29
+gap_score: 2
 ---
 
 # O Vigia
 
-O Vigia tests Cobogó in an editorial reading and narrative context. Its current adoption state is **candidate**: it contributes requirements and evidence, but does not yet consume the reconstructed Cobogó implementation surface.
+## Identidade local
 
-## Visual needs
+Preservar a identidade de jornal local independente: texto como estrutura narrativa principal, ritmo editorial mais aberto que superfícies administrativas, voz jornalística própria, hierarquia entre matéria/evidência/contexto e leitura static-first. Cobogó não deve transformar O Vigia em dashboard nem impor uma skin compartilhada.
 
-- text as primary structure, not filler inside cards;
-- more open rhythm than administrative interfaces;
-- hierarchy among story, evidence, source, context and archive;
-- images able to participate in narrative without competing with readability;
-- independent editorial identity.
+## D1 — no site
 
-## Grammar relationship
+O leitor pode abrir matérias estáticas, ler título, texto e bloco de proveniência e voltar à home.
 
-It uses [Vão antes de massa](../canon/vao-antes-de-massa.md) to create hierarchy through rhythm and breathing room and [Módulo sem monotonia](../canon/modulo-sem-monotonia.md) to permit editorial variety without becoming a collection of arbitrary templates.
+**Gap [fato] — `/porto-velho/2026/07/novo-registro-alimentos-nova-porto-velho/`:** a página ainda se apresenta como `Matéria Factual Verificada` apesar de expor CNPJ de fixture, SHA-256 do conteúdo vazio e `Evaluation Passed (0 alucinações)` como se fossem evidência factual. `ovigia-redacao#29` rastreia a correção pelo publisher canônico.
 
-It must obey [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md): sharing grammar with Astronauta and CausaGanha does not imply sharing their density, components or visual skin.
+## D2 — por trás
 
-Its current specimen is [O Vigia story surface](../specimens/vigia-story-surface.md).
+Conforme o `ProjectProfile` vigente no workspace, O Vigia é uma redação privada de jornalismo cívico hiperlocal verificável. O boundary atual é:
 
-## Integration evidence
+```text
+fonte/lead
+→ reporter/researcher + producer skills
+→ article-draft + editorial_self_review
+→ gates independentes ligados ao digest
+→ article-ready
+→ publication-editor
+→ article-published + evidência pública
+```
 
-The first `cobogo-consumer-synergy` pass opened [O Vigia #26](https://github.com/franklinbaldo/ovigia-redacao/issues/26) to test a shared provenance/freshness relation against an editorial surface. The test explicitly forbids turning editorial output into a monitoring dashboard.
+`article-ready` não é autorização temporal permanente. A PR `ovigia-redacao#42` registrou em 2026-08-29 que freshness review devolveu os readies de Sine e Dia D à apuração; nenhuma das duas matérias está atualmente autorizada para publicação.
 
-A 2026-08-17 re-verification of the public static story preserves a negative evidence case tracked in [O Vigia #29](https://github.com/franklinbaldo/ovigia-redacao/issues/29): the page still labels itself `Matéria Factual Verificada` while presenting fixture-looking values as factual provenance, including the SHA-256 of empty content and internal `Evaluation Passed (0 alucinações)` pipeline state. Its `NewsArticle.datePublished` is also human-formatted instead of machine-readable ISO 8601.
+**Gap [fato]:** a matéria pública antiga não explica essa fronteira e usa estado interno de pipeline como substituto de prova pública. A superfície fica epistemicamente mais forte que a maquinaria realmente demonstrada.
 
-This public story therefore **does not count as positive rendered evidence** for [Provenance and freshness](../patterns/provenance-freshness.md). It remains useful as editorial-composition evidence and as a counterexample showing that provenance-looking UI can overstate what the publication pipeline has actually proved.
+## D3 — por conta própria
 
-Reusable editorial needs may become Cobogó patterns only after the corpus has enough evidence to distinguish a shared grammar from O Vigia-specific publication choices.
+A superfície atualmente prova apenas HTML estático público licenciado em CC BY 4.0. Para a matéria revisada não há bundle de fonte/evidência público reconstruível nem `article-published` governado comprovado pelo repositório.
+
+**Gap [fato]:** nenhum gap material de reutilização é contado nesta dimensão, porque o projeto ainda não prova ter publicado para essa matéria um dataset, API, bundle ou arquivo independente que a superfície esteja escondendo. Não confundir corpus privado ou `article-ready` com artefato público reutilizável.
+
+## Capacidades de superfície
+
+- **Pages/static surface** — `last_verified: 2026-08-29`. O README aponta `ovigialocal.github.io` como superfície pública e os bytes da matéria estão versionados em `ovigialocal/ovigialocal.github.io`.
+- **Deploy/publicação canônica** — `last_verified: 2026-08-29`. O repo define publicação static-first por `publication-editor → article-published + evidência pública`; a #42 confirma que os readies correntes foram devolvidos antes da publicação.
+- **Captura visual** — `last_verified: 2026-08-29`. Nenhuma capacidade Playwright/screenshot/capture foi encontrada no repo durante esta rodada; não há pixel proof corrente registrado.
+- **Smoke tests** — `last_verified: 2026-08-29`. GitHub Actions é explicitamente excluído da arquitetura operacional; certificação determinística é local/pre-push via `scripts/ci-local.sh` quando exigida.
+- **Preservação/Wayback** — `last_verified: 2026-08-29`. Nenhum checkpoint arquivado da rota foi verificado nesta rodada.
+
+## O que este consumer faz melhor que o Cobogó
+
+Nenhum conceito novo foi registrado nesta rodada. O boundary editorial digest-bound e a revalidação de freshness são evidência operacional importante, mas não foram promovidos a conceito de design sem uma solução de superfície fechada e proveniência visual antes/depois.
+
+## Padrões do Cobogó em uso
+
+- [Vão antes de massa](../canon/vao-antes-de-massa.md) — aplicado à leitura editorial e ritmo.
+- [Módulo sem monotonia](../canon/modulo-sem-monotonia.md) — permite variação editorial sem templates arbitrários.
+- [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md) — preserva a identidade jornalística local.
+- [Provenance and freshness](../patterns/provenance-freshness.md) — a matéria atual permanece **contraexemplo/negative evidence**, não prova positiva do pattern.
+
+## Histórico
+
+- 2026-08-29 — card migrado para D1/D2/D3; gap público de verificação revalidado; `gap_score: 2`.
+- 2026-08-29 — #42 devolve Sine e Dia D à apuração após freshness review; `article-ready` não autoriza publicação expirável.
+- 2026-08-17 — superfície pública ainda mostrava fixture como `Matéria Factual Verificada`; #29 permaneceu aberta.
+- 2026-08-16 — #29 registrada para alinhar fixture/proveniência sintética ao publisher canônico.
