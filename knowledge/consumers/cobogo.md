@@ -1,57 +1,58 @@
 ---
-type: consumer
-title: Cobogó
-repository: https://github.com/franklinbaldo/cobogo
-adoption_status: adopting
-surface: design-system knowledge, documentation, specimens and reference surfaces
-interaction_profile: self-documentation, visual grammar demonstration, review and dogfood
-runtime: repository-native Astro reference site over the same framework-agnostic core exported to consumers
-constraints:
-  - Cobogó must consume its own stable capabilities where they apply
-  - self-use must not create a privileged private API unavailable to other consumers
-  - knowledge remains canonical OKF; a showcase or docs UI is a projection
-  - self-dogfood must preserve the distinction between normative grammar and one visual theme
-  - framework-specific bindings remain optional
-capabilities_used:
-  - canonical OKF consumer registry
-  - visual grammar knowledge
-  - semantic foundations
-  - framework-agnostic core web CSS
-  - public semantic theme mapping
-unmet_needs:
-  - editorial/documentation patterns for its own knowledge surfaces
-  - specimen presentation without turning specimens into templates
-  - self-conformance checks for stable capabilities
-local_identity: the reference design-system project itself; Brazilian visual grammar without collapsing into one branded skin
-integration_evidence:
-  - https://github.com/franklinbaldo/cobogo/issues/263
-  - https://github.com/franklinbaldo/cobogo/issues/266
-  - https://github.com/franklinbaldo/cobogo/issues/281
-last_verified: 2026-08-10
+type: ConsumerCard
+repo: franklinbaldo/cobogo
+site: https://franklinbaldo.github.io/cobogo/
+status: active
+last_reviewed: 2026-08-30
+gap_score: 1
 ---
 
 # Cobogó
 
-Cobogó is a consumer of Cobogó.
+## Identidade local
 
-Its current state is **adopting**: the reference site imports the same `core.css` public surface exported as `cobogo/core`, then maps its existing local paper/concrete, accent and typography choices onto public semantic roles in a downstream `self-dogfood.css`. There is no privileged self-only foundation API.
+Cobogó é o sistema de design e conhecimento de superfície do portfólio. Preservar a gramática brasileira como relação operacional — vão, ritmo, materialidade, tipografia, evidência e parentesco sem uniformidade — sem transformar o site de referência numa skin obrigatória. O site pode ter identidade própria de referência; tokens e escolhas concretas dele não viram core por dogfood.
 
-The existing legacy site vocabulary remains temporarily available, but its high-level semantic aliases (`--bg`, `--fg`, `--border`, `--focus-ring`, `--accent`) now resolve through the public core roles. That makes compatibility debt observable while avoiding a visual big-bang migration.
+## D1 — no site
 
-## Stronger self-consumer rule
+A configuração Astro prova uma superfície pública em `https://franklinbaldo.github.io/cobogo/`, sob base `/cobogo`, com documentação, specimens e busca. O próprio projeto consome capacidades estáveis quando aplicáveis e mantém a projeção web separada do corpus canônico de knowledge.
 
-When a Cobogó capability becomes stable and is relevant to Cobogó's own human-facing surfaces, Cobogó should adopt it before treating the capability as comfortably proven for third parties.
+**Gap [fato]:** nenhum gap D1 novo comprovado nesta rodada. A captura do head da #407 passou e a PR não altera superfície visual.
 
-Exceptions must be explicit. A capability may legitimately not apply to Cobogó itself, but the reason should be recorded rather than silently bypassing dogfood.
+## D2 — por trás
 
-Self-use must never create a hidden privileged layer. If Cobogó requires a private token, component, framework hook or semantic rule that ordinary consumers cannot use, that is evidence that the public contract is incomplete or that the behavior is project-local.
+O `ProjectProfile` define Cobogó como sistema de design e conhecimento evoluído por evidência real de consumers, no qual relações compartilhadas devem permanecer menores que implementações e preservar identidade local. O core estável já tem adoções externas independentes; configuração, execução, publicação, deploy, captura e adoção são classes de evidência distintas.
 
-## Local theme is not core
+**Gap [fato] — `README.md`:** o README ainda encerra seu objetivo como `Unificar a interface dos projetos`, formulação incompatível com a tese atual de parentesco sem uniformidade. O aviso de migração qualifica corretamente que boa parte da API semântica descrita é alvo futuro, mas o objetivo final continua editorialmente obsoleto.
 
-Cobogó's reference/docs surface keeps a particular local identity. Its paper/concrete palette, display typography and legacy visual vocabulary are consumer-side mappings, not additional evidence that those concrete values belong in core.
+## D3 — por conta própria
 
-The self-consumer therefore exercises [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md) against itself: the reference implementation may be recognizably Cobogó without defining what every Cobogó consumer must look like.
+O repositório publica CSS e componentes consumíveis por instalação Git, além da documentação de entry points (`cobogo/core`, `cobogo/styles`, componentes Svelte) e do site de referência. O README distingue a API atualmente embarcada da API-alvo durante a migração.
 
-## Next dogfood
+**Gap [fato]:** nenhum gap D3 material novo comprovado nesta rodada.
 
-The next self-conformance slice should use shared editorial/documentation patterns and specimen presentation once those patterns are proven across external consumers.
+## Capacidades de superfície
+
+- **Pages/site de referência** — `last_verified: 2026-08-30`. `astro.config.mjs` fixa `site: https://franklinbaldo.github.io` e `base: /cobogo`; nenhuma mudança de deploy foi feita nesta rodada.
+- **Build/CI** — `last_verified: 2026-08-30`. O `main` continua construível pelo gate existente, mas a tentativa de restaurar Vitest como gate em #407 revelou 65 testes falhando em 20 arquivos no head `32b3897335df837e0b49035ecce77d4d59fa3738`; a PR não foi mergeada.
+- **Captura visual** — `last_verified: 2026-08-30`. O check `capture` da #407 passou no mesmo head; a mudança é não visual.
+- **Smoke/self-conformance** — `last_verified: 2026-08-30`. #407 prova que apenas ligar a suíte antiga ao CI ainda não constitui um gate utilizável: `87/152` testes passam e `65/152` falham, concentrados em contratos legados de classes, estados de formulário e alguns comportamentos de interação.
+- **Preservação** — `last_verified: 2026-08-30`. Nenhum Save Page Now foi verificado nesta rodada.
+
+## O que este consumer faz melhor que o Cobogó
+
+Por ser o próprio projeto de referência, o dogfood torna incompatibilidades entre contrato estável e expectativas legadas observáveis. Nesta rodada, a suíte reativada mostrou de forma concreta que self-conformance precisa distinguir contratos vigentes de testes fossilizados antes de virar gate obrigatório.
+
+## Padrões do Cobogó em uso
+
+- `Parentesco sem uniformidade` — o tema local do site não é core.
+- Gates de evidência medem contratos relevantes, não detalhes incidentais — ainda não satisfeito pela suíte Vitest legada da #407.
+- Configuração ≠ execução ≠ publicação ≠ captura ≠ adoção — distinção preservada no ProjectProfile.
+
+## Histórico
+
+- 2026-08-30 — #407 rebaseada mecanicamente no `main`; `capture` passou, mas `npm test` revelou 65/152 testes vermelhos e bloqueou merge.
+- 2026-08-30 — card migrado para `ConsumerCard`; gap D2 registra o objetivo obsoleto `Unificar a interface dos projetos` no README.
+- 2026-08-18 — Core Web CSS API registrada como estável após adoções externas independentes em CausaGanha e Ficha.
+- 2026-08-18 — evidência de browser e fronteiras `configured gate != observed gate` consolidadas no corpus.
+- 2026-08-10 — estado anterior do self-consumer registrado como `adopting`.
