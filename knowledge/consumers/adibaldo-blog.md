@@ -1,8 +1,8 @@
 ---
 type: consumer
 title: Adi blog
-repository: https://github.com/franklinbaldo/adibaldo.github.io
-adoption_status: candidate
+repository: https://github.com/adibaldo/adibaldo.github.io
+adoption_status: dormant
 surface: personal blog
 interaction_profile: simple long-form reading, archive navigation, and printable compilation
 runtime: Astro blog on GitHub Pages
@@ -13,14 +13,14 @@ capabilities_used: []
 unmet_needs:
   - lightweight editorial foundations
   - simple archive/navigation rhythm
-last_verified: 2026-08-16
+last_verified: 2026-08-31
 ---
 
 # Adi blog
 
-The Adi blog is a candidate consumer because it is a real Astro/GitHub Pages publication, but its simplicity is itself a useful constraint.
+The Adi blog remains a real Astro/GitHub Pages publication, but the canonical repository is now `adibaldo/adibaldo.github.io`, not `franklinbaldo/adibaldo.github.io`. The current repo reports its last push on 2026-04-30; with more than 60 days without repository activity and no `ProjectProfile` signal of resumed work found in the workspace, this card is marked dormant for Cobogó rotation purposes. Dormant does not mean the published site is offline.
 
-Cobogó should be able to serve a small personal blog without requiring a heavy component or configuration surface.
+Its simplicity remains a useful constraint: Cobogó should be able to serve a small personal blog without requiring a heavy component or configuration surface.
 
 ## Verified project surface
 
@@ -30,4 +30,4 @@ The print projection is not a generic export button. It has explicit A4 page mec
 
 This is independent positive evidence for Cobogó's experimental `Document and print surface` relation in a materially different context from legal-document consumers: a small personal archive can treat pagination as a real reading/circulation mode while preserving a lightweight local identity.
 
-Evidence class in this verification is **source/configuration**. No rendered print/PDF capture was produced in this pass, so the card must not imply pixel-level print verification.
+Evidence class in the original verification is **source/configuration**. No rendered print/PDF capture was produced in that pass, so the card does not imply pixel-level print verification.
