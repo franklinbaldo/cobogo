@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/cobogo
 site: https://franklinbaldo.github.io/cobogo/
 status: active
-last_reviewed: 2026-08-30
+last_reviewed: 2026-08-31
 gap_score: 0
 ---
 
@@ -34,9 +34,9 @@ O repositório publica CSS e componentes consumíveis por instalação Git, alé
 ## Capacidades de superfície
 
 - **Pages/site de referência** — `last_verified: 2026-08-30`. #412 foi mergeada em `9c3aa709135031a68e5e6c562bd53a7b41f13355`; Deploy to GitHub Pages run `33352768862` teve build e deploy verdes no mesmo SHA.
-- **Build/CI** — `last_verified: 2026-08-30`. #412 passou CI run `33352690955` no head `b21b80310c3e7db8aa7933d9eb17ef1eb96c0ca2`. A tentativa separada de restaurar Vitest como gate em #407 continua bloqueada por 65 testes falhando em 20 arquivos.
-- **Captura visual** — `last_verified: 2026-08-30`. #412 passou Greenfield visual preview run `33352690970`; a mudança é documental e não visualmente material.
-- **Smoke/self-conformance** — `last_verified: 2026-08-30`. #407 continua provando que apenas ligar a suíte antiga ao CI ainda não constitui gate utilizável: 87/152 testes passam e 65/152 falham.
+- **Build/CI** — `last_verified: 2026-08-31`. A #407 foi reaplicada mecanicamente sobre `main` no head `612f7f247cdbfc40b0cf8e0292fbb50d9f39999e`; CI run `33433669418` executou o novo `npm test` e falhou no próprio gate antes de Astro check/build.
+- **Captura visual** — `last_verified: 2026-08-30`. #412 passou Greenfield visual preview run `33352690970`; nenhuma mudança de superfície visualmente material ocorreu nesta rodada.
+- **Smoke/self-conformance** — `last_verified: 2026-08-31`. O run `33433669418` reproduziu o baseline: 87/152 testes passam e 65/152 falham em 20/29 arquivos; `Alert.test.ts` passa 5/5 após alinhar a expectativa ao `role="alert"`. A amplitude restante excede uma correção causal de rodada e continua impedindo transformar a suíte legada inteira em required gate.
 - **Preservação** — `last_verified: 2026-08-30`. Nenhum Save Page Now foi verificado nesta rodada.
 
 ## O que este consumer faz melhor que o Cobogó
@@ -51,8 +51,8 @@ Por ser o próprio projeto de referência, o dogfood torna incompatibilidades en
 
 ## Histórico
 
+- 2026-08-31 — #407 reaplicada sobre `main` no head `612f7f24`; CI fresco reproduziu 65/152 falhas, com `Alert.test.ts` 5/5, mantendo o bloqueio sem enfraquecer o gate.
 - 2026-08-30 — #412 mergeada em `9c3aa709`: README deixa de prometer interface unificada e passa a explicitar gramática compartilhada com identidade local; Pages verde.
 - 2026-08-30 — #407 rebaseada mecanicamente no `main`; `capture` passou, mas `npm test` revelou 65/152 testes vermelhos e bloqueou merge.
 - 2026-08-30 — card migrado para `ConsumerCard`; gap D2 registrou o objetivo obsoleto do README, depois fechado pela #412.
 - 2026-08-18 — Core Web CSS API registrada como estável após adoções externas independentes em CausaGanha e Ficha.
-- 2026-08-18 — evidência de browser e fronteiras `configured gate != observed gate` consolidadas no corpus.
