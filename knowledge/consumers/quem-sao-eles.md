@@ -1,84 +1,61 @@
 ---
-type: consumer
-title: Quem São Eles?
-repository: https://github.com/franklinbaldo/quem-sao-eles
-adoption_status: candidate
-surface: public editorial profile catalog plus public PEP data search
-interaction_profile: profile reading, chronology, source archive, political memory and client-side public-data search
-runtime: Astro static site on GitHub Pages + Svelte/DuckDB-WASM for PEP search
-constraints:
-  - preserve sober journalistic identity
-  - sources must remain visible and archived
-  - profiles and news need long-form reading rhythm
-  - public datasets must not be conflated with editorial profiles
-capabilities_used: []
-operational_capabilities:
-  - GitHub Pages build/deploy from main
-  - monthly PEP refresh workflow writing YYYYMM_pep.parquet snapshots to public/data
-  - client-side DuckDB-WASM query over the published PEP Parquet
-  - reproducible Chromium capture that proves the current PEP snapshot is reachable and queryable
-unmet_needs:
-  - editorial provenance pattern
-  - profile and chronology composition
-  - source/archive inscription semantics
-  - rendered evidence for populated editorial profiles
-integration_evidence:
-  - https://github.com/franklinbaldo/quem-sao-eles/issues/7
-  - https://github.com/franklinbaldo/quem-sao-eles/pull/8
-  - https://github.com/franklinbaldo/quem-sao-eles/issues/10
-  - https://github.com/franklinbaldo/quem-sao-eles/issues/11
-  - https://github.com/franklinbaldo/quem-sao-eles/issues/13
-  - https://github.com/franklinbaldo/quem-sao-eles/pull/12
-  - https://github.com/franklinbaldo/quem-sao-eles/pull/14
-last_verified: 2026-08-17
+type: ConsumerCard
+repo: franklinbaldo/quem-sao-eles
+site: https://franklinbaldo.github.io/quem-sao-eles/
+status: active
+last_reviewed: 2026-08-31
+gap_score: 0
 ---
 
 # Quem São Eles?
 
-Quem São Eles? is a high-confidence Cobogó consumer candidate because it combines an Astro-based editorial catalog with a real public-data product. Its strongest editorial synergy remains with O Vigia around provenance, source hierarchy, profiles, chronology and sustained reading, while the PEP route provides a separate data-reading pressure test. Cobogó should not erase its intentionally sober newspaper identity or treat those two jobs as one surface.
+## Identidade local
 
-## Editorial surface — negative evidence still current
+Catálogo jornalístico sóbrio de memória política, com preto/branco/cinza, leitura editorial e fontes arquivadas. Preservar a separação entre perfis/cronologia editoriais e a busca pública de PEP: são dois trabalhos distintos. Não converter a superfície em dashboard genérico nem confundir dataset público com perfil editorial.
 
-The 2026-08-11 inspection remains relevant for the editorial catalog itself: a fresh checkout builds, but the home has no populated politician/news collection to exercise the intended profile/chronology surface. This still means the editorial catalog is **not** ready to prove a shared editorial pattern merely from its source structure.
+## D1 — no site
 
-The old Astro starter footer no longer belongs to that negative evidence. The full-page PEP capture made `Your name here` plus Astro social links visible as a credibility defect already tracked by #10; PR #14 replaced them with a minimal factual footer (`Quem São Eles?` + the existing repository as `Código e dados no GitHub`) without inventing author identity, social channels or marketing. The PR browser capture passed before merge, and the same capture passed again on `main` after squash merge `1fb2c8eb55e577de07e274386b06ceec7a2bb50f` (run `32075299012`).
+[fato] A superfície pública já oferece uma busca PEP client-side sobre o Parquet publicado. A rota identifica Portal da Transparência/CGU, mostra a competência, permite pesquisar e distingue estados de carregamento, erro, resultado e busca sem correspondência. A home torna essa busca descobrível e deixa explícito que ela é separada do catálogo editorial.
 
-That editorial limitation no longer justifies describing the whole project as lacking a real product surface, however. The repository contains a distinct PEP data product with committed Parquet snapshots and a DuckDB-WASM search route.
+[fato] O catálogo de perfis/cronologia continua sem conteúdo editorial populado suficiente no repositório para constituir hoje uma experiência editorial real a ser avaliada. Isso é ausência de matéria publicada, não uma capacidade comprovada escondida pela superfície.
 
-## Project-surface reconciliation — 2026-08-15
+**Gap [fato]:** nenhum gap D1 material fechável com a evidência atual. Produzir cards/perfis fictícios apenas para criar uma intervenção violaria a fronteira editorial.
 
-A review found a machinery/surface mismatch in the PEP product:
+## D2 — por trás
 
-- `.github/workflows/pep.yml` runs a monthly Portal da Transparência PEP pipeline and commits `public/data/{YYYYMM}_pep.parquet`;
-- the latest inspected successful scheduled run was 2026-08-01;
-- `public/data/` contained snapshots through `202606_pep.parquet`;
-- `PepSearch.svelte` nevertheless hard-coded `202602_pep.parquet` and `/pep` did not identify the queried competence.
+[fato] O README e o `ProjectProfile` explicam a tese do projeto: memória política e transparência por perfis documentados, com fontes secundárias arquivadas, mais uma superfície distinta de consulta a dados PEP da CGU. O runtime PEP usa Svelte + DuckDB-WASM para consultar no navegador o snapshot Parquet versionado.
 
-Quem São Eles #7 tracked that gap and PR #8 corrected it. After #8, the build selects the greatest available `YYYYMM_pep.parquet`, the PEP page identifies Portal da Transparência/CGU as source, exposes competence with machine-readable `<time datetime="YYYY-MM">`, links the exact Parquet, and the home makes the PEP search discoverable while stating that it is separate from the editorial catalog. The search input also gained an explicit label/help relationship, focus treatment, and distinct loading/error/result semantics.
+**Gap [fato]:** nenhum material. A razão de existir, a metodologia editorial e a separação entre catálogo e PEP estão recuperáveis no repositório; não há evidência atual que justifique inventar nova explicação de produto na superfície.
 
-The same pass found that web changes had no causal pre-merge build gate. #9 was folded into #8: pull requests now execute the same `withastro/action` build used by Pages, while deployment is skipped on PRs. The first run correctly falsified the existing workflow because `withastro/action` defaulted to Node 20 while Astro 6 requires Node >=22.12.0; pinning the action to Node 22.12.0 made the next PR build pass. This is useful negative evidence: a deploy recipe existing in source was not equivalent to a currently executable build contract.
+## D3 — por conta própria
 
-## Rendered search and artifact evidence — 2026-08-17
+[fato] Na rota PEP, a pessoa pode tanto consultar os dados no próprio site quanto abrir/baixar o snapshot Parquet exato usado pela consulta. A competência e a autoridade ficam adjacentes ao artefato, permitindo reutilização independente sem transformar a página em console técnico. O repositório também documenta execução local do site Astro.
 
-#11 / PR #12 added a browser gate around the same built artifact used by Project Pages. The first capture immediately falsified the visible handoff: the Parquet link rendered as `/quem-sao-elesdata/202606_pep.parquet`, and the same broken URL was being passed to DuckDB. #13 tracked that product bug; #12 normalized the base-path join and kept the test rather than hiding the failure.
+**Gap [fato]:** nenhum material. O contrato `usar aqui ↔ levar o artefato` já foi provado por captura Chromium e consulta real ao Parquet publicado.
 
-The final PR gate then proved, in Chromium and without credentials:
+## Capacidades de superfície
 
-- the page reached `search-ready` rather than merely rendering its shell;
-- Portal da Transparência / CGU remained visible as authority;
-- competence remained machine-readable;
-- the exact snapshot link rendered as `/quem-sao-eles/data/202606_pep.parquet`;
-- a deliberately unmatched query (`zzzxxy`) completed as `empty-success`, which exercises `read_parquet()` against the published snapshot rather than only proving DuckDB initialization;
-- a full-page screenshot, rendered DOM and machine-readable `capture-state.json` were preserved as the run artifact.
+- **Pages/deploy** — `last_verified: 2026-08-31`; `main` observado em `1fb2c8eb55e577de07e274386b06ceec7a2bb50f`; o último conjunto de runs registrado para esse SHA inclui Pages verde.
+- **PEP refresh** — `last_verified: 2026-08-31`; workflow mensal e snapshots versionados existem. O card não infere freshness futura a partir da configuração; a superfície expõe a competência efetivamente publicada.
+- **Build gate** — `last_verified: 2026-08-31`; PRs usam o mesmo build Astro/Pages e a configuração já foi falsificada/corrigida anteriormente para Node 22.12+.
+- **Captura visual/runtime** — `last_verified: 2026-08-31`; workflow `PEP visual capture` teve run `32075299012` verde em `1fb2c8eb55e577de07e274386b06ceec7a2bb50f`. A prova anterior inclui screenshot full-page, DOM, estado machine-readable e consulta deliberadamente sem resultado contra o Parquet.
+- **Preservação editorial** — `last_verified: 2026-08-31`; o README exige `archive_url` para notícias/fontes editoriais. Não foi produzida nova captura editorial porque não há corpus populado suficiente para essa superfície.
 
-After squash merge (`d411ea9b74fcdd3e334262e0fdf8618e454d071a`), both the PEP capture workflow (`32074662777`) and Pages build/deploy (`32074662763`) passed on `main`.
+## O que este consumer faz melhor que o Cobogó
 
-This gives Quem São Eles strong rendered evidence for a useful project-surface relation: a visitor can **use the published dataset in place** through the search and **take the exact underlying artifact** independently through the Parquet link, with source and competence kept adjacent. The two actions share provenance but remain distinct jobs.
+- Demonstra concretamente `usar aqui ↔ levar o artefato`: a mesma autoridade/competência sustenta uma consulta client-side e o Parquet diretamente reutilizável.
+- Demonstra que captura de shell não basta para provar aplicação de dados: o gate espera o runtime, executa uma consulta real e preserva estado machine-readable.
+- Esses aprendizados permanecem evidência/conceito; não promovem layout ou componente compartilhado por si sós.
 
-## What this means upstream
+## Padrões do Cobogó em uso
 
-This strengthens both `Provenance and freshness` and the existing `Public artifact reuse` pattern without requiring a new component. It is especially useful limiting evidence for artifact reuse: an interactive query can sit beside the exact reusable artifact without turning the page into a developer console.
+- `Provenance and freshness` — autoridade, competência e snapshot exato ficam recuperáveis sem afirmar freshness não provada.
+- `Public artifact reuse` — consultar no site e reutilizar o artefato são ações distintas sobre a mesma fonte.
+- `Parentesco sem uniformidade` — a identidade jornalística local e a separação catálogo/PEP permanecem próprias do consumer.
 
-It also gives #267 a second independent rendered implementation of the broad `use here ↔ take the artifact` relation alongside Ficha. The implementations remain materially different: Ficha separates **Consultar aqui** from **Levar a base** toward manifest/preserved assets, while Quem São Eles places client-side search next to the exact Parquet snapshot. The invariant is truthful reachability and context, not a shared button label or layout.
+## Histórico
 
-It still does **not** close the comparison-table relation in #267: PEP is a search/result-list task, not homogeneous cross-row comparison. It also does not stabilize the editorial reading pattern, because populated profile/chronology evidence is still absent. `adoption_status` remains `candidate` and `capabilities_used` remains empty.
+- 2026-08-31 — card migrado para `ConsumerCard`; D1/D2/D3 reavaliadas; `gap_score: 0`; ausência de conteúdo editorial reclassificada como falta de matéria publicada, não gap de superfície.
+- 2026-08-17 — #14 removeu boilerplate do Astro; capture de `main` verde em `1fb2c8eb`.
+- 2026-08-17 — #12 adicionou prova Chromium/runtime e corrigiu o base path do snapshot; Pages + capture verdes em `d411ea9b`.
+- 2026-08-15 — #8 reconciliou competência/snapshot, provenance e build gate de PR.
