@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/ovigia-redacao
 site: https://ovigialocal.github.io/
 status: active
-last_reviewed: 2026-08-30
+last_reviewed: 2026-08-31
 gap_score: 0
 ---
 
@@ -15,51 +15,51 @@ Preservar a identidade de jornal local independente de Porto Velho: texto e hier
 
 ## D1 — no site
 
-A home pública se apresenta como jornal local de Porto Velho e assume honestamente o estado sem matérias: `O Vigia`, `Notícias da cidade, com a fonte à vista` e `Ainda não há matérias publicadas`. O leitor pode acessar metodologia e correções sem atravessar linguagem de pipeline.
+A home pública se apresenta como jornal local de Porto Velho e agora contém a primeira matéria real publicada. A projeção `articles.json` expõe título, resumo, data, fonte oficial e link `Ler matéria`; a matéria canônica está em `article.html?id=porto-velho-sine-vagas-2026-08-19`.
 
-O estado populado da capa é exercitado pelo mesmo renderer em preview exclusivamente localhost (`?preview=populated`). A matéria individual agora também possui uma superfície real em `/article.html`: sem conteúdo publicado, a rota informa explicitamente que não há matéria; em localhost/127.0.0.1, `?preview=article` exercita o mesmo template com conteúdo claramente demonstrativo e não publicado. A PR #10 / merge `a6cbbbbf8b31fc5b7e472813a03817293aedaeae` prova título e linha fina dominantes, corpo de leitura, retorno ao acervo e comportamento responsivo.
+A primeira publicação é a matéria `Sine de Porto Velho tem 32 vagas para auxiliar de serviços gerais; prazo exibido vai até segunda`. O conteúdo publicado explica como se candidatar, liga para a página oficial do Sine e avisa que quantidade, requisitos e prazo devem ser conferidos novamente porque a relação muda. A composição de capa e matéria já havia sido exercitada em preview localhost-only; a publicação real de #14 passou a provar o mesmo renderer com conteúdo factual.
 
-**Gap [fato]:** nenhum gap material de D1 atualmente demonstrável pelo repositório sem depender da primeira matéria real publicada. O próximo estado novo deve ser observado a partir de publicação factual, não fabricado para gerar atividade.
+**Gap [fato]:** nenhum gap material de D1 demonstrado nesta rodada. A primeira publicação real torna observável o estado que antes existia apenas como preview, e a superfície deixa título, leitura, fonte e ação recuperáveis sem linguagem de pipeline.
 
 ## D2 — por trás
 
-O `ProjectProfile` vigente descreve O Vigia como jornalismo cívico hiperlocal verificável, com `article-ready` distinto de `article-published`, gates ligados ao digest e publicação static-first. A superfície pública explica o produto primeiro e mantém metodologia, fontes e correções como confiança progressiva.
+O projeto continua sendo jornalismo cívico hiperlocal verificável, com Redação e Publicação separadas. O contrato público do agente independente de publicação foi mergeado pela PR `ovigialocal/ovigialocal.github.io#11` em `178a467876bc4e09ef58ef5bd110408732a59230`; a primeira execução real foi materializada em `a30154c67c87380b0621807bbc1d99ff9b5f4a9b` e confirmada por evento posterior em `52be0f4cdd18fb73815ab831b6590056c2b52087`.
 
-O template de matéria mostra como proveniência e correções convivem com leitura longa: no desktop, confiança ocupa coluna secundária; no mobile, volta ao fluxo; a fonte abre por divulgação progressiva e correções continuam visíveis. A RFC pública #8 sobre agente independente de publicação permanece aberta e não é tratada aqui como contrato integrado.
+A matéria preserva confiança progressiva em vez de mostrar o pipeline editorial: fonte oficial é alcançável na capa e na matéria, freshness aparece no próprio texto quando material, e o histórico de publicação permanece no repositório público. O `ProjectProfile` do workspace ainda descreve o estado anterior à primeira publicação; `workspace#29` foi aberto para reconciliar essa fonte factual sem esta rotina escrevê-la diretamente.
 
-**Gap [fato]:** nenhum gap material de D2 atualmente demonstrável na superfície. Quando existir uma publicação real, será necessário verificar se o vínculo factual entre conteúdo publicado, fontes e correções preserva esta composição.
+**Gap [fato]:** nenhum gap material de D2 demonstrado na superfície. O boundary Redação → publicador independente já foi exercitado por uma publicação confirmada; a dívida restante nesta rodada é reconciliação da memória do workspace, não redesign público.
 
 ## D3 — por conta própria
 
-A superfície prova HTML estático público e conteúdo licenciado sob CC BY 4.0. Não há, para a edição vazia atual, dataset, API, bundle de evidência ou outro artefato jornalístico independente publicado que deva ser prometido ao leitor.
+Além do HTML público e do conteúdo sob CC BY 4.0 na superfície, a publicação agora produz artefatos públicos derivados no próprio repositório: Markdown canônico da matéria, `articles.json`, feed e sitemap. O `articles.json` inclui URL da matéria e URL da fonte oficial; o evento de publicação fixa `public_path`, digest do Markdown, commit público e URL confirmada.
 
-**Gap [fato]:** nenhum gap material contabilizado nesta dimensão. Não inferir reutilização a partir do corpus privado, drafts, gates intermediários ou capacidades futuras.
+**Gap [fato]:** nenhum gap material contabilizado nesta dimensão. Estes artefatos são publicação observável do repositório público; não inferir a partir deles acesso ao corpus privado, drafts ou gates intermediários da Redação.
 
 ## Capacidades de superfície
 
-- **Pages/static surface** — `last_verified: 2026-08-30`. #10 foi mergeada como `a6cbbbbf8b31fc5b7e472813a03817293aedaeae`; `build`, `report-build-status` e `deploy` passaram no merge SHA. A home continua vazia e `/article.html` permanece uma rota pública de estado vazio até existir conteúdo real.
-- **Deploy/publicação canônica** — `last_verified: 2026-08-30`. Frontend e redação continuam separados; esta rotina não considera a RFC #8 vigente enquanto ela não for integrada.
-- **Captura visual** — `last_verified: 2026-08-30`. O workflow captura seis estados em Chromium, desktop 1280×900 e mobile 390×844: home pública vazia, capa populada localhost-only e matéria localhost-only. Pós-merge #10: run `33330160778`, artifact `public-surface-capture` id `9737404079`, digest `sha256:cbc0dcffcb18fb0f90c4d90020318fe3750c7e11c8f92ff4c2d06dcb84b43586`.
-- **Smoke tests** — `last_verified: 2026-08-30`. O script sobe a árvore via `python -m http.server`, exige resposta HTTP da home e exige que as seis capturas sejam produzidas; a validação roda em PR e push para `main`.
-- **Preservação/Wayback** — `last_verified: 2026-08-30`. Nenhum checkpoint Save Page Now foi verificado nesta rodada.
+- **Pages/static surface** — `last_verified: 2026-08-31`. A primeira matéria foi materializada em `a30154c67c87380b0621807bbc1d99ff9b5f4a9b`; o evento de publicação foi registrado em `52be0f4cdd18fb73815ab831b6590056c2b52087`. Pages run `33439821909` concluiu `success` nesse último SHA.
+- **Deploy/publicação canônica** — `last_verified: 2026-08-31`. O evento `publication/events/porto-velho-sine-vagas-2026-08-19/20260831T210838Z-published.md` registra URL confirmada, `confirmed_at: 2026-08-31T21:07:02Z`, deployment `6189595784` e conclusão `success`.
+- **Captura visual** — `last_verified: 2026-08-31`. Visual capture run `33439599714` concluiu `success` no SHA de materialização `a30154c67c87380b0621807bbc1d99ff9b5f4a9b`; artifact `public-surface-capture` id `9775726065`, digest `sha256:8aefa212d11d9bfead91d819b546af2ff011432b3530e29a3a8ebf765efe671a`.
+- **Smoke tests** — `last_verified: 2026-08-31`. A captura visual verde acompanha o commit que passou a carregar `articles.json` e renderizar a matéria real; nenhum regressão de superfície foi observada nesta rodada.
+- **Preservação/Wayback** — `last_verified: 2026-08-31`. Nenhum checkpoint Save Page Now foi verificado nesta rodada.
 
 ## O que este consumer faz melhor que o Cobogó
 
-- [Hierarquia editorial de capa sem fixture pública](../concepts/editorial-cover-hierarchy.md) — o mesmo renderer é exercitado localmente sem preencher a produção com notícia inventada.
-- [Leitura primeiro, confiança progressiva](../concepts/reading-first-article-trust.md) — proveniência e correções permanecem alcançáveis sem competir com a leitura longa. Ainda é conceito de um único consumer.
-- A direção local continua oferecendo evidência para `#409` (gramática de capa editorial), `#410` (estado vazio editorial) e `#411` (confiança progressiva). Nenhuma foi promovida.
+- [Hierarquia editorial de capa sem fixture pública](../concepts/editorial-cover-hierarchy.md) — o mesmo renderer foi primeiro exercitado localmente e depois recebeu conteúdo governado real sem notícia fictícia em produção.
+- [Leitura primeiro, confiança progressiva](../concepts/reading-first-article-trust.md) — proveniência e correções permanecem alcançáveis sem competir com a leitura longa. A primeira publicação real agora adiciona evidência factual ao mesmo conceito, ainda em um único consumer.
+- A direção local continua oferecendo evidência para `#409` (gramática de capa editorial), `#410` (estado vazio editorial) e `#411` (confiança progressiva). Nenhuma foi promovida por falta do gate de dois consumers com before/after convergente.
 
 ## Padrões do Cobogó em uso
 
 - [Vão antes de massa](../canon/vao-antes-de-massa.md) — separação, medida e tipografia estruturam a leitura sem empilhar caixas.
 - [Módulo sem monotonia](../canon/modulo-sem-monotonia.md) — a capa usa manchete, secundárias e briefs em vez de cards homogêneos.
 - [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md) — a identidade jornalística permanece local.
-- [Provenance and freshness](../patterns/provenance-freshness.md) — fonte e correções permanecem recuperáveis na matéria por divulgação progressiva.
+- [Provenance and freshness](../patterns/provenance-freshness.md) — fonte oficial e freshness material permanecem recuperáveis na publicação real.
 
 ## Histórico
 
-- 2026-08-30 — #10 merge `a6cbbbbf`: template de matéria e confiança progressiva comprovados em desktop/mobile, com preview somente local e recaptura pós-merge.
-- 2026-08-30 — #7 merge `d2d72648`: capa populada comprovada com preview localhost-only; produção continua vazia.
-- 2026-08-30 — #5 merge `9fb7bcf`: captura visual reproduzível desktop/mobile passa em Chromium.
-- 2026-08-30 — #1 merge `d631a58e`: home passa de dashboard/protótipo para capa editorial sem matérias fabricadas.
-- 2026-08-30 — matéria-fixture antiga e índices auxiliares removidos da face pública.
+- 2026-08-31 — #14 materializa a primeira matéria real em `a30154c67`; publicação confirmada por evento `52be0f4cdd`, Pages e captura visual verdes.
+- 2026-08-31 — #11 merge `178a4678`: contrato do publicador independente integrado ao repo público.
+- 2026-08-30 — #10 merge `a6cbbbbf`: template de matéria e confiança progressiva comprovados em desktop/mobile, com preview somente local.
+- 2026-08-30 — #7 merge `d2d72648`: capa populada comprovada com preview localhost-only; produção ainda vazia naquele momento.
+- 2026-08-30 — #5/#1 estabelecem captura visual reproduzível e capa editorial sem matéria fabricada.
