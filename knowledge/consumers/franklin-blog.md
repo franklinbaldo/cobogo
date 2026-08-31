@@ -1,56 +1,57 @@
 ---
-type: consumer
-title: Franklin blog
-repository: https://github.com/franklinbaldo/franklinbaldo.github.io
-adoption_status: candidate
-surface: personal blog and digital garden
-interaction_profile: long-form reading, archive navigation and personal publishing
-runtime: Astro 7 + MDX + Pico CSS on GitHub Pages
-constraints:
-  - preserve strong personal editorial identity
-  - content and reading remain primary
-  - bilingual routes and media optimization remain product concerns
-capabilities_used: []
-operational_capabilities:
-  - GitHub Pages deploy from main, with manual and scheduled rebuild paths
-  - repository CI covering hygiene, formatting, lint, unit tests, links, translations, Astro type checks, build and Lighthouse
-  - public archive, projects index, reading paths, Hrönir ranking, music/books, changelog and RSS exposed from the same Astro publication
-unmet_needs:
-  - editorial typography and rhythm roles
-  - archive/navigation composition
-  - expressive local theming over shared foundations
-last_verified: 2026-08-18
+type: ConsumerCard
+repo: franklinbaldo/franklinbaldo.github.io
+site: https://franklinbaldo.github.io/
+status: active
+last_reviewed: 2026-08-31
+gap_score: 0
 ---
 
 # Franklin blog
 
-The Franklin blog is a strong Cobogó consumer candidate because it is a live personal publishing surface with an explicit typographic and editorial identity.
+## Identidade local
 
-It should pressure-test whether Cobogó editorial foundations can support sustained reading and archives without flattening a personal site into O Vigia or another publication.
+Blog pessoal e jardim digital: preservar a voz editorial, leitura longa, rotas bilíngues, Fraunces/Inter, arquivo e superfícies autorais como Hrönir, música e livros. Cobogó pode fornecer relações e critérios, mas não deve transformar a publicação numa interface editorial genérica.
 
-## Verified project-surface follow-up — 2026-08-18
+## D1 — no site
 
-A repository-entry gap tracked in Franklin blog #1543 has been closed by PR #1561 (`2d7e8e8fa09cb476f1384ea4f6290dda247ae8c6`). The README now exposes the live site and the public product surface — archive, reading paths, projects, Hrönir ranking, music, books, changelog and RSS — instead of presenting the repository mainly as stack/commands/layout.
+O leitor pode ler ensaios e caminhos de leitura, navegar arquivo, tags e busca, alternar entre rotas EN/PT, explorar projetos, ranking Hrönir, música, livros e changelog e assinar RSS.
 
-The same change reconciles the public repository description with the runtime actually shipped in `package.json`: Astro 7 (`astro ^7.0.3`) and Node `>=24.0.0`, replacing stale Astro 6 / Node 22 claims. This is PROJECT-SURFACE evidence that explaining a product and accurately describing the machinery behind it are separate factual obligations.
+**Gap [fato]:** nenhum gap D1 material comprovado nesta rodada. Existem pressões UX/a11y locais, mas não foram confundidas com ausência da capacidade pública.
 
-The PR head passed the repository's full `Check` workflow: hygiene, changelog/version checks, dependency check, Prettier, lint, unit tests, Hrönir doctor, link/translation checks, Astro type check, production build and Lighthouse. The repository's merge-policy prose is currently inconsistent with GitHub settings: `CLAUDE.md` requires merge commits while GitHub disables merge/rebase and permits only squash. Franklin blog #1562 tracks that governance drift. The attempted merge-commit path returned HTTP 405; #1561 therefore used the only repository-enabled merge method. This is operational evidence, not a Cobogó design capability.
+## D2 — por trás
 
-No new shared pattern is inferred from this README correction. The relevant reusable relation remains the existing editorial/project-surface principle: a public project entry point should expose the real publication and its recoverable products without becoming a technical README dump.
+O repositório prova Astro 7 + MDX + Pico.css, Pagefind, publicação em GitHub Pages e Hrönir como curadoria pairwise persistida e projetada no ranking público. O Colophon/Colofão explica progressivamente parte dessa maquinaria. Em 2026-08-31 a #1620 corrigiu o claim obsoleto de `system fonts` / `fontes do sistema` para a tipografia realmente embarcada: Fraunces no corpo e Inter na UI.
 
-## Verified project-surface follow-up — 2026-08-15
+**Gap [fato]:** nenhum gap D2 material restante após #1620, condicionado à conclusão do deploy Pages do merge `e55b0bdf3af846f658b6c9f22825ce1d1c7ed916`.
 
-The public music catalogue is a materially interactive surface inside the broader editorial site: it exposes playlists, Favorites, Recently played and the full song catalogue, while local JavaScript turns Favorite/Recent cover images into keyboard-operable playback controls.
+## D3 — por conta própria
 
-A concrete accessibility gap was already tracked in Franklin blog #1541: those runtime `role="button"` / `tabindex="0"` images had hover/play behaviour but no explicit `:focus-visible` treatment, even though the main song-cover links already had designed focus feedback.
+O leitor pode consumir RSS EN/PT, usar arquivo/busca sem contexto adicional, inspecionar o source público e reproduzir o site a partir do checkout documentado. O ranking Hrönir projeta dados versionados no repositório para uma superfície pública de curadoria.
 
-Implemented and merged in Franklin blog PR #1547 at `c8090a1cf4a555c8757ca2da5372cc40b394a87b`:
+**Gap [fato]:** nenhum gap D3 material comprovado nesta rodada.
 
-- Favorite and Recently played thumbnails now receive a 2px `var(--pico-primary)` outline with 2px offset on `:focus-visible`;
-- the fix uses `outline`, so it does not change box geometry or introduce layout shift;
-- playback, Enter/Space behaviour, hover and the local paper/music identity remain unchanged;
-- the same rule applies to `/music/` and `/pt/musicas/` through the shared global stylesheet.
+## Capacidades de superfície
 
-**Evidence classes kept separate:** the PR head passed repository hygiene, Prettier, lint, unit tests, Hrönir doctor, links/translations, Astro type check, full build and Lighthouse. The merge triggered `Deploy to GitHub Pages` run 899; build, Pages artifact upload and deploy all completed successfully. The public `/music/` route is reachable. No browser screenshot with a seeded Favorites/Recently-played localStorage state was produced in this pass, so the keyboard-focus pixels are supported by source + CI + deploy evidence, not claimed as independently captured visual evidence.
+- **Pages/deploy** — `last_verified: 2026-08-31`. #1620 foi mergeada em `e55b0bdf3af846f658b6c9f22825ce1d1c7ed916`; Deploy to GitHub Pages run `33405038353` foi disparado no mesmo SHA e ainda estava em andamento na última verificação desta atualização.
+- **Captura visual** — `last_verified: 2026-08-31`. O repo mantém `scripts/screenshots.mjs` com Playwright. As rotas `/about/` e `/pt/about/` não fazem parte do conjunto atual de screenshots; a #1620 é estritamente editorial, sem CSS, geometria, estado, motion ou estrutura de componente, e não conta como evidência visual para promoção de pattern.
+- **Smoke/CI** — `last_verified: 2026-08-31`. #1620 passou integralmente o workflow `Check` run `33404379245` no head exato `0c6ce0d420fc15000d9519958e4ae6ac313fa29a`, incluindo lint, unit tests, Hrönir doctor, links, traduções, Astro type check, build e Lighthouse.
+- **Preservação** — `last_verified: 2026-08-31`. Nenhum Save Page Now foi verificado nesta rodada.
 
-This is evidence for the existing Cobogó invariant that focus must be explicit and visually integrated with the consumer. It is **not** evidence for a shared music component, a new core dependency or editorial visual convergence; the implementation remains local to the blog.
+## O que este consumer faz melhor que o Cobogó
+
+A combinação entre Colophon curto, publicação pessoal e superfícies autorais mostra uma boa forma local de explicar maquinaria sem deslocar a leitura para documentação técnica. Nesta rodada isso exigiu apenas correção factual; não há novo conceito com evidência suficiente para registrar ou promover.
+
+## Padrões do Cobogó em uso
+
+- Explicação progressiva da maquinaria sem transformar a superfície em README técnico.
+- Claims públicos precisam permanecer compatíveis com o repo atual.
+- Foco explícito e integrado à identidade local nas superfícies interativas de música.
+- Configuração, execução, publicação e evidência visual permanecem classes separadas.
+
+## Histórico
+
+- 2026-08-31 — #1620 mergeada em `e55b0bdf`: Colophon/Colofão deixa de afirmar fontes do sistema e passa a refletir Fraunces/Inter; deploy Pages disparado no mesmo SHA.
+- 2026-08-31 — ProjectProfile confirma política de merge reconciliada por #1618; antiga divergência merge-commit vs squash não é mais fato atual.
+- 2026-08-18 — README passou a expor site e superfície real do produto, além de reconciliar Astro 7 / Node >=24.
+- 2026-08-15 — #1547 adicionou foco visível aos thumbnails interativos de Favorites/Recently played sem alterar geometria.
