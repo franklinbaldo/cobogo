@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/baliza
 site: https://franklinbaldo.github.io/baliza/
 status: active
-last_reviewed: 2026-08-30
+last_reviewed: 2026-08-31
 gap_score: 0
 ---
 
@@ -33,10 +33,10 @@ O leitor consegue chegar ao arquivo de snapshots, ao manifesto dos Parquets com 
 
 ## Capacidades de superfície
 
-- **Pages/deploy — `last_verified: 2026-08-30`.** `main` do consumer permanece em `9a91feddd4defdef1da7d24af2e5ce1b76d72c2d`; os workflows continuam executando sobre esse SHA e o site público permanece configurado em `/baliza/`.
-- **Captura visual — `last_verified: 2026-08-30`.** O harness introduzido em #671/#674 continua sendo a evidência canônica para `/publicacoes` e `/comparar`, incluindo estados `hydrated`, `remote-data-unavailable`, `incomplete` e `hydrated-with-explicit-simulation` quando aplicável.
-- **Smoke/tests de superfície — `last_verified: 2026-08-30`.** O repositório mantém gates de build/web e captura; nenhum novo defeito de superfície foi observado nesta rodada.
-- **Preservação — `last_verified: 2026-08-30`.** A home continua ligando arquivo, snapshots e manifesto ao Internet Archive; a tese preservação-primeiro do ProjectProfile continua compatível com a superfície.
+- **Pages/deploy — `last_verified: 2026-08-31`.** `main` avançou para `3468dc1a0bb8f7b6a4382171192379c65295bb3b` pela #688; o Deploy to GitHub Pages run `33380911637` concluiu verde no mesmo SHA. A #688 removeu scripts mortos, documentou `scripts/` e adicionou mypy/ruff ao CI sem alterar a composição pública.
+- **Captura visual — `last_verified: 2026-08-30`.** O harness introduzido em #671/#674 continua sendo a evidência canônica para `/publicacoes` e `/comparar`, incluindo estados `hydrated`, `remote-data-unavailable`, `incomplete` e `hydrated-with-explicit-simulation` quando aplicável. A #688 não alterou a superfície visual e não exigiu nova captura.
+- **Smoke/tests de superfície — `last_verified: 2026-08-31`.** A #688 declara 190 testes passando antes/depois e passou a exigir mypy em `src/baliza` e ruff também em `scripts/`; nenhum novo defeito de superfície foi observado.
+- **Preservação — `last_verified: 2026-08-31`.** A home continua ligando arquivo, snapshots e manifesto ao Internet Archive; PNCP Sync run `33436128702` concluiu verde no novo `main`.
 
 ## O que este consumer faz melhor que o Cobogó
 
@@ -51,8 +51,8 @@ O leitor consegue chegar ao arquivo de snapshots, ao manifesto dos Parquets com 
 
 ## Histórico
 
-- 2026-08-30 — card reconciliado ao schema `ConsumerCard`; D1/D2/D3 reavaliados contra home, ProjectProfile e estado atual de `main`; `gap_score: 0`.
+- 2026-08-31 — #688 levou `main` a `3468dc1...` com limpeza de scripts e gates mypy/ruff; mudança behavior-neutral, Pages verde e `gap_score` permanece 0.
+- 2026-08-30 — card reconciliado ao schema `ConsumerCard`; D1/D2/D3 reavaliados contra home, ProjectProfile e estado de `main` então vigente.
 - 2026-08-24 — #686 alinhou a autoridade do artefato PCA ao upload real; `main` passou a `9a91fed...`.
 - 2026-08-15 — #674 tornou explícita a simulação em `/comparar` e adicionou captura factual desse estado.
 - 2026-08-15 — #671 provou hidratação real de `/publicacoes` e consolidou a distinção renderizado ≠ hidratado.
-- 2026-08-12 — série #649–#658 corrigiu semântica, foco, proveniência e continuidade de cidade sem descaracterizar o produto.
