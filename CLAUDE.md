@@ -26,6 +26,36 @@ The website is a **consumer of Cobogó**, not a privileged authority over it. `s
 projects the canonical knowledge and uses the same public core contract available to other
 consumers.
 
+### Consumer membership is live and fail-closed
+
+A file under `knowledge/consumers/`, an old `RoundReport`, a screenshot, a historical issue, a
+workspace profile, or a repository remembered from an earlier round is **evidence/history, not
+proof that the repository is still a consumer**. Directory placement is not ontology.
+
+At the start of every portfolio round, before follow-up, discovery, scoring, pressure, or focus
+selection:
+
+1. project the current canonical consumer relations from the typed OKF corpus;
+2. resolve each projected repository against GitHub **now**;
+3. exclude from the rotation any repository that no longer resolves, was deleted, was explicitly
+   excluded from the portfolio, or is no longer related as a current consumer by the canonical
+   corpus;
+4. treat stale cards/reports for those repositories as historical records only. They must not
+   contribute `gap_score`, `last_reviewed`, urgency, follow-up, candidate ordering, or next-round
+   pressure;
+5. if the corpus/card still presents a deleted or excluded repository as current, repair Cobogó's
+   consumer documentation in that round. Do not inspect the dead repository and do not create
+   surface work for it.
+
+A GitHub repository merely existing is also insufficient: existence proves existence, not current
+portfolio membership. Conversely, a `404`/unresolvable repository must never be interpreted as a
+consumer that needs attention. Membership must be positively established from the **current typed
+corpus plus a live repository resolution**. When those disagree or membership is ambiguous, fail
+closed: leave the repository out of the rotation and record the corpus drift for repair.
+
+This liveness/membership gate runs again before following pressure copied from a previous
+`RoundReport`; pressure never overrides it.
+
 ## Required project skills
 
 The Cobogó-specific skills are installed in project scope for Claude Code and committed under
@@ -177,66 +207,3 @@ Cobogó semantics.
 The current Greenfield reference website deliberately uses Cobogó's public core plus a local
 paper/navy editorial theme. The historical first home remains available as legacy/history
 evidence; it is not the template for new work.
-
-## Website structure
-
-Important current surfaces include:
-
-```text
-src/pages/index.astro       public orientation/home
-src/pages/grammar/**        canon + grammar reference
-src/pages/core/**           semantic core/foundations reference
-src/pages/patterns/**       pattern status/evidence
-src/pages/consumers/**      consumer registry projection
-src/pages/knowledge/**      typed corpus projection
-src/pages/legacy-home.astro preserved historical home
-src/styles/core.css         public framework-agnostic core
-src/styles/greenfield-site.css local website theme/composition
-knowledge/**                canonical OKF corpus
-```
-
-Do not infer ontology from directories alone. Website projections must use explicit concept
-`type`/relations from the corpus where semantics matter.
-
-## Semantic HTML and accessibility
-
-Accessibility is part of the form, not a cleanup pass.
-
-- Use native interactive elements (`button`, `a`, form controls) before ARIA.
-- Keep one meaningful `main` landmark per page.
-- Use heading levels for document structure, not font size.
-- Sections need a real heading/label; use plain layout containers when there is no semantic
-  section.
-- Inputs require real labels; state/error relationships must be programmatically available.
-- Tables need captions/headers/scopes appropriate to the data.
-- Focus must be visible and designed as part of component state.
-- State must not rely on color alone.
-- Respect reduced-motion preferences.
-- Decorative images/geometry must not create noisy accessibility semantics.
-
-## Development checks
-
-For website/code changes, run the strongest applicable current checks, normally:
-
-```bash
-npm ci --legacy-peer-deps
-npm run check
-npm run build
-```
-
-For knowledge changes, run current `okf-parser` validation/inventory/graph (and typed/DuckDB
-checks when the change affects those contracts).
-
-For material website visual changes, use the existing browser screenshot/preview workflows in
-addition to build checks. A green build is not visual evidence.
-
-## Agent operating rules
-
-- Read the relevant installed skill before improvising a method already encoded there.
-- Prefer canonical OKF evidence over stale prose/docs.
-- Preserve negative evidence; rejected concepts are useful when they prevent repeated mistakes.
-- Do not promote one generated concept or one consumer implementation into universal core.
-- One consumer can justify experimentation; stabilization needs stronger cross-context evidence.
-- Do not invent adoption claims merely because an issue, specimen or PR exists.
-- Keep shared semantic authority in Cobogó and product-specific authority downstream.
-- Make the smallest reviewable change that proves the next relation.
