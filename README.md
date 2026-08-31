@@ -86,7 +86,10 @@ Siga a convenção do Pico:
 ```
 
 ## Objetivo
-Unificar a interface dos projetos:
+
+Compartilhar gramática, padrões e conhecimento de superfície aprendidos em uso real, sem transformar projetos diferentes em uma única interface. Cada consumer preserva sua identidade, densidade e hierarquia próprias; o Cobogó sobe apenas relações que se mostram reutilizáveis sem apagar essas diferenças.
+
+Consumers e superfícies que ajudam a testar essa gramática incluem:
 - [Verne](https://github.com/franklinbaldo/verne)
 - [CausaGanha](https://github.com/franklinbaldo/causaganha)
 - [Baliza](https://github.com/franklinbaldo/baliza)
