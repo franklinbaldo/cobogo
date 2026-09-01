@@ -18,6 +18,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `navigation-information-scent` — navegação deve antecipar destinos para quem não conhece a arquitetura interna.
 - `artifact-autonomy` — artifacts reutilizáveis devem ser encontráveis e leváveis para fora da UI.
 - `public-artifact-preservation` — artifacts importantes para auditabilidade/reuso precisam de estratégia de preservação adequada.
+- `automation-must-close-publication-loop` — geração automática de artifact precisa chegar causalmente à superfície publicada.
 - `provenance-freshness-visible` — fonte, competência e artifact real fazem parte da UX de dados.
 - `data-state-legibility` — loading, vazio, erro, sucesso e stale não podem colapsar semanticamente.
 - `empty-state-explains-system` — vazio legítimo deve ser distinguível de falha e explicar ação real quando houver.
