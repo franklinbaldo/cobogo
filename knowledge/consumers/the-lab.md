@@ -1,82 +1,58 @@
 ---
-type: consumer
-title: The Lab
-repository: https://github.com/franklinbaldo/the-lab
-adoption_status: candidate
-surface: public research-lab publication
-interaction_profile: research reading, papers, logs, RFE/state navigation and provenance
-runtime: Astro static site on GitHub Pages with content synchronized from another research repo
-constraints:
-  - preserve research provenance and source-repo relationships
-  - papers and logs remain readable as documents rather than generic cards
-  - automation/sync metadata should orient rather than dominate content
-capabilities_used:
-  - reduced-motion invariant (canon/grammar adoption, implemented locally)
-unmet_needs:
-  - research publication and document-reading rhythm
-  - deployed provenance/source-repository inscription (implemented in main; public deploy still unverified)
-  - archive/navigation across papers logs and research state
-last_verified: 2026-08-15
+type: ConsumerCard
+repo: franklinbaldo/the-lab
+site: https://franklinbaldo.github.io/the-lab/
+status: active
+last_reviewed: 2026-08-31
+gap_score: 1
 ---
 
 # The Lab
 
-The Lab is a candidate Cobogó consumer because it is a live Astro/GitHub Pages research publication fed by an automated multi-repository research workflow.
+## Identidade local
 
-It extends the editorial cluster with a distinct research-document context: papers, logs and RFEs need stronger provenance and document hierarchy than an ordinary personal blog, without becoming an administrative dashboard.
+Publicação de pesquisa do Rosencrantz Substrate Invariance Lab. Preservar Inter/JetBrains Mono, light/dark local, superfícies glass/glow, paleta por persona, linguagem de laboratório e leitura de papers/logs/RFEs como documentos. Cobogó não deve transformar a publicação em dashboard nem importar a identidade de outro consumer.
 
-## Verified inspection — 2026-08-11
+## D1 — no site
 
-Inspected at real source and in a real browser capture, not inferred from the registry.
+A home pública permite navegar por Articles, Lab, Team e About, ler o latest dispatch e entrar no arquivo de pesquisa. A superfície continua respondendo em 2026-08-31.
 
-The site is materially larger than the rest of the editorial cluster: 21 route files, 673 built pages and a 1597-line `global.css` with its own light/dark token system and a per-persona colour palette. Its identity — Inter/JetBrains Mono, glass surfaces, glow, teal/violet/warm accents — is strong, specific and must remain local. It is not a small-adoption target.
+Gap `[fato]`: nenhum D1 material demonstrado nesta rodada.
 
-## Correction — it did not reproduce the focus defect
+## D2 — por trás
 
-An earlier inspection recorded The Lab as independently reproducing [Foco tem dois vizinhos](../canon/foco-tem-dois-vizinhos.md). That was wrong and is corrected here rather than quietly edited away.
+O repo documenta um site Astro para o Rosencrantz Substrate Invariance Lab, alimentado por conteúdo sincronizado de `franklinbaldo/rosencrantz-coin`. `main` já contém em `site/src/layouts/Layout.astro` uma inscrição condicional de provenance no footer: `Source snapshot`, repository@short-sha e data do snapshot upstream.
 
-The claim rested on `getComputedStyle`: ring colour and `.skip-link` fill are both `#2d7d9a`, giving 1,00:1. But with `outline-offset: 2px` the ring's neighbour is the offset gap, and the gap exposes the page. Pixel scan at the focused element's edge: `teal ×6 │ 250,251,249 ×2 │ teal ring ×2 │ page`. The ring sits on light on both sides, ~4,3:1. It was never broken.
+Gap `[fato]`: **material**. A home publicada observada em 2026-08-31 ainda termina em GitHub · Papers · Lab State e não mostra `Source snapshot`. `franklinbaldo/the-lab#128` confirma que `Deploy Site` está `disabled_manually`, portanto `main` e Pages podem divergir. O gap não pede nova solução de UI; pede materializar e verificar a solução local já implementada.
 
-What *is* still true, and is the durable part: The Lab independently declares nearly the same semantic role vocabulary as the foundations contract — `--bg`, `--bg-card`, `--bg-surface`, `--text`, `--text-muted`, `--border`, `--accent-primary`, `--focus-ring` — with no contact with Cobogó. That remains real evidence for the role model, and it is independent of the focus question.
+O workspace não contém atualmente `knowledge/projects/the-lab.md`; `franklinbaldo/workspace#30` foi aberto para restaurar a autoridade factual de tese/estado/capacidades/sinergias. Até isso ocorrer, este card não amplia claims além do que repo + superfície provam diretamente.
 
-## Real gap found instead: no reduced-motion handling
+## D3 — por conta própria
 
-The stylesheet declares 21 animation/transition rules and a 385-line animation section, and had **no** `prefers-reduced-motion` block anywhere in `src`.
+A superfície oferece GitHub, Papers e Lab State, permitindo leitura do arquivo e inspeção do source público independentemente da maquinaria de sync.
 
-Measured in Chromium with the preference set to reduce, on the home route: 1 element still animating and 148 still transitioning. This violates an invariant the [foundations contract](../foundations/contract.md) already states.
+Gap `[fato]`: nenhum dataset/API/release autônomo adicional foi provado pelo repo e ocultado pela superfície nesta rodada.
 
-Adopted as **canon/grammar adoption** in `franklinbaldo/the-lab`: a local 15-line block, The Lab's own idiom, no Cobogó tokens, no `cobogo/core` import. After: 0 animating, 0 transitioning. No effect for users who have not expressed the preference.
+## Capacidades de superfície
 
-## Core adoption assessed and declined, with numbers
+- **Pages/deploy** — `last_verified: 2026-08-31`: Pages responde, mas `Deploy Site` está `disabled_manually`; #128 permanece aberta. O estado publicado não pode ser tratado como projeção atual de `main`.
+- **Captura visual** — `last_verified: 2026-08-31`: houve evidência browser histórica na campanha anterior, porém não foi localizada nesta rodada uma capacidade canônica/reproduzível de screenshot que possa ser exercitada para o estado atual. Não elevar evidência histórica a captura atual.
+- **Smoke/build** — `last_verified: 2026-08-31`: o workflow de deploy contém `npm ci` + `npm run build`, mas está indisponível enquanto desabilitado; configuração não equivale a execução verde atual.
+- **Preservação** — `last_verified: 2026-08-31`: nenhum Save Page Now atual foi verificado.
 
-| measure | value |
-|---|---|
-| local `global.css` | 1598 lines, 20 sections |
-| lines `cobogo/core` could remove | ~9 (a 5-line reset, a 4-line focus rule) |
-| core selectors matching nothing across 6 real routes | **11 of 24** — all 8 `data-cobogo-*` contracts plus the 3 table selectors |
-| local `:root` tokens with a core equivalent | 10 of 32 |
-| local tokens with none | 22 — persona palette, status, glow, glass, `--nav-height`, `--card-radius` |
-| core lines added | 174 |
+## O que este consumer faz melhor que o Cobogó
 
-The 10 mappable tokens carry different values, so they would survive as overrides: a rename, not a removal. Importing core here would add 174 lines to remove ~9, and 46% of its selectors would match nothing. That is a nominal dependency, so core adoption was declined on measurement rather than on principle.
+A solução local de provenance é pequena e apropriada ao produto: liga a publicação gerada ao snapshot upstream exato sem deslocar papers/artigos do centro da experiência. Continua sendo evidência de um consumer; não satisfaz o gate de promoção compartilhada.
 
-## Project-surface review — source snapshot provenance — 2026-08-15
+## Padrões do Cobogó em uso
 
-The sync pipeline already cloned `franklinbaldo/rosencrantz-coin` and regenerated The Lab's public `content/`, but it did not persist the exact upstream commit that produced a rendered state. The public surface therefore explained the research but could not identify its source snapshot precisely.
+- Reduced-motion como invariante de gramática, implementado localmente sem importar a identidade do Cobogó.
+- Provenance progressiva de publicação gerada, ainda sem promoção porque o deploy/captura atuais não fecharam a evidência.
+- Configuração, execução, publicação e evidência renderizada permanecem classes distintas.
 
-Implemented in The Lab PR #127 and merged to `main` at `468b14f1e1c627eafbc4fc91513a28e6e2521aa3`:
+## Histórico
 
-- sync now writes deterministic `content/provenance.json` with upstream repository, exact SHA and source commit timestamp;
-- the global footer reads the record defensively and links `repository@short-sha` to the exact source commit;
-- the current upstream snapshot was seeded so the first successful deploy can expose provenance immediately;
-- no new Cobogó tokens/components were introduced and The Lab's local identity remains unchanged.
-
-**Verification boundary:** code and merge in `main` are verified. Public deployment is **not** verified. The GitHub Actions API reports `Deploy Site` (`.github/workflows/deploy.yml`, workflow id `241991745`) as `disabled_manually`; therefore the missing post-merge run is currently explained by workflow state rather than by the YAML `push`/`paths` trigger. The blocker is tracked in The Lab #128. `Sync from rosencrantz-coin` and `Journalist Heartbeat` are also manually disabled, but re-enabling them is intentionally outside this provenance fix.
-
-Do not treat the provenance need as fully closed until `Deploy Site` is re-enabled, a build/deploy succeeds and the rendered `Source snapshot` is checked on the published surface.
-
-This is one-consumer evidence for a project-surface practice — make generated/public artifacts traceable to the exact upstream snapshot — not enough evidence to promote a shared Cobogó pattern or component.
-
-## Adoption note
-
-Re-evaluate core adoption when The Lab grows a surface core actually serves — tabular/data reading, or an inverted region. Neither exists today.
+- 2026-08-31 — card migrado para `ConsumerCard`; Pages responde, mas D2 fica em gap 1 porque `Source snapshot` está em `main` e não na superfície publicada; deploy segue bloqueado por #128; workspace#30 aberto por ausência de ProjectProfile.
+- 2026-08-15 — confirmado `Deploy Site` em `disabled_manually`; #128 abriu o blocker de materialização/verificação da provenance.
+- 2026-08-14 — #127 mergeou provenance repo/SHA/data do snapshot upstream em `main`.
+- 2026-08-11 — reduced-motion corrigido localmente; core adoption medido e recusado por baixa utilidade/alto overlap vazio.
