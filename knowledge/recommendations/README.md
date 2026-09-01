@@ -18,6 +18,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `browser-native-before-custom` — plataforma nativa antes de widget customizado quando a tarefa permite.
 - `semantic-headings-and-landmarks` — estrutura visual e semântica devem concordar.
 - `copy-names-the-user-object` — copy usa vocabulário do leitor/domínio antes de nomes internos de implementação.
+- `public-surface-does-not-leak-internals` — transparência explica método/estado sem despejar implementação irrelevante ou sensível.
 - `reader-first-project-explanation` — explicar ação, maquinaria e autonomia para leitor sem contexto.
 - `surface-task-first` — tarefa pública antes de autoexplicação ou decoração.
 - `default-is-the-common-case` — primeira camada otimiza o caso comum comprovado; exceções continuam alcançáveis.
