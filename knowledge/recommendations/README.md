@@ -10,6 +10,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `consumer-surface-contract` — Cobogó é contrato de qualidade; importar componentes não determina score.
 - `portfolio-quality-bar` — cada dimensão aplicável deve aspirar a pelo menos 3/4; média não esconde dimensão crítica.
 - `quality-ranking-is-diagnostic` — ranking prioriza gaps; posição ordinal não é objetivo.
+- `browser-native-before-custom` — plataforma nativa antes de widget customizado quando a tarefa permite.
 - `reader-first-project-explanation` — explicar ação, maquinaria e autonomia para leitor sem contexto.
 - `surface-task-first` — tarefa pública antes de autoexplicação ou decoração.
 - `primary-action-focus` — hierarquia deve declarar prioridade quando há ação principal.
