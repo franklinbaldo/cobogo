@@ -32,6 +32,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `contrast-is-functional` — identidade de cor não pode comprometer leitura, foco ou distinção de estados.
 - `focus-is-visible` — foco de teclado é estado funcional e nunca desaparece.
 - `capability-discoverability` — capacidades públicas reais precisam de caminho de descoberta proporcional.
+- `public-capability-needs-entry-point` — rota pública útil entra na arquitetura de informação; URL órfã não conta como descoberta.
 - `navigation-information-scent` — navegação deve antecipar destinos para quem não conhece a arquitetura interna.
 - `links-are-contracts` — navegação/download/fonte são comportamento e precisam resolver corretamente.
 - `search-is-a-product-state` — busca principal é fluxo com escopo, estados e interpretação, não apenas input.
