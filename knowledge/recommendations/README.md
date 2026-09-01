@@ -11,6 +11,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `quality-assessment-is-versioned` — score pertence a commit/deploy/captura identificáveis e preserva histórico.
 - `portfolio-quality-bar` — cada dimensão aplicável deve aspirar a pelo menos 3/4; média não esconde dimensão crítica.
 - `quality-ranking-is-diagnostic` — ranking prioriza gaps; posição ordinal não é objetivo.
+- `no-dark-patterns` — agência e compreensão antes de conversão/manipulação.
 - `browser-native-before-custom` — plataforma nativa antes de widget customizado quando a tarefa permite.
 - `semantic-headings-and-landmarks` — estrutura visual e semântica devem concordar.
 - `copy-names-the-user-object` — copy usa vocabulário do leitor/domínio antes de nomes internos de implementação.
