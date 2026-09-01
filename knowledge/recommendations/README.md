@@ -5,13 +5,19 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 ## Recomendações iniciais
 
 - `reader-first-project-explanation` — explicar ação, maquinaria e autonomia para leitor sem contexto.
+- `surface-task-first` — tarefa pública antes de autoexplicação ou decoração.
 - `capability-discoverability` — capacidades públicas reais precisam de caminho de descoberta proporcional.
+- `navigation-information-scent` — navegação deve antecipar destinos para quem não conhece a arquitetura interna.
 - `artifact-autonomy` — artifacts reutilizáveis devem ser encontráveis e leváveis para fora da UI.
 - `provenance-freshness-visible` — fonte, competência e artifact real fazem parte da UX de dados.
 - `data-state-legibility` — loading, vazio, erro, sucesso e stale não podem colapsar semanticamente.
+- `recoverable-error-states` — falhas recuperáveis devem preservar agência e próximo passo.
 - `progressive-disclosure` — transparência em camadas sem transformar a home em README.
 - `semantic-accessibility-default` — semântica, teclado e foco são contrato básico.
+- `responsive-by-contract` — tarefa e hierarquia precisam sobreviver a viewport estreito.
 - `visual-evidence-as-quality-gate` — UI material precisa de evidência renderizada ligada ao SHA.
+- `quality-issues-are-actionable` — nota baixa não basta; issue precisa de gap e critério verificáveis.
+- `no-unproven-marketing` — superfície explica capacidade real sem inflar promessa.
 - `local-identity-over-uniformity` — barra comum de qualidade sem aparência comum.
 
 Consulte cada arquivo para posição, racional, contrato, escape hatch, evidência e condição de falsificação.
