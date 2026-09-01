@@ -7,6 +7,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `evidence-does-not-veto-opinion` — evidência valida e falsifica defaults; não é autorização prévia para formulá-los.
 - `defaults-must-have-escape-hatches` — default forte declara quando não se aplica e o resultado que uma solução local deve preservar.
 - `design-defaults-are-testable` — recomendação normativa precisa de critério observável, não slogan de UX.
+- `recommendations-have-owners` — cada default possui maturidade e próxima pergunta, não fica como opinião morta.
 - `design-system-implements-opinions` — opinião transversal recorrente deve ganhar primitive/pattern/validator de referência quando útil.
 - `patterns-own-validation` — implementação compartilhada testa os invariantes que controla; consumer testa integração/contexto.
 - `sensible-defaults-over-configuration` — decisão transversal já tomada vira default barato, não formulário de configuração.
