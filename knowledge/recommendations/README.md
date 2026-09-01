@@ -63,6 +63,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `reduced-motion-respected` — motion funcional, não obrigatório, e preferência reduzida respeitada.
 - `visual-evidence-as-quality-gate` — UI material precisa de evidência renderizada ligada ao SHA.
 - `visual-regression-is-not-only-pixels` — captura deve provar significado/estado quando pixels sozinhos não bastam.
+- `screenshot-covers-natural-entry` — evidência de descobribilidade inclui ponto de entrada, não apenas destino.
 - `quality-issues-are-actionable` — nota baixa não basta; issue precisa de gap e critério verificáveis.
 - `no-unproven-marketing` — superfície explica capacidade real sem inflar promessa.
 - `local-identity-over-uniformity` — barra comum de qualidade sem aparência comum.
