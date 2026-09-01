@@ -17,7 +17,7 @@ Blog pessoal e jardim digital: preservar a voz editorial, leitura longa, rotas b
 
 O leitor pode ler ensaios e caminhos de leitura, navegar arquivo, tags e busca, alternar entre rotas EN/PT, explorar projetos, ranking Hrönir, música, livros e changelog, assinar RSS e acessar diretamente o catálogo `/audiobooks/`, que lista obras e seus estados de preparação/publicação.
 
-**Gap [fato]:** a PR `franklinbaldo/franklinbaldo.github.io#1640` já adicionou `Audiobooks` / `Audiolivros` à hierarquia secundária de Header e Footer e foi mergeada em `eebbe97af4e3aaf71b8a45b5752056dcf158122d`; a captura pós-merge no mesmo SHA mostra a nova entrada no Footer sem promoção a CTA principal. O gap D1 ainda não é marcado como fechado porque o run `Deploy to GitHub Pages` `33535970297` permanecia em `in_progress` na última verificação desta rodada. A conclusão exige Pages verde nesse merge SHA.
+**Gap [fato]:** a PR `franklinbaldo/franklinbaldo.github.io#1640` adicionou `Audiobooks` / `Audiolivros` à hierarquia secundária de Header e Footer e foi mergeada em `eebbe97af4e3aaf71b8a45b5752056dcf158122d`; a captura pós-merge no mesmo SHA mostra a nova entrada no Footer sem promoção a CTA principal. O deploy `33535970297`, porém, falhou em `actions/deploy-pages` depois de build verde; a home pública verificada após a falha ainda não mostra `Audiobooks`. O gap D1 permanece aberto até Pages publicar um SHA que preserve a #1640.
 
 ## D2 — por trás
 
@@ -33,7 +33,7 @@ O leitor pode consumir RSS EN/PT, usar arquivo/busca sem contexto adicional, ins
 
 ## Capacidades de superfície
 
-- **Pages/deploy** — `last_verified: 2026-09-01`. Último deploy concluído previamente verificado: `main` em `b5492e69a2bc4298b2f1886521d234fb6b7f5f16`, run `33498944159` `success`. Para o merge `eebbe97af4e3aaf71b8a45b5752056dcf158122d`, o build do run `33535970297` passou, mas o job `deploy` ainda estava `in_progress` na última leitura; esse SHA ainda não conta como deploy verificado.
+- **Pages/deploy** — `last_verified: 2026-09-01`. Último deploy concluído previamente verificado: `main` em `b5492e69a2bc4298b2f1886521d234fb6b7f5f16`, run `33498944159` `success`. Para o merge `eebbe97af4e3aaf71b8a45b5752056dcf158122d`, o build do run `33535970297` passou, mas o job `deploy` falhou em `actions/deploy-pages`. Uma única tentativa de rerun do job foi disparada; issue operacional `#1645` registra a falha e o critério de retomada. Esse SHA ainda não conta como deploy verificado.
 - **Captura visual** — `last_verified: 2026-09-01`. `scripts/screenshots.mjs` agora é executado pelo workflow `Visual evidence` em PR e push para `main`, com artifacts endereçados pelo SHA. Before: head `6503538c187bd6cb860252dd1865ef7bdb2199f5`, artifact `9806697863`; after em `main`: `eebbe97af4e3aaf71b8a45b5752056dcf158122d`, artifact `9811726761`. A home desktop foi capturada pelo mesmo método nas duas pontas.
 - **Smoke/CI** — `last_verified: 2026-09-01`. No head exato `a03c3670ca95100ae9bc638e7633a0efa13f7088` da #1640, `Change cards` (`33535276185`), `Visual evidence` (`33535276198`) e `Check` (`33535276367`) concluíram `success` antes do squash merge.
 - **Preservação** — `last_verified: 2026-08-31`. Nenhum Save Page Now foi verificado nesta rodada.
@@ -51,8 +51,8 @@ O leitor pode consumir RSS EN/PT, usar arquivo/busca sem contexto adicional, ins
 
 ## Histórico
 
+- 2026-09-01 — deploy do merge #1640 falhou após build verde; #1645 aberta e `gap_score: 1` mantido porque a home pública ainda não expõe audiolivros.
 - 2026-09-01 — #1640 mergeada em `eebbe97a`: Header/Footer ganham audiolivros e evidência visual passa a ser artifact de CI; fechamento D1 aguarda Pages verde no merge SHA.
 - 2026-09-01 — camada pública `/audiobooks/` reconciliada no card; gap de descoberta global registrado em #1637; `gap_score: 1`.
 - 2026-08-31 — #1620 mergeada em `e55b0bdf`: Colophon/Colofão deixa de afirmar fontes do sistema e passa a refletir Fraunces/Inter; Pages verde no mesmo SHA.
 - 2026-08-31 — ProjectProfile confirma política de merge reconciliada por #1618; antiga divergência merge-commit vs squash não é mais fato atual.
-- 2026-08-18 — README passou a expor site e superfície real do produto, além de reconciliar Astro 7 / Node >=24.
