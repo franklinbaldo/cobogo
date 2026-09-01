@@ -39,6 +39,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `reproducible-public-state` — captura/deploy/artifact material devem ser reconciliáveis quando versão muda interpretação.
 - `provenance-freshness-visible` — fonte, competência e artifact real fazem parte da UX de dados.
 - `source-near-claim` — provenance fica no contexto mínimo que deixa claro qual fonte sustenta qual informação.
+- `uncertainty-is-visible` — cobertura parcial, desconhecido e inferência material não fingem certeza completa.
 - `status-language-is-literal` — estados públicos descrevem condição real sem eufemismo ou certeza não provada.
 - `data-state-legibility` — loading, vazio, erro, sucesso e stale não podem colapsar semanticamente.
 - `empty-state-explains-system` — vazio legítimo deve ser distinguível de falha e explicar ação real quando houver.
