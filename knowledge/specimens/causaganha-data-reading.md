@@ -1,7 +1,7 @@
 ---
 type: specimen
 title: CausaGanha — leitura pública de dados judiciais
-consumer: CausaGanha
+consumer: franklinbaldo/causaganha
 status: proposed
 purpose: test Cobogó grammar against a functioning brownfield public site
 ---
