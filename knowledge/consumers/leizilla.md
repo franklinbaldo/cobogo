@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/leizilla
 site: https://franklinbaldo.github.io/leizilla/
 status: active
-last_reviewed: 2026-08-31
+last_reviewed: 2026-09-01
 gap_score: 0
 ---
 
@@ -17,7 +17,7 @@ O leitor pode pesquisar legislação, abrir uma lei, preservar o contexto da bus
 
 A superfície já representa ausência de dataset e ausência de cobertura sem transformar falta de linha estruturada em prova de inexistência jurídica. A correção anterior para **Data do ato** impede que o campo legado `data_publicacao` seja apresentado como prova de publicação em Diário Oficial.
 
-Gap `[fato]`: nenhum material observado. O trabalho estrutural de `data_publicacao -> data_ato` pertence ao domínio/pipeline (#129); a apresentação atual já evita a alegação jurídica incorreta.
+Gap `[fato]`: nenhum material observado. O trabalho estrutural de `data_publicacao -> data_ato` pertence ao domínio/pipeline (#129/#156); a apresentação incorporada já evita a alegação jurídica incorreta e a PR permanece draft, portanto não é tratada como capacidade publicada.
 
 ## D2 — por trás
 
@@ -27,7 +27,7 @@ Conforme o `ProjectProfile`, o Leizilla preserva, estrutura e republica legisla�
 
 O README e as superfícies de evidência/cobertura tornam perceptível que dataset publicado, cobertura, pipeline e freshness são fatos distintos. O pipeline atual inclui discovery/harvest, Wayback + Internet Archive, OCR/parsing, consolidação Parquet e release.
 
-Gap `[fato]`: nenhum material. A tese e a cadeia que a sustenta já são perceptíveis sem prometer cobertura completa.
+Gap `[fato]`: nenhum material de superfície. O run agendado `33393407511` de 2026-08-31 terminou globalmente em `failure` porque `parse-casacivil-lei` falhou, mas `parse-assembleia`, `parse-casacivil-lc` e o job `etl` — inclusive `Release dataset → IA` — concluíram com sucesso. A falha parcial já continua rastreada pela issue operacional #114; a superfície não afirma que todo run atual está saudável nem usa o status do workflow como prova de cobertura/freshness.
 
 ## D3 — por conta própria
 
@@ -48,10 +48,10 @@ Gap `[fato]`: nenhum material. A reutilização não depende do frontend nem exi
 
 ## Capacidades de superfície
 
-- GitHub Pages/deploy — presente; `last_verified: 2026-08-31`. O `main` observado é `631f62af2ff423d0842b91ed8c8410431160b53a`; workflows de schema/release posteriores ao merge seguem verdes, e o repo mantém workflow dedicado de deploy web.
-- build/smoke de superfície em PR — presente; `last_verified: 2026-08-31`. O build Astro/Svelte de produção também roda para mudanças em `web/**` antes do merge.
-- preservação — presente; `last_verified: 2026-08-31`. Wayback Save Page Now e Internet Archive fazem parte da arquitetura versionada.
-- captura visual comparável — não localizada como capacidade canônica dedicada nesta revisão; `last_verified: 2026-08-31`. Não foi necessária captura nova porque esta rodada não alterou pixels.
+- GitHub Pages/deploy — presente; `last_verified: 2026-08-31`. O `main` continua `631f62af2ff423d0842b91ed8c8410431160b53a`; não houve commit de superfície posterior à última verificação, e o repo mantém workflow dedicado de deploy web.
+- build/smoke de superfície em PR — presente; `last_verified: 2026-09-01`. A #156 continua draft e não é capacidade publicada, mas o seu `Deploy Leizilla Web` permanece verde no head `c9d13d205585a70ae62488d89c8e00b4feeff78b`; `Lint & Test` segue vermelho, portanto nenhum merge foi promovido.
+- preservação — presente; `last_verified: 2026-09-01`. No run agendado `33393407511`, o job `etl` concluiu com sucesso a etapa `Release dataset → IA` apesar da falha parcial anterior em `parse-casacivil-lei`.
+- captura visual comparável — não localizada como capacidade canônica dedicada; `last_verified: 2026-09-01`. Não foi necessária captura nova porque esta rodada não alterou pixels.
 
 ## O que este consumer faz melhor que o Cobogó
 
@@ -65,8 +65,8 @@ Gap `[fato]`: nenhum material. A reutilização não depende do frontend nem exi
 
 ## Histórico
 
+- 2026-09-01 — revalidação distingue falha parcial de parse do sucesso do job ETL/release; #114 já rastreia a dívida operacional e `gap_score` permanece 0.
 - 2026-08-31 — card migrado para `ConsumerCard`; D1/D2/D3 reavaliados, `gap_score: 0`.
 - 2026-08-30 — #155 preservou identidade DITEL apenas para descritores editoriais comprovados; `main` em `631f62af...`.
 - 2026-08-17 — revisão de jornada confirmou busca -> lei -> versões/evidências/dados e separou `Data do ato` de publicação DOE.
-- 2026-08-17 — #150 corrigiu a alegação visível de data sem antecipar a migração estrutural #129.
 - 2026-08-15 — dataset RO v0 publicado no Internet Archive; publicação não foi tratada como cobertura completa.
