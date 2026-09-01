@@ -27,6 +27,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `automation-must-close-publication-loop` — geração automática de artifact precisa chegar causalmente à superfície publicada.
 - `reproducible-public-state` — captura/deploy/artifact material devem ser reconciliáveis quando versão muda interpretação.
 - `provenance-freshness-visible` — fonte, competência e artifact real fazem parte da UX de dados.
+- `status-language-is-literal` — estados públicos descrevem condição real sem eufemismo ou certeza não provada.
 - `data-state-legibility` — loading, vazio, erro, sucesso e stale não podem colapsar semanticamente.
 - `empty-state-explains-system` — vazio legítimo deve ser distinguível de falha e explicar ação real quando houver.
 - `recoverable-error-states` — falhas recuperáveis devem preservar agência e próximo passo.
