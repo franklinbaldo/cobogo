@@ -5,15 +5,14 @@
 -- every frontmatter field. okf-parser validates these constraints against the
 -- authored Markdown concepts.
 
-CREATE TABLE "consumer" (
-    title VARCHAR UNIQUE,
-    repository VARCHAR UNIQUE
+CREATE TABLE "ConsumerCard" (
+    repo VARCHAR UNIQUE
 );
 
 CREATE TABLE "specimen" (
-    consumer VARCHAR REFERENCES "consumer"(title)
+    consumer VARCHAR REFERENCES "ConsumerCard"(repo)
 );
 
 CREATE TABLE "design-decision" (
-    consumer VARCHAR REFERENCES "consumer"(title)
+    consumer VARCHAR REFERENCES "ConsumerCard"(repo)
 );
