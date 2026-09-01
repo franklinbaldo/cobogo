@@ -4,6 +4,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 
 ## Recomendações iniciais
 
+- `portfolio-quality-bar` — cada dimensão aplicável deve aspirar a pelo menos 3/4; média não esconde dimensão crítica.
 - `reader-first-project-explanation` — explicar ação, maquinaria e autonomia para leitor sem contexto.
 - `surface-task-first` — tarefa pública antes de autoexplicação ou decoração.
 - `capability-discoverability` — capacidades públicas reais precisam de caminho de descoberta proporcional.
