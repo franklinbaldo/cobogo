@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/intuit
 site: https://franklinbaldo.github.io/intuit/
 status: active
-last_reviewed: 2026-08-31
+last_reviewed: 2026-09-01
 gap_score: 0
 ---
 
@@ -33,11 +33,11 @@ Gap `[fato]`: nenhum material estabelecido; a ausência de release não esconde 
 
 ## Capacidades de superfície
 
-- GitHub Pages — `last_verified: 2026-08-31`; deploy do merge #27 (`8178f348600f231e567589e45174f4fc507f6986`) verde no run `33417946679`.
-- Gate de superfície — `last_verified: 2026-08-31`; PR #27 head `27674167e4210949508098213da65a57e554c62b` passou `Test` run `33417741517` e `Visual capture` run `33417741529` antes do merge; `main` passou novamente em `Test` run `33417946657`.
-- Smoke/browser tests — `last_verified: 2026-08-31`; Playwright cobre editor → preview, URL/Base64/theme, semântica acessível, foco por teclado e reduced-motion; #24 protege `sandbox=""` + `srcdoc`.
-- Captura visual versionada — `last_verified: 2026-08-31`; workflow usa viewport `1440x900` e provenance por SHA. Before: run `33413210167`, artifact `intuit-home-2bbf3376e2b7f461ddd7e90e1a1a8cb791ac0d06` (id `9765969339`). After pós-merge: run `33417946698`, artifact `intuit-home-8178f348600f231e567589e45174f4fc507f6986` (id `9767763311`).
-- Preservação — `last_verified: 2026-08-31`; estado transportável por URL/Gist; sem capacidade de Save Page Now registrada no repo.
+- GitHub Pages — `last_verified: 2026-09-01`; deploy do merge #27 (`8178f348600f231e567589e45174f4fc507f6986`) continua sendo o último deploy de `main` e está verde no run `33417946679`.
+- Gate de superfície — `last_verified: 2026-09-01`; PR #27 head `27674167e4210949508098213da65a57e554c62b` passou `Test` run `33417741517` e `Visual capture` run `33417741529` antes do merge; `main` passou novamente em `Test` run `33417946657`.
+- Smoke/browser tests — `last_verified: 2026-09-01`; Playwright cobre editor → preview, URL/Base64/theme, semântica acessível, foco por teclado e reduced-motion; #24 protege `sandbox=""` + `srcdoc`.
+- Captura visual versionada — `last_verified: 2026-09-01`; workflow usa viewport `1440x900` e provenance por SHA. Before: run `33413210167`, artifact `intuit-home-2bbf3376e2b7f461ddd7e90e1a1a8cb791ac0d06` (id `9765969339`). After pós-merge: run `33417946698`, artifact `intuit-home-8178f348600f231e567589e45174f4fc507f6986` (id `9767763311`).
+- Preservação — `last_verified: 2026-09-01`; estado transportável por URL/Gist; sem capacidade de Save Page Now registrada no repo.
 
 ## O que este consumer faz melhor que o Cobogó
 
@@ -49,8 +49,8 @@ Nenhum pattern compartilhado adotado como dependência. O consumer funciona como
 
 ## Histórico
 
+- 2026-09-01 — revalidação sem mudança de superfície: `main` permanece `8178f348`; Pages/Test/Visual capture continuam verdes; `gap_score: 0`; `workspace#27` segue aberto para reconciliar a capacidade de captura no ProjectProfile.
 - 2026-08-31 — #27 fechou o residual D1: foco explícito por teclado + reduced-motion, com Test/Pages/Visual capture verdes em `8178f348` e after reproduzível.
 - 2026-08-31 — #26 adicionou captura visual reproduzível da home com provenance por SHA e artifact de CI; Pages/Test/Visual capture verdes em `2bbf3376`.
 - 2026-08-31 — #24 reaplicou sobre `main` apenas o residual semântico de #14: alert + grupos nomeados + testes, preservando `sandbox=""`/`srcdoc`; #15 foi encerrada como supersedida.
 - 2026-08-16 — #17 fechou preview semântico, runtime `srcdoc`, Base64, tema observável, gate Test e deploy Pages.
-- 2026-08-16 — card registrava Intuit como candidate/pressure test, sem adoção Cobogó.
