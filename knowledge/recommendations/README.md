@@ -42,6 +42,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `tables-need-reading-strategy` — tabela serve comparação e precisa de estratégia responsiva deliberada.
 - `downloads-name-what-you-get` — download identifica artifact, formato/competência quando material.
 - `artifact-autonomy` — artifacts reutilizáveis devem ser encontráveis e leváveis para fora da UI.
+- `canonical-artifact-before-dashboard` — visualização não aprisiona dataset/artifact reutilizável quando ele pode ser publicado legitimamente.
 - `public-artifact-preservation` — artifacts importantes para auditabilidade/reuso precisam de estratégia de preservação adequada.
 - `automation-must-close-publication-loop` — geração automática de artifact precisa chegar causalmente à superfície publicada.
 - `reproducible-public-state` — captura/deploy/artifact material devem ser reconciliáveis quando versão muda interpretação.
