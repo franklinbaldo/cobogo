@@ -16,6 +16,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `readable-density` — densidade serve à tarefa; whitespace não é objetivo universal.
 - `capability-discoverability` — capacidades públicas reais precisam de caminho de descoberta proporcional.
 - `navigation-information-scent` — navegação deve antecipar destinos para quem não conhece a arquitetura interna.
+- `links-are-contracts` — navegação/download/fonte são comportamento e precisam resolver corretamente.
 - `artifact-autonomy` — artifacts reutilizáveis devem ser encontráveis e leváveis para fora da UI.
 - `public-artifact-preservation` — artifacts importantes para auditabilidade/reuso precisam de estratégia de preservação adequada.
 - `automation-must-close-publication-loop` — geração automática de artifact precisa chegar causalmente à superfície publicada.
