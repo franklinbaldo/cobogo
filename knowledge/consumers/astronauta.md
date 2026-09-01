@@ -4,7 +4,7 @@ repo: franklinbaldo/astronauta
 site: https://github.com/franklinbaldo/astronauta
 status: active
 last_reviewed: 2026-09-01
-gap_score: 1
+gap_score: 0
 ---
 
 # Astronauta
@@ -27,17 +27,17 @@ Gap: nenhum material nessa dimensão. A razão de existir, a fronteira de autori
 
 ## D3 — por conta própria
 
-[fato] O repositório público fornece a aplicação e uma receita reproduzível de execução a partir do source checkout. O CI atual também prova uma wheel com runtime Astro standalone instalada em ambiente consumidor fresco sem Bun/source checkout. Não há GitHub Release publicada atualmente, e nenhuma release inexistente deve ser apresentada como disponível.
+[fato] O repositório público fornece a aplicação e uma receita reproduzível de execução a partir do source checkout. O CI atual também prova uma wheel com runtime Astro standalone instalada em ambiente consumidor fresco sem Bun/source checkout. A PR #40 reconciliou o README com esse estado: a wheel instalada carrega `_web/server/entry.mjs`, o gate `installed-artifact` prova execução sem Bun, source checkout ou build frontend prévio, e o contrato público permanece `astronauta PATH [--write]`. O README explicita ainda que esse estado do repo não implica GitHub Release ou PyPI publicada sem verificação independente.
 
-Gap [fato]: o README ainda descreve o runtime empacotado como uma “next distribution slice”, embora o job `installed-artifact` já prove esse estado incorporado. Correção rastreada em `franklinbaldo/astronauta#39`. Até isso ser reconciliado, o leitor de fora recebe uma descrição de distribuição defasada.
+Gap: nenhum material. A antiga divergência de packaging foi fechada por #40; não há canal de release inexistente apresentado como disponível.
 
 ## Capacidades de superfície
 
-- CI principal — `last_verified: 2026-09-01`; #38 passou no head exato `9f8aab4c2afa186334b78747a4387c160f3e5321` com CI, Live editor, Live apply e Live import verdes antes do merge.
-- Live editor / Apply / import gates — `last_verified: 2026-09-01`; os três workflows concluíram `success` no head da #38.
-- Runtime instalado — `last_verified: 2026-09-01`; o job `installed-artifact` do CI constrói a wheel com runtime web staged, instala em ambiente consumidor fresco e prova execução sem Bun/source checkout.
+- CI principal — `last_verified: 2026-09-01`; #40 passou no head exato `8a7ce581d56f5b77356fa69f368420ed6c6a5f58`, incluindo build, live SSR e `installed-artifact`, antes do merge.
+- Live editor / Apply / import gates — `last_verified: 2026-09-01`; os três workflows concluíram `success` no head exato da #40.
+- Runtime instalado — `last_verified: 2026-09-01`; o job `installed-artifact` do CI constrói a wheel com runtime web staged, instala em ambiente consumidor fresco e prova execução sem Bun/source checkout/build frontend prévio.
 - Pages/deploy público — `last_verified: 2026-09-01`; não aplicável ao produto atual, que é um admin SSR local servido em loopback. A superfície pública de documentação é o próprio README do repositório.
-- Captura visual comparável — `last_verified: 2026-09-01`; nenhuma capacidade canônica de screenshot foi localizada e #38 foi estritamente editorial, sem mudança visual do admin.
+- Captura visual comparável — `last_verified: 2026-09-01`; nenhuma capacidade canônica de screenshot foi localizada e #40 foi estritamente editorial, sem mudança visual do admin.
 - Preservação/Save Page Now — `last_verified: 2026-09-01`; não aplicável à superfície local atual.
 
 ## O que este consumer faz melhor que o Cobogó
@@ -53,8 +53,8 @@ Gap [fato]: o README ainda descreve o runtime empacotado como uma “next distri
 
 ## Histórico
 
-- 2026-09-01 — #38 merge `81a97820`: README passa a expor import/create preview-first e review-bound; D2 fechado. Identificado gap D3 de packaging obsoleto, rastreado em #39.
+- 2026-09-01 — #40 merge `664536ae`: README passa a descrever a wheel/runtime instalado como estado atual; D3 fechado e `gap_score` volta a 0.
+- 2026-09-01 — #38 merge `81a97820`: README passa a expor import/create preview-first e review-bound; D2 fechado; gap D3 de packaging rastreado em #39.
 - 2026-08-31 — #37 merge `aaa7c0ed`: import/create passou a ser review-bound por `preview_token` opaco; ProjectProfile reconciliado.
 - 2026-08-31 — card migrado para `ConsumerCard`; D1/D2/D3 reavaliadas.
 - 2026-08-29 — cache do read adapter com aferição de frescor por árvore entrou em `main`, mantendo liveness.
-- 2026-08-14 — README reconciliado pela #28 com o live SSR/editor e a fronteira `okf-parser`/Astronauta.
