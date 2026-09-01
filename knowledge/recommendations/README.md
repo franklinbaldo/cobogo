@@ -6,6 +6,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 
 - `evidence-does-not-veto-opinion` — evidência valida e falsifica defaults; não é autorização prévia para formulá-los.
 - `defaults-must-have-escape-hatches` — default forte declara quando não se aplica e o resultado que uma solução local deve preservar.
+- `design-system-implements-opinions` — opinião transversal recorrente deve ganhar primitive/pattern/validator de referência quando útil.
 - `consumer-surface-contract` — Cobogó é contrato de qualidade; importar componentes não determina score.
 - `portfolio-quality-bar` — cada dimensão aplicável deve aspirar a pelo menos 3/4; média não esconde dimensão crítica.
 - `quality-ranking-is-diagnostic` — ranking prioriza gaps; posição ordinal não é objetivo.
