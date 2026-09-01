@@ -4,6 +4,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 
 ## Recomendações iniciais
 
+- `evidence-does-not-veto-opinion` — evidência valida e falsifica defaults; não é autorização prévia para formulá-los.
 - `consumer-surface-contract` — Cobogó é contrato de qualidade; importar componentes não determina score.
 - `portfolio-quality-bar` — cada dimensão aplicável deve aspirar a pelo menos 3/4; média não esconde dimensão crítica.
 - `reader-first-project-explanation` — explicar ação, maquinaria e autonomia para leitor sem contexto.
