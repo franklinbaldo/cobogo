@@ -54,7 +54,6 @@ Além do HTML público e do conteúdo sob CC BY 4.0 na superfície, a publicaç�
 - [Vão antes de massa](../canon/vao-antes-de-massa.md) — separação, medida e tipografia estruturam a leitura sem empilhar caixas.
 - [Módulo sem monotonia](../canon/modulo-sem-monotonia.md) — a capa usa manchete, secundárias e briefs em vez de cards homogêneos.
 - [Parentesco sem uniformidade](../canon/parentesco-sem-uniformidade.md) — a identidade jornalística permanece local.
-- [Provenance and freshness](../patterns/provenance-freshness.md) — fonte oficial e freshness material permanecem recuperáveis na publicação real.
 
 ## Histórico
 
