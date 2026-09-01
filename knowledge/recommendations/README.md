@@ -39,6 +39,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `public-artifact-preservation` — artifacts importantes para auditabilidade/reuso precisam de estratégia de preservação adequada.
 - `automation-must-close-publication-loop` — geração automática de artifact precisa chegar causalmente à superfície publicada.
 - `reproducible-public-state` — captura/deploy/artifact material devem ser reconciliáveis quando versão muda interpretação.
+- `one-source-of-truth-per-state` — metadata factual da superfície deriva do estado/artifact canônico ou possui gate contra divergência.
 - `provenance-freshness-visible` — fonte, competência e artifact real fazem parte da UX de dados.
 - `source-near-claim` — provenance fica no contexto mínimo que deixa claro qual fonte sustenta qual informação.
 - `uncertainty-is-visible` — cobertura parcial, desconhecido e inferência material não fingem certeza completa.
