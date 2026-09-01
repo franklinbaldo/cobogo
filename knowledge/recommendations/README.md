@@ -17,6 +17,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `copy-names-the-user-object` — copy usa vocabulário do leitor/domínio antes de nomes internos de implementação.
 - `reader-first-project-explanation` — explicar ação, maquinaria e autonomia para leitor sem contexto.
 - `surface-task-first` — tarefa pública antes de autoexplicação ou decoração.
+- `default-is-the-common-case` — primeira camada otimiza o caso comum comprovado; exceções continuam alcançáveis.
 - `primary-action-focus` — hierarquia deve declarar prioridade quando há ação principal.
 - `direct-manipulation-when-possible` — ação direta antes de cerimônia quando o risco permite.
 - `destructive-actions-are-explicit` — ação irreversível declara consequência e usa guardrail proporcional.
