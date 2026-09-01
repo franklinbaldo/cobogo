@@ -19,6 +19,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `artifact-autonomy` — artifacts reutilizáveis devem ser encontráveis e leváveis para fora da UI.
 - `public-artifact-preservation` — artifacts importantes para auditabilidade/reuso precisam de estratégia de preservação adequada.
 - `automation-must-close-publication-loop` — geração automática de artifact precisa chegar causalmente à superfície publicada.
+- `reproducible-public-state` — captura/deploy/artifact material devem ser reconciliáveis quando versão muda interpretação.
 - `provenance-freshness-visible` — fonte, competência e artifact real fazem parte da UX de dados.
 - `data-state-legibility` — loading, vazio, erro, sucesso e stale não podem colapsar semanticamente.
 - `empty-state-explains-system` — vazio legítimo deve ser distinguível de falha e explicar ação real quando houver.
