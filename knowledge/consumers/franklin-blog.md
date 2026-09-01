@@ -4,7 +4,7 @@ repo: franklinbaldo/franklinbaldo.github.io
 site: https://franklinbaldo.github.io/
 status: active
 last_reviewed: 2026-09-01
-gap_score: 1
+gap_score: 0
 ---
 
 # Franklin blog
@@ -15,9 +15,9 @@ Blog pessoal e jardim digital: preservar a voz editorial, leitura longa, rotas b
 
 ## D1 — no site
 
-O leitor pode ler ensaios e caminhos de leitura, navegar arquivo, tags e busca, alternar entre rotas EN/PT, explorar projetos, ranking Hrönir, música, livros e changelog, assinar RSS e acessar diretamente o catálogo `/audiobooks/`, que lista obras e seus estados de preparação/publicação.
+O leitor pode ler ensaios e caminhos de leitura, navegar arquivo, tags e busca, alternar entre rotas EN/PT, explorar projetos, ranking Hrönir, música, livros, audiolivros e changelog, assinar RSS e acessar o catálogo `/audiobooks/` pela navegação global secundária.
 
-**Gap [fato]:** a PR `franklinbaldo/franklinbaldo.github.io#1640` adicionou `Audiobooks` / `Audiolivros` à hierarquia secundária de Header e Footer e foi mergeada em `eebbe97af4e3aaf71b8a45b5752056dcf158122d`; a captura pós-merge no mesmo SHA mostra a nova entrada no Footer sem promoção a CTA principal. O deploy `33535970297`, porém, falhou em `actions/deploy-pages` depois de build verde; a home pública verificada após a falha ainda não mostra `Audiobooks`. O gap D1 permanece aberto até Pages publicar um SHA que preserve a #1640.
+**Gap [fato]:** nenhum gap D1 material nesta rodada. A #1640 adicionou `Audiobooks` / `Audiolivros` à hierarquia secundária de Header e Footer; o merge `eebbe97af4e3aaf71b8a45b5752056dcf158122d` tem before/after pelo mesmo harness, o rerun do Pages `33535970297` concluiu `success` e a home pública verificada mostra `Audiobooks` tanto no grupo `More` quanto no Footer.
 
 ## D2 — por trás
 
@@ -29,12 +29,12 @@ O repositório prova Astro 7 + MDX + Pico.css, Pagefind, publicação em GitHub 
 
 O leitor pode consumir RSS EN/PT, usar arquivo/busca sem contexto adicional, inspecionar o source público e reproduzir o site a partir do checkout documentado. O ranking Hrönir projeta dados versionados no repositório para uma superfície pública de curadoria. A fábrica de audiolivros expõe estrutura reproduzível no source, mas feeds por obra só são publicados quando o manifest habilita podcast.
 
-**Gap [fato]:** nenhum gap D3 material independente do problema de descoberta D1; não há base para anunciar feed HPMOR ativo.
+**Gap [fato]:** nenhum gap D3 material; não há base para anunciar feed HPMOR ativo.
 
 ## Capacidades de superfície
 
-- **Pages/deploy** — `last_verified: 2026-09-01`. Último deploy concluído previamente verificado: `main` em `b5492e69a2bc4298b2f1886521d234fb6b7f5f16`, run `33498944159` `success`. Para o merge `eebbe97af4e3aaf71b8a45b5752056dcf158122d`, o build do run `33535970297` passou, mas o job `deploy` falhou em `actions/deploy-pages`. Uma única tentativa de rerun do job foi disparada; issue operacional `#1645` registra a falha e o critério de retomada. Esse SHA ainda não conta como deploy verificado.
-- **Captura visual** — `last_verified: 2026-09-01`. `scripts/screenshots.mjs` agora é executado pelo workflow `Visual evidence` em PR e push para `main`, com artifacts endereçados pelo SHA. Before: head `6503538c187bd6cb860252dd1865ef7bdb2199f5`, artifact `9806697863`; after em `main`: `eebbe97af4e3aaf71b8a45b5752056dcf158122d`, artifact `9811726761`. A home desktop foi capturada pelo mesmo método nas duas pontas.
+- **Pages/deploy** — `last_verified: 2026-09-01`. Merge `eebbe97af4e3aaf71b8a45b5752056dcf158122d`, run `33535970297`: tentativa 1 falhou em `actions/deploy-pages` após build verde; tentativa 2 concluiu `success` no mesmo SHA. A home pública foi verificada depois e já expõe `Audiobooks` no Header/More e no Footer.
+- **Captura visual** — `last_verified: 2026-09-01`. `scripts/screenshots.mjs` é executado pelo workflow `Visual evidence` em PR e push para `main`, com artifacts endereçados pelo SHA. Before: head `6503538c187bd6cb860252dd1865ef7bdb2199f5`, artifact `9806697863`; after em `main`: `eebbe97af4e3aaf71b8a45b5752056dcf158122d`, artifact `9811726761`.
 - **Smoke/CI** — `last_verified: 2026-09-01`. No head exato `a03c3670ca95100ae9bc638e7633a0efa13f7088` da #1640, `Change cards` (`33535276185`), `Visual evidence` (`33535276198`) e `Check` (`33535276367`) concluíram `success` antes do squash merge.
 - **Preservação** — `last_verified: 2026-08-31`. Nenhum Save Page Now foi verificado nesta rodada.
 
@@ -51,8 +51,8 @@ O leitor pode consumir RSS EN/PT, usar arquivo/busca sem contexto adicional, ins
 
 ## Histórico
 
-- 2026-09-01 — deploy do merge #1640 falhou após build verde; #1645 aberta e `gap_score: 1` mantido porque a home pública ainda não expõe audiolivros.
-- 2026-09-01 — #1640 mergeada em `eebbe97a`: Header/Footer ganham audiolivros e evidência visual passa a ser artifact de CI; fechamento D1 aguarda Pages verde no merge SHA.
-- 2026-09-01 — camada pública `/audiobooks/` reconciliada no card; gap de descoberta global registrado em #1637; `gap_score: 1`.
+- 2026-09-01 — rerun do Pages `33535970297` ficou verde no merge #1640; home publicada confirmou `Audiobooks` no Header/More e Footer; #1637/#1645 fechadas e `gap_score: 0`.
+- 2026-09-01 — deploy do merge #1640 falhou após build verde; #1645 abriu o bloqueio operacional sem reverter a superfície.
+- 2026-09-01 — #1640 mergeada em `eebbe97a`: Header/Footer ganham audiolivros e evidência visual passa a ser artifact de CI.
+- 2026-09-01 — camada pública `/audiobooks/` reconciliada no card; gap de descoberta global registrado em #1637.
 - 2026-08-31 — #1620 mergeada em `e55b0bdf`: Colophon/Colofão deixa de afirmar fontes do sistema e passa a refletir Fraunces/Inter; Pages verde no mesmo SHA.
-- 2026-08-31 — ProjectProfile confirma política de merge reconciliada por #1618; antiga divergência merge-commit vs squash não é mais fato atual.
