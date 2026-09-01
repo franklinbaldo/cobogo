@@ -32,6 +32,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `url-state-when-shareable` — estado público útil e não sensível deve ser reproduzível por URL quando aplicável.
 - `forms-minimize-interpretation` — label, contrato, erro e efeito da submissão devem ser claros no contexto.
 - `tables-need-reading-strategy` — tabela serve comparação e precisa de estratégia responsiva deliberada.
+- `downloads-name-what-you-get` — download identifica artifact, formato/competência quando material.
 - `artifact-autonomy` — artifacts reutilizáveis devem ser encontráveis e leváveis para fora da UI.
 - `public-artifact-preservation` — artifacts importantes para auditabilidade/reuso precisam de estratégia de preservação adequada.
 - `automation-must-close-publication-loop` — geração automática de artifact precisa chegar causalmente à superfície publicada.
