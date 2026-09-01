@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/ficha
 site: https://franklinbaldo.github.io/ficha/
 status: active
-last_reviewed: 2026-08-31
+last_reviewed: 2026-09-01
 gap_score: 0
 ---
 
@@ -15,7 +15,7 @@ Ficha é um fichário público, histórico e reutilizável de dados de CNPJ da R
 
 ## D1 — no site
 
-O leitor pode consultar a competência publicada diretamente no navegador. A busca atual oferece modos de empresa, pessoa/sócio, endereço e CNAE quando os artefatos correspondentes estão disponíveis, usando DuckDB-WASM sobre os dados publicados.
+O leitor pode consultar a competência publicada diretamente no navegador. A busca atual oferece modos de empresa, pessoa/sócio, endereço e CNAE quando os artefatos correspondentes estão disponíveis no snapshot, usando DuckDB-WASM sobre os dados publicados.
 
 Gap: nenhum gap material observado na superfície atual. A home deixa claro o caminho **Consultar aqui** e não promete modalidades que o snapshot não sustenta.
 
@@ -33,10 +33,10 @@ Gap: nenhum gap material observado. **Levar a base** é um caminho explícito da
 
 ## Capacidades de superfície
 
-- GitHub Pages/deploy — `last_verified: 2026-08-31`; repositório ativo com Pages habilitado e `main` em `65bcd9a052459984d6500dcc1380635b0fe19dfa`; CI desse SHA concluiu com sucesso.
-- Captura visual — `last_verified: 2026-08-31`; `.github/workflows/visual-capture.yml` constrói o Project Pages real em `/ficha/`, captura Chromium e classifica `hydrated`, `remote-data-unavailable` ou `incomplete`; a última mudança de composição da home continua sendo a #222.
-- Smoke tests — `last_verified: 2026-08-31`; o corpus e o repositório mantêm published-site smoke como capacidade separada de evidência visual.
-- Preservação — `last_verified: 2026-08-31`; snapshots/datasets usam Internet Archive e o manifest público como contrato verificável. Não há Save Page Now do HTML renderizado reivindicado pelo corpus.
+- GitHub Pages/deploy — `last_verified: 2026-09-01`; `main` permanece em `65bcd9a052459984d6500dcc1380635b0fe19dfa`; CI de push `33298511254` concluiu `success` nesse SHA.
+- Captura visual — `last_verified: 2026-09-01`; `.github/workflows/visual-capture.yml` continua sendo a capacidade canônica registrada para construir o Project Pages real em `/ficha/` e capturar Chromium; não houve mudança visual nova a recapturar nesta rodada.
+- Smoke tests — `last_verified: 2026-09-01`; run agendado `ETL — upstream + mirror smoke check` `33396841333` concluiu `success` no mesmo `main`.
+- Preservação — `last_verified: 2026-09-01`; snapshots/datasets continuam usando Internet Archive e o manifest público como contrato verificável. Não há Save Page Now do HTML renderizado reivindicado pelo corpus.
 
 ## O que este consumer faz melhor que o Cobogó
 
@@ -51,6 +51,7 @@ Gap: nenhum gap material observado. **Levar a base** é um caminho explícito da
 
 ## Histórico
 
+- 2026-09-01 — `main` e contrato público revalidados sem mudança de superfície; CI e smoke upstream recentes verdes; `gap_score: 0` preservado.
 - 2026-08-31 — card reconciliado ao schema `ConsumerCard`; D1/D2/D3 reavaliados contra `main` e `ProjectProfile`; `gap_score: 0`.
 - 2026-08-30 — `main` avançou para #225 sem mudança de composição pública; snapshot verificado 2026-07 permanece no contrato multi-competência.
 - 2026-08-18 — #222 adotou o core pinado do Cobogó na home, preservando a identidade do Ficha e reduzindo contratos genéricos locais.
