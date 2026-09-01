@@ -1,7 +1,7 @@
 ---
 type: specimen
 title: O Vigia — matéria factual com provenance visível
-consumer: O Vigia
+consumer: franklinbaldo/ovigia-redacao
 purpose: testar Cobogó em leitura editorial aberta sem perder rigor factual nem virar clone do Astronauta
 uses_grammar:
   - Vão
