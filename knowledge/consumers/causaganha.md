@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/causaganha
 site: https://franklinbaldo.github.io/causaganha/
 status: active
-last_reviewed: 2026-08-30
+last_reviewed: 2026-09-01
 gap_score: 0
 ---
 
@@ -17,13 +17,13 @@ Preservar a identidade verde/dourada, a finalidade de leitura de dados judiciais
 
 O leitor pode consultar um processo por número CNJ, pesquisar publicações por texto/OAB/parte e explorar cobertura. A navegação global organiza essas ações por jobs reais. A home multi-fonte entrou por `franklinbaldo/causaganha#901`, merge `1e608dcbd7f8c5a3d4c25bd323d42df5bab66262`, e o deploy desse SHA foi verificado verde: a composição passa a apresentar DJEN, DataJud, TJRO JURIS e STJ sob os papéis Arquivo / Estado / Teor, mantendo métricas DJEN como evidência da camada de preservação e não como definição do produto inteiro.
 
-**Gap [fato] — `/`:** nenhum gap material contabilizado nesta dimensão após #901. Não inferir cobertura completa nem igualdade de maturidade entre fontes.
+**Gap [fato] — `/`:** nenhum gap material contabilizado nesta dimensão após #901. Não inferir cobertura completa nem igualdade de maturidade entre fontes. As melhorias de fluxo atualmente em PR permanecem trabalho futuro até merge e publicação verificáveis.
 
 ## D2 — por trás
 
 O `ProjectProfile` define CausaGanha como camada cívica verificável sobre rastros judiciais públicos, separando arquivo, estado, teor, significado, proveniência, freshness e limites de cobertura. A PR `franklinbaldo/causaganha#902`, mergeada em `d8c5102e6de42f8391cdedbf3fa83306b41c8142`, transforma `/sobre` em explicação progressiva: tese do produto primeiro, Arquivo / Estado / Teor como modelo mental, uma fronteira explícita de “o que sustenta / limite” para cada fonte, fluxo fonte → artefato → índice → superfície, acesso reproduzível aos dados e interfaces site/dados/MCP.
 
-**Gap [fato] — `/sobre`:** nenhum gap material contabilizado após a segunda tentativa do `Deploy Web` run `33338217183`. No mesmo SHA `d8c5102e...`, `Setup Python`, geração estrita dos contratos, build Astro e upload do artifact passaram; o artifact contém `sobre.html`; o job `deploy` concluiu com sucesso para o ambiente GitHub Pages. A issue `franklinbaldo/causaganha#941` foi encerrada como concluída. A verificação desta rodada é pela cadeia de build/artifact/deployment do GitHub Pages; não houve probe HTTP independente da rota.
+**Gap [fato] — `/sobre`:** nenhum gap material contabilizado após a segunda tentativa do `Deploy Web` run `33338217183`. No mesmo SHA `d8c5102e...`, `Setup Python`, geração estrita dos contratos, build Astro e upload do artifact passaram; o artifact contém `sobre.html`; o job `deploy` concluiu com sucesso para o ambiente GitHub Pages. A issue `franklinbaldo/causaganha#941` foi encerrada como concluída. Em 2026-09-01, `main` avançou para `f661614562709665ca4e354a273536df6762756e` apenas com canário/SLO, documentação e testes; não houve mudança de superfície que reabra este gap.
 
 ## D3 — por conta própria
 
@@ -53,8 +53,8 @@ O repo e a superfície explicativa provam artefatos públicos reutilizáveis: ZI
 
 ## Histórico
 
+- 2026-09-01 — inspeção sem intervenção: `main` avançou para `f6616145` apenas em canário/SLO; D1/D2/D3 permanecem sem gap material e PRs abertas não foram antecipadas como capacidade publicada.
 - 2026-08-30 — retry do `Deploy Web` no próprio `d8c5102e` passa build + Pages; #941 encerrada e `gap_score` vai a 0.
 - 2026-08-30 — #902 merge `d8c5102e`: `/sobre` passa a explicar Arquivo / Estado / Teor e limites por fonte; recaptura pós-merge verde.
 - 2026-08-30 — #901 merge `1e608dcb`: home passa a representar o produto multi-fonte real; deploy verificado verde.
 - 2026-08-30 — #900 merge `a76ef9a0`: navegação global passa a organizar o site por jobs reais.
-- 2026-08-30 — #899 merge `4d25935c`: README reposicionado em arquivo / estado / teor, quatro fontes e três interfaces.
