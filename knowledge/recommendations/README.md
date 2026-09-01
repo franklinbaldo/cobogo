@@ -8,6 +8,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `defaults-must-have-escape-hatches` — default forte declara quando não se aplica e o resultado que uma solução local deve preservar.
 - `design-defaults-are-testable` — recomendação normativa precisa de critério observável, não slogan de UX.
 - `design-system-implements-opinions` — opinião transversal recorrente deve ganhar primitive/pattern/validator de referência quando útil.
+- `sensible-defaults-over-configuration` — decisão transversal já tomada vira default barato, não formulário de configuração.
 - `design-system-is-not-a-theme` — Cobogó governa qualidade de produto; aparência compartilhada é secundária.
 - `consumer-can-outperform-cobogo` — solução local superior deve poder mudar o framework, não ser penalizada por divergência.
 - `consumer-surface-contract` — Cobogó é contrato de qualidade; importar componentes não determina score.
