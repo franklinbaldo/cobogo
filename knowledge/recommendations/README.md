@@ -40,6 +40,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `progressive-disclosure` — transparência em camadas sem transformar a home em README.
 - `semantic-accessibility-default` — semântica, teclado e foco são contrato básico.
 - `responsive-by-contract` — tarefa e hierarquia precisam sobreviver a viewport estreito.
+- `mobile-keeps-primary-task` — mobile preserva tarefa e ordem de leitura, não geometria desktop.
 - `visual-evidence-as-quality-gate` — UI material precisa de evidência renderizada ligada ao SHA.
 - `quality-issues-are-actionable` — nota baixa não basta; issue precisa de gap e critério verificáveis.
 - `no-unproven-marketing` — superfície explica capacidade real sem inflar promessa.
