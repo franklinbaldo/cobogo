@@ -13,6 +13,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `quality-debt-is-visible` — gaps materiais continuam rastreáveis até resolução, aceitação ou perda de aplicabilidade.
 - `design-critique-is-specific` — crítica formal nomeia mecanismo observável, não gosto genérico.
 - `portfolio-quality-bar` — cada dimensão aplicável deve aspirar a pelo menos 3/4; média não esconde dimensão crítica.
+- `score-does-not-hide-blockers` — dimensão quebrada não é compensada silenciosamente pela soma.
 - `quality-ranking-is-diagnostic` — ranking prioriza gaps; posição ordinal não é objetivo.
 - `no-dark-patterns` — agência e compreensão antes de conversão/manipulação.
 - `browser-native-before-custom` — plataforma nativa antes de widget customizado quando a tarefa permite.
