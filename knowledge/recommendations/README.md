@@ -16,6 +16,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `surface-task-first` — tarefa pública antes de autoexplicação ou decoração.
 - `primary-action-focus` — hierarquia deve declarar prioridade quando há ação principal.
 - `direct-manipulation-when-possible` — ação direta antes de cerimônia quando o risco permite.
+- `feedback-near-action` — progresso/resultado/erro aparecem no contexto causal da ação quando possível.
 - `content-hierarchy-before-decoration` — estrutura e significado vêm antes de ornamentação/componentização.
 - `readable-density` — densidade serve à tarefa; whitespace não é objetivo universal.
 - `capability-discoverability` — capacidades públicas reais precisam de caminho de descoberta proporcional.
