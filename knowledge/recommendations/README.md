@@ -19,6 +19,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `links-are-contracts` — navegação/download/fonte são comportamento e precisam resolver corretamente.
 - `search-is-a-product-state` — busca principal é fluxo com escopo, estados e interpretação, não apenas input.
 - `filter-state-is-visible` — subconjunto filtrado deve ser perceptível e reversível.
+- `forms-minimize-interpretation` — label, contrato, erro e efeito da submissão devem ser claros no contexto.
 - `artifact-autonomy` — artifacts reutilizáveis devem ser encontráveis e leváveis para fora da UI.
 - `public-artifact-preservation` — artifacts importantes para auditabilidade/reuso precisam de estratégia de preservação adequada.
 - `automation-must-close-publication-loop` — geração automática de artifact precisa chegar causalmente à superfície publicada.
