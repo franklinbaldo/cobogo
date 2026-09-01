@@ -21,6 +21,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `content-hierarchy-before-decoration` — estrutura e significado vêm antes de ornamentação/componentização.
 - `readable-density` — densidade serve à tarefa; whitespace não é objetivo universal.
 - `contrast-is-functional` — identidade de cor não pode comprometer leitura, foco ou distinção de estados.
+- `focus-is-visible` — foco de teclado é estado funcional e nunca desaparece.
 - `capability-discoverability` — capacidades públicas reais precisam de caminho de descoberta proporcional.
 - `navigation-information-scent` — navegação deve antecipar destinos para quem não conhece a arquitetura interna.
 - `links-are-contracts` — navegação/download/fonte são comportamento e precisam resolver corretamente.
