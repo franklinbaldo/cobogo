@@ -10,11 +10,13 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `quality-ranking-is-diagnostic` — ranking prioriza gaps; posição ordinal não é objetivo.
 - `reader-first-project-explanation` — explicar ação, maquinaria e autonomia para leitor sem contexto.
 - `surface-task-first` — tarefa pública antes de autoexplicação ou decoração.
+- `primary-action-focus` — hierarquia deve declarar prioridade quando há ação principal.
 - `capability-discoverability` — capacidades públicas reais precisam de caminho de descoberta proporcional.
 - `navigation-information-scent` — navegação deve antecipar destinos para quem não conhece a arquitetura interna.
 - `artifact-autonomy` — artifacts reutilizáveis devem ser encontráveis e leváveis para fora da UI.
 - `provenance-freshness-visible` — fonte, competência e artifact real fazem parte da UX de dados.
 - `data-state-legibility` — loading, vazio, erro, sucesso e stale não podem colapsar semanticamente.
+- `empty-state-explains-system` — vazio legítimo deve ser distinguível de falha e explicar ação real quando houver.
 - `recoverable-error-states` — falhas recuperáveis devem preservar agência e próximo passo.
 - `progressive-disclosure` — transparência em camadas sem transformar a home em README.
 - `semantic-accessibility-default` — semântica, teclado e foco são contrato básico.
