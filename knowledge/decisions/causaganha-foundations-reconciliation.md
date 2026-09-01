@@ -2,7 +2,7 @@
 type: design-decision
 title: CausaGanha foundations reconciliation as first brownfield test
 status: proposed
-consumer: CausaGanha
+consumer: franklinbaldo/causaganha
 ---
 
 # CausaGanha foundations reconciliation as first brownfield test
