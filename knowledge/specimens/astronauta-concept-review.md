@@ -1,7 +1,7 @@
 ---
 type: specimen
 title: Astronauta — revisão densa de conceito OKF
-consumer: Astronauta
+consumer: franklinbaldo/astronauta
 purpose: testar Cobogó em interface administrativa de alta densidade sem transformá-la em cópia de superfície editorial
 uses_grammar:
   - Vão
