@@ -15,6 +15,7 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `consumer-can-outperform-cobogo` — solução local superior deve poder mudar o framework, não ser penalizada por divergência.
 - `consumer-surface-contract` — Cobogó é contrato de qualidade; importar componentes não determina score.
 - `quality-assessment-is-versioned` — score pertence a commit/deploy/captura identificáveis e preserva histórico.
+- `assessment-separates-fact-from-judgment` — evidência observada e julgamento Cobogó permanecem distinguíveis.
 - `quality-debt-is-visible` — gaps materiais continuam rastreáveis até resolução, aceitação ou perda de aplicabilidade.
 - `design-critique-is-specific` — crítica formal nomeia mecanismo observável, não gosto genérico.
 - `portfolio-quality-bar` — cada dimensão aplicável deve aspirar a pelo menos 3/4; média não esconde dimensão crítica.
