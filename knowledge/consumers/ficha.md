@@ -33,9 +33,9 @@ Gap: nenhum material observado.
 
 ## Capacidades de superfície
 
-- GitHub Pages/deploy — `last_verified: 2026-09-02`; landing `ca67d1c15fd60e02e574d6a429a5686b0bded7d4`; Deploy site run `33601434385` concluiu `success`.
-- Captura visual — `last_verified: 2026-09-02`; #226 adicionou desktop `1280×900` + narrow `390×844`, com artifact `9833746642`. A evidência revelou overflow do botão `Buscar` em 390 px; issue #227.
-- Smoke tests — `last_verified: 2026-09-02`; CI de push `33601434433` concluiu `success` no landing.
+- GitHub Pages/deploy — `last_verified: 2026-09-02`; landing `2e2adfa7c57cc5b80f504d1a9d0aa657abf94317`; Deploy site run `33606723991` concluiu `success` após #229.
+- Captura visual — `last_verified: 2026-09-02`; #226 adicionou desktop `1280×900` + narrow `390×844`. O artifact do head da #229 (`9837261361`) mostra o CTA `Buscar` contido em 390 px e desktop sem regressão, mas o workflow atual não recaptura `main` automaticamente após merge; issue #230 registra esse gap causal. #228 continua aberta para registrar o head SHA real em eventos de PR.
+- Smoke tests — `last_verified: 2026-09-02`; CI do head da #229 e CI de push do landing concluíram `success`.
 - Preservação — `last_verified: 2026-09-02`; snapshots/datasets continuam usando Internet Archive e manifest público como contrato verificável.
 
 ## O que este consumer faz melhor que o Cobogó
@@ -47,12 +47,12 @@ Gap: nenhum material observado.
 
 - Core web foundation pinado desde 2026-08-18 (#222).
 - `visual-evidence-as-quality-gate` — `stable`; #226 tornou viewport estreito evidência de primeira classe.
-- `primary-action-viewport-containment` — `opinionated`; formulada após a evidência negativa da captura estreita, ainda não validada por correção bem-sucedida.
+- `primary-action-viewport-containment` — `opinionated`; #229 aplicou a posição com evidência verde no head e deploy verde no landing, mas a maturidade não sobe para `validated` até existir recaptura pós-merge ligada ao SHA de `main`.
 
 ## Histórico
 
+- 2026-09-02 — #229 mergeada; head capture corrigiu o clipping do `Buscar`, landing/deploy verdes; loop visual permanece parcial por ausência de recaptura automática de `main` (#230).
 - 2026-09-02 — #226 mergeada; captura desktop+narrow revelou overflow do CTA `Buscar`; assessment 18/24 com `UI: 1/4`; issue #227 aberta.
 - 2026-09-01 — `main` e contrato público revalidados sem mudança de superfície; `gap_score: 0` preservado.
 - 2026-08-31 — card reconciliado ao schema `ConsumerCard`; D1/D2/D3 reavaliados; `gap_score: 0`.
 - 2026-08-30 — `main` avançou para #225 sem mudança de composição pública; snapshot 2026-07 permaneceu publicado.
-- 2026-08-18 — #222 adotou o core pinado do Cobogó na home, preservando a identidade do Ficha.

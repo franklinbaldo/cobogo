@@ -34,7 +34,11 @@ Superfícies cujo produto exige canvas horizontal, timeline extensa ou outra nav
 
 ## Evidência
 
-Evidência negativa inicial: `franklinbaldo/ficha`, artifact `9833746642`, rota `/ficha/`, viewport `390×844`. O botão `Buscar` da tarefa principal aparece parcialmente fora da borda direita; issue `franklinbaldo/ficha#227` registra o critério de correção. Ainda não há aplicação bem-sucedida, portanto a maturidade permanece `opinionated`.
+Evidência negativa inicial: `franklinbaldo/ficha`, artifact `9833746642`, rota `/ficha/`, viewport `390×844`. O botão `Buscar` da tarefa principal aparece parcialmente fora da borda direita; issue `franklinbaldo/ficha#227` registrou o critério de correção.
+
+Primeira aplicação: `franklinbaldo/ficha#229`, head `b394d98daa33c1d9fb3c86c37e8c3e269030e3c0`. CI e Visual Capture ficaram verdes; artifact `9837261361` mostra o CTA integralmente contido em `390×844` e o desktop `1280×900` sem regressão. A PR foi mergeada como landing `2e2adfa7c57cc5b80f504d1a9d0aa657abf94317`, cujo CI e deploy também ficaram verdes.
+
+A maturidade permanece `opinionated`, não por falta de segundo consumer, mas porque a rotina exige recaptura pós-merge para fechar uma mudança visualmente material e o workflow atual não captura `main` automaticamente. `franklinbaldo/ficha#230` registra essa condição. Assim que o landing for recapturado pelo mesmo método e satisfizer o critério, Ficha pode entrar em `validated_in` e a recomendação sobe para `validated`.
 
 ## Falsificação
 
