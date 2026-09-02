@@ -1,3 +1,9 @@
+---
+type: knowledge-policy
+title: Surface Quality Assessments
+status: accepted
+---
+
 # Surface Quality Assessments
 
 Uma avaliação por consumer/data, conforme `knowledge/schemas/surface-quality-assessment.md`.
