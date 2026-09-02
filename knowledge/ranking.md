@@ -11,6 +11,7 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Co
 | Consumer | Total | Faixa | D1 | D2 | D3 | UX | UI | Confiança | Avaliado em | Tendência |
 |---|---:|---|---:|---:|---:|---:|---:|---:|---|---|
 | franklinbaldo/intuit | 20 | boa | 4 | 3 | 3 | 3 | 3 | 4 | 2026-09-02 | flat |
+| franklinbaldo/ficha | 18 | boa | 4 | 4 | 4 | 2 | 1 | 3 | 2026-09-02 | flat |
 
 ## Ordenação
 
@@ -20,4 +21,4 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Co
 
 Consumers `dormant` não entram no ranking principal, mas preservam sua última avaliação histórica.
 
-O ranking não compara valor social, maturidade do backend ou importância estratégica. Ele mede somente qualidade da superfície pública sob o modelo Cobogó. O primeiro baseline não cria liderança substantiva por si só: ele apenas inaugura uma comparação auditável à medida que os demais consumers forem avaliados.
+O ranking não compara valor social, maturidade do backend ou importância estratégica. Ele mede somente qualidade da superfície pública sob o modelo Cobogó. A soma nunca substitui leitura dimensional: `franklinbaldo/ficha` estreia com total na faixa boa, mas `UI: 1/4` é dívida explícita e prioritária.
