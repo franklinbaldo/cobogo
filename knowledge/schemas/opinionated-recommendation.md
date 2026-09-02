@@ -1,3 +1,9 @@
+---
+type: knowledge-policy
+title: OpinionatedRecommendation schema
+status: accepted
+---
+
 # OpinionatedRecommendation schema
 
 ```yaml
