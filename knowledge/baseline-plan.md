@@ -1,3 +1,9 @@
+---
+type: knowledge-policy
+title: Plano de baseline de qualidade do portfólio
+status: accepted
+---
+
 # Plano de baseline de qualidade do portfólio
 
 Depois da adoção da RFC 0002, todos os ConsumerCards `active` entram em baseline.
