@@ -1,3 +1,9 @@
+---
+type: knowledge-policy
+title: Recomendações opinionadas do Cobogó
+status: accepted
+---
+
 # Recomendações opinionadas do Cobogó
 
 O Cobogó pode formular um default antes de sua adoção ampla. Maturidade registra evidência, não permissão para existir.
