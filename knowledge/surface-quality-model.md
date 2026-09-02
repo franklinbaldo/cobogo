@@ -1,3 +1,9 @@
+---
+type: knowledge-policy
+title: Surface Quality Model
+status: accepted
+---
+
 # Surface Quality Model
 
 O Cobogó avalia a qualidade pública de cada consumer sem confundir essa avaliação com valor do projeto, qualidade de backend ou preferência estética.
