@@ -1,9 +1,9 @@
 ---
 type: OpinionatedRecommendation
 slug: visual-evidence-as-quality-gate
-maturity: validated
+maturity: stable
 problem: build verde não prova que uma mudança de superfície funciona visualmente ou no runtime do navegador
-validated_in: [franklinbaldo/quem-sao-eles]
+validated_in: [franklinbaldo/quem-sao-eles, franklinbaldo/intuit]
 ---
 
 # Evidência visual é gate de qualidade de superfície
@@ -30,7 +30,10 @@ Mudanças sem efeito visual não exigem screenshot artificial. Superfícies não
 
 ## Evidência
 
-`franklinbaldo/quem-sao-eles`, `/pep`: o capture browser registra screenshot/DOM e distingue estados até `search-ready`, incluindo consulta real.
+- `franklinbaldo/quem-sao-eles`, `/pep`: o capture browser registra screenshot/DOM e distingue estados até `search-ready`, incluindo consulta real.
+- `franklinbaldo/intuit`, `/intuit/`, merge `34a3102a61d3676e34597d20606ffe3a53bdfe3d`: workflow browser produz desktop `1440x900` e narrow `390x844` no mesmo artifact `9832628580`, com rota/SHA/viewports registrados; comportamento é protegido separadamente por Playwright.
+
+As duas aplicações convergem no mesmo contrato sem uniformizar implementação ou identidade local, satisfazendo maturidade `stable`.
 
 ## Falsificação
 
