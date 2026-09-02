@@ -1,3 +1,9 @@
+---
+type: knowledge-policy
+title: Contrato de issue de qualidade de superfície
+status: accepted
+---
+
 # Contrato de issue de qualidade de superfície
 
 Título recomendado: `surface(<dimensão>): <gap concreto>`
