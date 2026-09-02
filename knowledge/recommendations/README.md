@@ -80,5 +80,6 @@ O Cobogó pode formular um default antes de sua adoção ampla. Maturidade regis
 - `quality-issues-are-actionable` — nota baixa não basta; issue precisa de gap e critério verificáveis.
 - `no-unproven-marketing` — superfície explica capacidade real sem inflar promessa.
 - `local-identity-over-uniformity` — barra comum de qualidade sem aparência comum.
+- `operational-logs-explain-state-transitions` — relatórios de rodada explicam problema, ação, prova, pendência e condição de retomada em linguagem comum; jargão técnico não pode ser a única explicação.
 
 Consulte cada arquivo para posição, racional, contrato, escape hatch, evidência e condição de falsificação.
