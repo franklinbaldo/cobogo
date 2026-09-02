@@ -17,42 +17,50 @@ Ficha é um fichário público, histórico e reutilizável de dados de CNPJ da R
 
 O leitor pode consultar a competência publicada diretamente no navegador. A home apresenta a tarefa como `Entenda uma empresa e suas conexões públicas`, com busca por CNPJ/Razão Social e caminhos explícitos de uso.
 
-Gap: nenhum gap material de clareza factual. A dívida de viewport estreito está registrada em UI/UX, não em D1.
+Problema material observado: nenhum de clareza factual. A dívida atual está no tratamento do estado de erro remoto, não em D1.
 
 ## D2 — por trás
 
 O projeto preserva snapshots mensais verificáveis dos dados públicos de CNPJ da Receita Federal, publica manifest multi-competência e usa Internet Archive como camada durável. A superfície expõe origem, competência, preservação, verificação e estado.
 
-Gap: nenhum material observado.
+Problema material observado: nenhum.
 
 ## D3 — por conta própria
 
-O leitor pode abrir `manifest.json` e reutilizar fora do site os artefatos indicados pelo contrato público. `Levar a base` torna esse caminho explícito na própria home.
+O leitor pode abrir `manifest.json` e reutilizar fora do site os arquivos indicados pelo contrato público. `Levar a base` torna esse caminho explícito na própria home.
 
-Gap: nenhum material observado.
+Problema material observado: nenhum.
 
 ## Capacidades de superfície
 
-- GitHub Pages/deploy — `last_verified: 2026-09-02`; landing `2e2adfa7c57cc5b80f504d1a9d0aa657abf94317`; Deploy site run `33606723991` concluiu `success` após #229.
-- Captura visual — `last_verified: 2026-09-02`; #226 adicionou desktop `1280×900` + narrow `390×844`. O artifact do head da #229 (`9837261361`) mostra o CTA `Buscar` contido em 390 px e desktop sem regressão, mas o workflow atual não recaptura `main` automaticamente após merge; issue #230 registra esse gap causal. #228 continua aberta para registrar o head SHA real em eventos de PR.
-- Smoke tests — `last_verified: 2026-09-02`; CI do head da #229 e CI de push do landing concluíram `success`.
-- Preservação — `last_verified: 2026-09-02`; snapshots/datasets continuam usando Internet Archive e manifest público como contrato verificável.
+- GitHub Pages/deploy — verificado em 2026-09-02; a #229 publicou com sucesso o conteúdo web corrigido no commit `2e2adfa7c57cc5b80f504d1a9d0aa657abf94317`, execução `33606723991`. Os dois commits posteriores até `06665f7610af9d8e493fc03bb5862954bd3e8551` alteraram apenas workflows/teste de ETL, sem mudança em `web/**`.
+- Captura visual — verificada em 2026-09-02; a #232 fez o mesmo workflow rodar automaticamente depois do merge. A execução `33677384208`, no commit atual de `main` `06665f7610af9d8e493fc03bb5862954bd3e8551`, produziu desktop `1280×900` e tela estreita `390×844`. O botão `Buscar` está inteiro em 390 px e o desktop não regrediu. A issue #228 continua aberta para melhorar a identidade do commit em capturas de PR.
+- Smoke/tests — verificados em 2026-09-02; CI da #232 e CI de `main` concluíram com sucesso.
+- Preservação — verificada em 2026-09-02; snapshots/datasets continuam usando Internet Archive e manifest público como contrato verificável.
 
-## O que este consumer faz melhor que o Cobogó
+## O que este projeto faz melhor que o Cobogó
 
 - Expõe proveniência, competência e integridade como parte do próprio ato de consultar dados.
-- Mantém dois caminhos igualmente legítimos — interface e artefato público — sob o mesmo contrato factual.
+- Mantém dois caminhos igualmente legítimos — interface e arquivo público reutilizável — sob o mesmo contrato factual.
 
 ## Padrões do Cobogó em uso
 
 - Core web foundation pinado desde 2026-08-18 (#222).
-- `visual-evidence-as-quality-gate` — `stable`; #226 tornou viewport estreito evidência de primeira classe.
-- `primary-action-viewport-containment` — `opinionated`; #229 aplicou a posição com evidência verde no head e deploy verde no landing, mas a maturidade não sobe para `validated` até existir recaptura pós-merge ligada ao SHA de `main`.
+- `visual-evidence-as-quality-gate` — **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos reais; #226/#229/#232 tornaram a diferença entre captura de PR e captura de `main` verificável.
+- `primary-action-viewport-containment` — **validated**, isto é, já funcionou em pelo menos um projeto real; #229 corrigiu o corte da ação principal e #232 permitiu comprovar automaticamente o resultado em `main`.
+- `recoverable-error-states` — **opinionated**, isto é, uma recomendação que o Cobogó considera correta e quer testar; a #233 aplica essa posição ao erro remoto bruto hoje mostrado ao leitor.
+
+## Dívida de qualidade atual
+
+A maior dívida deixou de ser UI. A avaliação agora é 20 de 24 pontos: Clareza 4, Explicabilidade 4, Autonomia 4, UX 2, UI 3 e Confiança 3.
+
+O problema concreto de UX está no estado `remote-data-unavailable`: a primeira tela mostra texto técnico de `NetworkError`/`XMLHttpRequest` e não dá ao leitor orientação clara sobre o que fazer. A #233 registra critério verificável para corrigir isso sem impor uma aparência única à Ficha.
 
 ## Histórico
 
-- 2026-09-02 — #229 mergeada; head capture corrigiu o clipping do `Buscar`, landing/deploy verdes; loop visual permanece parcial por ausência de recaptura automática de `main` (#230).
-- 2026-09-02 — #226 mergeada; captura desktop+narrow revelou overflow do CTA `Buscar`; assessment 18/24 com `UI: 1/4`; issue #227 aberta.
+- 2026-09-02 — #232 mergeada; captura automática de `main` rodou com sucesso no commit `06665f7610...` e produziu evidência desktop+narrow. UI sobe de 1/4 para 3/4; avaliação passa de 18 para 20/24. `primary-action-viewport-containment` passa a `validated`. #233 aberta para o estado de erro remoto.
+- 2026-09-02 — #229 mergeada; captura da PR corrigiu o corte do `Buscar`, e o conteúdo web foi publicado com deploy verde.
+- 2026-09-02 — #226 mergeada; captura desktop+narrow revelou o corte do CTA `Buscar`; avaliação inicial 18/24 com UI 1/4; issue #227 aberta.
 - 2026-09-01 — `main` e contrato público revalidados sem mudança de superfície; `gap_score: 0` preservado.
 - 2026-08-31 — card reconciliado ao schema `ConsumerCard`; D1/D2/D3 reavaliados; `gap_score: 0`.
 - 2026-08-30 — `main` avançou para #225 sem mudança de composição pública; snapshot 2026-07 permaneceu publicado.

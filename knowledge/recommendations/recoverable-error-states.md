@@ -30,7 +30,9 @@ Falhas não recuperáveis podem apenas explicar o estado e preservar navegação
 
 ## Evidência
 
-Nenhuma ainda reconciliada sob o novo modelo.
+Primeira aplicação proposta: `franklinbaldo/ficha#233`. A captura automática de `main`, execução `33677384208`, commit `06665f7610af9d8e493fc03bb5862954bd3e8551`, arquivo `9864898516`, mostra o estado `remote-data-unavailable` em `390×844` e `1280×900`. A mensagem principal expõe `NetworkError`, `XMLHttpRequest`, nome de arquivo e URL de transporte, sem explicar ao leitor comum um próximo passo. A issue fixa o resultado desejado e deixa a Ficha livre para escolher texto e composição próprios.
+
+A recomendação continua **opinionated**, isto é, o Cobogó considera a posição correta e agora a está testando em um projeto real. Abrir a issue e observar o problema não contam como validação. Ela só poderá passar a `validated` quando uma implementação real satisfizer o critério com evidência.
 
 ## Falsificação
 

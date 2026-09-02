@@ -2,77 +2,85 @@
 type: SurfaceQualityAssessment
 repo: franklinbaldo/ficha
 date: 2026-09-02
-commit: ca67d1c15fd60e02e574d6a429a5686b0bded7d4
-deploy: https://github.com/franklinbaldo/ficha/actions/runs/33601434385
-capture: artifact:9833746642
+commit: 06665f7610af9d8e493fc03bb5862954bd3e8551
+deploy: https://github.com/franklinbaldo/ficha/actions/runs/33606723991
+capture: artifact:9864898516
 scores:
   clarity: 4
   explainability: 4
   autonomy: 4
   ux: 2
-  ui: 1
+  ui: 3
   trust: 3
-total: 18
+total: 20
 band: good
 blockers: []
-trend: flat
+trend: up
 ---
 
-# Ficha — Surface Quality Assessment
+# Ficha — avaliação de qualidade da superfície
 
 ## Veredito
 
-**18/24 — boa; baseline canônico mantido até a recaptura pós-merge.** O assessment de referência ainda aponta para o landing/captura que revelou o defeito estreito. A #229 já corrigiu o clipping no artifact do head e foi publicada com deploy verde, mas o workflow atual não produz uma captura de `main` após o merge. Pela regra de evidência do Cobogó, o score não é reescrito com base apenas em equivalência de código: a nova nota depende do after pós-merge.
+**20 de 24 pontos — boa, em melhora.** A nova captura automática de `main` comprova que a correção do botão `Buscar` chegou ao estado atual do repositório e continua correta em tela estreita e desktop. A nota de UI sobe de 1/4 para 3/4. A UX permanece em 2/4 porque a própria nova captura revelou uma dívida independente: quando a base remota não carrega, a página mostra uma exceção técnica longa e não oferece ao leitor um próximo passo claro.
+
+O site publicado pela #229 foi implantado com sucesso. Entre o commit publicado pela #229 (`2e2adfa7c57cc5b80f504d1a9d0aa657abf94317`) e o commit atual (`06665f7610af9d8e493fc03bb5862954bd3e8551`), só mudaram workflows e teste de ETL; nenhum arquivo de `web/**` mudou. Assim, a nova captura recompila exatamente o mesmo conteúdo web já publicado, agora com a identidade do commit atual de `main` registrada automaticamente.
 
 ## Clareza / D1
 
-**4/4.** A home diz diretamente `Entenda uma empresa e suas conexões públicas`, explica a origem CNPJ/Receita Federal e coloca a busca como ação principal.
+**4/4.** A página inicial diz diretamente `Entenda uma empresa e suas conexões públicas`, explica que os dados são de CNPJ da Receita Federal e apresenta a busca como ação principal.
 
-Gap: nenhum de conteúdo.
+Problema material observado: nenhum.
 
 ## Explicabilidade / D2
 
-**4/4.** A própria superfície expõe origem, competência, preservação, verificação e estado. O leitor consegue perceber que o site consulta dados públicos preservados e verificáveis, em vez de uma base opaca do frontend.
+**4/4.** A própria página mostra origem, competência, preservação, verificação e estado dos dados. O leitor consegue entender de onde a informação vem e por que ela é verificável.
 
-Gap: nenhum material observado.
+Problema material observado: nenhum.
 
 ## Autonomia / D3
 
-**4/4.** `Levar a base` e `Abrir manifest.json` tornam o contrato reutilizável fora da interface; snapshots preservados e checksums públicos sustentam o caminho independente.
+**4/4.** `Levar a base` e `Abrir manifest.json` deixam explícito que os dados podem ser reutilizados fora da interface. Snapshots preservados e checksums sustentam esse uso independente.
 
-Gap: nenhum material observado.
+Problema material observado: nenhum.
 
 ## UX
 
-**2/4 no baseline canônico.** O fluxo é curto e a arquitetura de informação é boa, mas a captura de referência em `390×844` ainda é a que mostra a ação primária parcialmente cortada. No artifact do head da #229 (`9837261361`), a ação passa a reflowar e fica integralmente visível; esse ganho permanece provisório para scoring até a recaptura do landing `2e2adfa…`.
+**2/4 — adequada, mas com problema material.** O fluxo principal é curto, a busca é fácil de localizar e a arquitetura de informação é boa. O antigo corte do botão em tela estreita foi corrigido.
 
-Gap residual independente: no estado `remote-data-unavailable`, a superfície mostra uma mensagem técnica longa de transporte e pouca orientação de recuperação para leitor comum.
+A dívida que mantém a nota em 2/4 aparece claramente na captura do estado `remote-data-unavailable`: o leitor recebe texto bruto de falha como `NetworkError`, `XMLHttpRequest`, nome interno de arquivo e URL de transporte. A mensagem informa que algo falhou, mas não explica em linguagem comum o que a pessoa pode fazer em seguida. A issue `franklinbaldo/ficha#233` registra esse problema com critério de conclusão.
 
 ## UI
 
-**1/4 no baseline canônico.** A evidência que sustenta a nota continua sendo artifact `9833746642`, onde `Buscar` aparece cortado em 390×844. A #229 alterou somente o mapeamento CSS local e seu artifact `9837261361` mostra o input + CTA contidos no viewport estreito e desktop sem regressão. Como a mudança é visualmente material e ainda não existe after de `main`, o Cobogó não promove a nota nesta rodada.
+**3/4 — boa.** Na nova captura de `390×844`, o campo de busca e o botão `Buscar` ficam inteiramente dentro da área visível, com boa hierarquia e sem corte horizontal. Em `1280×900`, a composição continua estável e legível. A correção preserva a identidade visual local da Ficha: cabeçalho escuro, cartão principal compacto, hierarquia tipográfica e organização de metadados continuam coerentes.
 
-Critério pendente: recapturar `/ficha/` em `390×844` e `1280×900` no landing SHA `2e2adfa7c57cc5b80f504d1a9d0aa657abf94317` pelo mesmo método Playwright/Chromium.
+A nota não sobe para 4/4 porque a apresentação do estado de erro ainda domina visualmente parte da primeira tela com texto técnico em vermelho, o que impede tratar o conjunto como referência.
 
 ## Confiança
 
-**3/4.** Proveniência e integridade continuam fortes. CI e Deploy site do landing da #229 concluíram `success`. A confiança não sobe porque a cadeia visual ainda tem duas dívidas factuais: #228 corrige a identidade do head em eventos `pull_request`, e #230 exige recaptura automática do SHA de `main` depois do merge.
+**3/4.** Proveniência, competência, preservação e integridade continuam fortes. A #232 fechou a ausência de captura automática depois do merge: o workflow `Visual capture` rodou sozinho no commit atual de `main`, execução `33677384208`, e produziu o arquivo de evidência `9864898516`, cujo nome inclui o SHA real `06665f7610af9d8e493fc03bb5862954bd3e8551`.
 
-## Blockers
+A nota permanece 3/4 porque a issue #228 ainda registra uma dívida diferente nas capturas de PR: distinguir de forma inequívoca o commit real da branch de um commit sintético usado pelo GitHub para testar o merge.
 
-Nenhuma dimensão 0. Para atualizar este assessment após #229, o blocker de evidência é #230: não há after pós-merge ligado ao landing SHA.
+## Impedimentos
+
+Nenhuma dimensão está em 0 e não há impedimento para considerar a correção visual da #229 encerrada. A #230 foi fechada pela #232 e a nova captura pós-merge existe de forma automática.
 
 ## Recomendações Cobogó
 
-- `visual-evidence-as-quality-gate` — `stable`.
-- `primary-action-viewport-containment` — permanece `opinionated`: #229 é uma aplicação tecnicamente e visualmente bem-sucedida no head, mas a validação completa exige o after do conteúdo efetivamente mergeado/publicado.
+- `visual-evidence-as-quality-gate` — **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos reais.
+- `primary-action-viewport-containment` — passa a **validated**, isto é, já funcionou em pelo menos um projeto real com evidência completa. A Ficha é a primeira validação: #229 corrigiu o corte e a captura automática de `main` produzida após #232 confirmou a ação principal inteira em 390×844 e o desktop sem regressão.
+- `recoverable-error-states` — permanece **opinionated**, isto é, uma recomendação que o Cobogó considera correta e agora quer testar na Ficha por meio da #233.
 
 ## Issues derivadas
 
-- `franklinbaldo/ficha#227` — fechada pela #229; implementação presente em `main`.
-- `franklinbaldo/ficha#228` — registrar head SHA real, não merge-ref, em captura de PR.
-- `franklinbaldo/ficha#230` — executar a mesma captura em `main` após merge para fechar causalmente mudanças visuais.
+- `franklinbaldo/ficha#227` — fechada pela #229; correção comprovada na nova captura de `main`.
+- `franklinbaldo/ficha#228` — continua aberta para melhorar a identidade do commit nas capturas de PR.
+- `franklinbaldo/ficha#230` — fechada pela #232; captura automática de `main` comprovada.
+- `franklinbaldo/ficha#233` — aberta nesta rodada para transformar a falha remota em um estado compreensível e com próximo passo útil ao leitor.
 
-## O que o Cobogó deve aprender deste consumer
+## O que o Cobogó deve aprender desta Ficha
 
-A evidência de PR pode ser forte o bastante para decidir merge, mas não substitui a recaptura do landing quando o contrato da rotina exige before/after pós-deploy. Cobogó deve manter separadas três identidades: head da PR, merge-ref de teste e landing SHA em `main`.
+Captura de PR e captura depois do merge respondem perguntas diferentes. A primeira diz se a mudança proposta renderiza corretamente; a segunda confirma o estado que ficou em `main`. A Ficha agora automatiza as duas sem exigir que a rotina trate commits diferentes como se fossem a mesma coisa.
+
+A nova evidência também mostrou por que uma correção não deve encerrar a crítica: resolver o corte do botão revelou com mais nitidez o próximo problema relevante, que é a qualidade do estado de erro remoto.
