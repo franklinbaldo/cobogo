@@ -5,6 +5,21 @@ Um design system focado em software público e de interesse cívico, inspirado n
 
 > ⚠️ **Migration in progress.** This README describes the target API on top of Pico CSS with semantic-only authoring. The shipped components on `main` still expose the legacy class-based API (`variant` props on `Button`/`Badge`, `.dark-mode` class for theming). Use the legacy API for now; the snippets below describe the API after the migration lands. Track progress on branch [`claude/cobogo-pico-semantic-6rDU2`](https://github.com/franklinbaldo/cobogo/tree/claude/cobogo-pico-semantic-6rDU2).
 
+## Como o Cobogó governa superfícies
+
+Cobogó é **opinionated**. Ele não espera dois produtos resolverem espontaneamente o mesmo problema para então ter uma posição: formula defaults fortes para UI, UX, acessibilidade, navegação, proveniência, estados e explicação pública; aplica essas posições em consumers reais; mede o resultado; e muda de ideia quando a evidência falsifica a tese.
+
+Evidência determina **maturidade**, não permissão para recomendar:
+
+- `opinionated` — recomendação fundamentada por princípio, racional, contrato observável e escape hatch; pode existir antes de adoção real;
+- `validated` — aplicação real bem-sucedida em pelo menos um consumer;
+- `stable` — convergência bem-sucedida em pelo menos dois consumers, sem apagar suas identidades locais;
+- `retired` — evidência mostrou que a recomendação deve ser abandonada.
+
+Dois consumers, portanto, são gate para `stable`, não para o Cobogó pensar, documentar ou implementar uma opinião. O sistema também mantém avaliações versionadas de qualidade pública em seis dimensões — clareza/D1, explicabilidade/D2, autonomia/D3, UX, UI e confiança — para que `gap_score: 0` nunca seja confundido com “superfície resolvida”.
+
+A governança completa está em [`docs/rfcs/0002-opinionated-surface-governance.md`](./docs/rfcs/0002-opinionated-surface-governance.md), e a rotina operacional em [`docs/operations/opinionated-surface-routine.md`](./docs/operations/opinionated-surface-routine.md). O corpus normativo vive em [`knowledge/recommendations/`](./knowledge/recommendations/).
+
 ## Princípios
 
 - **Pico CSS classless como base.** Estilo é aplicado a elementos HTML semânticos (`<article>`, `<button>`, `<nav>`, `<header>`, `<main>`, `<aside>`, `<footer>`, `<figure>`, `<dl>`…), não a classes.
@@ -87,7 +102,7 @@ Siga a convenção do Pico:
 
 ## Objetivo
 
-Compartilhar gramática, padrões e conhecimento de superfície aprendidos em uso real, sem transformar projetos diferentes em uma única interface. Cada consumer preserva sua identidade, densidade e hierarquia próprias; o Cobogó sobe apenas relações que se mostram reutilizáveis sem apagar essas diferenças.
+Compartilhar gramática, padrões e conhecimento de superfície aprendidos em uso real, sem transformar projetos diferentes em uma única interface. Cada consumer preserva sua identidade, densidade e hierarquia próprias. O Cobogó pode propor e implementar uma opinião antes de adoção real; uso em consumers valida, amadurece ou rejeita essa opinião.
 
 Consumers e superfícies que ajudam a testar essa gramática incluem:
 - [Verne](https://github.com/franklinbaldo/verne)
