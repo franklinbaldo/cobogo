@@ -23,7 +23,7 @@ A home atual permite escolher/continuar uma cidade, monitorar contratações, en
 
 Conforme o `ProjectProfile`, Baliza preserva o acervo do PNCP como dados públicos reproduzíveis e citáveis e só então constrói análise sobre a mesma autoridade publicada. O Internet Archive é parte da arquitetura, não backup. A home torna essa relação perceptível: apresenta a cadeia de quatro recursos, identifica snapshots arquivados e liga o produto analítico ao arquivo preservado.
 
-**Gap [fato]: nenhum gap material de superfície.** O problema operacional aberto do PNCP Doctor (#687 no estado factual do ProjectProfile) pertence ao pipeline/observabilidade e não deve ser corrigido por esta rotina de superfície.
+**Gap [fato]: nenhum gap material de superfície.** Problemas operacionais do pipeline pertencem ao repo dono e não devem ser corrigidos por esta rotina de superfície.
 
 ## D3 — por conta própria
 
@@ -33,9 +33,9 @@ O leitor consegue chegar ao arquivo de snapshots, ao manifesto dos Parquets com 
 
 ## Capacidades de superfície
 
-- **Pages/deploy — `last_verified: 2026-09-02`.** `main` está em `5d1c9cfdeaa46a50b1b7d3031f5f2cf59ef0ff9b`; o commit só altera o workflow de refresh de órgãos públicos em relação ao SHA de superfície anterior. Deploy Pages run `33615483408` concluiu `success`.
-- **Captura visual — `last_verified: 2026-09-02`.** O harness de #671/#674 continua canônico para `/publicacoes` e `/comparar`; `artifact:9250189303` foi reaberto nesta revisão e contém desktop + `390×844`, além dos estados factuais. A inspeção visual revelou dívida material de responsividade em `/publicacoes`, registrada em `baliza#692`.
-- **Smoke/tests de superfície — `last_verified: 2026-09-02`.** O workflow visual atual roda em PR e também em push para `main` quando `web/**` ou o próprio workflow muda, além de `workflow_dispatch`; ele constrói o mesmo Project Pages artifact antes de capturar.
+- **Pages/deploy — `last_verified: 2026-09-02`.** A #693 foi squash-mergeada em `8e324011bdc46a27b5c0ea2826288d4673b9faed`, mas o `Deploy to GitHub Pages` do landing (run `33670722066`) falhou antes do build/deploy porque `npm audit --omit=dev --audit-level=high` encontrou vulnerabilidade `high` em `fast-uri`. O blocker operacional está em `baliza#694`; portanto o landing com a correção de `/publicacoes` ainda não foi provado como publicado.
+- **Captura visual — `last_verified: 2026-09-02`.** O head real da #693, `97fed00aed829f432e39ac6bb91fcf64037a14e3`, passou `Visual capture — data surfaces` e Test; a implementação reflowa o esquema no narrow e torna a região tabular rolável/focável de forma deliberada. Como o deploy do landing falhou, essa evidência de head não substitui o AFTER da superfície publicada. `baliza#692` foi reaberta até existir deploy + recaptura pós-deploy.
+- **Smoke/tests de superfície — `last_verified: 2026-09-02`.** O workflow visual roda em PR e em push para `main` quando a superfície muda; o head da #693 passou. A identidade do artifact de PR ainda carrega merge-ref sintético no nome, embora o run esteja causalmente ligado ao head real; isso não conta como adoção do `rendered-evidence-manifest`.
 - **Preservação — `last_verified: 2026-09-02`.** A superfície continua ligando arquivo, snapshots e manifesto ao Internet Archive; autonomia sobre os artefatos permanece parte explícita da interface.
 
 ## O que este consumer faz melhor que o Cobogó
@@ -47,10 +47,12 @@ O leitor consegue chegar ao arquivo de snapshots, ao manifesto dos Parquets com 
 
 - **Parentesco sem uniformidade** — Baliza preserva a sua linguagem de cidade, monitoramento e contratação pública.
 - **Acessibilidade é forma** — skip link visível em foco, navegação disclosure nativa e combobox por `aria-activedescendant` foram incorporados em correções anteriores.
-- **visual-evidence-as-quality-gate** — a captura desktop/mobile ligada ao SHA tornou observável a dívida de UI em `/publicacoes`; maturidade do pattern permanece `stable`.
+- **visual-evidence-as-quality-gate** — a captura desktop/mobile ligada ao SHA tornou observável a dívida de UI em `/publicacoes`; a mesma regra impede considerar #693 fechada antes de deploy + AFTER. Maturidade permanece `stable`.
+- **rendered-evidence-manifest** — aplicável como default para identidade causal de artifact, mas ainda não adotado pelo Baliza; maturidade permanece `opinionated`.
 
 ## Histórico
 
+- 2026-09-02 — #693 implementou a remediação responsiva de `baliza#692` e foi mergeada em `8e324011...`; deploy do landing falhou por `fast-uri`/`npm audit` (`baliza#694`), então #692 foi reaberta e o assessment permanece 21/24 (UI 2) até AFTER publicado.
 - 2026-09-02 — baseline opinionado `21/24` (D1 4, D2 4, D3 4, UX 3, UI 2, confiança 4); `baliza#692` aberto para legibilidade responsiva de tabela e esquema em `/publicacoes`.
 - 2026-09-01 — superfície revalidada sem gap D1–D3; removida do card a referência fossilizada ao pattern `provenance-freshness`.
 - 2026-08-31 — #688 levou `main` a `3468dc1...` com limpeza de scripts e gates mypy/ruff; mudança behavior-neutral.
