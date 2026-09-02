@@ -1,3 +1,9 @@
+---
+type: knowledge-policy
+title: Consumer Surface Ranking
+status: accepted
+---
+
 # Consumer Surface Ranking
 
 Este arquivo define o contrato do ranking. As notas só entram aqui depois de uma `SurfaceQualityAssessment` com evidência; a mudança de governança não inventa baseline retroativo.
