@@ -37,7 +37,8 @@
     "build": "astro build",
     "build:lib": "svelte-package -i src -o dist",
     "prepare": "svelte-package -i src -o dist",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test:rendered-evidence": "node --test tests/rendered-evidence-manifest.test.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
