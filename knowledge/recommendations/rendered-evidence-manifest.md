@@ -1,9 +1,8 @@
 ---
 type: OpinionatedRecommendation
-id: rendered-evidence-manifest
-status: opinionated
+slug: rendered-evidence-manifest
 maturity: opinionated
-applies_to: public and local human-facing surfaces evaluated with rendered evidence
+problem: evidência visual sem revisão, fase, rota e viewport inequívocos produz causalidade fraca entre pixels e código
 validated_in: []
 ---
 
@@ -15,7 +14,7 @@ Quando uma captura é usada para sustentar uma conclusão causal de UI/UX, o Cob
 
 O formato de referência é `schemas/rendered-evidence-manifest.schema.json`, e `scripts/validate-rendered-evidence.mjs` implementa os invariantes adicionais que JSON Schema sozinho não expressa convenientemente.
 
-## Por quê
+## Racional
 
 O portfólio já encontrou três classes recorrentes de erro de evidência:
 
@@ -25,7 +24,7 @@ O portfólio já encontrou três classes recorrentes de erro de evidência:
 
 Esses erros não dizem se os pixels são bons ou ruins. Eles dizem que não sabemos com precisão **quais pixels pertencem a qual revisão**. Sem essa causalidade, before/after e assessments ficam frágeis.
 
-## Contrato de referência
+## Contrato
 
 Campos centrais:
 
@@ -60,6 +59,17 @@ Também não exige Playwright, GitHub Actions, formato de screenshot específico
 
 Um consumer pode usar outro formato ou harness quando ele prova informação equivalente ou superior — revisão real, fase, rota, viewport e identidade do artifact — e a rotina consegue reconciliar head e landing sem inferência. A primitive Cobogó é um default interoperável, não uma obrigação estética ou tecnológica.
 
+## Evidência
+
+- `franklinbaldo/ficha#230`: explicita a diferença entre head da PR e landing publicado e exige recaptura de `main` ligada ao landing SHA.
+- `franklinbaldo/quem-sao-eles#23`: exige rota, viewport, SHA real e matriz desktop+narrow no mesmo método funcional.
+- `franklinbaldo/leizilla#159`: repete o mesmo contrato para uma superfície ainda sem capacidade visual canônica.
+- `franklinbaldo/causaganha#999`: demonstrou na prática um loop de head + landing recapturado pelo mesmo método, mas ainda sem este manifest compartilhado.
+
 ## Maturidade
 
-Nasce `opinionated`. Ficha, Quem São Eles, Leizilla e CausaGanha forneceram informação suficiente para formular o contrato, mas nenhum consumer ainda adotou este manifest de referência. Uma adoção real bem-sucedida o promove a `validated`; duas implementações independentes convergentes podem promovê-lo a `stable`.
+Nasce `opinionated`. O portfólio já fornece informação suficiente para formular o contrato, mas nenhum consumer ainda adotou este manifest de referência. Uma adoção real bem-sucedida o promove a `validated`; duas implementações independentes convergentes podem promovê-lo a `stable`.
+
+## Falsificação
+
+Se o manifest introduzir cerimônia sem reduzir ambiguidades reais de revisão/viewport, ou se consumers demonstrarem um contrato menor que preserve a mesma causalidade, o schema deve ser simplificado. O objetivo é identidade da evidência, não padronização de tooling.
