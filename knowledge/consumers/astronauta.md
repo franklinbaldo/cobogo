@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/astronauta
 site: https://github.com/franklinbaldo/astronauta
 status: active
-last_reviewed: 2026-09-01
+last_reviewed: 2026-09-02
 gap_score: 0
 ---
 
@@ -33,12 +33,12 @@ Gap: nenhum material. A antiga divergência de packaging foi fechada por #40; n�
 
 ## Capacidades de superfície
 
-- CI principal — `last_verified: 2026-09-01`; #40 passou no head exato `8a7ce581d56f5b77356fa69f368420ed6c6a5f58`, incluindo build, live SSR e `installed-artifact`, antes do merge.
-- Live editor / Apply / import gates — `last_verified: 2026-09-01`; os três workflows concluíram `success` no head exato da #40.
-- Runtime instalado — `last_verified: 2026-09-01`; o job `installed-artifact` do CI constrói a wheel com runtime web staged, instala em ambiente consumidor fresco e prova execução sem Bun/source checkout/build frontend prévio.
-- Pages/deploy público — `last_verified: 2026-09-01`; não aplicável ao produto atual, que é um admin SSR local servido em loopback. A superfície pública de documentação é o próprio README do repositório.
-- Captura visual comparável — `last_verified: 2026-09-01`; nenhuma capacidade canônica de screenshot foi localizada e #40 foi estritamente editorial, sem mudança visual do admin.
-- Preservação/Save Page Now — `last_verified: 2026-09-01`; não aplicável à superfície local atual.
+- CI principal — `last_verified: 2026-09-02`; `main` permanece em `664536ae012879ba901b451eab3ee362b9c488ce`; o CI vigente cobre build, gateway, live SSR e `installed-artifact`.
+- Live editor / Apply / import gates — `last_verified: 2026-09-02`; os três workflows permanecem como gates funcionais dedicados da superfície preview-first.
+- Runtime instalado — `last_verified: 2026-09-02`; o job `installed-artifact` constrói a wheel com runtime web staged, instala em ambiente consumidor fresco e prova execução sem Bun/source checkout/build frontend prévio.
+- Pages/deploy público — `last_verified: 2026-09-02`; não aplicável ao produto atual, que é um admin SSR local servido em loopback. A superfície pública de documentação é o próprio README do repositório.
+- Captura visual comparável — `last_verified: 2026-09-02`; `.github/workflows/` contém CI + Live editor/Apply/import, mas nenhuma capacidade canônica de captura renderizada. A issue `franklinbaldo/astronauta#41` registra o blocker para desktop+narrow, estado read/write e identidade causal do SHA antes de publicar um `SurfaceQualityAssessment` de seis dimensões.
+- Preservação/Save Page Now — `last_verified: 2026-09-02`; não aplicável à superfície local atual.
 
 ## O que este consumer faz melhor que o Cobogó
 
@@ -49,10 +49,13 @@ Gap: nenhum material. A antiga divergência de packaging foi fechada por #40; n�
 
 - `Vão antes de massa` e `Módulo sem monotonia` orientam a composição registrada no specimen.
 - `Parentesco sem uniformidade` é a restrição de família: sem herdar densidade, marca ou skeleton de outros consumers.
+- `visual-evidence-as-quality-gate` é a recomendação aplicável à dívida #41; ela permanece `stable` independentemente desta adoção pendente.
+- `rendered-evidence-manifest` é o default opinionado sugerido para identidade de rota/viewport/SHA, mas ainda não foi adotado pelo Astronauta e não deve ser contabilizado como capacidade usada.
 - PR #25 é evidência histórica de mapeamento de roles semânticos; não prova consumo atual de um package Cobogó lançado.
 
 ## Histórico
 
+- 2026-09-02 — revisão opinionada confirma `gap_score: 0` em D1–D3, mas bloqueia o baseline 6D por ausência de captura visual causal; aberta #41 com critério desktop+narrow + read/write + SHA real.
 - 2026-09-01 — #40 merge `664536ae`: README passa a descrever a wheel/runtime instalado como estado atual; D3 fechado e `gap_score` volta a 0.
 - 2026-09-01 — #38 merge `81a97820`: README passa a expor import/create preview-first e review-bound; D2 fechado; gap D3 de packaging rastreado em #39.
 - 2026-08-31 — #37 merge `aaa7c0ed`: import/create passou a ser review-bound por `preview_token` opaco; ProjectProfile reconciliado.
