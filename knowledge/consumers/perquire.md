@@ -25,9 +25,9 @@ operational_capabilities:
   - live Gemini-backed E2E on trusted main/manual runs
 local_identity: investigative scientific/developer instrument organized around questioning and similarity feedback
 unmet_needs:
-  - obtain controlled browser evidence before treating the surface as rendered/pixel proof
+  - obtain controlled browser evidence before treating the surface as rendered/pixel proof; implementation proposed in perquire#86, currently blocked because Actions jobs fail before executing any step (perquire#87)
   - reconcile the stale GitHub repository description with the current project surface (perquire#22)
-last_verified: 2026-08-18
+last_verified: 2026-09-02
 ---
 
 # Perquire
@@ -42,6 +42,8 @@ Project-surface evidence should therefore be read in three dimensions. **Direct 
 
 The next research stack (`perquire#24`–`#26`) is intentionally not recorded as shipped capability here. It narrows the claim to approximate semantic inversion, introduces a falsifiable benchmark and makes contrastive probing conditional on evidence; until those PRs land, they remain planning/experiment evidence rather than consumer state.
 
-Evidence strength remains deliberately bounded: **source + CI + rendered-template smoke + workflow history**. There is still no verified public deployment or controlled browser/pixel capture in this review. A Jinja render proves the static semantic surface, not Bootstrap interaction, provider-backed investigation behavior or public reachability. The GitHub repository description also remains stale and is tracked separately in `perquire#22`.
+A nova verificação de 2026-09-02 confirmou que a fronteira visual continua limitada. O workflow `Web surface` em `main` ainda executa somente o teste de template Jinja e não preserva pixels de um navegador real. A PR `perquire#86` propõe iniciar a aplicação FastAPI sem credenciais e capturar `/` em Chromium nos tamanhos 1280×900 e 390×844, identificando o commit efetivamente testado. Essa capacidade ainda **não existe em `main`**: as duas tentativas do workflow da PR falharam antes de executar qualquer etapa, e o `Python CI` independente apresentou o mesmo comportamento. A issue operacional `perquire#87` registra esse impedimento.
 
-No Cobogó capability or code adoption is inferred. The useful evidence for Cobogó is the narrower relation between input-mode ownership, investigation state, recoverable error feedback, result/history navigation and exportability; it should remain local evidence until another materially different consumer demonstrates a reusable relation.
+Portanto, a força da evidência permanece deliberadamente limitada a **source + CI histórico + rendered-template smoke + workflow history**. Ainda não existe captura controlada de navegador que possa sustentar nota de UI/UX, e não há implantação pública verificada. A descrição pública do repositório também continua desatualizada e é acompanhada pela `perquire#22`.
+
+No Cobogó, `visual-evidence-as-quality-gate` é a recomendação aplicada nesta tentativa: em linguagem comum, decisões sobre aparência e responsividade precisam se apoiar em imagens reproduzíveis da implementação real. A #86 é uma tentativa de adoção, não evidência de adoção bem-sucedida; por isso nenhuma nova capacidade é adicionada a `capabilities_used` e a maturidade da recomendação não muda.
