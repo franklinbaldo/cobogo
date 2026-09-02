@@ -1,3 +1,9 @@
+---
+type: knowledge-policy
+title: SurfaceQualityAssessment schema
+status: accepted
+---
+
 # SurfaceQualityAssessment schema
 
 ```yaml
