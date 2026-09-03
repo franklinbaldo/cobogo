@@ -116,7 +116,8 @@ const failures = [];
 
 try {
   for (const route of routes) {
-    const page = await browser.newPage({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1 });
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1 });
+    const page = await context.newPage();
     const url = normalizeUrl(baseUrl, route);
     const response = await page.goto(url, { waitUntil: 'networkidle' });
     const status = response?.status() ?? 0;
@@ -154,7 +155,7 @@ try {
       failures: routeFailures,
     });
     failures.push(...routeFailures);
-    await page.close();
+    await context.close();
   }
 } finally {
   await browser.close();
