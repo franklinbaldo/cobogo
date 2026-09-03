@@ -10,7 +10,7 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 
 | Consumer | Total | Faixa | D1 | D2 | D3 | UX | UI | Confiança | Avaliado em | Tendência |
 |---|---:|---|---:|---:|---:|---:|---:|---:|---|---|
-| franklinbaldo/cobogo | 23 | referência | 4 | 4 | 4 | 4 | 4 | 3 | 2026-09-03 | baseline |
+| franklinbaldo/cobogo | 24 | referência | 4 | 4 | 4 | 4 | 4 | 4 | 2026-09-03 | up |
 | franklinbaldo/ovigia-redacao | 23 | referência | 4 | 4 | 3 | 4 | 4 | 4 | 2026-09-02 | flat |
 | franklinbaldo/causaganha | 23 | referência | 4 | 4 | 4 | 3 | 4 | 4 | 2026-09-02 | flat |
 | franklinbaldo/franklinbaldo.github.io | 23 | referência | 4 | 4 | 4 | 4 | 4 | 3 | 2026-09-03 | baseline |
@@ -33,6 +33,6 @@ Projetos `dormant` não entram no ranking principal, mas preservam sua última a
 
 O ranking não compara valor social, qualidade do backend ou importância estratégica. Ele mede somente a qualidade da interface pública sob o modelo Cobogó. A soma nunca substitui a leitura das dimensões.
 
-O próprio Cobogó entra com **23/24** depois da #452 observar home, Grammar, Core, Patterns, Consumers e Knowledge em desktop e celular e repetir a observação já na URL publicada. D1, D2, D3, UX e UI ficam em 4/4. Confiança fica em 3/4 porque ainda não há prova ampla de teclado, foco visível, contraste e semântica de leitor de tela em todos os estados. O Pages run `33782326908` e o arquivo `9904110705` apontam para o mesmo commit `62c0a6d7...`.
+O próprio Cobogó passa a **24/24** depois da #454 transformar acessibilidade em contrato verificável. As seis rotas públicas foram exercitadas com navegador real, axe, navegação por `Tab` e foco perceptível; a mesma verificação passou na branch e novamente no commit `9d656e45...` que entrou em `main`. O Pages `33799935642` publicou esse mesmo commit e a observação posterior à publicação também passou. A nota máxima descreve o escopo observado, não uma afirmação de perfeição universal.
 
 O Leizilla permanece em 20/24 depois da #163 separar falha de acesso de ausência do acervo. O Sisprev permanece em 21/24 depois da #159 eliminar rolagem horizontal global no relatório móvel. O Aleph permanece em 22/24. O Astronauta permanece em 20/24 com a #43 aberta para largura global no celular. Quem São Eles? e o blog permanecem em 23/24. A Ficha permanece em 22/24. O Baliza permanece em 21/24 enquanto a verificação publicada depende do fato novo registrado na #694.
