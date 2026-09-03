@@ -13,6 +13,7 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 | franklinbaldo/ovigia-redacao | 23 | referência | 4 | 4 | 3 | 4 | 4 | 4 | 2026-09-02 | flat |
 | franklinbaldo/causaganha | 23 | referência | 4 | 4 | 4 | 3 | 4 | 4 | 2026-09-02 | flat |
 | franklinbaldo/baliza | 21 | boa | 4 | 4 | 4 | 3 | 2 | 4 | 2026-09-02 | flat |
+| franklinbaldo/aleph-the-game | 21 | boa | 4 | 4 | 4 | 3 | 3 | 3 | 2026-09-02 | up |
 | franklinbaldo/intuit | 20 | boa | 4 | 3 | 3 | 3 | 3 | 4 | 2026-09-02 | flat |
 | franklinbaldo/ficha | 20 | boa | 4 | 4 | 4 | 2 | 3 | 3 | 2026-09-02 | up |
 
@@ -24,4 +25,4 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 
 Projetos `dormant` não entram no ranking principal, mas preservam sua última avaliação histórica.
 
-O ranking não compara valor social, qualidade do backend ou importância estratégica. Ele mede somente a qualidade da superfície pública sob o modelo Cobogó. A soma nunca substitui a leitura das dimensões: a Ficha sobe de 18 para 20/24 porque a nova captura automática de `main` comprovou a correção visual do botão `Buscar`, mas UX continua 2/4 por causa do estado de falha remota, que expõe erro técnico e não orienta um próximo passo. O Baliza permanece em 21/24 com UI 2/4 enquanto sua correção ainda não puder ser verificada no site publicado. O Vigia e CausaGanha estarem na faixa de referência não implica copiar a apresentação deles para outros projetos.
+O ranking não compara valor social, qualidade do backend ou importância estratégica. Ele mede somente a qualidade da superfície pública sob o modelo Cobogó. A soma nunca substitui a leitura das dimensões: o Aleph entra com 21/24 depois que captura real de `main` tornou UI/UX/Confiança avaliáveis; sua UI fica em 3/4 porque a data do cabeçalho é truncada no celular, e Confiança fica em 3/4 porque o link público de AI Studio não expõe identidade de deploy ligada ao SHA. O Baliza permanece em 21/24 com UI 2/4 enquanto sua correção ainda não puder ser verificada no site publicado. O Vigia e CausaGanha estarem na faixa de referência não implica copiar a apresentação deles para outros projetos.
