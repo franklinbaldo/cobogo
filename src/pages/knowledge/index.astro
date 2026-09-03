@@ -45,7 +45,7 @@ const groups = Object.entries(
         Clone o repositório e use o parser fixado pelo próprio projeto. Assim dá para consultar o
         conhecimento como Markdown tipado, inventário, relações ou DuckDB sem depender desta interface.
       </p>
-      <pre><code>uvx --from okf-parser==0.42.8 okf-parser check knowledge --classify --relational-schema okf.schema.sql
+      <pre class="gf-code-block"><code>uvx --from okf-parser==0.42.8 okf-parser check knowledge --classify --relational-schema okf.schema.sql
 uvx --from okf-parser==0.42.8 okf-parser inventory knowledge --digests
 uvx --from okf-parser==0.42.8 okf-parser graph knowledge
 uvx --from okf-parser==0.42.8 okf-parser duckdb knowledge knowledge.duckdb</code></pre>
