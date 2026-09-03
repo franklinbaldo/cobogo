@@ -56,10 +56,22 @@ A nota fica em 3 porque o objetivo alcançado foi robustez e legibilidade, não 
 
 A nota não sobe para 4 porque esta rodada não trouxe verificação suficiente de navegação por teclado, foco visível e outros comportamentos de acessibilidade em runtime. Há sinais positivos — inclusive `skip-link` presente no DOM —, mas sinal não substitui prova funcional.
 
-## Recomendações Cobogó relacionadas
+## Blockers
+
+**Nenhum impedimento objetivo.** Nenhuma dimensão recebeu 0 e a tarefa pública observada não está quebrada ou enganosa.
+
+## Recomendações Cobogó
 
 - `visual-evidence-as-quality-gate` — **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos. No Sisprev, a prova em navegador encontrou um defeito que build e relatório verde não mostravam e permaneceu como gate depois da correção.
 - `responsive-by-contract` — passa a **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos com identidades diferentes. No Sisprev, o contrato preservou uma home administrativa e um relatório formal, sem impor o layout do Aleph; em ambos, a janela de 390 px termina com documento de 390 px e ações/conteúdo essenciais presentes.
+
+## Issues derivadas
+
+**Nenhuma issue de qualidade nova.** A rodada não encontrou outro defeito concreto que justifique backlog apenas para aumentar a nota. A nova capacidade operacional de observação responsiva foi encaminhada separadamente ao workspace, que possui autoridade sobre o `ProjectProfile`.
+
+## O que o Cobogó deve aprender deste consumer
+
+O Sisprev reforça que um contrato responsivo pode ser estável sem impor apresentação uniforme. Um jogo narrativo e um relatório jurídico chegaram ao mesmo invariante — tarefa e informação essenciais permanecem utilizáveis sem alargar a página — por soluções locais diferentes. Também reforça que texto técnico e tabelas precisam de contenção deliberada: esconder overflow global não é correção, e blocos realmente largos podem rolar localmente sem obrigar a página inteira a fazê-lo.
 
 ## O que ainda falta
 
