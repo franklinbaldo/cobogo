@@ -1,32 +1,32 @@
 ---
 type: OpinionatedRecommendation
 slug: rendered-evidence-manifest
-maturity: opinionated
+maturity: validated
 problem: evidência visual sem revisão, fase, rota e viewport inequívocos produz causalidade fraca entre pixels e código
-validated_in: []
+validated_in: [franklinbaldo/astronauta]
 ---
 
 # Rendered evidence manifest
 
 ## Posição
 
-Quando uma captura é usada para sustentar uma conclusão causal de UI/UX, o Cobogó recomenda que a evidência carregue um manifest machine-readable que identifique **qual revisão foi realmente renderizada, em qual fase, em qual rota e em quais viewports**.
+Quando uma imagem do navegador sustenta uma conclusão de UI/UX, o Cobogó recomenda que o conjunto traga um manifesto legível por máquina identificando **qual commit foi realmente renderizado, em qual fase, em qual rota e em quais viewports**.
 
 O formato de referência é `schemas/rendered-evidence-manifest.schema.json`, e `scripts/validate-rendered-evidence.mjs` implementa os invariantes adicionais que JSON Schema sozinho não expressa convenientemente.
 
 ## Racional
 
-O portfólio já encontrou três classes recorrentes de erro de evidência:
+O portfólio já encontrou três classes recorrentes de erro:
 
-1. tratar merge-ref sintético de PR como se fosse o head real;
-2. provar o head antes do merge e inferir que isso equivale ao landing publicado;
-3. chamar uma superfície de responsiva sem uma matriz que contenha ao menos uma visão narrow e uma desktop.
+1. tratar o commit sintético criado pelo GitHub para testar uma PR como se fosse o commit real da branch;
+2. provar a branch antes do merge e inferir que isso equivale ao commit que realmente entrou em `main`;
+3. chamar uma interface de responsiva sem uma matriz que contenha ao menos uma visão estreita e uma desktop.
 
-Esses erros não dizem se os pixels são bons ou ruins. Eles dizem que não sabemos com precisão **quais pixels pertencem a qual revisão**. Sem essa causalidade, before/after e assessments ficam frágeis.
+Esses erros não dizem se os pixels são bons ou ruins. Eles dizem que não sabemos com precisão **quais pixels pertencem a qual revisão do código**. Sem essa ligação, comparações antes/depois e avaliações ficam frágeis.
 
 ## Contrato
 
-Campos centrais:
+Campos centrais do formato de referência:
 
 - `version: 1`;
 - `revision`: SHA Git completo de 40 caracteres realmente avaliado;
@@ -35,41 +35,44 @@ Campos centrais:
 - `published_revision`: obrigatório em `main` e idêntico a `revision`;
 - `route`: rota renderizada;
 - `responsive`: se aquele conjunto pretende sustentar uma conclusão de responsividade;
-- `captures[]`: artifact/arquivo e viewport `{width,height}`.
+- `captures[]`: arquivo produzido e viewport `{width,height}`.
 
-Se `responsive: true`, o validator exige ao menos um narrow (`width <= 480`) e um desktop (`width >= 1024`). Viewports duplicados, artifact vazio, rota vazia e revisão não vinculada à fase são rejeitados.
+Se `responsive: true`, o validator exige ao menos uma visão estreita (`width <= 480`) e uma desktop (`width >= 1024`). Viewports duplicados, arquivo vazio, rota vazia e revisão não vinculada à fase são rejeitados.
 
 ## Critério observável
 
-Uma evidência conforme deve passar:
+Uma evidência que usa o schema de referência deve passar:
 
 ```sh
 node scripts/validate-rendered-evidence.mjs manifest.json
 ```
 
-Para uma mudança visual material fechada, a rotina ainda exige o ciclo completo before → head PR → checks → merge → deploy → after de `main`. Um manifest válido em apenas uma dessas fases **não fecha sozinho** o ciclo.
+Uma implementação local equivalente também é válida se provar a mesma informação sem ambiguidade. Para mudança visual material, um manifesto correto não substitui o ciclo de observar antes, testar a PR, fazer merge e observar novamente o commit de `main`.
 
 ## O que este contrato não valida
 
-O manifest **não avalia os pixels**. Ele não detecta clipping, hierarquia ruim, contraste, affordance, conteúdo enganoso ou regressão visual. Esses continuam exigindo inspeção/render evidence real. O validator apenas impede que uma conclusão visual seja apoiada em evidência cuja identidade causal esteja ambígua.
+O manifesto **não avalia os pixels**. Ele não detecta corte de conteúdo, hierarquia ruim, contraste, affordance, texto enganoso ou regressão visual. Isso continua exigindo inspeção da página renderizada. O validator apenas impede que uma conclusão visual seja apoiada em arquivos cuja origem esteja ambígua.
 
-Também não exige Playwright, GitHub Actions, formato de screenshot específico nem aparência Cobogó.
+Também não exige Playwright, GitHub Actions, formato específico de screenshot nem aparência Cobogó.
 
 ## Escape hatch
 
-Um consumer pode usar outro formato ou harness quando ele prova informação equivalente ou superior — revisão real, fase, rota, viewport e identidade do artifact — e a rotina consegue reconciliar head e landing sem inferência. A primitive Cobogó é um default interoperável, não uma obrigação estética ou tecnológica.
+Um projeto pode usar outro formato ou ferramenta quando prova informação equivalente ou superior — commit real, fase, rota, viewport e identidade do arquivo produzido — e a rotina consegue reconciliar PR e `main` sem inferência. A implementação Cobogó é um default interoperável, não uma obrigação tecnológica.
 
 ## Evidência
 
-- `franklinbaldo/ficha#230`: explicita a diferença entre head da PR e landing publicado e exige recaptura de `main` ligada ao landing SHA.
-- `franklinbaldo/quem-sao-eles#23`: exige rota, viewport, SHA real e matriz desktop+narrow no mesmo método funcional.
-- `franklinbaldo/leizilla#159`: repete o mesmo contrato para uma superfície ainda sem capacidade visual canônica.
-- `franklinbaldo/causaganha#999`: demonstrou na prática um loop de head + landing recapturado pelo mesmo método, mas ainda sem este manifest compartilhado.
+- `franklinbaldo/astronauta#42`: primeira aplicação real bem-sucedida. A PR gerou `evidence.json` com `evaluated_sha=f4463fb0...`, `merge_ref_sha=a055727c...`, evento de PR, rotas, modos e quatro combinações de viewport. Depois do merge, a execução `33742274379` sobre `main` produziu o arquivo `9888212021`, com `evaluated_sha=55232223e695cb2d27611b750ec94748e99023a1` e `merge_ref_sha=null`. Isso permitiu ligar sem ambiguidade as imagens ao commit realmente incorporado e, ao examiná-las, abrir a dívida responsiva #43.
+- `franklinbaldo/ficha#230`: pressão anterior que explicitou a diferença entre branch da PR e commit incorporado e exigiu nova captura em `main`.
+- `franklinbaldo/quem-sao-eles#23`: pressão anterior por rota, viewport, SHA real e matriz desktop+tela estreita no mesmo método funcional.
+- `franklinbaldo/leizilla#159`: pressão equivalente para uma interface que ainda não tinha capacidade visual canônica naquele momento.
+- `franklinbaldo/causaganha#999`: demonstrou na prática o ciclo de PR + `main`, ainda sem este manifesto compartilhado.
 
 ## Maturidade
 
-Nasce `opinionated`. O portfólio já fornece informação suficiente para formular o contrato, mas nenhum consumer ainda adotou este manifest de referência. Uma adoção real bem-sucedida o promove a `validated`; duas implementações independentes convergentes podem promovê-lo a `stable`.
+`validated`: em português comum, a recomendação **já funcionou em pelo menos um projeto real**. O Astronauta adotou um formato local equivalente, não o schema literal, e isso é uma validação melhor do princípio: os invariantes sobreviveram sem impor a ferramenta do Cobogó.
+
+Ela ainda não é `stable`. Para isso, precisa funcionar de forma convergente em pelo menos um segundo projeto independente preservando sua implementação e identidade locais.
 
 ## Falsificação
 
-Se o manifest introduzir cerimônia sem reduzir ambiguidades reais de revisão/viewport, ou se consumers demonstrarem um contrato menor que preserve a mesma causalidade, o schema deve ser simplificado. O objetivo é identidade da evidência, não padronização de tooling.
+Se o manifesto introduzir cerimônia sem reduzir ambiguidades reais de revisão/viewport, ou se projetos demonstrarem um contrato menor que preserve a mesma ligação entre pixels e código, o schema deve ser simplificado. O objetivo é identidade da evidência, não padronização de tooling.

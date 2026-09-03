@@ -18,7 +18,7 @@ Compilação não detecta links malformados, conteúdo invisível, regressões d
 
 ## Contrato
 
-O mecanismo pode variar por consumer, mas precisa registrar rota, SHA/build, método e arquivo visual produzido. Quando a tarefa depende de hidratação/runtime, o estado capturado deve ser classificado explicitamente. Superfícies responsivas precisam cobrir pelo menos um viewport estreito quando a responsividade for parte material da avaliação; “não houve overflow” deve ser observado, não presumido por leitura de CSS.
+O mecanismo pode variar por projeto, mas precisa registrar rota, SHA/build, método e arquivo visual produzido. Quando a tarefa depende de hidratação/runtime, o estado capturado deve ser classificado explicitamente. Interfaces responsivas precisam cobrir pelo menos um viewport estreito quando a responsividade for parte material da avaliação; “não houve overflow” deve ser observado, não presumido por leitura de CSS.
 
 ## Critério observável
 
@@ -26,13 +26,14 @@ Uma avaliação consegue apontar para uma captura reproduzível do SHA/deploy re
 
 ## Escape hatch
 
-Mudanças sem efeito visual não exigem screenshot artificial. Superfícies não navegáveis por browser podem usar evidência equivalente apropriada ao meio. Uma rota estritamente desktop não precisa fabricar viewport móvel sem tarefa correspondente.
+Mudanças sem efeito visual não exigem screenshot artificial. Interfaces não navegáveis por browser podem usar evidência equivalente apropriada ao meio. Uma rota estritamente desktop não precisa fabricar viewport móvel sem tarefa correspondente.
 
 ## Evidência
 
 - `franklinbaldo/quem-sao-eles`, `/pep`: a #24 foi incorporada como `f9d662964abdecfad1b329f3a65856b47cfcc32b`. O workflow espera `search-ready`, executa uma consulta real e produz `1280×900` e `390×844` no mesmo estado. O run de `main` `33737031729`, arquivo `9886155918`, registra o commit real avaliado, origem/competência/snapshot, visibilidade dos controles e ausência de estouro horizontal. Isso completa a evidência antiga, que cobria somente desktop, sem mudar a aparência do produto.
 - `franklinbaldo/intuit`, `/intuit/`, merge `34a3102a61d3676e34597d20606ffe3a53bdfe3d`: workflow de navegador produz desktop `1440x900` e narrow `390x844` no mesmo arquivo `9832628580`, com rota/SHA/viewports registrados; comportamento é protegido separadamente por Playwright.
-- `franklinbaldo/leizilla`, #160, incorporada como `dc761b8936a51ade164bcfaf0dcfc04756b7eea6`: a nova verificação recompila a superfície Astro real, serve `/leizilla/`, produz `1280×900` e `390×844` e registra HTTP status, erros de página e commit no `capture-state.json`. O run de `main` `33726499150` produziu o arquivo `9882181048`. Essa evidência não muda a maturidade — a recomendação já era `stable` —, mas mostra que o contrato continua útil numa terceira identidade local e, mais importante, tornou visíveis dois problemas que build sozinho não revelava: filtros truncados no celular e uma mensagem incorreta no estado de falha remota.
+- `franklinbaldo/leizilla`, #160, incorporada como `dc761b8936a51ade164bcfaf0dcfc04756b7eea6`: a nova verificação recompila a superfície Astro real, serve `/leizilla/`, produz `1280×900` e `390×844` e registra HTTP status, erros de página e commit no `capture-state.json`. O run de `main` `33726499150` produziu o arquivo `9882181048`. Essa evidência não muda a maturidade — a recomendação já era `stable` —, mas mostra que o contrato continua útil numa terceira identidade local e tornou visíveis filtros truncados no celular e uma mensagem incorreta no estado de falha remota.
+- `franklinbaldo/astronauta`, #42, incorporada como `55232223e695cb2d27611b750ec94748e99023a1`: a execução `33742274379`, arquivo `9888212021`, inicia o admin SSR real sobre fixture determinística e produz leitura `/types/Note` e edição `/concepts/edit/note-01` em `1280×900` e `390×844`. Todos os testes funcionais continuaram verdes, mas as imagens estreitas mostraram rolagem horizontal da página e navegação cortada. A #43 nasceu desse achado. É uma demonstração forte do princípio: a verificação visual não duplicou o CI; encontrou um problema que o CI não podia enxergar.
 
 As aplicações convergem no mesmo contrato sem uniformizar implementação ou identidade local, mantendo maturidade `stable`: em português comum, a regra já funcionou de forma convergente em pelo menos dois projetos reais.
 
