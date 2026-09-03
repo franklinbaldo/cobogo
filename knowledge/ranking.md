@@ -13,6 +13,7 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 | franklinbaldo/ovigia-redacao | 23 | referência | 4 | 4 | 3 | 4 | 4 | 4 | 2026-09-02 | flat |
 | franklinbaldo/causaganha | 23 | referência | 4 | 4 | 4 | 3 | 4 | 4 | 2026-09-02 | flat |
 | franklinbaldo/franklinbaldo.github.io | 23 | referência | 4 | 4 | 4 | 4 | 4 | 3 | 2026-09-03 | baseline |
+| franklinbaldo/quem-sao-eles | 23 | referência | 4 | 4 | 4 | 4 | 3 | 4 | 2026-09-03 | baseline |
 | franklinbaldo/ficha | 22 | referência | 4 | 4 | 4 | 3 | 4 | 3 | 2026-09-03 | up |
 | franklinbaldo/baliza | 21 | boa | 4 | 4 | 4 | 3 | 2 | 4 | 2026-09-02 | flat |
 | franklinbaldo/aleph-the-game | 21 | boa | 4 | 4 | 4 | 3 | 3 | 3 | 2026-09-02 | up |
@@ -29,6 +30,6 @@ Projetos `dormant` não entram no ranking principal, mas preservam sua última a
 
 O ranking não compara valor social, qualidade do backend ou importância estratégica. Ele mede somente a qualidade da superfície pública sob o modelo Cobogó. A soma nunca substitui a leitura das dimensões.
 
-O blog entra com 23/24. A captura atual de `main` confirma home e estado 404 fortes em desktop e celular; a #1663 resolveu a compressão das opções de recuperação, e a #1667 preserva a marca em larguras intermediárias. Confiança fica em 3/4 enquanto a #1664 mantiver ambígua a identidade exposta pelo nome do arquivo visual em execuções de PR.
+Quem São Eles? entra com 23/24 depois da #24 completar a prova de `/pep` em desktop e celular no mesmo estado funcional, com consulta real, proveniência e snapshot exato perceptíveis. UI fica em 3/4: a rota PEP é muito boa e responsiva, mas não há base para transformar essa apresentação estreita em referência visual para a futura superfície editorial de perfis ainda sem conteúdo suficiente.
 
-O Leizilla permanece em 19/24, com as dívidas #161 e #162. A Ficha permanece em 22/24. O Baliza permanece em 21/24 com UI 2/4 enquanto a correção já incorporada a `main` não puder ser verificada na superfície publicada por causa do deploy bloqueado em #694. O Vigia e CausaGanha estarem na faixa de referência não implica copiar a apresentação deles para outros projetos.
+O blog permanece em 23/24. O Leizilla permanece em 19/24, com as dívidas #161 e #162. A Ficha permanece em 22/24. O Baliza permanece em 21/24 com UI 2/4 enquanto a correção já incorporada a `main` não puder ser verificada na superfície publicada por causa do deploy bloqueado em #694. O Vigia e CausaGanha estarem na faixa de referência não implica copiar a apresentação deles para outros projetos.
