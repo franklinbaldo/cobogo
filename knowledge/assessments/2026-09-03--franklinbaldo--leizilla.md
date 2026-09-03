@@ -2,74 +2,65 @@
 type: SurfaceQualityAssessment
 repo: franklinbaldo/leizilla
 date: 2026-09-03
-commit: dc761b8936a51ade164bcfaf0dcfc04756b7eea6
+commit: b5afe794073fc5645c3fb4edacc8146bf75976df
 deploy: https://franklinbaldo.github.io/leizilla/
-capture: artifact:9882181048
+capture: artifact:9899626172
 scores:
   clarity: 4
   explainability: 4
   autonomy: 4
   ux: 3
   ui: 2
-  trust: 2
-total: 19
+  trust: 3
+total: 20
 band: good
 blockers: []
-trend: baseline
+trend: up
 ---
 
-# Leizilla — primeira avaliação completa da superfície
+# Leizilla — avaliação após corrigir o estado de indisponibilidade
 
 ## Veredito
 
-**19 de 24 pontos — faixa boa.** Esta é a primeira avaliação completa que serve de referência para comparações futuras. O Leizilla é muito forte em clareza, explicação pública do método e autonomia sobre os dados. As duas dívidas materiais estão em tela estreita e no modo como a interface descreve uma falha ao carregar o dataset.
+**20 de 24 pontos — faixa boa.** Clareza 4/4, Explicabilidade 4/4, Autonomia 4/4, UX 3/4, UI 2/4 e Confiança 3/4. A mudança desta rodada é exclusivamente em Confiança: a interface deixou de transformar uma falha de acesso ao dataset em uma afirmação falsa de que o acervo ainda não tinha sido publicado.
 
-A avaliação aponta para o commit `dc761b8936a51ade164bcfaf0dcfc04756b7eea6`, que realmente entrou em `main` depois da PR #160. O workflow `Visual capture — web` `33726499150` concluiu com sucesso nesse commit e produziu o arquivo `9882181048`, identificado como `leizilla-web-visual-dc761b8936a51ade164bcfaf0dcfc04756b7eea6`. Ele contém a home em `1280×900` e `390×844` e um `capture-state.json` com HTTP 200 e nenhum erro de página nos dois tamanhos.
-
-A #160 não alterou arquivos da interface; acrescentou apenas a capacidade de observar o build real em navegador. Por isso a página pública continua sendo a mesma versão web já publicada antes da PR, e a captura do novo commit recompila exatamente essa árvore `web/**` sem introduzir mudança visual.
+A avaliação aponta para `b5afe794073fc5645c3fb4edacc8146bf75976df`, commit que realmente entrou em `main` depois da PR #163. O GitHub Pages publicou esse mesmo commit na execução `33770975164`. Depois do merge, a execução visual `33770975121` também terminou com sucesso e produziu o arquivo `9899626172`, identificado como `leizilla-web-visual-b5afe794073fc5645c3fb4edacc8146bf75976df`. A prova contém desktop `1280×900`, celular `390×844` e versões controladas em que o acesso ao Internet Archive é interrompido de propósito.
 
 ## Clareza / D1
 
-**4/4.** A primeira dobra apresenta uma tarefa e uma razão de existir de forma direta: `Leis públicas não deveriam desaparecer em PDFs.`. A pessoa encontra logo abaixo a busca textual, os filtros e caminhos para Cobertura e Dados. Não é necessário conhecer o pipeline para entender o que pode fazer.
+**4/4.** A home continua apresentando a tarefa diretamente: pesquisar legislação preservada e estruturada. A correção do estado de erro não remove busca, cobertura nem caminhos para dados.
 
 ## Explicabilidade / D2
 
-**4/4.** O texto explica que o produto preserva o original, estrutura o conteúdo por dispositivo e mantém trilha de evidência auditável. A navegação para Cobertura e Dados permite aprofundar como o acervo é produzido e quais partes estão cobertas sem transformar estado de pipeline em promessa jurídica.
-
-A nota permanece 4 apesar do problema de indisponibilidade descrito em Confiança: a explicação estrutural do produto é clara e correta; o defeito é uma causa específica atribuída a um erro de transporte.
+**4/4.** A interface continua explicando preservação, estruturação e trilha de evidência sem confundir estado de pipeline com promessa jurídica. No erro, a nova redação melhora esse princípio: descreve que o arquivo não pôde ser acessado naquele momento sem inventar a causa.
 
 ## Autonomia / D3
 
-**4/4.** O mesmo acervo que alimenta o portal é exposto como `versoes.parquet`, com `dataset_meta.json`, item no Internet Archive e exemplo DuckDB. O leitor consegue reutilizar o dado sem depender do frontend nem de uma API inventada.
+**4/4.** O acervo continua disponível como `versoes.parquet`, com metadados e item no Internet Archive. A própria mensagem de indisponibilidade agora oferece esses caminhos reais como alternativas, em vez de encerrar o fluxo.
 
 ## UX
 
-**3/4 — boa.** Busca, filtros, navegação e caminhos de aprofundamento têm fluxo simples. O campo principal permanece inteiro em `390×844`, a página não cria rolagem horizontal e a ausência de dados remotos não remove os links de Cobertura, Internet Archive e GitHub.
-
-A nota não sobe para 4 porque a captura desta rodada exercitou o estado de falha de rede, não uma busca bem-sucedida com abertura de uma lei e retorno aos resultados. Além disso, a mensagem incorreta de indisponibilidade prejudica a orientação em um estado real do fluxo, embora a maior consequência seja de confiança factual.
+**3/4 — boa.** O erro recuperável passou a orientar a pessoa: tentar o arquivo público diretamente, consultar Cobertura ou verificar o roadmap. Falha e consulta concluída com zero registros são estados diferentes. A nota permanece 3 porque a avaliação ainda não cobre profundamente uma busca bem-sucedida, abertura de lei e retorno aos resultados.
 
 ## UI
 
-**2/4 — adequada com problema material.** No desktop, a composição é limpa, legível e mantém hierarquia clara entre título, busca, filtros e conteúdo. Em `390×844`, a busca principal continua utilizável, mas os três filtros permanecem lado a lado. Os dois `<select>` ficam estreitos a ponto de mostrar apenas o começo de `Todos os entes` e `Todos os tipos de norma`, tornando-os visualmente quase indistinguíveis.
-
-A navegação superior também quebra `GitHub` para uma linha isolada no celular, mas isso é uma irregularidade menor. O problema acionável que sustenta a nota 2 é a perda de informação dos filtros essenciais. A issue `leizilla#162` registra o critério de correção sem prescrever uma aparência uniforme.
+**2/4 — adequada com problema material.** O problema separado da #162 continua visível: em `390×844`, os filtros de ente e tipo permanecem estreitos a ponto de perder parte do texto que os diferencia. A #163 não tentou resolver isso e não há base para subir a nota.
 
 ## Confiança
 
-**2/4 — adequada com problema material.** O projeto é forte em provenance e reutilização: preservação no Internet Archive, cobertura explícita e metadados de publicação são partes reais da superfície. Porém o estado de erro observado faz uma afirmação que a própria evidência do projeto contradiz.
+**3/4 — boa.** Este era o problema escolhido. Antes, uma falha de rede podia resultar em “Rondônia v0 ainda não foi publicado”, embora o dataset existisse. Agora a mensagem principal diz `Não foi possível acessar o acervo agora` e explica que a falha não permite concluir ausência ou falta de publicação.
 
-Quando o Parquet do Internet Archive falha ao carregar, `HomePanel.svelte` agrupa `failed || empty` e diz que `Rondônia v0` ainda não foi publicado. `DatasetUnavailable.svelte` vai além e afirma que a coleção ainda não foi publicada no Internet Archive. Na captura desta rodada, o `capture-state.json` registra precisamente uma falha de rede ao carregar o Parquet público já existente. Portanto a interface converte uma causa desconhecida de transporte em uma conclusão factual sobre publicação.
+A verificação automatizada cria deliberadamente uma falha ao acessar o Internet Archive e reprova se reaparecer linguagem que diga `ainda não foi publicado` ou `ainda não está no ar`. No commit da PR `7cab1cb9b5c7be087be850c40f9010b38575cb48`, a execução `33770546164` passou e produziu o arquivo `9899463951`. Depois do merge, a mesma prova passou em `main` no commit `b5afe794...`, execução `33770975121`, arquivo `9899626172`.
 
-A issue `leizilla#161` registra a correção: falha de acesso deve ser distinguida de ausência comprovada de acervo. Enquanto esse estado puder fazer uma afirmação falsa, Confiança não pode receber 3 ou 4.
+Confiança não sobe para 4 porque ainda não há prova ampla de acessibilidade por teclado/foco visível e porque nota de referência exige mais do que eliminar este defeito factual específico.
 
 ## Recomendações Cobogó relacionadas
 
-- `visual-evidence-as-quality-gate` — **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos. A #160 traz o Leizilla para o mesmo contrato de evidência sem copiar implementação visual de outro produto.
-- `recoverable-error-states` — **validated**, isto é, já funcionou em pelo menos um projeto real, mas o Leizilla acrescenta evidência negativa útil: uma mensagem simples ainda é ruim se atribuir uma causa que o sistema não conhece. A recomendação deve exigir verdade causal do estado, não apenas linguagem amigável.
+- `recoverable-error-states` — passa a **stable**, isto é, agora funcionou de forma convergente em pelo menos dois projetos reais, Ficha e Leizilla, preservando soluções locais diferentes. A regra comum é simples: uma falha pública deve dizer apenas o que o sistema sabe e oferecer um próximo passo verdadeiro.
+- `visual-evidence-as-quality-gate` — permanece **stable**; a captura controlada transformou a mensagem de erro em uma condição verificável, não apenas uma revisão de texto.
 
-## Dívidas concretas
+## Dívida concreta restante
 
-- `leizilla#161` — não confundir falha de transporte com dataset não publicado; mantém Confiança em 2/4.
 - `leizilla#162` — preservar informação suficiente nos filtros em `390×844`; mantém UI em 2/4.
 
-Nenhuma outra issue foi aberta apenas para aumentar a nota. A primeira avaliação já é suficiente para priorizar essas duas diferenças concretas.
+A #161 foi resolvida pela #163. Nenhuma nova issue foi aberta apenas para aumentar a pontuação.
