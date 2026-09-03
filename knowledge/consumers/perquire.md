@@ -25,7 +25,7 @@ operational_capabilities:
   - live Gemini-backed E2E on trusted main/manual runs
 local_identity: investigative scientific/developer instrument organized around questioning and similarity feedback
 unmet_needs:
-  - obtain controlled browser evidence before treating the surface as rendered/pixel proof; implementation proposed in perquire#86, currently blocked because Actions jobs fail before executing any step (perquire#87)
+  - obtain controlled browser evidence before treating the surface as rendered/pixel proof; implementation proposed in perquire#86, now blocked because the supported web entrypoint fails before serving `/` (perquire#88)
   - reconcile the stale GitHub repository description with the current project surface (perquire#22)
 last_verified: 2026-09-02
 ---
@@ -42,8 +42,10 @@ Project-surface evidence should therefore be read in three dimensions. **Direct 
 
 The next research stack (`perquire#24`–`#26`) is intentionally not recorded as shipped capability here. It narrows the claim to approximate semantic inversion, introduces a falsifiable benchmark and makes contrastive probing conditional on evidence; until those PRs land, they remain planning/experiment evidence rather than consumer state.
 
-A nova verificação de 2026-09-02 confirmou que a fronteira visual continua limitada. O workflow `Web surface` em `main` ainda executa somente o teste de template Jinja e não preserva pixels de um navegador real. A PR `perquire#86` propõe iniciar a aplicação FastAPI sem credenciais e capturar `/` em Chromium nos tamanhos 1280×900 e 390×844, identificando o commit efetivamente testado. Essa capacidade ainda **não existe em `main`**: as duas tentativas do workflow da PR falharam antes de executar qualquer etapa, e o `Python CI` independente apresentou o mesmo comportamento. A issue operacional `perquire#87` registra esse impedimento.
+A verificação de 2026-09-02 avançou a fronteira de evidência, mas ainda não produziu pixels. A PR `perquire#86` propõe iniciar a aplicação FastAPI sem credenciais e capturar `/` em Chromium nos tamanhos 1280×900 e 390×844, identificando o commit efetivamente testado. As primeiras tentativas nem chegaram a executar comandos e foram registradas em `perquire#87`. Na retomada do mesmo commit `ab9affb04eac2b84c7676ab884c31c017d685b89`, os runners voltaram a funcionar: o teste de template passou, Python/uv/Node e Chromium foram instalados e o teste de navegador avançou até iniciar a aplicação real.
 
-Portanto, a força da evidência permanece deliberadamente limitada a **source + CI histórico + rendered-template smoke + workflow history**. Ainda não existe captura controlada de navegador que possa sustentar nota de UI/UX, e não há implantação pública verificada. A descrição pública do repositório também continua desatualizada e é acompanhada pela `perquire#22`.
+Nesse ponto surgiu um problema diferente e agora reproduzível: `python -m perquire.web.main` falha ao importar `create_ensemble_investigator` de `perquire`. A issue `perquire#87` foi fechada porque seu critério — jobs realmente executarem — foi satisfeito; `perquire#88` registra o defeito do entrypoint web. Esse defeito pertence ao Perquire, não ao Cobogó, porque impede a própria capacidade operacional de servir a interface. A rotina de qualidade não o corrige fora de sua autoridade.
 
-No Cobogó, `visual-evidence-as-quality-gate` é a recomendação aplicada nesta tentativa: em linguagem comum, decisões sobre aparência e responsividade precisam se apoiar em imagens reproduzíveis da implementação real. A #86 é uma tentativa de adoção, não evidência de adoção bem-sucedida; por isso nenhuma nova capacidade é adicionada a `capabilities_used` e a maturidade da recomendação não muda.
+Portanto, a força da evidência permanece deliberadamente limitada a **source + CI histórico + rendered-template smoke + execução real do workflow até o entrypoint web**. Ainda não existe captura controlada de navegador que possa sustentar nota de UI/UX, e não há implantação pública verificada. A descrição pública do repositório também continua desatualizada e é acompanhada pela `perquire#22`.
+
+No Cobogó, `visual-evidence-as-quality-gate` continua sendo a recomendação aplicada: em linguagem comum, decisões sobre aparência e responsividade precisam se apoiar em imagens reproduzíveis da implementação real. A #86 continua sendo uma tentativa de adoção, não evidência de adoção bem-sucedida; por isso nenhuma nova capacidade é adicionada a `capabilities_used` e a maturidade da recomendação não muda.
