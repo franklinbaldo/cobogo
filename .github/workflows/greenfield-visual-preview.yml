@@ -104,6 +104,10 @@ jobs:
             process.exit(1);
           }
           NODE
+      - name: Semantic accessibility contract
+        run: |
+          node scripts/check-semantic-accessibility.mjs http://127.0.0.1:4321/cobogo \
+            / grammar/ core/ patterns/ consumers/ knowledge/
       - name: Reduced-motion conformance
         run: |
           node scripts/check-reduced-motion.mjs http://127.0.0.1:4321/cobogo \
@@ -112,4 +116,6 @@ jobs:
         if: always()
         with:
           name: cobogo-greenfield-preview-${{ env.EVALUATED_SHA }}
-          path: artifacts/greenfield
+          path: |
+            artifacts/greenfield
+            artifacts/accessibility
