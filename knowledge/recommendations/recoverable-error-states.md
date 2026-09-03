@@ -1,25 +1,26 @@
 ---
 type: OpinionatedRecommendation
 slug: recoverable-error-states
-maturity: validated
+maturity: stable
 problem: mensagens de erro podem informar falha sem permitir que o leitor entenda o próximo passo
 validated_in:
   - franklinbaldo/ficha
+  - franklinbaldo/leizilla
 ---
 
-# Erro deve preservar agência
+# Erro deve preservar agência e verdade
 
 ## Posição
 
-Quando uma tarefa pública falha de forma recuperável, a superfície deve dizer o que aconteceu no nível útil ao leitor e oferecer próximo passo possível, sem despejar detalhe interno desnecessário. A mensagem também deve respeitar o limite do que o sistema realmente sabe: indisponibilidade de acesso não autoriza afirmar ausência de publicação, inexistência de dado ou outra causa específica sem evidência própria.
+Quando uma tarefa pública falha de forma recuperável, a interface deve dizer o que aconteceu no nível útil ao leitor e oferecer próximo passo possível, sem despejar detalhe interno desnecessário. A mensagem também deve respeitar o limite do que o sistema realmente sabe: indisponibilidade de acesso não autoriza afirmar ausência de publicação, inexistência de dado ou outra causa específica sem prova própria.
 
 ## Racional
 
-Feedback que apenas declara “erro” encerra a agência do usuário. UX robusta trata falha como estado do fluxo, não exceção visual. Mas simplificar a linguagem não pode trocar diagnóstico técnico por uma explicação falsa: uma mensagem curta só aumenta confiança quando descreve um estado que a evidência sustenta.
+Feedback que apenas declara “erro” encerra a agência do usuário. UX robusta trata falha como estado do fluxo. Mas simplificar a linguagem não pode trocar diagnóstico técnico por explicação falsa: uma mensagem curta só aumenta confiança quando descreve um estado que a informação disponível sustenta.
 
 ## Contrato
 
-Erro material é distinguível de vazio/loading, possui mensagem compreensível e, quando existe ação segura, retry, alternativa ou caminho de retorno. A causa apresentada ao leitor não pode ser mais específica do que a evidência disponível naquele estado.
+Erro material é distinguível de vazio/loading, possui mensagem compreensível e, quando existe ação segura, oferece retry, alternativa ou caminho de retorno. A causa apresentada ao leitor não pode ser mais específica do que aquilo que o sistema realmente comprovou naquele estado.
 
 ## Critério observável
 
@@ -31,19 +32,23 @@ Falhas não recuperáveis podem apenas explicar o estado e preservar navegação
 
 ## Evidência
 
-Primeira validação real: `franklinbaldo/ficha#234`. Antes da mudança, a captura de `main` `33677384208`, commit `06665f7610af9d8e493fc03bb5862954bd3e8551`, mostrava no estado `remote-data-unavailable` detalhes como `NetworkError`, `XMLHttpRequest`, nome de arquivo e URL de transporte, sem próximo passo útil.
+`stable` significa aqui que a recomendação já funcionou de forma convergente em pelo menos dois projetos reais, preservando identidades locais diferentes.
 
-A #234 preservou a identidade local da Ficha e substituiu a mensagem pública por `A consulta está temporariamente indisponível.`, oferecendo `manifest.json` como alternativa pública que já fazia parte do produto. O diagnóstico técnico permaneceu no console; nenhum retry foi inventado.
+### Ficha
 
-No commit atual da branch da PR, `b98fc8f6e9c71880b0ff295f6140a23792e23c35`, GitGuardian, CI e captura visual passaram. Depois do merge, o commit `2824bf6107bcd622570dd6beb27f820980fe5dc5` teve deploy `33710502906`, CI `33710502829` e captura visual `33710502919` concluídos com sucesso. O arquivo `9876751870` comprova desktop `1280×900` e tela estreita `390×844`: mensagem compreensível, alternativa real e ausência de erro técnico como texto público.
+A primeira aplicação bem-sucedida foi `franklinbaldo/ficha#234`. Antes, o estado de indisponibilidade expunha `NetworkError`, `XMLHttpRequest`, nome de arquivo e URL de transporte sem próximo passo útil. A #234 preservou a identidade da Ficha e passou a dizer `A consulta está temporariamente indisponível.`, oferecendo `manifest.json` como alternativa pública já existente. Depois do merge, o commit `2824bf6107bcd622570dd6beb27f820980fe5dc5` teve deploy `33710502906`, CI `33710502829` e verificação visual `33710502919` concluídos com sucesso.
 
-A recomendação é **validated**, isto é, já funcionou em pelo menos um projeto real com evidência completa. Ainda não é `stable`; isso exige convergência bem-sucedida em pelo menos um segundo projeto, preservando outra identidade local.
+### Leizilla
 
-### Evidência negativa do Leizilla
+O Leizilla primeiro forneceu uma prova negativa importante. No commit `dc761b8936a51ade164bcfaf0dcfc04756b7eea6`, uma falha de rede ao buscar o Parquet público já existente fazia a interface afirmar que Rondônia v0 “ainda não foi publicado”. Isso refinou a regra: linguagem amigável não basta; o estado precisa continuar verdadeiro.
 
-A primeira captura reproduzível do Leizilla em `main`, commit `dc761b8936a51ade164bcfaf0dcfc04756b7eea6`, run `33726499150`, produziu um caso que melhora a tese. O `capture-state.json` registrou falha de rede ao buscar o Parquet já publicado no Internet Archive. Mesmo assim, a interface afirmou que Rondônia v0 “ainda não foi publicado”. O código confirma que estados diferentes — falha de acesso e acervo vazio — compartilham a mesma explicação.
+A PR `franklinbaldo/leizilla#163` aplicou essa versão mais forte. O texto principal passou a dizer `Não foi possível acessar o acervo agora`, sem inferir ausência ou falta de publicação. O projeto oferece caminhos próprios — Parquet direto, Cobertura e roadmap — e mantém detalhe técnico recolhido em uma seção secundária. A home também distingue falha de acesso de consulta concluída com zero registros.
 
-Isso não aposenta a recomendação; torna seu contrato mais preciso. “Linguagem amigável” não basta. O estado público precisa preservar agência **e verdade**, inclusive quando a melhor descrição disponível é simplesmente “não foi possível carregar agora”. A issue `franklinbaldo/leizilla#161` registra a correção no projeto dono.
+No commit atual da branch da PR, `7cab1cb9b5c7be087be850c40f9010b38575cb48`, GitGuardian, build e a verificação visual passaram; a execução visual `33770546164` produziu o arquivo `9899463951`. O workflow força uma falha do Internet Archive em desktop e celular e reprova se reaparecer linguagem de “não publicado”.
+
+Depois do merge, o commit que realmente entrou em `main` foi `b5afe794073fc5645c3fb4edacc8146bf75976df`. O GitHub Pages publicou esse commit na execução `33770975164`. A verificação visual de `main` `33770975121` também passou e produziu o arquivo `9899626172`, ligado ao mesmo commit, com os quatro estados esperados.
+
+A convergência é relevante porque as soluções não são cópias: a Ficha oferece `manifest.json`; o Leizilla oferece dataset, cobertura e roadmap. O que se repete é o contrato — dizer apenas o que se sabe e preservar uma ação verdadeira para o leitor.
 
 ## Falsificação
 
