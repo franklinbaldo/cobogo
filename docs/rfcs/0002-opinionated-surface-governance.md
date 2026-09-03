@@ -1,7 +1,9 @@
 # RFC 0002 — Cobogó como sistema opinionado de qualidade de superfície
 
-Status: proposta
+Status: aceita
 Data: 2026-09-01
+
+> Esta RFC está adotada operacionalmente. O README, a rotina em `docs/operations/opinionated-surface-routine.md` e o modelo aceito em `knowledge/surface-quality-model.md` já implementam esta governança. O status anterior `proposta` era documentação desatualizada.
 
 ## Resumo
 
