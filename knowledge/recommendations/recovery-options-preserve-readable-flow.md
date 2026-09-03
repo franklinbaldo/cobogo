@@ -1,9 +1,9 @@
 ---
 type: OpinionatedRecommendation
 slug: recovery-options-preserve-readable-flow
-maturity: opinionated
+maturity: validated
 problem: estados de erro ou ausência podem herdar composição de chrome e comprimir opções editoriais até perderem legibilidade em viewports estreitos
-validated_in: []
+validated_in: [franklinbaldo/franklinbaldo.github.io]
 ---
 
 # Opções de recuperação preservam fluxo legível
@@ -34,7 +34,9 @@ Lista vertical é apenas uma solução possível. Grid responsivo, stack, disclo
 
 ## Evidência
 
-A hipótese nasceu da captura causal da 404 de `franklinbaldo/franklinbaldo.github.io` em `main` `17995efe13904d56e58d63686d3cca49dea23093`, artifact visual `9849063746`: o bloco `Recently published` comprime heading e cinco títulos editoriais em colunas estreitas no mobile, embora busca e demais caminhos permaneçam funcionais.
+A hipótese nasceu da captura da 404 de `franklinbaldo/franklinbaldo.github.io` em `main` `17995efe13904d56e58d63686d3cca49dea23093`, arquivo visual `9849063746`: o bloco `Recently published` comprimia heading e cinco títulos editoriais em colunas estreitas no celular, embora busca e demais caminhos permanecessem funcionais.
+
+A PR `franklinbaldo/franklinbaldo.github.io#1663` reorganizou apenas esse conteúdo de recuperação em tela estreita. A captura atual de `main` `aad33f3c78281295376da4e9278d79e87a2e64c7`, execução `33720285374`, arquivo `9880072226`, foi observada depois de mudanças posteriores no site e ainda mostra `Recently published`, cinco títulos com datas, busca e caminhos alternativos em fluxo legível. Isso promove a recomendação para `validated`: já funcionou em pelo menos um projeto real. Ainda não é `stable`, que exige convergência bem-sucedida em pelo menos dois projetos diferentes.
 
 ## Falsificação
 
