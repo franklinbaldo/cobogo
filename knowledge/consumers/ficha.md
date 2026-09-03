@@ -48,16 +48,19 @@ Problema material observado: nenhum.
 - Core web foundation pinado desde 2026-08-18 (#222).
 - `visual-evidence-as-quality-gate` — **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos reais; #226/#229/#232 tornaram a diferença entre captura de PR e captura de `main` verificável.
 - `primary-action-viewport-containment` — **validated**, isto é, já funcionou em pelo menos um projeto real; #229 corrigiu o corte da ação principal e #232 permitiu comprovar automaticamente o resultado em `main`.
-- `recoverable-error-states` — **opinionated**, isto é, uma recomendação que o Cobogó considera correta e quer testar; a #233 aplica essa posição ao erro remoto bruto hoje mostrado ao leitor.
+- `recoverable-error-states` — **opinionated**, isto é, uma recomendação que o Cobogó considera correta e quer testar; a #234 contém a primeira implementação, mas ainda não conta como validação porque a captura visual do commit atual da PR não chegou a executar.
 
 ## Dívida de qualidade atual
 
-A maior dívida deixou de ser UI. A avaliação agora é 20 de 24 pontos: Clareza 4, Explicabilidade 4, Autonomia 4, UX 2, UI 3 e Confiança 3.
+A avaliação continua em 20 de 24 pontos: Clareza 4, Explicabilidade 4, Autonomia 4, UX 2, UI 3 e Confiança 3.
 
-O problema concreto de UX está no estado `remote-data-unavailable`: a primeira tela mostra texto técnico de `NetworkError`/`XMLHttpRequest` e não dá ao leitor orientação clara sobre o que fazer. A #233 registra critério verificável para corrigir isso sem impor uma aparência única à Ficha.
+O problema concreto de UX está no estado `remote-data-unavailable`: a primeira tela mostra texto técnico de `NetworkError`/`XMLHttpRequest` e não dá ao leitor orientação clara sobre o que fazer. A #234 implementa uma mensagem simples e oferece `manifest.json` como alternativa real, mas a mudança ainda não foi considerada concluída porque o workflow de captura visual da PR está parado na fila, sem máquina do GitHub atribuída e sem executar qualquer etapa. O commit atual da branch é `b98fc8f6e9c71880b0ff295f6140a23792e23c35`; a execução de captura é `33710308508`.
+
+A condição objetiva para retomar esse trabalho é a execução `33710308508`, ou uma execução posterior do mesmo commit, conseguir iniciar e comprovar os dois tamanhos previstos. Se a captura ficar verde e a PR continuar atualizada e mergeável, a #234 pode seguir para merge, publicação e nova captura já sobre o commit que entrar em `main`.
 
 ## Histórico
 
+- 2026-09-02 — #234 aberta para tornar o erro remoto compreensível. GitGuardian passou no commit `b98fc8f6e9c...`; CI e captura visual ficaram na fila sem runner atribuído, então não houve merge nem mudança de nota.
 - 2026-09-02 — #232 mergeada; captura automática de `main` rodou com sucesso no commit `06665f7610...` e produziu evidência desktop+narrow. UI sobe de 1/4 para 3/4; avaliação passa de 18 para 20/24. `primary-action-viewport-containment` passa a `validated`. #233 aberta para o estado de erro remoto.
 - 2026-09-02 — #229 mergeada; captura da PR corrigiu o corte do `Buscar`, e o conteúdo web foi publicado com deploy verde.
 - 2026-09-02 — #226 mergeada; captura desktop+narrow revelou o corte do CTA `Buscar`; avaliação inicial 18/24 com UI 1/4; issue #227 aberta.
