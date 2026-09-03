@@ -1,9 +1,10 @@
 ---
 type: OpinionatedRecommendation
 slug: recoverable-error-states
-maturity: opinionated
+maturity: validated
 problem: mensagens de erro podem informar falha sem permitir que o leitor entenda o próximo passo
-validated_in: []
+validated_in:
+  - franklinbaldo/ficha
 ---
 
 # Erro deve preservar agência
@@ -30,10 +31,14 @@ Falhas não recuperáveis podem apenas explicar o estado e preservar navegação
 
 ## Evidência
 
-Primeira aplicação proposta: `franklinbaldo/ficha#233`. A captura automática de `main`, execução `33677384208`, commit `06665f7610af9d8e493fc03bb5862954bd3e8551`, arquivo `9864898516`, mostra o estado `remote-data-unavailable` em `390×844` e `1280×900`. A mensagem principal expõe `NetworkError`, `XMLHttpRequest`, nome de arquivo e URL de transporte, sem explicar ao leitor comum um próximo passo. A issue fixa o resultado desejado e deixa a Ficha livre para escolher texto e composição próprios.
+Primeira validação real: `franklinbaldo/ficha#234`. Antes da mudança, a captura de `main` `33677384208`, commit `06665f7610af9d8e493fc03bb5862954bd3e8551`, mostrava no estado `remote-data-unavailable` detalhes como `NetworkError`, `XMLHttpRequest`, nome de arquivo e URL de transporte, sem próximo passo útil.
 
-A recomendação continua **opinionated**, isto é, o Cobogó considera a posição correta e agora a está testando em um projeto real. Abrir a issue e observar o problema não contam como validação. Ela só poderá passar a `validated` quando uma implementação real satisfizer o critério com evidência.
+A #234 preservou a identidade local da Ficha e substituiu a mensagem pública por `A consulta está temporariamente indisponível.`, oferecendo `manifest.json` como alternativa pública que já fazia parte do produto. O diagnóstico técnico permaneceu no console; nenhum retry foi inventado.
+
+No commit atual da branch da PR, `b98fc8f6e9c71880b0ff295f6140a23792e23c35`, GitGuardian, CI e captura visual passaram. Depois do merge, o commit `2824bf6107bcd622570dd6beb27f820980fe5dc5` teve deploy `33710502906`, CI `33710502829` e captura visual `33710502919` concluídos com sucesso. O arquivo `9876751870`, `ficha-home-visual-2824bf6107bcd622570dd6beb27f820980fe5dc5`, comprova desktop `1280×900` e tela estreita `390×844`: mensagem compreensível, alternativa real e ausência de erro técnico como texto público.
+
+A recomendação agora é **validated**, isto é, já funcionou em pelo menos um projeto real com evidência completa. Ainda não é `stable`; isso exige convergência bem-sucedida em pelo menos um segundo projeto, preservando outra identidade local.
 
 ## Falsificação
 
-A quantidade de detalhe deve diminuir quando mensagens técnicas confundirem mais do que ajudarem; ação e significado vêm antes de diagnóstico interno.
+A quantidade de detalhe deve diminuir quando mensagens técnicas confundirem mais do que ajudarem; ação e significado vêm antes de diagnóstico interno. A recomendação deve ser revista ou aposentada se aplicações reais mostrarem que ocultar detalhe do texto principal impede uma tarefa legítima do leitor ou se a alternativa oferecida for menos segura do que simplesmente explicar a indisponibilidade.
