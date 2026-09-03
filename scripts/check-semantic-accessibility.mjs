@@ -15,17 +15,6 @@ if (!baseUrl) {
 
 const normalizeUrl = (base, route) => new URL(route.replace(/^\//, ''), `${base.replace(/\/$/, '')}/`).toString();
 
-function elementLabel(element) {
-  if (!(element instanceof HTMLElement)) return null;
-  const text = (element.getAttribute('aria-label') || element.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
-  return {
-    id: element.dataset.cobogoA11yId || null,
-    tag: element.tagName.toLowerCase(),
-    text,
-    href: element instanceof HTMLAnchorElement ? element.getAttribute('href') : null,
-  };
-}
-
 async function keyboardAudit(page) {
   const expected = await page.evaluate(() => {
     const selector = [
@@ -64,12 +53,11 @@ async function keyboardAudit(page) {
 
   for (let index = 0; index < maxTabs; index += 1) {
     await page.keyboard.press('Tab');
-    const state = await page.evaluate(elementLabel);
-    if (!state?.id) continue;
-
-    const indicator = await page.evaluate(() => {
+    const state = await page.evaluate(() => {
       const element = document.activeElement;
-      if (!(element instanceof HTMLElement)) return { focusVisible: false, visibleIndicator: false };
+      if (!(element instanceof HTMLElement)) return null;
+
+      const text = (element.getAttribute('aria-label') || element.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
       const style = getComputedStyle(element);
       const outlineWidth = Number.parseFloat(style.outlineWidth || '0');
       const borderWidths = [style.borderTopWidth, style.borderRightWidth, style.borderBottomWidth, style.borderLeftWidth]
@@ -78,16 +66,22 @@ async function keyboardAudit(page) {
         (style.outlineStyle !== 'none' && outlineWidth > 0) ||
         style.boxShadow !== 'none' ||
         borderWidths.some((width) => width > 0);
+
       return {
+        id: element.dataset.cobogoA11yId || null,
+        tag: element.tagName.toLowerCase(),
+        text,
+        href: element instanceof HTMLAnchorElement ? element.getAttribute('href') : null,
         focusVisible: element.matches(':focus-visible'),
         visibleIndicator,
         outline: `${style.outlineWidth} ${style.outlineStyle} ${style.outlineColor}`,
         boxShadow: style.boxShadow,
       };
     });
+    if (!state?.id) continue;
 
-    seen.push({ ...state, ...indicator });
-    if (!indicator.focusVisible || !indicator.visibleIndicator) {
+    seen.push(state);
+    if (!state.focusVisible || !state.visibleIndicator) {
       focusFailures.push(`${state.id} (${state.tag} ${state.text || state.href || ''}) recebeu foco por teclado sem indicador visual detectável`);
     }
   }
