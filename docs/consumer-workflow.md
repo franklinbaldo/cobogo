@@ -1,34 +1,40 @@
 # Fluxo de evolução entre consumidores e Cobogó
 
-Cobogó evolui a partir de necessidades reais dos projetos que o usam. O objetivo não é impedir customização local; é evitar que cada consumidor resolva de novo o mesmo problema visual.
+Cobogó evolui a partir de necessidades reais dos projetos que o usam. O objetivo é acelerar a produção e evitar que aprendizados visuais úteis fiquem presos a um único consumidor.
 
-## Regra padrão
+## Produção primeiro
 
-Antes de criar uma abstração visual nova dentro de um consumidor, pergunte:
+Cobogó **não é um gate de entrega**.
 
-> Isto é específico do domínio deste projeto ou é uma solução visual que outra interface poderia reutilizar?
+Se o consumidor já consegue usar uma solução existente do Cobogó, use-a. Se precisar criar algo local para entregar o produto, crie localmente sem esperar uma mudança upstream.
 
-Se for reutilizável, implemente primeiro no Cobogó e depois consuma a versão que contém a mudança.
+Quando a solução parecer reutilizável, considere promovê-la ao Cobogó na mesma rodada ou depois. A promoção é um mecanismo de aprendizado e compartilhamento, não uma pré-condição para produzir.
 
-Se for genuinamente específico do domínio, implemente localmente.
+A pergunta útil é:
 
-## Ordem de decisão
+> Isto é específico deste produto ou existe aqui um aprendizado visual que outros consumidores poderiam aproveitar?
 
-1. **Existe uma solução Cobogó adequada?** Use-a. Não crie uma variante local apenas por conveniência.
-2. **Existe uma lacuna visual?** Descreva o problema de apresentação antes de escolher um componente.
-3. **A solução é generalizável?** Abra uma PR no Cobogó com a menor abstração que resolve a classe do problema.
-4. **A solução é local?** Mantenha-a no consumidor. Local não é erro; duplicação evitável é.
-5. **A nova solução sobrepõe algo existente?** Prefira consolidar, substituir ou depreciar. Não acrescente uma segunda forma de fazer quase a mesma coisa sem justificativa forte.
+Se houver aprendizado reutilizável, uma PR no Cobogó é bem-vinda. Se não houver, a solução continua local sem problema.
+
+## Heurística rápida
+
+- **Cobogó já resolve?** Reuse se isso for o caminho mais simples.
+- **Precisa entregar algo novo?** Implemente onde destrava o trabalho mais rápido.
+- **Ficou reutilizável?** Considere extrair para o Cobogó.
+- **É domínio puro?** Mantenha no consumidor.
+- **Descobriu uma abstração melhor?** Quando conveniente, consolide ou deprecie a anterior em vez de acumular variantes.
+
+Nenhuma dessas perguntas deve bloquear uma entrega que já pode avançar.
 
 ## O que pertence ao Cobogó
 
-Pertence ao Cobogó conhecimento sobre como apresentar informação e interação de forma coerente, acessível e reconhecível dentro da gramática visual do sistema.
+Pertence ao Cobogó conhecimento reutilizável sobre como apresentar informação e interação de forma coerente, acessível e reconhecível dentro da gramática visual do sistema.
 
 Exemplos:
 
 - relações de hierarquia, ritmo, densidade e composição;
-- padrões para estados, metadados, provenance, leitura longa, tabelas e formulários;
-- componentes ou primitives necessários para realizar esses padrões;
+- patterns para estados, metadados, provenance, leitura longa, tabelas e formulários;
+- componentes necessários quando existe comportamento real a encapsular;
 - defaults e decisões técnicas que tornam a implementação visual mais previsível para agentes;
 - aprendizados reutilizáveis obtidos em consumidores reais.
 
@@ -38,19 +44,13 @@ O domínio continua local.
 
 Um projeto pode saber o que é CNPJ, sentença, matéria jornalística, processo, lead ou atleta. Cobogó não precisa conhecer esses conceitos para ensinar como apresentar identidade, atributos, relações, estados e alertas.
 
-Uma abstração também pode permanecer local quando sua forma é inseparável de um fluxo ou conceito específico daquele produto e não existe uma classe útil de problemas análogos.
+Uma abstração também pode permanecer local quando sua forma é inseparável de um fluxo ou conceito específico daquele produto.
 
 ## Promoção upstream
 
-Uma PR originada em consumidor deve, sempre que aplicável:
+Quando uma solução local valer a pena compartilhar, a PR pode ser tão pequena quanto necessário. É útil explicar o problema visual, preservar a independência do domínio e reaproveitar a gramática existente, mas isso não deve virar ritual obrigatório.
 
-- nomear o problema visual que motivou a mudança;
-- mostrar por que a abstração não depende do domínio de origem;
-- reutilizar canon, foundations e patterns existentes antes de criar vocabulário novo;
-- incluir teste ou specimen do comportamento que passa a ser contrato;
-- remover ou depreciar abstrações sobrepostas quando a nova solução as torna redundantes.
-
-Não é necessário provar que três consumidores já precisam da mesma coisa. Basta haver uma abstração plausivelmente reutilizável e melhor do que manter cópias locais. A evidência futura pode fortalecer, modificar ou remover a recomendação.
+Não é necessário provar adoção em vários consumidores, escrever uma RFC para cada extração ou aguardar a abstração perfeita. O Cobogó pode incorporar uma solução útil e refiná-la, modificá-la ou removê-la conforme aprende.
 
 ## Stack recomendada
 
@@ -66,15 +66,10 @@ Compatibilidade não tem direito de veto sobre simplificação.
 
 Quando uma abstração histórica é ruim, redundante ou contradiz a gramática atual, Cobogó pode removê-la em nova versão. Consumidores que não puderem migrar imediatamente podem permanecer fixados numa versão anterior.
 
-O custo de migração deve ser documentado, mas não usado para preservar indefinidamente decisões ruins.
+O custo de migração deve ser explicado com clareza, sem transformar a migração em pré-condição para continuar produzindo no consumidor.
 
-## Regra de crescimento
+## Crescimento por aprendizado
 
 Cobogó não cresce apenas por adição. Ele também consolida e esquece.
 
-Toda adição deve responder a duas perguntas:
-
-1. qual classe de problema visual ela resolve?
-2. qual abstração existente ela reutiliza, substitui ou torna desnecessária?
-
-Se a segunda resposta for "nenhuma" repetidamente, a superfície está provavelmente crescendo sem abstração suficiente.
+Quando houver tempo para generalizar uma solução, prefira capturar a classe de problema visual em vez de copiar exatamente o componente local. Quando não houver, entregue primeiro e deixe o aprendizado aparecer no ciclo seguinte.
