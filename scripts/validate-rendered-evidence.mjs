@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 const SHA_RE = /^[0-9a-f]{40}$/i;
+const RFC3339_DATE_TIME_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
 const PHASES = new Set(['pull_request', 'main', 'published']);
 
 function isPublicHttpUrl(value) {
@@ -15,7 +16,9 @@ function isPublicHttpUrl(value) {
 }
 
 function isValidObservedAt(value) {
-  return typeof value === 'string' && value.trim() !== '' && Number.isFinite(Date.parse(value));
+  return typeof value === 'string'
+    && RFC3339_DATE_TIME_RE.test(value)
+    && Number.isFinite(Date.parse(value));
 }
 
 export function validateRenderedEvidence(manifest) {
@@ -51,7 +54,7 @@ export function validateRenderedEvidence(manifest) {
       errors.push('published evidence must declare an absolute public_url using http or https');
     }
     if (!isValidObservedAt(manifest.observed_at)) {
-      errors.push('published evidence must declare a valid observed_at timestamp');
+      errors.push('published evidence must declare a valid RFC 3339 observed_at timestamp');
     }
   }
 
