@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/causaganha
 site: https://franklinbaldo.github.io/causaganha/
 status: active
-last_reviewed: 2026-09-02
+last_reviewed: 2026-09-04
 gap_score: 0
 ---
 
@@ -11,52 +11,51 @@ gap_score: 0
 
 ## Identidade local
 
-Preservar a identidade verde/dourada, a finalidade de leitura de dados judiciais, a entrega Astro static-first, a tipografia/densidade próprias e a separação entre superfícies editoriais/explicativas e páginas funcionais de dados. Cobogó pode fornecer fundações sem transformar o produto em skin compartilhada ou dashboard genérico. O core compartilhado continua pinado por bytes, enquanto valores visuais e apresentação de domínio permanecem autoridade local.
+Preservar a identidade verde/dourada, a entrega Astro static-first, a tipografia e densidade próprias e a separação entre páginas explicativas e funcionais. Cobogó fornece uma barra de qualidade sem transformar o produto em aparência compartilhada.
 
 ## D1 — no site
 
-O leitor pode consultar um processo por número CNJ, pesquisar publicações por texto/OAB/parte, explorar cobertura, usar a superfície com agente e acessar projeto/dados. A navegação global organiza essas ações por jobs reais. A home multi-fonte entrou por `franklinbaldo/causaganha#901`, merge `1e608dcbd7f8c5a3d4c25bd323d42df5bab66262`, e apresenta DJEN, DataJud, TJRO JURIS e STJ sob os papéis Arquivo / Estado / Teor, mantendo métricas DJEN como evidência da camada de preservação e não como definição do produto inteiro.
+O leitor encontra os destinos principais de forma inequívoca. A #1097 manteve os seis destinos na navegação principal e retirou a segunda navegação que repetia parte deles nas páginas funcionais.
 
-**Gap [fato] — `/`:** nenhum gap material contabilizado. A recaptura do landing #999 mantém todos os destinos de primeiro nível perceptíveis em `390×844`.
+Nenhum problema material de Clareza está demonstrado nas rotas observadas.
 
 ## D2 — por trás
 
-O `ProjectProfile` define CausaGanha como camada cívica verificável sobre rastros judiciais públicos, separando arquivo, estado, teor, significado, proveniência, freshness e limites de cobertura. A PR `franklinbaldo/causaganha#902`, mergeada em `d8c5102e6de42f8391cdedbf3fa83306b41c8142`, transforma `/sobre` em explicação progressiva: tese do produto primeiro, Arquivo / Estado / Teor como modelo mental, uma fronteira explícita de “o que sustenta / limite” para cada fonte, fluxo fonte → artefato → índice → superfície, acesso reproduzível aos dados e interfaces site/dados/MCP.
+`/sobre` continua explicando Arquivo / Estado / Teor, proveniência, atualização, limites por fonte e o caminho fonte → arquivo público → índice → interface.
 
-**Gap [fato] — `/sobre`:** nenhum gap material contabilizado. A superfície continua distinguindo prova, limite e ausência sem prometer cobertura que o repo não sustenta.
+Nenhum problema material de Explicabilidade está demonstrado.
 
 ## D3 — por conta própria
 
-O repo e a superfície explicativa provam artefatos públicos reutilizáveis: ZIPs preservados no Internet Archive, `sync-manifest.parquet`, `catalog.sql` e Parquets por fonte conforme disponibilidade. Existe receita reproduzível para materializar o catálogo em DuckDB e consultar as views localmente. O README também registra `indice_processual.parquet` como índice fino entre CNJs e fontes de origem. O repositório prova ainda um MCP read-only local, com entrypoint canônico e tools de produto/diagnóstico; `/agentes` documenta a configuração stdio e deixa explícito que transporte HTTP público ainda não está disponível.
+A interface e o repositório continuam oferecendo arquivos públicos e caminhos reproduzíveis de consulta fora do site, além do MCP local documentado em `/agentes`.
 
-**Gap [fato] — `/agentes`:** nenhum gap material contabilizado. O landing da correção de navegação #999 é `e82f5c00e8093dce1e580d33f4819bf89ac4e9ff`; `Deploy Web` run `33622993677` e `Product Surface Visual Capture` run `33622993648` passaram, com artifact pós-merge `9843687466`.
+Nenhum problema material de Autonomia está demonstrado.
 
 ## Capacidades de superfície
 
-- **GitHub Pages / deploy** — `last_verified: 2026-09-02`. Landing #999 `e82f5c00...`, `Deploy Web` run `33622993677`, build e deploy `success`.
-- **Captura visual determinística** — `last_verified: 2026-09-02`. `Product Surface Visual Capture` cobre múltiplas rotas em desktop/mobile; no head #999 run `33622720495`, artifact `9843589937`.
-- **Recaptura pós-merge** — `last_verified: 2026-09-02`. Push de `main` no landing #999 disparou run `33622993648`, `success`, artifact `9843687466` ligado ao SHA do landing.
-- **Smoke/build de frontend** — `last_verified: 2026-09-02`. CI da #999 run `33622720447` concluiu `success`; o deploy do landing também recompilou o site com sucesso.
-- **Preservação / artefatos públicos** — `last_verified: 2026-09-02`. Internet Archive + contratos textuais/Parquet continuam evidência de reuso; publicação de artefato, surface build e deploy seguem classes separadas de evidência.
+- **GitHub Pages / publicação** — `last_verified: 2026-09-04`. A #1103 entrou como `943229226f045821fc44316986a8d2c397e1c74f`; `Deploy Web` `33905126802` construiu, publicou e voltou a abrir a página entregue ao leitor.
+- **Observação visual determinística** — `last_verified: 2026-09-04`. O workflow compara múltiplas rotas em 1280×900 e 390×844. A branch da #1103 produziu `9949033960`; a página publicada produziu `9949238460`.
+- **Acessibilidade reproduzível** — `last_verified: 2026-09-04`. A #1094 adicionou axe, navegação real por `Tab` e verificação de foco perceptível em seis rotas e duas larguras. No commit publicado `943229226f...`, as doze combinações ficaram sem violações sérias ou críticas, controles ausentes ou falhas de foco.
+- **Observação depois da publicação** — `last_verified: 2026-09-04`. `published.json` de `9949238460` identifica `943229226f...` como revisão publicada e registra URL, horário, rotas e larguras.
 
-## O que este consumer faz melhor que o Cobogó
+## O que este projeto faz melhor que o Cobogó
 
-- [Brownfield core adoption workflow](../foundations/brownfield-core-adoption.md) — evidência externa forte de adoção pinada por bytes com identidade preservada.
-- [Fronteiras de prova por fonte](../concepts/source-proof-boundaries.md) — `/sobre` torna explícito o que cada fonte sustenta e o que não sustenta, subordinado ao modelo Arquivo / Estado / Teor.
-- O handoff de artefato público via `catalog.sql` + dados preservados continua uma referência de reuso reproduzível sem tornar DuckDB exigência universal do Cobogó.
+- A adoção do core continua pinada por bytes sem apagar a identidade local.
+- `/sobre` torna explícito o que cada fonte sustenta e o que não sustenta.
+- A mesma rotina de navegador combina comparação visual, acessibilidade e verificação direta da página publicada, mantendo cada prova ligada ao commit observado.
 
 ## Padrões do Cobogó em uso
 
-- [Brownfield core adoption workflow](../foundations/brownfield-core-adoption.md) — snapshot imutável do core + mapping/tema local + CI que impede fork silencioso.
-- Provenance/freshness — timestamps, cobertura e estados de fonte permanecem explícitos nas superfícies de dados.
-- `visual-evidence-as-quality-gate` — comparação antes/depois e recaptura do landing ligadas a SHA.
-- `primary-navigation-perceptible-on-narrow-viewports` — validada pela #999; o consumer usa wrap local em vez de impor um componente Cobogó.
-- Parentesco sem uniformidade — fundações compartilhadas sem substituição da identidade verde/dourada e da gramática de dados local.
+- `visual-evidence-as-quality-gate` — comparação antes/depois e nova observação depois da publicação ligadas a commit.
+- `semantic-accessibility-default` — axe, teclado e foco fazem parte da observação da interface real e da página pública.
+- `primary-navigation-perceptible-on-narrow-viewports` — validada pela #999.
+- `secondary-navigation-readable-on-narrow-viewports` — validada pela #1103; o rodapé preserva os mesmos cinco destinos e passa a quebrar em grupos legíveis no celular.
+- Parentesco sem uniformidade — fundações compartilhadas sem substituição da identidade verde/dourada.
 
 ## Histórico
 
-- 2026-09-02 — baseline opinionado 23/24; #999 fecha discoverability da navegação mobile e valida `primary-navigation-perceptible-on-narrow-viewports` com captura pós-merge.
-- 2026-09-01 — #979 fecha D3: `/agentes` mergeada, deploy e recaptura pós-merge verdes; `gap_score` volta a 0.
-- 2026-09-01 — D3 MCP local identificado; captura dedicada corrigida para provar a clean URL antes do merge.
-- 2026-08-30 — retry do `Deploy Web` no próprio `d8c5102e` passa build + Pages; #941 encerrada e `gap_score` vai a 0.
-- 2026-08-30 — #902 merge `d8c5102e`: `/sobre` passa a explicar Arquivo / Estado / Teor e limites por fonte; recaptura pós-merge verde.
+- 2026-09-04 — avaliação sobe para 24/24 depois de #1097 eliminar a segunda navegação principal e #1103 restaurar separação legível dos links do rodapé em 390×844; o commit final `943229226f...` foi publicado e observado novamente nas seis rotas em desktop e celular.
+- 2026-09-04 — #1094 torna acessibilidade parte da prova renderizada e da página publicada; o workspace já acompanha essa capacidade pela issue #43.
+- 2026-09-02 — primeira avaliação completa 23/24; #999 fecha a descoberta da navegação móvel e valida `primary-navigation-perceptible-on-narrow-viewports`.
+- 2026-09-01 — `/agentes` fecha a autonomia pública documentada e `gap_score` volta a 0.
+- 2026-08-30 — `/sobre` passa a explicar Arquivo / Estado / Teor e limites por fonte.

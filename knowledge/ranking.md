@@ -12,8 +12,8 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 |---|---:|---|---:|---:|---:|---:|---:|---:|---|---|
 | franklinbaldo/cobogo | 24 | referência | 4 | 4 | 4 | 4 | 4 | 4 | 2026-09-03 | up |
 | franklinbaldo/astronauta | 24 | referência | 4 | 4 | 4 | 4 | 4 | 4 | 2026-09-04 | up |
+| franklinbaldo/causaganha | 24 | referência | 4 | 4 | 4 | 4 | 4 | 4 | 2026-09-04 | up |
 | franklinbaldo/ovigia-redacao | 23 | referência | 4 | 4 | 3 | 4 | 4 | 4 | 2026-09-02 | flat |
-| franklinbaldo/causaganha | 23 | referência | 4 | 4 | 4 | 3 | 4 | 4 | 2026-09-02 | flat |
 | franklinbaldo/quem-sao-eles | 23 | referência | 4 | 4 | 4 | 4 | 3 | 4 | 2026-09-04 | flat |
 | franklinbaldo/ficha | 23 | referência | 4 | 4 | 4 | 3 | 4 | 4 | 2026-09-04 | up |
 | franklinbaldo/franklinbaldo.github.io | 23 | referência | 4 | 4 | 4 | 4 | 4 | 3 | 2026-09-03 | baseline |
@@ -37,11 +37,13 @@ O próprio Cobogó permanece em **24/24** depois da #454 transformar acessibilid
 
 O Astronauta permanece em **24/24** depois da #45 transformar a antiga falta de comprovação de Confiança em teste reproduzível no runtime real de `main`.
 
+O CausaGanha sobe para **24/24**. UX passa de 3 para 4 porque o mecanismo específico da avaliação anterior — duas navegações principais disputando o mesmo papel — foi removido pela #1097 e publicado. A observação seguinte encontrou uma dívida menor no rodapé estreito; a #1103 a corrigiu e o commit `943229226f045821fc44316986a8d2c397e1c74f` foi publicado e observado novamente em seis rotas, desktop e celular. UI e Confiança permanecem 4.
+
 A Ficha permanece em **23/24** depois da #241. Confiança é 4 porque axe, teclado e foco também foram comprovados depois da publicação; UX permanece 3 porque a observação ainda não percorre uma jornada completa de consulta, resultado e exploração de vínculos.
 
 O Sisprev permanece em **22/24** depois da #160 aplicar o mesmo princípio de acessibilidade a uma interface administrativa e documental. Confiança é 4 porque a prova foi repetida em `main` e novamente contra a URL pública depois da publicação; UX e UI permanecem em 3 porque os fluxos densos além de home/relatório ainda não tiveram observação equivalente.
 
-O Leizilla sobe para **22/24** depois da #165. Confiança passa a 4 porque o workflow Chromium agora comprova axe, teclado e foco nos estados normal e de indisponibilidade em desktop e celular; a auditoria foi repetida no commit `5adf33c94d9b6237b7764ad682a194b025e2eed2` que entrou em `main`, e esse mesmo commit foi publicado e observado novamente pelo Pages. UX e UI permanecem em 3 porque a jornada completa e a variedade de páginas ainda não têm observação equivalente.
+O Leizilla permanece em **22/24** depois da #165. Confiança é 4 porque o workflow Chromium comprova axe, teclado e foco nos estados normal e de indisponibilidade em desktop e celular; UX e UI permanecem em 3 porque a jornada completa e a variedade de páginas ainda não têm observação equivalente.
 
 O Intuit permanece em **20/24**, com Confiança 4 e D2, D3, UX e UI em 3.
 
