@@ -20,17 +20,32 @@ function validPullRequest() {
   };
 }
 
+function validPublished() {
+  const manifest = validPullRequest();
+  manifest.phase = 'published';
+  manifest.revision = LANDING;
+  delete manifest.head_revision;
+  manifest.published_revision = LANDING;
+  manifest.public_url = 'https://example.org/example';
+  manifest.observed_at = '2026-09-04T10:58:00Z';
+  return manifest;
+}
+
 test('accepts responsive PR evidence bound to the real head', () => {
   assert.deepEqual(validateRenderedEvidence(validPullRequest()), []);
 });
 
-test('accepts landing evidence bound to published revision', () => {
+test('accepts main evidence bound to published revision', () => {
   const manifest = validPullRequest();
   manifest.phase = 'main';
   manifest.revision = LANDING;
   delete manifest.head_revision;
   manifest.published_revision = LANDING;
   assert.deepEqual(validateRenderedEvidence(manifest), []);
+});
+
+test('accepts published evidence with public URL, timestamp and matching revision', () => {
+  assert.deepEqual(validateRenderedEvidence(validPublished()), []);
 });
 
 test('rejects merge-ref style revision that differs from PR head', () => {
@@ -45,6 +60,28 @@ test('rejects main evidence not bound to published revision', () => {
   delete manifest.head_revision;
   manifest.published_revision = LANDING;
   assert.match(validateRenderedEvidence(manifest).join('\n'), /must equal published_revision/);
+});
+
+test('rejects published evidence with a revision different from the deployed revision', () => {
+  const manifest = validPublished();
+  manifest.revision = HEAD;
+  assert.match(validateRenderedEvidence(manifest).join('\n'), /published revision must equal published_revision/);
+});
+
+test('rejects published evidence without an absolute HTTP(S) public URL', () => {
+  for (const publicUrl of [undefined, '/example', 'file:///tmp/example.html']) {
+    const manifest = validPublished();
+    manifest.public_url = publicUrl;
+    assert.match(validateRenderedEvidence(manifest).join('\n'), /absolute public_url using http or https/);
+  }
+});
+
+test('rejects published evidence without an unambiguous RFC 3339 observation timestamp', () => {
+  for (const observedAt of [undefined, '', 'not-a-date', '2026-09-04']) {
+    const manifest = validPublished();
+    manifest.observed_at = observedAt;
+    assert.match(validateRenderedEvidence(manifest).join('\n'), /valid RFC 3339 observed_at timestamp/);
+  }
 });
 
 test('rejects responsive evidence without narrow and desktop views', () => {
