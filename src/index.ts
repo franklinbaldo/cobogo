@@ -1,5 +1,5 @@
-// Brazilian Modernism — Core UI Library
-// Exporting components for use in Baliza, Verne, CausaGanha, etc.
+// Cobogó — curated component entrypoint
+// Components are exported deliberately; internal files are not the public API.
 
 export { default as Button } from './components/Button.svelte';
 export { default as Card } from './components/Card.svelte';
@@ -7,9 +7,10 @@ export { default as Badge } from './components/Badge.svelte';
 export { default as ProfileCard } from './components/ProfileCard.svelte';
 export { default as DataTable } from './components/DataTable.svelte';
 export { default as SearchBar } from './components/SearchBar.svelte';
+export { default as Disclosure } from './components/Disclosure.svelte';
 
-// Exporting CSS tokens as a reference if needed
-// (The actual CSS should be imported via @import or a bundler)
+// Legacy palette reference. Semantic styling belongs to the CSS core and will be
+// handled separately from component-surface consolidation.
 export const tokens = {
   colors: {
     papel: "#F5F1E8",
