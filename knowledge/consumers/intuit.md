@@ -35,25 +35,27 @@ Gap `[fato]`: nenhum material; a ausência de release não esconde capacidade ex
 
 ## Capacidades de superfície
 
-- GitHub Pages — `last_verified: 2026-09-04`; #30 foi incorporada como `495e54b9841ba2e18fcd5f980e995a6072e92963` e a etapa `Deploy to GitHub Pages` do run `33835991124` concluiu com sucesso.
-- Gate de superfície — `last_verified: 2026-09-04`; no commit atual da branch #30, `03808f44fd0247ed41d7218fd805ba0380e56380`, GitGuardian, Test e Visual capture terminaram verdes antes do merge.
+- GitHub Pages — `last_verified: 2026-09-04`; #30 foi incorporada como `495e54b9841ba2e18fcd5f980e995a6072e92963` e o run `33835991124` publicou esse mesmo commit.
+- Gate de superfície — `last_verified: 2026-09-04`; no commit final da branch #30, `03808f44fd0247ed41d7218fd805ba0380e56380`, GitGuardian, Test e Visual capture terminaram verdes antes do merge.
 - Smoke/browser tests — `last_verified: 2026-09-04`; Playwright cobre editor → preview, URL/Base64/theme, semântica acessível, foco, reduced-motion e agora exige também a explicação de confiança associada a `Allow Scripts` e o sandbox antes/depois da ativação.
-- Captura visual versionada — `last_verified: 2026-09-04`; a capacidade de branch/main continua cobrindo `1440×900` + `390×844` com commit identificado. A #30 acrescentou ao workflow de Pages uma etapa posterior ao deploy para abrir a URL publicada e produzir o mesmo par de imagens com `phase=published`; no fechamento desta rodada, o run `33835991124` ainda estava instalando as dependências de navegador depois de já ter publicado o site, portanto a nova capacidade ainda não está comprovada ponta a ponta.
+- Captura visual versionada — `last_verified: 2026-09-04`; além da captura de branch/main em `1440×900` + `390×844`, o workflow Pages agora abre a própria URL publicada depois do deploy. O arquivo `9923434999`, `intuit-published-495e54b9841ba2e18fcd5f980e995a6072e92963`, registra `phase=published`, commit, rota pública, as duas larguras e horário. As duas imagens foram inspecionadas e preservam composição/legibilidade local.
 - Preservação — `last_verified: 2026-09-02`; estado transportável por URL/Gist; sem Save Page Now registrada.
 
 ## O que este consumer faz melhor que o Cobogó
 
-Intuit demonstra uma forma barata de ligar revisão visual a um commit: o mesmo workflow browser produz desktop e narrow sem alterar a identidade do produto. A #30 também pressiona uma nova opinião do Cobogó: controles que reduzem proteção devem explicar a consequência antes da decisão, mas essa opinião permanece apenas como recomendação que o Cobogó quer testar até a verificação publicada terminar.
+Intuit demonstra uma forma barata de ligar revisão visual a um commit e agora também à página realmente publicada: o mesmo teste de screenshot pode apontar para o servidor local durante PR/main e para a URL Pages depois do deploy, sem criar uma segunda gramática visual.
+
+A #30 também validou uma opinião nova do Cobogó: controles que reduzem proteção devem explicar a consequência antes da decisão. O aprendizado veio do mecanismo real do Intuit e foi aplicado sem importar aparência ou componente de outro projeto.
 
 ## Padrões do Cobogó em uso
 
-- `visual-evidence-as-quality-gate` — aplicado pela capacidade de captura ligada ao commit; #28 adicionou viewport estreito.
-- `risk-changing-controls-explain-consequence` — `opinionated`: o Cobogó considera a recomendação correta e está testando sua primeira aplicação no Intuit; ainda não há prova final suficiente para dizer que já funcionou em um projeto real.
+- `visual-evidence-as-quality-gate` — aplicado pela capacidade de captura ligada ao commit; #28 adicionou viewport estreito e #30 estendeu a prova à URL publicada.
+- `risk-changing-controls-explain-consequence` — `validated`: em português comum, já funcionou em pelo menos um projeto real, o Intuit, com teste, merge, publicação e captura posterior à publicação.
 - Nenhum componente compartilhado adotado como dependência; o consumer continua preservando sua solução local.
 
 ## Histórico
 
-- 2026-09-04 — #30 tornou explícita a consequência de `Allow Scripts`, adicionou teste de associação/ comportamento e incorporou a captura da URL publicada ao workflow Pages. Merge `495e54b9`; deploy concluído, captura posterior à publicação ainda em andamento no run `33835991124`.
+- 2026-09-04 — #30 tornou explícita a consequência de `Allow Scripts`, adicionou teste de associação/comportamento e incorporou a captura da URL publicada ao workflow Pages. Merge `495e54b9`; run `33835991124`; arquivo publicado `9923434999` inspecionado em desktop e 390 px.
 - 2026-09-02 — #28 adicionou captura narrow no mesmo arquivo de evidência; primeira avaliação completa: 20/24, faixa boa; `gap_score: 0` preservado.
 - 2026-09-01 — revalidação sem mudança de superfície; Pages/Test/Visual capture verdes.
 - 2026-08-31 — #27 fechou foco explícito por teclado + reduced-motion, com gates e verificação posterior reproduzível.
