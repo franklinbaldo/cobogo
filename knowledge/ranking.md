@@ -20,8 +20,8 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 | franklinbaldo/aleph-the-game | 22 | referência | 4 | 4 | 4 | 3 | 4 | 3 | 2026-09-03 | up |
 | franklinbaldo/sisprev | 22 | referência | 4 | 4 | 4 | 3 | 3 | 4 | 2026-09-03 | up |
 | franklinbaldo/baliza | 21 | boa | 4 | 4 | 4 | 3 | 2 | 4 | 2026-09-02 | flat |
+| franklinbaldo/leizilla | 21 | boa | 4 | 4 | 4 | 3 | 3 | 3 | 2026-09-04 | up |
 | franklinbaldo/intuit | 20 | boa | 4 | 3 | 3 | 3 | 3 | 4 | 2026-09-04 | flat |
-| franklinbaldo/leizilla | 20 | boa | 4 | 4 | 4 | 3 | 2 | 3 | 2026-09-03 | up |
 
 ## Ordenação
 
@@ -41,6 +41,8 @@ A Ficha permanece em **22/24** depois da #238. Seu build de `main` agora passa a
 
 O Astronauta sobe para **23/24** depois da #44. A execução de `main` `33828611787`, arquivo `9920852733`, mede a largura real do navegador: `/types/Note` e `/concepts/edit/note-01` têm `documentScrollWidth=390` numa janela de 390 px, com navegação e editor contidos e densidade desktop preservada. UX e UI passam a 4; Confiança permanece em 3 porque teclado, foco e semântica acessível ainda não receberam prova sistemática equivalente.
 
+O Leizilla sobe para **21/24** depois da #164. O merge `b5800cf6fbbfceb5dcf9bc895fc70d1d58284e49` preserva o layout compacto em desktop e empilha os filtros secundários abaixo de 430 px. O Pages `33839739009` publicou o mesmo commit e depois abriu novamente a URL pública com Chromium; o pacote `9924664387` registra documento de 390 px numa janela de 390 px e os três filtros com 326 px cada, inteiros e distinguíveis. UI passa de 2 para 3; UX e Confiança permanecem em 3 porque a mudança não amplia a observação do fluxo completo nem prova teclado, foco e semântica acessível.
+
 O Intuit permanece em **20/24** depois da #30, mas reforça a justificativa de Confiança 4. `Allow Scripts` agora explica, antes da decisão, que o modo deve ser usado apenas com HTML confiável e que reduz o isolamento do preview; Playwright verifica a associação semântica e o sandbox antes/depois. O Pages `33835991124` publicou o merge `495e54b9841ba2e18fcd5f980e995a6072e92963` e depois capturou a URL pública em `1440×900` e `390×844` no arquivo `9923434999`. D2, D3, UX e UI continuam em 3 porque esta mudança específica não produz evidência suficiente para elevá-las a referência.
 
-O Leizilla permanece em 20/24 depois da #163 separar falha de acesso de ausência do acervo. O Aleph permanece em 22/24. Quem São Eles? e o blog permanecem em 23/24. O Baliza permanece em 21/24 enquanto a verificação publicada depende do fato novo registrado na #694.
+O Aleph permanece em 22/24. Quem São Eles? e o blog permanecem em 23/24. O Baliza permanece em 21/24 enquanto a verificação publicada depende do fato novo registrado na #694.
