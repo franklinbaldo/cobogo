@@ -76,11 +76,11 @@ test('rejects published evidence without an absolute HTTP(S) public URL', () => 
   }
 });
 
-test('rejects published evidence without a valid observation timestamp', () => {
-  for (const observedAt of [undefined, '', 'not-a-date']) {
+test('rejects published evidence without an unambiguous RFC 3339 observation timestamp', () => {
+  for (const observedAt of [undefined, '', 'not-a-date', '2026-09-04']) {
     const manifest = validPublished();
     manifest.observed_at = observedAt;
-    assert.match(validateRenderedEvidence(manifest).join('\n'), /valid observed_at timestamp/);
+    assert.match(validateRenderedEvidence(manifest).join('\n'), /valid RFC 3339 observed_at timestamp/);
   }
 });
 
