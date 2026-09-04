@@ -2,7 +2,21 @@ import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 const SHA_RE = /^[0-9a-f]{40}$/i;
-const PHASES = new Set(['pull_request', 'main']);
+const PHASES = new Set(['pull_request', 'main', 'published']);
+
+function isPublicHttpUrl(value) {
+  if (typeof value !== 'string' || value.trim() === '') return false;
+  try {
+    const url = new URL(value);
+    return (url.protocol === 'http:' || url.protocol === 'https:') && Boolean(url.hostname);
+  } catch {
+    return false;
+  }
+}
+
+function isValidObservedAt(value) {
+  return typeof value === 'string' && value.trim() !== '' && Number.isFinite(Date.parse(value));
+}
 
 export function validateRenderedEvidence(manifest) {
   const errors = [];
@@ -13,7 +27,7 @@ export function validateRenderedEvidence(manifest) {
 
   if (manifest.version !== 1) errors.push('version must be 1');
   if (!SHA_RE.test(manifest.revision ?? '')) errors.push('revision must be a full 40-character Git SHA');
-  if (!PHASES.has(manifest.phase)) errors.push('phase must be pull_request or main');
+  if (!PHASES.has(manifest.phase)) errors.push('phase must be pull_request, main, or published');
   if (typeof manifest.route !== 'string' || manifest.route.trim() === '') errors.push('route must be a non-empty string');
   if (typeof manifest.responsive !== 'boolean') errors.push('responsive must be boolean');
 
@@ -24,10 +38,20 @@ export function validateRenderedEvidence(manifest) {
     }
   }
 
-  if (manifest.phase === 'main') {
-    if (!SHA_RE.test(manifest.published_revision ?? '')) errors.push('main evidence must declare published_revision');
-    else if (manifest.published_revision.toLowerCase() !== String(manifest.revision).toLowerCase()) {
-      errors.push('main revision must equal published_revision');
+  if (manifest.phase === 'main' || manifest.phase === 'published') {
+    if (!SHA_RE.test(manifest.published_revision ?? '')) {
+      errors.push(`${manifest.phase} evidence must declare published_revision`);
+    } else if (manifest.published_revision.toLowerCase() !== String(manifest.revision).toLowerCase()) {
+      errors.push(`${manifest.phase} revision must equal published_revision`);
+    }
+  }
+
+  if (manifest.phase === 'published') {
+    if (!isPublicHttpUrl(manifest.public_url)) {
+      errors.push('published evidence must declare an absolute public_url using http or https');
+    }
+    if (!isValidObservedAt(manifest.observed_at)) {
+      errors.push('published evidence must declare a valid observed_at timestamp');
     }
   }
 
