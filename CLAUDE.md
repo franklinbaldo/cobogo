@@ -87,23 +87,21 @@ Use the installed skills as follows:
 Do **not** hand-edit installed skill copies or `skills-lock.json` to simulate an update. Re-run
 `npx skills add ...` and commit the real CLI output.
 
-## Consumer-first upstream rule
+## Production-first upstream habit
 
-When working in a project that uses Cobogó, do not create a new visual abstraction locally before
-checking whether the need belongs upstream.
+Cobogó must help consumers ship; it must not become a design-system approval gate.
 
-Use this order:
+When working in a consumer:
 
-1. if Cobogó already solves the presentation problem, use the existing solution;
-2. if Cobogó does not solve it, describe the **visual problem** before choosing a component;
-3. if the solution is reusable outside the source project's domain, implement it in Cobogó first
-   through a PR, then update the consumer to use the new version;
-4. if the solution is genuinely inseparable from the consumer's domain or workflow, local UI is
-   allowed;
-5. when a new abstraction overlaps an existing one, prefer consolidation, deprecation or removal
-   over adding another near-duplicate.
+- use an existing Cobogó solution when it is already the easiest fit;
+- when something new is needed to ship, implement it locally without waiting for an upstream change;
+- if the result looks reusable, consider promoting the learning to Cobogó in the same round or later;
+- keep domain-specific behavior in the consumer;
+- when convenient, consolidate overlapping abstractions instead of accumulating near-duplicates.
 
-The complete decision contract lives in [`docs/consumer-workflow.md`](docs/consumer-workflow.md).
+Promotion upstream is encouraged because it makes Cobogó learn from real projects, but it is never
+a prerequisite for production. The complete guidance lives in
+[`docs/consumer-workflow.md`](docs/consumer-workflow.md).
 
 Cobogó is allowed to be opinionated about implementation. **Astro is currently the recommended
 stack for new web consumers** because it is the stack in active use and therefore where current
@@ -114,9 +112,11 @@ Versioning is the compatibility boundary. Breaking changes may simplify the curr
 consumers that cannot migrate immediately may pin an older Cobogó version rather than forcing the
 current version to preserve weak abstractions indefinitely.
 
-## Mandatory visual design loop
+## Recommended visual design loop
 
-For any **material visual decision**, do not stop at static code review.
+For a **material visual decision**, the loop below is the preferred way to learn when time and tools
+permit. It must not block a delivery that can already move forward; use the smallest useful subset
+for the work at hand and come back for deeper visual learning later when necessary.
 
 Choose the smallest useful review scale:
 
@@ -127,7 +127,7 @@ Choose the smallest useful review scale:
 - component;
 - one meaningful component/interaction state.
 
-Then run:
+A useful full loop is:
 
 ```text
 product job
@@ -165,10 +165,10 @@ The imagination stage should ask what makes the design structurally differentiat
 add Brazilian colors, azulejo/cobogó motifs, concrete texture, xilogravura, or famous-designer
 references after the fact.
 
-If a new cultural reference is needed, route through `brazilian-web-design` and persist the
-reference/evidence before treating it as design authority.
+If a new cultural reference is needed, route through `brazilian-web-design` when doing so helps the
+work, and persist reusable reference/evidence before treating it as design authority.
 
-### 3. Generate a concept image when image generation is available
+### 3. Generate a concept image when image generation is useful
 
 The concept is a **speculative probe**, not a target screenshot and never factual authority.
 It may invent composition, hierarchy, rhythm, geometry and materiality. It must not be used as
@@ -179,7 +179,7 @@ For component work, generate the component at component scale and include only r
 (default/focus/selected/error/empty/dense/overflow, etc.). Do not redesign an entire page merely
 because component capture is inconvenient.
 
-### 4. Capture reality in pixels
+### 4. Capture reality in pixels when comparison is useful
 
 Prefer a real browser capture:
 
@@ -206,9 +206,9 @@ Useful gap classes include:
 The goal is **not** to make reality match the generated image. Preserve what the real product
 does better and implement only the concept insights that improve the actual product job.
 
-### 6. Recapture and learn
+### 6. Recapture and learn when the extra pass is worth it
 
-After implementation, compare:
+After implementation, a useful comparison is:
 
 ```text
 real-before
@@ -216,7 +216,7 @@ speculative-concept
 real-after
 ```
 
-Persist only reusable learning in the appropriate layer: reference, canon/grammar, specimen,
+Persist reusable learning in the appropriate layer: reference, canon/grammar, specimen,
 pattern evidence, core contract, consumer registry, skill, test/spec, or negative evidence.
 
 ## Public core and local identity
