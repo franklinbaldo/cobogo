@@ -25,6 +25,18 @@ test("root JavaScript API does not publish a fixed color palette", () => {
   assert.match(core, /--cobogo-accent:/);
 });
 
+test("grid layout is a framework-neutral pattern, not component wrappers", () => {
+  const entrypoint = read("src/index.ts");
+  const patterns = read("src/styles/patterns.css");
+
+  assert.doesNotMatch(entrypoint, /default as Grid/);
+  assert.doesNotMatch(entrypoint, /default as Column/);
+  assert.match(patterns, /data-cobogo-pattern="grid"/);
+  assert.match(patterns, /--cobogo-grid-columns/);
+  assert.match(patterns, /--cobogo-grid-span-md/);
+  assert.match(patterns, /--cobogo-grid-span-lg/);
+});
+
 test("core owns generic focus and reduced-motion contracts", () => {
   const core = read("src/styles/core.css");
   assert.match(core, /:where\(:focus-visible\)/);
