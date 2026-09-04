@@ -8,9 +8,11 @@
   "properties": {
     "version": { "const": 1 },
     "revision": { "type": "string", "pattern": "^[0-9a-fA-F]{40}$" },
-    "phase": { "enum": ["pull_request", "main"] },
+    "phase": { "enum": ["pull_request", "main", "published"] },
     "head_revision": { "type": "string", "pattern": "^[0-9a-fA-F]{40}$" },
     "published_revision": { "type": "string", "pattern": "^[0-9a-fA-F]{40}$" },
+    "public_url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+    "observed_at": { "type": "string", "format": "date-time" },
     "route": { "type": "string", "minLength": 1 },
     "responsive": { "type": "boolean" },
     "method": { "type": "string", "minLength": 1 },
@@ -36,5 +38,19 @@
         }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "phase": { "const": "pull_request" } }, "required": ["phase"] },
+      "then": { "required": ["head_revision"] }
+    },
+    {
+      "if": { "properties": { "phase": { "enum": ["main", "published"] } }, "required": ["phase"] },
+      "then": { "required": ["published_revision"] }
+    },
+    {
+      "if": { "properties": { "phase": { "const": "published" } }, "required": ["phase"] },
+      "then": { "required": ["public_url", "observed_at"] }
+    }
+  ]
 }
