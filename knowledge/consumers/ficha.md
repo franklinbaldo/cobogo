@@ -27,9 +27,10 @@ O leitor pode abrir `manifest.json` e reutilizar fora do site os arquivos indica
 
 ## Capacidades de superfície
 
-- GitHub Pages/deploy — verificado em 2026-09-03; a #237 entrou em `main` como `3cefc459f1709b57ab4ca8c1d3e0a2bb4521fb3c` e o deploy `33714054369` concluiu com sucesso nesse commit.
-- Captura visual — verificada depois do merge; a execução `33714054334` produziu desktop `1280×900` e tela estreita `390×844` no arquivo `9877891254`, nomeado `ficha-home-visual-3cefc459f1709b57ab4ca8c1d3e0a2bb4521fb3c`.
-- Smoke/tests — CI de `main` `33714054363` concluiu com sucesso no mesmo commit.
+- GitHub Pages/deploy — verificado em 2026-09-03; a #238 entrou em `main` como `044ab1c205b30d6db96d33fccd27275a13fe0fec` e o deploy `33824226715` concluiu com sucesso nesse commit. O passo posterior à publicação abriu a página pública, confirmou HTTP 200, leu `manifest.json` e verificou os arquivos essenciais do snapshot.
+- Captura visual — verificada depois do merge; a execução `33824226663` produziu desktop `1280×900` e tela estreita `390×844` no arquivo `9919363546`, nomeado `ficha-home-visual-044ab1c205b30d6db96d33fccd27275a13fe0fec`.
+- Acessibilidade semântica em navegador — verificada no build de `main` pelo mesmo arquivo `9919363546`: zero violações sérias/críticas do axe, sete de sete controles visíveis alcançados por `Tab` e zero passos sem indicador perceptível de foco.
+- Smoke/tests — CI de `main` `33824226664` concluiu com sucesso no mesmo commit.
 - Preservação — snapshots/datasets continuam usando Internet Archive e manifest público como contrato verificável.
 
 ## O que este projeto faz melhor que o Cobogó
@@ -43,20 +44,22 @@ O leitor pode abrir `manifest.json` e reutilizar fora do site os arquivos indica
 
 - Core web foundation pinado desde 2026-08-18 (#222).
 - `visual-evidence-as-quality-gate` — **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos reais.
+- `semantic-accessibility-default` — **stable**. A Ficha agora executa o contrato no build real em Chromium: axe, teclado e foco fazem parte da verificação automática. A página publicada ainda não recebe essa mesma auditoria completa depois do deploy, por isso esta aplicação não é usada para elevar Confiança a 4.
 - `primary-action-viewport-containment` — **validated**, isto é, já funcionou em pelo menos um projeto real; a busca da Ficha continua inteira no celular.
 - `recoverable-error-states` — **validated**, isto é, já funcionou em pelo menos um projeto real. A indisponibilidade continua em linguagem comum e oferece `manifest.json` como alternativa segura.
 - `content-hierarchy-before-decoration` — **validated** em 2026-09-03: a #237 substituiu o cartão genérico por hierarquia construída com título, ordem, linhas, inscrições e espaço, comprovada depois da publicação em desktop e celular.
 
 ## Dívida de qualidade atual
 
-A avaliação é **22 de 24 pontos — referência**: Clareza 4, Explicabilidade 4, Autonomia 4, UX 3, UI 4 e Confiança 3.
+A avaliação permanece **22 de 24 pontos — referência**: Clareza 4, Explicabilidade 4, Autonomia 4, UX 3, UI 4 e Confiança 3.
 
-UI sobe de 3 para 4 porque a #237 tornou a composição uma referência útil de identidade local estruturada: a página permanece clara sem depender de cartão central ou decoração superficial e adapta a primeira dobra no celular sem sacrificar a consulta.
+A #238 fortaleceu Confiança sem justificar nota 4: o contrato semântico passou no build de `main` e o mesmo commit foi publicado com smoke test funcional verde, mas axe + teclado + foco ainda não são executados novamente contra a URL já publicada.
 
-A issue #228 continua aberta como dívida separada de Confiança: capturas de PR ainda precisam distinguir de forma inequívoca o commit real da branch do commit sintético de merge usado pelo GitHub. A captura de `main` identifica corretamente `3cefc459f170...`.
+A issue #228 também continua parcialmente aberta. Na PR #238, o nome do arquivo e `accessibility-evidence.json` registraram corretamente o commit real da branch `565267e9...`, mas `visual-evidence/capture-state.json` ainda registrou o commit temporário `4ee7ad95...` usado pelo GitHub para testar o merge. Em `main`, ambos identificam corretamente `044ab1c2...`.
 
 ## Histórico
 
+- 2026-09-03 — #238 mergeada como `044ab1c205...`; CI `33824226664`, captura/contrato semântico `33824226663` e deploy `33824226715` passaram. No build de `main`, axe encontrou zero violações sérias/críticas, teclado alcançou sete de sete controles visíveis e nenhum foco ficou sem indicador perceptível. Avaliação permanece 22/24 porque a auditoria semântica ainda não é repetida contra a URL publicada e #228 continua parcialmente aberta.
 - 2026-09-03 — #237 mergeada; deploy `33714054369`, CI `33714054363` e captura `33714054334` passaram no commit `3cefc459f170...`. UI sobe de 3/4 para 4/4, avaliação passa de 21 para 22/24 e `content-hierarchy-before-decoration` passa a `validated`.
 - 2026-09-02 — #234 mergeada; deploy `33710502906`, CI `33710502829` e captura `33710502919` passaram no commit `2824bf6107...`. UX sobe de 2/4 para 3/4, avaliação passa de 20 para 21/24 e `recoverable-error-states` passa a `validated`. #233 fechada.
 - 2026-09-02 — #232 mergeada; captura automática de `main` rodou com sucesso no commit `06665f7610...`; UI subiu de 1/4 para 3/4 e avaliação passou de 18 para 20/24.
