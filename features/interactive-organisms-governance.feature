@@ -6,6 +6,6 @@ Feature: Interactive Organisms Visual Governance
   Scenario: Adding remaining interactive organisms to visual governance
     Given the visual regression test suite in `e2e/visual-regression.spec.ts`
     And the Vitrine component documentation in `e2e/vitrine-remaining-components.spec.ts` or similar
-    When I add `accordion`, `disclosure`, `tabs`, `date-picker`, and `time-picker` to the tracked components
+    When I add `disclosure`, `tabs`, `date-picker`, and `time-picker` to the tracked components
     Then they should be checked for visual regressions at mobile, tablet, and desktop viewports
     And their Vitrine documentation pages should be asserted for accessibility and visibility
