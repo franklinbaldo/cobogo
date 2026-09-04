@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import DatePicker from './DatePicker.svelte';
-	import Grid from './Grid.svelte';
-	import Column from './Column.svelte';
 
 	/**
 	 * DateRangePicker Component
@@ -41,25 +39,23 @@
 		[key: string]: any;
 	} = $props();
 
-	// Consume FormField context if it exists
 	const formFieldContext = getContext<() => { id: string; 'aria-describedby'?: string; invalid: boolean; valid: boolean; required: boolean }>('cobogo-form-field');
-
-	// Evaluate context inside a derived block so it reacts to dynamic updates
 	let ctx = $derived(formFieldContext ? formFieldContext() : null);
 
 	let finalInvalid = $derived(invalid || ctx?.invalid || false);
 	let finalValid = $derived((valid || ctx?.valid || false) && !finalInvalid);
 	let finalRequired = $derived(rest.required || ctx?.required || false);
 
-	// The start date's maximum is either the explicitly set max, or the end date (if selected)
 	let startMax = $derived(end ? (max && max < end ? max : end) : max);
-	// The end date's minimum is either the explicitly set min, or the start date (if selected)
 	let endMin = $derived(start ? (min && min > start ? min : start) : min);
 </script>
 
 <div data-range-picker {...rest}>
-	<Grid gap="1rem">
-		<Column sm={6}>
+	<div
+		data-cobogo-pattern="grid"
+		style="--cobogo-grid-gap: 1rem"
+	>
+		<div style="--cobogo-grid-span: 12; --cobogo-grid-span-sm: 6">
 			<DatePicker
 				bind:value={start}
 				min={min}
@@ -73,8 +69,8 @@
 				id={ctx?.id ? `${ctx.id}-start` : undefined}
 				aria-describedby={ctx?.['aria-describedby']}
 			/>
-		</Column>
-		<Column sm={6}>
+		</div>
+		<div style="--cobogo-grid-span: 12; --cobogo-grid-span-sm: 6">
 			<DatePicker
 				bind:value={end}
 				min={endMin}
@@ -88,7 +84,6 @@
 				id={ctx?.id ? `${ctx.id}-end` : undefined}
 				aria-describedby={ctx?.['aria-describedby']}
 			/>
-		</Column>
-	</Grid>
+		</div>
+	</div>
 </div>
-
