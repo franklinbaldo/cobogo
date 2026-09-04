@@ -74,6 +74,8 @@ O mesmo vale para identidade. Pessoa, empresa, órgão, processo ou qualquer out
 </article>
 ```
 
+Tabelas seguem a mesma regra: o consumidor escreve `<table>`, `<caption>`, cabeçalhos e células de acordo com seus dados; `data-cobogo-pattern="data-table"` fornece a relação visual e o tratamento de overflow. Estados visuais são declarados explicitamente pelo consumidor, nunca inferidos de strings do domínio.
+
 ## 4. Use o entrypoint curado para componentes
 
 Componentes públicos são importados pelo root do pacote. Deep imports em `cobogo/components/*` não fazem parte da API pública atual.
@@ -95,7 +97,7 @@ O entrypoint é deliberadamente pequeno e pode diminuir quando uma abstração f
 ### Componentes atualmente curados
 
 - `Button`, `Card`, `Badge`;
-- `DataTable`, `SearchBar`;
+- `SearchBar`;
 - `Disclosure`;
 - família `Tabs`: `Tabs`, `TabList`, `Tab`, `TabPanel`;
 - `Tooltip`, `Combobox`;
