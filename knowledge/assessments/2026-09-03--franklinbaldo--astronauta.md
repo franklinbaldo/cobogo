@@ -2,69 +2,67 @@
 type: SurfaceQualityAssessment
 repo: franklinbaldo/astronauta
 date: 2026-09-03
-commit: 55232223e695cb2d27611b750ec94748e99023a1
+commit: 99661b562bedd953a6797fe7b8b7fcd25b8a5dd6
 deploy: local-runtime:main
-capture: artifact:9888212021
+capture: artifact:9920852733
 scores:
   clarity: 4
   explainability: 4
   autonomy: 4
-  ux: 3
-  ui: 2
+  ux: 4
+  ui: 4
   trust: 3
-total: 20
-band: good
+total: 23
+band: reference
 blockers: []
-trend: baseline
+trend: up
 ---
 
-# Astronauta — primeira avaliação completa da interface pública de uso local
+# Astronauta — avaliação da interface pública de uso local após correção responsiva
 
 ## Veredito
 
-**20 de 24 pontos — faixa boa.** Esta é a primeira avaliação completa que serve de referência para comparações futuras. O Astronauta é forte em clareza de tarefa, explicação da arquitetura e autonomia de execução. A maior dívida está na adaptação para tela estreita: em `390×844`, a página inteira fica mais larga que a janela tanto na listagem densa quanto no editor.
+**23 de 24 pontos — faixa de referência.** Clareza, explicabilidade e autonomia permanecem em 4/4. A #44 eliminou a dívida que mantinha UX em 3/4 e UI em 2/4: nas duas rotas observadas em `390×844`, o documento agora mede exatamente a largura da janela, a navegação quebra em linhas dentro do cabeçalho e a tabela densa preserva rolagem horizontal apenas dentro de sua própria região. Em `1280×900`, a composição compacta de admin permanece intacta.
 
-A avaliação aponta para `55232223e695cb2d27611b750ec94748e99023a1`, o commit que realmente entrou em `main` depois da PR #42. Como o produto é um admin SSR local servido em loopback, não existe publicação Pages a verificar. A etapa equivalente depois do merge é iniciar o runtime real sobre o commit de `main` e observar a mesma interface novamente.
+A avaliação aponta para `99661b562bedd953a6797fe7b8b7fcd25b8a5dd6`, o commit que realmente entrou em `main` depois da PR #44. Como o produto é um admin SSR local servido em loopback, não existe publicação Pages. A etapa equivalente depois do merge foi iniciar novamente o runtime real sobre esse commit de `main` e repetir a observação.
 
-A execução `Visual evidence` `33742274379` terminou com sucesso nesse commit e produziu o arquivo `9888212021`, chamado `astronauta-rendered-evidence-55232223e695cb2d27611b750ec94748e99023a1`. O `evidence.json` identifica o commit observado, as rotas e os quatro tamanhos/estados: leitura e edição em `1280×900` e `390×844`.
+A execução `Visual evidence` `33828611787` terminou verde em `main` e produziu o arquivo `9920852733`, `astronauta-rendered-evidence-99661b562bedd953a6797fe7b8b7fcd25b8a5dd6`. Além das quatro imagens, o arquivo agora contém medições de layout feitas no navegador. Em `/types/Note` e `/concepts/edit/note-01`, `documentClientWidth` e `documentScrollWidth` são ambos 390 px; cabeçalho e navegação cabem na janela, e no editor o título e `textarea#body` também ficam integralmente dentro dela.
 
 ## Clareza / D1
 
-**4/4.** O projeto deixa claro que transforma um diretório OKF em um admin/editor local. Na interface, a pessoa encontra tipos, conceitos, editor, importação, Apply, grafo e diagnósticos; na documentação, `astronauta PATH [--write]` explicita como abrir o produto e quando a escrita está habilitada.
+**4/4.** O projeto deixa claro que transforma um diretório OKF em um admin/editor local. A pessoa encontra tipos, conceitos, editor, importação, Apply, grafo e diagnósticos; a documentação mantém `astronauta PATH [--write]` como contrato de execução e deixa claro quando a escrita está habilitada.
 
 ## Explicabilidade / D2
 
-**4/4.** O README explica a fronteira de responsabilidade: o Astronauta possui apresentação e interação, enquanto `okf-parser` possui a semântica e a mutação do filesystem. O browser não consegue conceder a si mesmo autoridade de escrita; o processo precisa nascer com `--write`. Os fluxos preview-first e a identidade de revisão do parser também estão descritos e exercitados pelos workflows funcionais.
+**4/4.** A fronteira de responsabilidade continua explícita: Astronauta possui apresentação e interação, enquanto `okf-parser` possui a semântica e a mutação do filesystem. O browser não consegue conceder a si mesmo autoridade de escrita; o processo precisa nascer com `--write`. Os fluxos preview-first continuam exercitados pelos workflows funcionais.
 
 ## Autonomia / D3
 
-**4/4.** O repositório fornece uma receita reproduzível de execução e o CI prova uma wheel instalada em ambiente consumidor fresco. O job `installed-artifact` executa o runtime sem Bun, sem checkout do source e sem build frontend feito pelo consumidor. A documentação também evita prometer um canal PyPI/GitHub Release que não foi verificado.
+**4/4.** O repositório fornece execução reproduzível e o CI continua provando uma wheel instalada em ambiente consumidor fresco. A correção de superfície não alterou esse contrato.
 
 ## UX
 
-**3/4 — boa.** No desktop, a navegação e os fluxos de leitura e edição têm ordem clara. A listagem permite filtrar conceitos; o editor mostra contexto, corpo e orientação de preview. Os testes funcionais de editor, Apply e importação passaram no commit da PR e novamente em `main`.
+**4/4 — referência no escopo observado.** A navegação principal permanece imediatamente disponível no desktop e, no celular, passa a quebrar em duas linhas legíveis sem exigir deslocamento lateral da página. A listagem mantém filtro e tabela densa; o editor mantém retorno ao conceito, contexto, orientação de preview e área principal de edição dentro da janela. Os workflows de editor, Apply e importação continuaram verdes no commit da PR e depois do merge.
 
-A nota não sobe para 4 porque a versão de `390×844` exige rolagem horizontal da página. Na listagem, parte da navegação superior fica fora da janela; no editor, a região principal também ultrapassa o viewport. O fluxo continua possível, mas a pessoa precisa deslocar a página lateralmente para recuperar partes da interface. A issue `astronauta#43` registra a correção.
+A nota 4 descreve os fluxos realmente observados e testados; não significa que todo estado futuro do admin esteja automaticamente coberto.
 
 ## UI
 
-**2/4 — adequada com problema material.** Em `1280×900`, o tema escuro, a hierarquia tipográfica, os cartões, a tabela e a densidade administrativa são coerentes. A interface tem personalidade própria e não parece uma cópia de outros projetos do portfólio.
+**4/4 — referência no escopo observado.** O tema escuro, a hierarquia tipográfica, a densidade e os cartões permanecem coerentes em `1280×900`. Em `390×844`, a marca e a navegação agora ocupam duas regiões verticais sem perder identidade; o documento mede 390 px nas duas rotas. A tabela de campos continua horizontalmente rolável dentro do cartão, o que preserva a natureza tabular dos dados sem alargar o documento.
 
-Em `390×844`, porém, há rolagem horizontal global visível nas duas rotas observadas. `/types/Note` ainda contém uma rolagem horizontal interna para a tabela de campos — aceitável para dados realmente largos —, mas o problema material é que o próprio documento também excede a largura da janela. `/concepts/edit/note-01` repete o problema, e a área de edição mantém largura maior que o viewport. Isso sustenta UI 2/4 até a #43 ser corrigida.
+A mudança não converteu tabela em cartões nem importou um layout de outro projeto. Ela preservou a solução administrativa local e corrigiu apenas o comportamento que o leitor percebia como quebrado.
 
 ## Confiança
 
-**3/4 — boa.** A fronteira de escrita é forte: `--write` pertence ao processo e a interface transporta uma identidade de revisão (`expected_source_digest`) em vez de inventar autoridade. A nova verificação visual também separa, em PR, o commit real da branch do commit sintético usado pelo GitHub para testar a combinação com `main`; em `main`, o arquivo produzido aponta diretamente para `55232223...`.
+**3/4 — boa.** O workflow agora torna uma regressão de largura um erro verificável, registra o commit real observado e repete a prova no runtime de `main`. A fronteira de escrita também continua forte.
 
-A nota fica em 3, não 4, porque esta rodada não trouxe prova suficiente de navegação por teclado, foco visível e demais aspectos de acessibilidade em runtime para chamar Confiança de referência. A ausência dessa prova não gera uma issue genérica por si só; apenas impede inflar a nota.
+A nota permanece em 3 porque esta rodada não executou uma prova sistemática de navegação por teclado, foco visível e semântica acessível em runtime. Isso não cria automaticamente uma issue genérica; apenas impede chamar Confiança de referência sem prova correspondente.
 
 ## Recomendações Cobogó relacionadas
 
-- `visual-evidence-as-quality-gate` — **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos. A #42 mostra que a mesma regra é útil numa interface administrativa local e encontrou um defeito responsivo que todos os testes funcionais deixavam passar.
-- `rendered-evidence-manifest` — passa a **validated**, isto é, já funcionou em pelo menos um projeto real. O Astronauta usa um formato local equivalente ao schema de referência: `evidence.json` registra commit real, fase do workflow, rotas, viewports e nomes dos arquivos. O formato não precisa ser idêntico ao default Cobogó para satisfazer os invariantes.
+- `visual-evidence-as-quality-gate` — **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos. No Astronauta, a mesma prova primeiro descobriu a regressão e, na #44, passou a medir a largura diretamente para impedir seu retorno.
+- `rendered-evidence-manifest` — **validated**, isto é, já funcionou em pelo menos um projeto real. O `evidence.json` local continua registrando commit, rotas, viewports e arquivos; agora também referencia os JSONs com as medições estreitas.
 
 ## Dívida concreta
 
-- `astronauta#43` — eliminar rolagem horizontal da página em `390×844`, mantendo uma eventual rolagem local apenas onde uma tabela realmente larga precisar dela. Mantém UI em 2/4 e UX em 3/4.
-
-Nenhuma outra issue foi aberta apenas para aumentar a nota. A avaliação atual já distingue o que está comprovadamente bom do que precisa de correção.
+A #43 foi encerrada pela #44. Não resta nesta avaliação outra dívida de UI/UX concreta que justifique issue apenas para perseguir 24/24. Confiança 3 registra uma fronteira de prova, não um defeito inventado.
