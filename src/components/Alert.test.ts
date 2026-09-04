@@ -9,13 +9,13 @@ describe('Alert Component', () => {
   });
 
   it('renders correctly with default variant', () => {
-    const { container } = render(Alert);
-    expect(container.querySelector('aside[data-intent="info"]')).toBeInTheDocument();
+    render(Alert);
+    expect(screen.getByRole('alert')).toHaveAttribute('data-intent', 'info');
   });
 
   it('renders correctly with warning variant', () => {
-    const { container } = render(Alert, { props: { variant: 'warning' } });
-    expect(container.querySelector('aside[data-intent="warning"]')).toBeInTheDocument();
+    render(Alert, { props: { variant: 'warning' } });
+    expect(screen.getByRole('alert')).toHaveAttribute('data-intent', 'warning');
   });
 
   it('calls onDismiss when dismiss button is clicked', async () => {
@@ -27,7 +27,6 @@ describe('Alert Component', () => {
 
     expect(onDismissMock).toHaveBeenCalled();
   });
-
 
   it('has proper aria attributes', () => {
     render(Alert);
