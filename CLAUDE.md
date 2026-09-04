@@ -87,6 +87,33 @@ Use the installed skills as follows:
 Do **not** hand-edit installed skill copies or `skills-lock.json` to simulate an update. Re-run
 `npx skills add ...` and commit the real CLI output.
 
+## Consumer-first upstream rule
+
+When working in a project that uses Cobogó, do not create a new visual abstraction locally before
+checking whether the need belongs upstream.
+
+Use this order:
+
+1. if Cobogó already solves the presentation problem, use the existing solution;
+2. if Cobogó does not solve it, describe the **visual problem** before choosing a component;
+3. if the solution is reusable outside the source project's domain, implement it in Cobogó first
+   through a PR, then update the consumer to use the new version;
+4. if the solution is genuinely inseparable from the consumer's domain or workflow, local UI is
+   allowed;
+5. when a new abstraction overlaps an existing one, prefer consolidation, deprecation or removal
+   over adding another near-duplicate.
+
+The complete decision contract lives in [`docs/consumer-workflow.md`](docs/consumer-workflow.md).
+
+Cobogó is allowed to be opinionated about implementation. **Astro is currently the recommended
+stack for new web consumers** because it is the stack in active use and therefore where current
+operational knowledge is accumulating. This recommendation may change when experience changes;
+Cobogó does not owe equivalent bindings to every framework.
+
+Versioning is the compatibility boundary. Breaking changes may simplify the current design system;
+consumers that cannot migrate immediately may pin an older Cobogó version rather than forcing the
+current version to preserve weak abstractions indefinitely.
+
 ## Mandatory visual design loop
 
 For any **material visual decision**, do not stop at static code review.
