@@ -8,6 +8,7 @@ validated_in:
   - franklinbaldo/sisprev
   - franklinbaldo/astronauta
   - franklinbaldo/ficha
+  - franklinbaldo/leizilla
 ---
 
 # Semântica e acessibilidade são defaults, não acabamento
@@ -44,9 +45,11 @@ A segunda aplicação foi `franklinbaldo/sisprev#160`. A medição encontrou pro
 
 A terceira aplicação foi `franklinbaldo/astronauta#45`, num admin SSR local, escuro e denso. A primeira execução reprovou por contraste, distinção de link e uma região horizontal sem caminho de foco. A solução corrigiu a interface sem desligar regras; a prova foi repetida no runtime real do commit incorporado.
 
-A quarta aplicação é `franklinbaldo/ficha#241`. A Ficha já tinha axe, teclado e foco verdes no build, mas ainda não repetia o contrato na página entregue pelo GitHub Pages. A #241 entrou em `main` como `73c4696479dcc39dab7c3afe5c9e74b05dc4808d`. A publicação `33861297403` terminou verde nesse commit e, depois do deploy, Chromium abriu `https://franklinbaldo.github.io/ficha/`. O artifact `9932248070` registrou zero violações sérias ou críticas do axe, sete de sete controles visíveis alcançados por teclado, nenhum controle ausente e zero passos sem indicador perceptível de foco. Assim, a #240 foi encerrada e a avaliação de Confiança da Ficha passou a ter comprovação também no estado publicado.
+A quarta aplicação foi `franklinbaldo/ficha#241`. A Ficha já tinha axe, teclado e foco verdes no build, mas ainda não repetia o contrato na página entregue pelo GitHub Pages. A #241 entrou em `main` como `73c4696479dcc39dab7c3afe5c9e74b05dc4808d`. A publicação `33861297403` terminou verde nesse commit e, depois do deploy, Chromium abriu `https://franklinbaldo.github.io/ficha/`. O arquivo produzido `9932248070` registrou zero violações sérias ou críticas do axe, sete de sete controles visíveis alcançados por teclado, nenhum controle ausente e zero passos sem indicador perceptível de foco.
 
-Cobogó, Sisprev, Astronauta e Ficha preservam identidades locais distintas. A convergência está no contrato observável — semântica, teclado, foco e nomes acessíveis — e não em compartilhar paleta, composição ou componentes.
+A quinta aplicação é `franklinbaldo/leizilla#165`. Aqui a dívida era ausência de prova, e a medição final não encontrou defeito a ser fabricado. O workflow visual já existente passou a executar axe, navegação por `Tab` e verificação de foco em quatro estados da home: desktop e celular, com o acervo disponível e com indisponibilidade controlada. No commit final da branch, `7a7f6027cd589208875f70a769f67b4883397cf6`, a execução `33871565508` registrou 13/13 controles alcançados nos estados normais e 16/16 nos estados de indisponibilidade, com zero controles ausentes, zero falhas de foco e zero violações sérias ou críticas do axe. Depois do merge, `33871750652` repetiu a auditoria no commit real de `main`, `5adf33c94d9b6237b7764ad682a194b025e2eed2`, e terminou verde. O Pages `33871750746` publicou o mesmo commit e voltou a abrir a página pública em Chromium depois do deploy.
+
+Cobogó, Sisprev, Astronauta, Ficha e Leizilla preservam identidades locais distintas. A convergência está no contrato observável — semântica, teclado, foco e nomes acessíveis — e não em compartilhar paleta, composição ou componentes.
 
 Aplicações adicionais reforçam a recomendação, mas não criam um degrau acima de `stable`: esse estado já significa convergência em pelo menos dois projetos reais. Evidência nova aumenta confiança e pode revelar limites; não serve para inflar a classificação.
 

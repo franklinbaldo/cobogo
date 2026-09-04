@@ -2,65 +2,68 @@
 type: SurfaceQualityAssessment
 repo: franklinbaldo/leizilla
 date: 2026-09-04
-commit: b5800cf6fbbfceb5dcf9bc895fc70d1d58284e49
+commit: 5adf33c94d9b6237b7764ad682a194b025e2eed2
 deploy: https://franklinbaldo.github.io/leizilla/
-capture: artifact:9924664387
+capture: artifact:9936210089
 scores:
   clarity: 4
   explainability: 4
   autonomy: 4
   ux: 3
   ui: 3
-  trust: 3
-total: 21
-band: good
+  trust: 4
+total: 22
+band: reference
 blockers: []
 trend: up
 ---
 
-# Leizilla — avaliação após preservar os filtros no celular
+# Leizilla — avaliação após comprovar teclado, foco e semântica
 
 ## Veredito
 
-**21 de 24 pontos — faixa boa.** Clareza 4/4, Explicabilidade 4/4, Autonomia 4/4, UX 3/4, UI 3/4 e Confiança 3/4. A mudança desta rodada é em UI: o problema material que tornava os filtros secundários quase indistinguíveis em 390 px foi corrigido e comprovado depois da publicação.
+**22 de 24 pontos — faixa de referência.** Clareza 4/4, Explicabilidade 4/4, Autonomia 4/4, UX 3/4, UI 3/4 e Confiança 4/4.
 
-A avaliação aponta para `b5800cf6fbbfceb5dcf9bc895fc70d1d58284e49`, commit que realmente entrou em `main` depois da PR #164. O GitHub Pages publicou esse mesmo commit na execução `33839739009`. Depois do deploy, o próprio workflow abriu a URL pública com Chromium e produziu o pacote `9924664387`, identificado como `leizilla-published-b5800cf6fbbfceb5dcf9bc895fc70d1d58284e49`.
+A mudança desta rodada está em Confiança. A avaliação anterior mantinha 3/4 porque ainda não existia prova ampla e reproduzível de navegação por teclado, foco perceptível e semântica acessível. A #165 transformou essa ausência em um teste real, repetiu a prova no commit incorporado a `main` e manteve a correspondência com a publicação pública.
+
+A avaliação aponta para `5adf33c94d9b6237b7764ad682a194b025e2eed2`, commit que realmente entrou em `main` depois da #165. A auditoria em `main` foi executada por `33871750652`; a publicação pelo GitHub Pages ocorreu em `33871750746`. Depois do deploy, o workflow abriu novamente a página pública e produziu `9936210089`, identificado como `leizilla-published-5adf33c94d9b6237b7764ad682a194b025e2eed2`.
 
 ## Clareza / D1
 
-**4/4.** A home continua apresentando diretamente a tarefa de pesquisar legislação preservada e estruturada. A reorganização espacial não removeu nem rebatizou os filtros.
+**4/4.** A home continua deixando clara a tarefa principal: pesquisar legislação preservada e estruturada. A rodada não alterou rótulos, conteúdo editorial ou prioridade visual.
 
 ## Explicabilidade / D2
 
-**4/4.** A interface continua explicando preservação, estruturação e trilha de comprovação. A mudança foi estritamente de layout responsivo e não alterou afirmações sobre dados, vigência ou proveniência.
+**4/4.** A interface continua explicando preservação, estruturação, cobertura e origem do acervo. A auditoria acrescentada mede comportamento da interface sem ampliar ou inventar afirmações sobre os dados.
 
 ## Autonomia / D3
 
-**4/4.** `versoes.parquet`, metadados, Internet Archive e o caminho DuckDB continuam disponíveis para reutilização fora do frontend.
+**4/4.** `versoes.parquet`, metadados, Internet Archive e o caminho DuckDB continuam permitindo reutilização independente do frontend.
 
 ## UX
 
-**3/4 — boa.** Em tela estreita, a pessoa deixa de precisar inferir qual select truncado corresponde a ente ou tipo de norma. A busca principal permanece visualmente prioritária. A nota não sobe porque esta avaliação ainda não cobre profundamente uma busca bem-sucedida, abertura de lei e retorno aos resultados.
+**3/4 — boa.** Os controles observados podem ser percorridos por teclado e mantêm foco perceptível, o que melhora a robustez do fluxo. A nota não sobe porque a avaliação ainda não acompanha profundamente uma jornada completa de busca bem-sucedida, abertura de uma lei e retorno aos resultados.
 
 ## UI
 
-**3/4 — boa.** Este era o problema escolhido. Antes, em `390×844`, os dois selects encolhiam até começar igualmente por “Todos…”. Depois da #164, abaixo de 430 px os filtros secundários ficam em coluna.
-
-O pacote produzido depois da publicação registra, em `390×844`, `document_client_width=390` e `document_scroll_width=390`. “Todos os entes”, “Todos os tipos de norma” e “Ano” medem 326 px cada, de x=32 a x=358. A imagem `published-home-390x844.png` confirma que os três textos aparecem inteiros e distinguíveis. Em `1280×900`, os filtros continuam lado a lado, preservando a composição compacta de desktop.
-
-UI não sobe para 4 porque a comprovação desta rodada é forte para a home e os estados já observados, mas não demonstra ainda qualidade de referência em toda a variedade de páginas do Leizilla.
+**3/4 — boa.** As capturas responsivas existentes continuam verdes e a publicação do commit atual foi observada novamente. A nota permanece 3 porque a profundidade visual ainda está concentrada na home e nos estados já cobertos; não há prova suficiente de qualidade de referência em toda a variedade de páginas.
 
 ## Confiança
 
-**3/4 — boa.** A execução `33839739023` repetiu a verificação visual de `main`, e a execução de Pages `33839739009` abriu a página realmente publicada depois do deploy, separando prova do build de prova do que o leitor recebeu. Isso fortalece a confiabilidade da avaliação visual.
+**4/4 — referência no escopo observado.** O workflow Chromium agora executa axe, inventaria os controles interativos visíveis, percorre-os por `Tab` e verifica foco perceptível nos mesmos quatro estados usados para a observação visual: desktop e celular, tanto no estado normal quanto na indisponibilidade controlada do acervo.
 
-A nota permanece 3 porque ainda não há prova ampla de acessibilidade por teclado, foco visível e semântica acessível. Esta rodada não inventa um defeito onde só existe ausência de observação mais ampla.
+No commit final da branch, `7a7f6027cd589208875f70a769f67b4883397cf6`, `33871565508` terminou verde e produziu `9936141678`. Nos estados normais, 13 de 13 controles visíveis foram alcançados por teclado; nos estados controlados de indisponibilidade, 16 de 16. Todos os quatro casos registraram zero controles ausentes, zero falhas de indicador de foco e zero violações sérias ou críticas detectadas pelo axe.
+
+Depois do merge, `33871750652` repetiu a auditoria a partir do commit real de `main`, `5adf33c94d9b6237b7764ad682a194b025e2eed2`, e terminou verde. O pacote `9936220405` está ligado explicitamente a esse commit. A publicação `33871750746` também terminou verde, abriu novamente a URL pública depois do deploy e produziu `9936210089` com o mesmo commit no nome.
+
+A nota 4 descreve essas rotas e estados observados. Não significa certificação universal de acessibilidade nem autoriza ignorar futuros relatos assistivos reais.
 
 ## Recomendações Cobogó relacionadas
 
-- `visual-evidence-as-quality-gate` — permanece **stable**, isto é, a regra já funcionou de forma convergente em pelo menos dois projetos reais. A #164 acrescenta uma aplicação que distingue explicitamente o build da página já publicada e mede o comportamento responsivo no estado público.
-- `recoverable-error-states` — permanece **stable**; o estado controlado de indisponibilidade continuou verde depois da mudança de layout.
+- `semantic-accessibility-default` — permanece **stable**, isto é, a regra já funcionou de forma convergente em pelo menos dois projetos reais. O Leizilla passa a ser uma aplicação adicional com identidade própria e contrato observável equivalente para semântica, teclado e foco.
+- `visual-evidence-as-quality-gate` — permanece **stable**; as imagens existentes continuaram verdes e a mesma revisão foi observada depois da publicação.
+- `recoverable-error-states` — permanece **stable**; o estado controlado de indisponibilidade continuou verdadeiro durante a auditoria.
 
 ## Dívida concreta restante
 
-A #162 foi resolvida pela #164. Não há nova dívida concreta aberta nesta avaliação apenas para elevar UX, UI ou Confiança. As dimensões em 3 continuam elegíveis para uma rodada futura quando aparecer um problema observável específico.
+Não foi encontrado defeito concreto novo de acessibilidade nesta rodada. UX 3 e UI 3 continuam elegíveis para trabalho futuro apenas quando houver um problema específico e reproduzível — por exemplo, uma falha na jornada busca → lei → retorno ou uma página cuja composição demonstre uma dívida visual material. Não será criada issue genérica somente para elevar nota.
