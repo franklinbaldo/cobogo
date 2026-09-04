@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/quem-sao-eles
 site: https://franklinbaldo.github.io/quem-sao-eles/
 status: active
-last_reviewed: 2026-09-03
+last_reviewed: 2026-09-04
 gap_score: 0
 ---
 
@@ -41,15 +41,16 @@ Catálogo jornalístico sóbrio de memória política, com preto/branco/cinza, l
 
 ## Capacidades de superfície
 
-- **Pages/deploy** — `last_verified: 2026-09-03`; run `33737031712` concluiu com sucesso no commit `f9d662964abdecfad1b329f3a65856b47cfcc32b`.
+- **Pages/deploy** — `last_verified: 2026-09-03`; run `33737031712` concluiu com sucesso no commit `f9d662964abdecfad1b329f3a65856b47cfcc32b`. A publicação de `4e412c8e4ae5b275dc9525dc97c9ecf066c8d384`, run `33851656399`, ainda estava em execução no fechamento da revisão de 2026-09-04 e por isso não substitui a última verificação verde.
 - **PEP refresh** — `last_verified: 2026-09-02`; #19/#21 fecham o loop refresh → dispatch explícito de deploy/capture quando há commit novo; run `33562767037` verificou o caminho com `force_publish=true`.
-- **Build gate** — `last_verified: 2026-09-03`; a PR #24 passou build no commit atual da branch antes do merge e o deploy voltou a passar em `main`.
-- **Captura visual/runtime** — `last_verified: 2026-09-03`; #24 foi incorporada como `f9d662964abdecfad1b329f3a65856b47cfcc32b`. O run `33737031729`, arquivo `9886155918`, produz `pep-1280x900.png`, `pep-390x844.png`, DOM e estado legível por máquina. O estado registra o commit real avaliado, distingue o commit sintético de teste em PR, chega a `search-ready`, executa consulta real, comprova ausência de estouro horizontal e mantém busca e proveniência visíveis nos dois tamanhos.
+- **Build gate** — `last_verified: 2026-09-04`; a PR #25 passou `build` e GitGuardian no commit atual da branch `70275276b3b80a2000e1a1fe8b2b4dd88ca7eadd` antes do merge.
+- **Captura visual/runtime do build** — `last_verified: 2026-09-04`; a PR #25 passou `capture-pep` no commit atual da branch. A capacidade anterior continua cobrindo desktop e celular, consulta real, identidade do commit e ausência de estouro horizontal.
+- **Captura da página depois da publicação** — implementada pela #25, mas ainda **não verificada** no fechamento desta revisão. O novo workflow `PEP published capture` só roda depois de um deploy verde de `main`, abre diretamente `https://franklinbaldo.github.io/quem-sao-eles/pep/` em Chromium e registra o commit que originou a publicação. A primeira execução depende do término do deploy `33851656399`.
 - **Preservação editorial** — `last_verified: 2026-08-31`; o README exige `archive_url` para notícias/fontes editoriais. Não foi produzida nova captura editorial porque não há corpus populado suficiente para essa superfície.
 
 ## Avaliação de qualidade
 
-A primeira avaliação completa, em 2026-09-03, registra **23 de 24 pontos — faixa de referência**: Clareza 4, Explicabilidade 4, Autonomia 4, UX 4, UI 3 e Confiança 4. A rota PEP é integralmente observável em desktop e celular e executa uma consulta real. UI permanece 3 porque não há evidência suficiente para transformar a apresentação ainda estreita da rota PEP em referência visual para a futura superfície editorial inteira.
+A avaliação vigente continua sendo a de 2026-09-03: **23 de 24 pontos — faixa de referência**: Clareza 4, Explicabilidade 4, Autonomia 4, UX 4, UI 3 e Confiança 4. A #25 corrige um defeito concreto no contrato visual do rodapé, mas a nota não foi alterada antes de a publicação e a nova observação pública terminarem. UI permanece 3 pelo mesmo motivo estrutural da avaliação anterior: ainda não há evidência suficiente para transformar a apresentação da rota PEP em referência visual para a futura superfície editorial inteira.
 
 ## O que este consumer faz melhor que o Cobogó
 
@@ -57,17 +58,19 @@ A primeira avaliação completa, em 2026-09-03, registra **23 de 24 pontos — f
 - Demonstra que captura de shell não basta para provar aplicação de dados: o gate espera o runtime, executa uma consulta real e preserva estado legível por máquina.
 - Demonstra um loop de freshness em que refresh, publicação e captura são ligados explicitamente sem depender de um push recursivo implícito do GitHub Actions.
 - Desde #24, demonstra também que a mesma prova pode verificar desktop e celular, identificar o commit real avaliado e tratar ausência de estouro horizontal como contrato observável.
+- A #25 acrescenta uma distinção operacional importante, ainda aguardando a primeira execução verde: observar o build e observar a URL pública depois do deploy são provas separadas.
 - Esses aprendizados permanecem evidência/conceito; não promovem layout ou componente compartilhado por si sós.
 
 ## Padrões do Cobogó em uso
 
 - `Provenance and freshness` — autoridade, competência e snapshot exato ficam recuperáveis sem afirmar freshness não provada.
 - `Public artifact reuse` — consultar no site e reutilizar o arquivo são ações distintas sobre a mesma fonte.
-- `visual-evidence-as-quality-gate` — aplicação completa em desktop e celular após #24; a recomendação permanece `stable`.
+- `visual-evidence-as-quality-gate` — aplicação completa em desktop e celular após #24; a #25 torna explícita a futura prova pós-publicação; a recomendação permanece `stable`.
 - `Parentesco sem uniformidade` — a identidade jornalística local e a separação catálogo/PEP permanecem próprias do projeto.
 
 ## Histórico
 
+- 2026-09-04 — #25 merge `4e412c8e`: rodapé deixa de depender de variáveis CSS ausentes; build, segurança e captura do build passaram na branch; adicionado workflow de observação direta da URL pública depois do deploy. O deploy `33851656399` ainda estava em execução no fechamento da rodada, portanto a mudança visual permanece sem encerramento público. A antiga #13 foi fechada porque sua correção já estava em #12. Workspace #41 registra a nova capacidade sem editar o `ProjectProfile` daqui.
 - 2026-09-03 — #24 merge `f9d66296`: captura PEP passa a cobrir `1280×900` e `390×844`, registrar commit real avaliado e verificar overflow/visibilidade; deploy `33737031712` e captura `33737031729` verdes em `main`; primeira avaliação completa: 23/24; #23 fechada.
 - 2026-09-02 — #17 fechado após #19/#21: Pages run `33562803474` e captura runtime run `33562806014` verdes no head `6d702973...`, publicando competência julho/2026; `gap_score` volta a 0. A ausência de captura estreita vira dívida separada #23 e não é escondida pelo score D1–D3.
 - 2026-09-01 — refresh mensal adicionou `202607_pep.parquet`, mas sem Pages/capture no novo SHA; gap de publicação registrado em #17; `gap_score: 1`.
