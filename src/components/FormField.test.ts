@@ -4,72 +4,47 @@ import FormFieldWrapper from './FormFieldWrapper.test.svelte';
 import FormFieldToggleWrapper from './FormFieldToggleWrapper.test.svelte';
 
 describe('FormField Component', () => {
-  it('renders label and passes id and required context to child input', () => {
-    render(FormFieldWrapper);
-
-    const label = screen.getByText('Test Label');
-    expect(label).toBeInTheDocument();
+  it('renders label and forwards id and required context', () => {
+    const { container } = render(FormFieldWrapper);
+    const label = container.querySelector('label');
+    expect(label).toHaveTextContent('Test Label');
     expect(label).toHaveAttribute('for', 'test-input');
-
-    const requiredAsterisk = screen.getByText('*');
-    expect(requiredAsterisk).toBeInTheDocument();
+    expect(screen.getByLabelText('obrigatório')).toBeInTheDocument();
 
     const input = screen.getByTestId('mock-input');
-    expect(input).toBeInTheDocument();
     expect(input).toHaveAttribute('id', 'test-input');
-    expect(input).toHaveAttribute('required');
+    expect(input).toBeRequired();
     expect(input).not.toHaveAttribute('aria-describedby');
-    expect(input).toHaveAttribute('aria-invalid', 'false');
+    expect(input).not.toHaveAttribute('aria-invalid');
   });
 
-  it('passes helper aria-describedby context to child input', () => {
+  it('links helper feedback with aria-describedby', () => {
     render(FormFieldWrapper, { props: { helper: 'Helper text' } });
-
     const helper = screen.getByText('Helper text');
-    expect(helper).toBeInTheDocument();
-
-    const helperContainer = helper.closest('p');
-    expect(helperContainer).toHaveAttribute('id', 'test-input-helper');
-    expect(helperContainer?.querySelector('svg.feedback-icon')).toBeInTheDocument();
-
-    const input = screen.getByTestId('mock-input');
-    expect(input).toHaveAttribute('aria-describedby', 'test-input-helper');
-    expect(input).toHaveAttribute('aria-invalid', 'false');
+    expect(helper.tagName).toBe('SMALL');
+    expect(helper).toHaveAttribute('id', 'test-input-helper');
+    expect(helper).toHaveAttribute('data-feedback', 'helper');
+    expect(screen.getByTestId('mock-input')).toHaveAttribute('aria-describedby', 'test-input-helper');
   });
 
-  it('passes error aria-describedby and invalid context to child input and overrides helper', () => {
-    render(FormFieldWrapper, { props: { helper: 'Helper text', error: 'Error text' } });
-
-    const label = screen.getByText('Test Label');
-    expect(label).toHaveClass('invalid');
-
-    const error = screen.getByText('Error text');
-    expect(error).toBeInTheDocument();
-
-    const errorContainer = error.closest('p');
-    expect(errorContainer).toHaveAttribute('id', 'test-input-error');
-    expect(errorContainer?.querySelector('svg.feedback-icon')).toBeInTheDocument();
-
-    const helper = screen.queryByText('Helper text');
-    expect(helper).not.toBeInTheDocument();
-
+  it('uses error feedback as an alert and invalidates the child', () => {
+    const { container } = render(FormFieldWrapper, { props: { helper: 'Helper text', error: 'Error text' } });
+    expect(container.querySelector('[data-form-field]')).toHaveAttribute('data-state', 'invalid');
+    const error = screen.getByRole('alert');
+    expect(error).toHaveTextContent('Error text');
+    expect(error).toHaveAttribute('id', 'test-input-error');
+    expect(error).toHaveAttribute('data-feedback', 'error');
+    expect(screen.queryByText('Helper text')).not.toBeInTheDocument();
     const input = screen.getByTestId('mock-input');
     expect(input).toHaveAttribute('aria-describedby', 'test-input-error');
     expect(input).toHaveAttribute('aria-invalid', 'true');
-    expect(input).toHaveClass('invalid');
   });
 
-  it('passes error context properly to a Switch component', () => {
+  it('forwards error context to Switch semantically', () => {
     render(FormFieldToggleWrapper, { props: { error: 'Switch error' } });
-
-    const error = screen.getByText('Switch error');
-    expect(error).toBeInTheDocument();
-
     const switchInput = screen.getByTestId('mock-switch');
+    expect(screen.getByRole('alert')).toHaveTextContent('Switch error');
     expect(switchInput).toHaveAttribute('aria-describedby', 'test-switch-error');
     expect(switchInput).toHaveAttribute('aria-invalid', 'true');
-    // Ensure the switch container gets the invalid class as well
-    const switchContainer = switchInput.closest('label');
-    expect(switchContainer).toHaveClass('invalid');
   });
 });
