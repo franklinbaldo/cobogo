@@ -37,6 +37,18 @@ test("grid layout is a framework-neutral pattern, not component wrappers", () =>
   assert.match(patterns, /--cobogo-grid-span-lg/);
 });
 
+test("entity identity is a domain-neutral pattern, not ProfileCard", () => {
+  const entrypoint = read("src/index.ts");
+  const patterns = read("src/styles/patterns.css");
+  const gettingStarted = read("src/content/docs/getting-started.mdx");
+
+  assert.doesNotMatch(entrypoint, /ProfileCard/);
+  assert.match(patterns, /data-cobogo-pattern="identity"/);
+  assert.match(patterns, /data-cobogo-identity-mark/);
+  assert.match(patterns, /data-cobogo-identity-name/);
+  assert.match(gettingStarted, /data-cobogo-pattern="identity"/);
+});
+
 test("Getting Started teaches the curated root API and public CSS layers", () => {
   const gettingStarted = read("src/content/docs/getting-started.mdx");
 
