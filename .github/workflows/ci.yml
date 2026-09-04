@@ -23,6 +23,8 @@ jobs:
         run: npm run test:rendered-evidence
       - name: RoundReport clarity contract
         run: npm run test:round-report-clarity
+      - name: Public core contract
+        run: npm run test:public-core-contract
       - name: Astro check
         run: npx astro check
       - name: Build

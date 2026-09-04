@@ -27,6 +27,12 @@ Spatial relationships use `--cobogo-space-adjacent`, `--cobogo-space-group`, `--
 
 Geometry, layering and motion values remain overrideable defaults.
 
+## Ownership contract
+
+The core owns generic document baseline, focus visibility and the global `prefers-reduced-motion` fallback. A consumer that imports the core should normally map its concrete identity into the `--cobogo-*` roles instead of re-implementing those generic behaviours locally.
+
+That does **not** transfer ownership of the consumer's palette, typography choices, layout, information architecture, domain states, navigation hierarchy or product workflows. In particular, a consumer may use its own duration tokens for ordinary transitions: the core's reduced-motion media query still provides the accessibility fallback without forcing a shared motion identity.
+
 ## Semantic attributes
 
 The core intentionally keeps the surface small:
@@ -67,17 +73,26 @@ Across the two pre-existing surface files changed (`index.astro` and `Header.sve
 
 The PR's normal CI and Project Pages visual-capture gate passed. Controlled before/after review preserved the Ficha composition and information, while the capture remained honestly classified as `remote-data-unavailable` because the CI browser environment could not fetch the Internet Archive parquet; both before and after had zero page errors. That external-network limitation is not counted as a core regression or as proof of deployed-data failure.
 
+### O Vigia — editorial newspaper surface
+
+O Vigia is the third independent adoption and exercises a different pressure again: a static Astro newspaper with long-form reading, provenance, editorial cover hierarchy, institutional pages, temporal modules, print output and narrow-view navigation.
+
+The public repository `ovigialocal/ovigialocal.github.io` vendors the **same stable Git blob** used by Ficha, `afe206e4c0e82392ed4ee41dddee77e71acbb10e`, and its `check-cobogo-core.py` recomputes that blob hash, enforces `Cobogó core → Vigia theme → local editorial CSS`, requires explicit shared-role mapping and forbids generic `:focus-visible` / `prefers-reduced-motion` ownership from returning to local CSS.
+
+The Ipanema UI convergence completed in public PRs #116, #119, #123 and #124 without changing the core bytes. In #123 the consumer removed a duplicated local reduced-motion rule; in #124 it replaced local compatibility aliases with its own canonical theme vocabulary while continuing to map that identity downstream into `--cobogo-*`. Cobalt/red/editorial typography, masthead composition, print design and mobile information prioritisation remain product-local.
+
+On the #124 head `bba32d37923c62ec3b5a9ebdd71fde5b6455db4f`, the Astro contract and the Cobogó boundary passed; the visual workflow rendered sixteen desktop/mobile views successfully before merge. This is positive evidence that the small core survives a high-identity editorial consumer precisely because it owns generic relations rather than the newspaper's look.
+
 The migration method is recorded in [Brownfield core adoption workflow](./brownfield-core-adoption.md).
 
 ## Stability evidence
 
-The original experimental gate required **two materially different external surfaces** to adopt the core with real technical benefit. CausaGanha and Ficha now satisfy that gate independently:
+The original experimental gate required **two materially different external surfaces** to adopt the core with real technical benefit. CausaGanha and Ficha already satisfied that gate independently; O Vigia now adds a third, substantially different surface and strengthens the boundary:
 
-- both transfer actual generic foundation authority upstream rather than merely importing CSS;
-- both remove local duplicated contracts;
-- both pin shared bytes immutably and ratchet that boundary in CI;
-- both preserve distinct product identity and downstream theme/layout authority;
-- both exercise the shared focus/reduced-motion/document foundation under different composition and runtime pressures;
-- both have controlled rendered evidence, including negative evidence rather than green-check inflation.
+- all three transfer actual generic foundation authority upstream rather than merely importing CSS;
+- consumers pin shared bytes immutably and ratchet the boundary in CI;
+- concrete identity, information architecture and domain behaviour remain downstream;
+- focus/reduced-motion/document foundations survive dense analytical, archive/search and editorial-reading surfaces;
+- controlled rendered evidence is part of adoption rather than an afterthought.
 
 The Core Web CSS API is therefore **stable as a small semantic foundations contract**. Stable does **not** mean mandatory or visually normative. The Lab's measured rejection remains valid counter-evidence: a consumer should decline core when adoption adds more contract than it removes. New roles or attributes still require their own evidence before joining the stable surface, and transport/distribution improvements remain separate from semantic stability.
