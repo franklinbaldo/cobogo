@@ -50,7 +50,7 @@ A standard dialog relies on strict composition.
 
 ## Implicit State Management
 
-Like `Tabs` and `Accordion`, the `Dialog` manages the state of its subcomponents inherently through Context. The `DialogHeader` retrieves a `closeDialog` function from the parent `Dialog`, meaning you do not need to manually bind the close button inside the header.
+Unlike `Disclosure`, whose grouping is represented directly by the native `name` attribute, `Dialog` has genuinely coordinated subcomponents and therefore uses Svelte Context internally. `DialogHeader` retrieves a `closeDialog` function from the parent `Dialog`, so consumers do not need to manually wire the close button inside the header.
 
 ## WAI-ARIA and Accessibility
 
