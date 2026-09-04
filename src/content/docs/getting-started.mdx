@@ -62,6 +62,18 @@ Exemplo: uma composição responsiva em três regiões não precisa de component
 
 O HTML continua pertencendo ao domínio do consumidor; Cobogó fornece a gramática de apresentação.
 
+O mesmo vale para identidade. Pessoa, empresa, órgão, processo ou qualquer outra entidade continua sendo conceito do consumidor; Cobogó pode organizar marca, nome e metadados sem precisar de um componente `ProfileCard`:
+
+```astro
+<article data-cobogo-pattern="identity">
+  <span data-cobogo-identity-mark aria-hidden="true">PM</span>
+  <div data-cobogo-identity-body>
+    <h2 data-cobogo-identity-name>Prefeitura Municipal</h2>
+    <p data-cobogo-identity-meta>Entidade Executiva</p>
+  </div>
+</article>
+```
+
 ## 4. Use o entrypoint curado para componentes
 
 Componentes públicos são importados pelo root do pacote. Deep imports em `cobogo/components/*` não fazem parte da API pública atual.
@@ -83,7 +95,7 @@ O entrypoint é deliberadamente pequeno e pode diminuir quando uma abstração f
 ### Componentes atualmente curados
 
 - `Button`, `Card`, `Badge`;
-- `ProfileCard`, `DataTable`, `SearchBar`;
+- `DataTable`, `SearchBar`;
 - `Disclosure`;
 - família `Tabs`: `Tabs`, `TabList`, `Tab`, `TabPanel`;
 - `Tooltip`, `Combobox`;
