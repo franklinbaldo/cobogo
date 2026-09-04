@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteNav from '../components/SiteNav.astro';
 import Card from '../components/Card.svelte';
-import ProfileCard from '../components/ProfileCard.svelte';
 import DataTable from '../components/DataTable.svelte';
 import SearchBar from '../components/SearchBar.svelte';
 ---
@@ -92,17 +91,22 @@ import SearchBar from '../components/SearchBar.svelte';
 
     <section data-recipe="profile">
       <hgroup>
-        <h2>Perfil de entidade pública</h2>
-        <p>Card de perfil acompanhado de dados detalhados.</p>
+        <h2>Identidade de entidade pública</h2>
+        <p>O domínio fornece os dados; Cobogó organiza a relação visual de identidade.</p>
       </hgroup>
       <div data-recipe-profile>
         <aside>
-          <ProfileCard
-            client:load
-            name="Prefeitura Municipal"
-            role="Entidade Executiva"
-            tags={['CNPJ', 'Ativo']}
-          />
+          <article data-cobogo-pattern="identity" data-cobogo-surface>
+            <span data-cobogo-identity-mark aria-hidden="true">PM</span>
+            <div data-cobogo-identity-body>
+              <h3 data-cobogo-identity-name>Prefeitura Municipal</h3>
+              <p data-cobogo-identity-meta>Entidade Executiva</p>
+              <div data-cobogo-pattern="inscription">
+                <span>CNPJ</span>
+                <span>Ativo</span>
+              </div>
+            </div>
+          </article>
         </aside>
         <div>
           <Card>
