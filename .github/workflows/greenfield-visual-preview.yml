@@ -105,6 +105,8 @@ jobs:
           }
           NODE
       - name: Semantic accessibility contract
+        env:
+          ACCESSIBILITY_VIEWPORTS: 1280x900,390x844
         run: |
           node scripts/check-semantic-accessibility.mjs http://127.0.0.1:4321/cobogo \
             / grammar/ core/ patterns/ consumers/ knowledge/
