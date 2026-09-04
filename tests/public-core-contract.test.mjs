@@ -37,6 +37,17 @@ test("grid layout is a framework-neutral pattern, not component wrappers", () =>
   assert.match(patterns, /--cobogo-grid-span-lg/);
 });
 
+test("Getting Started teaches the curated root API and public CSS layers", () => {
+  const gettingStarted = read("src/content/docs/getting-started.mdx");
+
+  assert.match(gettingStarted, /import 'cobogo\/core'/);
+  assert.match(gettingStarted, /import 'cobogo\/patterns'/);
+  assert.match(gettingStarted, /import \{ Button, Card, Badge, Disclosure \} from 'cobogo'/);
+  assert.doesNotMatch(gettingStarted, /cobogo\/components\//);
+  assert.match(gettingStarted, /Astro[^\n]*caminho recomendado|caminho recomendado[^\n]*Astro/i);
+  assert.match(gettingStarted, /upstream/i);
+});
+
 test("core owns generic focus and reduced-motion contracts", () => {
   const core = read("src/styles/core.css");
   assert.match(core, /:where\(:focus-visible\)/);
