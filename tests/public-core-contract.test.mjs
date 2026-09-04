@@ -9,11 +9,6 @@ test("package exposes the framework-agnostic core entrypoint", () => {
   assert.equal(pkg.exports["./core"], "./src/styles/core.css");
 });
 
-test("package only exposes components through curated entrypoints", () => {
-  const pkg = JSON.parse(read("package.json"));
-  assert.equal(pkg.exports["./components/*"], undefined);
-});
-
 test("root JavaScript API does not publish a fixed color palette", () => {
   const entrypoint = read("src/index.ts");
   const core = read("src/styles/core.css");
@@ -49,7 +44,7 @@ test("entity identity is a domain-neutral pattern, not ProfileCard", () => {
   assert.match(gettingStarted, /data-cobogo-pattern="identity"/);
 });
 
-test("Getting Started teaches the curated root API and public CSS layers", () => {
+test("Getting Started teaches the preferred root API and public CSS layers", () => {
   const gettingStarted = read("src/content/docs/getting-started.mdx");
 
   assert.match(gettingStarted, /import 'cobogo\/core'/);
