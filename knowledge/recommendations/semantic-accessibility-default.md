@@ -61,6 +61,8 @@ Cobogó, Sisprev, Astronauta, Ficha e Leizilla preservam identidades locais dist
 
 A implementação de referência passa a refletir esse aprendizado do portfólio: o próprio workflow do Cobogó executa o verificador em desktop e 390 px, enquanto mantém um teste separado de compatibilidade com o padrão antigo e um teste que exige rejeição de configuração de largura inválida. Isso transforma uma prática recorrente em mecanismo compartilhado sem obrigar consumidores a importar a aparência do Cobogó.
 
+Em 4 de setembro de 2026, a #472 fechou também o ciclo pós-publicação da implementação de referência. O Cobogó passou a executar o mesmo `scripts/check-semantic-accessibility.mjs` depois que o GitHub Pages publica, nas seis rotas públicas e em 1280×900 e 390×844. O commit incorporado `605e2dd2facfc9054f33f5fe56825ed5608cbcdb` foi publicado pela execução `33890985815`; o relatório público registrou esse mesmo commit, fase `published`, URL pública e horário, com 12 combinações sem violações do axe, controles interativos visíveis esperados inalcançáveis ou falhas de foco perceptível. A prova do build continua separada. Isso reforça a recomendação sem alterar sua classificação.
+
 Aplicações adicionais reforçam a recomendação, mas não criam um degrau acima de `stable`: esse estado já significa convergência em pelo menos dois projetos reais. Evidência nova aumenta confiança e pode revelar limites; não serve para inflar a classificação.
 
 ## Falsificação
