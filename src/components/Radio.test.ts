@@ -1,84 +1,46 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 import { render, fireEvent, cleanup, screen } from '@testing-library/svelte';
 import Radio from './Radio.svelte';
+import RadioGroupTest from './RadioGroup.test.svelte';
 
-describe('Radio Component (BDD)', () => {
+describe('Radio Component', () => {
   afterEach(cleanup);
 
-  it('should render a radio with correct default attributes', () => {
-    const { getByRole } = render(Radio, { value: 'option1', group: null });
-    const radio = getByRole('radio') as HTMLInputElement;
-    expect(radio).toBeInTheDocument();
+  it('renders native value and attributes', () => {
+    render(Radio, { props: { value: 'option1', group: null, id: 'rd-1', 'aria-describedby': 'helper-1' } });
+    const radio = screen.getByRole('radio') as HTMLInputElement;
     expect(radio.value).toBe('option1');
     expect(radio.disabled).toBe(false);
+    expect(radio).toHaveAttribute('id', 'rd-1');
+    expect(radio).toHaveAttribute('aria-describedby', 'helper-1');
+    expect(radio).not.toHaveAttribute('aria-invalid');
   });
 
-  it('should associate with aria-describedby and id appropriately', () => {
-    const { getByRole } = render(Radio, { value: 'option1', group: null, id: 'rd-1', 'aria-describedby': 'helper-1' });
-    const radio = getByRole('radio') as HTMLInputElement;
-    expect(radio.id).toBe('rd-1');
-    expect(radio.getAttribute('aria-describedby')).toBe('helper-1');
+  it('forwards disabled', () => {
+    render(Radio, { props: { value: 'option1', group: null, disabled: true } });
+    expect(screen.getByRole('radio')).toBeDisabled();
   });
 
-  it('should render as disabled when disabled prop is true', () => {
-    const { getByRole } = render(Radio, { value: 'option1', group: null, disabled: true });
-    const radio = getByRole('radio') as HTMLInputElement;
-    expect(radio.disabled).toBe(true);
-  });
-
-  it('renders invalid state correctly when explicitly passed', () => {
-    render(Radio, { props: { value: '1', group: '2', invalid: true } });
-    const input = screen.getByRole('radio');
-    const container = input.parentElement;
-    expect(container).toHaveClass('invalid');
+  it('uses aria-invalid for validation with invalid precedence', () => {
+    const first = render(Radio, { props: { value: '1', group: '2', valid: true } });
+    expect(screen.getByRole('radio')).toHaveAttribute('aria-invalid', 'false');
+    first.unmount();
+    render(Radio, { props: { value: '1', group: '2', invalid: true, valid: true } });
+    expect(screen.getByRole('radio')).toHaveAttribute('aria-invalid', 'true');
   });
 });
-
-import RadioGroupTest from './RadioGroup.test.svelte';
 
 describe('Radio Group Interaction', () => {
   afterEach(cleanup);
 
-  it('should update group value when another radio is selected', async () => {
+  it('updates group value when another radio is selected', async () => {
     const { getByLabelText } = render(RadioGroupTest, { testGroup: 'apple' });
-
     const apple = getByLabelText('Apple') as HTMLInputElement;
     const banana = getByLabelText('Banana') as HTMLInputElement;
-
     expect(apple.checked).toBe(true);
     expect(banana.checked).toBe(false);
-
     await fireEvent.click(banana);
-
     expect(banana.checked).toBe(true);
     expect(apple.checked).toBe(false);
-  });
-});
-
-describe('Radio Validation States', () => {
-  afterEach(cleanup);
-
-  it('renders invalid state class', () => {
-    render(Radio, { props: { value: '1', group: '2', invalid: true } });
-    const input = screen.getByRole('radio');
-    const container = input.parentElement;
-    expect(container).toHaveClass('invalid');
-    expect(container).not.toHaveClass('valid');
-  });
-
-  it('renders valid state class', () => {
-    render(Radio, { props: { value: '1', group: '2', valid: true } });
-    const input = screen.getByRole('radio');
-    const container = input.parentElement;
-    expect(container).toHaveClass('valid');
-    expect(container).not.toHaveClass('invalid');
-  });
-
-  it('prioritizes invalid state over valid state', () => {
-    render(Radio, { props: { value: '1', group: '2', invalid: true, valid: true } });
-    const input = screen.getByRole('radio');
-    const container = input.parentElement;
-    expect(container).toHaveClass('invalid');
-    expect(container).not.toHaveClass('valid');
   });
 });
