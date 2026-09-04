@@ -4,7 +4,6 @@
 export { default as Button } from './components/Button.svelte';
 export { default as Card } from './components/Card.svelte';
 export { default as Badge } from './components/Badge.svelte';
-export { default as DataTable } from './components/DataTable.svelte';
 export { default as SearchBar } from './components/SearchBar.svelte';
 export { default as Disclosure } from './components/Disclosure.svelte';
 export { default as Tabs } from './components/Tabs.svelte';
