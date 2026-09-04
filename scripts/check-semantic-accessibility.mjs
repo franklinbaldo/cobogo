@@ -7,9 +7,41 @@ import { chromium } from 'playwright';
 const [baseUrl, ...routeArgs] = process.argv.slice(2);
 const routes = routeArgs.length ? routeArgs : ['/'];
 const outputDir = process.env.ACCESSIBILITY_EVIDENCE_DIR || 'artifacts/accessibility';
+const defaultViewports = [{ width: 1280, height: 900 }];
 
 if (!baseUrl) {
   console.error('Usage: node scripts/check-semantic-accessibility.mjs <base-url> [route ...]');
+  process.exit(2);
+}
+
+function parseViewports(value) {
+  if (!value) return defaultViewports;
+
+  const entries = value.split(',').map((entry) => entry.trim()).filter(Boolean);
+  if (!entries.length) {
+    throw new Error('ACCESSIBILITY_VIEWPORTS must contain at least one WIDTHxHEIGHT entry');
+  }
+
+  return entries.map((entry) => {
+    const match = /^(\d+)x(\d+)$/.exec(entry);
+    if (!match) {
+      throw new Error(`Invalid ACCESSIBILITY_VIEWPORTS entry "${entry}"; expected WIDTHxHEIGHT, for example 1280x900`);
+    }
+
+    const width = Number.parseInt(match[1], 10);
+    const height = Number.parseInt(match[2], 10);
+    if (width <= 0 || height <= 0) {
+      throw new Error(`Invalid ACCESSIBILITY_VIEWPORTS entry "${entry}"; width and height must be positive`);
+    }
+    return { width, height };
+  });
+}
+
+let viewports;
+try {
+  viewports = parseViewports(process.env.ACCESSIBILITY_VIEWPORTS);
+} catch (error) {
+  console.error(error instanceof Error ? error.message : String(error));
   process.exit(2);
 }
 
@@ -109,47 +141,58 @@ const observations = [];
 const failures = [];
 
 try {
-  for (const route of routes) {
-    const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1 });
-    const page = await context.newPage();
-    const url = normalizeUrl(baseUrl, route);
-    const response = await page.goto(url, { waitUntil: 'networkidle' });
-    const status = response?.status() ?? 0;
+  for (const viewport of viewports) {
+    const context = await browser.newContext({ viewport, deviceScaleFactor: 1 });
+    try {
+      for (const route of routes) {
+        const page = await context.newPage();
+        try {
+          const url = normalizeUrl(baseUrl, route);
+          const response = await page.goto(url, { waitUntil: 'networkidle' });
+          const status = response?.status() ?? 0;
 
-    const axe = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-      .analyze();
-    const materialViolations = axe.violations
-      .filter((violation) => violation.impact === 'serious' || violation.impact === 'critical')
-      .map((violation) => ({
-        id: violation.id,
-        impact: violation.impact,
-        help: violation.help,
-        help_url: violation.helpUrl,
-        nodes: violation.nodes.map((node) => ({ target: node.target, summary: node.failureSummary })),
-      }));
+          const axe = await new AxeBuilder({ page })
+            .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+            .analyze();
+          const materialViolations = axe.violations
+            .filter((violation) => violation.impact === 'serious' || violation.impact === 'critical')
+            .map((violation) => ({
+              id: violation.id,
+              impact: violation.impact,
+              help: violation.help,
+              help_url: violation.helpUrl,
+              nodes: violation.nodes.map((node) => ({ target: node.target, summary: node.failureSummary })),
+            }));
 
-    const keyboard = await keyboardAudit(page);
-    const routeFailures = [];
-    if (status !== 200) routeFailures.push(`${route}: HTTP ${status}`);
-    for (const violation of materialViolations) {
-      routeFailures.push(`${route}: axe ${violation.impact} ${violation.id} — ${violation.help}`);
+          const keyboard = await keyboardAudit(page);
+          const label = `${route} @ ${viewport.width}x${viewport.height}`;
+          const routeFailures = [];
+          if (status !== 200) routeFailures.push(`${label}: HTTP ${status}`);
+          for (const violation of materialViolations) {
+            routeFailures.push(`${label}: axe ${violation.impact} ${violation.id} — ${violation.help}`);
+          }
+          routeFailures.push(...keyboard.failures.map((failure) => `${label}: ${failure}`));
+
+          observations.push({
+            route,
+            url,
+            viewport,
+            status,
+            axe: {
+              total_violations: axe.violations.length,
+              serious_or_critical: materialViolations,
+            },
+            keyboard,
+            failures: routeFailures,
+          });
+          failures.push(...routeFailures);
+        } finally {
+          await page.close();
+        }
+      }
+    } finally {
+      await context.close();
     }
-    routeFailures.push(...keyboard.failures.map((failure) => `${route}: ${failure}`));
-
-    observations.push({
-      route,
-      url,
-      status,
-      axe: {
-        total_violations: axe.violations.length,
-        serious_or_critical: materialViolations,
-      },
-      keyboard,
-      failures: routeFailures,
-    });
-    failures.push(...routeFailures);
-    await context.close();
   }
 } finally {
   await browser.close();
@@ -161,6 +204,7 @@ const report = {
   phase: process.env.EVIDENCE_PHASE || null,
   base_url: baseUrl,
   routes,
+  viewports,
   contract: {
     axe_tags: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'],
     material_impacts: ['serious', 'critical'],
@@ -177,4 +221,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Accessibility contract passed for ${routes.length} route(s).`);
+console.log(`Accessibility contract passed for ${routes.length} route(s) across ${viewports.length} viewport(s).`);
