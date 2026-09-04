@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteNav from '../components/SiteNav.astro';
 import Ornaments from '../components/Ornaments.astro';
-import ProfileCard from '../components/ProfileCard.svelte';
 import DataTable from '../components/DataTable.svelte';
 import SearchBar from '../components/SearchBar.svelte';
 import Button from '../components/Button.svelte';
@@ -45,7 +44,7 @@ const mockOptions = [
       <hgroup>
         <p><small data-kicker="vermelho">Biblioteca Atômica</small></p>
         <h1>Vitrine Curva<br />& Concreto</h1>
-        <p>Uma visualização rápida de todos os componentes criados pelo agente <strong>Brad Frost</strong>, seguindo a arquitetura de átomos, moléculas e organismos.</p>
+        <p>Uma visualização rápida dos componentes e patterns ainda ativos no COBOGÓ.</p>
       </hgroup>
     </header>
 
@@ -132,8 +131,8 @@ const mockOptions = [
 
     <section data-showcase="organisms">
       <hgroup>
-        <h2>03. Organismos</h2>
-        <p>Componentes robustos e prontos para aplicação em produtos reais.</p>
+        <h2>03. Organismos e patterns</h2>
+        <p>Comportamentos complexos ficam em componentes; relações visuais reutilizáveis podem ficar em HTML/CSS.</p>
       </hgroup>
 
       <div data-showcase-grid data-variant="wide">
@@ -150,13 +149,18 @@ const mockOptions = [
 
       <div data-showcase-grid>
         <article>
-          <h3>Cartão de Perfil</h3>
-          <ProfileCard
-            client:load
-            name="Lina Bo Bardi"
-            role="Arquiteta e Designer"
-            tags={['Vidro', 'Social']}
-          />
+          <h3>Identidade</h3>
+          <div data-cobogo-pattern="identity">
+            <span data-cobogo-identity-mark aria-hidden="true">LB</span>
+            <div data-cobogo-identity-body>
+              <h4 data-cobogo-identity-name>Lina Bo Bardi</h4>
+              <p data-cobogo-identity-meta>Arquiteta e Designer</p>
+              <div data-cobogo-pattern="inscription">
+                <span>Vidro</span>
+                <span>Social</span>
+              </div>
+            </div>
+          </div>
         </article>
 
         <article>

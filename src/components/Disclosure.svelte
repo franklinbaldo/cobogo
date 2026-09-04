@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
   import type { Snippet } from 'svelte';
 
   type Props = {
@@ -17,9 +16,6 @@
     disabled = false,
     children,
   }: Props = $props();
-
-  const getAccordionName = getContext<(() => string) | undefined>('accordion-name');
-  let detailsName = $derived(name || (getAccordionName ? getAccordionName() : undefined));
 
   function handleToggle(event: Event) {
     const details = event.target as HTMLDetailsElement;
@@ -43,7 +39,7 @@
 </script>
 
 <details
-  name={detailsName}
+  {name}
   {open}
   aria-disabled={disabled}
   ontoggle={handleToggle}

@@ -1,8 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteNav from '../components/SiteNav.astro';
-import Grid from '../components/Grid.svelte';
-import Column from '../components/Column.svelte';
 import DataTable from '../components/DataTable.svelte';
 import FilterBar from '../components/FilterBar.svelte';
 import DatePicker from '../components/DatePicker.svelte';
@@ -13,6 +11,7 @@ import Button from '../components/Button.svelte';
 import Card from '../components/Card.svelte';
 import Combobox from '../components/Combobox.svelte';
 import MultiSelect from '../components/MultiSelect.svelte';
+import '../styles/patterns.css';
 ---
 
 <BaseLayout title="Composition | COBOGÓ">
@@ -26,88 +25,90 @@ import MultiSelect from '../components/MultiSelect.svelte';
       </hgroup>
     </header>
 
-    <section data-composition>
-      <Grid gap="2rem">
-        <Column span={12} lg={4}>
-          <Card>
-            <h2>Filtros Avançados</h2>
+    <section
+      data-composition
+      data-cobogo-pattern="grid"
+      style="--cobogo-grid-gap: 2rem"
+    >
+      <div style="--cobogo-grid-span: 12; --cobogo-grid-span-lg: 4">
+        <Card>
+          <h2>Filtros Avançados</h2>
 
-            <FormField client:load label="Termo de Busca" htmlFor="search-input">
-              <TextInput id="search-input" placeholder="Ex: Contratos, Editais..." />
-            </FormField>
+          <FormField client:load label="Termo de Busca" htmlFor="search-input">
+            <TextInput id="search-input" placeholder="Ex: Contratos, Editais..." />
+          </FormField>
 
-            <FormField client:load label="Departamento" htmlFor="dept-combobox">
-              <Combobox
-                client:load
-                id="dept-combobox"
-                placeholder="Selecione o órgão..."
-                options={[
-                  { value: 'saude', label: 'Secretaria de Saúde' },
-                  { value: 'educacao', label: 'Secretaria de Educação' },
-                  { value: 'infra', label: 'Infraestrutura e Obras' },
-                  { value: 'fazenda', label: 'Fazenda Pública' },
-                  { value: 'meio-ambiente', label: 'Meio Ambiente' }
-                ]}
-              />
-            </FormField>
+          <FormField client:load label="Departamento" htmlFor="dept-combobox">
+            <Combobox
+              client:load
+              id="dept-combobox"
+              placeholder="Selecione o órgão..."
+              options={[
+                { value: 'saude', label: 'Secretaria de Saúde' },
+                { value: 'educacao', label: 'Secretaria de Educação' },
+                { value: 'infra', label: 'Infraestrutura e Obras' },
+                { value: 'fazenda', label: 'Fazenda Pública' },
+                { value: 'meio-ambiente', label: 'Meio Ambiente' }
+              ]}
+            />
+          </FormField>
 
-            <FormField client:load label="Etiquetas (Tags)" htmlFor="tags-multiselect">
-              <MultiSelect
-                client:load
-                id="tags-multiselect"
-                placeholder="Filtrar por tags..."
-                options={[
-                  { value: 'ativo', label: 'Ativo' },
-                  { value: 'encerrado', label: 'Encerrado' },
-                  { value: 'urgente', label: 'Urgente' },
-                  { value: 'em-revisao', label: 'Em Revisão' },
-                  { value: 'auditoria', label: 'Auditoria' }
-                ]}
-              />
-            </FormField>
+          <FormField client:load label="Etiquetas (Tags)" htmlFor="tags-multiselect">
+            <MultiSelect
+              client:load
+              id="tags-multiselect"
+              placeholder="Filtrar por tags..."
+              options={[
+                { value: 'ativo', label: 'Ativo' },
+                { value: 'encerrado', label: 'Encerrado' },
+                { value: 'urgente', label: 'Urgente' },
+                { value: 'em-revisao', label: 'Em Revisão' },
+                { value: 'auditoria', label: 'Auditoria' }
+              ]}
+            />
+          </FormField>
 
-            <FormField client:load label="Data Inicial" htmlFor="date-start"><DatePicker id="date-start" /></FormField>
-            <FormField client:load label="Hora Inicial" htmlFor="time-start"><TimePicker id="time-start" /></FormField>
-            <FormField client:load label="Data Final" htmlFor="date-end"><DatePicker id="date-end" /></FormField>
-            <FormField client:load label="Hora Final" htmlFor="time-end"><TimePicker id="time-end" /></FormField>
+          <FormField client:load label="Data Inicial" htmlFor="date-start"><DatePicker id="date-start" /></FormField>
+          <FormField client:load label="Hora Inicial" htmlFor="time-start"><TimePicker id="time-start" /></FormField>
+          <FormField client:load label="Data Final" htmlFor="date-end"><DatePicker id="date-end" /></FormField>
+          <FormField client:load label="Hora Final" htmlFor="time-end"><TimePicker id="time-end" /></FormField>
 
-            <footer data-actions>
-              <Button client:load intent="primary">Aplicar Filtros</Button>
-              <Button client:load intent="outline">Limpar</Button>
-            </footer>
-          </Card>
-        </Column>
+          <footer data-actions>
+            <Button client:load intent="primary">Aplicar Filtros</Button>
+            <Button client:load intent="outline">Limpar</Button>
+          </footer>
+        </Card>
+      </div>
 
-        <Column span={12} lg={8}>
-          <header data-results-header>
-            <h2>Resultados da Consulta</h2>
-            <FilterBar client:load filters={[
-              { key: 'estado', label: 'Estado', value: 'Ativo' },
-              { key: 'ano', label: 'Ano', value: '2026' },
-              { key: 'tipo', label: 'Tipo', value: 'Contratos' }
-            ]} />
-          </header>
+      <section style="--cobogo-grid-span: 12; --cobogo-grid-span-lg: 8">
+        <header data-results-header>
+          <h2>Resultados da Consulta</h2>
+          <FilterBar client:load filters={[
+            { key: 'estado', label: 'Estado', value: 'Ativo' },
+            { key: 'ano', label: 'Ano', value: '2026' },
+            { key: 'tipo', label: 'Tipo', value: 'Contratos' }
+          ]} />
+        </header>
 
-          <DataTable
-            client:load
-            caption="Tabela de resultados cívicos"
-            headers={[
-              { key: 'id', label: 'ID' },
-              { key: 'objeto', label: 'Objeto' },
-              { key: 'data', label: 'Data', align: 'center' },
-              { key: 'hora', label: 'Hora', align: 'center' },
-              { key: 'valor', label: 'Valor', align: 'right' }
-            ]}
-            data={[
-              { id: '1001', objeto: 'Reforma Estrutural', data: '2026-05-10', hora: '14:30', valor: 'R$ 1.250.000,00' },
-              { id: '1002', objeto: 'Aquisição de TI', data: '2026-05-12', hora: '09:00', valor: 'R$ 450.000,00' },
-              { id: '1003', objeto: 'Manutenção de Frota', data: '2026-05-15', hora: '16:45', valor: 'R$ 89.000,00' },
-              { id: '1004', objeto: 'Consultoria Jurídica', data: '2026-05-18', hora: '10:15', valor: 'R$ 210.000,00' },
-              { id: '1005', objeto: 'Licenciamento de Software', data: '2026-05-20', hora: '11:00', valor: 'R$ 150.000,00' }
-            ]}
-          />
-        </Column>
-      </Grid>
+        <DataTable
+          client:load
+          caption="Tabela de resultados cívicos"
+          headers={[
+            { key: 'id', label: 'ID' },
+            { key: 'objeto', label: 'Objeto' },
+            { key: 'data', label: 'Data', align: 'center' },
+            { key: 'hora', label: 'Hora', align: 'center' },
+            { key: 'valor', label: 'Valor', align: 'right' }
+          ]}
+          data={[
+            { id: '1001', objeto: 'Reforma Estrutural', data: '2026-05-10', hora: '14:30', valor: 'R$ 1.250.000,00' },
+            { id: '1002', objeto: 'Aquisição de TI', data: '2026-05-12', hora: '09:00', valor: 'R$ 450.000,00' },
+            { id: '1003', objeto: 'Manutenção de Frota', data: '2026-05-15', hora: '16:45', valor: 'R$ 89.000,00' },
+            { id: '1004', objeto: 'Consultoria Jurídica', data: '2026-05-18', hora: '10:15', valor: 'R$ 210.000,00' },
+            { id: '1005', objeto: 'Licenciamento de Software', data: '2026-05-20', hora: '11:00', valor: 'R$ 150.000,00' }
+          ]}
+        />
+      </section>
     </section>
   </main>
 

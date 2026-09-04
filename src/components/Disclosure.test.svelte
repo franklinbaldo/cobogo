@@ -3,13 +3,14 @@
 
   type Props = {
     title: string;
+    name?: string;
     open?: boolean;
     disabled?: boolean;
   };
 
-  let { title, open = false, disabled = false }: Props = $props();
+  let { title, name, open = false, disabled = false }: Props = $props();
 </script>
 
-<Disclosure {title} bind:open {disabled}>
+<Disclosure {title} {name} bind:open {disabled}>
   <p data-testid="disclosure-content">Hidden details about Brazilian modernism.</p>
 </Disclosure>
