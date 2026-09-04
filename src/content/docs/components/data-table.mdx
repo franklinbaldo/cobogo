@@ -1,41 +1,114 @@
 ---
-title: "DataTable"
-description: "A Concreto component for displaying tabular data."
+title: "Tabela de dados"
+description: "Pattern CSS para apresentar tabelas sem esconder o domínio em um renderer genérico."
 ---
 
-import DataTableDemo from './_DataTableDemo.svelte';
+# Tabela de dados
 
-# DataTable
+Cobogó não possui mais um componente `DataTable` que recebe arrays e decide como interpretar cada coluna. O contrato compartilhado é o pattern `data-table`: o consumidor escreve a tabela HTML que representa seu domínio; Cobogó cuida de superfície, overflow, foco e ritmo visual.
 
-The **DataTable** component provides a rigid, predictable structure for tabular data. It embodies the *Concreto* aesthetic—sharp lines, high contrast text headers, and clear delineations—acting as the geometric scaffolding upon which data rests.
+## Demonstração
 
-It supports variations like `default`, `compact`, and `striped` to handle different densities of information.
+<div
+  class="demo-container br-component-class"
+  data-cobogo-pattern="data-table"
+  tabindex="0"
+  aria-label="Mestres do Modernismo Brasileiro"
+>
+  <table>
+    <caption>Mestres do Modernismo Brasileiro</caption>
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Função</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lina Bo Bardi</td>
+        <td>Arquiteta</td>
+        <td>São Paulo</td>
+        <td><span data-cobogo-pattern="state" data-cobogo-state="success">Ativo</span></td>
+      </tr>
+      <tr>
+        <td>Oscar Niemeyer</td>
+        <td>Arquiteto</td>
+        <td>Rio de Janeiro</td>
+        <td><span data-cobogo-pattern="state" data-cobogo-state="success">Concluído</span></td>
+      </tr>
+      <tr>
+        <td>Athos Bulcão</td>
+        <td>Artista</td>
+        <td>Brasília</td>
+        <td><span data-cobogo-pattern="state" data-cobogo-state="warning">Pendente</span></td>
+      </tr>
+      <tr>
+        <td>Burle Marx</td>
+        <td>Paisagista</td>
+        <td>Rio de Janeiro</td>
+        <td><span data-cobogo-pattern="state" data-cobogo-state="danger">Cancelado</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-## Demonstration
+## Uso
 
-<DataTableDemo client:load />
-
-## Usage
-
-```svelte
-<script>
-  import { DataTable } from 'cobogo';
-
-  const headers = [
-    { key: 'name', label: 'Nome' },
-    { key: 'role', label: 'Função' },
-    { key: 'status', label: 'Status', align: 'center' }
-  ];
-
-  const data = [
-    { name: 'Lina Bo Bardi', role: 'Arquiteta', status: 'Ativo' },
-    { name: 'Athos Bulcão', role: 'Artista', status: 'Concluído' }
-  ];
-</script>
-
-<DataTable {headers} {data} caption="Exemplo de Tabela" variant="striped" />
+```astro
+<div
+  data-cobogo-pattern="data-table"
+  tabindex="0"
+  aria-label="Contratos encontrados"
+>
+  <table>
+    <caption>Contratos encontrados</caption>
+    <thead>
+      <tr>
+        <th scope="col">Contrato</th>
+        <th scope="col">Objeto</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <td>{row.numero}</td>
+          <td>{row.objeto}</td>
+          <td>
+            <span
+              data-cobogo-pattern="state"
+              data-cobogo-state={row.estadoVisual}
+            >
+              {row.status}
+            </span>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 ```
 
-## Doctrine
+## O estado pertence ao domínio
 
-The `DataTable` enforces order. It does not try to be playful or overly soft; its headers are uppercase, spaced out, and bold (`var(--fg-heading)` against `var(--bg-sunken)`), anchoring the columns. Status badges inside the table use our precise semantic tokens (`var(--verde)`, `var(--ocre)`) without overwhelming the grid structure.
+O antigo `DataTable` tinha uma regra embutida: uma coluna chamada `status` era reconhecida por nome e strings como `Ativo`, `Concluído`, `Pendente` e `Cancelado` eram convertidas automaticamente em cores/tokens.
+
+Essa inferência desaparece. O consumidor sabe o significado de seus próprios estados e escolhe explicitamente `info`, `success`, `warning` ou `danger` quando uma codificação visual for apropriada.
+
+Isso evita que Cobogó transforme palavras específicas de um produto em semântica global.
+
+## Acessibilidade
+
+- use `<caption>` para nomear a tabela visivelmente;
+- use `scope="col"`/`scope="row"` quando aplicável;
+- mantenha a ordem do DOM igual à ordem de leitura;
+- quando a tabela puder rolar horizontalmente, o wrapper pode receber `tabindex="0"` e um nome acessível para que usuários de teclado alcancem a região de scroll;
+- não use cor como único sinal de estado: o texto continua presente.
+
+## Por que pattern e não componente
+
+A estrutura de linhas, colunas, células, links, botões e estados pertence aos dados reais do consumidor. Um componente genérico precisaria inventar uma mini-linguagem de configuração para reproduzir HTML que já é mais expressivo e acessível.
+
+Cobogó compartilha a **relação visual da tabela**; o consumidor mantém o **modelo e a marcação do domínio**.
