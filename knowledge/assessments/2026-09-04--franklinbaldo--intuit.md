@@ -2,9 +2,9 @@
 type: SurfaceQualityAssessment
 repo: franklinbaldo/intuit
 date: 2026-09-04
-commit: 495e54b9841ba2e18fcd5f980e995a6072e92963
-deploy: https://github.com/franklinbaldo/intuit/actions/runs/33835991124
-capture: artifact:9923434999
+commit: 20f96cfbbd41715bb270f6eecaa71e7bb4d91f67
+deploy: https://github.com/franklinbaldo/intuit/actions/runs/33909370435
+capture: artifact:9950763192
 scores:
   clarity: 4
   explainability: 3
@@ -18,63 +18,60 @@ blockers: []
 trend: flat
 ---
 
-# Intuit — Surface Quality Assessment
+# Intuit — avaliação de qualidade
 
 ## Veredito
 
-**Avaliação de qualidade: 20 de 24 pontos — faixa boa.** Clareza 4/4, Explicabilidade 3/4, Autonomia 3/4, UX 3/4, UI 3/4 e Confiança 4/4. A nota total não mudou, mas a base de Confiança ficou mais forte: o modo que reduz isolamento agora explica a consequência antes da decisão, e a mesma composição foi observada na página já publicada em desktop e 390 px.
+**Avaliação de qualidade: 20 de 24 pontos — faixa boa.** Clareza 4/4, Explicabilidade 3/4, Autonomia 3/4, UX 3/4, UI 3/4 e Confiança 4/4.
+
+A nota total não muda nesta rodada. O que mudou foi um problema concreto dentro de UX e Autonomia: `Copy Link` e `Update URL` deixaram de afirmar que qualquer volume de HTML cabe de forma confiável em um endereço compartilhável. A correção melhora o comportamento sem, por si só, transformar as dimensões 3/4 em referência.
 
 ## Clareza / D1
 
-**4/4.** Editor, ações e preview continuam formando uma sequência direta. A explicação nova não compete com a tarefa principal; em 390 px aparece como texto de apoio sob `Allow Scripts` e preserva a hierarquia.
+**4/4.** Editor, ações e preview continuam formando uma sequência direta. A nova mensagem só aparece quando a pessoa tenta transformar conteúdo excessivamente grande em link e explica a limitação no ponto da ação.
 
-Problema material restante: nenhum.
+Não há problema material de Clareza demonstrado no escopo observado.
 
 ## Explicabilidade / D2
 
-**3/4.** A home continua dizendo o que o produto é e agora torna explícita uma fronteira de segurança que antes exigia conhecer implementação: `Allow Scripts` deve ser usado apenas com HTML confiável porque reduz o isolamento do preview. Isso melhora a explicação pública, mas ainda não transforma toda a mecânica do Intuit em referência transversal; URL/Gist, `srcdoc` e demais detalhes continuam principalmente documentados no repositório.
+**3/4.** A home continua explicando a finalidade básica da ferramenta e a consequência de habilitar scripts. A lógica mais ampla de URL, Base64, Gist e `srcdoc` ainda depende em parte do repositório para explicação profunda; esta rodada não tentou transformar isso em documentação de referência dentro da página.
 
-Problema material restante: nenhum para a tarefa atual.
+Não surgiu novo problema concreto de Explicabilidade nesta rodada.
 
 ## Autonomia / D3
 
-**3/4.** URL, Base64 e Gist continuam oferecendo estados transportáveis e o source checkout permanece executável como aplicação estática. A rodada não adicionou novo formato reutilizável nem removeu capacidade existente.
+**3/4.** URL, Base64 e Gist continuam oferecendo caminhos de transporte do estado. A #31 melhora a honestidade desse contrato: conteúdo pequeno continua cabendo em `?data=`, enquanto um endereço que ultrapassaria o orçamento conservador de 8.000 caracteres é recusado antes de ser apresentado como compartilhável, com Gist oferecido como alternativa real já existente no produto.
 
-Problema material restante: nenhum.
+Isso melhora uma fronteira de autonomia, mas não adiciona um novo formato reutilizável nem amplia a família de saídas públicas a ponto de justificar 4/4.
 
 ## UX
 
-**3/4.** A decisão de habilitar scripts ganhou informação no próprio ponto de ação, antes do clique, sem criar modal ou fluxo extra. Playwright verifica a associação semântica e o comportamento técnico. A prova visual continua concentrada na home e não cobre uma família suficientemente ampla de estados interativos para justificar 4/4.
+**3/4.** Antes da #31, `Copy Link` escrevia qualquer URL na área de transferência e confirmava `Copied!`; `Update URL` fazia o mesmo estado entrar no endereço atual, sem considerar tamanho. Agora ambos usam o mesmo contrato. Se o endereço projetado excede 8.000 caracteres, a ação é recusada, o editor é preservado e a região de alerta explica que o HTML é grande demais para um link confiável e sugere manter o conteúdo no editor ou usar Gist.
 
-Problema material restante: nenhum acionável nesta rodada.
+Os testes Playwright exercitam três casos: link normal continua funcionando; uma cópia excessiva não altera a área de transferência nem confirma sucesso; e uma atualização excessiva não altera a URL. A prova de UX continua concentrada na home e numa família limitada de estados, portanto 3/4 permanece uma nota mais fiel que 4/4.
 
 ## UI
 
-**3/4.** As imagens publicadas em `1440×900` e `390×844` mostram a explicação sem truncamento, sobreposição ou rolagem horizontal global aparente. No celular, o texto quebra naturalmente em linhas e `Dark Mode` permanece separado abaixo. Gradientes, espaçamento e composição local do Intuit foram preservados.
-
-Problema material restante: nenhum.
+**3/4.** A mudança reutiliza a região de alerta existente e não cria uma nova camada visual. O workflow de observação passou novamente em `main` e o pacote posterior à publicação preserva a composição em 1440×900 e 390×844. Não houve base suficiente nesta rodada para elevar UI.
 
 ## Confiança
 
-**4/4.** O estado padrão permanece `sandbox=""`; scripts continuam opt-in. Antes da ativação, a interface agora informa que o HTML precisa ser confiável e que o isolamento será reduzido, com `aria-describedby` associando a explicação ao checkbox. O teste novo confirma sandbox estrito antes da escolha e `allow-scripts` + `allow-same-origin` depois dela.
+**4/4.** O limite é um contrato explícito e testado, não uma promessa textual desacoplada do comportamento. A #31 foi incorporada como `20f96cfbbd41715bb270f6eecaa71e7bb4d91f67`; `Test` `33909370588`, `Visual capture` `33909370422` e Pages `33909370435` terminaram com sucesso nesse mesmo commit.
 
-A prova está ligada ao que o leitor recebeu: a #30 foi incorporada como `495e54b9841ba2e18fcd5f980e995a6072e92963`; o workflow Pages `33835991124` publicou esse commit e depois abriu novamente a URL pública em Chromium. O arquivo `9923434999` registra `phase=published`, o mesmo commit, a rota `https://franklinbaldo.github.io/intuit/`, as duas larguras e horário `2026-09-04T04:21:05Z`.
+Depois da publicação, o pacote `9950763192`, chamado `intuit-published-20f96cfbbd41715bb270f6eecaa71e7bb4d91f67`, registrou `phase=published`, a rota `https://franklinbaldo.github.io/intuit/`, larguras 1440×900 e 390×844 e horário `2026-09-04T19:06:56Z`.
 
-Problema material restante: nenhum identificado no escopo observado.
+Isso comprova a revisão publicada e os estados testados; não é uma afirmação de perfeição universal.
 
 ## Impedimentos objetivos
 
-Nenhum.
+Nenhum para o problema escolhido.
 
 ## Recomendações Cobogó
 
-- `risk-changing-controls-explain-consequence` — passa a `validated`: em linguagem comum, já funcionou em pelo menos um projeto real. Ainda precisa de uma segunda aplicação independente para chegar a `stable`, quando terá funcionado de forma convergente em pelo menos dois projetos.
-- `visual-evidence-as-quality-gate` — permanece aplicável; #30 fortalece a prova ao capturar também a URL realmente publicada.
-
-## Issues derivadas
-
-A dívida concreta desta rodada foi `franklinbaldo/intuit#29` e foi fechada pela #30. Nenhuma nova issue genérica foi aberta.
+- `url-state-when-shareable` passa a `validated`: em português comum, já funcionou em pelo menos um projeto real. O Intuit preserva estado por URL no caso normal e recusa explicitamente o caso excessivamente grande, em vez de produzir um endereço que a própria interface chama de compartilhável sem garantia suficiente.
+- `feedback-near-action` continua aplicável: a recusa usa a região de alerta da própria ferramenta e acontece imediatamente após a ação.
+- `visual-evidence-as-quality-gate` continua aplicável: a revisão foi observada novamente depois da publicação.
 
 ## O que o Cobogó deve aprender deste projeto
 
-Quando um controle muda o modelo de proteção, uma frase pequena e semanticamente associada pode ser melhor do que esconder a consequência em documentação ou criar uma confirmação pesada. O teste deve verificar tanto a comunicação quanto o comportamento técnico. A mesma infraestrutura de screenshot também pode apontar para a URL pública após o deploy, reduzindo a diferença entre o que o repositório contém e o que a pessoa realmente recebe.
+“Estado na URL” precisa ter uma fronteira de tamanho. Uma recomendação de compartilhamento fica mais forte quando também diz quando recusar a serialização e aponta uma alternativa real. O limite numérico pode variar por produto; o invariante importante é não confirmar como compartilhável um endereço que excede o orçamento de confiabilidade escolhido pelo projeto.
