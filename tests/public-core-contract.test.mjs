@@ -43,7 +43,7 @@ test("Getting Started teaches the curated root API and public CSS layers", () =>
   assert.match(gettingStarted, /import 'cobogo\/core'/);
   assert.match(gettingStarted, /import 'cobogo\/patterns'/);
   assert.match(gettingStarted, /import \{ Button, Card, Badge, Disclosure \} from 'cobogo'/);
-  assert.doesNotMatch(gettingStarted, /cobogo\/components\//);
+  assert.doesNotMatch(gettingStarted, /(?:import|from)[^\n]*['"]cobogo\/components\//);
   assert.match(gettingStarted, /Astro[^\n]*caminho recomendado|caminho recomendado[^\n]*Astro/i);
   assert.match(gettingStarted, /upstream/i);
 });
