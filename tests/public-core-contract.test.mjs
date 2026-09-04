@@ -14,6 +14,17 @@ test("package only exposes components through curated entrypoints", () => {
   assert.equal(pkg.exports["./components/*"], undefined);
 });
 
+test("root JavaScript API does not publish a fixed color palette", () => {
+  const entrypoint = read("src/index.ts");
+  const core = read("src/styles/core.css");
+
+  assert.doesNotMatch(entrypoint, /export const tokens\s*=/);
+  assert.match(core, /--cobogo-canvas:/);
+  assert.match(core, /--cobogo-surface:/);
+  assert.match(core, /--cobogo-text:/);
+  assert.match(core, /--cobogo-accent:/);
+});
+
 test("core owns generic focus and reduced-motion contracts", () => {
   const core = read("src/styles/core.css");
   assert.match(core, /:where\(:focus-visible\)/);
