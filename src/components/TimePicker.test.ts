@@ -1,53 +1,38 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/svelte/svelte5';
+import { describe, it, expect } from 'vitest';
+import { render } from '@testing-library/svelte/svelte5';
 import TimePicker from './TimePicker.svelte';
-
-describe('TimePicker', () => {
-	it('renders correctly', () => {
-		render(TimePicker, { value: '14:30' });
-		const input = document.querySelector('input[type="time"]');
-		expect(input).toBeTruthy();
-		expect((input as HTMLInputElement).value).toBe('14:30');
-	});
-
-	it('applies invalid state via props', () => {
-		render(TimePicker, { invalid: true });
-		const input = document.querySelector('input[type="time"]') as HTMLInputElement;
-		expect(input.classList.contains('invalid')).toBe(true);
-		expect(input.getAttribute('aria-invalid')).toBe('true');
-	});
-
-	it('applies size class', () => {
-		render(TimePicker, { size: 'sm' });
-		const input = document.querySelector('input[type="time"]') as HTMLInputElement;
-		expect(input.classList.contains('time-picker-sm')).toBe(true);
-	});
-
-	it('renders valid state class', () => {
-		render(TimePicker, { valid: true });
-		const input = document.querySelector('input[type="time"]') as HTMLInputElement;
-		expect(input.classList.contains('valid')).toBe(true);
-	});
-
-	it('prioritizes invalid state over valid state', () => {
-		render(TimePicker, { invalid: true, valid: true });
-		const input = document.querySelector('input[type="time"]') as HTMLInputElement;
-		expect(input.classList.contains('invalid')).toBe(true);
-		expect(input.classList.contains('valid')).toBe(false);
-		expect(input.getAttribute('aria-invalid')).toBe('true');
-	});
-});
-
 import TimePickerContext from './TimePickerContext.test.svelte';
 
+const timeInput = () => document.querySelector('input[type="time"]') as HTMLInputElement;
+
+describe('TimePicker', () => {
+  it('renders native time value without an implicit validation state', () => {
+    render(TimePicker, { value: '14:30' });
+    const input = timeInput();
+    expect(input.value).toBe('14:30');
+    expect(input).not.toHaveAttribute('aria-invalid');
+  });
+
+  it('uses aria-invalid and data-size for state and sizing', () => {
+    render(TimePicker, { invalid: true, valid: true, size: 'sm' });
+    const input = timeInput();
+    expect(input).toHaveAttribute('aria-invalid', 'true');
+    expect(input).toHaveAttribute('data-size', 'sm');
+  });
+
+  it('represents an explicit valid state semantically', () => {
+    render(TimePicker, { valid: true });
+    expect(timeInput()).toHaveAttribute('aria-invalid', 'false');
+  });
+});
+
 describe('TimePicker with FormField', () => {
-	it('inherits invalid and required states from context', () => {
-		render(TimePickerContext, { invalid: true, required: true });
-		const input = document.querySelector('input[type="time"]') as HTMLInputElement;
-		expect(input.classList.contains('invalid')).toBe(true);
-		expect(input.getAttribute('aria-invalid')).toBe('true');
-		expect(input.required).toBe(true);
-		expect(input.id).toBe('time-input');
-		expect(input.getAttribute('aria-describedby')).toBe('time-helper');
-	});
+  it('inherits semantic state and associations from context', () => {
+    render(TimePickerContext, { invalid: true, required: true });
+    const input = timeInput();
+    expect(input).toHaveAttribute('aria-invalid', 'true');
+    expect(input.required).toBe(true);
+    expect(input.id).toBe('time-input');
+    expect(input).toHaveAttribute('aria-describedby', 'time-helper');
+  });
 });

@@ -1,97 +1,50 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 import { render, fireEvent, cleanup, screen } from '@testing-library/svelte';
 import Checkbox from './Checkbox.svelte';
+import CheckboxGroupTest from './CheckboxGroup.test.svelte';
 
-describe('Checkbox Component (BDD)', () => {
+describe('Checkbox Component', () => {
   afterEach(cleanup);
 
-  it('should render a checkbox with correct default attributes', () => {
-    const { getByRole } = render(Checkbox);
-    const checkbox = getByRole('checkbox') as HTMLInputElement;
-    expect(checkbox).toBeInTheDocument();
+  it('renders native defaults and toggles', async () => {
+    render(Checkbox);
+    const checkbox = screen.getByRole('checkbox') as HTMLInputElement;
     expect(checkbox.checked).toBe(false);
     expect(checkbox.disabled).toBe(false);
-  });
-
-  it('should toggle checked state when clicked', async () => {
-    const { getByRole } = render(Checkbox);
-    const checkbox = getByRole('checkbox') as HTMLInputElement;
-
-    expect(checkbox.checked).toBe(false);
+    expect(checkbox).not.toHaveAttribute('aria-invalid');
     await fireEvent.click(checkbox);
     expect(checkbox.checked).toBe(true);
-    await fireEvent.click(checkbox);
-    expect(checkbox.checked).toBe(false);
   });
 
-  it('should render as disabled when disabled prop is true', () => {
-    const { getByRole } = render(Checkbox, { disabled: true });
-    const checkbox = getByRole('checkbox') as HTMLInputElement;
-    expect(checkbox.disabled).toBe(true);
+  it('forwards native disabled, id and described-by attributes', () => {
+    render(Checkbox, { props: { disabled: true, id: 'cb-1', 'aria-describedby': 'helper-1' } });
+    const checkbox = screen.getByRole('checkbox');
+    expect(checkbox).toBeDisabled();
+    expect(checkbox).toHaveAttribute('id', 'cb-1');
+    expect(checkbox).toHaveAttribute('aria-describedby', 'helper-1');
   });
 
-  it('should associate with aria-describedby and id appropriately', () => {
-    const { getByRole } = render(Checkbox, { id: 'cb-1', 'aria-describedby': 'helper-1' });
-    const checkbox = getByRole('checkbox') as HTMLInputElement;
-    expect(checkbox.id).toBe('cb-1');
-    expect(checkbox.getAttribute('aria-describedby')).toBe('helper-1');
-  });
-
-  it('renders invalid state correctly when explicitly passed', () => {
-    render(Checkbox, { props: { invalid: true } });
-    const input = screen.getByRole('checkbox');
-    expect(input).toHaveAttribute('aria-invalid', 'true');
-    const container = input.parentElement;
-    expect(container).toHaveClass('invalid');
+  it('uses aria-invalid for invalid and valid states with invalid precedence', () => {
+    const first = render(Checkbox, { props: { valid: true } });
+    expect(screen.getByRole('checkbox')).toHaveAttribute('aria-invalid', 'false');
+    first.unmount();
+    render(Checkbox, { props: { invalid: true, valid: true } });
+    expect(screen.getByRole('checkbox')).toHaveAttribute('aria-invalid', 'true');
   });
 });
-
-import CheckboxGroupTest from './CheckboxGroup.test.svelte';
 
 describe('Checkbox Group Interaction', () => {
   afterEach(cleanup);
 
-  it('should update group array when checked/unchecked', async () => {
+  it('updates group membership when checked and unchecked', async () => {
     const { getByLabelText } = render(CheckboxGroupTest, { testGroup: ['apple'] });
-
     const apple = getByLabelText('Apple') as HTMLInputElement;
     const banana = getByLabelText('Banana') as HTMLInputElement;
-
     expect(apple.checked).toBe(true);
     expect(banana.checked).toBe(false);
-
     await fireEvent.click(banana);
     expect(banana.checked).toBe(true);
-
     await fireEvent.click(apple);
     expect(apple.checked).toBe(false);
-  });
-});
-
-describe('Checkbox Validation States', () => {
-  afterEach(cleanup);
-
-  it('renders invalid state class', () => {
-    render(Checkbox, { props: { invalid: true } });
-    const input = screen.getByRole('checkbox');
-    const container = input.parentElement;
-    expect(container).toHaveClass('invalid');
-    expect(container).not.toHaveClass('valid');
-  });
-
-  it('renders valid state class', () => {
-    render(Checkbox, { props: { valid: true } });
-    const input = screen.getByRole('checkbox');
-    const container = input.parentElement;
-    expect(container).toHaveClass('valid');
-    expect(container).not.toHaveClass('invalid');
-  });
-
-  it('prioritizes invalid state over valid state', () => {
-    render(Checkbox, { props: { invalid: true, valid: true } });
-    const input = screen.getByRole('checkbox');
-    const container = input.parentElement;
-    expect(container).toHaveClass('invalid');
-    expect(container).not.toHaveClass('valid');
   });
 });

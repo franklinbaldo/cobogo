@@ -3,83 +3,44 @@ import { render, screen, fireEvent } from '@testing-library/svelte';
 import Notification from './Notification.svelte';
 
 describe('Notification', () => {
-  it('renders correctly with title and message', () => {
-    render(Notification, {
-      props: {
-        title: 'Task Completed',
-        message: 'Your report has been successfully generated.',
-        intent: 'info'
-      }
-    });
-
+  it('renders title, message and semantic info intent', () => {
+    render(Notification, { props: { title: 'Task Completed', message: 'Your report has been successfully generated.', intent: 'info' } });
+    const notification = screen.getByRole('status');
     expect(screen.getByText('Task Completed')).toBeInTheDocument();
     expect(screen.getByText('Your report has been successfully generated.')).toBeInTheDocument();
-
-    const notification = screen.getByRole('status');
-    expect(notification).toBeInTheDocument();
-    expect(notification.className).toContain('br-notification--info');
+    expect(notification).toHaveAttribute('data-toast');
+    expect(notification).toHaveAttribute('data-intent', 'info');
+    expect(notification).toHaveAttribute('aria-live', 'polite');
   });
 
-  it('renders different intents with correct aria roles', () => {
-    const { unmount } = render(Notification, {
-      props: { title: 'Danger', intent: 'danger' }
-    });
-
+  it('maps danger to alert/assertive and tip to status/success', () => {
+    const first = render(Notification, { props: { title: 'Danger', intent: 'danger' } });
     let el = screen.getByRole('alert');
-    expect(el).toBeInTheDocument();
-    expect(el.className).toContain('br-notification--danger');
-    unmount();
+    expect(el).toHaveAttribute('data-intent', 'danger');
+    expect(el).toHaveAttribute('aria-live', 'assertive');
+    first.unmount();
 
-    render(Notification, {
-      props: { title: 'Success', intent: 'tip' }
-    });
-
+    render(Notification, { props: { title: 'Tip', intent: 'tip' } });
     el = screen.getByRole('status');
-    expect(el).toBeInTheDocument();
-    expect(el.className).toContain('br-notification--tip');
+    expect(el).toHaveAttribute('data-intent', 'success');
   });
 
   it('can be dismissed when dismissible is true', async () => {
     const ondismiss = vi.fn();
-    render(Notification, {
-      props: {
-        title: 'Dismiss me',
-        dismissible: true,
-        ondismiss
-      }
-    });
-
-    const closeBtn = screen.getByRole('button', { name: /dismiss/i });
-    expect(closeBtn).toBeInTheDocument();
-
-    await fireEvent.click(closeBtn);
-
+    render(Notification, { props: { title: 'Dismiss me', dismissible: true, ondismiss } });
+    await fireEvent.click(screen.getByRole('button', { name: /dismiss/i }));
     expect(ondismiss).toHaveBeenCalledTimes(1);
   });
 
   it('hides the close button when dismissible is false', () => {
-    render(Notification, {
-      props: {
-        title: 'Cannot dismiss',
-        dismissible: false
-      }
-    });
-
-    const closeBtn = screen.queryByRole('button', { name: /dismiss/i });
-    expect(closeBtn).toBeNull();
+    render(Notification, { props: { title: 'Cannot dismiss', dismissible: false } });
+    expect(screen.queryByRole('button', { name: /dismiss/i })).toBeNull();
   });
 
-  it('does not auto-dismiss when timeout is 0 or undefined', () => {
+  it('does not auto-dismiss when timeout is zero', () => {
     vi.useFakeTimers();
     const ondismiss = vi.fn();
-    render(Notification, {
-      props: {
-        title: 'No timeout',
-        timeout: 0,
-        ondismiss
-      }
-    });
-
+    render(Notification, { props: { title: 'No timeout', timeout: 0, ondismiss } });
     vi.advanceTimersByTime(5000);
     expect(ondismiss).not.toHaveBeenCalled();
     vi.useRealTimers();
@@ -88,18 +49,10 @@ describe('Notification', () => {
   it('auto-dismisses after the specified timeout', () => {
     vi.useFakeTimers();
     const ondismiss = vi.fn();
-    render(Notification, {
-      props: {
-        title: 'Auto dismiss',
-        timeout: 2000,
-        ondismiss
-      }
-    });
-
-    vi.advanceTimersByTime(1000);
+    render(Notification, { props: { title: 'Auto dismiss', timeout: 2000, ondismiss } });
+    vi.advanceTimersByTime(1999);
     expect(ondismiss).not.toHaveBeenCalled();
-
-    vi.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1);
     expect(ondismiss).toHaveBeenCalledTimes(1);
     vi.useRealTimers();
   });
@@ -107,80 +60,38 @@ describe('Notification', () => {
   it('pauses timeout on hover and resumes on leave', async () => {
     vi.useFakeTimers();
     const ondismiss = vi.fn();
-    render(Notification, {
-      props: {
-        title: 'Hover pause',
-        timeout: 2000,
-        ondismiss
-      }
-    });
-
+    render(Notification, { props: { title: 'Hover pause', timeout: 2000, ondismiss } });
     const notification = screen.getByRole('status');
-
-    vi.advanceTimersByTime(1000); // 1000ms elapsed, 1000ms left
-
-    // Hover to pause
+    vi.advanceTimersByTime(1000);
     await fireEvent.mouseEnter(notification);
-    vi.advanceTimersByTime(2000); // Wait past original timeout
-    expect(ondismiss).not.toHaveBeenCalled(); // Should be paused
-
-    // Unhover to resume
+    vi.advanceTimersByTime(2000);
+    expect(ondismiss).not.toHaveBeenCalled();
     await fireEvent.mouseLeave(notification);
-    vi.advanceTimersByTime(1000); // Wait the remaining 1000ms
+    vi.advanceTimersByTime(1000);
     expect(ondismiss).toHaveBeenCalledTimes(1);
-
     vi.useRealTimers();
   });
 
-  it('has tabindex 0 when auto-dismissible and -1 otherwise', () => {
-    const { unmount } = render(Notification, {
-      props: {
-        title: 'Auto dismiss',
-        timeout: 2000
-      }
-    });
-
-    let notification = screen.getByRole('status');
-    expect(notification).toHaveAttribute('tabindex', '0');
-
-    unmount();
-
-    render(Notification, {
-      props: {
-        title: 'Static dismiss',
-        timeout: 0
-      }
-    });
-
-    notification = screen.getByRole('status');
-    expect(notification).toHaveAttribute('tabindex', '-1');
+  it('uses tabindex 0 for timed notifications and -1 otherwise', () => {
+    const first = render(Notification, { props: { title: 'Auto dismiss', timeout: 2000 } });
+    expect(screen.getByRole('status')).toHaveAttribute('tabindex', '0');
+    first.unmount();
+    render(Notification, { props: { title: 'Static dismiss', timeout: 0 } });
+    expect(screen.getByRole('status')).toHaveAttribute('tabindex', '-1');
   });
 
   it('pauses timeout on focus and resumes on blur', async () => {
     vi.useFakeTimers();
     const ondismiss = vi.fn();
-    render(Notification, {
-      props: {
-        title: 'Focus pause',
-        timeout: 2000,
-        ondismiss
-      }
-    });
-
+    render(Notification, { props: { title: 'Focus pause', timeout: 2000, ondismiss } });
     const notification = screen.getByRole('status');
-
-    vi.advanceTimersByTime(1000); // 1000ms elapsed, 1000ms left
-
-    // Focus to pause
+    vi.advanceTimersByTime(1000);
     await fireEvent.focusIn(notification);
-    vi.advanceTimersByTime(2000); // Wait past original timeout
-    expect(ondismiss).not.toHaveBeenCalled(); // Should be paused
-
-    // Blur to resume
+    vi.advanceTimersByTime(2000);
+    expect(ondismiss).not.toHaveBeenCalled();
     await fireEvent.focusOut(notification);
-    vi.advanceTimersByTime(1000); // Wait the remaining 1000ms
+    vi.advanceTimersByTime(1000);
     expect(ondismiss).toHaveBeenCalledTimes(1);
-
     vi.useRealTimers();
   });
 });

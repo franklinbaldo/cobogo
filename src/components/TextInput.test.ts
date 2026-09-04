@@ -3,23 +3,22 @@ import { render, screen, fireEvent } from '@testing-library/svelte';
 import TextInput from './TextInput.svelte';
 
 describe('TextInput Component', () => {
-  it('renders correctly with default props', () => {
+  it('renders native defaults without inventing a validation state', () => {
     render(TextInput);
     const input = screen.getByRole('textbox');
-    expect(input).toBeInTheDocument();
     expect(input).toHaveAttribute('type', 'text');
     expect(input).not.toHaveAttribute('disabled');
-    expect(input).toHaveAttribute('aria-invalid', 'false');
-    expect(input).toHaveClass('text-input-md');
+    expect(input).not.toHaveAttribute('aria-invalid');
+    expect(input).not.toHaveAttribute('data-size');
   });
 
-  it('applies custom props correctly', () => {
+  it('forwards type, placeholder, size and disabled semantically', () => {
     render(TextInput, { props: { type: 'email', placeholder: 'Enter email', size: 'lg', disabled: true } });
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('type', 'email');
     expect(input).toHaveAttribute('placeholder', 'Enter email');
-    expect(input).toHaveAttribute('disabled');
-    expect(input).toHaveClass('text-input-lg');
+    expect(input).toBeDisabled();
+    expect(input).toHaveAttribute('data-size', 'lg');
   });
 
   it('updates value on user input', async () => {
@@ -29,27 +28,17 @@ describe('TextInput Component', () => {
     expect(input.value).toBe('New text');
   });
 
-  it('renders invalid state correctly when explicitly passed', () => {
-    const { component } = render(TextInput, { props: { invalid: true } });
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveAttribute('aria-invalid', 'true');
-    expect(input).toHaveClass('invalid');
-    // Ensure the invalid state prevents 'valid' class even if explicitly passed
-    expect(input).not.toHaveClass('valid');
+  it('uses aria-invalid for invalid and valid states', () => {
+    const first = render(TextInput, { props: { invalid: true } });
+    expect(screen.getByRole('textbox')).toHaveAttribute('aria-invalid', 'true');
+    first.unmount();
+
+    render(TextInput, { props: { valid: true } });
+    expect(screen.getByRole('textbox')).toHaveAttribute('aria-invalid', 'false');
   });
 
-  it('renders valid state correctly when explicitly passed', () => {
-    const { component } = render(TextInput, { props: { valid: true } });
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveClass('valid');
-    expect(input).toHaveAttribute('aria-invalid', 'false');
-  });
-
-  it('invalid prop takes precedence over valid prop', () => {
+  it('gives invalid precedence over valid', () => {
     render(TextInput, { props: { invalid: true, valid: true } });
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveAttribute('aria-invalid', 'true');
-    expect(input).toHaveClass('invalid');
-    expect(input).not.toHaveClass('valid');
+    expect(screen.getByRole('textbox')).toHaveAttribute('aria-invalid', 'true');
   });
 });
