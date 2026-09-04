@@ -120,6 +120,7 @@ jobs:
             evaluated_sha: process.env.EVALUATED_SHA,
             phase: 'published',
             base_url: 'https://franklinbaldo.github.io/cobogo/',
+            observed_at: new Date().toISOString(),
             observations,
             failures,
           }, null, 2));
@@ -129,8 +130,30 @@ jobs:
             process.exit(1);
           }
           NODE
+      - name: Verify semantic accessibility on the published routes
+        env:
+          EVALUATED_SHA: ${{ github.sha }}
+          EVIDENCE_PHASE: published
+          ACCESSIBILITY_EVIDENCE_DIR: artifacts/published-accessibility
+          ACCESSIBILITY_VIEWPORTS: 1280x900,390x844
+        run: |
+          node scripts/check-semantic-accessibility.mjs \
+            https://franklinbaldo.github.io/cobogo \
+            / /grammar/ /core/ /patterns/ /consumers/ /knowledge/
+          node --input-type=module <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          const path = 'artifacts/published-accessibility/accessibility-evidence.json';
+          const report = JSON.parse(readFileSync(path, 'utf8'));
+          report.observed_at = new Date().toISOString();
+          writeFileSync(path, `${JSON.stringify(report, null, 2)}\n`);
+          NODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cobogo-published-preview-${{ github.sha }}
           path: artifacts/published
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cobogo-published-accessibility-${{ github.sha }}
+          path: artifacts/published-accessibility
