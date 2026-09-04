@@ -1,76 +1,75 @@
 ---
 title: "Disclosure"
-description: "A structural molecule for hiding and revealing dense information, respecting the Curva & Concreto doctrine."
+description: "Revela ou oculta conteúdo usando <details>; o mesmo componente também cobre grupos mutuamente exclusivos."
 ---
 
 import Disclosure from '../../../components/Disclosure.svelte';
 
-O componente `Disclosure` (frequentemente chamado de Accordion quando em grupo) permite que os usuários ocultem e revelem seções de conteúdo. Ele é construído sobre as tags semânticas nativas `<details>` e `<summary>`, garantindo acessibilidade e navegação por teclado *out-of-the-box*.
+`Disclosure` é a abstração única do Cobogó para conteúdo expansível. Ele usa `<details>` e `<summary>` nativos, preservando semântica, teclado e comportamento do navegador sem criar uma segunda abstração só para o caso agrupado.
 
-Na doutrina **Curva & Concreto**, o `Disclosure` é um caso de estudo perfeito: a interação principal (o `summary`) possui bordas arredondadas (`--r-1`) indicando que é um elemento clicável (Curva). Quando expandido, a área de conteúdo (dados estáticos) é apresentada com cantos vivos e bordas secas (Concreto).
-
-## Exemplo Básico
+## Uso básico
 
 <div class="not-content" style="margin: 2rem 0;">
   <Disclosure title="O que é o Cobogó?" client:load>
-    <p>O cobogó é um elemento vazado, inicialmente feito de cimento, que completa paredes e muros para possibilitar maior ventilação e luminosidade no interior de um imóvel. Foi inventado em Recife, no ano de 1929.</p>
+    <p>O cobogó é um elemento vazado criado em Recife para permitir ventilação e luminosidade mantendo separação espacial.</p>
   </Disclosure>
 </div>
 
 ```svelte
 <script>
-  import { Disclosure } from 'cobogo/components/Disclosure';
+  import { Disclosure } from 'cobogo';
 </script>
 
 <Disclosure title="O que é o Cobogó?">
-  <p>O cobogó é um elemento vazado...</p>
+  <p>Conteúdo...</p>
 </Disclosure>
 ```
 
-## Estado Aberto por Padrão
+## Grupo mutuamente exclusivo
 
-Você pode inicializar o componente aberto passando a prop `open={true}`. Também é possível fazer o *bind* dessa propriedade (`bind:open`) para controlar o estado externamente.
+Não existe um componente `Accordion`. Para formar um grupo, dê o mesmo `name` aos disclosures. O navegador aplica diretamente a semântica nativa de `<details name="...">`: abrir um item fecha o outro item aberto do mesmo grupo.
 
-<div class="not-content" style="margin: 2rem 0;">
-  <Disclosure title="Linha do Tempo Modernista" open={true} client:load>
-    <ul>
-      <li><strong>1929:</strong> Invenção do cobogó em Recife.</li>
-      <li><strong>1956:</strong> Início da construção de Brasília.</li>
-      <li><strong>1968:</strong> Conclusão do MASP por Lina Bo Bardi.</li>
-    </ul>
+<div class="not-content" style="margin: 2rem 0; display: grid; gap: .75rem;">
+  <Disclosure title="Vão" name="gramatica-cobogo" client:load>
+    <p>Use espaço, recorte e permeabilidade antes de adicionar massa visual.</p>
+  </Disclosure>
+  <Disclosure title="Ritmo" name="gramatica-cobogo" client:load>
+    <p>Repetição cria sistema; variação controlada evita monotonia.</p>
+  </Disclosure>
+  <Disclosure title="Inscrição" name="gramatica-cobogo" client:load>
+    <p>Texto participa da arquitetura da interface, não apenas preenche componentes.</p>
   </Disclosure>
 </div>
 
 ```svelte
-<Disclosure title="Linha do Tempo Modernista" open={true}>
-  <ul>
-    <li><strong>1929:</strong> Invenção do cobogó em Recife.</li>
-    <li><strong>1956:</strong> Início da construção de Brasília.</li>
-  </ul>
+<Disclosure title="Vão" name="gramatica-cobogo">
+  <p>...</p>
+</Disclosure>
+
+<Disclosure title="Ritmo" name="gramatica-cobogo">
+  <p>...</p>
 </Disclosure>
 ```
 
-## Estado Desabilitado
+Essa composição é preferida a um wrapper porque a necessidade real é uma relação entre disclosures, e essa relação já possui representação nativa no HTML.
 
-Quando desabilitado, o Disclosure não pode ser focado ou alternado pelo usuário, e recebe opacidade reduzida para indicar sua indisponibilidade.
+## Estado inicial e controle
 
-<div class="not-content" style="margin: 2rem 0; display: flex; flex-direction: column; gap: 1rem;">
-  <Disclosure title="Conteúdo confidencial (Fechado)" disabled client:load>
-    <p>Este conteúdo não pode ser acessado.</p>
-  </Disclosure>
-
-  <Disclosure title="Aviso importante (Aberto)" open={true} disabled client:load>
-    <p>Este aviso deve permanecer visível e não pode ser fechado pelo usuário.</p>
-  </Disclosure>
-</div>
+`open={true}` inicia o item expandido. `bind:open` permite observar ou controlar o estado quando o domínio realmente precisa dele.
 
 ```svelte
-<Disclosure title="Conteúdo confidencial (Fechado)" disabled>
-  <p>Este conteúdo não pode ser acessado.</p>
+<Disclosure title="Linha do tempo" open={true}>
+  <p>...</p>
 </Disclosure>
+```
 
-<Disclosure title="Aviso importante (Aberto)" open={true} disabled>
-  <p>Este aviso deve permanecer visível e não pode ser fechado.</p>
+## Desabilitado
+
+`disabled` impede interação por mouse e teclado e remove o `summary` da sequência de foco.
+
+```svelte
+<Disclosure title="Indisponível" disabled>
+  <p>...</p>
 </Disclosure>
 ```
 
@@ -78,13 +77,16 @@ Quando desabilitado, o Disclosure não pode ser focado ou alternado pelo usuári
 
 | Prop | Tipo | Padrão | Descrição |
 | :--- | :--- | :--- | :--- |
-| `title` | `string` | **obrigatório** | O texto exibido no cabeçalho clicável (`summary`). |
-| `open` | `boolean` | `false` | Se verdadeiro, o conteúdo está visível. Pode ser usado com `bind:open`. |
-| `disabled` | `boolean` | `false` | Se verdadeiro, desabilita a interação (teclado e mouse). |
+| `title` | `string` | **obrigatório** | Texto do `<summary>`. |
+| `name` | `string` | — | Nome nativo do grupo. Reutilize o mesmo valor para exclusividade mútua. |
+| `open` | `boolean` | `false` | Estado aberto; suporta `bind:open`. |
+| `disabled` | `boolean` | `false` | Impede interação. |
 
 ## Acessibilidade
 
-- Utiliza os elementos nativos `<details>` e `<summary>`.
-- O foco é restrito ao `summary`, respeitando o anel de foco `--azul` ao usar navegação por teclado (`Tab`).
-- Leitores de tela anunciam corretamente o estado de expansão/colapso graças ao comportamento nativo.
-- A animação do indicador (a seta) utiliza a duração padrão do sistema (`--dur-2`) e não engatilha em casos de `prefers-reduced-motion` quando aplicável.
+- usa `<details>` e `<summary>` nativos;
+- não reimplementa expansão, exclusividade ou anúncio de estado com ARIA customizado;
+- grupos usam o atributo HTML `name`, sem gerenciador JavaScript paralelo;
+- o estado desabilitado impede mouse e teclado e é exposto com `aria-disabled`.
+
+A regra de design aqui é simples: quando a plataforma já possui uma boa abstração semântica, Cobogó deve torná-la fácil de usar — não escondê-la atrás de outra hierarquia de componentes.
