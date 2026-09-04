@@ -39,7 +39,8 @@
     "prepare": "svelte-package -i src -o dist",
     "preview": "astro preview",
     "test:rendered-evidence": "node --test tests/rendered-evidence-manifest.test.mjs",
-    "test:round-report-clarity": "node --test tests/round-report-clarity.test.mjs"
+    "test:round-report-clarity": "node --test tests/round-report-clarity.test.mjs",
+    "test:public-core-contract": "node --test tests/public-core-contract.test.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",

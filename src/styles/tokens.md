@@ -1,8 +1,10 @@
-# Cobogó Design System Tokens
+# Cobogó legacy/site identity tokens
 
-Referência de tokens CSS extraídos de [`global.css`](./global.css).
+Referência dos tokens concretos mantidos em [`global.css`](./global.css) para a camada histórica do site e compatibilidade de `cobogo/styles`.
 
-> **Nota:** Importe via `import 'cobogo/styles'` (após o rebrand) ou use as CSS variables diretamente.
+> **Fronteira importante:** estes nomes (`--papel-*`, `--concreto-*`, `--azul`, `--vermelho`, `--bg`, `--fg` etc.) **não são a API semântica compartilhada do Cobogó entre consumers**. Para código framework-agnostic novo, importe `cobogo/core` e use/mapeie os papéis `--cobogo-*` documentados em [`knowledge/foundations/core-web-api.md`](../../knowledge/foundations/core-web-api.md). Um consumer pode adotar alguns dos tokens abaixo como identidade local, mas isso não os promove ao core.
+
+> `cobogo/styles` continua disponível por compatibilidade e pelo próprio site do Cobogó. Dentro dessa camada, os tokens das seções abaixo são os nomes preferidos em relação aos aliases legacy do fim do documento.
 
 ## Paleta — Papel & Concreto
 
@@ -33,7 +35,7 @@ Referência de tokens CSS extraídos de [`global.css`](./global.css).
 | `--verde` | `#2E6B4A` |
 | `--verde-soft` | `#DDEBE1` |
 
-## Tokens semânticos
+## Tokens semânticos da camada `cobogo/styles`
 
 | Token | Aponta para | Uso |
 | --- | --- | --- |
@@ -47,9 +49,11 @@ Referência de tokens CSS extraídos de [`global.css`](./global.css).
 | `--border-strong` | `var(--concreto-80)` | Bordas de alto contraste |
 | `--accent` | `var(--azul)` | Cor de destaque/interativa |
 
+Esses papéis locais podem ser mapeados para o core, por exemplo `--cobogo-canvas: var(--bg)` e `--cobogo-text: var(--fg)`, sem obrigar outro consumer a adotar a mesma paleta ou os mesmos nomes locais.
+
 ## Tipografia
 
-Famílias utilizadas: Archivo, Fraunces, Piazzolla, JetBrains Mono.
+Famílias utilizadas na camada histórica/site: Archivo, Fraunces, Piazzolla, JetBrains Mono.
 
 | Token | Família |
 | --- | --- |
@@ -86,9 +90,9 @@ Famílias utilizadas: Archivo, Fraunces, Piazzolla, JetBrains Mono.
 | `--dur-2` | `220ms` |
 | `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` |
 
-## Aliases legacy
+## Aliases legacy dentro da camada de compatibilidade
 
-> **Nota:** Mantidos pra retrocompatibilidade; em código novo use os tokens canônicos da seção correspondente acima.
+> Mantidos para retrocompatibilidade. Em `cobogo/styles`, prefira os tokens concretos/semânticos das seções acima; em integração compartilhada entre consumers, prefira `cobogo/core` e `--cobogo-*`.
 
 - `--color-primary`
 - `--color-accent`
