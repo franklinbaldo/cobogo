@@ -104,6 +104,15 @@ jobs:
             process.exit(1);
           }
           NODE
+      - name: Accessibility verifier configuration contract
+        run: |
+          ACCESSIBILITY_EVIDENCE_DIR=artifacts/accessibility-default \
+            node scripts/check-semantic-accessibility.mjs http://127.0.0.1:4321/cobogo /
+          if ACCESSIBILITY_VIEWPORTS=invalid \
+            node scripts/check-semantic-accessibility.mjs http://127.0.0.1:4321/cobogo /; then
+            echo 'Invalid ACCESSIBILITY_VIEWPORTS was accepted'
+            exit 1
+          fi
       - name: Semantic accessibility contract
         env:
           ACCESSIBILITY_VIEWPORTS: 1280x900,390x844
@@ -121,3 +130,4 @@ jobs:
           path: |
             artifacts/greenfield
             artifacts/accessibility
+            artifacts/accessibility-default
