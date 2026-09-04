@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteNav from '../components/SiteNav.astro';
-import DataTable from '../components/DataTable.svelte';
 import FilterBar from '../components/FilterBar.svelte';
 import DatePicker from '../components/DatePicker.svelte';
 import TimePicker from '../components/TimePicker.svelte';
@@ -12,6 +11,14 @@ import Card from '../components/Card.svelte';
 import Combobox from '../components/Combobox.svelte';
 import MultiSelect from '../components/MultiSelect.svelte';
 import '../styles/patterns.css';
+
+const resultRows = [
+  { id: '1001', objeto: 'Reforma Estrutural', data: '2026-05-10', hora: '14:30', valor: 'R$ 1.250.000,00' },
+  { id: '1002', objeto: 'Aquisição de TI', data: '2026-05-12', hora: '09:00', valor: 'R$ 450.000,00' },
+  { id: '1003', objeto: 'Manutenção de Frota', data: '2026-05-15', hora: '16:45', valor: 'R$ 89.000,00' },
+  { id: '1004', objeto: 'Consultoria Jurídica', data: '2026-05-18', hora: '10:15', valor: 'R$ 210.000,00' },
+  { id: '1005', objeto: 'Licenciamento de Software', data: '2026-05-20', hora: '11:00', valor: 'R$ 150.000,00' },
+];
 ---
 
 <BaseLayout title="Composition | COBOGÓ">
@@ -21,7 +28,7 @@ import '../styles/patterns.css';
     <header data-page-header>
       <hgroup>
         <h1>Painel Cívico</h1>
-        <p>Demonstração da doutrina <em>"never the same wall twice"</em>. Uma composição complexa de organismos interativos: Filtros, Tabelas, Data e Hora.</p>
+        <p>Demonstração da doutrina <em>"never the same wall twice"</em>. Uma composição complexa de filtros, tabela, data e hora.</p>
       </hgroup>
     </header>
 
@@ -90,24 +97,35 @@ import '../styles/patterns.css';
           ]} />
         </header>
 
-        <DataTable
-          client:load
-          caption="Tabela de resultados cívicos"
-          headers={[
-            { key: 'id', label: 'ID' },
-            { key: 'objeto', label: 'Objeto' },
-            { key: 'data', label: 'Data', align: 'center' },
-            { key: 'hora', label: 'Hora', align: 'center' },
-            { key: 'valor', label: 'Valor', align: 'right' }
-          ]}
-          data={[
-            { id: '1001', objeto: 'Reforma Estrutural', data: '2026-05-10', hora: '14:30', valor: 'R$ 1.250.000,00' },
-            { id: '1002', objeto: 'Aquisição de TI', data: '2026-05-12', hora: '09:00', valor: 'R$ 450.000,00' },
-            { id: '1003', objeto: 'Manutenção de Frota', data: '2026-05-15', hora: '16:45', valor: 'R$ 89.000,00' },
-            { id: '1004', objeto: 'Consultoria Jurídica', data: '2026-05-18', hora: '10:15', valor: 'R$ 210.000,00' },
-            { id: '1005', objeto: 'Licenciamento de Software', data: '2026-05-20', hora: '11:00', valor: 'R$ 150.000,00' }
-          ]}
-        />
+        <div
+          data-cobogo-pattern="data-table"
+          tabindex="0"
+          aria-label="Tabela de resultados cívicos"
+        >
+          <table>
+            <caption>Tabela de resultados cívicos</caption>
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Objeto</th>
+                <th scope="col" style="text-align: center">Data</th>
+                <th scope="col" style="text-align: center">Hora</th>
+                <th scope="col" style="text-align: right">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resultRows.map((row) => (
+                <tr>
+                  <td>{row.id}</td>
+                  <td>{row.objeto}</td>
+                  <td style="text-align: center">{row.data}</td>
+                  <td style="text-align: center">{row.hora}</td>
+                  <td style="text-align: right">{row.valor}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
     </section>
   </main>
