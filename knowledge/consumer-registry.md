@@ -44,7 +44,7 @@ When a public surface or evidence source changes materially, a repository with p
 
 A persisted checkpoint should record, when known: original URL, archived/Wayback URL, timestamp, route/surface, related commit or deploy, capture type and why that state was worth preserving. Future reviews may compare Git history, current rendered capture and historical rendered evidence; none of those evidence classes substitutes for the others.
 
-Operational techniques also flow upstream. If a consumer has a capture, preservation, deploy or validation technique that Cobogó itself lacks, treat it as candidate evidence for Cobogó rather than rebuilding it automatically. Preserve provenance and apply the same cross-context promotion gate used for visual patterns.
+Operational techniques also flow upstream. If a consumer has a capture, preservation, deploy or validation technique that Cobogó itself lacks, treat it as candidate evidence for Cobogó rather than rebuilding it automatically. Preserve provenance and separate the maturity questions explicitly: one verified project can justify formulating an `opinionated` recommendation and, when a corresponding application succeeds against its criterion, can sustain `validated`; convergence in at least two real projects is the threshold for `stable`. Evidence decides maturity and can falsify the recommendation, but it is not a veto on responsible formulation.
 
 ## Factual adoption states
 

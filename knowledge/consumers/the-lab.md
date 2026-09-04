@@ -42,16 +42,21 @@ Gap `[fato]`: nenhum dataset/API/release autônomo adicional foi provado pelo re
 
 ## O que este consumer faz melhor que o Cobogó
 
-A solução local de provenance é pequena e apropriada ao produto: liga a publicação gerada ao snapshot upstream exato sem deslocar papers/artigos do centro da experiência. Continua sendo evidência de um consumer; não satisfaz o gate de promoção compartilhada.
+A solução local de provenance é pequena e apropriada ao produto: liga a publicação gerada ao snapshot upstream exato sem deslocar papers/artigos do centro da experiência.
+
+Essa observação de um projeto já pode servir de evidência para formular uma recomendação `opinionated` ou, quando existir uma recomendação correspondente e a aplicação estiver realmente comprovada, sustentar `validated`. Em português comum, `opinionated` é uma recomendação que o Cobogó considera correta e quer testar; `validated` significa que ela já funcionou em pelo menos um projeto real. O que um único projeto não prova sozinho é `stable`, estado reservado à convergência bem-sucedida em pelo menos dois projetos com identidades locais preservadas.
+
+Neste caso específico, o deploy e a observação pública ainda não fecharam a prova da solução local. Portanto este card não promove nem altera a maturidade de nenhuma recomendação de provenance por antecipação.
 
 ## Padrões do Cobogó em uso
 
 - Reduced-motion como invariante de gramática, implementado localmente sem importar a identidade do Cobogó.
-- Provenance progressiva de publicação gerada, ainda sem promoção porque o deploy/captura atuais não fecharam a evidência.
+- Provenance progressiva de publicação gerada: mecanismo local promissor, mas ainda sem validação pública concluída porque deploy e observação posterior permanecem pendentes.
 - Configuração, execução, publicação e evidência renderizada permanecem classes distintas.
 
 ## Histórico
 
+- 2026-09-04 — linguagem de maturidade reconciliada com a RFC 0002: um projeto pode sustentar `validated` quando a aplicação estiver comprovada; dois projetos são exigidos apenas para `stable`. Nenhum fato de superfície ou nota mudou nesta correção documental.
 - 2026-09-01 — superfície revalidada: Pages responde mas segue sem `Source snapshot`; #128 e workspace#30 continuam abertos; nenhum segundo PR de UI foi fabricado.
 - 2026-08-31 — card migrado para `ConsumerCard`; Pages responde, mas D2 fica em gap 1 porque `Source snapshot` está em `main` e não na superfície publicada; deploy segue bloqueado por #128; workspace#30 aberto por ausência de ProjectProfile.
 - 2026-08-15 — confirmado `Deploy Site` em `disabled_manually`; #128 abriu o blocker de materialização/verificação da provenance.
