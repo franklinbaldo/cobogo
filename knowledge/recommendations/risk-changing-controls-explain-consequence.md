@@ -1,16 +1,17 @@
 ---
 type: OpinionatedRecommendation
 slug: risk-changing-controls-explain-consequence
-maturity: opinionated
+maturity: validated
 problem: controles que reduzem proteção podem parecer ajustes neutros quando a consequência real depende de conhecimento técnico que o leitor não deveria precisar ter
-validated_in: []
+validated_in:
+  - franklinbaldo/intuit
 ---
 
 # Controles que reduzem proteção precisam explicar a consequência
 
 ## Posição
 
-O Cobogó recomenda que qualquer controle público que reduza isolamento, privacidade, proteção ou outra garantia relevante explique a consequência no próprio ponto de decisão, antes da ativação. `opinionated` significa que o Cobogó considera esta recomendação correta e quer testá-la em projetos reais; ela não depende de uma aplicação anterior para existir.
+O Cobogó recomenda que qualquer controle público que reduza isolamento, privacidade, proteção ou outra garantia relevante explique a consequência no próprio ponto de decisão, antes da ativação. A recomendação está `validated`: em português comum, isso significa que já funcionou em pelo menos um projeto real com prova ligada ao que foi efetivamente publicado.
 
 ## Racional
 
@@ -30,7 +31,15 @@ Se a implementação preservar proteção equivalente apesar de habilitar a capa
 
 ## Evidência
 
-Ainda não há aplicação real concluída. A primeira prova será `franklinbaldo/intuit#29`, onde o controle “Allow Scripts” altera o sandbox do preview e hoje não explica, na própria interface, que o conteúdo passa a ser tratado como confiável e com isolamento reduzido.
+A primeira aplicação concluída foi `franklinbaldo/intuit#30`, derivada da issue #29. Antes da mudança, `Allow Scripts` trocava o iframe de `sandbox=""` para `allow-scripts allow-same-origin allow-popups allow-forms` sem explicar na própria interface que o HTML precisava ser confiável e que o isolamento seria reduzido.
+
+A PR preservou o comportamento técnico e acrescentou a explicação antes do controle, associada por `aria-describedby`. Um teste Playwright passou a exigir o texto, a associação semântica, o sandbox estrito antes da ativação e as permissões efetivas depois dela.
+
+No commit final da branch `03808f44fd0247ed41d7218fd805ba0380e56380`, GitGuardian, Test e Visual capture terminaram verdes e a PR estava mergeável. Ela foi incorporada por squash como `495e54b9841ba2e18fcd5f980e995a6072e92963`.
+
+O workflow Pages `33835991124` publicou esse commit e depois abriu novamente `https://franklinbaldo.github.io/intuit/` em navegador real. A etapa `Capture the page that was actually published` terminou verde e o pacote `9923434999`, `intuit-published-495e54b9841ba2e18fcd5f980e995a6072e92963`, registrou `phase=published`, o mesmo commit, a rota pública, `1440×900` e `390×844`, com horário `2026-09-04T04:21:05Z`. As duas imagens mostram a explicação legível antes de `Allow Scripts`; no viewport de 390 px ela quebra em linhas sem truncamento ou rolagem horizontal global aparente.
+
+Esta evidência sustenta `validated`, não `stable`. `stable` exigirá convergência bem-sucedida em pelo menos um segundo projeto real, preservando sua identidade local.
 
 ## Falsificação
 
