@@ -56,13 +56,13 @@ closed: leave the repository out of the rotation and record the corpus drift for
 This liveness/membership gate runs again before following pressure copied from a previous
 `RoundReport`; pressure never overrides it.
 
-## Required project skills
+## Project skills
 
-The Cobogó-specific skills are installed in project scope for Claude Code and committed under
+The Cobogó-specific skills are available in project scope for Claude Code and committed under
 `.claude/skills/`. Their installation provenance is recorded by the CLI-generated
 `skills-lock.json`.
 
-Canonical install/update command:
+Current install/update command:
 
 ```bash
 npx skills add franklinbaldo/skills \
@@ -74,18 +74,21 @@ npx skills add franklinbaldo/skills \
   --yes
 ```
 
-Use the installed skills as follows:
+Use them when they help the work:
 
-- **`cobogo-design-review`** — default method for material visual work on a website, page,
-  section, pattern, component, or UI state. It owns the speculative visual-gap loop.
-- **`brazilian-web-design`** — use when the work needs a new Brazilian visual/cultural
+- **`cobogo-design-review`** — a useful default for material visual work on a website, page,
+  section, pattern, component, or UI state; it contains the speculative visual-gap loop.
+- **`brazilian-web-design`** — useful when the work needs a new Brazilian visual/cultural
   reference or a new derived grammar claim not already supported by the Cobogó corpus.
-- **`cobogo-consumer-synergy`** — use when a design-system decision depends on comparing real
+- **`cobogo-consumer-synergy`** — useful when a design-system decision depends on comparing real
   consumers, routing authority across repositories, extracting shared capability, or feeding
   adoption/negative evidence back into the registry.
 
-Do **not** hand-edit installed skill copies or `skills-lock.json` to simulate an update. Re-run
-`npx skills add ...` and commit the real CLI output.
+These skills are accelerators, not prerequisites for production. If the work can move forward
+safely without running a skill first, move forward and use the skill later if it adds value.
+
+Do **not** hand-edit installed skill copies or `skills-lock.json` to simulate an update. When an
+installed copy actually needs updating, re-run `npx skills add ...` and commit the real CLI output.
 
 ## Production-first upstream habit
 
