@@ -2,6 +2,47 @@
  * These compose semantic foundations; they are not framework components.
  */
 
+:where([data-cobogo-pattern="grid"]) {
+  display: grid;
+  grid-template-columns: repeat(var(--cobogo-grid-columns, 12), minmax(0, 1fr));
+  gap: var(--cobogo-grid-gap, var(--cobogo-space-group));
+}
+
+:where([data-cobogo-pattern="grid"] > *) {
+  grid-column-start: var(--cobogo-grid-start, auto);
+  grid-column-end: span var(--cobogo-grid-span, var(--cobogo-grid-columns, 12));
+}
+
+@media (min-width: 480px) {
+  :where([data-cobogo-pattern="grid"] > *) {
+    grid-column-end: span var(
+      --cobogo-grid-span-sm,
+      var(--cobogo-grid-span, var(--cobogo-grid-columns, 12))
+    );
+  }
+}
+
+@media (min-width: 768px) {
+  :where([data-cobogo-pattern="grid"] > *) {
+    grid-column-end: span var(
+      --cobogo-grid-span-md,
+      var(--cobogo-grid-span-sm, var(--cobogo-grid-span, var(--cobogo-grid-columns, 12)))
+    );
+  }
+}
+
+@media (min-width: 1024px) {
+  :where([data-cobogo-pattern="grid"] > *) {
+    grid-column-end: span var(
+      --cobogo-grid-span-lg,
+      var(
+        --cobogo-grid-span-md,
+        var(--cobogo-grid-span-sm, var(--cobogo-grid-span, var(--cobogo-grid-columns, 12)))
+      )
+    );
+  }
+}
+
 :where([data-cobogo-pattern="data-table"]) {
   overflow-x: auto;
   border: 1px solid var(--cobogo-border);
