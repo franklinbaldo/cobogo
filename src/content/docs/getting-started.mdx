@@ -1,86 +1,135 @@
 ---
 title: Getting Started
-description: Instale e use o COBOGÓ no seu projeto Astro+Svelte
+description: Comece pelo caminho recomendado do Cobogó em um projeto Astro
 section: intro
 order: 1
 ---
 
 # Getting Started
 
-Instale e use o COBOGÓ no seu projeto Astro+Svelte.
+Cobogó é uma gramática visual brasileira e um design system opinionado. Para um projeto novo, o caminho recomendado hoje é **Astro**, usando o core CSS e os patterns como primeira camada e componentes Svelte apenas quando a interação realmente precisa deles.
 
 import DocsCallout from '../../components/docs/DocsCallout.astro';
 
-## Instalação
+## 1. Instale
 
-Instale via GitHub (até existir release no NPM):
-
-### Bootstrap em outros repos
-
-No terminal:
-
-```bash title="Terminal"
-curl -fsSL https://jules-proxy-mhgmawcn3a-rj.a.run.app/bootstrap | bash
-```
-
-### TypeScript com twoslash
-
-{/* TODO: requires @expressive-code/plugin-twoslash package + config, skipping for now */}
-```ts
-import Button from 'cobogo/components/Button';
-//      ^?
-const variant: 'azul' | 'vermelho' = 'azul';
-```
+Enquanto o pacote for consumido diretamente do GitHub:
 
 ```bash
-bun add github:franklinbaldo/cobogo#v0.1.0
-# ou: npm install github:franklinbaldo/cobogo#v0.1.0
+npm install github:franklinbaldo/cobogo
 ```
 
-<DocsCallout type="warning" title="Peer dependencies">
-Cobogó precisa de `astro ^5 || ^6` e `svelte ^5`. Versões anteriores não suportam Runes.
-</DocsCallout>
+Fixe uma tag ou versão quando o consumidor precisar de estabilidade. Cobogó pode fazer breaking changes para remover abstrações ruins; consumidores não precisam acompanhar uma versão nova no mesmo momento.
 
-## Uso
+## 2. Carregue a gramática compartilhada
 
-### Importar tokens CSS
-
-No layout principal:
+No layout principal do Astro:
 
 ```astro
 ---
-import 'cobogo/styles';
+import 'cobogo/core';
+import 'cobogo/patterns';
 ---
 ```
 
-Isso traz toda a paleta, tipografia, escala, radius e sombras como CSS variables.
+- `cobogo/core` contém foundations e papéis semânticos compartilhados;
+- `cobogo/patterns` contém relações visuais reutilizáveis expressas em HTML/CSS;
+- `cobogo/styles` continua disponível como camada **legada de compatibilidade**, não como fonte canônica para projetos novos.
 
-### Importar componentes Svelte
+<DocsCallout type="tip" title="Tema é do consumidor">
+Use os papéis `--cobogo-*` como contrato e redefina os valores concretos quando o produto precisar de identidade local. Não trate uma paleta histórica do Cobogó como API semântica.
+</DocsCallout>
+
+## 3. Comece pelo problema visual, não pelo componente
+
+Antes de procurar um nome de componente, descreva o que a interface precisa tornar perceptível ou acionável.
+
+Exemplo: uma composição responsiva em três regiões não precisa de componentes `Grid` e `Column`. O pattern já representa a relação:
+
+```astro
+<section data-cobogo-pattern="grid">
+  <article style="--cobogo-grid-span: 12; --cobogo-grid-span-md: 4">
+    Primeira região
+  </article>
+  <article style="--cobogo-grid-span: 12; --cobogo-grid-span-md: 4">
+    Segunda região
+  </article>
+  <article style="--cobogo-grid-span: 12; --cobogo-grid-span-md: 4">
+    Terceira região
+  </article>
+</section>
+```
+
+O HTML continua pertencendo ao domínio do consumidor; Cobogó fornece a gramática de apresentação.
+
+O mesmo vale para identidade. Pessoa, empresa, órgão, processo ou qualquer outra entidade continua sendo conceito do consumidor; Cobogó pode organizar marca, nome e metadados sem precisar de um componente `ProfileCard`:
+
+```astro
+<article data-cobogo-pattern="identity">
+  <span data-cobogo-identity-mark aria-hidden="true">PM</span>
+  <div data-cobogo-identity-body>
+    <h2 data-cobogo-identity-name>Prefeitura Municipal</h2>
+    <p data-cobogo-identity-meta>Entidade Executiva</p>
+  </div>
+</article>
+```
+
+## 4. Prefira o entrypoint principal para componentes
+
+Para código novo, prefira importar componentes pelo root do pacote:
 
 ```astro
 ---
-import Button from 'cobogo/components/Button';
-import Card from 'cobogo/components/Card';
-import Badge from 'cobogo/components/Badge';
+import { Button, Card, Badge, Disclosure } from 'cobogo';
 ---
 
-<Button variant="azul">Ver manifesto</Button>
-<Card>...</Card>
-<Badge>Novo</Badge>
+<Card>
+  <Badge>Novo</Badge>
+  <p>Conteúdo do produto.</p>
+  <Button>Continuar</Button>
+</Card>
 ```
 
-### Componentes disponíveis
+Deep imports em `cobogo/components/*` continuam disponíveis por compatibilidade enquanto consumidores e documentação antigos migram. Eles não são o caminho recomendado para código novo e sua retirada futura deve acontecer apenas quando não quebrar produção existente.
 
-Componentes disponíveis incluem `Button`, `Card`, `Badge`, `ProfileCard`, `DataTable`, `SearchBar`, e os padrões cobogó.
+O entrypoint pode diminuir quando uma abstração for substituída por HTML/CSS, por outro componente ou por um pattern mais geral.
 
-<DocsCallout type="tip" title="Comece pequeno">
-Importe 1 componente e veja se a tipografia herda corretamente antes de migrar páginas inteiras.
+### Componentes atualmente recomendados no root
+
+- `Button`, `Card`, `Badge`;
+- `DataTable`, `SearchBar`;
+- `Disclosure`;
+- família `Tabs`: `Tabs`, `TabList`, `Tab`, `TabPanel`;
+- `Tooltip`, `Combobox`;
+- `DateRangePicker`, `TimeRangePicker`.
+
+Essa lista descreve a versão atual, não uma promessa de permanência eterna. O versionamento é a fronteira de compatibilidade.
+
+## 5. Prefira a plataforma quando ela já possui a abstração
+
+Cobogó não precisa reimplementar HTML apenas para criar mais um nome de componente. Por exemplo, grupos expansíveis usam `Disclosure` com o mesmo `name`, apoiando-se em `<details name="...">`:
+
+```astro
+---
+import { Disclosure } from 'cobogo';
+---
+
+<Disclosure title="Vão" name="gramatica">
+  <p>Espaço e permeabilidade antes de massa.</p>
+</Disclosure>
+<Disclosure title="Ritmo" name="gramatica">
+  <p>Repetição com variação controlada.</p>
+</Disclosure>
+```
+
+## 6. Produza primeiro; compartilhe o aprendizado quando valer a pena
+
+Se um projeto precisar de uma solução visual que o Cobogó ainda não oferece, **não bloqueie a entrega esperando upstream**. Implemente localmente onde for mais rápido e seguro.
+
+Depois, se a solução parecer útil em outros contextos, considere promovê-la ao Cobogó por PR. A promoção pode acontecer na mesma rodada ou depois. Se for específica do domínio, ela simplesmente fica no consumidor.
+
+O guia completo está em [`docs/consumer-workflow.md`](../../../docs/consumer-workflow.md).
+
+<DocsCallout type="tip" title="Cobogó deve acelerar, não controlar">
+O sistema aprende com os consumidores, mas não exige que eles parem de produzir para alimentar o design system. Simplificação, consolidação e promoção upstream podem acontecer em ciclos próprios.
 </DocsCallout>
-
-### Configurar imports
-
-```ts title="src/lib/cobogo.ts"
-- import Button from '../../components/Button.svelte';
-+ import Button from 'cobogo/components/Button';
-export { default as Card } from 'cobogo/components/Card';
-```

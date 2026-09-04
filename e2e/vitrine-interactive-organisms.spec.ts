@@ -2,11 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Vitrine Interactive Organisms Documentation', () => {
   test('Interactive organisms are documented', async ({ page }) => {
-    // Accordion
-    await page.goto('/cobogo/docs/components/accordion');
-    await expect(page.locator('h1', { hasText: 'Accordion' }).first()).toBeVisible();
-
-    // Disclosure
+    // Disclosure, including mutually exclusive groups via shared name
     await page.goto('/cobogo/docs/components/disclosure');
     await expect(page.locator('h1', { hasText: 'Disclosure' }).first()).toBeVisible();
 

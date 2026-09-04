@@ -3,7 +3,6 @@ import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Vitrine Accessibility Governance', () => {
   const components = [
-    'accordion',
     'alert',
     'badge',
     'breadcrumbs',

@@ -20,9 +20,15 @@ describe('Disclosure Component (BDD)', () => {
     const details = summary.closest('details');
 
     expect(details?.open).toBe(true);
-    // Since details is natively open, the content should be visible to querying
     const content = screen.getByTestId('disclosure-content');
     expect(content).toBeVisible();
+  });
+
+  it('forwards name to native details for mutually exclusive groups', () => {
+    render(DisclosureTest, { title: 'Athos Bulcão', name: 'brasilia' });
+
+    const details = screen.getByText('Athos Bulcão').closest('details');
+    expect(details?.getAttribute('name')).toBe('brasilia');
   });
 
   it('opens and closes on summary click', async () => {
@@ -35,9 +41,6 @@ describe('Disclosure Component (BDD)', () => {
 
     if (summary) {
       await fireEvent.click(summary);
-      // Native details toggles the open attribute automatically in real browsers.
-      // However, jsdom needs manual mocking/triggering sometimes.
-      // Let's check if jsdom handled the click properly.
       expect(details?.open).toBe(true);
 
       await fireEvent.click(summary);
@@ -55,7 +58,6 @@ describe('Disclosure Component (BDD)', () => {
 
     if (summary) {
       await fireEvent.click(summary);
-      // Because we call event.preventDefault() in the handler, it shouldn't open
       expect(details?.open).toBe(false);
     }
   });

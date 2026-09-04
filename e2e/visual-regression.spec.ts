@@ -8,7 +8,6 @@ test.describe('Visual Regression', () => {
   ];
 
   const components = [
-    'accordion',
     'alert',
     'badge',
     'breadcrumbs',

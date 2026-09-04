@@ -9,6 +9,52 @@ test("package exposes the framework-agnostic core entrypoint", () => {
   assert.equal(pkg.exports["./core"], "./src/styles/core.css");
 });
 
+test("root JavaScript API does not publish a fixed color palette", () => {
+  const entrypoint = read("src/index.ts");
+  const core = read("src/styles/core.css");
+
+  assert.doesNotMatch(entrypoint, /export const tokens\s*=/);
+  assert.match(core, /--cobogo-canvas:/);
+  assert.match(core, /--cobogo-surface:/);
+  assert.match(core, /--cobogo-text:/);
+  assert.match(core, /--cobogo-accent:/);
+});
+
+test("grid layout is a framework-neutral pattern, not component wrappers", () => {
+  const entrypoint = read("src/index.ts");
+  const patterns = read("src/styles/patterns.css");
+
+  assert.doesNotMatch(entrypoint, /default as Grid/);
+  assert.doesNotMatch(entrypoint, /default as Column/);
+  assert.match(patterns, /data-cobogo-pattern="grid"/);
+  assert.match(patterns, /--cobogo-grid-columns/);
+  assert.match(patterns, /--cobogo-grid-span-md/);
+  assert.match(patterns, /--cobogo-grid-span-lg/);
+});
+
+test("entity identity is a domain-neutral pattern, not ProfileCard", () => {
+  const entrypoint = read("src/index.ts");
+  const patterns = read("src/styles/patterns.css");
+  const gettingStarted = read("src/content/docs/getting-started.mdx");
+
+  assert.doesNotMatch(entrypoint, /ProfileCard/);
+  assert.match(patterns, /data-cobogo-pattern="identity"/);
+  assert.match(patterns, /data-cobogo-identity-mark/);
+  assert.match(patterns, /data-cobogo-identity-name/);
+  assert.match(gettingStarted, /data-cobogo-pattern="identity"/);
+});
+
+test("Getting Started teaches the preferred root API and public CSS layers", () => {
+  const gettingStarted = read("src/content/docs/getting-started.mdx");
+
+  assert.match(gettingStarted, /import 'cobogo\/core'/);
+  assert.match(gettingStarted, /import 'cobogo\/patterns'/);
+  assert.match(gettingStarted, /import \{ Button, Card, Badge, Disclosure \} from 'cobogo'/);
+  assert.doesNotMatch(gettingStarted, /(?:import|from)[^\n]*['"]cobogo\/components\//);
+  assert.match(gettingStarted, /Astro[^\n]*caminho recomendado|caminho recomendado[^\n]*Astro/i);
+  assert.match(gettingStarted, /upstream/i);
+});
+
 test("core owns generic focus and reduced-motion contracts", () => {
   const core = read("src/styles/core.css");
   assert.match(core, /:where\(:focus-visible\)/);

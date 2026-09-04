@@ -2,10 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteNav from '../components/SiteNav.astro';
 import Card from '../components/Card.svelte';
-import ProfileCard from '../components/ProfileCard.svelte';
 import DataTable from '../components/DataTable.svelte';
 import SearchBar from '../components/SearchBar.svelte';
-import MetricCard from '../components/MetricCard.svelte';
 ---
 
 <BaseLayout title="Recipes | COBOGÓ">
@@ -15,19 +13,40 @@ import MetricCard from '../components/MetricCard.svelte';
     <header data-page-header>
       <hgroup>
         <h1>Recipes</h1>
-        <p>Composições reusáveis dos componentes COBOGÓ aplicadas a casos cívicos.</p>
+        <p>Composições reusáveis dos componentes e patterns COBOGÓ aplicadas a casos cívicos.</p>
       </hgroup>
     </header>
 
     <section data-recipe="transparency-dashboard">
       <hgroup>
         <h2>Painel cívico de transparência</h2>
-        <p>Dashboard com cards de métricas (mocks).</p>
+        <p>Dashboard com métricas sem wrapper de framework (mocks).</p>
       </hgroup>
-      <div data-metric-grid>
-        <MetricCard client:load value="R$ 4.2M" label="contratos ativos" accent="azul" />
-        <MetricCard client:load value="127" label="fornecedores únicos" accent="verde" />
-        <MetricCard client:load value="23" label="contratos vencendo em 30 dias" accent="vermelho" />
+      <div
+        data-cobogo-pattern="grid"
+        style="--cobogo-grid-gap: 1rem"
+      >
+        <article
+          data-cobogo-pattern="metric"
+          style="--cobogo-grid-span: 12; --cobogo-grid-span-md: 4"
+        >
+          <strong data-cobogo-value>R$ 4.2M</strong>
+          <small data-cobogo-label>contratos ativos</small>
+        </article>
+        <article
+          data-cobogo-pattern="metric"
+          style="--cobogo-grid-span: 12; --cobogo-grid-span-md: 4"
+        >
+          <strong data-cobogo-value>127</strong>
+          <small data-cobogo-label>fornecedores únicos</small>
+        </article>
+        <article
+          data-cobogo-pattern="metric"
+          style="--cobogo-grid-span: 12; --cobogo-grid-span-md: 4"
+        >
+          <strong data-cobogo-value>23</strong>
+          <small data-cobogo-label>contratos vencendo em 30 dias</small>
+        </article>
       </div>
     </section>
 
@@ -72,17 +91,22 @@ import MetricCard from '../components/MetricCard.svelte';
 
     <section data-recipe="profile">
       <hgroup>
-        <h2>Perfil de entidade pública</h2>
-        <p>Card de perfil acompanhado de dados detalhados.</p>
+        <h2>Identidade de entidade pública</h2>
+        <p>O domínio fornece os dados; Cobogó organiza a relação visual de identidade.</p>
       </hgroup>
       <div data-recipe-profile>
         <aside>
-          <ProfileCard
-            client:load
-            name="Prefeitura Municipal"
-            role="Entidade Executiva"
-            tags={['CNPJ', 'Ativo']}
-          />
+          <article data-cobogo-pattern="identity" data-cobogo-surface>
+            <span data-cobogo-identity-mark aria-hidden="true">PM</span>
+            <div data-cobogo-identity-body>
+              <h3 data-cobogo-identity-name>Prefeitura Municipal</h3>
+              <p data-cobogo-identity-meta>Entidade Executiva</p>
+              <div data-cobogo-pattern="inscription">
+                <span>CNPJ</span>
+                <span>Ativo</span>
+              </div>
+            </div>
+          </article>
         </aside>
         <div>
           <Card>
@@ -161,10 +185,11 @@ const data = await response.json();`}</code></pre>
   main > section hgroup h2 { font-family: var(--font-display); font-size: 2rem; margin: 0 0 0.5rem; }
   main > section hgroup p { color: var(--fg-muted); margin: 0 0 3rem; }
 
-  [data-metric-grid] {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  [data-cobogo-pattern="metric"] {
+    padding: var(--cobogo-space-group);
+    border: 1px solid var(--cobogo-border);
+    border-radius: var(--cobogo-radius-surface);
+    background: var(--cobogo-surface);
   }
   [data-recipe-2col], [data-recipe-profile] {
     display: flex;
@@ -238,7 +263,6 @@ const data = await response.json();`}</code></pre>
   }
 
   @media (max-width: 768px) {
-    [data-metric-grid] { grid-template-columns: 1fr; }
     [data-recipe-2col], [data-recipe-profile] { flex-direction: column; }
     [data-recipe-2col] > aside, [data-recipe-profile] > aside { width: 100%; }
     main > [data-page-header] hgroup h1 { font-size: clamp(3rem, 8vw, 5rem); }

@@ -2,6 +2,102 @@
  * These compose semantic foundations; they are not framework components.
  */
 
+:where([data-cobogo-pattern="grid"]) {
+  display: grid;
+  grid-template-columns: repeat(var(--cobogo-grid-columns, 12), minmax(0, 1fr));
+  gap: var(--cobogo-grid-gap, var(--cobogo-space-group));
+}
+
+:where([data-cobogo-pattern="grid"] > *) {
+  grid-column-start: var(--cobogo-grid-start, auto);
+  grid-column-end: span var(--cobogo-grid-span, var(--cobogo-grid-columns, 12));
+}
+
+@media (min-width: 480px) {
+  :where([data-cobogo-pattern="grid"] > *) {
+    grid-column-end: span var(
+      --cobogo-grid-span-sm,
+      var(--cobogo-grid-span, var(--cobogo-grid-columns, 12))
+    );
+  }
+}
+
+@media (min-width: 768px) {
+  :where([data-cobogo-pattern="grid"] > *) {
+    grid-column-end: span var(
+      --cobogo-grid-span-md,
+      var(--cobogo-grid-span-sm, var(--cobogo-grid-span, var(--cobogo-grid-columns, 12)))
+    );
+  }
+}
+
+@media (min-width: 1024px) {
+  :where([data-cobogo-pattern="grid"] > *) {
+    grid-column-end: span var(
+      --cobogo-grid-span-lg,
+      var(
+        --cobogo-grid-span-md,
+        var(--cobogo-grid-span-sm, var(--cobogo-grid-span, var(--cobogo-grid-columns, 12)))
+      )
+    );
+  }
+}
+
+:where([data-cobogo-pattern="identity"]) {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--cobogo-space-group);
+  align-items: center;
+}
+
+:where([data-cobogo-pattern="identity"] [data-cobogo-identity-mark]) {
+  inline-size: clamp(3.5rem, 12vw, 5rem);
+  aspect-ratio: 1;
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+  margin: 0;
+  border: 1px solid var(--cobogo-border);
+  border-radius: var(--cobogo-radius-surface);
+  background: var(--cobogo-surface-muted);
+  color: var(--cobogo-accent);
+  font-family: var(--cobogo-font-data);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+:where([data-cobogo-pattern="identity"] [data-cobogo-identity-mark] img) {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+:where([data-cobogo-pattern="identity"] [data-cobogo-identity-body]) {
+  min-inline-size: 0;
+  display: grid;
+  gap: var(--cobogo-space-adjacent);
+}
+
+:where([data-cobogo-pattern="identity"] [data-cobogo-identity-name]) {
+  margin: 0;
+  color: var(--cobogo-text);
+  font-family: var(--cobogo-font-display);
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+  font-weight: 700;
+  line-height: var(--cobogo-leading-tight);
+}
+
+:where([data-cobogo-pattern="identity"] [data-cobogo-identity-meta]) {
+  margin: 0;
+  color: var(--cobogo-text-muted);
+  font-family: var(--cobogo-font-inscription);
+  font-size: 0.875rem;
+}
+
+:where([data-cobogo-pattern="identity"] [data-cobogo-identity-actions]) {
+  grid-column: 1 / -1;
+}
+
 :where([data-cobogo-pattern="data-table"]) {
   overflow-x: auto;
   border: 1px solid var(--cobogo-border);
@@ -96,7 +192,11 @@
 :where([data-cobogo-pattern="state"][data-cobogo-state="danger"]) { color: var(--cobogo-danger); }
 
 @media (forced-colors: active) {
-  :where([data-cobogo-pattern="data-table"], [data-cobogo-pattern="provenance"]) {
+  :where(
+    [data-cobogo-pattern="data-table"],
+    [data-cobogo-pattern="provenance"],
+    [data-cobogo-pattern="identity"] [data-cobogo-identity-mark]
+  ) {
     border-color: CanvasText;
   }
 
