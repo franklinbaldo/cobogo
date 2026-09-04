@@ -2,9 +2,9 @@
 type: SurfaceQualityAssessment
 repo: franklinbaldo/ficha
 date: 2026-09-03
-commit: 3cefc459f1709b57ab4ca8c1d3e0a2bb4521fb3c
-deploy: https://github.com/franklinbaldo/ficha/actions/runs/33714054369
-capture: artifact:9877891254
+commit: 044ab1c205b30d6db96d33fccd27275a13fe0fec
+deploy: https://github.com/franklinbaldo/ficha/actions/runs/33824226715
+capture: artifact:9919363546
 scores:
   clarity: 4
   explainability: 4
@@ -22,56 +22,50 @@ trend: up
 
 ## Veredito
 
-**22 de 24 pontos — referência, em melhora.** A mudança desde a avaliação anterior é exclusivamente visual: a PR #237 substituiu o esqueleto de cartão genérico por uma composição que faz a própria tese do produto — fichário público, competência, arquivo e proveniência — organizar a página.
+**22 de 24 pontos — faixa de referência.** Clareza 4, Explicabilidade 4, Autonomia 4, UX 3, UI 4 e Confiança 3.
 
-A avaliação aponta para o commit `3cefc459f1709b57ab4ca8c1d3e0a2bb4521fb3c`, que realmente entrou em `main`. Nesse commit, CI `33714054363`, deploy `33714054369` e captura visual `33714054334` concluíram com sucesso. O arquivo `9877891254` contém as imagens em 1280×900 e 390×844 e identifica o mesmo commit publicado.
+A avaliação agora aponta para `044ab1c205b30d6db96d33fccd27275a13fe0fec`, commit que realmente entrou em `main` depois da #238. Nesse commit, CI `33824226664`, observação visual e semântica `33824226663` e deploy `33824226715` concluíram com sucesso.
 
 ## Clareza / D1
 
-**4/4.** A primeira dobra diz `Uma empresa brasileira, ficha por ficha.` e explica que a pessoa pode consultar CNPJ, sócios, endereços e atividades econômicas. A busca continua sendo a ação principal e aparece logo em seguida como `Abra uma ficha`.
+**4/4.** A página continua deixando evidente que a ação principal é consultar uma empresa brasileira e abrir sua ficha pública.
 
 ## Explicabilidade / D2
 
-**4/4.** Receita Federal, série mensal, competência, arquivo público e preservação continuam integrados ao discurso da página. A composição reforça, em vez de esconder, que a informação é um estado datado e verificável.
+**4/4.** Receita Federal, competência, série histórica, preservação e estado da consulta continuam próximos do conteúdo que explicam.
 
 ## Autonomia / D3
 
-**4/4.** O caminho de dados abertos e `manifest.json` permanece disponível. A interface continua deixando claro que o arquivo público pode ser reutilizado fora da própria página.
+**4/4.** `manifest.json` e os arquivos públicos permanecem um caminho reutilizável fora da interface.
 
 ## UX
 
-**3/4 — boa.** No celular, a composição secundária do desktop é retirada para que a consulta entre na primeira tela; campo e botão permanecem inteiros. O estado `remote-data-unavailable` continua apresentando mensagem compreensível e alternativa verdadeira em `manifest.json`.
-
-A nota não sobe para 4 porque a captura automatizada desta rodada observa apenas o estado em que a origem remota não carrega. Ela prova a qualidade desse estado e da primeira dobra, mas não uma jornada completa de pesquisa, abertura de resultado e exploração de vínculos.
+**3/4.** A primeira dobra e o estado de indisponibilidade são coerentes em desktop e celular, mas a observação automatizada ainda não percorre uma jornada completa de consulta, resultado e exploração de vínculos.
 
 ## UI
 
-**4/4 — referência.** Esta é a dimensão que muda.
-
-No desktop, a página deixa de depender de um cartão central com sombra e passa a usar título, inscrição, linhas, contraste tipográfico e espaço para estabelecer hierarquia. A lateral `FICHA / ARQUIVO PÚBLICO` organiza `Procure`, `Leia` e `Leve` sem competir com a ação principal. O começo de `Abra uma ficha` permanece visível na mesma tela.
-
-Em 390×844, a estrutura secundária é removida, não simplesmente comprimida. O título continua legível, a descrição preserva medida confortável e a busca entra na primeira tela com o campo e o botão sem corte horizontal. A solução preserva identidade local: não parece CausaGanha, O Vigia ou a própria página de referência do Cobogó.
-
-A nota 4 se justifica porque a implementação agora é uma referência útil para o portfólio em uma questão específica: como derivar identidade visual da estrutura e da tese do produto, em vez de trocar um recipiente genérico por decoração superficial.
+**4/4.** A composição continua uma referência útil de identidade local construída por estrutura, título, inscrição, linhas e espaço, sem depender de um cartão genérico nem copiar outro projeto Cobogó.
 
 ## Confiança
 
-**3/4.** Proveniência, competência e caminhos públicos continuam fortes. A captura feita depois do merge identifica corretamente o commit de `main` e o arquivo `capture-state.json` registra `page_errors: []` nos dois tamanhos.
+**3/4.** A #238 acrescentou uma prova automatizada real de acessibilidade no navegador. No arquivo `9919363546`, `accessibility-evidence.json` registra `044ab1c...`, zero violações sérias ou críticas do axe, sete controles visíveis esperados e sete alcançados por `Tab`, nenhum controle não alcançado e zero passos sem indicador perceptível de foco.
 
-A nota não sobe porque a issue #228 continua aberta. Em capturas de PR, o nome do arquivo ainda pode refletir o commit sintético usado pelo GitHub para testar o merge, em vez do commit real da branch. Isso continua sendo uma dívida de rastreabilidade da evidência antes do merge.
+O mesmo commit foi publicado pelo deploy `33824226715`. O passo posterior à publicação confirmou a home em HTTP 200, leu `manifest.json` e verificou os arquivos essenciais do snapshot público.
+
+A nota permanece 3 por duas diferenças concretas. Primeiro, axe + teclado + foco são medidos no build servido pelo workflow visual, não novamente contra a URL já publicada. Segundo, a issue #228 ainda não está totalmente resolvida: no arquivo da PR `9917942074`, o nome do arquivo e `accessibility-evidence.json` usam corretamente o commit real da branch `565267e9...`, mas `visual-evidence/capture-state.json` ainda registra o commit temporário de teste `4ee7ad95...`.
 
 ## Recomendações Cobogó
 
-- `visual-evidence-as-quality-gate` — **stable**: funcionou de forma convergente em pelo menos dois projetos reais.
-- `primary-action-viewport-containment` — **validated**: a Ficha continua mostrando que a ação principal pode permanecer inteira em tela estreita.
-- `recoverable-error-states` — **validated**: a indisponibilidade continua compreensível e oferece uma alternativa pública verdadeira.
-- `content-hierarchy-before-decoration` — passa a **validated**: a #237 demonstra em um projeto real que hierarquia por título, ordem, agrupamento e semântica pode substituir o cartão genérico sem perder clareza nem identidade.
+- `semantic-accessibility-default` — **stable**, isto é, já funcionou de forma convergente em pelo menos dois projetos reais. A Ficha passa a executar o contrato em seu build de `main`, preservando sua própria identidade.
+- `visual-evidence-as-quality-gate` — **stable**.
+- `primary-action-viewport-containment` — **validated**.
+- `recoverable-error-states` — **validated**.
+- `content-hierarchy-before-decoration` — **validated**.
 
 ## Issues derivadas
 
-- #228 — continua aberta; é a dívida concreta que mantém Confiança em 3/4.
-- #235 — encerrada pela #237; a nova composição foi publicada e verificada.
+- #228 — continua aberta parcialmente: falta o JSON da captura visual de PR identificar sem ambiguidade o commit real da branch.
 
-## O que o Cobogó deve aprender desta Ficha
+## O que o Cobogó aprende desta aplicação
 
-A metáfora do produto pode ser matéria-prima de composição sem virar tema decorativo. No caso da Ficha, `arquivo`, `competência`, `ficha`, `inscrição` e `proveniência` produzem uma hierarquia própria. O aprendizado compartilhável é preservar a primazia da estrutura; a tipografia, paleta e materialidade concreta continuam locais e não devem ser copiadas para outros projetos.
+Um contrato de acessibilidade compartilhado pode atravessar uma página editorial de dados sem impor componentes ou aparência. O limite também ficou mais claro: passar o contrato no build e publicar o mesmo commit são duas provas fortes, mas não equivalem a medir novamente a semântica na URL publicada. Confiança 4 exige fechar essa diferença ou produzir evidência equivalente.
