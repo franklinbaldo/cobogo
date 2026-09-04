@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/astronauta
 site: https://github.com/franklinbaldo/astronauta
 status: active
-last_reviewed: 2026-09-03
+last_reviewed: 2026-09-04
 gap_score: 0
 ---
 
@@ -33,45 +33,49 @@ Problema material: nenhum nesta dimensão. A avaliação atual atribui 4/4.
 
 ## Capacidades de superfície
 
-- CI principal — `last_verified: 2026-09-03`; `main` está em `99661b562bedd953a6797fe7b8b7fcd25b8a5dd6`; build, gateway, live SSR e `installed-artifact` passaram depois do merge da #44.
-- Live editor / Apply / import gates — `last_verified: 2026-09-03`; os três workflows funcionais passaram no commit atual da PR #44 e novamente no commit que entrou em `main`.
-- Runtime instalado — `last_verified: 2026-09-03`; o job `installed-artifact` continua provando a wheel em ambiente consumidor fresco sem Bun/source checkout/build frontend prévio.
-- Pages/deploy público — `last_verified: 2026-09-03`; não aplicável ao produto atual, que é um admin SSR local servido em loopback. Para este produto, a verificação depois do merge é a execução do runtime real sobre o commit de `main`, não uma publicação Pages inexistente.
-- Prova visual comparável — `last_verified: 2026-09-03`; a #44 entrou em `main` como `99661b562bedd953a6797fe7b8b7fcd25b8a5dd6`. O workflow `Visual evidence` `33828611787` produziu o arquivo `9920852733`, com leitura e edição em `1280×900` e `390×844`. Além das imagens, a prova estreita registra `documentClientWidth=390` e `documentScrollWidth=390` nas duas rotas e verifica que cabeçalho, navegação e controles críticos permanecem dentro da janela.
-- Preservação/Save Page Now — `last_verified: 2026-09-03`; não aplicável à superfície local atual.
+- CI principal — `last_verified: 2026-09-04`; `main` está em `2ee08c03e11aa7c9fec104ffe9db1403f4805c89`; CI e os workflows funcionais passaram depois do merge da #45.
+- Live editor / Apply / import gates — `last_verified: 2026-09-04`; os três workflows funcionais passaram no commit final da branch da #45 e novamente no commit que entrou em `main`.
+- Runtime instalado — `last_verified: 2026-09-04`; o job `installed-artifact` continua provando a wheel em ambiente consumidor fresco sem Bun/source checkout/build frontend prévio.
+- Pages/deploy público — `last_verified: 2026-09-04`; não aplicável ao produto atual, que é um admin SSR local servido em loopback. Para este produto, a verificação depois do merge é a execução do runtime real sobre o commit de `main`, não uma publicação Pages inexistente.
+- Prova visual comparável — `last_verified: 2026-09-04`; o workflow `Visual evidence` permaneceu verde na branch da #45 e novamente no commit `2ee08c03e11aa7c9fec104ffe9db1403f4805c89` de `main`, preservando as rotas de leitura e edição em desktop e 390 px.
+- Prova semântica e de teclado — `last_verified: 2026-09-04`; a #45 adicionou o workflow `Semantic accessibility`. A execução de `main` `33843623459` produziu o arquivo `9925739036`, ligado ao commit `2ee08c03e11aa7c9fec104ffe9db1403f4805c89`: `/types/Note` ficou com axe 0, 25/25 controles alcançados e nenhuma falha de foco; `/concepts/edit/note-01` ficou com axe 0, 13/13 controles alcançados e nenhuma falha de foco.
+- Preservação/Save Page Now — `last_verified: 2026-09-04`; não aplicável à superfície local atual.
 
 ## Avaliação atual
 
-Avaliação de qualidade: **23 de 24 pontos — faixa de referência**.
+Avaliação de qualidade: **24 de 24 pontos — faixa de referência**.
 
 - Clareza/D1: 4/4;
 - Explicabilidade/D2: 4/4;
 - Autonomia/D3: 4/4;
 - UX: 4/4;
 - UI: 4/4;
-- Confiança: 3/4.
+- Confiança: 4/4.
 
-A #43 foi encerrada pela #44. Em `390×844`, `/types/Note` e `/concepts/edit/note-01` agora medem exatamente 390 px de largura de documento. A navegação quebra em linhas no próprio cabeçalho, a área de edição cabe na janela e a tabela densa preserva rolagem horizontal somente dentro do cartão. O desktop mantém a densidade e a hierarquia anteriores.
+A #45 transformou a antiga falta de comprovação em um teste reproduzível. A primeira execução encontrou contraste insuficiente, um link distinguível apenas por cor e uma região horizontal rolável sem caminho de foco. O critério não foi reduzido: a interface foi corrigida. Depois do merge, o mesmo contrato passou no runtime real de `main`, com zero violações do axe nas duas rotas observadas, todos os controles visíveis e habilitados alcançados por teclado e nenhuma falha de foco.
 
-Confiança permanece em 3/4 porque ainda não há, nesta avaliação, uma prova sistemática de teclado, foco e semântica acessível em runtime. Isso é uma fronteira de evidência, não uma issue genérica criada artificialmente.
+24/24 descreve o escopo observado; não é uma afirmação de acessibilidade perfeita em todo estado futuro ou para toda tecnologia assistiva.
 
 ## O que este projeto faz melhor que o Cobogó
 
 - [Astronauta concept review](../specimens/astronauta-concept-review.md) — prova de gramática sob densidade administrativa sem copiar projetos editoriais.
 - A liveness de bundle grande com invalidação explícita do adapter é uma realização de produto local; não foi promovida a padrão visual compartilhado.
 - A distinção entre autoridade de escrita do processo (`--write`) e identidade de revisão transportada pelo browser é especialmente forte e deve permanecer local ao domínio de edição segura.
-- A #44 torna contenção responsiva uma propriedade executável da própria prova visual: tabelas densas podem continuar largas internamente, enquanto a largura global do documento passa a ser medida e protegida. A capacidade factual foi encaminhada ao workspace na issue #37.
+- A #44 torna contenção responsiva uma propriedade executável da própria prova visual: tabelas densas podem continuar largas internamente, enquanto a largura global do documento passa a ser medida e protegida.
+- A #45 faz o mesmo com acessibilidade no runtime real: o workflow preserva os defeitos encontrados em JSON mesmo quando reprova, o que permitiu corrigir a interface sem afrouxar a régua. A nova capacidade factual foi encaminhada ao workspace na issue #40.
 
 ## Padrões do Cobogó em uso
 
 - `Vão antes de massa` e `Módulo sem monotonia` orientam a composição registrada no specimen.
 - `Parentesco sem uniformidade` é a restrição de família: sem herdar densidade, marca ou skeleton de outros projetos.
 - `visual-evidence-as-quality-gate` está `stable`, isto é, já funcionou de forma convergente em pelo menos dois projetos. No Astronauta, a #42 encontrou a dívida responsiva e a #44 fechou o ciclo transformando a largura observada em gate automático.
-- `rendered-evidence-manifest` está `validated`, isto é, já funcionou em pelo menos um projeto real. O `evidence.json` identifica commit real, fase do workflow, rota, viewport e arquivos; desde #44 também aponta para os JSONs de medição estreita.
+- `semantic-accessibility-default` está `stable`, isto é, já funcionou de forma convergente em pelo menos dois projetos. A #45 é uma terceira aplicação real, mantendo o tema e a densidade locais enquanto exige semântica, teclado e foco perceptível.
+- `rendered-evidence-manifest` está `validated`, isto é, já funcionou em pelo menos um projeto real. Os pacotes de prova identificam o commit realmente executado e distinguem branch de PR e `main`.
 - PR #25 é registro histórico de mapeamento de roles semânticos; não prova consumo atual de um package Cobogó lançado.
 
 ## Histórico
 
+- 2026-09-04 — #45 entrou em `main` como `2ee08c03`; a execução semântica de `main` `33843623459`, arquivo `9925739036`, comprovou axe 0 nas duas rotas, 25/25 controles na leitura, 13/13 na edição e nenhuma falha de foco. A avaliação sobe para 24/24; a capacidade foi encaminhada ao workspace na #40.
 - 2026-09-03 — #44 entrou em `main` como `99661b56`; a execução visual de `main` `33828611787`, arquivo `9920852733`, comprovou 390 px de largura de documento nas duas rotas estreitas, manteve tabelas densas localmente roláveis e preservou o desktop. A avaliação sobe para 23/24; #43 encerrada.
 - 2026-09-03 — #42 entrou em `main` como `55232223`; a execução visual de `main` `33742274379` produziu leitura/escrita em desktop e celular com identidade inequívoca do commit. A primeira avaliação completa ficou em 20/24; a prova revelou a dívida responsiva #43.
 - 2026-09-02 — revisão opinionada confirmou `gap_score: 0` em D1–D3, mas a avaliação completa ainda não podia ser feita sem observação visual reproduzível; aberta #41 com critério desktop+tela estreita, leitura/escrita e commit real.
