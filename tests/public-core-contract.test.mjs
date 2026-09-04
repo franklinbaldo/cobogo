@@ -9,6 +9,11 @@ test("package exposes the framework-agnostic core entrypoint", () => {
   assert.equal(pkg.exports["./core"], "./src/styles/core.css");
 });
 
+test("package only exposes components through curated entrypoints", () => {
+  const pkg = JSON.parse(read("package.json"));
+  assert.equal(pkg.exports["./components/*"], undefined);
+});
+
 test("core owns generic focus and reduced-motion contracts", () => {
   const core = read("src/styles/core.css");
   assert.match(core, /:where\(:focus-visible\)/);
