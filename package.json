@@ -23,7 +23,11 @@
     },
     "./core": "./src/styles/core.css",
     "./patterns": "./src/styles/patterns.css",
-    "./styles": "./src/styles/global.css"
+    "./styles": "./src/styles/global.css",
+    "./components/*": {
+      "svelte": "./dist/components/*.svelte",
+      "default": "./dist/components/*.svelte"
+    }
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
