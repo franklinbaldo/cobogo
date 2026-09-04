@@ -74,9 +74,9 @@ O mesmo vale para identidade. Pessoa, empresa, órgão, processo ou qualquer out
 </article>
 ```
 
-## 4. Use o entrypoint curado para componentes
+## 4. Prefira o entrypoint principal para componentes
 
-Componentes públicos são importados pelo root do pacote. Deep imports em `cobogo/components/*` não fazem parte da API pública atual.
+Para código novo, prefira importar componentes pelo root do pacote:
 
 ```astro
 ---
@@ -90,9 +90,11 @@ import { Button, Card, Badge, Disclosure } from 'cobogo';
 </Card>
 ```
 
-O entrypoint é deliberadamente pequeno e pode diminuir quando uma abstração for substituída por HTML/CSS, por outro componente ou por um pattern mais geral.
+Deep imports em `cobogo/components/*` continuam disponíveis por compatibilidade enquanto consumidores e documentação antigos migram. Eles não são o caminho recomendado para código novo e sua retirada futura deve acontecer apenas quando não quebrar produção existente.
 
-### Componentes atualmente curados
+O entrypoint pode diminuir quando uma abstração for substituída por HTML/CSS, por outro componente ou por um pattern mais geral.
+
+### Componentes atualmente recomendados no root
 
 - `Button`, `Card`, `Badge`;
 - `DataTable`, `SearchBar`;
@@ -105,7 +107,7 @@ Essa lista descreve a versão atual, não uma promessa de permanência eterna. O
 
 ## 5. Prefira a plataforma quando ela já possui a abstração
 
-Cobogó não deve reimplementar HTML apenas para criar mais um nome de componente. Por exemplo, grupos expansíveis usam diretamente `Disclosure` com o mesmo `name`, apoiando-se em `<details name="...">`:
+Cobogó não precisa reimplementar HTML apenas para criar mais um nome de componente. Por exemplo, grupos expansíveis usam `Disclosure` com o mesmo `name`, apoiando-se em `<details name="...">`:
 
 ```astro
 ---
@@ -120,18 +122,14 @@ import { Disclosure } from 'cobogo';
 </Disclosure>
 ```
 
-## 6. Quando faltar alguma coisa, pense upstream primeiro
+## 6. Produza primeiro; compartilhe o aprendizado quando valer a pena
 
-Se um projeto que usa Cobogó precisar inventar uma nova solução visual:
+Se um projeto precisar de uma solução visual que o Cobogó ainda não oferece, **não bloqueie a entrega esperando upstream**. Implemente localmente onde for mais rápido e seguro.
 
-1. confirme que o Cobogó ainda não resolve o problema;
-2. pergunte se a solução seria útil em outra situação parecida;
-3. se for generalizável, implemente a menor abstração adequada **no Cobogó via PR** e depois atualize o consumidor;
-4. se for realmente inseparável do domínio daquele produto, mantenha localmente;
-5. se a novidade sobrepuser uma abstração existente, prefira consolidar, depreciar ou remover em vez de adicionar outra variante.
+Depois, se a solução parecer útil em outros contextos, considere promovê-la ao Cobogó por PR. A promoção pode acontecer na mesma rodada ou depois. Se for específica do domínio, ela simplesmente fica no consumidor.
 
-O contrato completo está em [`docs/consumer-workflow.md`](../../../docs/consumer-workflow.md).
+O guia completo está em [`docs/consumer-workflow.md`](../../../docs/consumer-workflow.md).
 
-<DocsCallout type="tip" title="O caminho feliz deve ficar menor">
-Cobogó evolui tanto por adição quanto por remoção. Se a experiência ensinar uma forma mais simples de resolver a mesma classe de problema, a recomendação e a API devem poder mudar.
+<DocsCallout type="tip" title="Cobogó deve acelerar, não controlar">
+O sistema aprende com os consumidores, mas não exige que eles parem de produzir para alimentar o design system. Simplificação, consolidação e promoção upstream podem acontecer em ciclos próprios.
 </DocsCallout>
