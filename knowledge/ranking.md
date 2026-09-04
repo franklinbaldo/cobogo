@@ -14,7 +14,7 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 | franklinbaldo/astronauta | 24 | referência | 4 | 4 | 4 | 4 | 4 | 4 | 2026-09-04 | up |
 | franklinbaldo/ovigia-redacao | 23 | referência | 4 | 4 | 3 | 4 | 4 | 4 | 2026-09-02 | flat |
 | franklinbaldo/causaganha | 23 | referência | 4 | 4 | 4 | 3 | 4 | 4 | 2026-09-02 | flat |
-| franklinbaldo/quem-sao-eles | 23 | referência | 4 | 4 | 4 | 4 | 3 | 4 | 2026-09-03 | baseline |
+| franklinbaldo/quem-sao-eles | 23 | referência | 4 | 4 | 4 | 4 | 3 | 4 | 2026-09-04 | flat |
 | franklinbaldo/franklinbaldo.github.io | 23 | referência | 4 | 4 | 4 | 4 | 4 | 3 | 2026-09-03 | baseline |
 | franklinbaldo/ficha | 22 | referência | 4 | 4 | 4 | 3 | 4 | 3 | 2026-09-03 | up |
 | franklinbaldo/aleph-the-game | 22 | referência | 4 | 4 | 4 | 3 | 4 | 3 | 2026-09-03 | up |
@@ -47,4 +47,6 @@ O Intuit permanece em **20/24** depois da #30, mas reforça a justificativa de C
 
 O Baliza passa de **21 para 20/24** nesta rodada. A #693 já está em `main` como `8e324011bdc46a27b5c0ea2826288d4673b9faed` e a observação em navegador desse commit passou, mas o GitHub Pages falhou tanto na publicação do merge (`33670722066`) quanto na tentativa agendada seguinte (`33749265187`). O último deploy bem-sucedido visível permanece no commit anterior `5d1c9cfdeaa46a50b1b7d3031f5f2cf59ef0ff9b`. UI continua 2 porque a correção ainda não foi observada na URL publicada; Confiança cai de 4 para 3 porque a publicação pública deixou de acompanhar `main`. A #694 registra a causa operacional, e a #692 continua aberta até existir publicação e nova observação da rota.
 
-O Aleph permanece em 22/24. Quem São Eles? e o blog permanecem em 23/24.
+O Quem São Eles? permanece em **23/24** depois da #25. O merge `4e412c8e4ae5b275dc9525dc97c9ecf066c8d384` elimina dependências do rodapé em variáveis CSS ausentes. O Pages `33851656399` publicou esse mesmo commit e a execução pós-publicação `33852287508` abriu diretamente a URL pública em Chromium, executou a prova funcional/visual e produziu o pacote `9928944933`. UI continua 3 porque a prova profunda permanece concentrada na rota PEP e a superfície editorial de perfis ainda não tem conteúdo populado suficiente para uma avaliação visual equivalente; Confiança permanece 4 e agora possui correspondência explícita entre commit, deploy e página entregue.
+
+O Aleph permanece em 22/24. O blog permanece em 23/24.
