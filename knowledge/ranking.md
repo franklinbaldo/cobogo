@@ -19,9 +19,9 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 | franklinbaldo/ficha | 22 | referência | 4 | 4 | 4 | 3 | 4 | 3 | 2026-09-03 | up |
 | franklinbaldo/aleph-the-game | 22 | referência | 4 | 4 | 4 | 3 | 4 | 3 | 2026-09-03 | up |
 | franklinbaldo/sisprev | 22 | referência | 4 | 4 | 4 | 3 | 3 | 4 | 2026-09-03 | up |
-| franklinbaldo/baliza | 21 | boa | 4 | 4 | 4 | 3 | 2 | 4 | 2026-09-02 | flat |
 | franklinbaldo/leizilla | 21 | boa | 4 | 4 | 4 | 3 | 3 | 3 | 2026-09-04 | up |
 | franklinbaldo/intuit | 20 | boa | 4 | 3 | 3 | 3 | 3 | 4 | 2026-09-04 | flat |
+| franklinbaldo/baliza | 20 | boa | 4 | 4 | 4 | 3 | 2 | 3 | 2026-09-04 | down |
 
 ## Ordenação
 
@@ -45,4 +45,6 @@ O Leizilla permanece em **21/24** depois da #164. O merge `b5800cf6fbbfceb5dcf9b
 
 O Intuit permanece em **20/24** depois da #30, mas reforça a justificativa de Confiança 4. `Allow Scripts` agora explica, antes da decisão, que o modo deve ser usado apenas com HTML confiável e que reduz o isolamento do preview; Playwright verifica a associação semântica e o sandbox antes/depois. O Pages `33835991124` publicou o merge `495e54b9841ba2e18fcd5f980e995a6072e92963` e depois capturou a URL pública em `1440×900` e `390×844` no arquivo `9923434999`. D2, D3, UX e UI continuam em 3 porque esta mudança específica não produz evidência suficiente para elevá-las a referência.
 
-O Aleph permanece em 22/24. Quem São Eles? e o blog permanecem em 23/24. O Baliza permanece em 21/24 enquanto a verificação publicada depende do fato novo registrado na #694.
+O Baliza passa de **21 para 20/24** nesta rodada. A #693 já está em `main` como `8e324011bdc46a27b5c0ea2826288d4673b9faed` e a observação em navegador desse commit passou, mas o GitHub Pages falhou tanto na publicação do merge (`33670722066`) quanto na tentativa agendada seguinte (`33749265187`). O último deploy bem-sucedido visível permanece no commit anterior `5d1c9cfdeaa46a50b1b7d3031f5f2cf59ef0ff9b`. UI continua 2 porque a correção ainda não foi observada na URL publicada; Confiança cai de 4 para 3 porque a publicação pública deixou de acompanhar `main`. A #694 registra a causa operacional, e a #692 continua aberta até existir publicação e nova observação da rota.
+
+O Aleph permanece em 22/24. Quem São Eles? e o blog permanecem em 23/24.
