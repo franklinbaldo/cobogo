@@ -1,7 +1,7 @@
 ---
 import '../styles/index.css'
 import { css } from '../../styled-system/css'
-import { button, card, badge, input, alert, article, table, navLink } from '../../styled-system/recipes'
+import { button, badge, article, navLink } from '../../styled-system/recipes'
 
 const github = 'https://github.com/franklinbaldo/cobogo'
 ---
@@ -10,32 +10,32 @@ const github = 'https://github.com/franklinbaldo/cobogo'
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Cobogó — um design system Panda CSS para dar aparência comum aos projetos." />
-    <title>Cobogó — um design system para nossos projetos</title>
+    <meta name="description" content="Cobogó — uma gramática visual brasileira para criar produtos distintos com relações de design compartilháveis." />
+    <title>Cobogó — gramática visual brasileira</title>
   </head>
   <body>
     <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
       <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
       <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
-        <a class={navLink({ active: true })} href="#sistema">Sistema</a>
-        <a class={navLink()} href="#receitas">Recipes</a>
+        <a class={navLink({ active: true })} href="#gramatica">Gramática</a>
+        <a class={navLink()} href="#usar">Como usar</a>
         <a class={navLink()} href={github}>GitHub ↗</a>
       </nav>
     </header>
 
     <main>
       <section class={css({ background: 'text', color: 'canvas' })}>
-        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '20', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '1.25fr 0.75fr' }, gap: '12', alignItems: 'end' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '20', md: '28' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '1.2fr 0.8fr' }, gap: '12', alignItems: 'end' })}>
           <div>
-            <p class={css({ textStyle: 'eyebrow', color: 'accent', mb: '6' })}>Astro + Panda CSS</p>
-            <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '10ch' })}>Instalou. Já parece Cobogó.</h1>
-            <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'surfaceMuted', maxW: '44rem', mt: '8' })}>Um preset compartilhado para que O Vigia, CausaGanha, Ficha e os próximos projetos já comecem com a mesma família de tipografia, cor, espaço, estados e componentes visuais — sem transformar sites estáticos em aplicações React.</p>
+            <p class={css({ textStyle: 'eyebrow', color: 'accent', mb: '6' })}>Gramática visual brasileira</p>
+            <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '9ch' })}>Mesma relação. Outra voz.</h1>
+            <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'surfaceMuted', maxW: '46rem', mt: '8' })}>Cobogó compartilha decisões que precisam sobreviver entre produtos — hierarquia, estado, ritmo, leitura, foco e ação. A identidade continua sendo de cada projeto.</p>
             <div class={css({ display: 'flex', gap: '3', flexWrap: 'wrap', mt: '8' })}>
-              <a class={button({ visual: 'solid' })} href="#sistema">Ver o sistema</a>
-              <a class={button({ visual: 'light' })} href={github}>Código-fonte</a>
+              <a class={button({ visual: 'solid' })} href="#gramatica">Ver a gramática</a>
+              <a class={button({ visual: 'light' })} href="#usar">Começar a usar</a>
             </div>
           </div>
-          <div class={css({ display: 'grid', gridTemplateColumns: '1fr 1fr', minH: '20rem', border: '1px solid', borderColor: 'canvas' })} aria-hidden="true">
+          <div class={css({ display: 'grid', gridTemplateColumns: '1fr 1fr', minH: { base: '16rem', md: '22rem' }, border: '1px solid', borderColor: 'canvas' })} aria-hidden="true">
             <div class={css({ background: 'accent', borderRight: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}></div>
             <div class={css({ background: 'attention', borderBottom: '1px solid', borderColor: 'text' })}></div>
             <div class={css({ background: 'info', borderRight: '1px solid', borderColor: 'text' })}></div>
@@ -44,74 +44,89 @@ const github = 'https://github.com/franklinbaldo/cobogo'
         </div>
       </section>
 
-      <section id="sistema" class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' } })}>
-        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: '0.7fr 1.3fr' }, gap: '12', alignItems: 'start' })}>
+      <section id="gramatica" class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' } })}>
+        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: '0.75fr 1.25fr' }, gap: '12', alignItems: 'start' })}>
           <div>
             <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '4' })}>O contrato</p>
-            <h2 class={css({ textStyle: 'title', m: '0', maxW: '12ch' })}>Uma aparência comum. Só isso precisa ser complicado?</h2>
+            <h2 class={css({ textStyle: 'title', m: '0', maxW: '12ch' })}>Não é um tema. É uma forma de pensar interfaces.</h2>
           </div>
           <div class={article({ density: 'editorial' })}>
-            <p>Cobogó é um preset Panda CSS. Ele carrega as decisões visuais compartilhadas e gera CSS no build. Astro continua fazendo SSG normalmente.</p>
-            <p>Os projetos escolhem seu conteúdo e sua estrutura. Cobogó cuida do parentesco visual: tokens, recipes e padrões de layout.</p>
+            <p>Cobogó evita duas armadilhas: reinventar a mesma relação em cada projeto e uniformizar produtos que deveriam ter personalidade própria.</p>
+            <p>O que sobe para o sistema é o que merece ser compartilhado. Cor local, tipografia, proporção e acabamento podem continuar locais quando carregam a voz do produto.</p>
           </div>
         </div>
       </section>
 
-      <section id="receitas" class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}>
+      <section class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}>
         <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '20' } })}>
           <div class={css({ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '6', flexWrap: 'wrap', mb: '10' })}>
             <div>
-              <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Recipes</p>
-              <h2 class={css({ textStyle: 'title', m: '0' })}>Peças que já chegam com cara de família.</h2>
+              <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Mesma estrutura</p>
+              <h2 class={css({ textStyle: 'title', m: '0', maxW: '18ch' })}>Duas identidades que não precisam parecer parentes.</h2>
             </div>
-            <span class={badge({ tone: 'accent' })}>Panda 1.12</span>
+            <span class={badge({ tone: 'accent' })}>pattern: identity</span>
           </div>
-          <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }, gap: '4' })}>
-            <article class={card({ tone: 'plain', lift: 'raised' })}>
-              <span class={badge({ tone: 'info' })}>Notícia</span>
-              <h3 class={css({ textStyle: 'title', mt: '6', mb: '3', fontSize: 'xl' })}>Card editorial</h3>
-              <p class={css({ color: 'textMuted', lineHeight: 'body' })}>A mesma superfície pode receber conteúdo diferente sem perder o parentesco.</p>
+
+          <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '1fr 1fr' }, gap: '4' })}>
+            <article class={css({ background: 'canvas', border: '1px solid', borderColor: 'text', p: { base: '6', md: '8' }, minH: '18rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' })}>
+              <div class={css({ display: 'flex', alignItems: 'center', gap: '4' })}>
+                <div class={css({ w: '10', h: '10', background: 'text' })} aria-hidden="true"></div>
+                <span class={css({ fontSize: 'xs', fontWeight: 'bold', letterSpacing: '0.14em', textTransform: 'uppercase' })}>Serviço público</span>
+              </div>
+              <div>
+                <h3 class={css({ fontSize: { base: '2xl', md: '3xl' }, lineHeight: 'tight', m: '0', textTransform: 'uppercase', letterSpacing: '-0.03em' })}>Portal de serviços</h3>
+                <p class={css({ mt: '3', mb: '0', color: 'textMuted', maxW: '34rem' })}>Acesso direto, sóbrio e documental.</p>
+              </div>
             </article>
-            <article class={card({ tone: 'attention' })}>
-              <span class={badge({ tone: 'neutral' })}>Atenção</span>
-              <h3 class={css({ textStyle: 'title', mt: '6', mb: '3', fontSize: 'xl' })}>Contraste com função</h3>
-              <p class={css({ lineHeight: 'body' })}>Cor forte é parte do sistema, não uma decoração improvisada em cada projeto.</p>
-            </article>
-            <article class={card({ tone: 'dark' })}>
-              <span class={badge({ tone: 'accent' })}>Estado</span>
-              <h3 class={css({ textStyle: 'title', mt: '6', mb: '3', fontSize: 'xl', color: 'canvas' })}>Superfície escura</h3>
-              <p class={css({ color: 'surfaceMuted', lineHeight: 'body' })}>Tokens semânticos mantêm contraste e consistência.</p>
+
+            <article class={css({ background: 'attention', color: 'text', border: '1px solid', borderColor: 'text', p: { base: '6', md: '8' }, minH: '18rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' })}>
+              <div class={css({ display: 'flex', alignItems: 'center', gap: '4' })}>
+                <div class={css({ w: '10', h: '10', borderRadius: 'full', background: 'info' })} aria-hidden="true"></div>
+                <span class={css({ fontSize: 'sm', fontStyle: 'italic' })}>caderno cultural</span>
+              </div>
+              <div>
+                <h3 class={css({ fontFamily: 'serif', fontSize: { base: '3xl', md: '4xl' }, lineHeight: 'tight', m: '0', fontStyle: 'italic', fontWeight: 'medium' })}>Cidade em movimento</h3>
+                <p class={css({ mt: '3', mb: '0', maxW: '34rem' })}>Mais calor, gesto e presença editorial.</p>
+              </div>
             </article>
           </div>
+
+          <p class={css({ mt: '6', mb: '0', maxW: '54rem', color: 'textMuted', lineHeight: 'body' })}><strong>A relação é a mesma:</strong> marca → nome → contexto. A voz não precisa ser.</p>
         </div>
       </section>
 
-      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.85fr 1.15fr' }, gap: '12' })}>
+      <section id="usar" class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.8fr 1.2fr' }, gap: '12', alignItems: 'start' })}>
         <div>
-          <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '4' })}>Formulário + estado</p>
-          <h2 class={css({ textStyle: 'title', m: '0', mb: '8' })}>O básico já vem resolvido.</h2>
-          <label class={css({ display: 'grid', gap: '2', fontWeight: 'bold', fontSize: 'sm' })}>Buscar projeto<input class={input()} placeholder="O Vigia, CausaGanha…" /></label>
-          <div class={css({ mt: '4' })}><div class={alert({ tone: 'success' })}><strong>Pronto para SSG.</strong><span>O Panda extrai os estilos durante o build do Astro.</span></div></div>
+          <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '4' })}>Comece pequeno</p>
+          <h2 class={css({ textStyle: 'title', m: '0', mb: '4', maxW: '12ch' })}>Use só o que resolve um problema real.</h2>
+          <p class={css({ color: 'textMuted', lineHeight: 'body', maxW: '34rem' })}>Cobogó pode fornecer tokens, patterns e regras de composição sem exigir que o projeto entregue sua identidade ao sistema.</p>
         </div>
-        <div class={css({ overflowX: 'auto' })}>
-          <table class={table({ density: 'comfortable' })}>
-            <thead><tr><th>Projeto</th><th>Superfície</th><th>Cobogó</th></tr></thead>
-            <tbody>
-              <tr><td>O Vigia</td><td>Editorial</td><td><span class={badge({ tone: 'accent' })}>alvo</span></td></tr>
-              <tr><td>CausaGanha</td><td>Dados</td><td><span class={badge({ tone: 'info' })}>alvo</span></td></tr>
-              <tr><td>Ficha</td><td>Utilitário</td><td><span class={badge({ tone: 'neutral' })}>alvo</span></td></tr>
-            </tbody>
-          </table>
+        <div class={css({ display: 'grid', gap: '4' })}>
+          <div class={css({ border: '1px solid', borderColor: 'text', p: '6', background: 'canvas' })}>
+            <span class={badge({ tone: 'info' })}>1</span>
+            <h3 class={css({ mt: '4', mb: '2', fontSize: 'xl' })}>Identifique a relação</h3>
+            <p class={css({ m: '0', color: 'textMuted', lineHeight: 'body' })}>O que precisa continuar verdadeiro se a aparência mudar?</p>
+          </div>
+          <div class={css({ border: '1px solid', borderColor: 'text', p: '6', background: 'canvas' })}>
+            <span class={badge({ tone: 'accent' })}>2</span>
+            <h3 class={css({ mt: '4', mb: '2', fontSize: 'xl' })}>Compartilhe o mínimo</h3>
+            <p class={css({ m: '0', color: 'textMuted', lineHeight: 'body' })}>Suba para Cobogó apenas o que melhora mais de um contexto ou merece ser testado como hipótese de design.</p>
+          </div>
+          <div class={css({ border: '1px solid', borderColor: 'text', p: '6', background: 'canvas' })}>
+            <span class={badge({ tone: 'neutral' })}>3</span>
+            <h3 class={css({ mt: '4', mb: '2', fontSize: 'xl' })}>Preserve a voz local</h3>
+            <p class={css({ m: '0', color: 'textMuted', lineHeight: 'body' })}>Tipografia, cor, proporção e acabamento podem continuar sendo do produto.</p>
+          </div>
         </div>
       </section>
 
       <section class={css({ background: 'accent', borderTop: '1px solid', borderColor: 'text' })}>
         <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr auto' }, gap: '8', alignItems: 'end' })}>
           <div>
-            <p class={css({ textStyle: 'eyebrow', mb: '4' })}>Começo pequeno</p>
-            <h2 class={css({ textStyle: 'title', fontSize: '3xl', lineHeight: 'tight', m: '0', maxW: '12ch' })}>Preset. Recipes. Astro. Acabou.</h2>
+            <p class={css({ textStyle: 'eyebrow', mb: '4' })}>Sistema vivo</p>
+            <h2 class={css({ textStyle: 'title', fontSize: '3xl', lineHeight: 'tight', m: '0', maxW: '14ch' })}>Experimente. Valide. Compartilhe o que merece sobreviver.</h2>
           </div>
-          <a class={button({ visual: 'dark' })} href={github}>Abrir no GitHub ↗</a>
+          <a class={button({ visual: 'dark' })} href={github}>Explorar o código ↗</a>
         </div>
       </section>
     </main>
