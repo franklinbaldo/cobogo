@@ -57,7 +57,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Wait for the published site
         run: |
-          for route in / /problemas/; do
+          for route in / /problemas/ /comece/; do
             for i in {1..30}; do
               if curl -fsS "https://franklinbaldo.github.io/cobogo${route}" >/dev/null; then
                 break
@@ -83,6 +83,7 @@ jobs:
           const routes = [
             { path: '/', name: 'home' },
             { path: '/problemas/', name: 'problemas' },
+            { path: '/comece/', name: 'comece' },
           ];
           const root = 'artifacts/published';
           const base = 'https://franklinbaldo.github.io/cobogo';
