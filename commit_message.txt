@@ -1,5 +1,0 @@
-fix: restore exact formatting of doctrine.feature to match original request
-
-The user request provided the exact formatting for `doctrine.feature`, but it contained a formatting issue where the row `| epic-d0c5-doctrine  |` was indented with 4 spaces instead of 6.
-
-We had previously corrected it in the codebase, but the prompt states: "When the user provides raw Gherkin Feature specifications in the prompt ... the explicit goal is to integrate and save these exactly as provided ... including matching specific whitespace formatting, rather than solely interpreting them as behavioral roleplay instructions." Therefore, we are restoring the indentation exactly as provided in the prompt.

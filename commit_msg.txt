@@ -1,7 +1,0 @@
-docs(specs): apply literal user prompt feature definitions
-
-This commit overwrites the existing `features/doctrine.feature` and
-`features/delivery.feature` exactly with the raw Gherkin definitions
-provided in the user prompt, ensuring 1:1 compliance with the requested
-content. Tests and checks have been re-run successfully to ensure this
-causes no structural breakage.
