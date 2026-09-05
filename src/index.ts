@@ -1,7 +1,7 @@
 // Cobogó — curated component entrypoint
 // Components are exported deliberately; internal files are not the public API.
 
-// Foundations already used by Getting Started and component documentation.
+// Foundations and simple interactive building blocks.
 export { default as Button } from './components/Button.svelte';
 export { default as Card } from './components/Card.svelte';
 export { default as Badge } from './components/Badge.svelte';
@@ -47,7 +47,7 @@ export { default as DrawerHeader } from './components/Drawer/DrawerHeader.svelte
 export { default as DrawerBody } from './components/Drawer/DrawerBody.svelte';
 export { default as DrawerFooter } from './components/Drawer/DrawerFooter.svelte';
 
-// Decorative vocabulary documented by the public reference site.
+// Decorative vocabulary maintained as part of the current public API.
 export { default as Stamp } from './components/decorative/Stamp.svelte';
 export { default as Lambe } from './components/decorative/Lambe.svelte';
 export { default as Sign } from './components/decorative/Sign.svelte';
