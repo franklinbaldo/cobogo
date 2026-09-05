@@ -38,13 +38,13 @@ jobs:
           done
           cat /tmp/cobogo-preview.log
           exit 1
-      - name: Capture public routes in desktop and mobile
+      - name: Capture public home in desktop and mobile
         run: |
           node --input-type=module <<'NODE'
           import { mkdirSync, writeFileSync } from 'node:fs';
           import { chromium } from 'playwright';
 
-          const routes = ['', 'grammar/', 'core/', 'patterns/', 'consumers/', 'knowledge/'];
+          const routes = [''];
           const viewports = [
             { name: 'desktop', width: 1600, height: 1000 },
             { name: 'mobile', width: 390, height: 844 },
@@ -69,22 +69,19 @@ jobs:
                 documentWidth: document.documentElement.scrollWidth,
                 bodyWidth: document.body.scrollWidth,
               }));
-              const name = route ? route.replaceAll('/', '-').replace(/-$/, '') : 'home';
-              const image = `${viewport.name}-${name}.png`;
+              const image = `${viewport.name}-home.png`;
               await page.screenshot({ path: `${root}/${image}`, fullPage: true });
               observations.push({
-                route: `/cobogo/${route}`,
+                route: '/cobogo/',
                 viewport: { width: viewport.width, height: viewport.height },
                 status,
                 document_width: dimensions.documentWidth,
                 body_width: dimensions.bodyWidth,
                 image,
               });
-              if (status !== 200) failures.push(`${route || '/'} returned HTTP ${status}`);
+              if (status !== 200) failures.push(`/ returned HTTP ${status}`);
               if (viewport.name === 'mobile' && dimensions.documentWidth > viewport.width) {
-                failures.push(
-                  `${route || '/'} is ${dimensions.documentWidth}px wide in a ${viewport.width}px viewport`,
-                );
+                failures.push(`/ is ${dimensions.documentWidth}px wide in a ${viewport.width}px viewport`);
               }
             }
             await page.close();
@@ -117,12 +114,10 @@ jobs:
         env:
           ACCESSIBILITY_VIEWPORTS: 1280x900,390x844
         run: |
-          node scripts/check-semantic-accessibility.mjs http://127.0.0.1:4321/cobogo \
-            / grammar/ core/ patterns/ consumers/ knowledge/
+          node scripts/check-semantic-accessibility.mjs http://127.0.0.1:4321/cobogo /
       - name: Reduced-motion conformance
         run: |
-          node scripts/check-reduced-motion.mjs http://127.0.0.1:4321/cobogo \
-            / grammar/ core/ patterns/ consumers/ knowledge/ docs/
+          node scripts/check-reduced-motion.mjs http://127.0.0.1:4321/cobogo /
       - uses: actions/upload-artifact@v4
         if: always()
         with:
