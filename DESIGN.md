@@ -15,7 +15,7 @@ Use these in this order when they disagree:
 5. `src/index.ts` — the deliberately curated public component API.
 6. Current consumer evidence — real interfaces may reveal that Cobogó needs to learn, consolidate or change a recommendation.
 
-The public Astro site is intentionally a blank slate. It is a presentation surface, not normative authority.
+The public Astro site is a live product and demonstration surface. It should visibly express the grammar, provide useful examples and offer direct paths into the package and documentation while remaining free to evolve with the system.
 
 ## What Cobogó owns
 
@@ -43,7 +43,7 @@ This feedback loop is how Cobogó learns, but it is an incentive rather than a g
 
 ## Technology is a recommendation, not an identity
 
-Cobogó may recommend the stack that works best at a given time. Astro is the current host for the minimal public site and Svelte remains the current component implementation. The visual grammar itself is not defined by either framework, and Cobogó does not promise equivalent bindings for every framework.
+Cobogó may recommend the stack that works best at a given time. Astro is the current host for the public site and Svelte remains the current component implementation. The visual grammar itself is not defined by either framework, and Cobogó does not promise equivalent bindings for every framework.
 
 Recommendations can change as experience changes.
 
@@ -63,4 +63,4 @@ The repository's automated tests protect concrete behavioral contracts. They sho
 
 Look at real consumers. Notice repeated visual or behavioral relationships. Capture the useful knowledge. Consolidate overlapping abstractions. Deprecate what no longer helps. Change recommendations when evidence improves.
 
-The desired direction is simple: Cobogó may accumulate knowledge while its implementation surface becomes smaller.
+The desired direction is simple: Cobogó may accumulate knowledge while its implementation surface becomes smaller and its public demonstration becomes more useful, expressive and convincing.
