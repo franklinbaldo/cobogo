@@ -1,63 +1,51 @@
-# Contributing to COBOGÓ
+# Contributing to Cobogó
 
-Thank you for your interest in contributing to the COBOGÓ design system!
+Cobogó is a Brazilian visual grammar and design system. Contributions should make it easier for real products and agents to produce coherent interfaces without turning the repository into a larger catalog of near-duplicate components.
 
-## Local Development
-
-To run the project locally:
+## Local development
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
-The site will be available at `http://localhost:4321`.
 
-## Tech Stack
+The minimal reference site runs with Astro. The reusable package is primarily Svelte components plus framework-neutral CSS contracts.
 
-This project uses:
-- Astro 5
-- `@astrojs/svelte` integration
-- Svelte 5
-- TypeScript
-- **Pico CSS (classless build)** as the styling foundation
+Before merging a package change, the useful baseline is:
 
-## Project Structure
+```bash
+npm test
+npx astro check
+npm run build
+```
 
-- `src/components/`: Svelte 5 components. Render semantic HTML; no `class` attributes.
-- `src/layouts/`: Astro layouts. Pure semantic structure (`<header>`, `<main>`, `<aside>`, `<footer>`).
-- `src/pages/`: Astro pages.
-- `src/styles/global.css`: Global CSS tokens — declares COBOGÓ tokens and maps them onto Pico's `--pico-*` variables. Imports `@picocss/pico/css/pico.classless.css`.
+## Where things belong
 
-## Authoring Rules (read before writing code)
+- `src/styles/core.css` — framework-neutral semantic roles and shared visual foundations.
+- `src/styles/patterns.css` — reusable visual relationships and compositions.
+- `src/components/` — components that earn their existence through useful behavior or coordinated interaction.
+- `src/index.ts` — deliberately curated public component API.
+- `knowledge/` — accumulated visual knowledge, canon, grammar, consumer evidence and recommendations.
+- `src/pages/` — the current public site. It is intentionally a blank slate and is not the design authority.
 
-COBOGÓ is a **semantic-only** design system on top of Pico CSS:
+## Working principles
 
-1. **No `class` attributes** in pages, layouts, or component markup. The linter / review will reject them.
-2. **No utility classes**, no BEM, no component class names. If something needs styling, pick the right semantic element (`<article>`, `<section>`, `<nav>`, `<aside>`, `<figure>`, `<dl>`, `<button>`, `<details>`, …).
-3. **Variants live on `data-*` attributes** (`data-intent`, `data-pattern`, `data-theme`) or standard ARIA attributes (`aria-invalid`, `aria-current`, `aria-expanded`). Style them with attribute selectors.
-4. **Dark mode** is `<html data-theme="light|dark|auto">` — never `.dark-mode`.
-5. **Tokens, not literals.** Reference COBOGÓ tokens (`--azul`, `--papel-00`, …) or Pico variables (`--pico-*`). Never hard-code colors, radii, or spacing.
-6. **Component CSS overrides Pico variables**, it does not invent class-based selectors. Prefer `:where(article) { --pico-border-radius: var(--r-soft); }` over `.cobogo-card { … }`.
+**Production comes first.** A consumer may implement a local solution immediately when that is the fastest way to ship. If the solution later proves reusable, promoting it to Cobogó is encouraged, not required before delivery.
 
-## Pull Requests
+Prefer semantic HTML, accessible native behavior, `cobogo/core`, existing patterns and the curated public API before creating another abstraction. This is guidance for keeping Cobogó small; it is not an approval gate.
 
-Before submitting a PR, please make sure that:
-- `npm run build` passes without errors.
-- If you change any types, run `npx astro check` to verify TypeScript typings.
-- No new `class=` attributes were introduced in `src/**/*.{astro,svelte}` (grep your diff). Variants must use `data-*` attributes.
-- New styling overrides Pico variables (`--pico-*`) rather than introducing class-based selectors.
+When a new shared abstraction is useful, make it solve a visual or behavioral relationship rather than encode one consumer's domain model. Domain knowledge stays with the consumer.
 
-## Commit Convention
+Compatibility is managed through versions. Do not preserve a weak abstraction forever solely because it existed before; when a cleaner replacement is worthwhile, document the migration and let consumers upgrade when appropriate.
 
-We use a conventional-like format. Please use short, imperative commit messages without emoji prefixes.
+## Pull requests
 
-Branches should follow these prefixes:
-- `feat/`: New features
-- `fix/`: Bug fixes
-- `chore/`: Maintenance, refactors, dependencies
-- `docs/`: Documentation updates
+Keep a PR coherent and easy to review. Run the checks relevant to what changed. Visual changes should remain keyboard-accessible, understandable without color alone, and respectful of reduced-motion preferences.
 
-## Reporting Issues
+There is no requirement to add process, ceremony, a new component, or a new shared rule before a consumer can ship.
 
-To report bugs or suggest new features, please open a GitHub Issue in the repository:
-[franklinbaldo/cobogo](https://github.com/franklinbaldo/cobogo)
+## Commit convention
+
+Use short, imperative commit messages. Common branch prefixes are `feat/`, `fix/`, `chore/` and `docs/`.
+
+Issues and pull requests live in [franklinbaldo/cobogo](https://github.com/franklinbaldo/cobogo).
