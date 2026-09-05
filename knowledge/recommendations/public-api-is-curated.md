@@ -50,6 +50,8 @@ Na rodada de 2026-09-05, a #505 executou essa sequência completa. A busca nos r
 
 Isso conta como a primeira aplicação bem-sucedida e muda a recomendação para `validated`.
 
+Ainda em 2026-09-05, a #517 exercitou a mesma curadoria dentro do próprio Cobogó: `DataTable` deixou de ser export público porque o wrapper interpretava rótulos de domínio como `Concluído`, `Pendente` e `Cancelado` para escolher estados visuais. O pattern CSS `data-table` permaneceu disponível, deixando o projeto consumidor responsável por escrever a tabela semântica e decidir o significado de seus próprios estados. Essa segunda decisão no mesmo repositório reforça a aplicação, mas **não** muda a maturidade: continua sendo experiência de um único projeto real, portanto ainda não satisfaz o critério de `stable`.
+
 ## Falsificação
 
 Se fechar exports reduzir de forma material a capacidade de composição, acessibilidade ou extensão de consumidores reais sem oferecer um caminho menor equivalente, a curadoria proposta está estreita demais e deve ser revista. Se usos reais mostrarem que imports profundos são intencionalmente parte do produto, eles devem ser promovidos a contrato explícito em vez de proibidos por princípio.
