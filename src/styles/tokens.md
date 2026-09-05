@@ -4,7 +4,7 @@ Referência dos tokens concretos mantidos em [`global.css`](./global.css) para c
 
 > **Fronteira importante:** estes nomes (`--papel-*`, `--concreto-*`, `--azul`, `--vermelho`, `--bg`, `--fg` etc.) **não são a API semântica compartilhada do Cobogó entre consumers**. Para código framework-agnostic novo, importe `cobogo/core` e use/mapeie os papéis `--cobogo-*` documentados em [`knowledge/foundations/core-web-api.md`](../../knowledge/foundations/core-web-api.md). Um consumer pode adotar alguns dos tokens abaixo como identidade local, mas isso não os promove ao core.
 
-> `cobogo/styles` continua disponível por compatibilidade com consumidores existentes. A home blank-slate do Cobogó não depende desta camada. Dentro dela, os tokens das seções abaixo são os nomes preferidos em relação aos aliases legacy do fim do documento.
+> `cobogo/styles` continua disponível por compatibilidade com consumidores existentes. O site público atual parte de `cobogo/core` e `cobogo/patterns`; estes tokens históricos continuam documentados para manutenção e migração de projetos que ainda os usam. Dentro desta camada, os tokens das seções abaixo são os nomes preferidos em relação aos aliases legacy do fim do documento.
 
 ## Paleta — Papel & Concreto
 
