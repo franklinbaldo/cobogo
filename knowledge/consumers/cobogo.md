@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/cobogo
 site: https://franklinbaldo.github.io/cobogo/
 status: active
-last_reviewed: 2026-09-04
+last_reviewed: 2026-09-05
 gap_score: 0
 ---
 
@@ -15,7 +15,7 @@ Cobogó é o sistema de design e conhecimento de superfície do portfólio. Pres
 
 ## D1 — no site
 
-A superfície pública em `https://franklinbaldo.github.io/cobogo/` oferece home, Grammar, Core, Patterns, Consumers e Knowledge como caminhos complementares para compreender e usar o sistema. A #452 passou a observar todas essas rotas em desktop e `390×844` e a repetir a observação depois do deploy.
+A superfície pública em `https://franklinbaldo.github.io/cobogo/` oferece home, Grammar, Core, Patterns, Consumers e Knowledge como caminhos complementares para compreender e usar o sistema. O Getting Started ensina o entrypoint deliberado do pacote, `cobogo/core` e `cobogo/patterns`.
 
 **Problema material D1:** nenhum comprovado na avaliação vigente.
 
@@ -23,37 +23,37 @@ A superfície pública em `https://franklinbaldo.github.io/cobogo/` oferece home
 
 README, corpus OKF, documentação operacional e as divisões públicas entre Grammar/Core/Patterns/Consumers explicam a tese de gramática compartilhada sem aparência uniforme e permitem reconstruir por que uma regra existe. A projeção web continua separada do corpus canônico de knowledge.
 
-A rodada de 2026-09-04 encontrou uma diferença específica entre contrato de pacote e exemplos de desenvolvimento: várias páginas ainda ensinam `cobogo/components/*`. A remoção experimental desse caminho foi revertida antes de permanecer como estado final. Isso é trabalho da RFC 0003, não motivo isolado para rebaixar a explicabilidade geral já comprovada da superfície.
+A diferença específica entre contrato de pacote e exemplos de desenvolvimento foi fechada pela #505: exemplos correntes deixaram de ensinar `cobogo/components/*`, e o entrypoint raiz agora enumera deliberadamente os símbolos que a documentação pública ensina.
 
-**Problema material D2:** nenhum novo problema de explicação pública suficiente para alterar a nota; a migração dos imports está registrada na #482.
+**Problema material D2:** nenhum comprovado na avaliação vigente.
 
 ## D3 — por conta própria
 
-O repositório publica CSS, entry points, componentes, exemplos e corpus reutilizáveis diretamente. A página Knowledge expõe comandos reais para consultar o corpus com `okf-parser`, e o README distingue o core compartilhado da camada legada.
+O repositório publica CSS, entrypoints, componentes, exemplos e corpus reutilizáveis diretamente. A página Knowledge expõe comandos reais para consultar o corpus com `okf-parser`, e o README distingue o core compartilhado da camada legada.
 
-A tentativa de fechar `./components/*` mostrou que autonomia também depende de correspondência entre exemplo e pacote. O wildcard foi restaurado pela #499 porque a documentação ainda o ensina; uma nova tentativa só deve ocorrer depois de migrar esses exemplos e adicionar verificação contra divergência.
+A #505 removeu `./components/*` somente depois da migração dos exemplos e adicionou `tests/public-api-doc-contract.test.ts`, que reprova se uma página pública voltar a ensinar deep import, se o wildcard voltar ao contrato ou se um exemplo importar do root um símbolo que não está exportado.
 
-**Problema material D3:** nenhum rebaixamento nesta rodada, porque o estado final de `main` voltou a sustentar os caminhos ensinados publicamente.
+**Problema material D3:** nenhum rebaixamento; a autonomia pública permanece sustentada e agora há verificação automática contra a divergência que motivou a #482.
 
 ## Avaliação de qualidade
 
 - **2026-09-03: 24/24 — faixa de referência.** Clareza 4, Explicabilidade 4, Autonomia 4, UX 4, UI 4 e Confiança 4.
-- A rodada de 2026-09-04 não criou nova avaliação: não houve mudança visual persistente nem fato suficiente para alterar as seis notas. O resultado foi um aprendizado de contrato e sequência de migração.
+- **2026-09-05:** avaliação mantida. A #505 corrige um contrato de desenvolvimento específico, mas não cria uma dimensão acima de 4 nem fornece fato suficiente para alterar a avaliação completa.
 
 ## Capacidades de superfície
 
-- **Pages/site de referência** — `last_verified: 2026-09-03`. A #454 foi incorporada como `9d656e45d7a596e4bf4a6b7628583db32882c81e`; Deploy to GitHub Pages run `33799935642` concluiu com sucesso no mesmo commit.
-- **Build/CI** — `last_verified: 2026-09-04`. A aplicação #498 e a reversão #499 passaram no CI em seus respectivos commits atuais antes do merge; a reversão preservou o contrato que a documentação ainda ensina.
-- **Observação visual publicada** — `last_verified: 2026-09-03`. O job `verify-published-surface` do run `33799935642` abriu a URL pública depois do deploy e produziu o arquivo `9910703829`, ligado a `9d656e45...`.
-- **Acessibilidade semântica e teclado** — `last_verified: 2026-09-03`. A #454 adicionou Playwright + axe e navegação real por `Tab` nas seis rotas principais. O arquivo da branch `9908482256` e o arquivo de `main` `9910687966` registram HTTP 200, nenhuma violação séria/crítica do axe e nenhuma falha de teclado/foco.
-- **Responsividade** — `last_verified: 2026-09-03`. A correção da #452 permanece verde; as seis rotas móveis não alargam a página além de 390 px.
-- **Movimento reduzido** — `last_verified: 2026-09-03`. A verificação de `prefers-reduced-motion` continua verde junto da capacidade visual.
-- **Smoke/self-conformance** — `last_verified: 2026-09-04`. O corpus continua passando pelo workflow Knowledge/OKF. A #407 permanece dívida independente e não é reinterpretada como problema desta superfície publicada.
-- **Preservação** — `last_verified: 2026-09-03`. Nenhum Save Page Now novo foi verificado nesta rodada.
+- **Pages/site de referência** — `last_verified: 2026-09-05`. A #505 entrou em `main` como `4c8982b8f42bb70268c201171a761d26b05277a4`; publicação posterior foi disparada sobre esse mesmo commit e é reconciliada no RoundReport da rodada.
+- **Build/CI** — `last_verified: 2026-09-05`. A #407 entrou em `main` como `0c102acd3e406ce1c933031e798335ccff3cb0fa`, restaurando Vitest como parte normal do CI. Na #505, o job de CI passou por contratos de relatório/core, Vitest, Astro check e build no commit atual da branch antes do merge.
+- **Observação em navegador** — `last_verified: 2026-09-05`. A #505 passou pela observação das rotas públicas em desktop e celular, verificação semântica de acessibilidade e movimento reduzido antes do merge; a observação de `main` foi disparada no commit incorporado.
+- **Acessibilidade semântica e teclado** — `last_verified: 2026-09-05`. As proteções anteriores permanecem e a observação da #505 ficou verde; a mudança não altera estrutura visual dos componentes.
+- **Responsividade** — `last_verified: 2026-09-05`. A observação da #505 continuou verde nas rotas móveis.
+- **Movimento reduzido** — `last_verified: 2026-09-05`. A verificação continuou verde na PR #505.
+- **Smoke/self-conformance** — `last_verified: 2026-09-05`. A antiga dívida #407 foi resolvida; Vitest voltou ao CI e a própria #505 exercitou o novo teste de correspondência documentação↔API dentro dessa suíte.
+- **Preservação** — `last_verified: 2026-09-03`. Nenhum Save Page Now novo foi necessário nesta rodada, que não contém mudança visual material.
 
-## O que este consumer faz melhor que o Cobogó
+## O que este projeto faz melhor que o Cobogó
 
-Por ser o próprio projeto de referência, o dogfood consegue testar uma recomendação contra o lugar em que ela é formulada. Nesta rodada isso produziu evidência negativa útil: a remoção de um export passou pelos verificadores existentes, mas a leitura da documentação mostrou que o contrato ainda era ensinado como oficial. A reversão impediu que a governança transformasse uma tese correta em documentação quebrada apenas para marcar uma issue como feita.
+Por ser o próprio projeto de referência, o dogfood consegue testar uma recomendação contra o lugar em que ela é formulada. A tentativa #498 produziu um aprendizado importante: um verificador verde não substitui ler se a documentação continua ensinando o caminho que se quer remover. A #505 incorporou esse aprendizado no próprio contrato automatizado, evitando repetir a mesma classe de divergência.
 
 ## Padrões do Cobogó em uso
 
@@ -61,17 +61,18 @@ Por ser o próprio projeto de referência, o dogfood consegue testar uma recomen
 - `visual-evidence-as-quality-gate` — **stable**; build verde não substitui observação no navegador ligada ao commit real e, quando a mudança é publicada, à página realmente publicada.
 - `responsive-by-contract` — **stable**; conteúdo técnico longo pode rolar dentro da própria região sem alargar o documento inteiro.
 - `semantic-accessibility-default` — **validated**; isto é, já funcionou em pelo menos um projeto real. Ainda precisa convergir em um segundo projeto para se tornar `stable`.
-- `public-api-is-curated` — **opinionated**; o Cobogó considera correta a curadoria explícita e quer testá-la. A primeira tentativa de remover `./components/*` foi revertida porque a documentação ainda depende desses imports, portanto ela ainda não conta como aplicação bem-sucedida.
+- `public-api-is-curated` — **validated**; isto é, já funcionou em pelo menos um projeto real. A #505 migrou os exemplos, enumerou os exports deliberados, removeu `./components/*` e adicionou um verificador para impedir nova divergência. Ainda precisa convergir em um segundo projeto para se tornar `stable`.
 - Membership corrente e evidência de promoção são fail-closed: repositório inexistente não sustenta consumer, pattern ou contagem atual.
 - Configuração ≠ execução ≠ publicação ≠ observação ≠ adoção — distinção preservada no ProjectProfile e exercitada pelo próprio site.
 
 ## Histórico
 
-- 2026-09-04 — #498 removeu experimentalmente `./components/*` depois de checks verdes; a inspeção posterior encontrou exemplos oficiais ainda dependentes desse caminho; #499 restaurou o wildcard em `30f673870fb764c4563e46caa58533942999cf9d`. `public-api-is-curated` permanece `opinionated` e a #482 passa a exigir migração documental antes de nova remoção.
+- 2026-09-05 — #505 incorporada como `4c8982b8f42bb70268c201171a761d26b05277a4`: exemplos correntes migram para imports nomeados de `cobogo`; `src/index.ts` passa a enumerar o contrato ensinado; `./components/*` é removido; teste Vitest impede divergência. `public-api-is-curated` passa a `validated`.
+- 2026-09-05 — #407 incorporada como `0c102acd3e406ce1c933031e798335ccff3cb0fa`: Vitest volta a ser executado pelo CI; a dívida antiga deixa de existir.
+- 2026-09-04 — #498 removeu experimentalmente `./components/*` depois de checks verdes; a inspeção posterior encontrou exemplos oficiais ainda dependentes desse caminho; #499 restaurou o wildcard em `30f673870fb764c4563e46caa58533942999cf9d`, corrigindo a ordem de implementação da #482.
 - 2026-09-03 — #454 mergeada em `9d656e45`: seis rotas passam por contrato de acessibilidade com axe, `Tab` real e foco perceptível; a prova se repete em `main`, Pages publica o mesmo commit e Confiança sobe para 4/4, fechando avaliação em 24/24.
 - 2026-09-03 — #452 mergeada em `62c0a6d7`: seis rotas passam a ser observadas em desktop e celular; `/knowledge/` deixa de alargar a página; Pages e observação posterior à publicação verdes; primeira avaliação completa fecha em 23/24.
 - 2026-09-01 — #414 mergeada em `0ca302f2`: corpus vivo reconciliado com `ConsumerCard(repo)` e specs normativas para `Concept`, `ConsumerCard` e `RoundReport`; CI, Knowledge, preview e Pages verdes.
 - 2026-08-31 — limpeza removeu documentação corrente e patterns sustentados por repositórios confirmados como inexistentes.
-- 2026-08-31 — #407 reaplicada sobre `main` no head `612f7f24`; CI fresco reproduziu 65/152 falhas, mantendo o bloqueio sem enfraquecer o gate.
 - 2026-08-30 — #412 mergeada em `9c3aa709`: README passa a explicitar gramática compartilhada com identidade local; Pages verde.
 - 2026-08-18 — Core Web CSS API registrada como estável após adoções externas independentes em CausaGanha e Ficha.
