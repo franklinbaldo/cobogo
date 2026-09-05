@@ -1,66 +1,24 @@
 {
   "name": "cobogo",
-  "description": "A Brazilian visual grammar and design system for public-interest software.",
-  "keywords": [
-    "cobogo",
-    "design-system",
-    "brazilian-design",
-    "astro",
-    "svelte",
-    "civic-tech"
-  ],
+  "version": "0.2.0",
+  "description": "A shared Panda CSS design system for Franklin Baldo projects.",
   "type": "module",
-  "version": "0.1.0",
-  "files": [
-    "dist",
-    "src/styles"
-  ],
+  "license": "MIT",
+  "files": ["preset", "skills"],
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "svelte": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./core": "./src/styles/core.css",
-    "./patterns": "./src/styles/patterns.css",
-    "./styles": "./src/styles/global.css"
-  },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "build:lib": "svelte-package -i src -o dist",
-    "prepare": "svelte-package -i src -o dist",
-    "preview": "astro preview",
-    "test": "vitest run",
-    "test:rendered-evidence": "node --test tests/rendered-evidence-manifest.test.mjs",
-    "test:round-report-clarity": "node --test tests/round-report-clarity.test.mjs",
-    "test:public-core-contract": "node --test tests/public-core-contract.test.mjs"
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.9.9",
-    "@astrojs/svelte": "^9.0.1",
-    "@axe-core/playwright": "^4.11.3",
-    "@playwright/test": "^1.59.1",
-    "@sveltejs/package": "^2.3.10",
-    "@sveltejs/vite-plugin-svelte": "^7.3.0",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/svelte": "^5.3.1",
-    "astro": "^7.2.3",
-    "jsdom": "^29.1.1",
-    "svelte": "^5.56.9",
-    "typescript": "^5.9.3",
-    "vite": "^8.2.1",
-    "vitest": "^4.1.5"
+    "./preset": "./preset/index.mjs"
   },
   "peerDependencies": {
-    "svelte": "^5"
+    "@pandacss/dev": "^1.12.0"
   },
-  "peerDependenciesMeta": {
-    "astro": {
-      "optional": true
-    }
+  "devDependencies": {
+    "@pandacss/dev": "^1.12.0",
+    "astro": "^7.3.1"
+  },
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   }
 }

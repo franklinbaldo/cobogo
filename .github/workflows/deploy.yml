@@ -1,8 +1,8 @@
-name: Deploy to GitHub Pages
+name: Deploy Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -10,155 +10,31 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-          cache-dependency-path: package-lock.json
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Build
-        run: npm run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-  verify-published-surface:
-    needs: deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci --legacy-peer-deps
-      - run: npx playwright install --with-deps chromium
-      - name: Wait for the published site
-        run: |
-          for route in / /problemas/ /comece/ /acoes/; do
-            for i in {1..30}; do
-              if curl -fsS "https://franklinbaldo.github.io/cobogo${route}" >/dev/null; then
-                break
-              fi
-              if [ "$i" = 30 ]; then
-                exit 1
-              fi
-              sleep 2
-            done
-          done
-      - name: Capture published public routes
-        env:
-          EVALUATED_SHA: ${{ github.sha }}
-        run: |
-          node --input-type=module <<'NODE'
-          import { mkdirSync, writeFileSync } from 'node:fs';
-          import { chromium } from 'playwright';
-
-          const viewports = [
-            { name: 'desktop', width: 1600, height: 1000 },
-            { name: 'mobile', width: 390, height: 844 },
-          ];
-          const routes = [
-            { path: '/', name: 'home' },
-            { path: '/problemas/', name: 'problemas' },
-            { path: '/comece/', name: 'comece' },
-            { path: '/acoes/', name: 'acoes' },
-          ];
-          const root = 'artifacts/published';
-          const base = 'https://franklinbaldo.github.io/cobogo';
-          mkdirSync(root, { recursive: true });
-          const browser = await chromium.launch({ headless: true });
-          const observations = [];
-          const failures = [];
-
-          for (const route of routes) {
-            for (const viewport of viewports) {
-              const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
-              const response = await page.goto(`${base}${route.path}`, { waitUntil: 'networkidle' });
-              const status = response?.status() ?? 0;
-              const dimensions = await page.evaluate(() => ({
-                documentWidth: document.documentElement.scrollWidth,
-                bodyWidth: document.body.scrollWidth,
-              }));
-              const image = `${viewport.name}-${route.name}.png`;
-              await page.screenshot({ path: `${root}/${image}`, fullPage: true });
-              observations.push({
-                route: `/cobogo${route.path}`,
-                viewport: { width: viewport.width, height: viewport.height },
-                status,
-                document_width: dimensions.documentWidth,
-                body_width: dimensions.bodyWidth,
-                image,
-              });
-              if (status !== 200) failures.push(`${route.path} returned HTTP ${status}`);
-              if (viewport.name === 'mobile' && dimensions.documentWidth > viewport.width) {
-                failures.push(`${route.path} is ${dimensions.documentWidth}px wide in a ${viewport.width}px viewport`);
-              }
-              await page.close();
-            }
-          }
-          await browser.close();
-
-          writeFileSync(`${root}/evidence.json`, JSON.stringify({
-            evaluated_sha: process.env.EVALUATED_SHA,
-            phase: 'published',
-            base_url: `${base}/`,
-            observed_at: new Date().toISOString(),
-            observations,
-            failures,
-          }, null, 2));
-
-          if (failures.length) {
-            console.error(failures.join('\n'));
-            process.exit(1);
-          }
-          NODE
-      - name: Verify semantic accessibility on the published home
-        env:
-          EVALUATED_SHA: ${{ github.sha }}
-          EVIDENCE_PHASE: published
-          ACCESSIBILITY_EVIDENCE_DIR: artifacts/published-accessibility
-          ACCESSIBILITY_VIEWPORTS: 1280x900,390x844
-        run: |
-          node scripts/check-semantic-accessibility.mjs \
-            https://franklinbaldo.github.io/cobogo \
-            /
-          node --input-type=module <<'NODE'
-          import { readFileSync, writeFileSync } from 'node:fs';
-          const path = 'artifacts/published-accessibility/accessibility-evidence.json';
-          const report = JSON.parse(readFileSync(path, 'utf8'));
-          report.observed_at = new Date().toISOString();
-          writeFileSync(path, `${JSON.stringify(report, null, 2)}\n`);
-          NODE
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
         with:
-          name: cobogo-published-preview-${{ github.sha }}
-          path: artifacts/published
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cobogo-published-accessibility-${{ github.sha }}
-          path: artifacts/published-accessibility
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

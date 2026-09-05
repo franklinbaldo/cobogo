@@ -1,4 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" stroke="currentColor" stroke-width="8" fill="none">
-  <!-- concentric square spiral (indigenous ceramic reference, geometric pattern) -->
-  <polyline points="50,50 50,40 60,40 60,60 40,60 40,30 70,30 70,70 30,70 30,20 80,20 80,80 20,80 20,10 90,10 90,90 10,90" stroke-linejoin="miter" stroke-linecap="square"/>
-</svg>
