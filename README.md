@@ -1,10 +1,14 @@
 # COBOGÓ — gramática visual brasileira para software
 
-Cobogó é uma **gramática visual brasileira + sistema de conhecimento reutilizável**. Ele ajuda projetos diferentes a compartilhar boas decisões de apresentação sem transformar todos na mesma interface.
+Cobogó é uma **gramática visual brasileira + sistema de conhecimento reutilizável**. Ele ajuda projetos diferentes a compartilhar boas decisões de apresentação preservando a identidade de cada produto.
 
-Não é um catálogo de componentes, uma skin única nem uma obrigação de framework.
+## Veja o Cobogó funcionando
 
-## Caminho simples
+A home pública em `https://franklinbaldo.github.io/cobogo/` é a demonstração viva do sistema. Ela existe para mostrar, e não apenas descrever, como hierarquia, ritmo, tipografia, espaço, estados, ações e relações podem formar interfaces brasileiras contemporâneas.
+
+O site evolui junto com o sistema: novas decisões podem ser experimentadas ali, observadas em desktop e mobile e incorporadas ao conhecimento compartilhado.
+
+## Comece simples
 
 Para fundações semânticas compartilhadas:
 
@@ -12,35 +16,31 @@ Para fundações semânticas compartilhadas:
 @import "cobogo/core";
 ```
 
-Para relações visuais reutilizáveis que não precisam de comportamento de componente:
+Para relações visuais reutilizáveis:
 
 ```css
 @import "cobogo/patterns";
 ```
 
-O pacote também expõe uma API Svelte curada para comportamentos que justificam um componente.
+O pacote também expõe uma API Svelte curada para comportamentos que se beneficiam de componentes.
 
-`cobogo/styles` continua disponível **por compatibilidade com consumers existentes**. Ele carrega decisões visuais históricas e não é a identidade canônica que projetos novos precisam adotar.
+`cobogo/styles` continua disponível como camada de compatibilidade para projetos existentes que usam a identidade histórica; não é o ponto de partida recomendado para trabalho novo.
 
 ## Princípios
 
-- **Produção primeiro.** Um consumer nunca precisa esperar uma abstração upstream para publicar.
-- **Apresentação no Cobogó; domínio no consumer.** Cobogó não precisa saber o que significa CNPJ, processo, contrato ou matéria jornalística para apresentar bem essas relações.
-- **Patterns antes de wrappers.** HTML semântico + `core` + `patterns` é preferível quando resolve o problema. Componentes sobrevivem quando carregam comportamento, acessibilidade ou interação coordenada de verdade.
-- **Parentesco sem uniformidade.** Projetos podem ser reconhecivelmente relacionados sem parecer clones.
-- **Acessibilidade é forma.** Foco, semântica, teclado, contraste e reduced motion fazem parte da solução visual.
-- **Compatibilidade não é sagrada.** Consumers podem fixar versões antigas; a versão atual pode remover abstrações fracas para ficar menor e mais coerente.
-- **O sistema aprende.** Uso real pode validar, limitar, substituir ou aposentar uma recomendação.
+- **Produção primeiro.** A solução deve ajudar produtos a chegar ao ar melhores e mais rápido.
+- **Apresentação no Cobogó; domínio no projeto.** O sistema compartilha relações visuais enquanto cada produto preserva seu significado.
+- **Patterns antes de wrappers.** HTML semântico + `core` + `patterns` é o caminho simples para relações puramente visuais.
+- **Parentesco com identidade.** Projetos podem compartilhar qualidade e linguagem sem parecer clones.
+- **Acessibilidade é forma.** Foco, semântica, teclado, contraste e movimento fazem parte da composição.
+- **Evolução prática.** Versões permitem simplificar a API e substituir abstrações fracas.
+- **Aprendizado contínuo.** Uso real valida, melhora ou substitui recomendações.
 
 ## Tecnologia atual
 
-Astro é a recomendação atual para novos sites porque é onde a experiência operacional está se acumulando. Os componentes comportamentais atuais são Svelte. Nenhum dos dois define a identidade do Cobogó para sempre.
-
-O site público Astro é intencionalmente um **blank slate mínimo**. Ele é uma superfície de apresentação e teste, não um template nem fonte normativa do design system.
+Astro é a recomendação atual para novos sites porque concentra experiência operacional recente. Os componentes comportamentais atuais são Svelte. Essas escolhas evoluem conforme a experiência do portfólio.
 
 ## Instalação
-
-Enquanto o fluxo de releases amadurece, o pacote pode ser consumido diretamente do GitHub:
 
 ```bash
 npm install github:franklinbaldo/cobogo#main
@@ -48,17 +48,14 @@ npm install github:franklinbaldo/cobogo#main
 bun add github:franklinbaldo/cobogo#main
 ```
 
-## Onde está a autoridade
+## Explore
 
-Quando houver dúvida, comece por:
-
-1. [`docs/rfcs/0003-simplify-design-system.md`](./docs/rfcs/0003-simplify-design-system.md) — direção arquitetural atual;
-2. [`knowledge/`](./knowledge/) — gramática, recomendações, evidência e aprendizado vivo;
-3. [`DESIGN.md`](./DESIGN.md) — mapa curto do sistema;
-4. [`src/styles/core.css`](./src/styles/core.css) e [`src/styles/patterns.css`](./src/styles/patterns.css) — contratos CSS atuais;
-5. [`src/index.ts`](./src/index.ts) — API de componentes deliberadamente exportada.
-
-O fluxo consumer → aprendizado → Cobogó está em [`docs/consumer-workflow.md`](./docs/consumer-workflow.md).
+1. [`docs/rfcs/0003-simplify-design-system.md`](./docs/rfcs/0003-simplify-design-system.md) — direção arquitetural;
+2. [`knowledge/`](./knowledge/) — gramática, recomendações e aprendizado vivo;
+3. [`DESIGN.md`](./DESIGN.md) — mapa do sistema;
+4. [`src/styles/core.css`](./src/styles/core.css) e [`src/styles/patterns.css`](./src/styles/patterns.css) — fundações e padrões;
+5. [`src/index.ts`](./src/index.ts) — API pública curada;
+6. [`docs/consumer-workflow.md`](./docs/consumer-workflow.md) — como soluções dos projetos voltam ao Cobogó.
 
 ## Desenvolvimento
 
@@ -68,6 +65,6 @@ npx astro check
 npm run build
 ```
 
-O workflow de preview verifica a home real em desktop/mobile, acessibilidade semântica e reduced motion.
+Os workflows observam a home em desktop e mobile e verificam acessibilidade. O objetivo é usar essa observação para continuar refinando o produto.
 
 O histórico de mudanças está em [`CHANGELOG.md`](./CHANGELOG.md).
