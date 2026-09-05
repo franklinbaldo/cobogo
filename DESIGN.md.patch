@@ -1,9 +1,0 @@
---- DESIGN.md
-+++ DESIGN.md
-@@ -49,6 +49,7 @@
- - **Radii:** `--r-1` (2px), `--r-soft` (8px), `--r-pill` (9999px)
- - **Shadows:** Honest pool-shadows. `--shadow-1`: `2px 2px 0 var(--concreto-90)`, `--shadow-2`: `4px 4px 0 var(--concreto-90)`
-
- ### Motion
- - `--dur-2`: `220ms`
- - `--ease-out`: `cubic-bezier(0.16, 1, 0.3, 1)`
