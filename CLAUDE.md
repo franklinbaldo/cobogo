@@ -66,6 +66,7 @@ Do not load every operational routine into every task.
 
 - For consumer/upstream decisions: `docs/consumer-workflow.md`.
 - For portfolio surface review/ranking: `docs/operations/opinionated-surface-routine.md`.
+- For deprecation and incompatible public-API changes: `docs/operations/deprecation-and-breaking-changes.md`.
 - For architecture history and decisions: `docs/rfcs/`.
 - For reusable evidence and current recommendations: `knowledge/`.
 
@@ -91,4 +92,4 @@ PR workflows also exercise the real blank-slate home, accessibility and reduced 
 
 ## Compatibility
 
-Compatibility is useful, not sacred. Consumers unable to migrate immediately may pin an older Cobogó version. The current version may remove or replace weak abstractions when that makes the system smaller, clearer and easier to use.
+Compatibility is useful, not sacred. Consumers unable to migrate immediately may pin an older Cobogó version. The current version may remove or replace weak abstractions when that makes the system smaller, clearer and easier to use. Use `docs/operations/deprecation-and-breaking-changes.md` to communicate that decision and any migration path without turning it into a production approval gate.
