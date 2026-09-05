@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" stroke="currentColor" stroke-width="8" fill="none">
-  <!-- composition of 4 triangles filling the tile, stroke not fill -->
-  <polygon points="10,10 50,50 10,90" />
-  <polygon points="10,10 90,10 50,50" />
-  <polygon points="90,10 90,90 50,50" />
-  <polygon points="10,90 90,90 50,50" />
-</svg>

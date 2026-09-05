@@ -1,24 +1,4 @@
 {
-  "compilerOptions": {
-    "moduleResolution": "bundler",
-    "target": "ESNext",
-    "module": "ESNext",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": false,
-    "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true
-  },
-  "include": ["src/**/*"],
-  "exclude": [
-    "src/pages",
-    "src/layouts",
-    "src/content",
-    "src/**/*.test.ts",
-    "src/**/*.test.svelte"
-  ]
+  "extends": "astro/tsconfigs/strict",
+  "include": ["src", "styled-system", ".astro/types.d.ts"]
 }

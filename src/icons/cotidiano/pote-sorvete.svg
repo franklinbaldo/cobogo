@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Tampa -->
-  <path d="M15 25 L 85 25 L 80 30 L 20 30 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
-  <!-- Corpo -->
-  <path d="M20 30 L 80 30 L 75 85 C 75 90, 70 90, 50 90 C 30 90, 25 90, 25 85 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
-  <!-- Linha do Rótulo -->
-  <line x1="22" y1="50" x2="78" y2="50" stroke="currentColor" stroke-width="3" stroke-dasharray="8 4"/>
-  <line x1="23" y1="70" x2="77" y2="70" stroke="currentColor" stroke-width="3" stroke-dasharray="8 4"/>
-</svg>

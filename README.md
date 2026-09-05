@@ -1,72 +1,70 @@
-# COBOGÓ — gramática visual brasileira para software
+# Cobogó
 
-Cobogó é uma **gramática visual brasileira + sistema de conhecimento reutilizável**. Ele ajuda projetos diferentes a compartilhar boas decisões de apresentação preservando a identidade de cada produto.
+Cobogó é o design system compartilhado dos projetos de Franklin Baldo.
 
-## Veja o Cobogó funcionando
+O objetivo é simples: **um projeto que usa Cobogó já começa com a aparência da família** — tipografia, cores, espaço, estados, superfícies e recipes — sem exigir React e sem sacrificar SSG.
 
-A home pública em `https://franklinbaldo.github.io/cobogo/` é a demonstração viva do sistema. Ela existe para mostrar, e não apenas descrever, como hierarquia, ritmo, tipografia, espaço, estados, ações e relações podem formar interfaces brasileiras contemporâneas.
+## Stack
 
-O site evolui junto com o sistema: novas decisões podem ser experimentadas ali, observadas em desktop e mobile e incorporadas ao conhecimento compartilhado.
+- **Panda CSS** é o motor do design system;
+- **Astro** é o host de referência para sites estáticos;
+- **Cobogó** é um preset Panda opinionado com tokens e recipes.
 
-Para sair do zero até o primeiro pattern em uma sequência única, use o guia público **[Comece daqui](https://franklinbaldo.github.io/cobogo/comece/)**.
-
-## Comece simples
-
-Para fundações semânticas compartilhadas:
-
-```css
-@import "cobogo/core";
-```
-
-Para relações visuais reutilizáveis:
-
-```css
-@import "cobogo/patterns";
-```
-
-O pacote também expõe uma API Svelte curada para comportamentos que se beneficiam de componentes.
-
-`cobogo/styles` continua disponível como camada de compatibilidade para projetos existentes que usam a identidade histórica; não é o ponto de partida recomendado para trabalho novo.
-
-## Princípios
-
-- **Produção primeiro.** A solução deve ajudar produtos a chegar ao ar melhores e mais rápido.
-- **Apresentação no Cobogó; domínio no projeto.** O sistema compartilha relações visuais enquanto cada produto preserva seu significado.
-- **Patterns antes de wrappers.** HTML semântico + `core` + `patterns` é o caminho simples para relações puramente visuais.
-- **Parentesco com identidade.** Projetos podem compartilhar qualidade e linguagem sem parecer clones.
-- **Acessibilidade é forma.** Foco, semântica, teclado, contraste e movimento fazem parte da composição.
-- **Evolução prática.** Versões permitem simplificar a API e substituir abstrações fracas.
-- **Aprendizado contínuo.** Uso real valida, melhora ou substitui recomendações.
-
-## Tecnologia atual
-
-Astro é a recomendação atual para novos sites porque concentra experiência operacional recente. Os componentes comportamentais atuais são Svelte. Essas escolhas evoluem conforme a experiência do portfólio.
-
-## Instalação
+## Usar em um projeto Astro
 
 ```bash
 npm install github:franklinbaldo/cobogo#main
-# ou
-bun add github:franklinbaldo/cobogo#main
+npm install -D @pandacss/dev
 ```
 
-## Explore
+```ts
+// panda.config.ts
+import { defineConfig } from '@pandacss/dev'
+import cobogo from 'cobogo/preset'
 
-1. [`docs/rfcs/0003-simplify-design-system.md`](./docs/rfcs/0003-simplify-design-system.md) — direção arquitetural;
-2. [`knowledge/`](./knowledge/) — gramática, recomendações e aprendizado vivo;
-3. [`DESIGN.md`](./DESIGN.md) — mapa do sistema;
-4. [`src/styles/core.css`](./src/styles/core.css) e [`src/styles/patterns.css`](./src/styles/patterns.css) — fundações e padrões;
-5. [`src/index.ts`](./src/index.ts) — API pública curada;
-6. [`docs/consumer-workflow.md`](./docs/consumer-workflow.md) — como soluções dos projetos voltam ao Cobogó.
+export default defineConfig({
+  preflight: true,
+  include: ['./src/**/*.{astro,js,jsx,ts,tsx}'],
+  presets: [cobogo],
+  outdir: 'styled-system',
+})
+```
+
+No CSS de entrada:
+
+```css
+@layer reset, base, tokens, recipes, utilities;
+```
+
+E então use as APIs geradas pelo Panda:
+
+```astro
+---
+import { css } from '../styled-system/css'
+import { button, card } from '../styled-system/recipes'
+---
+
+<article class={card()}>
+  <h1 class={css({ textStyle: 'title' })}>Meu projeto</h1>
+  <a class={button({ visual: 'solid' })}>Continuar</a>
+</article>
+```
+
+No SSG do Astro, o Panda extrai os estilos no build. A aparência não exige uma aplicação React no navegador.
+
+## O que o preset entrega agora
+
+Tokens de cor, tipografia, espaço, tamanhos, breakpoints, radii e sombras, além das recipes `button`, `card`, `badge`, `input`, `alert`, `article`, `table` e `navLink`.
+
+O repositório também é a demonstração: a página em `src/pages/index.astro` usa o próprio preset Cobogó.
 
 ## Desenvolvimento
 
 ```bash
-npm test
-npx astro check
+npm install
 npm run build
 ```
 
-Os workflows observam a home em desktop e mobile e verificam acessibilidade. O objetivo é usar essa observação para continuar refinando o produto.
+## Princípio de evolução
 
-O histórico de mudanças está em [`CHANGELOG.md`](./CHANGELOG.md).
+Cobogó cresce quando um projeto real precisa de uma decisão visual compartilhável. A preferência é manter o preset pequeno e previsível.

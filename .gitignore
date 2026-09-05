@@ -1,15 +1,5 @@
 node_modules/
 dist/
 .astro/
-*.log
-dev_server.log
-.env
-.env.local
-.svelte-kit
-playwright-report/
-test-results/
-playwright-report/
-playwright-report/
-test-results/
-test-results/
-playwright-report/
+styled-system/
+.DS_Store
