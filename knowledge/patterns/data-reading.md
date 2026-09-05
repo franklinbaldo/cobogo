@@ -28,6 +28,8 @@ Source/freshness/evidence forms a recoverable relationship around content. The s
 
 State meaning is shared; presentation is not. Text remains the primary carrier of meaning, with shape/border/color as redundant reinforcement. Brand accent is not a status.
 
+The public `/problemas/#state` demonstration now makes that boundary visible with the same `data-cobogo-state` values and the same status text rendered in two deliberately different local voices. One treatment is compact and operational; the other is editorial and expressive. The invariant is the explicit meaning carried by text plus the state attribute, while scale, spacing, border treatment and typography stay local to the product. This is reference evidence for the design boundary, not a new themed status API.
+
 ## Metric/comparison
 
 A metric pairs a value with a legible label/context. Data typography and tabular numerals are useful where they improve comparison, not as a decorative monospace rule.
