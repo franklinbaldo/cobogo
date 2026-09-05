@@ -1,9 +1,9 @@
 ---
 type: OpinionatedRecommendation
 slug: public-api-is-curated
-maturity: opinionated
+maturity: validated
 problem: bibliotecas podem transformar a organização interna de arquivos em contrato público e obrigar consumidores a escolher detalhes que o sistema não recomenda
-validated_in: []
+validated_in: [franklinbaldo/cobogo]
 ---
 
 # A API pública deve ser curada, não refletir a árvore interna
@@ -12,7 +12,7 @@ validated_in: []
 
 Quando o Cobogó publica componentes, padrões ou primitives, cada entrada pública deve existir por decisão explícita. Organização interna de arquivos não deve virar API apenas porque é conveniente exportá-la por wildcard.
 
-`opinionated` quer dizer que o Cobogó considera esta recomendação correta e quer testá-la; ela ainda não foi comprovada por uma aplicação real reconciliada.
+`validated` quer dizer que esta recomendação **já funcionou em pelo menos um projeto real**. Ela foi aplicada no próprio Cobogó pela #505. Ainda não é `stable`: para isso, a mesma ideia precisa funcionar de forma convergente em pelo menos dois projetos reais, preservando suas identidades e necessidades locais.
 
 ## Racional
 
@@ -34,7 +34,7 @@ Curadoria reduz escolha acidental e permite que a documentação comece pelo pro
 
 Uma pessoa ou agente deve conseguir listar a API pública recomendada sem enumerar a árvore interna de componentes. Adicionar um arquivo interno novo não deve torná-lo importável publicamente sem mudança explícita do contrato do pacote.
 
-Além disso, nenhum exemplo oficial pode ensinar um import que o `package.json` não exporta. Fechar uma rota pública de importação sem migrar primeiro os exemplos que a recomendam não conta como aplicação bem-sucedida desta recomendação.
+Além disso, nenhum exemplo oficial pode ensinar um import que o pacote não sustenta. Fechar uma rota pública de importação sem migrar primeiro os exemplos que a recomendam não conta como aplicação bem-sucedida desta recomendação.
 
 ## Escape hatch
 
@@ -42,13 +42,13 @@ Um ecossistema deliberadamente extensível pode publicar imports profundos ou na
 
 ## Evidência atual
 
-A auditoria `docs/audits/public-surface-simplification-2026-09.md` encontrou no Cobogó um caso concreto: `./components/*` publica a árvore empacotada apesar de `src/index.ts` tentar representar uma curadoria menor. A mesma auditoria identifica ainda uma lista root plana e uma paleta fixa pública que aumentam o custo de escolha.
+A auditoria `docs/audits/public-surface-simplification-2026-09.md` encontrou no Cobogó um caso concreto: `./components/*` publicava a árvore empacotada apesar de `src/index.ts` tentar representar uma curadoria menor.
 
-Na rodada de 2026-09-04, a #498 removeu `./components/*` e passou em CI, validação de conhecimento, observação em navegador e GitGuardian. A verificação posterior, porém, encontrou `src/content/docs/getting-started.mdx` e várias páginas de componentes ensinando imports como `cobogo/components/Button`, `cobogo/components/Dialog` e `cobogo/components/Disclosure`. A remoção faria a documentação oficial ensinar código que o pacote não aceitaria.
+Na rodada de 2026-09-04, a #498 removeu `./components/*` cedo demais. Mesmo com CI, validação de conhecimento, observação em navegador e GitGuardian verdes, a leitura posterior encontrou exemplos oficiais ensinando caminhos que deixariam de existir. A #499 reverteu a remoção. Esse resultado negativo corrigiu a sequência da recomendação: primeiro migrar documentação e usos reais conhecidos, depois fechar o wildcard, e manter uma verificação que impeça contrato e documentação de divergirem novamente.
 
-A #499 reverteu a remoção. O aprendizado é de sequência: **primeiro migrar documentação e usos profundos reais, depois fechar o wildcard, e manter um teste que impeça contrato e documentação de divergirem novamente**.
+Na rodada de 2026-09-05, a #505 executou essa sequência completa. A busca nos repositórios acessíveis não encontrou uso conhecido de `cobogo/components/*` fora do próprio Cobogó; os exemplos públicos correntes foram migrados para imports nomeados do entrypoint `cobogo`; `src/index.ts` passou a exportar deliberadamente os símbolos que a própria documentação ensina; `./components/*` foi removido; e `tests/public-api-doc-contract.test.ts` passou a reprovar se o wildcard voltar, se uma página pública voltar a ensinar deep import ou se um exemplo importar do root um símbolo que não está exportado. No commit atual da PR #505, `722c1251ccd428d3e9cdca7ec350620ba7a009a4`, CI/Vitest/build, validação do conhecimento, observação em navegador e GitGuardian ficaram verdes antes do merge. A mudança entrou em `main` como `4c8982b8f42bb70268c201171a761d26b05277a4`.
 
-Isso não valida nem aposenta a recomendação. Ela permanece `opinionated`: a posição continua sustentada, mas a primeira aplicação foi revertida e portanto não conta como experiência bem-sucedida em projeto real.
+Isso conta como a primeira aplicação bem-sucedida e muda a recomendação para `validated`.
 
 ## Falsificação
 
