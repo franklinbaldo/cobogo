@@ -8,7 +8,6 @@ export { default as Badge } from './components/Badge.svelte';
 export { default as Disclosure } from './components/Disclosure.svelte';
 
 // Data, navigation and status.
-export { default as DataTable } from './components/DataTable.svelte';
 export { default as SearchBar } from './components/SearchBar.svelte';
 export { default as Timeline } from './components/Timeline.svelte';
 export { default as FilterBar } from './components/FilterBar.svelte';
