@@ -1,10 +1,10 @@
-# Cobogó legacy/site identity tokens
+# Cobogó legacy identity tokens
 
-Referência dos tokens concretos mantidos em [`global.css`](./global.css) para a camada histórica do site e compatibilidade de `cobogo/styles`.
+Referência dos tokens concretos mantidos em [`global.css`](./global.css) para compatibilidade de consumidores que ainda usam `cobogo/styles`.
 
 > **Fronteira importante:** estes nomes (`--papel-*`, `--concreto-*`, `--azul`, `--vermelho`, `--bg`, `--fg` etc.) **não são a API semântica compartilhada do Cobogó entre consumers**. Para código framework-agnostic novo, importe `cobogo/core` e use/mapeie os papéis `--cobogo-*` documentados em [`knowledge/foundations/core-web-api.md`](../../knowledge/foundations/core-web-api.md). Um consumer pode adotar alguns dos tokens abaixo como identidade local, mas isso não os promove ao core.
 
-> `cobogo/styles` continua disponível por compatibilidade e pelo próprio site do Cobogó. Dentro dessa camada, os tokens das seções abaixo são os nomes preferidos em relação aos aliases legacy do fim do documento.
+> `cobogo/styles` continua disponível por compatibilidade com consumidores existentes. A home blank-slate do Cobogó não depende desta camada. Dentro dela, os tokens das seções abaixo são os nomes preferidos em relação aos aliases legacy do fim do documento.
 
 ## Paleta — Papel & Concreto
 
@@ -53,7 +53,7 @@ Esses papéis locais podem ser mapeados para o core, por exemplo `--cobogo-canva
 
 ## Tipografia
 
-Famílias utilizadas na camada histórica/site: Archivo, Fraunces, Piazzolla, JetBrains Mono.
+Famílias utilizadas na camada histórica: Archivo, Fraunces, Piazzolla, JetBrains Mono.
 
 | Token | Família |
 | --- | --- |
