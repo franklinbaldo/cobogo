@@ -1,6 +1,8 @@
 # RFC 0003 — Simplificar o Cobogó como design system vivo
 
-Status: proposta
+Status: aceita
+
+> Esta RFC foi incorporada pela PR #478. A decisão está adotada; a implementação continua incremental e é acompanhada pela issue #488 e pelas issues de execução ligadas a ela.
 
 ## Resumo
 
