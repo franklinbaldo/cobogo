@@ -9,7 +9,7 @@ npm ci
 npm run dev
 ```
 
-The minimal reference site runs with Astro. The reusable package is primarily Svelte components plus framework-neutral CSS contracts.
+The public reference site runs with Astro. The reusable package is primarily Svelte components plus framework-neutral CSS contracts.
 
 Before merging a package change, the useful baseline is:
 
@@ -26,7 +26,7 @@ npm run build
 - `src/components/` — components that earn their existence through useful behavior or coordinated interaction.
 - `src/index.ts` — deliberately curated public component API.
 - `knowledge/` — accumulated visual knowledge, canon, grammar, consumer evidence and recommendations.
-- `src/pages/` — the current public site. It is intentionally a blank slate and is not the design authority.
+- `src/pages/` — the public Cobogó product: a live demonstration of the grammar, examples and paths into the system.
 
 ## Working principles
 
