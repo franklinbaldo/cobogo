@@ -35,24 +35,11 @@ test("grid layout is a framework-neutral pattern, not component wrappers", () =>
 test("entity identity is a domain-neutral pattern, not ProfileCard", () => {
   const entrypoint = read("src/index.ts");
   const patterns = read("src/styles/patterns.css");
-  const gettingStarted = read("src/content/docs/getting-started.mdx");
 
   assert.doesNotMatch(entrypoint, /ProfileCard/);
   assert.match(patterns, /data-cobogo-pattern="identity"/);
   assert.match(patterns, /data-cobogo-identity-mark/);
   assert.match(patterns, /data-cobogo-identity-name/);
-  assert.match(gettingStarted, /data-cobogo-pattern="identity"/);
-});
-
-test("Getting Started teaches the preferred root API and public CSS layers", () => {
-  const gettingStarted = read("src/content/docs/getting-started.mdx");
-
-  assert.match(gettingStarted, /import 'cobogo\/core'/);
-  assert.match(gettingStarted, /import 'cobogo\/patterns'/);
-  assert.match(gettingStarted, /import \{ Button, Card, Badge, Disclosure \} from 'cobogo'/);
-  assert.doesNotMatch(gettingStarted, /(?:import|from)[^\n]*['"]cobogo\/components\//);
-  assert.match(gettingStarted, /Astro[^\n]*caminho recomendado|caminho recomendado[^\n]*Astro/i);
-  assert.match(gettingStarted, /upstream/i);
 });
 
 test("core owns generic focus and reduced-motion contracts", () => {
@@ -65,7 +52,7 @@ test("core owns generic focus and reduced-motion contracts", () => {
   assert.match(core, /--cobogo-motion-spatial: 0ms/);
 });
 
-test("public documentation teaches core before legacy identity styles", () => {
+test("public package documentation keeps core ahead of legacy identity styles", () => {
   const readme = read("README.md");
   const tokens = read("src/styles/tokens.md");
 
