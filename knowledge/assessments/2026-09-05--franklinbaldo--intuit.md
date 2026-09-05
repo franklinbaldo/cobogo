@@ -2,61 +2,65 @@
 type: SurfaceQualityAssessment
 repo: franklinbaldo/intuit
 date: 2026-09-05
-commit: 988296675b1384a7c86a7ec4887e0835c2310bb2
-deploy: https://github.com/franklinbaldo/intuit/actions/runs/33952214058
-capture: artifact:9965193464
+commit: 98a53004f32ab7f89163fa8abbacd2863dcefdb1
+deploy: https://github.com/franklinbaldo/intuit/actions/runs/33955841991
+capture: artifact:9966339875
 scores:
   clarity: 4
-  explainability: 3
+  explainability: 4
   autonomy: 3
   ux: 3
   ui: 3
   trust: 4
-total: 20
+total: 21
 band: good
 blockers: []
-trend: flat
+trend: up
 ---
 
 # Intuit — avaliação de qualidade
 
 ## Veredito
 
-**Avaliação de qualidade: 20 de 24 pontos — faixa boa.** Clareza 4/4, Explicabilidade 3/4, Autonomia 3/4, UX 3/4, UI 3/4 e Confiança 4/4.
+**Avaliação de qualidade: 21 de 24 pontos — faixa boa.** Clareza 4/4, Explicabilidade 4/4, Autonomia 3/4, UX 3/4, UI 3/4 e Confiança 4/4.
 
-A nota total não sobe só porque um problema concreto foi corrigido. A #33 melhorou uma família real de estados de erro do caminho `?gist=`, mas D2, D3, UX e UI ainda têm escopo observado insuficiente para virar referência inteira.
+A #35 fecha um problema específico de entendimento: a home agora explica o modelo operacional essencial sem exigir que o visitante leia o repositório. As demais dimensões não sobem por associação; Autonomia, UX e UI permanecem em 3/4.
 
 ## Clareza / D1
 
-**4/4.** Editor, ações e preview continuam formando uma sequência direta. Quando a página é aberta por `?gist=`, a região de alerta agora explica a falha sem misturar situações diferentes.
+**4/4.** Editor, ações e preview continuam formando uma sequência direta. A nova frase de explicação fica acima do editor e não cria uma segunda ação principal, painel ou navegação concorrente.
 
-Não apareceu problema material de Clareza no escopo observado.
+A captura posterior à publicação em 1440×900 e 390×844 preserva editor e ações legíveis. Não apareceu problema material de Clareza no escopo observado.
 
 ## Explicabilidade / D2
 
-**3/4.** A home explica a finalidade básica da ferramenta e a consequência de habilitar scripts, mas a lógica mais ampla de URL, Base64, Gist e `srcdoc` ainda depende parcialmente do repositório para entendimento profundo. A #33 melhora mensagens operacionais, não essa camada de explicação de fundo.
+**4/4.** A home já explicava a finalidade da ferramenta e a consequência de habilitar scripts. Desde #35, também explicita que o preview acontece localmente no navegador, que o Intuit não possui backend próprio de renderização e que o estado pode ser compartilhado por URL ou Gist.
+
+Para um produto deliberadamente pequeno e de propósito único, isso é o modelo mental proporcional que um visitante precisa: o que fazer, onde a transformação acontece e como transportar o resultado/estado. Base64 e detalhes de `srcdoc` continuam corretamente na camada técnica do repositório; exigir esses detalhes na entrada pública adicionaria volume sem melhorar a compreensão da tarefa.
 
 ## Autonomia / D3
 
-**3/4.** URL, Base64 e Gist continuam sendo caminhos públicos reais para transportar estado. A #33 melhora especificamente Gist: sucesso com `.html` continua preenchendo editor e preview; Gist válido sem HTML, resposta HTTP da API, falha ao carregar o arquivo bruto e falha de requisição agora produzem mensagens distintas e não fabricam conteúdo.
-
-Isso torna um caminho existente mais recuperável e confiável, mas não amplia por si só a família de saídas reutilizáveis a ponto de justificar 4/4.
+**3/4.** URL, Base64 e Gist continuam sendo caminhos públicos reais para transportar estado, e agora a home torna URL/Gist explícitos para quem chega de fora. A #35 melhora descoberta e compreensão desses caminhos, mas não cria uma nova saída reutilizável ou um contrato público mais amplo; 3/4 permanece mais fiel.
 
 ## UX
 
-**3/4.** Antes da #33, falhas materialmente diferentes do caminho Gist terminavam na mesma mensagem `Failed to load Gist content.`. Agora o estado apresentado acompanha o que foi realmente observado: status HTTP da API, ausência de `.html`, falha no arquivo HTML ou indisponibilidade da requisição.
+**3/4.** A frase nova é curta, fica próxima da introdução e não interrompe o fluxo editor → ações → preview. No mobile, ela quebra em poucas linhas sem rolagem horizontal e sem esconder a entrada principal; os controles permanecem acionáveis.
 
-O novo teste Playwright intercepta API e arquivo bruto sem depender da rede real e cobre cinco cenários, inclusive sucesso. A prova de UX continua concentrada na home e em famílias específicas de estado; 3/4 permanece mais fiel que 4/4.
+A prova de UX continua concentrada na home e em famílias específicas de estado já exercitadas. A rodada não percorreu uma variedade maior de jornadas que justificasse 4/4.
 
 ## UI
 
-**3/4.** A correção reutiliza a região de alerta existente e não cria um novo componente nem altera a composição principal. O Pages e as observações posterior ao merge preservaram a home nas larguras já adotadas pela rotina. Não houve base suficiente para elevar UI.
+**3/4.** A mudança usa a hierarquia existente, com texto menor e secundário, sem novo card, ícone ou massa visual. As capturas de 1440×900 e 390×844 mostram que a identidade, o espaço em branco e a composição do editor continuam coerentes.
+
+Isso resolve a necessidade desta rodada sem fornecer base suficiente para declarar a UI inteira como referência.
 
 ## Confiança
 
-**4/4.** O comportamento está ligado a testes e à versão publicada. A PR #33 foi incorporada como `988296675b1384a7c86a7ec4887e0835c2310bb2`. No commit atual da branch antes do merge, `c299c07e692073c4bda671f31fc99a34a52f0fed`, Test e Visual capture passaram. Depois do merge, Test `33952214057`, Visual capture `33952214063` e Pages `33952214058` terminaram com sucesso no commit incorporado.
+**4/4.** A afirmação nova corresponde ao código e ao `ProjectProfile`: renderização client-side, sem backend próprio de renderização, com URL/Gist como meios de transporte de estado. O teste `project-explanation.spec.js` protege esses três fatos e também exige que editor e botão Render permaneçam visíveis.
 
-O workflow de Pages abriu a página efetivamente publicada, produziu o pacote `9965193464`, `intuit-published-988296675b1384a7c86a7ec4887e0835c2310bb2`, e concluiu com sucesso a captura posterior à publicação. Isso comprova o estado observado; não é uma afirmação de perfeição universal.
+No commit atual da branch antes do merge, `c2519a4c5186e16991e2be929cf5cdea22243b38`, Test, Visual capture e GitGuardian passaram. A PR #35 foi incorporada como `98a53004f32ab7f89163fa8abbacd2863dcefdb1`. Depois do merge, Test `33955841985`, Visual capture `33955841993` e Pages `33955841991` terminaram com sucesso no mesmo commit.
+
+O workflow de Pages abriu a página efetivamente publicada e produziu o pacote `9966339875`, `intuit-published-98a53004f32ab7f89163fa8abbacd2863dcefdb1`. O pacote registra `https://franklinbaldo.github.io/intuit/` em 1440×900 e 390×844, capturado em `2026-09-05T08:39:55Z`.
 
 ## Impedimentos objetivos
 
@@ -64,10 +68,11 @@ Nenhum para o problema escolhido.
 
 ## Recomendações Cobogó
 
-- `feedback-near-action` passa a `validated`: em português comum, agora há uma aplicação real bem-sucedida reconciliada. No Intuit, a região de alerta comunica o resultado do carregamento Gist no próprio fluxo, distingue estados observáveis e oferece recuperação quando possível.
-- `url-state-when-shareable` continua `validated`, isto é, já funcionou em pelo menos um projeto real. Esta rodada melhora Gist dentro do mesmo projeto e não fornece uma segunda aplicação independente para torná-la `stable`.
+- `reader-first-project-explanation` passa a `validated`: em português comum, a recomendação que o Cobogó queria testar agora funcionou em pelo menos um projeto real. No Intuit, uma explicação compacta foi suficiente para fechar D2 sem competir com a tarefa principal.
+- `feedback-near-action` continua `validated`: já há uma aplicação real bem-sucedida reconciliada no fluxo Gist.
+- `url-state-when-shareable` continua `validated`: já funcionou em pelo menos um projeto real; a #35 melhora a explicação do caminho, mas não constitui um segundo projeto independente.
 - `visual-evidence-as-quality-gate` continua aplicável: a versão incorporada foi observada novamente depois da publicação.
 
 ## O que o Cobogó deve aprender deste projeto
 
-Feedback útil não é apenas estar perto da ação: ele precisa preservar a diferença entre estados que levam a decisões diferentes. “Não há arquivo HTML”, “GitHub respondeu com erro” e “a requisição falhou” não devem ser achatados numa mensagem genérica quando o sistema conhece a distinção. Ao mesmo tempo, o texto não deve inventar causa além do que foi observado.
+Explicar “como funciona” não exige expor toda a engenharia. Em uma ferramenta estreita, uma frase factual pode ser suficiente quando cobre a fronteira que muda o modelo mental do leitor: execução local versus serviço remoto e os meios reais de transportar estado. A explicação deve parar antes de virar documentação técnica e manter a tarefa principal dominante.
