@@ -55,7 +55,10 @@ const items = [
 
   <section class="pattern-section" id="flow">
     <div class="pattern-copy"><p class="number">03</p><p class="eyebrow dark">Leitura longa</p><h2>Dê ritmo para o texto respirar.</h2><p><code>data-cobogo-flow</code> aplica espaçamento consistente entre blocos; a fundação tipográfica mantém a medida de leitura controlada.</p><a class="source-link" href={`${github}/blob/main/src/styles/core.css`}>Ver implementação em core.css ↗</a></div>
-    <div class="example reading" data-cobogo-flow><p class="demo-label">Trecho demonstrativo</p><h3>Uma seção não precisa gritar para marcar uma mudança.</h3><p>Quando a medida é confortável e os intervalos têm intenção, a hierarquia aparece antes mesmo de alguém perceber os tokens usados.</p><p>Isso deixa o produto livre para mudar fonte, cor e voz sem perder a relação estrutural.</p></div>
+    <div class="example reading" data-cobogo-flow><p class="demo-label">Trecho demonstrativo</p><h3>Uma seção não precisa gritar para marcar uma mudança.</h3><p>Quando a medida é confortável e os intervalos têm intenção, a hierarquia aparece antes mesmo de alguém perceber os tokens usados.</p><p>Isso deixa o produto livre para mudar fonte, cor e voz sem perder a relação estrutural.</p><pre><code>&lt;article data-cobogo-flow&gt;
+  &lt;h2&gt;Título da seção&lt;/h2&gt;
+  &lt;p&gt;Texto com ritmo de leitura.&lt;/p&gt;
+&lt;/article&gt;</code></pre></div>
   </section>
 
   <section class="pattern-section alternate" id="actions">
@@ -66,23 +69,59 @@ const items = [
 
   <section class="pattern-section" id="grid">
     <div class="pattern-copy"><p class="number">05</p><p class="eyebrow dark">Relações</p><h2>A composição também explica.</h2><p>O grid de 12 colunas permite mostrar peso e relação sem criar um componente de domínio. Cada produto escolhe o conteúdo; a estrutura é compartilhável.</p></div>
-    <div class="example"><p class="demo-label">Grid responsivo</p><div class="grid-demo" data-cobogo-pattern="grid" style="--cobogo-grid-gap:.75rem"><div style="--cobogo-grid-span:12;--cobogo-grid-span-md:7">principal</div><div style="--cobogo-grid-span:12;--cobogo-grid-span-md:5">apoio</div><div style="--cobogo-grid-span:6">metade</div><div style="--cobogo-grid-span:6">metade</div></div><pre><code>data-cobogo-pattern="grid"
---cobogo-grid-span-md: 7</code></pre></div>
+    <div class="example"><p class="demo-label">Grid responsivo</p><div class="grid-demo" data-cobogo-pattern="grid" style="--cobogo-grid-gap:.75rem"><div style="--cobogo-grid-span:12;--cobogo-grid-span-md:7">principal</div><div style="--cobogo-grid-span:12;--cobogo-grid-span-md:5">apoio</div><div style="--cobogo-grid-span:6">metade</div><div style="--cobogo-grid-span:6">metade</div></div><pre><code>&lt;div data-cobogo-pattern="grid"&gt;
+  &lt;div style="--cobogo-grid-span-md:7"&gt;principal&lt;/div&gt;
+  &lt;div style="--cobogo-grid-span-md:5"&gt;apoio&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
   </section>
 
   <section class="pattern-section alternate" id="data-table">
     <div class="pattern-copy"><p class="number">06</p><p class="eyebrow dark">Coleção densa</p><h2>Tabela continua sendo tabela.</h2><p>O pattern cuida de contenção, rolagem e foco sem adivinhar o significado das células. Semântica e domínio continuam no HTML do produto.</p></div>
-    <div class="example"><p class="demo-label">Comparação densa</p><div data-cobogo-pattern="data-table"><table><caption>Exemplo fictício</caption><thead><tr><th>Item</th><th>Estado</th><th>Atualização</th></tr></thead><tbody><tr><td>A</td><td>Disponível</td><td>Hoje</td></tr><tr><td>B</td><td>Em análise</td><td>Ontem</td></tr><tr><td>C</td><td>Disponível</td><td>2 dias</td></tr></tbody></table></div></div>
+    <div class="example"><p class="demo-label">Comparação densa</p><div data-cobogo-pattern="data-table"><table><caption>Exemplo fictício</caption><thead><tr><th>Item</th><th>Estado</th><th>Atualização</th></tr></thead><tbody><tr><td>A</td><td>Disponível</td><td>Hoje</td></tr><tr><td>B</td><td>Em análise</td><td>Ontem</td></tr><tr><td>C</td><td>Disponível</td><td>2 dias</td></tr></tbody></table></div><pre><code>&lt;div data-cobogo-pattern="data-table"&gt;
+  &lt;table&gt;
+    &lt;caption&gt;Coleção&lt;/caption&gt;
+    &lt;thead&gt;…&lt;/thead&gt;
+    &lt;tbody&gt;…&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre></div>
   </section>
 
   <section class="pattern-section" id="provenance">
     <div class="pattern-copy"><p class="number">07</p><p class="eyebrow dark">Contexto + metadados</p><h2>Origem não compete com conteúdo.</h2><p>Proveniência precisa estar perto o bastante para sustentar confiança e discreta o bastante para não disputar a leitura principal.</p></div>
-    <div class="example"><p class="demo-label">Contexto separado</p><article class="story"><h3>Conteúdo principal com hierarquia própria.</h3><p>O texto segue primeiro. A origem vem como uma camada legível e verificável.</p><div data-cobogo-pattern="provenance"><strong>Fonte primária</strong><span data-cobogo-source>Exemplo de origem · conteúdo demonstrativo</span></div></article></div>
+    <div class="example"><p class="demo-label">Contexto separado</p><article class="story"><h3>Conteúdo principal com hierarquia própria.</h3><p>O texto segue primeiro. A origem vem como uma camada legível e verificável.</p><div data-cobogo-pattern="provenance"><strong>Fonte primária</strong><span data-cobogo-source>Exemplo de origem · conteúdo demonstrativo</span></div></article><pre><code>&lt;div data-cobogo-pattern="provenance"&gt;
+  &lt;strong&gt;Fonte primária&lt;/strong&gt;
+  &lt;span data-cobogo-source&gt;Origem verificável&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
   </section>
 
   <section class="closing" data-cobogo-inverted><p class="eyebrow">A regra mais importante</p><h2>Use a menor<br/><em>abstração suficiente.</em></h2><p>Se HTML + core + pattern resolvem, pare aí. Se surgir comportamento ou mecânica de acessibilidade que realmente vale compartilhar, aí um componente ganha motivo para existir.</p><div class="actions"><a class="primary" href={`${github}/tree/main/src/styles`}>Ver código-fonte</a><a href="/cobogo/">Voltar à home</a></div></section>
 </main>
 <footer><a class="brand" href="/cobogo/"><span class="brand-mark small" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Cobogó</span></a><span>Comece pelo problema. Termine com a menor solução suficiente.</span></footer>
+<script is:inline>
+  for (const pre of document.querySelectorAll('.example pre')) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'copy-code';
+    button.textContent = 'Copiar exemplo';
+    button.setAttribute('aria-label', 'Copiar exemplo de código');
+    button.addEventListener('click', async () => {
+      const code = pre.querySelector('code')?.textContent ?? '';
+      try {
+        await navigator.clipboard.writeText(code);
+        button.textContent = 'Copiado ✓';
+        window.setTimeout(() => { button.textContent = 'Copiar exemplo'; }, 1800);
+      } catch {
+        const range = document.createRange();
+        const selection = window.getSelection();
+        range.selectNodeContents(pre);
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+        button.textContent = 'Código selecionado';
+      }
+    });
+    pre.insertAdjacentElement('beforebegin', button);
+  }
+</script>
 </body>
 </html>
 
@@ -92,7 +131,7 @@ const items = [
 .site-header{min-height:5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1rem clamp(1.25rem,4vw,4rem);border-bottom:1px solid var(--ink);background:var(--paper)}.brand{display:inline-flex;align-items:center;gap:.75rem;text-decoration:none;font-weight:800}.brand-mark{width:2.2rem;aspect-ratio:1;display:grid;grid-template-columns:1fr 1fr;gap:2px;rotate:45deg}.brand-mark i{display:block;border:3px solid currentColor;border-radius:50% 50% 0 50%}.brand-mark.small{width:1.5rem}.site-header nav{display:flex;gap:1.5rem;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.site-header nav a{text-decoration:none;border-bottom:2px solid transparent}.site-header nav a:hover,.site-header nav a[aria-current]{border-color:currentColor}
 .guide-hero{padding:clamp(5rem,10vw,10rem) clamp(1.25rem,5vw,5rem);background:var(--ink);color:var(--paper)}.eyebrow{margin:0 0 1.2rem;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}.eyebrow.dark{color:var(--blue)}.guide-hero h1,.closing h2{margin:0;max-width:11ch;font-size:clamp(4rem,9vw,9rem);line-height:.84;letter-spacing:-.065em;text-transform:uppercase;color:inherit}.guide-hero h1 em,.closing h2 em{color:var(--lime);font-style:normal}.guide-hero>p:last-child{max-width:46rem;margin:2rem 0 0;color:#d8d5cb;font-size:1.15rem;line-height:1.55}.guide-hero code{color:var(--lime)}
 .index{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-bottom:1px solid var(--ink);background:var(--paper)}.index a{min-width:0;padding:1rem;border-right:1px solid var(--ink);text-decoration:none;font-size:.78rem;font-weight:750}.index a:last-child{border:0}.index a span{display:block;margin-bottom:.45rem;color:var(--cobogo-text-muted);font-family:var(--cobogo-font-data);font-size:.68rem}.index a:hover{background:var(--lime)}
-.pattern-section{scroll-margin-top:1rem;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(3rem,8vw,8rem);padding:clamp(5rem,9vw,9rem) clamp(1.25rem,5vw,5rem);border-bottom:1px solid var(--ink)}.pattern-section.alternate{background:var(--paper-2)}.pattern-copy{max-width:42rem}.number{margin:0 0 3rem;font-family:var(--cobogo-font-data);font-size:.78rem;color:var(--cobogo-text-muted)}.pattern-copy h2{margin:0;font-size:clamp(3rem,6vw,6rem);line-height:.9;letter-spacing:-.055em;text-transform:uppercase}.pattern-copy>p:not(.number,.eyebrow){margin-top:1.5rem;font-size:1.05rem;line-height:1.55}.source-link{display:inline-block;margin-top:2rem;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em}.example{align-self:center;min-width:0;padding:clamp(1.5rem,3vw,3rem);border:1px solid var(--ink);background:#fffdf8}.demo-label{margin:0 0 2.5rem;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--blue)}.example pre{margin:2.5rem 0 0;padding:1.25rem;overflow:auto;background:var(--ink);color:var(--paper);font-size:.8rem;line-height:1.6}.identity-demo{padding:1.5rem;background:#e9eef0}.state-stack>p[data-cobogo-pattern]{margin:.9rem 0}.reading{max-width:46rem}.reading h3{font-family:Georgia,serif;font-size:clamp(2rem,4vw,4rem);line-height:1}.reading p:not(.demo-label){font-family:Georgia,serif;font-size:1.05rem;line-height:1.65}.action-demo{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}.action-demo button{min-height:3rem;padding:.65rem 1.1rem;background:var(--ink);color:var(--paper);font-weight:800}.action-demo a{font-weight:750}.grid-demo>div{min-height:6rem;display:flex;align-items:flex-end;padding:1rem;border:1px solid var(--ink);background:var(--lime);font-weight:800;text-transform:uppercase}.grid-demo>div:nth-child(2){background:var(--coral)}.grid-demo>div:nth-child(3){background:var(--blue);color:white}.grid-demo>div:nth-child(4){background:var(--paper-2)}table{width:100%;border-collapse:collapse}th,td{padding:.8rem 1rem;border-top:1px solid var(--cobogo-border);text-align:left}th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}.story h3{max-width:12ch;margin:0 0 1rem;font-family:Georgia,serif;font-size:clamp(2rem,4vw,4.5rem);line-height:.96;font-weight:500}.story>p{font-family:Georgia,serif}
+.pattern-section{scroll-margin-top:1rem;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(3rem,8vw,8rem);padding:clamp(5rem,9vw,9rem) clamp(1.25rem,5vw,5rem);border-bottom:1px solid var(--ink)}.pattern-section.alternate{background:var(--paper-2)}.pattern-copy{max-width:42rem}.number{margin:0 0 3rem;font-family:var(--cobogo-font-data);font-size:.78rem;color:var(--cobogo-text-muted)}.pattern-copy h2{margin:0;font-size:clamp(3rem,6vw,6rem);line-height:.9;letter-spacing:-.055em;text-transform:uppercase}.pattern-copy>p:not(.number,.eyebrow){margin-top:1.5rem;font-size:1.05rem;line-height:1.55}.source-link{display:inline-block;margin-top:2rem;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em}.example{align-self:center;min-width:0;padding:clamp(1.5rem,3vw,3rem);border:1px solid var(--ink);background:#fffdf8}.demo-label{margin:0 0 2.5rem;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--blue)}.example pre{margin:.7rem 0 0;padding:1.25rem;overflow:auto;background:var(--ink);color:var(--paper);font-size:.8rem;line-height:1.6}.copy-code{display:inline-flex;min-height:2.5rem;align-items:center;margin-top:2.5rem;padding:.55rem .8rem;border:1px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;cursor:pointer}.copy-code:hover,.copy-code:focus-visible{background:var(--lime)}.identity-demo{padding:1.5rem;background:#e9eef0}.state-stack>p[data-cobogo-pattern]{margin:.9rem 0}.reading{max-width:46rem}.reading h3{font-family:Georgia,serif;font-size:clamp(2rem,4vw,4rem);line-height:1}.reading p:not(.demo-label){font-family:Georgia,serif;font-size:1.05rem;line-height:1.65}.action-demo{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}.action-demo button{min-height:3rem;padding:.65rem 1.1rem;background:var(--ink);color:var(--paper);font-weight:800}.action-demo a{font-weight:750}.grid-demo>div{min-height:6rem;display:flex;align-items:flex-end;padding:1rem;border:1px solid var(--ink);background:var(--lime);font-weight:800;text-transform:uppercase}.grid-demo>div:nth-child(2){background:var(--coral)}.grid-demo>div:nth-child(3){background:var(--blue);color:white}.grid-demo>div:nth-child(4){background:var(--paper-2)}table{width:100%;border-collapse:collapse}th,td{padding:.8rem 1rem;border-top:1px solid var(--cobogo-border);text-align:left}th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}.story h3{max-width:12ch;margin:0 0 1rem;font-family:Georgia,serif;font-size:clamp(2rem,4vw,4.5rem);line-height:.96;font-weight:500}.story>p{font-family:Georgia,serif}
 .closing{padding:clamp(5rem,10vw,10rem) clamp(1.25rem,5vw,5rem);background:var(--ink);color:var(--paper)}.closing>p:not(.eyebrow){max-width:46rem;margin:2rem 0 0;color:#d8d5cb;font-size:1.08rem}.actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}.actions a{display:inline-flex;min-height:3rem;align-items:center;padding:.7rem 1rem;border:1px solid var(--paper);text-decoration:none;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em}.actions .primary{background:var(--lime);color:var(--ink);border-color:var(--lime)}footer{display:flex;justify-content:space-between;gap:2rem;align-items:center;padding:2rem clamp(1.25rem,4vw,4rem);font-size:.8rem;border-top:1px solid var(--ink)}
 @media(max-width:900px){.index{grid-template-columns:repeat(2,minmax(0,1fr))}.index a{border-bottom:1px solid var(--ink)}.pattern-section{grid-template-columns:minmax(0,1fr)}.pattern-copy{max-width:none}}
 @media(max-width:620px){.site-header{display:grid;gap:1rem}.site-header nav{gap:.8rem 1rem;flex-wrap:wrap}.guide-hero h1,.closing h2{font-size:clamp(3.4rem,15vw,5rem);overflow-wrap:anywhere}.index{grid-template-columns:minmax(0,1fr)}.index a{border-right:0}.pattern-section{padding-block:4rem}.number{margin-bottom:2rem}.pattern-copy h2{font-size:clamp(2.8rem,13vw,4.5rem);overflow-wrap:anywhere}.example{padding:1.2rem}footer{align-items:flex-start;flex-direction:column}}
