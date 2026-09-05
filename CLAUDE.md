@@ -1,86 +1,61 @@
 # COBOGÓ — Agent & Development Guide
 
-Cobogó is a **Brazilian visual grammar + reusable design knowledge system**. It is not a component catalog, a universal skin or a framework mandate.
+Cobogó é uma **gramática visual brasileira + sistema vivo de conhecimento reutilizável de design**.
 
-## Start here
+## Regra principal: entregue qualidade pública
 
-When sources disagree, use this order:
+Comece pelo que uma pessoa vê, entende e consegue fazer. Quando houver uma melhoria clara, implemente-a. Use documentação, skills, avaliações, issues e evidências para aumentar a qualidade da decisão — nunca como cerimônia que adia uma melhoria segura.
 
-1. `docs/rfcs/0003-simplify-design-system.md` — current architectural direction;
-2. `knowledge/` — living grammar, recommendations and evidence;
-3. `DESIGN.md` — short map of the current system;
-4. `src/styles/core.css` and `src/styles/patterns.css` — current shared CSS contracts;
-5. `src/index.ts` — deliberately curated component API;
-6. real consumer evidence — useful evidence may require Cobogó to change.
+O site público `https://franklinbaldo.github.io/cobogo/` é um **produto e uma demonstração viva do Cobogó**. Ele deve ser bonito, expressivo, útil, navegável, acessível e convincente. A home deve mostrar a gramática funcionando, explicar o sistema e oferecer caminhos claros para começar, explorar padrões e chegar ao código.
 
-The public Astro site is intentionally a **minimal blank slate**. It is a presentation/test surface, not design authority or a template for consumers.
+## Onde buscar direção
 
-## Working rule: production first
+1. `docs/rfcs/0003-simplify-design-system.md` — direção arquitetural atual;
+2. `knowledge/` — gramática, recomendações e aprendizado vivo;
+3. `DESIGN.md` — mapa curto do sistema;
+4. `src/styles/core.css` e `src/styles/patterns.css` — contratos CSS compartilhados;
+5. `src/index.ts` — API pública curada;
+6. experiência real dos projetos — quando um projeto encontra solução melhor, o Cobogó aprende com ela.
 
-Cobogó must make products easier to ship, never become an approval gate.
+## Produção primeiro
 
-When working in a consumer:
+Em um projeto consumidor, escolha a solução que entrega a melhor experiência com simplicidade. Reuse Cobogó quando encaixar; crie localmente quando a solução ainda estiver nascendo; promova ao Cobogó quando houver conhecimento visual reutilizável. Mantenha significado de domínio e fluxo de produto no projeto. Consolide relações de apresentação recorrentes no Cobogó.
 
-- use an existing Cobogó solution when it is already the easiest fit;
-- if something new is needed to ship, implement it locally without waiting for upstream work;
-- if the result proves reusable, promote the learning to Cobogó now or later;
-- keep domain meaning and product workflow in the consumer;
-- prefer consolidating repeated presentation knowledge over accumulating near-duplicate wrappers.
+Cobogó cuida de hierarquia, ritmo, relações tipográficas, estados visuais, densidade, padrões de leitura, apresentação de interação, acessibilidade e outras relações reutilizáveis. Os projetos cuidam do significado de seus dados e ações.
 
-Upstream promotion is encouraged, never required for production. See `docs/consumer-workflow.md` when that flow is relevant.
+Prefira HTML semântico + `cobogo/core` + `cobogo/patterns` quando isso expressar a relação com clareza. Use componentes públicos para comportamento, acessibilidade mecânica ou interação coordenada que realmente se beneficie da abstração.
 
-## What belongs in Cobogó
+## Implementação atual
 
-Cobogó owns reusable presentation knowledge: hierarchy, rhythm, typographic relationships, visual state treatment, density, reading patterns, interaction presentation, accessibility and recurring visual relations.
+- `cobogo/core` — fundações semânticas independentes de framework;
+- `cobogo/patterns` — relações visuais reutilizáveis;
+- raiz do pacote — componentes comportamentais Svelte curados;
+- `cobogo/styles` — camada histórica disponível para projetos existentes;
+- Astro — host web recomendado pela experiência atual;
+- Svelte — implementação atual dos componentes comportamentais.
 
-Consumers own domain semantics. Cobogó should not infer what a CNPJ, lawsuit, public contract, athlete, status label or newspaper fact means.
+Essas escolhas evoluem com a experiência.
 
-Prefer native HTML plus `cobogo/core` and `cobogo/patterns` when they express the relation clearly. A public component should earn its existence through real behavior, accessibility mechanics or coordinated interaction — not merely by hiding a few lines of markup.
+## Skills e rotinas
 
-## Current implementation
+As skills em `.claude/skills/` e `franklinbaldo/skills` são ferramentas para acelerar trabalho. Use as que ajudarem a tarefa concreta e siga avançando.
 
-- `cobogo/core` — framework-agnostic semantic foundations;
-- `cobogo/patterns` — reusable visual relationships;
-- package root — curated Svelte behavioral components;
-- `cobogo/styles` — legacy compatibility layer for existing consumers, not the canonical identity for new work;
-- Astro — current recommended web host based on present experience;
-- Svelte — current implementation for behavioral package components.
+Rotinas especializadas ficam disponíveis conforme a necessidade:
+- `docs/consumer-workflow.md` — fluxo projeto → aprendizado → Cobogó;
+- `docs/operations/opinionated-surface-routine.md` — melhoria contínua das superfícies públicas;
+- `docs/operations/deprecation-and-breaking-changes.md` — evolução da API;
+- `docs/rfcs/` — decisões arquiteturais;
+- `knowledge/` — recomendações e experiência acumulada.
 
-Recommendations can change when experience changes. Cobogó does not owe equivalent bindings to every framework.
+## Trabalho visual
 
-## Project skills
+Olhe a página como produto. Faça composição, hierarquia, tipografia, ritmo, espaço, cor, navegação, estados e responsividade trabalharem juntos. Use a gramática brasileira como estrutura contemporânea, com identidade própria de cada projeto.
 
-Project-local skills live under `.claude/skills/`:
+Screenshots, comparação visual, navegador e testes servem para enxergar melhor e iterar. Para mudanças visuais, observe o resultado publicado em desktop e mobile e refine enquanto houver problema perceptível relevante.
 
-- `cobogo-design-review`;
-- `brazilian-web-design`;
-- `cobogo-consumer-synergy`.
+## Verificação
 
-They are **optional accelerators**, not prerequisites. Use one when it materially helps the task; do not stop safe, straightforward work just to run a skill first.
-
-If installed copies need refreshing, use the documented `npx skills add ...` workflow rather than hand-editing generated copies.
-
-## Specialized routines stay specialized
-
-Do not load every operational routine into every task.
-
-- For consumer/upstream decisions: `docs/consumer-workflow.md`.
-- For portfolio surface review/ranking: `docs/operations/opinionated-surface-routine.md`.
-- For deprecation and incompatible public-API changes: `docs/operations/deprecation-and-breaking-changes.md`.
-- For architecture history and decisions: `docs/rfcs/`.
-- For reusable evidence and current recommendations: `knowledge/`.
-
-A normal component, pattern, documentation or consumer task does not need to perform a portfolio round first.
-
-## Visual work
-
-Start from the product job and the relation that needs to become clear. Use Brazilian grammar as structure, not as a checklist of colors, motifs or famous references.
-
-Concept images, screenshots and comparison passes are useful when they improve a material visual decision, but they are tools — not mandatory ceremony. Preserve what the real product does better and persist reusable learning only when there is something worth reusing.
-
-## Verification
-
-Use the checks that are relevant to the change. The normal repository baseline is:
+Use os checks adequados à mudança. A base normal do repositório é:
 
 ```bash
 npm test
@@ -88,8 +63,12 @@ npx astro check
 npm run build
 ```
 
-PR workflows also exercise the real blank-slate home, accessibility and reduced motion. Do not recreate removed Vitrine routes, fixtures or historical tests merely to satisfy obsolete expectations.
+Leve PRs corretas até os checks verdes, merge e publicação. Quando algo mecânico falhar, corrija e continue.
 
-## Compatibility
+## Compatibilidade
 
-Compatibility is useful, not sacred. Consumers unable to migrate immediately may pin an older Cobogó version. The current version may remove or replace weak abstractions when that makes the system smaller, clearer and easier to use. Use `docs/operations/deprecation-and-breaking-changes.md` to communicate that decision and any migration path without turning it into a production approval gate.
+Compatibilidade é uma ferramenta de migração. Projetos podem fixar versões anteriores; a versão atual pode remover ou substituir abstrações fracas para ficar menor, mais clara e mais útil. Documente a migração de forma prática em `docs/operations/deprecation-and-breaking-changes.md`.
+
+## Postura contínua
+
+Sempre procure o próximo ganho público: tornar uma página mais clara, mais bonita, mais útil, mais confiável ou mais fácil de usar; simplificar uma abstração; transformar uma solução local boa em conhecimento compartilhado; ou experimentar uma nova tese visual. O Cobogó melhora fazendo.
