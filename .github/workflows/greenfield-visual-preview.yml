@@ -64,24 +64,44 @@ jobs:
               const response = await page.goto(`http://127.0.0.1:4321/cobogo/${route}`, {
                 waitUntil: 'networkidle',
               });
+              const diagnostics = await page.evaluate((viewportWidth) => {
+                const offenders = [...document.querySelectorAll('*')]
+                  .map((element) => {
+                    const rect = element.getBoundingClientRect();
+                    return {
+                      element: `${element.tagName.toLowerCase()}${element.id ? `#${element.id}` : ''}${element.classList.length ? `.${[...element.classList].join('.')}` : ''}`,
+                      text: (element.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80),
+                      left: Math.round(rect.left * 10) / 10,
+                      right: Math.round(rect.right * 10) / 10,
+                      width: Math.round(rect.width * 10) / 10,
+                      scrollWidth: element.scrollWidth,
+                      clientWidth: element.clientWidth,
+                    };
+                  })
+                  .filter((item) => item.left < -0.5 || item.right > viewportWidth + 0.5 || item.scrollWidth > item.clientWidth + 1)
+                  .slice(0, 30);
+                return {
+                  documentWidth: document.documentElement.scrollWidth,
+                  bodyWidth: document.body.scrollWidth,
+                  offenders,
+                };
+              }, viewport.width);
               const status = response?.status() ?? 0;
-              const dimensions = await page.evaluate(() => ({
-                documentWidth: document.documentElement.scrollWidth,
-                bodyWidth: document.body.scrollWidth,
-              }));
               const image = `${viewport.name}-home.png`;
               await page.screenshot({ path: `${root}/${image}`, fullPage: true });
               observations.push({
                 route: '/cobogo/',
                 viewport: { width: viewport.width, height: viewport.height },
                 status,
-                document_width: dimensions.documentWidth,
-                body_width: dimensions.bodyWidth,
+                document_width: diagnostics.documentWidth,
+                body_width: diagnostics.bodyWidth,
                 image,
+                overflow_diagnostics: diagnostics.offenders,
               });
               if (status !== 200) failures.push(`/ returned HTTP ${status}`);
-              if (viewport.name === 'mobile' && dimensions.documentWidth > viewport.width) {
-                failures.push(`/ is ${dimensions.documentWidth}px wide in a ${viewport.width}px viewport`);
+              if (viewport.name === 'mobile' && diagnostics.documentWidth > viewport.width) {
+                console.error('Mobile overflow diagnostics:', JSON.stringify(diagnostics.offenders, null, 2));
+                failures.push(`/ is ${diagnostics.documentWidth}px wide in a ${viewport.width}px viewport`);
               }
             }
             await page.close();
