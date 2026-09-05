@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" stroke="currentColor" stroke-width="8" fill="none">
-  <!-- Calcada Ipanema: connected hexagonal forms -->
-  <path d="M 10 50 L 30 20 L 70 20 L 90 50 L 70 80 L 30 80 Z" />
-  <path d="M 30 20 L 10 -10" />
-  <path d="M 70 20 L 90 -10" />
-  <path d="M 30 80 L 10 110" />
-  <path d="M 70 80 L 90 110" />
-</svg>

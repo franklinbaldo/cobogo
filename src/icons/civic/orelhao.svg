@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Orelhão amarelo (#D9A441), telefone preto, base reta -->
-  <path d="M20,50 A30,40 0 1,1 80,50 C80,75 60,85 50,85 C40,85 20,75 20,50 Z" fill="#D9A441" />
-  <!-- Interior cut/phone area -->
-  <path d="M40,30 C60,30 65,45 65,60 C65,75 60,80 40,80 Z" fill="black" />
-  <!-- Pole -->
-  <rect x="46" y="80" width="8" height="20" fill="currentColor" />
-  <rect x="36" y="96" width="28" height="4" fill="currentColor" />
-</svg>
