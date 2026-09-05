@@ -8,6 +8,8 @@ A home pública em `https://franklinbaldo.github.io/cobogo/` é a demonstração
 
 O site evolui junto com o sistema: novas decisões podem ser experimentadas ali, observadas em desktop e mobile e incorporadas ao conhecimento compartilhado.
 
+Para sair do zero até o primeiro pattern em uma sequência única, use o guia público **[Comece daqui](https://franklinbaldo.github.io/cobogo/comece/)**.
+
 ## Comece simples
 
 Para fundações semânticas compartilhadas:
