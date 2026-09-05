@@ -26,8 +26,7 @@ They also meet WCAG 1.4.13 requirements: they can be dismissed with the Escape k
 
 ```svelte
 <script>
-  import Tooltip from 'cobogo/components/Tooltip';
-  import Button from 'cobogo/components/Button';
+  import { Tooltip, Button } from 'cobogo';
 </script>
 
 <Tooltip content="Provides extra context" position="top">
@@ -68,7 +67,7 @@ If you need more complex formatting inside the tooltip, you can pass a Svelte Sn
 
 ```svelte
 <script>
-  import Tooltip from 'cobogo/components/Tooltip';
+  import { Tooltip } from 'cobogo';
 </script>
 
 {#snippet richContent()}
