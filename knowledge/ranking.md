@@ -16,8 +16,8 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 | franklinbaldo/ovigia-redacao | 23 | referência | 4 | 4 | 3 | 4 | 4 | 4 | 2026-09-02 | flat |
 | franklinbaldo/quem-sao-eles | 23 | referência | 4 | 4 | 4 | 4 | 3 | 4 | 2026-09-04 | flat |
 | franklinbaldo/ficha | 23 | referência | 4 | 4 | 4 | 3 | 4 | 4 | 2026-09-04 | up |
+| franklinbaldo/aleph-the-game | 23 | referência | 4 | 4 | 4 | 4 | 4 | 3 | 2026-09-05 | up |
 | franklinbaldo/franklinbaldo.github.io | 23 | referência | 4 | 4 | 4 | 4 | 4 | 3 | 2026-09-03 | baseline |
-| franklinbaldo/aleph-the-game | 22 | referência | 4 | 4 | 4 | 3 | 4 | 3 | 2026-09-03 | up |
 | franklinbaldo/sisprev | 22 | referência | 4 | 4 | 4 | 3 | 3 | 4 | 2026-09-03 | up |
 | franklinbaldo/leizilla | 22 | referência | 4 | 4 | 4 | 3 | 3 | 4 | 2026-09-04 | up |
 | franklinbaldo/intuit | 20 | boa | 4 | 3 | 3 | 3 | 3 | 4 | 2026-09-05 | flat |
@@ -51,4 +51,4 @@ O Baliza permanece em **20/24**. A correção visual está em `main`, mas a publ
 
 O Quem São Eles? permanece em **23/24**; a rota PEP já foi observada diretamente depois da publicação, mas UI continua 3 porque a prova profunda permanece concentrada nessa superfície.
 
-O Aleph permanece em 22/24. O blog permanece em 23/24.
+O Aleph sobe de **22 para 23/24** depois da #11. UX passa de 3 para 4 porque a falha generativa e o retry agora são exercitados no navegador: o erro não vira narrativa, a intenção original é preservada e a tentativa seguinte não duplica a ação do jogador. Confiança permanece 3 porque o link público do AI Studio ainda não prova qual commit está implantado. O blog permanece em 23/24.
