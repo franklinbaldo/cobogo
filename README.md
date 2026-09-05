@@ -24,7 +24,7 @@ Para relações visuais reutilizáveis:
 
 O pacote também expõe uma API Svelte curada para comportamentos que se beneficiam de componentes.
 
-`cobogo/styles` continua disponível para projetos existentes que usam a camada histórica.
+`cobogo/styles` continua disponível como camada de compatibilidade para projetos existentes que usam a identidade histórica; não é o ponto de partida recomendado para trabalho novo.
 
 ## Princípios
 
