@@ -3,7 +3,7 @@ type: ConsumerCard
 repo: franklinbaldo/aleph-the-game
 site: https://ai.studio/apps/drive/1JXiDQeCTanzoiO1rs5hJVisB5neAytxW
 status: active
-last_reviewed: 2026-09-03
+last_reviewed: 2026-09-05
 gap_score: 0
 ---
 
@@ -33,26 +33,28 @@ Problema material comprovado: nenhum.
 
 ## Capacidades da interface pública
 
-- AI Studio / entrada pública — `last_verified: 2026-09-03`; continua sendo o link público, mas não expõe identidade de publicação ligada ao commit do repositório.
-- CI de build — `last_verified: 2026-09-03`; passou novamente no commit de `main` `1c342d875fc52e71ed91c38c7f7b064a8bbb73b8`.
-- GitHub Pages/deploy próprio — `last_verified: 2026-09-03`; não existe no estado inspecionado.
-- Verificação visual/replay determinístico — `last_verified: 2026-09-03`; #9 mantém quatro imagens em Chromium, desktop/celular × movimento normal/reduzido, e o manifesto agora exige a data narrativa inteira e mede largura real do documento. A execução de `main` é `33754380206`, arquivo `9892849677`.
-- Redução de movimento — `last_verified: 2026-09-03`; os quatro estados continuam preservando narrativa e ações.
+- AI Studio / entrada pública — `last_verified: 2026-09-05`; continua sendo o link público, mas não expõe identidade de publicação ligada ao commit do repositório.
+- CI de build — `last_verified: 2026-09-05`; passou no `main` `802ffdf7f472491311dddc4effa028d676879584` depois da #11.
+- GitHub Pages/deploy próprio — `last_verified: 2026-09-05`; não existe no estado inspecionado.
+- Verificação visual/replay determinístico — `last_verified: 2026-09-05`; além dos quatro estados desktop/celular × movimento normal/reduzido, a #11 acrescenta falha de geração + retry em 390×844. A execução posterior ao merge produziu o arquivo `9966270802` no `main` `802ffdf7f472491311dddc4effa028d676879584`.
+- Redução de movimento — `last_verified: 2026-09-05`; os estados continuam preservando narrativa e ações.
+- Recuperação de geração — `last_verified: 2026-09-05`; falha externa não vira mais narrativa. O aviso fica separado da história, a ação original é preservada e `Retry last action` repete a tentativa sem duplicar a decisão do jogador.
 
 ## Avaliação atual
 
-**22/24 — faixa de referência:** D1 4, D2 4, D3 4, UX 3, UI 4, Confiança 3. UI sobe para 4 porque a #9 mantém `February 15, 1929` inteira no celular, conserva os controles e comprova `document_width == viewport_width` em 390×844. Confiança permanece 3 porque o build de `main` é verificável, mas o link público do AI Studio não declara qual commit está implantado.
+**23/24 — faixa de referência:** D1 4, D2 4, D3 4, UX 4, UI 4, Confiança 3. UX sobe para 4 porque o caminho de falha generativa agora é exercitado de ponta a ponta no navegador: a intenção original aparece uma única vez, o erro é perceptível, a recuperação é explícita e não contamina o domínio narrativo. Confiança permanece 3 porque o build de `main` é verificável, mas o link público do AI Studio não declara qual commit está implantado.
 
 ## O que este projeto faz melhor que o Cobogó
 
-O caso de ownership de teclado permanece aprendizagem útil: atalhos globais devem ceder ao controle focado que possui edição local. O Aleph também mostra que uma interface narrativa pode tratar redução de movimento e responsividade como contratos mensuráveis sem trocar sua atmosfera por uma apresentação padronizada.
+O caso de ownership de teclado permanece aprendizagem útil: atalhos globais devem ceder ao controle focado que possui edição local. O Aleph também mostra que uma interface narrativa pode tratar redução de movimento, responsividade e agora recuperação de erro como contratos mensuráveis sem trocar sua atmosfera por uma apresentação padronizada.
 
 ## Recomendações do Cobogó em uso
 
-`visual-evidence-as-quality-gate` continua `stable`, isto é, já funcionou de modo convergente em pelo menos dois projetos. `reduced-motion-respected` continua `validated`, ou seja, já funcionou em pelo menos um projeto real. `responsive-by-contract` passa a `validated`: no Aleph, o viewport estreito preserva a informação narrativa curta, os controles e a largura do documento sem impor uma aparência compartilhada.
+`visual-evidence-as-quality-gate` continua `stable`, isto é, já funcionou de modo convergente em pelo menos dois projetos. `reduced-motion-respected` e `responsive-by-contract` permanecem validadas. `feedback-near-action` passa a ter sua segunda aplicação independente: no Aleph, uma falha de geração fica no contexto da ação e oferece retry sem fabricar história. Como o Intuit e o Aleph preservam identidades muito diferentes, a recomendação pode ser considerada `stable`, isto é, funcionou de forma convergente em pelo menos dois projetos reais distintos.
 
 ## Histórico
 
+- 2026-09-05 — #11 incorporada em `802ffdf7f472491311dddc4effa028d676879584`; CI e verificação visual posteriores ao merge verdes; arquivo `9966270802`. O print anterior `9966232370` mostra `ERROR CONNECTING TO THE ALEPH` dentro da história com `Attempt to reconnect`; o posterior mostra `Timeline interrupted` separado da narrativa e `Retry last action`, preservando a ação do jogador uma única vez. UX sobe de 3 para 4; avaliação total passa de 22 para 23.
 - 2026-09-03 — #9 incorporada em `1c342d875fc52e71ed91c38c7f7b064a8bbb73b8`; CI e verificação visual de `main` verdes; arquivo `9892849677`; data móvel inteira, ausência de rolagem horizontal global comprovada e avaliação sobe para 22/24.
 - 2026-09-03 — a primeira correção da #9 não foi aceita: ao remover apenas a reticência, a verificação mediu 406 px de documento numa janela de 390 px. O diagnóstico localizou o excesso no botão de narração posicionado fora da coluna; ele foi trazido para dentro apenas no celular, preservando a composição desktop.
 - 2026-09-02 — #7 incorporada em `de80a6023e05751982a0d8dc6949b59145b91ca8`; build e verificação visual de `main` verdes; arquivo `9873996084`; primeira avaliação completa 21/24; #8 aberta para truncamento da data no celular.
