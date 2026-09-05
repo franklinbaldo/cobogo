@@ -20,7 +20,7 @@ As notas entram aqui somente após `SurfaceQualityAssessment` com evidência. Pr
 | franklinbaldo/franklinbaldo.github.io | 23 | referência | 4 | 4 | 4 | 4 | 4 | 3 | 2026-09-03 | baseline |
 | franklinbaldo/sisprev | 22 | referência | 4 | 4 | 4 | 3 | 3 | 4 | 2026-09-03 | up |
 | franklinbaldo/leizilla | 22 | referência | 4 | 4 | 4 | 3 | 3 | 4 | 2026-09-04 | up |
-| franklinbaldo/intuit | 20 | boa | 4 | 3 | 3 | 3 | 3 | 4 | 2026-09-05 | flat |
+| franklinbaldo/intuit | 21 | boa | 4 | 4 | 3 | 3 | 3 | 4 | 2026-09-05 | up |
 | franklinbaldo/baliza | 20 | boa | 4 | 4 | 4 | 3 | 2 | 3 | 2026-09-04 | down |
 
 ## Ordenação
@@ -45,7 +45,7 @@ O Sisprev permanece em **22/24** depois da #160 aplicar o mesmo princípio de ac
 
 O Leizilla permanece em **22/24** depois da #165. Confiança é 4; UX e UI permanecem 3 porque a jornada completa e a variedade de páginas ainda não têm observação equivalente.
 
-O Intuit permanece em **20/24** depois da #33. A nota não sobe apenas porque um problema foi corrigido: D2, D3, UX e UI continuam em 3. O fato novo é específico e comprovado — `?gist=` agora diferencia resposta HTTP sem sucesso, Gist sem `.html`, falha ao buscar o arquivo HTML e falha de requisição; os cinco cenários são exercitados sem rede real. Test, observação visual e Pages passaram novamente no commit `988296675b1384a7c86a7ec4887e0835c2310bb2`, e o Pages produziu o pacote posterior à publicação `9965193464`.
+O Intuit passa para **21/24** depois da #35. Explicabilidade sobe de 3 para 4 porque a própria home agora permite formar o modelo mental essencial e proporcional ao produto: preview local no navegador, ausência de backend próprio de renderização e compartilhamento do estado por URL ou Gist. A mudança foi protegida por teste, entrou como `98a53004f32ab7f89163fa8abbacd2863dcefdb1`, e Test, observação visual e Pages passaram novamente nesse commit. O pacote posterior à publicação `9966339875` registrou a mesma rota em 1440×900 e 390×844. Autonomia, UX e UI continuam em 3; nenhuma delas sobe apenas porque D2 foi corrigida.
 
 O Baliza permanece em **20/24**. A correção visual está em `main`, mas a publicação continua condicionada ao problema operacional registrado no repositório dono; a execução mais recente repetiu a mesma falha e não criou condição nova para avançar.
 
