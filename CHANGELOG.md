@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Restored Vitest as a normal CI check and reconciled historical tests with current semantic/ARIA/data-attribute contracts.
 
 ### Removed
+- Removed `@picocss/pico` as a transitive production dependency. Consumers that use Pico own that dependency explicitly; the legacy CSS compatibility layer remains available.
 - Removed obsolete site routes, documentation scaffolding, blog/layout infrastructure and CSS that only served the old Vitrine.
 - Removed the legacy Playwright Vitrine suite, snapshots and Gherkin specs tied to routes that no longer exist.
 - Removed historical operational archives (`.jules/` and `_brasil/`) whose current role is superseded by `knowledge/` and Git history.
