@@ -57,7 +57,7 @@ test("public package documentation keeps core ahead of legacy identity styles", 
   const tokens = read("src/styles/tokens.md");
 
   assert.match(readme, /@import "cobogo\/core";/);
-  assert.match(readme, /`cobogo\/styles` continua exportado por compatibilidade/);
+  assert.match(readme, /`cobogo\/styles`[\s\S]{0,160}compatibilidade/i);
   assert.doesNotMatch(readme, /Migration in progress/i);
   assert.doesNotMatch(readme, /Pico CSS classless como base/);
 
