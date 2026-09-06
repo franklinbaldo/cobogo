@@ -6,7 +6,11 @@
   "license": "MIT",
   "files": ["preset", "skills"],
   "exports": {
-    "./preset": "./preset/index.mjs"
+    "./preset": {
+      "types": "./preset/index.d.ts",
+      "import": "./preset/index.mjs",
+      "default": "./preset/index.mjs"
+    }
   },
   "peerDependencies": {
     "@pandacss/dev": "^1.12.0"
