@@ -1,0 +1,95 @@
+---
+import '../styles/index.css'
+import { css } from '../../styled-system/css'
+import { badge, navLink } from '../../styled-system/recipes'
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Laboratório visual do Cobogó: referências brasileiras, estudos e experimentos que traduzem relações visuais para a web." />
+    <title>Laboratório — Cobogó</title>
+  </head>
+  <body>
+    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
+      <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
+      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
+        <a class={navLink()} href="/cobogo/">Início</a>
+        <a class={navLink()} href="/cobogo/comece/">Comece</a>
+        <a class={navLink({ active: true })} href="/cobogo/laboratorio/">Laboratório</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class={css({ background: 'text', color: 'canvas', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10', alignItems: 'end' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'accent', m: '0' })}>Laboratório visual</p>
+            <p class={css({ mt: '5', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '28rem' })}>Aqui referência não vira regra por admiração. Ela vira estudo, hipótese, experimento e evidência.</p>
+          </div>
+          <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '10ch' })}>Olhar primeiro. Traduzir depois.</h1>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
+        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(5, 1fr)' }, gap: '3' })} aria-label="Fluxo do laboratório">
+          {['Referência', 'Estudo', 'Experimento', 'Specimen', 'Princípio'].map((item, index) => (
+            <div class={css({ borderTop: '4px solid', borderColor: index === 2 ? 'accent' : 'text', pt: '4', minH: '7rem' })}>
+              <span class={css({ fontSize: 'xs', color: 'textMuted' })}>0{index + 1}</span>
+              <p class={css({ fontWeight: 'black', fontSize: 'lg', mt: '2', mb: '0' })}>{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="cheio-vazio-grid-001" class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
+          <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.72fr 1.28fr' }, gap: { base: '10', lg: '14' }, alignItems: 'start' })}>
+            <div>
+              <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Experimento 001</p>
+              <h2 class={css({ textStyle: 'title', m: '0', maxW: '12ch' })}>Cheio e vazio sem desenhar um cobogó.</h2>
+              <p class={css({ lineHeight: 'body', color: 'textMuted', mt: '5', maxW: '34rem' })}>A hipótese: vazios deliberados em um grid editorial podem criar ritmo e identidade sem reduzir legibilidade nem depender de ornamentação figurativa.</p>
+              <div class={css({ display: 'flex', gap: '2', flexWrap: 'wrap', mt: '6' })}>
+                <span class={badge({ tone: 'accent' })}>running</span>
+                <span class={badge()}>Astro + Panda</span>
+              </div>
+            </div>
+
+            <div aria-label="Specimen de cheio e vazio" class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(6, 1fr)' }, gridAutoRows: { md: 'minmax(5rem, auto)' }, gap: '3' })}>
+              <article class={css({ background: 'text', color: 'canvas', p: { base: '6', md: '7' }, gridColumn: { md: '1 / span 4' }, gridRow: { md: '1 / span 2' }, minH: '14rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' })}>
+                <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0' })}>Cheio</p>
+                <p class={css({ fontSize: { base: '2xl', md: '4xl' }, fontWeight: 'black', lineHeight: 'tight', letterSpacing: '-0.04em', m: '0', maxW: '12ch' })}>Presença suficiente para sustentar a leitura.</p>
+              </article>
+
+              <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '5 / span 2', gridRow: '1' })}></div>
+
+              <aside class={css({ background: 'accent', color: 'text', p: '6', gridColumn: { md: '5 / span 2' }, gridRow: { md: '2 / span 2' }, minH: '11rem' })}>
+                <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>Vazio</p>
+                <p class={css({ m: '0', lineHeight: 'body', fontWeight: 'bold' })}>Não é ausência de projeto. É intervalo que organiza o próximo peso.</p>
+              </aside>
+
+              <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '1 / span 2', gridRow: '3' })}></div>
+
+              <article class={css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: '6', gridColumn: { md: '3 / span 2' }, gridRow: { md: '3' } })}>
+                <p class={css({ m: '0', lineHeight: 'body' })}><strong>Regra do teste:</strong> no mobile, os vazios somem e a ordem volta a ser linear. A relação precisa sobreviver sem buracos decorativos.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.8fr 1.2fr' }, gap: '10' })}>
+        <div>
+          <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Como o laboratório trabalha</p>
+          <h2 class={css({ textStyle: 'title', m: '0', maxW: '14ch' })}>Cada experimento ganha uma skill própria.</h2>
+        </div>
+        <div class={css({ lineHeight: 'body', fontSize: 'lg' })}>
+          <p class={css({ mt: '0' })}>O OKF registra referência, estudo, hipótese, restrições, sinais de sucesso e falha. O WikiSkill escolhe e conduz a sessão. A skill do experimento ensina como construir variantes, em quais larguras observar, o que verificar e como devolver a evidência.</p>
+          <p>Experimentos podem ser rejeitados. Só o que sobrevive à prática deve avançar para princípio, pattern, primitive, token ou recipe.</p>
+          <p class={css({ mb: '0', fontWeight: 'bold' })}>Referência → observação → tradução web → evidência → conhecimento.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
