@@ -27,10 +27,10 @@ failure_signals:
   - "A técnica força ordem visual diferente da ordem semântica."
   - "O efeito depende de explicar a referência para parecer interessante."
 skill_path: skills/experiments/cheio-vazio-grid-001/SKILL.md
-status: running
-outcome: "Três variantes foram implementadas com conteúdo idêntico. A variante B (contrapeso diagonal) é a candidata: A preserva leitura mas produz pouco ritmo; C cria separação excessiva entre blocos relacionados. O build da primeira versão comparativa passou; promoção aguarda os checks finais e observação da superfície publicada."
+status: promising
+outcome: "Três variantes com conteúdo idêntico foram comparadas e publicadas pela PR #599. A variante B (contrapeso diagonal) preserva melhor o ritmo e a relação entre massas; A é legível, mas pouco expressiva; C foi rejeitada por separar excessivamente blocos relacionados. No merge 7adf8bf803e0633ca9df1734bad369ba797ecf8b, os contratos OKF e builds passaram, o Deploy Pages #474 publicou a comparação e o gate pós-publicação verificou /laboratorio/ em 1600×1000 e 390×844 sem falhas estruturais ou overflow móvel. O resultado é promissor, mas ainda não justifica princípio ou primitive sem evidência em outro contexto."
 ---
 
 # Experimento: Grid vazado 001
 
-A comparação deixou de ser implícita: o laboratório agora expõe três distribuições estruturais com o mesmo conteúdo e registra inclusive a variante rejeitada. O achado provisório é relacional, não ornamental: o vazio parece mais útil como contrapeso entre massas do que como corredor central ou simples margem lateral.
+A comparação deixou de ser implícita: o laboratório expõe três distribuições estruturais com o mesmo conteúdo e registra inclusive a variante rejeitada. O achado desta rodada é relacional, não ornamental: o vazio funcionou melhor como contrapeso entre massas do que como corredor central ou simples margem lateral. A hipótese avançou para `promising`; uma sessão de síntese futura deve procurar repetição desse efeito antes de transformá-lo em recomendação durável.
