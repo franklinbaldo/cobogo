@@ -1,8 +1,10 @@
 # Cobogó
 
-Cobogó é o design system compartilhado dos projetos de Franklin Baldo.
+Cobogó é uma **gramática visual brasileira** para compartilhar relações de design entre produtos sem apagar a identidade de cada um.
 
-O objetivo é simples: **um projeto que usa Cobogó já começa com a aparência da família** — tipografia, cores, espaço, estados, superfícies e recipes — sem exigir React e sem sacrificar SSG.
+O objetivo é simples: um projeto que usa Cobogó pode reaproveitar decisões que merecem sobreviver — hierarquia, estado, ritmo, leitura, foco e ação — enquanto tipografia, cor, proporção e acabamento continuam locais quando carregam a voz do produto.
+
+Cobogó **não é um tema** e não exige que projetos diferentes pareçam da mesma família.
 
 ## Stack
 
@@ -10,12 +12,16 @@ O objetivo é simples: **um projeto que usa Cobogó já começa com a aparência
 - **Astro** é o host de referência para sites estáticos;
 - **Cobogó** é um preset Panda opinionado com tokens e recipes.
 
-## Usar em um projeto Astro
+## Primeiro uso em um projeto Astro
+
+Instale o Cobogó e o Panda:
 
 ```bash
 npm install github:franklinbaldo/cobogo#main
 npm install -D @pandacss/dev
 ```
+
+Configure o preset:
 
 ```ts
 // panda.config.ts
@@ -36,19 +42,20 @@ No CSS de entrada:
 @layer reset, base, tokens, recipes, utilities;
 ```
 
-E então use as APIs geradas pelo Panda:
+Então comece por uma relação real, não por uma aparência. Por exemplo, uma ação principal com um caminho secundário:
 
 ```astro
 ---
-import { css } from '../styled-system/css'
-import { button, card } from '../styled-system/recipes'
+import { button } from '../styled-system/recipes'
 ---
 
-<article class={card()}>
-  <h1 class={css({ textStyle: 'title' })}>Meu projeto</h1>
-  <a class={button({ visual: 'solid' })}>Continuar</a>
-</article>
+<div>
+  <button class={button({ visual: 'solid' })}>Continuar</button>
+  <a href="/detalhes">Ver detalhes</a>
+</div>
 ```
+
+A relação compartilhável é **principal → secundária**. O produto continua livre para decidir a voz visual que faz sentido para seu contexto.
 
 No SSG do Astro, o Panda extrai os estilos no build. A aparência não exige uma aplicação React no navegador.
 
@@ -56,7 +63,7 @@ No SSG do Astro, o Panda extrai os estilos no build. A aparência não exige uma
 
 Tokens de cor, tipografia, espaço, tamanhos, breakpoints, radii e sombras, além das recipes `button`, `card`, `badge`, `input`, `alert`, `article`, `table` e `navLink`.
 
-O repositório também é a demonstração: a página em `src/pages/index.astro` usa o próprio preset Cobogó.
+O repositório também é a demonstração: `src/pages/index.astro` usa o próprio preset Cobogó para explicar e mostrar a gramática.
 
 ## Desenvolvimento
 
@@ -67,4 +74,4 @@ npm run build
 
 ## Princípio de evolução
 
-Cobogó cresce quando um projeto real precisa de uma decisão visual compartilhável. A preferência é manter o preset pequeno e previsível.
+Cobogó cresce quando um projeto real encontra uma decisão que vale compartilhar ou quando uma hipótese de design merece ser testada. A preferência é manter o sistema pequeno, previsível e útil sem transformar personalidade local em padrão global.
