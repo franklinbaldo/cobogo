@@ -105,6 +105,14 @@ Esse princípio foi validado no **CausaGanha** em `/stats`: a ação “Copiar l
 
 A relação compartilhável é **estado canônico visível → URL reproduzível → compartilhamento explícito**. O canal de compartilhamento, a linguagem da ação e sua presença visual continuam locais ao produto.
 
+### Primeira ação copiável — `validated`
+
+Quando uma superfície apresenta ferramentas, integrações ou capacidades a quem ainda não conhece o produto, descrição não basta: cada capacidade importante deve poder oferecer uma primeira ação concreta que a pessoa consiga experimentar sem precisar inventar um caso de uso. O exemplo deve estar ancorado no contrato real da ferramenta, mostrar exatamente o texto que será copiado e falhar de forma honesta quando a cópia automática não estiver disponível.
+
+Esse princípio foi validado no **CausaGanha** em `/agentes`: os quatro jobs MCP públicos passaram a mostrar uma pergunta de exemplo com ação “Copiar pergunta”. Os exemplos são verificados contra o catálogo MCP real, reutilizam fixtures determinísticas já conhecidas pelo projeto quando há processo envolvido e evitam mencionar fontes ainda não publicadas. A mesma pergunta que a pessoa vê é a que vai para a área de transferência, com feedback acessível de sucesso ou falha.
+
+A relação compartilhável é **capacidade explicada → primeira ação concreta → experimentação autônoma**. O texto do exemplo, os dados usados e a forma visual continuam locais ao produto.
+
 ### Receita transparente — `validated`
 
 Uma ferramenta avançada pode oferecer caminhos guiados sem esconder o mecanismo que executa o trabalho. A receita deve preencher um artefato compreensível e editável — consulta, comando, filtro ou configuração — e deixar a pessoa inspecioná-lo antes de executar. Também deve existir um caminho explícito para trabalhar sem a receita.
