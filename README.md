@@ -65,6 +65,14 @@ Tokens de cor, tipografia, espaço, tamanhos, breakpoints, radii e sombras, alé
 
 O repositório também é a demonstração: `src/pages/index.astro` usa o próprio preset Cobogó para explicar e mostrar a gramática.
 
+## Aprendizados validados
+
+### Localidade de payload — `validated`
+
+Uma interface interativa deve carregar no navegador apenas o contexto necessário para o estado que a pessoa está vendo agora. Contratos grandes podem continuar canônicos no build e no arquivo; a superfície pública deve particioná-los pela unidade real de interação quando isso reduz custo sem esconder informação.
+
+Esse princípio foi validado no **CausaGanha** em `/stats`: o explorador por tribunal deixou de serializar para todo visitante o calendário completo de todos os tribunais (cerca de 13,9 MB no caso observado) e passou a buscar somente a partição do tribunal selecionado. A semântica e a cobertura continuaram iguais; o custo inicial da experiência caiu sem transformar uma decisão local de implementação em aparência compartilhada.
+
 ## Desenvolvimento
 
 ```bash
