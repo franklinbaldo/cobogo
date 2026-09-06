@@ -1,0 +1,79 @@
+---
+import '../styles/index.css'
+import { css } from '../../styled-system/css'
+import { badge, navLink } from '../../styled-system/recipes'
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Veja como o mesmo significado de estado assume vozes visuais diferentes com Cobogó." />
+    <title>Estados — Cobogó</title>
+  </head>
+  <body>
+    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
+      <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
+      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
+        <a class={navLink()} href="/cobogo/">Início</a>
+        <a class={navLink()} href="/cobogo/comece/">Comece</a>
+        <a class={navLink()} href="/cobogo/problemas/">Problemas</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class={css({ background: 'info', color: 'canvas', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '0.65fr 1.35fr' }, gap: '10', alignItems: 'end' })}>
+          <p class={css({ textStyle: 'eyebrow', color: 'attention', m: '0' })}>Relação · estado</p>
+          <div>
+            <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '10ch' })}>O significado fica. O sinal muda.</h1>
+            <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'surfaceMuted', maxW: '48rem', mt: '7' })}>Disponível, atenção e indisponível precisam continuar compreensíveis. O produto decide se isso parece painel, caderno, etiqueta ou outra coisa.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
+        <div class={css({ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '6', flexWrap: 'wrap', mb: '10' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Mesmos estados</p>
+            <h2 class={css({ textStyle: 'title', m: '0', maxW: '18ch' })}>Três significados. Duas vozes.</h2>
+          </div>
+          <span class={badge({ tone: 'accent' })}>significado → sinal → próxima ação</span>
+        </div>
+
+        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '1fr 1fr' }, gap: '4' })}>
+          <article class={css({ background: 'surfaceMuted', border: '1px solid', borderColor: 'text', p: { base: '6', md: '8' } })}>
+            <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0' })}>Operacional</p>
+            <h3 class={css({ fontSize: '2xl', lineHeight: 'tight', m: '0 0 6' })}>Situação do serviço</h3>
+            <div class={css({ display: 'grid', gap: '3' })}>
+              <div data-cobogo-state="available" class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', p: '4', border: '1px solid', borderColor: 'text', background: 'canvas' })}><strong>Disponível</strong><span>Operação normal</span></div>
+              <div data-cobogo-state="attention" class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', p: '4', border: '1px solid', borderColor: 'text', background: 'attention' })}><strong>Requer atenção</strong><span>Verificar agora</span></div>
+              <div data-cobogo-state="unavailable" class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', p: '4', border: '1px solid', borderColor: 'text', background: 'text', color: 'canvas' })}><strong>Indisponível</strong><span>Tentar depois</span></div>
+            </div>
+          </article>
+
+          <article class={css({ background: 'attention', border: '1px solid', borderColor: 'text', p: { base: '6', md: '8' } })}>
+            <p class={css({ fontFamily: 'serif', fontStyle: 'italic', mt: '0', color: 'info' })}>Caderno cultural</p>
+            <h3 class={css({ fontFamily: 'serif', fontStyle: 'italic', fontWeight: 'medium', fontSize: { base: '3xl', md: '4xl' }, lineHeight: 'tight', m: '0 0 6' })}>Agenda de hoje</h3>
+            <div class={css({ display: 'grid', gap: '5' })}>
+              <div data-cobogo-state="available" class={css({ borderTop: '3px solid', borderColor: 'text', pt: '3' })}><strong class={css({ display: 'block', fontFamily: 'serif', fontSize: 'xl' })}>Disponível</strong><span>Entrada liberada</span></div>
+              <div data-cobogo-state="attention" class={css({ borderTop: '3px solid', borderColor: 'info', pt: '3' })}><strong class={css({ display: 'block', fontFamily: 'serif', fontSize: 'xl', color: 'info' })}>Requer atenção</strong><span>Últimos lugares</span></div>
+              <div data-cobogo-state="unavailable" class={css({ borderTop: '3px solid', borderColor: 'text', pt: '3', opacity: '0.72' })}><strong class={css({ display: 'block', fontFamily: 'serif', fontSize: 'xl' })}>Indisponível</strong><span>Encerrado</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class={css({ background: 'text', color: 'canvas' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.8fr 1.2fr' }, gap: '10' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'accent', mb: '3' })}>Fronteira</p>
+            <h2 class={css({ textStyle: 'title', color: 'canvas', m: '0', maxW: '14ch' })}>Compartilhe o significado. Personalize a presença.</h2>
+            <p class={css({ color: 'surfaceMuted', lineHeight: 'body', maxW: '34rem', mt: '5' })}>O contrato útil é semântico: estado, mensagem e próxima ação. Cor, forma, densidade e tipografia continuam locais.</p>
+          </div>
+          <pre class={css({ m: '0', p: { base: '5', md: '6' }, maxW: '100%', minW: '0', overflowX: 'auto', background: 'canvas', color: 'text', fontSize: 'sm', lineHeight: 'body' })}><code>{`<div data-cobogo-state="available">Disponível</div>\n<div data-cobogo-state="attention">Requer atenção</div>\n<div data-cobogo-state="unavailable">Indisponível</div>`}</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
