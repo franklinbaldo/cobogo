@@ -48,6 +48,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install
+      - run: npm install --no-save playwright
       - run: npx playwright install --with-deps chromium
       - name: Wait for the published site
         run: |
@@ -62,7 +63,7 @@ jobs:
               sleep 2
             done
           done
-      - name: Capture published public routes
+      - name: Capture and verify published public routes
         env:
           EVALUATED_SHA: ${{ github.sha }}
         run: |
@@ -91,9 +92,16 @@ jobs:
               const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
               const response = await page.goto(`${base}${route.path}`, { waitUntil: 'networkidle' });
               const status = response?.status() ?? 0;
-              const dimensions = await page.evaluate(() => ({
+              const facts = await page.evaluate(() => ({
                 documentWidth: document.documentElement.scrollWidth,
                 bodyWidth: document.body.scrollWidth,
+                lang: document.documentElement.lang,
+                h1Count: document.querySelectorAll('h1').length,
+                mainCount: document.querySelectorAll('main').length,
+                navCount: document.querySelectorAll('nav').length,
+                unnamedActions: [...document.querySelectorAll('a, button')]
+                  .filter((el) => !((el.getAttribute('aria-label') || el.textContent || '').trim()))
+                  .length,
               }));
               const image = `${viewport.name}-${route.name}.png`;
               await page.screenshot({ path: `${root}/${image}`, fullPage: true });
@@ -101,14 +109,22 @@ jobs:
                 route: `/cobogo${route.path}`,
                 viewport: { width: viewport.width, height: viewport.height },
                 status,
-                document_width: dimensions.documentWidth,
-                body_width: dimensions.bodyWidth,
+                document_width: facts.documentWidth,
+                body_width: facts.bodyWidth,
+                lang: facts.lang,
+                h1_count: facts.h1Count,
+                main_count: facts.mainCount,
+                nav_count: facts.navCount,
+                unnamed_actions: facts.unnamedActions,
                 image,
               });
               if (status !== 200) failures.push(`${route.path} returned HTTP ${status}`);
-              if (viewport.name === 'mobile' && dimensions.documentWidth > viewport.width) {
-                failures.push(`${route.path} is ${dimensions.documentWidth}px wide in a ${viewport.width}px viewport`);
-              }
+              if (viewport.name === 'mobile' && facts.documentWidth > viewport.width) failures.push(`${route.path} is ${facts.documentWidth}px wide in a ${viewport.width}px viewport`);
+              if (facts.lang !== 'pt-BR') failures.push(`${route.path} must declare lang=pt-BR`);
+              if (facts.h1Count !== 1) failures.push(`${route.path} has ${facts.h1Count} h1 elements`);
+              if (facts.mainCount !== 1) failures.push(`${route.path} has ${facts.mainCount} main elements`);
+              if (facts.navCount < 1) failures.push(`${route.path} has no navigation landmark`);
+              if (facts.unnamedActions > 0) failures.push(`${route.path} has ${facts.unnamedActions} unnamed links/buttons`);
               await page.close();
             }
           }
@@ -128,30 +144,8 @@ jobs:
             process.exit(1);
           }
           NODE
-      - name: Verify semantic accessibility on the published home
-        env:
-          EVALUATED_SHA: ${{ github.sha }}
-          EVIDENCE_PHASE: published
-          ACCESSIBILITY_EVIDENCE_DIR: artifacts/published-accessibility
-          ACCESSIBILITY_VIEWPORTS: 1280x900,390x844
-        run: |
-          node scripts/check-semantic-accessibility.mjs \
-            https://franklinbaldo.github.io/cobogo \
-            /
-          node --input-type=module <<'NODE'
-          import { readFileSync, writeFileSync } from 'node:fs';
-          const path = 'artifacts/published-accessibility/accessibility-evidence.json';
-          const report = JSON.parse(readFileSync(path, 'utf8'));
-          report.observed_at = new Date().toISOString();
-          writeFileSync(path, `${JSON.stringify(report, null, 2)}\n`);
-          NODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cobogo-published-preview-${{ github.sha }}
           path: artifacts/published
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cobogo-published-accessibility-${{ github.sha }}
-          path: artifacts/published-accessibility
