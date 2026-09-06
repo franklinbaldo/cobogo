@@ -47,8 +47,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci --legacy-peer-deps
+      - run: npm install
       - run: npx playwright install --with-deps chromium
       - name: Wait for the published site
         run: |
