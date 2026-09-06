@@ -1,0 +1,84 @@
+---
+import '../styles/index.css'
+import { css } from '../../styled-system/css'
+import { button, badge, navLink } from '../../styled-system/recipes'
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Comece a usar Cobogó em um projeto Astro com Panda CSS." />
+    <title>Comece — Cobogó</title>
+  </head>
+  <body>
+    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
+      <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
+      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
+        <a class={navLink()} href="/cobogo/">Início</a>
+        <a class={navLink({ active: true })} href="/cobogo/comece/">Comece</a>
+        <a class={navLink()} href="/cobogo/problemas/">Problemas</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class={css({ background: 'accent', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' } })}>
+          <p class={css({ textStyle: 'eyebrow', mb: '4' })}>Primeiro uso</p>
+          <h1 class={css({ textStyle: 'display', m: '0', maxW: '10ch' })}>Comece pela relação, não pelo tema.</h1>
+          <p class={css({ fontSize: 'lg', lineHeight: 'body', maxW: '44rem', mt: '7' })}>Em um projeto Astro, conecte o preset Panda e use só a decisão compartilhável de que você precisa. A identidade visual continua local.</p>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.65fr 1.35fr' }, gap: '10' })}>
+        <aside>
+          <span class={badge({ tone: 'info' })}>Astro + Panda</span>
+          <h2 class={css({ textStyle: 'title', mt: '5', mb: '4', maxW: '10ch' })}>Três passos e uma regra.</h2>
+          <p class={css({ color: 'textMuted', lineHeight: 'body' })}>A regra: compartilhe o que precisa sobreviver quando a aparência mudar.</p>
+        </aside>
+
+        <div class={css({ display: 'grid', gap: '5', minW: '0' })}>
+          <article class={css({ border: '1px solid', borderColor: 'text', p: { base: '5', md: '7' }, minW: '0' })}>
+            <h2 class={css({ m: '0', mb: '4', fontSize: 'xl' })}>1. Instale</h2>
+            <pre class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'text', color: 'canvas', fontSize: 'sm', lineHeight: 'body' })}><code>npm install github:franklinbaldo/cobogo#main
+npm install -D @pandacss/dev</code></pre>
+          </article>
+
+          <article class={css({ border: '1px solid', borderColor: 'text', p: { base: '5', md: '7' }, minW: '0' })}>
+            <h2 class={css({ m: '0', mb: '4', fontSize: 'xl' })}>2. Conecte o preset</h2>
+            <pre class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'text', color: 'canvas', fontSize: 'sm', lineHeight: 'body' })}><code>{`import { defineConfig } from '@pandacss/dev'
+import cobogo from 'cobogo/preset'
+
+export default defineConfig({
+  preflight: true,
+  include: ['./src/**/*.{astro,js,jsx,ts,tsx}'],
+  presets: [cobogo],
+  outdir: 'styled-system',
+})`}</code></pre>
+          </article>
+
+          <article class={css({ border: '1px solid', borderColor: 'text', p: { base: '5', md: '7' }, minW: '0' })}>
+            <h2 class={css({ m: '0', mb: '4', fontSize: 'xl' })}>3. Expresse uma relação</h2>
+            <p class={css({ color: 'textMuted', lineHeight: 'body', mt: '0' })}>Por exemplo, prioridade de ação: principal → secundária.</p>
+            <pre class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'text', color: 'canvas', fontSize: 'sm', lineHeight: 'body' })}><code>{`---
+import { button } from '../styled-system/recipes'
+---
+
+<button class={button({ visual: 'solid' })}>Continuar</button>
+<a href="/detalhes">Ver detalhes</a>`}</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: '12', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6', flexWrap: 'wrap' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '2' })}>Próximo passo</p>
+            <h2 class={css({ m: '0', fontSize: '2xl' })}>Escolha pelo problema que você quer resolver.</h2>
+          </div>
+          <a class={button({ visual: 'dark' })} href="/cobogo/problemas/">Explorar problemas →</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
