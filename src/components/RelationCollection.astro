@@ -1,0 +1,61 @@
+---
+import { css } from '../../styled-system/css'
+
+const { current } = Astro.props
+
+const relations = [
+  { slug: 'identidade', label: 'Identidade', relation: 'marca → nome → contexto' },
+  { slug: 'estados', label: 'Estado', relation: 'significado → sinal → próxima ação' },
+  { slug: 'acoes', label: 'Ação', relation: 'principal → secundária' },
+  { slug: 'leitura', label: 'Leitura', relation: 'título → contexto → conteúdo' },
+]
+---
+
+<section aria-labelledby="colecao-relacoes" class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderColor: 'text' })}>
+  <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '12', md: '16' } })}>
+    <div class={css({ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '6', flexWrap: 'wrap', mb: '8' })}>
+      <div>
+        <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Coleção · relações</p>
+        <h2 id="colecao-relacoes" class={css({ textStyle: 'title', m: '0', maxW: '16ch' })}>Quatro relações. Muitas vozes.</h2>
+      </div>
+      <a href="/cobogo/problemas/" class={css({ color: 'text', fontWeight: 'bold', textUnderlineOffset: '4px' })}>Ver o mapa completo</a>
+    </div>
+
+    <nav aria-label="Laboratórios de relações">
+      <ul class={css({ listStyle: 'none', m: '0', p: '0', display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 1fr', xl: 'repeat(4, 1fr)' }, gap: '3' })}>
+        {relations.map((item, index) => {
+          const active = item.slug === current
+          return (
+            <li>
+              <a
+                href={`/cobogo/${item.slug}/`}
+                aria-current={active ? 'page' : undefined}
+                class={css({
+                  minH: '9rem',
+                  p: '5',
+                  border: '1px solid',
+                  borderColor: 'text',
+                  background: active ? 'text' : 'canvas',
+                  color: active ? 'canvas' : 'text',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  gap: '6',
+                  _hover: { transform: 'translateY(-2px)' },
+                  _focusVisible: { outline: '3px solid', outlineColor: 'info', outlineOffset: '3px' },
+                })}
+              >
+                <span class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline' })}>
+                  <strong class={css({ fontSize: 'xl' })}>{item.label}</strong>
+                  <span aria-hidden="true" class={css({ fontVariantNumeric: 'tabular-nums', opacity: '0.72' })}>{String(index + 1).padStart(2, '0')}</span>
+                </span>
+                <span class={css({ fontSize: 'sm', lineHeight: 'body', opacity: active ? '0.82' : '0.72' })}>{item.relation}</span>
+              </a>
+            </li>
+          )
+        })}
+      </ul>
+    </nav>
+  </div>
+</section>
