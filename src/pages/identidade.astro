@@ -2,6 +2,7 @@
 import '../styles/index.css'
 import { css } from '../../styled-system/css'
 import { badge, navLink } from '../../styled-system/recipes'
+import RelationCollection from '../components/RelationCollection.astro'
 ---
 
 <html lang="pt-BR">
@@ -80,6 +81,8 @@ import { badge, navLink } from '../../styled-system/recipes'
           <pre class={css({ m: '0', p: { base: '5', md: '6' }, maxW: '100%', minW: '0', overflowX: 'auto', background: 'canvas', color: 'text', fontSize: 'sm', lineHeight: 'body' })}><code>{`<header data-cobogo-identity>\n  <span data-cobogo-mark>…</span>\n  <strong data-cobogo-name>Nome</strong>\n  <span data-cobogo-context>Contexto</span>\n</header>`}</code></pre>
         </div>
       </section>
+
+      <RelationCollection current="identidade" />
     </main>
   </body>
 </html>
