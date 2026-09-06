@@ -89,6 +89,14 @@ Esse princípio foi validado no **CausaGanha** em `/stats`: o manifesto completo
 
 A relação compartilhável é **coleção canônica → localização progressiva → contexto preservado**. O formato da coleção, os termos pesquisáveis e a presença visual continuam locais ao produto.
 
+### Compartilhamento canônico — `validated`
+
+Quando uma superfície já representa a consulta na URL, compartilhar deve expor essa mesma representação em vez de criar um payload, token ou estado paralelo. A ação de compartilhar deve sincronizar primeiro o estado canônico, oferecer feedback claro de sucesso ou falha e manter o endereço legível e reproduzível.
+
+Esse princípio foi validado no **CausaGanha** em `/stats`: a ação “Copiar link desta consulta” copia a URL atual, que contém tribunal e período selecionados, e anuncia o resultado com `aria-live`. Se a cópia automática não estiver disponível, a própria interface orienta a copiar o endereço do navegador; os campos da consulta continuam sendo a fonte visível de verdade.
+
+A relação compartilhável é **estado canônico visível → URL reproduzível → compartilhamento explícito**. O canal de compartilhamento, a linguagem da ação e sua presença visual continuam locais ao produto.
+
 ### Receita transparente — `validated`
 
 Uma ferramenta avançada pode oferecer caminhos guiados sem esconder o mecanismo que executa o trabalho. A receita deve preencher um artefato compreensível e editável — consulta, comando, filtro ou configuração — e deixar a pessoa inspecioná-lo antes de executar. Também deve existir um caminho explícito para trabalhar sem a receita.
