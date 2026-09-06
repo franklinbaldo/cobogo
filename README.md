@@ -89,6 +89,14 @@ Esse princípio foi validado no **CausaGanha** em `/stats`: o manifesto completo
 
 A relação compartilhável é **coleção canônica → localização progressiva → contexto preservado**. O formato da coleção, os termos pesquisáveis e a presença visual continuam locais ao produto.
 
+### Passagem contextual entre representações — `validated`
+
+Quando a mesma entidade aparece numa visão geral e numa representação detalhada, a interface deve oferecer uma passagem explícita que transfira o estado canônico necessário em vez de obrigar a pessoa a localizar e selecionar a mesma entidade outra vez. As duas representações podem continuar separadas quando cumprem funções diferentes; o vínculo transporta contexto, não funde componentes nem cria uma segunda fonte de verdade.
+
+Esse princípio foi validado no **CausaGanha** em `/stats`: cada tribunal do manifesto ganhou a ação “Explorar →”, que leva o tribunal localizado ao explorador detalhado, preserva o período atual e mantém tribunal e datas na URL reproduzível. O manifesto continua sendo a visão canônica de conjunto e o explorador continua sendo a ferramenta de investigação por período.
+
+A relação compartilhável é **item localizado → estado canônico transferido → representação detalhada**. O gesto de transição, a linguagem da ação e a composição visual continuam locais ao produto.
+
 ### Compartilhamento canônico — `validated`
 
 Quando uma superfície já representa a consulta na URL, compartilhar deve expor essa mesma representação em vez de criar um payload, token ou estado paralelo. A ação de compartilhar deve sincronizar primeiro o estado canônico, oferecer feedback claro de sucesso ou falha e manter o endereço legível e reproduzível.
