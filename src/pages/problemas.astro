@@ -1,0 +1,76 @@
+---
+import '../styles/index.css'
+import { css } from '../../styled-system/css'
+import { button, badge, navLink } from '../../styled-system/recipes'
+
+const problems = [
+  { label: 'Identidade', relation: 'marca → nome → contexto', note: 'Compartilhe a ordem e a função. Preserve tipografia, cor e presença local.' },
+  { label: 'Estado', relation: 'significado → sinal → próxima ação', note: 'O estado precisa continuar compreensível mesmo quando o tratamento visual muda.' },
+  { label: 'Ação', relation: 'principal → secundária', note: 'A prioridade pode ser comum sem exigir uma família universal de botões.' },
+  { label: 'Leitura', relation: 'título → contexto → conteúdo', note: 'Ritmo e hierarquia podem ser sistemáticos sem transformar todo texto na mesma página.' },
+]
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Explore Cobogó pelos problemas de interface que a gramática ajuda a resolver." />
+    <title>Problemas — Cobogó</title>
+  </head>
+  <body>
+    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
+      <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
+      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
+        <a class={navLink()} href="/cobogo/">Início</a>
+        <a class={navLink()} href="/cobogo/comece/">Comece</a>
+        <a class={navLink({ active: true })} href="/cobogo/problemas/">Problemas</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class={css({ background: 'info', color: 'canvas', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '0.7fr 1.3fr' }, gap: '10', alignItems: 'end' })}>
+          <p class={css({ textStyle: 'eyebrow', color: 'attention', m: '0' })}>Guia por problema</p>
+          <div>
+            <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '11ch' })}>Não procure um componente. Procure a relação.</h1>
+            <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'surfaceMuted', maxW: '46rem', mt: '7' })}>Cobogó é mais útil quando a pergunta começa pelo que precisa permanecer verdadeiro entre produtos — não por qual peça pronta copiar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
+        <div class={css({ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '6', flexWrap: 'wrap', mb: '10' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Mapa rápido</p>
+            <h2 class={css({ textStyle: 'title', m: '0', maxW: '16ch' })}>Quatro relações para começar a enxergar a gramática.</h2>
+          </div>
+          <span class={badge({ tone: 'accent' })}>comece pequeno</span>
+        </div>
+
+        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 1fr' }, borderTop: '1px solid', borderLeft: '1px solid', borderColor: 'text' })}>
+          {problems.map((problem, index) => (
+            <article class={css({ p: { base: '6', md: '8' }, borderRight: '1px solid', borderBottom: '1px solid', borderColor: 'text', minH: '15rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: index === 2 ? 'attention' : 'canvas' })}>
+              <div>
+                <p class={css({ textStyle: 'eyebrow', color: index === 2 ? 'text' : 'info', mt: '0', mb: '4' })}>{problem.label}</p>
+                <h3 class={css({ fontSize: { base: '2xl', md: '3xl' }, lineHeight: 'tight', letterSpacing: '-0.03em', m: '0' })}>{problem.relation}</h3>
+              </div>
+              <p class={css({ mb: '0', mt: '8', lineHeight: 'body', color: index === 2 ? 'text' : 'textMuted', maxW: '34rem' })}>{problem.note}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class={css({ background: 'text', color: 'canvas' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '18' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr auto' }, gap: '8', alignItems: 'end' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'accent', mb: '3' })}>Teste na prática</p>
+            <h2 class={css({ textStyle: 'title', color: 'canvas', m: '0', maxW: '15ch' })}>Pegue uma relação e leve para um produto real.</h2>
+            <p class={css({ color: 'surfaceMuted', lineHeight: 'body', maxW: '42rem', mt: '5', mb: '0' })}>Se ela continuar útil quando a voz visual muda, você encontrou algo que pode merecer ser compartilhado.</p>
+          </div>
+          <a class={button({ visual: 'solid' })} href="/cobogo/comece/">Começar agora →</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
