@@ -100,11 +100,22 @@ import { button } from '../styled-system/recipes'
           const text = target?.textContent?.trim()
           if (!text) return
 
+          const originalLabel = copyButton.textContent || 'Copiar'
           try {
             await navigator.clipboard.writeText(text)
+            copyButton.textContent = 'Copiado ✓'
+            copyButton.setAttribute('aria-label', 'Trecho copiado')
             if (status) status.textContent = 'Trecho copiado.'
+            window.setTimeout(() => {
+              copyButton.textContent = originalLabel
+              copyButton.removeAttribute('aria-label')
+            }, 1800)
           } catch {
+            copyButton.textContent = 'Selecione o trecho'
             if (status) status.textContent = 'Não foi possível copiar automaticamente. Selecione o trecho acima.'
+            window.setTimeout(() => {
+              copyButton.textContent = originalLabel
+            }, 2400)
           }
         })
       })
