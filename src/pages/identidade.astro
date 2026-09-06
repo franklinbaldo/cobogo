@@ -1,0 +1,85 @@
+---
+import '../styles/index.css'
+import { css } from '../../styled-system/css'
+import { badge, navLink } from '../../styled-system/recipes'
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Veja como a mesma relação de identidade preserva ordem e contexto sem impor uma aparência única." />
+    <title>Identidade — Cobogó</title>
+  </head>
+  <body>
+    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
+      <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
+      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
+        <a class={navLink()} href="/cobogo/">Início</a>
+        <a class={navLink()} href="/cobogo/comece/">Comece</a>
+        <a class={navLink()} href="/cobogo/problemas/">Problemas</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class={css({ background: 'accent', color: 'text', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '0.65fr 1.35fr' }, gap: '10', alignItems: 'end' })}>
+          <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Relação · identidade</p>
+          <div>
+            <h1 class={css({ textStyle: 'display', m: '0', maxW: '10ch' })}>A ordem fica. A presença muda.</h1>
+            <p class={css({ fontSize: 'lg', lineHeight: 'body', maxW: '48rem', mt: '7' })}>Marca, nome e contexto podem manter a mesma função entre produtos sem transformar todos em membros da mesma família visual.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
+        <div class={css({ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '6', flexWrap: 'wrap', mb: '10' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Mesma relação</p>
+            <h2 class={css({ textStyle: 'title', m: '0', maxW: '18ch' })}>Três funções. Duas identidades.</h2>
+          </div>
+          <span class={badge({ tone: 'accent' })}>marca → nome → contexto</span>
+        </div>
+
+        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '1fr 1fr' }, gap: '4' })}>
+          <article class={css({ background: 'surfaceMuted', border: '1px solid', borderColor: 'text', p: { base: '6', md: '8' }, minH: { lg: '28rem' }, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' })}>
+            <div>
+              <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '10' })}>Institucional</p>
+              <div aria-label="Exemplo de identidade institucional">
+                <div class={css({ display: 'flex', alignItems: 'center', gap: '4', mb: '6' })}>
+                  <div class={css({ w: '12', h: '12', border: '2px solid', borderColor: 'text', display: 'grid', placeItems: 'center', fontWeight: 'black', fontSize: 'lg' })} aria-hidden="true">PV</div>
+                  <p class={css({ m: '0', fontWeight: 'black', fontSize: { base: 'xl', md: '2xl' }, letterSpacing: '-0.03em' })}>Portal de Serviços</p>
+                </div>
+                <p class={css({ m: '0', maxW: '34rem', color: 'textMuted', lineHeight: 'body' })}>Prefeitura de Porto Velho · acesso a serviços e informações públicas.</p>
+              </div>
+            </div>
+            <p class={css({ mt: '10', mb: '0', pt: '6', borderTop: '1px solid', borderColor: 'text', lineHeight: 'body' })}>A presença é contida, direta e funcional. O vínculo entre marca, nome e contexto continua explícito.</p>
+          </article>
+
+          <article class={css({ background: 'info', color: 'canvas', border: '1px solid', borderColor: 'text', p: { base: '6', md: '8' }, minH: { lg: '28rem' }, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' })}>
+            <div>
+              <p class={css({ fontFamily: 'serif', fontStyle: 'italic', color: 'attention', mt: '0', mb: '10' })}>Cultural</p>
+              <div aria-label="Exemplo de identidade cultural">
+                <p class={css({ fontFamily: 'serif', fontStyle: 'italic', fontSize: { base: '5xl', md: '6xl' }, lineHeight: 'none', letterSpacing: '-0.05em', m: '0' })} aria-hidden="true">V</p>
+                <h3 class={css({ fontFamily: 'serif', fontWeight: 'medium', fontSize: { base: '3xl', md: '4xl' }, lineHeight: 'tight', letterSpacing: '-0.04em', mt: '5', mb: '4' })}>Vazante</h3>
+                <p class={css({ m: '0', color: 'surfaceMuted', fontFamily: 'serif', fontSize: 'lg', lineHeight: 'body', maxW: '32rem' })}>Caderno independente de arte, cidade e Amazônia.</p>
+              </div>
+            </div>
+            <p class={css({ mt: '10', mb: '0', pt: '6', borderTop: '3px solid', borderColor: 'attention', fontFamily: 'serif', fontSize: 'lg', lineHeight: 'body' })}>Aqui a marca vira gesto tipográfico e o contexto ganha voz editorial. A relação não mudou; a autoria visual mudou inteira.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class={css({ background: 'text', color: 'canvas' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.8fr 1.2fr' }, gap: '10' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'accent', mb: '3' })}>Fronteira</p>
+            <h2 class={css({ textStyle: 'title', color: 'canvas', m: '0', maxW: '15ch' })}>Compartilhe a ordem. Preserve a autoria.</h2>
+            <p class={css({ color: 'surfaceMuted', lineHeight: 'body', maxW: '36rem', mt: '5' })}>O contrato útil é reconhecer quem fala, como se chama e em qual contexto aparece. Logotipo, tipografia, cor, proporção e presença continuam locais.</p>
+          </div>
+          <pre class={css({ m: '0', p: { base: '5', md: '6' }, maxW: '100%', minW: '0', overflowX: 'auto', background: 'canvas', color: 'text', fontSize: 'sm', lineHeight: 'body' })}><code>{`<header data-cobogo-identity>\n  <span data-cobogo-mark>…</span>\n  <strong data-cobogo-name>Nome</strong>\n  <span data-cobogo-context>Contexto</span>\n</header>`}</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
