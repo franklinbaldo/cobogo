@@ -19,6 +19,7 @@ const github = 'https://github.com/franklinbaldo/cobogo'
       <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
         <a class={navLink({ active: true })} href="#gramatica">Gramática</a>
         <a class={navLink()} href="#usar">Como usar</a>
+        <a class={navLink()} href="#primeiro-uso">Primeiro uso</a>
         <a class={navLink()} href={github}>GitHub ↗</a>
       </nav>
     </header>
@@ -32,7 +33,7 @@ const github = 'https://github.com/franklinbaldo/cobogo'
             <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'surfaceMuted', maxW: '46rem', mt: '8' })}>Cobogó compartilha decisões que precisam sobreviver entre produtos — hierarquia, estado, ritmo, leitura, foco e ação. A identidade continua sendo de cada projeto.</p>
             <div class={css({ display: 'flex', gap: '3', flexWrap: 'wrap', mt: '8' })}>
               <a class={button({ visual: 'solid' })} href="#gramatica">Ver a gramática</a>
-              <a class={button({ visual: 'light' })} href="#usar">Começar a usar</a>
+              <a class={button({ visual: 'light' })} href="#primeiro-uso">Usar agora</a>
             </div>
           </div>
           <div class={css({ display: 'grid', gridTemplateColumns: '1fr 1fr', minH: { base: '16rem', md: '22rem' }, border: '1px solid', borderColor: 'canvas' })} aria-hidden="true">
@@ -116,6 +117,53 @@ const github = 'https://github.com/franklinbaldo/cobogo'
             <span class={badge({ tone: 'neutral' })}>3</span>
             <h3 class={css({ mt: '4', mb: '2', fontSize: 'xl' })}>Preserve a voz local</h3>
             <p class={css({ m: '0', color: 'textMuted', lineHeight: 'body' })}>Tipografia, cor, proporção e acabamento podem continuar sendo do produto.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="primeiro-uso" class={css({ background: 'text', color: 'canvas', borderTop: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '22' } })}>
+          <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.72fr 1.28fr' }, gap: '12', alignItems: 'start' })}>
+            <div>
+              <p class={css({ textStyle: 'eyebrow', color: 'accent', mb: '4' })}>Primeiro uso</p>
+              <h2 class={css({ textStyle: 'title', color: 'canvas', m: '0', maxW: '11ch' })}>Do conceito ao código em poucos minutos.</h2>
+              <p class={css({ mt: '5', color: 'surfaceMuted', lineHeight: 'body', maxW: '34rem' })}>Instale o preset, conecte o Panda e comece por uma relação real. Não é preciso adotar uma aparência pronta para começar.</p>
+              <div class={css({ display: 'flex', gap: '3', flexWrap: 'wrap', mt: '7' })}>
+                <a class={button({ visual: 'solid' })} href="/cobogo/comece/">Abrir início rápido</a>
+                <a class={button({ visual: 'light' })} href="/cobogo/problemas/">Explorar patterns</a>
+              </div>
+            </div>
+
+            <div class={css({ display: 'grid', gap: '4', minW: '0' })}>
+              <article class={css({ border: '1px solid', borderColor: 'surfaceMuted', p: { base: '5', md: '6' }, minW: '0' })}>
+                <div class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'center', mb: '4', flexWrap: 'wrap' })}>
+                  <h3 class={css({ m: '0', fontSize: 'lg', color: 'canvas' })}>1. Instale</h3>
+                  <span class={badge({ tone: 'accent' })}>Astro + Panda</span>
+                </div>
+                <pre class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'canvas', color: 'text', fontSize: 'sm', lineHeight: 'body' })}><code>npm install github:franklinbaldo/cobogo#main
+npm install -D @pandacss/dev</code></pre>
+              </article>
+
+              <article class={css({ border: '1px solid', borderColor: 'surfaceMuted', p: { base: '5', md: '6' }, minW: '0' })}>
+                <h3 class={css({ m: '0', mb: '4', fontSize: 'lg', color: 'canvas' })}>2. Conecte o preset</h3>
+                <pre class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'canvas', color: 'text', fontSize: 'sm', lineHeight: 'body' })}><code>{`import cobogo from 'cobogo/preset'
+
+export default defineConfig({
+  presets: [cobogo],
+  outdir: 'styled-system',
+})`}</code></pre>
+              </article>
+
+              <article class={css({ border: '1px solid', borderColor: 'surfaceMuted', p: { base: '5', md: '6' }, minW: '0' })}>
+                <div class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'center', mb: '4', flexWrap: 'wrap' })}>
+                  <h3 class={css({ m: '0', fontSize: 'lg', color: 'canvas' })}>3. Expresse uma relação</h3>
+                  <span class={badge({ tone: 'info' })}>principal → secundária</span>
+                </div>
+                <pre class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'canvas', color: 'text', fontSize: 'sm', lineHeight: 'body' })}><code>{`<button class={button({ visual: 'solid' })}>Continuar</button>
+<a href="/detalhes">Ver detalhes</a>`}</code></pre>
+                <p class={css({ mt: '4', mb: '0', color: 'surfaceMuted', lineHeight: 'body' })}>A prioridade é compartilhável. A voz visual continua sendo sua.</p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
