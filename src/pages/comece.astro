@@ -39,14 +39,20 @@ import { button, badge, navLink } from '../../styled-system/recipes'
 
         <div class={css({ display: 'grid', gap: '5', minW: '0' })}>
           <article class={css({ border: '1px solid', borderColor: 'text', p: { base: '5', md: '7' }, minW: '0' })}>
-            <h2 class={css({ m: '0', mb: '4', fontSize: 'xl' })}>1. Instale</h2>
-            <pre class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'text', color: 'canvas', fontSize: 'sm', lineHeight: 'body' })}><code>npm install github:franklinbaldo/cobogo#main
+            <div class={css({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '4', flexWrap: 'wrap', mb: '4' })}>
+              <h2 class={css({ m: '0', fontSize: 'xl' })}>1. Instale</h2>
+              <button type="button" class={button({ visual: 'ghost' })} data-copy-target="install" aria-describedby="copy-status">Copiar</button>
+            </div>
+            <pre id="install" class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'text', color: 'canvas', fontSize: 'sm', lineHeight: 'body' })}><code>npm install github:franklinbaldo/cobogo#main
 npm install -D @pandacss/dev</code></pre>
           </article>
 
           <article class={css({ border: '1px solid', borderColor: 'text', p: { base: '5', md: '7' }, minW: '0' })}>
-            <h2 class={css({ m: '0', mb: '4', fontSize: 'xl' })}>2. Conecte o preset</h2>
-            <pre class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'text', color: 'canvas', fontSize: 'sm', lineHeight: 'body' })}><code>{`import { defineConfig } from '@pandacss/dev'
+            <div class={css({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '4', flexWrap: 'wrap', mb: '4' })}>
+              <h2 class={css({ m: '0', fontSize: 'xl' })}>2. Conecte o preset</h2>
+              <button type="button" class={button({ visual: 'ghost' })} data-copy-target="preset" aria-describedby="copy-status">Copiar</button>
+            </div>
+            <pre id="preset" class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'text', color: 'canvas', fontSize: 'sm', lineHeight: 'body' })}><code>{`import { defineConfig } from '@pandacss/dev'
 import cobogo from 'cobogo/preset'
 
 export default defineConfig({
@@ -58,15 +64,19 @@ export default defineConfig({
           </article>
 
           <article class={css({ border: '1px solid', borderColor: 'text', p: { base: '5', md: '7' }, minW: '0' })}>
-            <h2 class={css({ m: '0', mb: '4', fontSize: 'xl' })}>3. Expresse uma relação</h2>
+            <div class={css({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '4', flexWrap: 'wrap', mb: '4' })}>
+              <h2 class={css({ m: '0', fontSize: 'xl' })}>3. Expresse uma relação</h2>
+              <button type="button" class={button({ visual: 'ghost' })} data-copy-target="relation" aria-describedby="copy-status">Copiar</button>
+            </div>
             <p class={css({ color: 'textMuted', lineHeight: 'body', mt: '0' })}>Por exemplo, prioridade de ação: principal → secundária.</p>
-            <pre class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'text', color: 'canvas', fontSize: 'sm', lineHeight: 'body' })}><code>{`---
+            <pre id="relation" class={css({ m: '0', p: '4', overflowX: 'auto', maxW: '100%', background: 'text', color: 'canvas', fontSize: 'sm', lineHeight: 'body' })}><code>{`---
 import { button } from '../styled-system/recipes'
 ---
 
 <button class={button({ visual: 'solid' })}>Continuar</button>
 <a href="/detalhes">Ver detalhes</a>`}</code></pre>
           </article>
+          <p id="copy-status" class={css({ m: '0', minH: '1.5rem', color: 'textMuted', fontSize: 'sm' })} aria-live="polite"></p>
         </div>
       </section>
 
@@ -80,5 +90,24 @@ import { button } from '../styled-system/recipes'
         </div>
       </section>
     </main>
+
+    <script>
+      const status = document.querySelector('#copy-status')
+      document.querySelectorAll('[data-copy-target]').forEach((copyButton) => {
+        copyButton.addEventListener('click', async () => {
+          const targetId = copyButton.getAttribute('data-copy-target')
+          const target = targetId ? document.getElementById(targetId) : null
+          const text = target?.textContent?.trim()
+          if (!text) return
+
+          try {
+            await navigator.clipboard.writeText(text)
+            if (status) status.textContent = 'Trecho copiado.'
+          } catch {
+            if (status) status.textContent = 'Não foi possível copiar automaticamente. Selecione o trecho acima.'
+          }
+        })
+      })
+    </script>
   </body>
 </html>
