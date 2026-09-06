@@ -1,0 +1,74 @@
+---
+import '../styles/index.css'
+import { css } from '../../styled-system/css'
+import { badge, navLink } from '../../styled-system/recipes'
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Veja como a mesma hierarquia de leitura assume vozes visuais diferentes com Cobogó." />
+    <title>Leitura — Cobogó</title>
+  </head>
+  <body>
+    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
+      <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
+      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
+        <a class={navLink()} href="/cobogo/">Início</a>
+        <a class={navLink()} href="/cobogo/comece/">Comece</a>
+        <a class={navLink()} href="/cobogo/problemas/">Problemas</a>
+      </nav>
+    </header>
+    <main>
+      <section class={css({ background: 'attention', color: 'text', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '0.65fr 1.35fr' }, gap: '10', alignItems: 'end' })}>
+          <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Relação · leitura</p>
+          <div>
+            <h1 class={css({ textStyle: 'display', m: '0', maxW: '10ch' })}>A ordem fica. O ritmo muda.</h1>
+            <p class={css({ fontSize: 'lg', lineHeight: 'body', maxW: '48rem', mt: '7' })}>Título, contexto e conteúdo mantêm uma hierarquia legível. O produto decide se a leitura parece painel, revista ou outra coisa.</p>
+          </div>
+        </div>
+      </section>
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
+        <div class={css({ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '6', flexWrap: 'wrap', mb: '10' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Mesma hierarquia</p>
+            <h2 class={css({ textStyle: 'title', m: '0', maxW: '18ch' })}>Três camadas. Duas vozes.</h2>
+          </div>
+          <span class={badge({ tone: 'accent' })}>título → contexto → conteúdo</span>
+        </div>
+        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '1fr 1fr' }, gap: '4' })}>
+          <article class={css({ background: 'surfaceMuted', border: '1px solid', borderColor: 'text', p: { base: '6', md: '8' } })}>
+            <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '8' })}>Operacional</p>
+            <h3 class={css({ fontSize: { base: '3xl', md: '4xl' }, lineHeight: 'tight', letterSpacing: '-0.04em', m: '0' })}>Resumo da atividade</h3>
+            <p class={css({ mt: '4', mb: '8', color: 'textMuted', fontWeight: 'bold' })}>Semana 36 · visão geral</p>
+            <div class={css({ borderTop: '1px solid', borderColor: 'text', pt: '6', lineHeight: 'body' })}>
+              <p class={css({ mt: '0' })}>Primeiro vem o assunto. Em seguida, o contexto situa a leitura. Só então entram os detalhes.</p>
+              <p class={css({ mb: '0' })}>A hierarquia reduz esforço sem exigir uma aparência compartilhada.</p>
+            </div>
+          </article>
+          <article class={css({ background: 'info', color: 'canvas', border: '1px solid', borderColor: 'text', p: { base: '6', md: '8' } })}>
+            <p class={css({ fontFamily: 'serif', fontStyle: 'italic', color: 'attention', mt: '0', mb: '8' })}>Caderno de domingo</p>
+            <h3 class={css({ fontFamily: 'serif', fontStyle: 'italic', fontWeight: 'medium', fontSize: { base: '4xl', md: '5xl' }, lineHeight: 'tight', letterSpacing: '-0.03em', m: '0' })}>A cidade entre sombras e vazios</h3>
+            <p class={css({ mt: '5', mb: '9', color: 'surfaceMuted', fontFamily: 'serif', fontSize: 'lg' })}>Arquitetura · espaço público · Amazônia</p>
+            <div class={css({ borderTop: '3px solid', borderColor: 'attention', pt: '6', lineHeight: 'body', fontFamily: 'serif', fontSize: 'lg' })}>
+              <p class={css({ mt: '0' })}>A leitura começa pela escala e pelo contraste. O título chama; o contexto orienta; o texto sustenta.</p>
+              <p class={css({ mb: '0' })}>A relação continua reconhecível, mas a presença visual pertence à publicação.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class={css({ background: 'text', color: 'canvas' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.8fr 1.2fr' }, gap: '10' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'accent', mb: '3' })}>Fronteira</p>
+            <h2 class={css({ textStyle: 'title', color: 'canvas', m: '0', maxW: '14ch' })}>Compartilhe a hierarquia. Personalize o ritmo.</h2>
+            <p class={css({ color: 'surfaceMuted', lineHeight: 'body', maxW: '34rem', mt: '5' })}>O contrato útil é a ordem de leitura. Escala, medida, tipografia, espaço e contraste continuam locais.</p>
+          </div>
+          <pre class={css({ m: '0', p: { base: '5', md: '6' }, maxW: '100%', minW: '0', overflowX: 'auto', background: 'canvas', color: 'text', fontSize: 'sm', lineHeight: 'body' })}><code>{`<article>\n  <h2>Título</h2>\n  <p data-cobogo-context>Contexto</p>\n  <div data-cobogo-content>Conteúdo</div>\n</article>`}</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
