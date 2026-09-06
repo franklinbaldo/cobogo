@@ -81,6 +81,14 @@ Esse princípio foi validado no **CausaGanha** em `/stats`: os atalhos de 7, 30 
 
 A relação compartilhável é **intenção recorrente → estado canônico visível → resultado compartilhável**. Os períodos oferecidos, a linguagem e a presença visual continuam locais ao produto.
 
+### Localizador progressivo — `validated`
+
+Quando uma coleção canônica precisa permanecer inteira para inspeção, uma busca local pode reduzir apenas a apresentação visível sem substituir a representação canônica nem criar uma segunda fonte de verdade. Com a consulta vazia, a coleção deve reaparecer completa; o resultado do filtro deve ser perceptível e variações triviais de escrita não devem impedir a localização.
+
+Esse princípio foi validado no **CausaGanha** em `/stats`: o manifesto completo de cobertura por tribunal continua no HTML, enquanto o campo “Localizar tribunal” oculta apenas as linhas que não correspondem à busca. O filtro ignora diferenças de caixa e diacríticos, anuncia a quantidade de resultados e não adiciona payload nem altera o explorador detalhado por período.
+
+A relação compartilhável é **coleção canônica → localização progressiva → contexto preservado**. O formato da coleção, os termos pesquisáveis e a presença visual continuam locais ao produto.
+
 ### Receita transparente — `validated`
 
 Uma ferramenta avançada pode oferecer caminhos guiados sem esconder o mecanismo que executa o trabalho. A receita deve preencher um artefato compreensível e editável — consulta, comando, filtro ou configuração — e deixar a pessoa inspecioná-lo antes de executar. Também deve existir um caminho explícito para trabalhar sem a receita.
