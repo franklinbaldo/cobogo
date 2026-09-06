@@ -2,6 +2,7 @@
 import '../styles/index.css'
 import { css } from '../../styled-system/css'
 import { badge, navLink } from '../../styled-system/recipes'
+import RelationCollection from '../components/RelationCollection.astro'
 ---
 
 <html lang="pt-BR">
@@ -74,6 +75,8 @@ import { badge, navLink } from '../../styled-system/recipes'
           <pre class={css({ m: '0', p: { base: '5', md: '6' }, maxW: '100%', minW: '0', overflowX: 'auto', background: 'canvas', color: 'text', fontSize: 'sm', lineHeight: 'body' })}><code>{`<div data-cobogo-state="available">Disponível</div>\n<div data-cobogo-state="attention">Requer atenção</div>\n<div data-cobogo-state="unavailable">Indisponível</div>`}</code></pre>
         </div>
       </section>
+
+      <RelationCollection current="estados" />
     </main>
   </body>
 </html>
