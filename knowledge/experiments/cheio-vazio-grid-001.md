@@ -28,9 +28,9 @@ failure_signals:
   - "O efeito depende de explicar a referência para parecer interessante."
 skill_path: skills/experiments/cheio-vazio-grid-001/SKILL.md
 status: running
-outcome: "Primeiro specimen em implementação no próprio laboratório público."
+outcome: "Três variantes foram implementadas com conteúdo idêntico. A variante B (contrapeso diagonal) é a candidata: A preserva leitura mas produz pouco ritmo; C cria separação excessiva entre blocos relacionados. O build da primeira versão comparativa passou; promoção aguarda os checks finais e observação da superfície publicada."
 ---
 
 # Experimento: Grid vazado 001
 
-Este experimento testa uma tradução, não uma estética pronta. A skill ligada acima é o manual operacional para qualquer sessão que o execute ou refine.
+A comparação deixou de ser implícita: o laboratório agora expõe três distribuições estruturais com o mesmo conteúdo e registra inclusive a variante rejeitada. O achado provisório é relacional, não ornamental: o vazio parece mais útil como contrapeso entre massas do que como corredor central ou simples margem lateral.
