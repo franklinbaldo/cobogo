@@ -35,7 +35,7 @@ import { badge, navLink } from '../../styled-system/recipes'
       <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
         <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(5, 1fr)' }, gap: '3' })} aria-label="Fluxo do laboratório">
           {['Referência', 'Estudo', 'Experimento', 'Specimen', 'Princípio'].map((item, index) => (
-            <div class={css({ borderTop: '4px solid', borderColor: index === 2 ? 'accent' : 'text', pt: '4', minH: '7rem' })}>
+            <div class={css({ borderTop: '4px solid', borderColor: index === 3 ? 'accent' : 'text', pt: '4', minH: '7rem' })}>
               <span class={css({ fontSize: 'xs', color: 'textMuted' })}>0{index + 1}</span>
               <p class={css({ fontWeight: 'black', fontSize: 'lg', mt: '2', mb: '0' })}>{item}</p>
             </div>
@@ -45,36 +45,90 @@ import { badge, navLink } from '../../styled-system/recipes'
 
       <section id="cheio-vazio-grid-001" class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}>
         <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
-          <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.72fr 1.28fr' }, gap: { base: '10', lg: '14' }, alignItems: 'start' })}>
+          <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.72fr 1.28fr' }, gap: { base: '10', lg: '14' }, alignItems: 'start', mb: { base: '12', md: '16' } })}>
             <div>
               <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Experimento 001</p>
               <h2 class={css({ textStyle: 'title', m: '0', maxW: '12ch' })}>Cheio e vazio sem desenhar um cobogó.</h2>
-              <p class={css({ lineHeight: 'body', color: 'textMuted', mt: '5', maxW: '34rem' })}>A hipótese: vazios deliberados em um grid editorial podem criar ritmo e identidade sem reduzir legibilidade nem depender de ornamentação figurativa.</p>
+            </div>
+            <div>
+              <p class={css({ lineHeight: 'body', color: 'textMuted', mt: '0', maxW: '38rem' })}>A hipótese: vazios deliberados em um grid editorial podem criar ritmo e identidade sem reduzir legibilidade nem depender de ornamentação figurativa.</p>
               <div class={css({ display: 'flex', gap: '2', flexWrap: 'wrap', mt: '6' })}>
-                <span class={badge({ tone: 'accent' })}>running</span>
+                <span class={badge({ tone: 'accent' })}>promising</span>
+                <span class={badge()}>3 variantes</span>
                 <span class={badge()}>Astro + Panda</span>
               </div>
             </div>
+          </div>
 
-            <div aria-label="Specimen de cheio e vazio" class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(6, 1fr)' }, gridAutoRows: { md: 'minmax(5rem, auto)' }, gap: '3' })}>
-              <article class={css({ background: 'text', color: 'canvas', p: { base: '6', md: '7' }, gridColumn: { md: '1 / span 4' }, gridRow: { md: '1 / span 2' }, minH: '14rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' })}>
-                <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0' })}>Cheio</p>
-                <p class={css({ fontSize: { base: '2xl', md: '4xl' }, fontWeight: 'black', lineHeight: 'tight', letterSpacing: '-0.04em', m: '0', maxW: '12ch' })}>Presença suficiente para sustentar a leitura.</p>
-              </article>
+          <div class={css({ display: 'grid', gap: { base: '10', md: '12' } })}>
+            <figure class={css({ m: '0' })}>
+              <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '4', borderTop: '1px solid', borderColor: 'text', pt: '3' })}>
+                <strong>Variante A — intervalo lateral</strong>
+                <span class={css({ color: 'textMuted', fontSize: 'sm' })}>legível, mas previsível</span>
+              </figcaption>
+              <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(6, 1fr)' }, gap: '3' })}>
+                <article class={css({ background: 'text', color: 'canvas', p: '6', gridColumn: { md: '1 / span 3' }, minH: '12rem' })}>
+                  <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0' })}>Cheio</p>
+                  <p class={css({ fontSize: { base: '2xl', md: '3xl' }, fontWeight: 'black', lineHeight: 'tight', letterSpacing: '-0.04em', m: '0', maxW: '12ch' })}>Presença suficiente para sustentar a leitura.</p>
+                </article>
+                <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '4' })}></div>
+                <aside class={css({ background: 'accent', p: '6', gridColumn: { md: '5 / span 2' } })}>
+                  <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0' })}>Vazio</p>
+                  <p class={css({ m: '0', lineHeight: 'body', fontWeight: 'bold' })}>Não é ausência de projeto. É intervalo que organiza o próximo peso.</p>
+                </aside>
+                <article class={css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: '6', gridColumn: { md: '1 / span 3' } })}>
+                  <p class={css({ m: '0', lineHeight: 'body' })}><strong>Regra do teste:</strong> no mobile, os vazios somem e a ordem volta a ser linear.</p>
+                </article>
+              </div>
+            </figure>
 
-              <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '5 / span 2', gridRow: '1' })}></div>
+            <figure class={css({ m: '0' })}>
+              <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '4', borderTop: '4px solid', borderColor: 'accent', pt: '3' })}>
+                <strong>Variante B — contrapeso diagonal</strong>
+                <span class={badge({ tone: 'accent' })}>escolhida</span>
+              </figcaption>
+              <div aria-label="Specimen escolhido de cheio e vazio" class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(6, 1fr)' }, gridAutoRows: { md: 'minmax(5rem, auto)' }, gap: '3' })}>
+                <article class={css({ background: 'text', color: 'canvas', p: { base: '6', md: '7' }, gridColumn: { md: '1 / span 4' }, gridRow: { md: '1 / span 2' }, minH: '14rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' })}>
+                  <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0' })}>Cheio</p>
+                  <p class={css({ fontSize: { base: '2xl', md: '4xl' }, fontWeight: 'black', lineHeight: 'tight', letterSpacing: '-0.04em', m: '0', maxW: '12ch' })}>Presença suficiente para sustentar a leitura.</p>
+                </article>
+                <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '5 / span 2', gridRow: '1' })}></div>
+                <aside class={css({ background: 'accent', color: 'text', p: '6', gridColumn: { md: '5 / span 2' }, gridRow: { md: '2 / span 2' }, minH: '11rem' })}>
+                  <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>Vazio</p>
+                  <p class={css({ m: '0', lineHeight: 'body', fontWeight: 'bold' })}>Não é ausência de projeto. É intervalo que organiza o próximo peso.</p>
+                </aside>
+                <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '1 / span 2', gridRow: '3' })}></div>
+                <article class={css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: '6', gridColumn: { md: '3 / span 2' }, gridRow: { md: '3' } })}>
+                  <p class={css({ m: '0', lineHeight: 'body' })}><strong>Regra do teste:</strong> no mobile, os vazios somem e a ordem volta a ser linear.</p>
+                </article>
+              </div>
+            </figure>
 
-              <aside class={css({ background: 'accent', color: 'text', p: '6', gridColumn: { md: '5 / span 2' }, gridRow: { md: '2 / span 2' }, minH: '11rem' })}>
-                <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>Vazio</p>
-                <p class={css({ m: '0', lineHeight: 'body', fontWeight: 'bold' })}>Não é ausência de projeto. É intervalo que organiza o próximo peso.</p>
-              </aside>
+            <figure class={css({ m: '0' })}>
+              <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '4', borderTop: '1px solid', borderColor: 'text', pt: '3' })}>
+                <strong>Variante C — vazio central</strong>
+                <span class={css({ color: 'textMuted', fontSize: 'sm' })}>rejeitada: separa demais</span>
+              </figcaption>
+              <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(6, 1fr)' }, gap: '3' })}>
+                <article class={css({ background: 'text', color: 'canvas', p: '6', gridColumn: { md: '1 / span 2' } })}>
+                  <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0' })}>Cheio</p>
+                  <p class={css({ fontSize: { base: '2xl', md: '3xl' }, fontWeight: 'black', lineHeight: 'tight', letterSpacing: '-0.04em', m: '0' })}>Presença suficiente para sustentar a leitura.</p>
+                </article>
+                <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '3 / span 2' })}></div>
+                <aside class={css({ background: 'accent', p: '6', gridColumn: { md: '5 / span 2' } })}>
+                  <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0' })}>Vazio</p>
+                  <p class={css({ m: '0', lineHeight: 'body', fontWeight: 'bold' })}>Não é ausência de projeto. É intervalo que organiza o próximo peso.</p>
+                </aside>
+                <article class={css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: '6', gridColumn: { md: '5 / span 2' } })}>
+                  <p class={css({ m: '0', lineHeight: 'body' })}><strong>Regra do teste:</strong> no mobile, os vazios somem e a ordem volta a ser linear.</p>
+                </article>
+              </div>
+            </figure>
+          </div>
 
-              <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '1 / span 2', gridRow: '3' })}></div>
-
-              <article class={css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: '6', gridColumn: { md: '3 / span 2' }, gridRow: { md: '3' } })}>
-                <p class={css({ m: '0', lineHeight: 'body' })}><strong>Regra do teste:</strong> no mobile, os vazios somem e a ordem volta a ser linear. A relação precisa sobreviver sem buracos decorativos.</p>
-              </article>
-            </div>
+          <div class={css({ mt: { base: '12', md: '16' }, pt: '6', borderTop: '1px solid', borderColor: 'text', display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 2fr' }, gap: '6' })}>
+            <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Resultado</p>
+            <p class={css({ m: '0', lineHeight: 'body', fontSize: 'lg' })}>A variante B produz o ritmo mais claro sem depender de ornamento: o vazio funciona como contrapeso entre massas, mas desaparece no fluxo móvel sem deixar lacunas arbitrárias. A variante A é funcional porém pouco expressiva; a C cria distância excessiva entre blocos relacionados.</p>
           </div>
         </div>
       </section>
