@@ -73,6 +73,14 @@ Uma interface interativa deve carregar no navegador apenas o contexto necessári
 
 Esse princípio foi validado no **CausaGanha** em `/stats`: o explorador por tribunal deixou de serializar para todo visitante o calendário completo de todos os tribunais (cerca de 13,9 MB no caso observado) e passou a buscar somente a partição do tribunal selecionado. A semântica e a cobertura continuaram iguais; o custo inicial da experiência caiu sem transformar uma decisão local de implementação em aparência compartilhada.
 
+### Receita transparente — `validated`
+
+Uma ferramenta avançada pode oferecer caminhos guiados sem esconder o mecanismo que executa o trabalho. A receita deve preencher um artefato compreensível e editável — consulta, comando, filtro ou configuração — e deixar a pessoa inspecioná-lo antes de executar. Também deve existir um caminho explícito para trabalhar sem a receita.
+
+Esse princípio foi validado no **CausaGanha** em `/explorador`: receitas de período, CNJ, agregação e auditoria geram SQL completo no editor, só ficam disponíveis quando o dataset necessário foi validado e nunca executam automaticamente ao serem escolhidas. Quem chega de fora ganha um ponto de partida sem perder a capacidade de entender, alterar ou abandonar a sugestão.
+
+A relação compartilhável é **intenção guiada → mecanismo visível → execução deliberada**. A linguagem da ferramenta, o formato do artefato e a apresentação visual continuam locais.
+
 ## Desenvolvimento
 
 ```bash
