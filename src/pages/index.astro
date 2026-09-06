@@ -4,6 +4,14 @@ import { css } from '../../styled-system/css'
 import { button, badge, article, navLink } from '../../styled-system/recipes'
 
 const github = 'https://github.com/franklinbaldo/cobogo'
+
+const caminhos = [
+  { href: '/cobogo/identidade/', numero: '01', titulo: 'Identidade', texto: 'O que pode mudar sem quebrar a relação compartilhada.' },
+  { href: '/cobogo/estados/', numero: '02', titulo: 'Estados', texto: 'Como tornar situação, progresso e exceção legíveis sem depender só de cor.' },
+  { href: '/cobogo/acoes/', numero: '03', titulo: 'Ações', texto: 'Como hierarquia e linguagem ajudam a deixar a próxima decisão óbvia.' },
+  { href: '/cobogo/leitura/', numero: '04', titulo: 'Leitura', texto: 'Ritmo, densidade e largura para interfaces que precisam ser compreendidas.' },
+  { href: '/cobogo/problemas/', numero: '05', titulo: 'Problemas', texto: 'Comece pelo atrito real e encontre a relação de design que merece sobreviver.' },
+]
 ---
 
 <html lang="pt-BR">
@@ -18,8 +26,8 @@ const github = 'https://github.com/franklinbaldo/cobogo'
       <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
       <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
         <a class={navLink({ active: true })} href="#gramatica">Gramática</a>
+        <a class={navLink()} href="#explorar">Explorar</a>
         <a class={navLink()} href="/cobogo/laboratorio/">Laboratório</a>
-        <a class={navLink()} href="#usar">Como usar</a>
         <a class={navLink()} href="#primeiro-uso">Primeiro uso</a>
         <a class={navLink()} href={github}>GitHub ↗</a>
       </nav>
@@ -33,7 +41,7 @@ const github = 'https://github.com/franklinbaldo/cobogo'
             <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '9ch' })}>Mesma relação. Outra voz.</h1>
             <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'surfaceMuted', maxW: '46rem', mt: '8' })}>Cobogó compartilha decisões que precisam sobreviver entre produtos — hierarquia, estado, ritmo, leitura, foco e ação. A identidade continua sendo de cada projeto.</p>
             <div class={css({ display: 'flex', gap: '3', flexWrap: 'wrap', mt: '8' })}>
-              <a class={button({ visual: 'solid' })} href="#gramatica">Ver a gramática</a>
+              <a class={button({ visual: 'solid' })} href="#explorar">Explorar a gramática</a>
               <a class={button({ visual: 'light' })} href="/cobogo/laboratorio/">Entrar no laboratório</a>
             </div>
           </div>
@@ -55,6 +63,30 @@ const github = 'https://github.com/franklinbaldo/cobogo'
           <div class={article({ density: 'editorial' })}>
             <p>Cobogó evita duas armadilhas: reinventar a mesma relação em cada projeto e uniformizar produtos que deveriam ter personalidade própria.</p>
             <p>O que sobe para o sistema é o que merece ser compartilhado. Cor local, tipografia, proporção e acabamento podem continuar locais quando carregam a voz do produto.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="explorar" class={css({ background: 'text', color: 'canvas', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '22' } })}>
+          <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.8fr 1.2fr' }, gap: '12', mb: '10', alignItems: 'end' })}>
+            <div>
+              <p class={css({ textStyle: 'eyebrow', color: 'accent', mb: '3' })}>Mapa da gramática</p>
+              <h2 class={css({ textStyle: 'title', color: 'canvas', m: '0', maxW: '14ch' })}>Entre pelo problema que você precisa resolver.</h2>
+            </div>
+            <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'surfaceMuted', m: '0', maxW: '42rem' })}>A gramática não é uma coleção de telas prontas. Cada caminho abaixo descreve uma relação que pode atravessar produtos diferentes sem apagar a identidade de nenhum deles.</p>
+          </div>
+
+          <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 1fr' }, borderTop: '1px solid', borderLeft: '1px solid', borderColor: 'canvas' })}>
+            {caminhos.map((caminho) => (
+              <a href={caminho.href} class={css({ color: 'canvas', textDecoration: 'none', borderRight: '1px solid', borderBottom: '1px solid', borderColor: 'canvas', p: { base: '6', md: '8' }, minH: '15rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '8', transition: 'background 120ms ease, color 120ms ease', _hover: { background: 'accent', color: 'text' }, _focusVisible: { outline: '3px solid', outlineColor: 'accent', outlineOffset: '-3px' } })}>
+                <span class={css({ fontSize: 'xs', fontWeight: 'bold', letterSpacing: '0.14em' })}>{caminho.numero}</span>
+                <div>
+                  <h3 class={css({ fontSize: { base: '2xl', md: '3xl' }, lineHeight: 'tight', m: '0', letterSpacing: '-0.03em' })}>{caminho.titulo} <span aria-hidden="true">↗</span></h3>
+                  <p class={css({ mt: '3', mb: '0', lineHeight: 'body', maxW: '32rem' })}>{caminho.texto}</p>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
