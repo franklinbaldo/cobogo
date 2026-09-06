@@ -2,6 +2,7 @@
 import '../styles/index.css'
 import { css } from '../../styled-system/css'
 import { button, badge, navLink } from '../../styled-system/recipes'
+import RelationCollection from '../components/RelationCollection.astro'
 ---
 
 <html lang="pt-BR">
@@ -78,6 +79,8 @@ import { button, badge, navLink } from '../../styled-system/recipes'
           <pre class={css({ m: '0', p: { base: '5', md: '6' }, maxW: '100%', minW: '0', overflowX: 'auto', background: 'canvas', color: 'text', fontSize: 'sm', lineHeight: 'body' })}><code>{`<button>Continuar</button>\n<a href="/detalhes">Ver detalhes</a>`}</code></pre>
         </div>
       </section>
+
+      <RelationCollection current="acoes" />
     </main>
   </body>
 </html>
