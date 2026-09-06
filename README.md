@@ -73,6 +73,14 @@ Uma interface interativa deve carregar no navegador apenas o contexto necessári
 
 Esse princípio foi validado no **CausaGanha** em `/stats`: o explorador por tribunal deixou de serializar para todo visitante o calendário completo de todos os tribunais (cerca de 13,9 MB no caso observado) e passou a buscar somente a partição do tribunal selecionado. A semântica e a cobertura continuaram iguais; o custo inicial da experiência caiu sem transformar uma decisão local de implementação em aparência compartilhada.
 
+### Atalho temporal transparente — `validated`
+
+Quando uma interface permite escolher datas livremente, intervalos recorrentes podem aparecer como atalhos sem criar um segundo modelo de estado. O atalho deve preencher os mesmos campos canônicos que a pessoa poderia editar à mão, manter o intervalo efetivo visível e preservar uma URL compartilhável quando a superfície já usa a URL como estado.
+
+Esse princípio foi validado no **CausaGanha** em `/stats`: os atalhos de 7, 30 e 90 dias recalculam apenas a data inicial a partir da data final escolhida, mantêm os campos `De` e `Até` como fonte visível da consulta e sincronizam o resultado na URL. No mobile, os atalhos permanecem botões nativos com alvos de toque confortáveis, sem substituir a precisão da seleção manual.
+
+A relação compartilhável é **intenção recorrente → estado canônico visível → resultado compartilhável**. Os períodos oferecidos, a linguagem e a presença visual continuam locais ao produto.
+
 ### Receita transparente — `validated`
 
 Uma ferramenta avançada pode oferecer caminhos guiados sem esconder o mecanismo que executa o trabalho. A receita deve preencher um artefato compreensível e editável — consulta, comando, filtro ou configuração — e deixar a pessoa inspecioná-lo antes de executar. Também deve existir um caminho explícito para trabalhar sem a receita.
