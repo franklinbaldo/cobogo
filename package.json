@@ -4,12 +4,17 @@
   "description": "A shared Panda CSS design system for Franklin Baldo projects.",
   "type": "module",
   "license": "MIT",
-  "files": ["preset", "skills"],
+  "files": ["preset", "skills", "behavior"],
   "exports": {
     "./preset": {
       "types": "./preset/index.d.ts",
       "import": "./preset/index.mjs",
       "default": "./preset/index.mjs"
+    },
+    "./behavior/copy": {
+      "types": "./behavior/copy.d.ts",
+      "import": "./behavior/copy.mjs",
+      "default": "./behavior/copy.mjs"
     }
   },
   "peerDependencies": {
