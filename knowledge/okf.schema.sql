@@ -28,7 +28,12 @@ CREATE TABLE "VisualExploration" (
     qualities_to_seek VARCHAR[] NOT NULL,
     tensions_to_watch VARCHAR[] NOT NULL,
     skill_path VARCHAR NOT NULL,
-    status VARCHAR NOT NULL CHECK (status IN ('rough', 'exploring', 'selected', 'incorporated', 'abandoned')),
+    status VARCHAR NOT NULL CHECK (status IN ('rough', 'exploring', 'concluded', 'abandoned')),
+    result VARCHAR CHECK (result IS NULL OR result IN ('selected', 'rejected', 'inconclusive')),
+    result_rationale VARCHAR,
+    canonical_status VARCHAR NOT NULL DEFAULT 'not_evaluated' CHECK (canonical_status IN ('not_evaluated', 'candidate', 'adopted', 'declined')),
+    canonical_rationale VARCHAR,
+    canonical_targets VARCHAR[],
     reflection VARCHAR
 );
 
