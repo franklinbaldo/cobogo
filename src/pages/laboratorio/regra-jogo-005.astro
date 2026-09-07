@@ -2,6 +2,7 @@
 import '../../styles/index.css'
 import { css } from '../../../styled-system/css'
 import { badge, navLink } from '../../../styled-system/recipes'
+import LabNavigation from '../../components/LabNavigation.astro'
 
 const modules = [
   { label: '01 · Origem', title: 'Uma família começa por uma gramática comum.', body: 'Rótulo, título, texto e ação permanecem reconhecíveis em todos os módulos.' },
@@ -68,8 +69,9 @@ const action = css({ mt: 'auto', pt: '4', borderTop: '1px solid', borderColor: '
 
       <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '12', md: '16' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 2fr' }, gap: '6' })}>
         <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Crítica</p>
-        <div class={css({ fontSize: 'lg', lineHeight: 'body' })}><p class={css({ mt: '0' })}>A primeira observação publicada derrubou uma suposição útil de derrubar: mais liberdades não produzem necessariamente menos parentesco. A é segura e plana. B concentra a exceção no módulo 03 até ele pedir uma leitura própria. C distribui contrastes pela composição inteira e, por isso, mantém melhor a sensação de família enquanto ganha hierarquia, ritmo e surpresa.</p><p><strong>Direção selecionada:</strong> C. O que segura a família é a gramática compartilhada e a coordenação entre diferenças, não a contagem de propriedades que permanecem iguais.</p><p class={css({ mb: '0', fontWeight: 'bold' })}>Taste que fica: liberdade funciona melhor quando responde ao conjunto do que quando aparece como exceção autônoma.</p><p><a href="/cobogo/laboratorio/">Voltar ao Laboratório</a></p></div>
+        <div class={css({ fontSize: 'lg', lineHeight: 'body' })}><p class={css({ mt: '0' })}>A primeira observação publicada derrubou uma suposição útil de derrubar: mais liberdades não produzem necessariamente menos parentesco. A é segura e plana. B concentra a exceção no módulo 03 até ele pedir uma leitura própria. C distribui contrastes pela composição inteira e, por isso, mantém melhor a sensação de família enquanto ganha hierarquia, ritmo e surpresa.</p><p><strong>Direção selecionada:</strong> C. O que segura a família é a gramática compartilhada e a coordenação entre diferenças, não a contagem de propriedades que permanecem iguais.</p><p class={css({ mb: '0', fontWeight: 'bold' })}>Taste que fica: liberdade funciona melhor quando responde ao conjunto do que quando aparece como exceção autônoma.</p></div>
       </section>
+      <LabNavigation id="regra-jogo-005" />
     </main>
   </body>
 </html>
