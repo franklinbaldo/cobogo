@@ -21,15 +21,15 @@ CREATE TABLE "VisualExperiment" (
     id VARCHAR PRIMARY KEY,
     title VARCHAR NOT NULL,
     study_id VARCHAR NOT NULL REFERENCES "VisualStudy"(id),
-    hypothesis VARCHAR NOT NULL,
+    direction VARCHAR NOT NULL,
     medium VARCHAR NOT NULL,
     constraints VARCHAR[] NOT NULL,
-    procedure VARCHAR[] NOT NULL,
-    success_signals VARCHAR[] NOT NULL,
-    failure_signals VARCHAR[] NOT NULL,
+    exploration VARCHAR[] NOT NULL,
+    qualities_to_seek VARCHAR[] NOT NULL,
+    tensions_to_watch VARCHAR[] NOT NULL,
     skill_path VARCHAR NOT NULL,
-    status VARCHAR NOT NULL CHECK (status IN ('proposed', 'running', 'promising', 'rejected', 'promoted')),
-    outcome VARCHAR
+    status VARCHAR NOT NULL CHECK (status IN ('proposed', 'exploring', 'selected', 'incorporated', 'abandoned', 'partial')),
+    critique VARCHAR
 );
 
 CREATE TABLE "VisualSpecimen" (
