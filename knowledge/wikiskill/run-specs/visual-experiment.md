@@ -1,35 +1,35 @@
 ---
 type: RunSpec
 id: run-specs/visual-experiment
-title: Execução de experimento visual
-version: "1.0.0"
+title: Exploração visual
+version: "2.0.0"
 status: experimental
 required_reading_kinds:
   - reference
   - study
-  - experiment
+  - exploration
   - skill
 required_goal_kinds:
-  - test-visual-translation
+  - explore-visual-translation
 required_evidence_kinds:
   - specimen
   - responsive-review
-  - outcome
+  - critique
 required_check_kinds:
   - okf
   - build
   - accessibility
 allowed_entry_states:
-  - proposed
-  - running
+  - rough
+  - exploring
 allowed_result_states:
-  - promising
-  - rejected
-  - promoted
-  - partial
-completion_notes: "Execute a hipótese usando a skill do experimento, publique ou preserve o specimen e registre evidência suficiente para aceitar, rejeitar ou continuar a investigação."
+  - exploring
+  - selected
+  - incorporated
+  - abandoned
+completion_notes: "Siga a direção usando a skill da exploração, produza e compare variações, preserve o specimen e registre crítica suficiente para continuar, selecionar, incorporar ou abandonar a direção."
 ---
 
 # RunSpec do laboratório visual
 
-A sessão termina com evidência, não com opinião. O experimento deve produzir um artefato web observável ou registrar por que a hipótese falhou antes disso.
+A sessão termina com uma exploração observável e uma crítica honesta, não com a aparência de prova. Integridade técnica continua verificável; taste, força, ritmo e caráter são julgados por comparação situada. Uma direção pode ser selecionada porque convence, abandonada porque não convence ou continuar aberta porque ainda merece trabalho.
