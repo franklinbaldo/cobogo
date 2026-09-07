@@ -28,9 +28,10 @@ failure_signals:
   - "A técnica depende de cor, ornamento ou explicação para recuperar hierarquia."
   - "O efeito só funciona em uma largura específica."
 skill_path: skills/experiments/cheio-vazio-irregularidade-004/SKILL.md
-status: running
+status: partial
+outcome: "A PR #609 publicou as três variantes no merge b53d58da2c3ec5649bfe3dc0a3c10eaeaa6d9f7b. O Deploy Pages #484 concluiu build, deploy e verify-published-surface com sucesso, e o gate capturou as rotas públicas depois do deploy sem registrar falha estrutural ou de superfície. Nesta sessão, porém, o artefato de screenshots gerado pelo workflow não ficou recuperável para inspeção visual pelo agente; por isso não há evidência suficiente para afirmar que B preserva a hierarquia enquanto C cruza o limiar. O experimento termina partial: A/B/C estão publicadas e tecnicamente válidas, mas a hipótese visual sobre o limiar continua sem decisão."
 ---
 
 # Experimento: Irregularidade 004
 
-Este teste responde à terceira pergunta ainda aberta do estudo de cheio e vazio: quanto deslocamento uma composição suporta antes de o ritmo virar ruído. A variável isolada é a geometria do grid; conteúdo, DOM, tipografia e cores permanecem constantes.
+A terceira pergunta do estudo agora tem um teste publicado, mas não uma conclusão fabricada. A comparação A/B/C existe e passou pelos gates; falta uma observação visual recuperável das capturas para decidir onde o ritmo vira ruído. O estado `partial` preserva essa diferença entre integridade técnica e evidência perceptiva.
