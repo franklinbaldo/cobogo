@@ -27,10 +27,10 @@ tensions_to_watch:
   - "A repeticao estrita parecer mais forte que qualquer variacao."
   - "A referencia virar imitacao visual de azulejaria."
 skill_path: skills/explorations/regra-jogo-modulos-005/SKILL.md
-status: exploring
-reflection: "A/B/C foram materializadas com o mesmo conteúdo, anatomia, tipografia e semântica. A controla a repetição estrita; B introduz uma liberdade localizada de proporção ou alinhamento por módulo; C combina diferenças de proporção, deslocamento e escala para tensionar a família. A exploração permanece `exploring` até a superfície publicada ser observada em desktop e mobile e a crítica decidir onde caráter deixa de parecer gramática compartilhada."
+status: selected
+reflection: "A superfície publicada no SHA 018186da1c775a5e12bfa001ae7ac15b42ce7fdf foi observada em desktop e mobile a partir do artefato cobogo-published-preview correspondente. A é coesa, mas previsível: a repetição dá parentesco imediato e pouca tensão. B introduz liberdade localizada, porém o módulo 03 combina escala tipográfica e geometria e domina a composição de forma desproporcional; a exceção parece uma peça que pede leitura própria. C, embora concentre mais diferenças de escala, proporção, alinhamento e deslocamento, forma a composição mais convincente: as quatro peças continuam reconhecíveis pela anatomia, borda, tipografia e ritmo comum, enquanto os contrastes criam hierarquia e movimento. No mobile, A/B/C relinearizam para a mesma família legível e as diferenças de desktop deixam de impor custo estrutural. A direção fica `selected`, com C como variação mais forte. O aprendizado crítico é que quantidade de liberdades não mede parentesco: variações coordenadas pela composição podem sustentar mais caráter do que uma única exceção local mal proporcionada."
 ---
 
 # Exploracao: Regra e jogo 005
 
-A exploração já tem superfície comparativa. O próximo julgamento é visual: reconhecer se a liberdade localizada de B produz voz sem quebrar parentesco e se C torna explícito um limite útil entre sistema e coleção.
+A primeira crítica publicada contrariou a gradação implícita A→B→C: mais liberdades não significaram automaticamente mais ruído. A repetição de A mantém família, B concentra a exceção demais, e C coordena diferenças suficientes para produzir hierarquia sem dissolver a gramática compartilhada. A direção foi selecionada porque o sistema continua reconhecível mesmo quando as peças não se comportam como cópias.
