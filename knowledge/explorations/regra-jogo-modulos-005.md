@@ -27,10 +27,15 @@ tensions_to_watch:
   - "A repeticao estrita parecer mais forte que qualquer variacao."
   - "A referencia virar imitacao visual de azulejaria."
 skill_path: skills/explorations/regra-jogo-modulos-005/SKILL.md
-status: selected
-reflection: "A superfície publicada no SHA 018186da1c775a5e12bfa001ae7ac15b42ce7fdf foi observada em desktop e mobile a partir do artefato cobogo-published-preview correspondente. A é coesa, mas previsível: a repetição dá parentesco imediato e pouca tensão. B introduz liberdade localizada, porém o módulo 03 combina escala tipográfica e geometria e domina a composição de forma desproporcional; a exceção parece uma peça que pede leitura própria. C, embora concentre mais diferenças de escala, proporção, alinhamento e deslocamento, forma a composição mais convincente: as quatro peças continuam reconhecíveis pela anatomia, borda, tipografia e ritmo comum, enquanto os contrastes criam hierarquia e movimento. No mobile, A/B/C relinearizam para a mesma família legível e as diferenças de desktop deixam de impor custo estrutural. A direção fica `selected`, com C como variação mais forte. O aprendizado crítico é que quantidade de liberdades não mede parentesco: variações coordenadas pela composição podem sustentar mais caráter do que uma única exceção local mal proporcionada."
+status: concluded
+result: selected
+result_rationale: "C foi selecionada porque as diferenças de escala, proporção e deslocamento permanecem coordenadas por anatomia, bordas, tipografia e ritmo comuns; A mantém parentesco mas pouca tensão, e B concentra uma exceção que passa a pedir leitura própria."
+canonical_status: not_evaluated
+canonical_rationale: null
+canonical_targets: []
+reflection: "A superfície publicada no SHA 018186da1c775a5e12bfa001ae7ac15b42ce7fdf foi observada em desktop e mobile. C foi selecionada dentro desta exploração; nenhuma adoção canônica foi avaliada. O aprendizado local é que quantidade de liberdades não mede parentesco: coordenação do conjunto importa mais."
 ---
 
-# Exploracao: Regra e jogo 005
+# Exploração: Regra e jogo 005
 
-A primeira crítica publicada contrariou a gradação implícita A→B→C: mais liberdades não significaram automaticamente mais ruído. A repetição de A mantém família, B concentra a exceção demais, e C coordena diferenças suficientes para produzir hierarquia sem dissolver a gramática compartilhada. A direção foi selecionada porque o sistema continua reconhecível mesmo quando as peças não se comportam como cópias.
+C foi selecionada dentro da exploração porque as diferenças continuam respondendo ao conjunto. Isso não a torna automaticamente linguagem canônica do Cobogó.
