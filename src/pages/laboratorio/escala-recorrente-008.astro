@@ -27,26 +27,32 @@ const baseCard = css({ border: '1px solid', borderColor: 'text', background: 'ca
 <main>
 <section class={css({background:'text',color:'canvas'})}>
   <div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'},display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.72fr 1.28fr'},gap:'10',alignItems:'end'})}>
-    <div><p class={css({textStyle:'eyebrow',color:'accent',m:'0'})}>Exploração 008 · exploring</p><p class={css({mt:'5',mb:'0',color:'surfaceMuted',lineHeight:'body',maxW:'32rem'})}>Mesmo conteúdo e mesma ordem. A variável é quanto da gramática precisa permanecer idêntica quando a escala muda.</p></div>
+    <div><p class={css({textStyle:'eyebrow',color:'accent',m:'0'})}>Exploração 008 · em andamento</p><p class={css({mt:'5',mb:'0',color:'surfaceMuted',lineHeight:'body',maxW:'32rem'})}>As variantes já foram materializadas. Esta etapa não escolhe vencedora: a avaliação pertence a uma rodada posterior sobre a superfície publicada.</p></div>
     <h1 class={css({textStyle:'display',color:'canvas',m:'0',maxW:'10ch'})}>Uma família não precisa ter o mesmo tamanho.</h1>
   </div>
 </section>
-<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'}})}>
+
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'},display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.8fr 1.2fr'},gap:'10'})}>
+  <div><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 4'})}>01 · Referência</p><h2 class={css({fontSize:'3xl',lineHeight:'tight',m:'0 0 5'})}>Aloisio Magalhães: identidade que atravessa escalas.</h2><a href="https://www.esdi.uerj.br/projetos/2545/fundamentos-do-design-de-aloisio-magalhaes-design-br-1970" class={css({color:'text',fontWeight:'bold'})}>Ver a referência na ESDI ↗</a></div>
+  <div class={css({fontSize:'lg',lineHeight:'body'})}><p class={css({mt:'0'})}>A leitura parte do caráter programático da identidade: a linguagem continua reconhecível quando suporte, proporção e escala mudam. Não estamos traduzindo símbolos ou cores de Aloisio, mas a capacidade de um sistema preservar parentesco sem repetir literalmente a mesma peça.</p><p class={css({mb:'0'})}><strong>Pergunta de tradução:</strong> quais relações visuais precisam sobreviver quando um módulo pequeno, um médio e um dominante cumprem papéis diferentes?</p></div>
+</section>
+
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},pb:{base:'12',md:'16'}})}>
   <div class={css({display:'flex',gap:'2',flexWrap:'wrap',mb:'6'})}><span class={badge({tone:'accent'})}>mesmo conteúdo</span><span class={badge()}>mesma ordem DOM</span><span class={badge()}>escala + densidade variam</span></div>
-  <p class={css({fontSize:'lg',lineHeight:'body',maxW:'48rem',m:'0'})}>A repete uma caixa quase literalmente e só aumenta dimensões. B preserva anatomia e ritmo, mas deixa densidade, proporção e alinhamento responderem ao tamanho. C libera também a anatomia e testa o ponto em que a família vira coleção.</p>
+  <p class={css({fontSize:'lg',lineHeight:'body',maxW:'48rem',m:'0'})}>A, B e C são traduções concorrentes da mesma leitura da referência. Nenhuma é tratada como candidata enquanto a exploração estiver apenas materializada.</p>
 </section>
 <section class={css({background:'surfaceMuted',borderTop:'1px solid',borderBottom:'1px solid',borderColor:'text'})}>
 <div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'},display:'grid',gap:'16'})}>
 
 <figure class={css({m:'0'})}>
-  <figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação A — caixa ampliada</strong><p class={css({mt:'2',mb:'0',color:'textMuted'})}>Consistência literal: mesma anatomia, mesmo alinhamento, mesmo ritmo.</p></figcaption>
+  <figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação A — caixa ampliada</strong><p class={css({mt:'2',mb:'0',color:'textMuted',maxW:'50rem',lineHeight:'body'})}>A traduz sistema como repetição literal: mantém anatomia, alinhamento e ritmo quase idênticos e deixa principalmente as dimensões mudarem. Ela testa se reconhecimento máximo compensa o risco de a escala parecer apenas zoom.</p></figcaption>
   <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(6,1fr)'},gap:'3',alignItems:'start'})}>
     {items.map((item,index)=><article class={`${baseCard} ${css({p:'5',gridColumn:{md:index===0?'1 / span 2':index===1?'3 / span 2':'5 / span 2'},minH:{md:index===0?'10rem':index===1?'14rem':'18rem'},display:'flex',flexDirection:'column',justifyContent:'space-between'})}`}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 4'})}>{item.label}</p><div><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{item.title}</h2><p class={css({m:'0',lineHeight:'body',color:'textMuted'})}>{item.body}</p></div></article>)}
   </div>
 </figure>
 
 <figure class={css({m:'0'})}>
-  <figcaption class={css({display:'flex',justifyContent:'space-between',gap:'4',alignItems:'baseline',flexWrap:'wrap',borderTop:'4px solid',borderColor:'accent',pt:'3',mb:'5'})}><strong>Variação B — gramática recorrente</strong><span class={badge({tone:'accent'})}>direção candidata</span></figcaption>
+  <figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação B — gramática recorrente</strong><p class={css({mt:'2',mb:'0',color:'textMuted',maxW:'50rem',lineHeight:'body'})}>B traduz o programa como relações recorrentes, não como caixa recorrente. A sequência rótulo → título → texto e o ritmo de hierarquia permanecem, enquanto proporção, densidade, contraste e alinhamento respondem à função de cada escala.</p></figcaption>
   <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(10,1fr)'},gap:'3',alignItems:'stretch'})}>
     <article class={css({background:'canvas',border:'1px solid',borderColor:'text',p:'5',gridColumn:{md:'1 / span 2'},alignSelf:{md:'end'}})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{items[0].label}</p><h2 class={css({fontSize:'xl',lineHeight:'tight',m:'0 0 3'})}>{items[0].title}</h2><p class={css({m:'0',lineHeight:'body',color:'textMuted',fontSize:'sm'})}>{items[0].body}</p></article>
     <article class={css({background:'accent',p:'6',gridColumn:{md:'3 / span 3'},minH:{md:'15rem'},display:'flex',flexDirection:'column',justifyContent:'space-between'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{items[1].label}</p><div><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{items[1].title}</h2><p class={css({m:'0',lineHeight:'body'})}>{items[1].body}</p></div></article>
@@ -55,7 +61,7 @@ const baseCard = css({ border: '1px solid', borderColor: 'text', background: 'ca
 </figure>
 
 <figure class={css({m:'0'})}>
-  <figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação C — família tensionada</strong><p class={css({mt:'2',mb:'0',color:'textMuted'})}>Escala, alinhamento e anatomia mudam ao mesmo tempo.</p></figcaption>
+  <figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação C — família tensionada</strong><p class={css({mt:'2',mb:'0',color:'textMuted',maxW:'50rem',lineHeight:'body'})}>C traduz adaptação como liberdade ampla: além da escala, libera anatomia, alinhamento e tratamento de superfície. Ela procura descobrir quanto pode mudar antes de o caráter programático deixar de ser reconhecido como família.</p></figcaption>
   <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(7,1fr)'},gap:'4',alignItems:'start'})}>
     <article class={css({background:'canvas',border:'1px solid',borderColor:'text',p:'4',gridColumn:{md:'1 / span 2'},borderRadius:'0'})}><strong>{items[0].title}</strong><p class={css({mb:'0',fontSize:'sm',color:'textMuted'})}>{items[0].body}</p></article>
     <article class={css({background:'info',color:'canvas',p:'7',gridColumn:{md:'4 / span 2'},mt:{md:'10'}})}><p class={css({m:'0 0 4',fontWeight:'black'})}>{items[1].label}</p><p class={css({m:'0',fontSize:'2xl',lineHeight:'tight'})}>{items[1].title}</p></article>
@@ -65,9 +71,10 @@ const baseCard = css({ border: '1px solid', borderColor: 'text', background: 'ca
 
 </div></section>
 <section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'},display:'grid',gridTemplateColumns:{base:'1fr',md:'1fr 2fr'},gap:'6'})}>
-  <p class={css({textStyle:'eyebrow',color:'info',m:'0'})}>Crítica inicial</p>
-  <div class={css({fontSize:'lg',lineHeight:'body'})}><p class={css({mt:'0'})}>A mantém parentesco incontestável, mas trata escala como zoom: o módulo dominante parece apenas uma caixa maior. B parece mais fértil porque conserva a sequência rótulo → título → texto e um ritmo comum, enquanto deixa cada escala encontrar densidade e proporção próprias. C ainda compartilha conteúdo, mas muda relações demais; a leitura tende a percebê-la como três peças desenhadas separadamente.</p><p class={css({mb:'0',fontWeight:'bold'})}>Hipótese de taste para observar na superfície publicada: parentesco parece depender mais de anatomia e ritmo recorrentes do que de proporções idênticas.</p></div>
+  <p class={css({textStyle:'eyebrow',color:'info',m:'0'})}>Estado atual</p>
+  <div class={css({fontSize:'lg',lineHeight:'body'})}><h2 class={css({fontSize:'2xl',m:'0 0 3'})}>Em andamento.</h2><p class={css({m:'0'})}>Há observações iniciais da rodada de construção, mas nenhuma variante foi selecionada ou rejeitada. Uma rodada posterior deve observar esta superfície já publicada, registrar crítica e só então decidir se a exploração é conclusiva. Também é válido mantê-la aberta, rejeitar todas as traduções ou abandoná-la.</p></div>
 </section>
+<section class={css({background:'text',color:'canvas'})}><div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'10',md:'12'},display:'grid',gridTemplateColumns:{base:'1fr',md:'1fr 2fr'},gap:'6'})}><p class={css({textStyle:'eyebrow',color:'accent',m:'0'})}>Decisão canônica</p><div><h2 class={css({fontSize:'2xl',m:'0 0 3'})}>Não avaliada.</h2><p class={css({m:'0',lineHeight:'body',color:'surfaceMuted'})}>Mesmo uma futura seleção dentro da 008 não incorporará automaticamente a solução ao Cobogó. A canonização exige decisão separada e justificativa em prosa.</p></div></div></section>
 <LabNavigation id="escala-recorrente-008" />
 </main>
 </body>
