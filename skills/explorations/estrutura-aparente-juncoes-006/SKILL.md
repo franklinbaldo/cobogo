@@ -33,6 +33,8 @@ A referência ensina uma relação, não uma aparência. Não copie concreto, ci
 
 Não presuma que B vence por ser “moderada”. A pode ser mais forte se a montagem aparente não acrescentar nada; C pode revelar uma linguagem inesperadamente coerente. A escolha deve se apoiar em franqueza, continuidade, hierarquia e caráter observados no conjunto.
 
+A crítica publicada desta exploração acrescenta um critério reutilizável: **uma junção aparente precisa comprar uma relação perceptível**. Borda externa e divisões compartilhadas podem transformar peças independentes em um conjunto; contornos aninhados que apenas repetem a mesma fronteira viram acabamento gráfico e perdem a franqueza que pretendiam comunicar. No mobile, esta pergunta fica ainda mais importante porque linhas redundantes se acumulam verticalmente.
+
 ## Evidência mínima
 
 A sessão deve deixar contrato OKF, build, acessibilidade/superfície, comparação A/B/C publicada ou pronta para publicação, observação desktop/mobile e uma crítica explícita sobre quais junções carregam relação e quais apenas produzem ruído.
