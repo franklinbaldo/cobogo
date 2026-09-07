@@ -26,10 +26,12 @@ A referência alimenta o olhar. O contrato operacional é o `VisualExploration`.
 8. Compare A/B/C por parentesco entre campos, direção de leitura, contraste, movimento e ruído. Não presuma que B seja a melhor só por ser intermediária.
 9. Depois do deploy, recupere o artefato `cobogo-published-preview-*` quando disponível e faça a crítica sobre a superfície publicada.
 10. Atualize `reflection`, estado da exploração e `VisualSpecimen` somente depois da observação visual recuperável. Checks técnicos sustentam integridade; não decidem taste.
+11. Compare contato e deslocamento separadamente. Uma peça pode estar mais deslocada e ainda assim produzir menos movimento se perder a passagem perceptível para as massas vizinhas.
+12. Se duas variações colapsarem para a mesma geometria no mobile, registre isso explicitamente: o empate móvel pode isolar onde a relação visual realmente nasce, em vez de invalidar a exploração.
 
 ## Critério de crítica
 
-Pergunte se a composição parece uma só superfície ou uma coleção de componentes. Um deslocamento só conta como movimento quando orienta o conjunto; se ele apenas torna uma caixa diferente da outra, é variação sem relação. Contato só conta como continuidade quando melhora a leitura de parentesco ou sequência.
+Pergunte se a composição parece uma só superfície ou uma coleção de componentes. **Deslocar não é interligar.** Movimento visual aparece quando uma massa conduz, toca ou entrega a leitura a outra; deslocamento sem contato tende a produzir ilhas. Contato só conta como continuidade quando melhora parentesco, sequência ou passagem. Se remover o contato não muda a leitura do conjunto, ele era apenas arranjo.
 
 ## Evidência mínima
 
@@ -37,4 +39,4 @@ Build, contrato OKF, verificação de acessibilidade/superfície, capturas deskt
 
 ## Saída para WikiSkill
 
-Registre o vocabulário que realmente explicar a escolha. Evite concluir em termos de quantidade de irregularidade; prefira relações como massa, contato, passagem, direção, continuidade, fronteira e competição.
+Registre o vocabulário que realmente explicar a escolha. Evite concluir em termos de quantidade de irregularidade; prefira relações como massa, contato, passagem, direção, continuidade, fronteira e competição. Quando a crítica revelar uma diferença entre `posição` e `relação`, preserve essa distinção: ela é mais reutilizável que a geometria específica do specimen.
