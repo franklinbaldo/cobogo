@@ -69,6 +69,16 @@ export const exploracoes = [
     status: 'selected',
     href: '/cobogo/laboratorio/campos-interligados-007/',
   },
+  {
+    id: 'escala-recorrente-008',
+    numero: '008',
+    titulo: 'Escala recorrente',
+    pergunta: 'Uma família não precisa ter o mesmo tamanho.',
+    resumo: 'Anatomia e ritmo recorrentes tentam manter parentesco enquanto proporção e densidade mudam.',
+    familia: 'Escala / identidade',
+    status: 'exploring',
+    href: '/cobogo/laboratorio/escala-recorrente-008/',
+  },
 ] as const
 
 export type ExploracaoId = (typeof exploracoes)[number]['id']
