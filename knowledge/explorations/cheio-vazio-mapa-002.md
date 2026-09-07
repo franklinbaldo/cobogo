@@ -29,10 +29,15 @@ tensions_to_watch:
   - "A técnica diminuir área clicável ou exigir reordenar o DOM."
   - "A composição só parecer intencional depois de ler sua explicação."
 skill_path: skills/explorations/cheio-vazio-mapa-002/SKILL.md
-status: selected
-reflection: "A comparação foi publicada pela PR #601 no merge d9ad7ac22d1630ccb1720eac44d119cea78b5ac5. A variante A é previsível; B preserva DOM, área clicável e sequência 01→05 e usa o vazio como contrapeso do fechamento; C fragmenta a varredura entre 03 e 04. Build, OKF e publicação foram verificados. B foi selecionada porque a crítica visual favoreceu essa direção neste contexto, não porque o laboratório tenha provado uma lei sobre composição."
+status: concluded
+result: selected
+result_rationale: "B foi selecionada porque usa o vazio como contrapeso do fechamento sem quebrar a sequência 01→05, a área clicável ou a ordem semântica; A é previsível e C fragmenta a varredura entre destinos."
+canonical_status: not_evaluated
+canonical_rationale: null
+canonical_targets: []
+reflection: "A comparação foi publicada pela PR #601 no merge d9ad7ac22d1630ccb1720eac44d119cea78b5ac5. Build, OKF e publicação foram verificados. B foi selecionada dentro desta exploração; nenhuma adoção canônica foi avaliada."
 ---
 
 # Exploração: Mapa vazado 002
 
-A segunda exploração estreitou a direção anterior. O vazio depois de uma sequência já compreensível tem mais força como contrapeso do fechamento; no meio da navegação, cobra um custo de escaneabilidade maior. É repertório crítico acumulado, não uma regra demonstrada.
+B foi selecionada dentro da exploração porque o vazio funciona melhor como contrapeso depois de uma sequência já compreensível. Isso não transforma o achado em regra canônica.
