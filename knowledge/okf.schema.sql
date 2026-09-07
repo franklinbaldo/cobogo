@@ -1,3 +1,11 @@
+CREATE TABLE "RFC" (
+    id VARCHAR PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    status VARCHAR NOT NULL CHECK (status IN ('proposed', 'accepted', 'superseded', 'rejected')),
+    date VARCHAR NOT NULL,
+    scope VARCHAR[] NOT NULL
+);
+
 CREATE TABLE "VisualReference" (
     id VARCHAR PRIMARY KEY,
     title VARCHAR NOT NULL,
