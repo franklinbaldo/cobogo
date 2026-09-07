@@ -13,9 +13,9 @@ import RelationCollection from '../components/RelationCollection.astro'
     <title>Estados — Cobogó</title>
   </head>
   <body>
-    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
+    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '3', md: '0' }, minH: '20', display: 'flex', flexWrap: { base: 'wrap', md: 'nowrap' }, alignItems: 'center', justifyContent: 'space-between', gap: { base: '2', md: '6' }, borderBottom: '1px solid', borderColor: 'border' })}>
       <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
-      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
+      <nav class={css({ display: 'flex', width: { base: '100%', md: 'auto' }, gap: { base: '3', md: '8' }, flexWrap: 'wrap', justifyContent: { base: 'start', md: 'end' } })} aria-label="Principal">
         <a class={navLink()} href="/cobogo/">Início</a>
         <a class={navLink()} href="/cobogo/comece/">Comece</a>
         <a class={navLink()} href="/cobogo/problemas/">Problemas</a>
