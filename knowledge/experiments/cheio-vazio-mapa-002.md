@@ -29,9 +29,10 @@ failure_signals:
   - "A técnica diminui área clicável ou exige reordenar o DOM."
   - "A variante só parece intencional depois de ler a explicação do experimento."
 skill_path: skills/experiments/cheio-vazio-mapa-002/SKILL.md
-status: running
+status: promising
+outcome: "A comparação foi publicada pela PR #601 no merge d9ad7ac22d1630ccb1720eac44d119cea78b5ac5. A variante A é o controle mais previsível e fecha a sequência com máxima regularidade. A variante B preserva DOM, área clicável e sequência 01→05 enquanto usa o vazio apenas como contrapeso do fechamento, repetindo em contexto navegacional o achado relacional do experimento 001. A variante C ultrapassa o limite útil: inserir o vazio antes do fim fragmenta a varredura entre 03 e 04 e aumenta a chance de o intervalo parecer conteúdo ausente. Build, contrato OKF e skill gate passaram no head da PR. O deploy publicou a rota /laboratorio/mapa-002/; a verificação de superfície foi ampliada na rodada para capturar essa rota em desktop 1600×1000 e mobile 390×844 e impedir overflow, landmarks ausentes ou ações sem nome. O achado segue promising: há repetição em dois contextos do laboratório, mas ainda não há evidência em consumidor real suficiente para promovê-lo a princípio validado."
 ---
 
 # Experimento: Mapa vazado 002
 
-Segunda aplicação do estudo de cheio e vazio. O primeiro experimento encontrou um resultado promissor em blocos editoriais; este muda o contexto para navegação real e testa se o mesmo tipo de contrapeso sobrevive quando sequência e affordance clicável importam mais que composição editorial.
+A segunda aplicação estreitou a fronteira do achado anterior. O vazio funciona melhor quando aparece depois de uma sequência já compreensível e atua como contrapeso do fechamento; inseri-lo no meio de uma tarefa de navegação cobra um custo de escaneabilidade maior. Isso reforça a relação sem transformá-la prematuramente em regra.

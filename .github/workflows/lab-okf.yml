@@ -6,6 +6,7 @@ on:
       - "knowledge/**"
       - "skills/experiments/**"
       - "src/pages/laboratorio.astro"
+      - "src/pages/laboratorio/**"
       - ".github/workflows/lab-okf.yml"
   push:
     branches: [main]
@@ -13,6 +14,7 @@ on:
       - "knowledge/**"
       - "skills/experiments/**"
       - "src/pages/laboratorio.astro"
+      - "src/pages/laboratorio/**"
       - ".github/workflows/lab-okf.yml"
 
 permissions:
