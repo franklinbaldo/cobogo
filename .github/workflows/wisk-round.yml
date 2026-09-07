@@ -35,7 +35,7 @@ jobs:
           uv run wisk run evidence "$RUN" run-evidence/local-specialization execution '.wisk/knowledge/local/' 'Added Wisk-local visual-explorer SessionType and visual-exploration RunSpec adapted from the repository current contracts.' --goal "$GOAL"
           npm install
           npm run build
-          uv run wisk run check "$RUN" run-checks/verification verification 'uv sync --group dev; uv run wisk init .; npm install; npm run build; Wisk bundle validation' 'Environment synchronization, idempotent bootstrap, site build, and Wisk contract loading succeeded.' passed --goal "$GOAL" --evidence '.wisk/knowledge/local/'
+          uv run wisk run check "$RUN" run-checks/verification verification 'uv sync --group dev; uv run wisk init .; npm install; npm run build; Wisk bundle validation' 'Environment synchronization, idempotent bootstrap, site build, and Wisk contract loading succeeded.' pass --goal "$GOAL" --evidence '.wisk/knowledge/local/'
           uv run wisk run goal-status "$RUN" "$GOAL" achieved
           uv run wisk run outcome "$RUN" run-outcomes/wisk-local-visual-contract success completed 'Wisk adoption now exposes Cobogó visual-lab specialization through the canonical local namespace.' 'Use uv run wisk start/session start-next on the next round; it should select the visual-explorer specialization when Experience is due.' --goals-advanced "$GOAL" --evidence run-evidence/local-specialization --checks run-checks/verification
           uv run wisk check "$RUN" | tee .wisk-check-final.json
