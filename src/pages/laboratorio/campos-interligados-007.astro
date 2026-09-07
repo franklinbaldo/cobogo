@@ -1,0 +1,74 @@
+---
+import '../../styles/index.css'
+import { css } from '../../../styled-system/css'
+import { badge, navLink } from '../../../styled-system/recipes'
+
+const fields = [
+  { label: '01 · Abertura', title: 'Uma superfície pode conduzir sem virar trilho.', body: 'Cada zona mantém função própria, mas a composição precisa dizer que elas pertencem ao mesmo movimento.' },
+  { label: '02 · Contexto', title: 'Contraste separa sem necessariamente isolar.', body: 'Mudanças de massa e fundo podem criar passagem quando respondem ao campo vizinho.' },
+  { label: '03 · Evidência', title: 'Contato precisa comprar continuidade.', body: 'Encostar blocos só vale quando parentesco, sequência ou direção ficam mais claros.' },
+  { label: '04 · Fecho', title: 'Movimento é relação, não deslocamento gratuito.', body: 'A geometria deve desaparecer como truque e permanecer como orientação do conjunto.' },
+]
+---
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content="Exploração visual do Laboratório Cobogó sobre campos interligados e continuidade editorial." />
+  <title>Campos interligados 007 — Laboratório Cobogó</title>
+</head>
+<body>
+<header class={css({ maxW:'content', mx:'auto', px:{base:'5',md:'8'}, minH:'20', display:'flex', alignItems:'center', justifyContent:'space-between', gap:'6', borderBottom:'1px solid', borderColor:'border' })}>
+  <a href="/cobogo/" class={css({fontWeight:'black',fontSize:'xl',textDecoration:'none',letterSpacing:'-0.04em'})}>COBOGÓ</a>
+  <nav class={css({display:'flex',gap:{base:'4',md:'8'},flexWrap:'wrap'})} aria-label="Principal"><a class={navLink()} href="/cobogo/">Início</a><a class={navLink({active:true})} href="/cobogo/laboratorio/">Laboratório</a></nav>
+</header>
+<main>
+<section class={css({background:'text',color:'canvas'})}>
+  <div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'},display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.75fr 1.25fr'},gap:'10',alignItems:'end'})}>
+    <div><p class={css({textStyle:'eyebrow',color:'accent',m:'0'})}>Exploração 007 · exploring</p><p class={css({mt:'5',mb:'0',color:'surfaceMuted',lineHeight:'body',maxW:'32rem'})}>Mesmas quatro zonas, três relações espaciais. A pergunta não é qual forma parece mais diferente, mas quando os campos começam a agir como uma composição contínua.</p></div>
+    <h1 class={css({textStyle:'display',color:'canvas',m:'0',maxW:'10ch'})}>Campos que respondem uns aos outros.</h1>
+  </div>
+</section>
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'}})}>
+  <div class={css({display:'flex',gap:'2',flexWrap:'wrap',mb:'6'})}><span class={badge({tone:'accent'})}>mesmo conteúdo</span><span class={badge()}>mesma ordem DOM</span><span class={badge()}>relação espacial varia</span></div>
+  <p class={css({fontSize:'lg',lineHeight:'body',maxW:'48rem',m:'0'})}>A separa cada zona; B usa contato e alternância de massa para conduzir o olhar; C intensifica deslocamento e sobreposição para revelar quando continuidade vira competição.</p>
+</section>
+<section class={css({background:'surfaceMuted',borderTop:'1px solid',borderBottom:'1px solid',borderColor:'text'})}>
+<div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'},display:'grid',gap:'16'})}>
+
+<figure class={css({m:'0'})}>
+  <figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação A — campos isolados</strong></figcaption>
+  <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(2,1fr)'},gap:'6'})}>
+    {fields.map((item) => <article class={css({background:'canvas',p:'6',border:'1px solid',borderColor:'border'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{item.label}</p><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{item.title}</h2><p class={css({m:'0',lineHeight:'body',color:'textMuted'})}>{item.body}</p></article>)}
+  </div>
+</figure>
+
+<figure class={css({m:'0'})}>
+  <figcaption class={css({borderTop:'4px solid',borderColor:'accent',pt:'3',mb:'5'})}><strong>Variação B — contato coordenado</strong></figcaption>
+  <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(6,1fr)'},gap:'0',alignItems:'stretch'})}>
+    <article class={css({background:'text',color:'canvas',p:{base:'6',md:'8'},gridColumn:{md:'1 / span 4'},minH:{md:'15rem'},display:'flex',flexDirection:'column',justifyContent:'space-between'})}><p class={css({textStyle:'eyebrow',color:'accent',m:'0 0 3'})}>{fields[0].label}</p><div><h2 class={css({fontSize:{base:'2xl',md:'3xl'},lineHeight:'tight',m:'0 0 4',maxW:'15ch'})}>{fields[0].title}</h2><p class={css({m:'0',lineHeight:'body',color:'surfaceMuted',maxW:'32rem'})}>{fields[0].body}</p></div></article>
+    <article class={css({background:'accent',p:'6',gridColumn:{md:'5 / span 2'},display:'flex',flexDirection:'column',justifyContent:'end'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{fields[1].label}</p><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{fields[1].title}</h2><p class={css({m:'0',lineHeight:'body'})}>{fields[1].body}</p></article>
+    <article class={css({background:'canvas',p:'6',gridColumn:{md:'2 / span 3'},borderLeft:{md:'1px solid'},borderBottom:{md:'1px solid'},borderColor:'text'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{fields[2].label}</p><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{fields[2].title}</h2><p class={css({m:'0',lineHeight:'body',color:'textMuted'})}>{fields[2].body}</p></article>
+    <article class={css({background:'info',color:'canvas',p:'6',gridColumn:{md:'5 / span 2'}})}><p class={css({textStyle:'eyebrow',color:'accent',m:'0 0 3'})}>{fields[3].label}</p><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{fields[3].title}</h2><p class={css({m:'0',lineHeight:'body'})}>{fields[3].body}</p></article>
+  </div>
+</figure>
+
+<figure class={css({m:'0'})}>
+  <figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação C — campos em competição</strong></figcaption>
+  <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(8,1fr)'},gap:{base:'0',md:'2'},alignItems:'start'})}>
+    <article class={css({background:'text',color:'canvas',p:'7',gridColumn:{md:'1 / span 5'},minH:{md:'16rem'}})}><p class={css({textStyle:'eyebrow',color:'accent',m:'0 0 3'})}>{fields[0].label}</p><h2 class={css({fontSize:'3xl',lineHeight:'tight',m:'0 0 4',maxW:'14ch'})}>{fields[0].title}</h2><p class={css({m:'0',lineHeight:'body',color:'surfaceMuted'})}>{fields[0].body}</p></article>
+    <article class={css({background:'accent',p:'6',gridColumn:{md:'4 / span 5'},mt:{base:'0',md:'-10'},position:'relative'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{fields[1].label}</p><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{fields[1].title}</h2><p class={css({m:'0',lineHeight:'body'})}>{fields[1].body}</p></article>
+    <article class={css({background:'canvas',p:'6',gridColumn:{md:'1 / span 4'},mt:{base:'0',md:'-6'},border:'1px solid',borderColor:'text',position:'relative'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{fields[2].label}</p><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{fields[2].title}</h2><p class={css({m:'0',lineHeight:'body',color:'textMuted'})}>{fields[2].body}</p></article>
+    <article class={css({background:'info',color:'canvas',p:'7',gridColumn:{md:'3 / span 6'},mt:{base:'0',md:'-8'},position:'relative'})}><p class={css({textStyle:'eyebrow',color:'accent',m:'0 0 3'})}>{fields[3].label}</p><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{fields[3].title}</h2><p class={css({m:'0',lineHeight:'body',maxW:'35rem'})}>{fields[3].body}</p></article>
+  </div>
+</figure>
+
+</div>
+</section>
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'},display:'grid',gridTemplateColumns:{base:'1fr',md:'1fr 2fr'},gap:'6'})}>
+  <p class={css({textStyle:'eyebrow',color:'info',m:'0'})}>Crítica pendente</p>
+  <div class={css({fontSize:'lg',lineHeight:'body'})}><p class={css({mt:'0'})}>A/B/C já tornam a pergunta observável, mas a direção continua `exploring` até a superfície publicada ser vista em desktop e mobile.</p><p class={css({mb:'0',fontWeight:'bold'})}>Olhar especialmente para passagem entre campos, ordem percebida e se o contato cria parentesco real ou apenas uma geometria diferente.</p></div>
+</section>
+</main>
+</body>
+</html>
