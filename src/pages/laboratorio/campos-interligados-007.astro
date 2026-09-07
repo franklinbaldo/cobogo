@@ -2,6 +2,7 @@
 import '../../styles/index.css'
 import { css } from '../../../styled-system/css'
 import { badge, navLink } from '../../../styled-system/recipes'
+import LabNavigation from '../../components/LabNavigation.astro'
 
 const fields = [
   { label: '01 · Abertura', title: 'Uma superfície pode conduzir sem virar trilho.', body: 'Cada zona mantém função própria, mas a composição precisa dizer que elas pertencem ao mesmo movimento.' },
@@ -69,6 +70,7 @@ const fields = [
   <p class={css({textStyle:'eyebrow',color:'info',m:'0'})}>Crítica</p>
   <div class={css({fontSize:'lg',lineHeight:'body'})}><p class={css({mt:'0'})}>A publicação deixou a diferença nítida. A continua parecendo quatro componentes autônomos. B transforma contraste em passagem: a massa escura entrega a leitura ao campo ácido, a zona clara funciona como transição e o azul fecha o percurso. C desloca mais, mas perde contato; o fundo neutro reaparece entre as massas e a composição vira uma sequência de ilhas escalonadas.</p><p>No mobile, B e C relinearizam para a mesma pilha e mantêm a ordem DOM. Isso ajuda a isolar o achado: o ganho de B está na relação espacial do desktop, não numa decoração que sobrevive por inércia.</p><p class={css({mb:'0',fontWeight:'bold'})}>Direção selecionada: B. Deslocar não é interligar; movimento visual precisa de contato ou passagem perceptível entre massas.</p></div>
 </section>
+<LabNavigation id="campos-interligados-007" />
 </main>
 </body>
 </html>
