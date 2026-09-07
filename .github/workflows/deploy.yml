@@ -74,6 +74,7 @@ jobs:
           const viewports = [
             { name: 'desktop', width: 1600, height: 1000 },
             { name: 'mobile', width: 390, height: 844 },
+            { name: 'mobile-320', width: 320, height: 800 },
           ];
           const coreRoutes = [
             { path: '/', name: 'home' },
@@ -131,7 +132,7 @@ jobs:
                 image,
               });
               if (status !== 200) failures.push(`${route.path} returned HTTP ${status}`);
-              if (viewport.name === 'mobile' && facts.documentWidth > viewport.width) failures.push(`${route.path} is ${facts.documentWidth}px wide in a ${viewport.width}px viewport`);
+              if (viewport.width < 768 && facts.documentWidth > viewport.width) failures.push(`${route.path} is ${facts.documentWidth}px wide in a ${viewport.width}px viewport`);
               if (facts.lang !== 'pt-BR') failures.push(`${route.path} must declare lang=pt-BR`);
               if (facts.h1Count !== 1) failures.push(`${route.path} has ${facts.h1Count} h1 elements`);
               if (facts.mainCount !== 1) failures.push(`${route.path} has ${facts.mainCount} main elements`);
