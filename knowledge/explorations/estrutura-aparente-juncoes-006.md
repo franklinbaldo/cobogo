@@ -27,10 +27,15 @@ tensions_to_watch:
   - "A versão mais polida parecer mais franca e convincente que as alternativas aparentes."
   - "A referência ser reduzida a concreto, cinza ou aparência inacabada."
 skill_path: skills/explorations/estrutura-aparente-juncoes-006/SKILL.md
-status: selected
-reflection: "A superfície publicada no SHA 08d2f7fe8d556d60b978c9a015cfa0a425da80be foi observada nas capturas desktop e mobile do artefato cobogo-published-preview correspondente. A é limpa e legível, mas a separação por espaço faz os três blocos parecerem cards independentes e produz pouco caráter próprio. B é a composição mais convincente: a borda externa e as divisões compartilhadas tornam a família e a continuidade imediatamente legíveis, sem competir com títulos ou texto; no mobile, a mesma lógica vira uma sequência vertical clara. C confirma o limite: bordas aninhadas e linhas internas repetem a mesma informação estrutural, criam caixas dentro de caixas e aumentam muito o ruído, sobretudo na tela estreita. A direção fica `selected`, com B como variação escolhida. O aprendizado crítico é seletividade: estrutura aparente tem força quando uma linha carrega uma relação real entre partes; repetir contornos para reafirmar relações já compreendidas vira acabamento gráfico, não franqueza construtiva."
+status: concluded
+result: selected
+result_rationale: "B foi selecionada porque borda externa e divisões compartilhadas tornam parentesco e continuidade perceptíveis sem competir com o conteúdo; A esconde demais a montagem e C repete relações já compreendidas até produzir ruído."
+canonical_status: not_evaluated
+canonical_rationale: null
+canonical_targets: []
+reflection: "A superfície publicada no SHA 08d2f7fe8d556d60b978c9a015cfa0a425da80be foi observada em desktop e mobile. B foi selecionada dentro desta exploração; nenhuma adoção canônica foi avaliada. O aprendizado local é que uma junção aparente precisa carregar uma relação real."
 ---
 
 # Exploração: Estrutura aparente 006
 
-A comparação publicada separou franqueza de excesso. A não mostra montagem suficiente para ganhar uma voz particular; C mostra a mesma montagem vezes demais. B encontra o gesto mais forte: bordas compartilhadas fazem três partes parecerem um conjunto e explicam continuidade sem transformar a interface em diagrama. A direção foi selecionada porque a estrutura visível trabalha como relação, não como textura.
+B foi selecionada dentro da exploração porque a estrutura visível trabalha como relação, não como textura. A canonização permanece uma decisão separada.

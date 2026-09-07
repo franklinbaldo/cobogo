@@ -28,10 +28,15 @@ tensions_to_watch:
   - "Direção que só funcione em tablet."
   - "Pausa que precise de ornamento, seta ou explicação para parecer intencional."
 skill_path: skills/explorations/cheio-vazio-mobile-003/SKILL.md
-status: selected
-reflection: "A comparação publicada foi observada no artefato `cobogo-published-preview-6d485a10bc29d5d571d405ad2e2fb867e0f26040`. Em 320×800 e 390×844, B preserva continuidade e cria uma pausa perceptível depois de um grupo semanticamente completo; C cria uma ruptura vertical forte demais. O gate pós-publicação verificou integridade técnica nas duas larguras. A crítica seleciona B como direção mais convincente para esta exploração: em tela estreita, o orçamento de vazio parece menor."
+status: concluded
+result: selected
+result_rationale: "B foi selecionada porque a pausa curta mantém ritmo e continuidade em 320px e 390px sem parecer conteúdo ausente; C dilui a continuidade e A não produz a mesma pausa perceptível."
+canonical_status: not_evaluated
+canonical_rationale: null
+canonical_targets: []
+reflection: "A comparação publicada foi observada no artefato cobogo-published-preview-6d485a10bc29d5d571d405ad2e2fb867e0f26040. O gate pós-publicação verificou integridade técnica. B foi selecionada dentro desta exploração; nenhuma adoção canônica foi avaliada."
 ---
 
 # Exploração: Vazio móvel 003
 
-A ausência não precisa desaparecer quando a grade colapsa. Nesta exploração, a pausa curta mantém ritmo em 320px e 390px; a pausa longa dilui a continuidade. O resultado registra taste informado por comparação e restrições reais, não uma hipótese aceita ou rejeitada.
+B foi selecionada dentro da exploração como melhor tradução desta pergunta em tela estreita. O resultado é local e não equivale a uma regra canônica.

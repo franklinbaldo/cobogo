@@ -3,90 +3,16 @@ import '../styles/index.css'
 import { css } from '../../styled-system/css'
 import { badge, navLink } from '../../styled-system/recipes'
 import { exploracoes } from '../data/laboratorio'
-
 const familias = [...new Set(exploracoes.map((item) => item.familia))]
 const maisRecente = exploracoes.at(-1)!
+const abertas = exploracoes.filter((item) => item.status === 'rough' || item.status === 'exploring').length
+const labelEstado = (status: string) => ({ rough:'inacabada', exploring:'em andamento', concluded:'concluída', abandoned:'abandonada' }[status] ?? status)
 ---
-
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Laboratório visual do Cobogó: catálogo navegável de explorações, referências, estudos e críticas." />
-    <title>Laboratório — Cobogó</title>
-  </head>
-  <body>
-    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
-      <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
-      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
-        <a class={navLink()} href="/cobogo/">Início</a>
-        <a class={navLink()} href="/cobogo/comece/">Comece</a>
-        <a class={navLink({ active: true })} href="/cobogo/laboratorio/">Laboratório</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class={css({ background: 'text', color: 'canvas', borderBottom: '1px solid', borderColor: 'text' })}>
-        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10', alignItems: 'end' })}>
-          <div>
-            <p class={css({ textStyle: 'eyebrow', color: 'accent', m: '0' })}>Laboratório visual</p>
-            <p class={css({ mt: '5', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '30rem' })}>Cada exploração tem uma pergunta, variantes comparáveis, crítica publicada e uma URL própria.</p>
-          </div>
-          <div>
-            <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '11ch' })}>Veja a linguagem sendo construída.</h1>
-            <p class={css({ mt: '6', mb: '0', color: 'surfaceMuted', lineHeight: 'body', fontSize: 'lg', maxW: '42rem' })}>Não é uma galeria de respostas prontas. É o histórico navegável das decisões visuais que o Cobogó testou, criticou e decidiu manter ou continuar explorando.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '10', md: '12' }, borderBottom: '1px solid', borderColor: 'border' })}>
-        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr 1fr', md: 'repeat(4, 1fr)' }, gap: '6' })}>
-          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Explorações</p><strong class={css({ fontSize: '2xl' })}>{String(exploracoes.length).padStart(2, '0')}</strong></div>
-          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Famílias</p><strong class={css({ fontSize: '2xl' })}>{String(familias.length).padStart(2, '0')}</strong></div>
-          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Mais recente</p><strong class={css({ fontSize: '2xl' })}>{maisRecente.status}</strong></div>
-          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Continue por</p><a href={maisRecente.href} class={css({ color: 'text', fontWeight: 'black', fontSize: '2xl' })}>{maisRecente.numero} →</a></div>
-        </div>
-      </section>
-
-      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
-        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10', alignItems: 'start', mb: { base: '10', md: '14' } })}>
-          <div>
-            <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0 0 3' })}>Catálogo</p>
-            <h2 class={css({ textStyle: 'title', m: '0', maxW: '12ch' })}>{exploracoes.length} perguntas. Uma sequência de aprendizado.</h2>
-          </div>
-          <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'textMuted', m: '0', maxW: '42rem' })}>Leia em ordem para acompanhar a evolução do repertório, ou entre direto numa família. Cada página oferece anterior, próxima e retorno ao catálogo.</p>
-        </div>
-
-        <div class={css({ display: 'grid', gap: '0', borderTop: '1px solid', borderColor: 'text' })}>
-          {exploracoes.map((item) => (
-            <a href={item.href} class={css({ color: 'text', textDecoration: 'none', display: 'grid', gridTemplateColumns: { base: '4.5rem 1fr', md: '6rem 0.8fr 1.2fr auto' }, gap: { base: '4', md: '6' }, alignItems: 'start', py: { base: '6', md: '7' }, borderBottom: '1px solid', borderColor: 'text', transition: 'background 120ms ease', _hover: { background: 'surfaceMuted' }, _focusVisible: { outline: '3px solid', outlineColor: 'info', outlineOffset: '-3px' } })}>
-              <span class={css({ textStyle: 'eyebrow', color: 'textMuted', pt: '1' })}>{item.numero}</span>
-              <div>
-                <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0 0 2' })}>{item.familia}</p>
-                <strong class={css({ fontSize: { base: 'xl', md: '2xl' }, lineHeight: 'tight' })}>{item.titulo}</strong>
-                <p class={css({ mt: '3', mb: '0' })}><span class={badge({ tone: item.status === 'selected' ? 'accent' : undefined })}>{item.status}</span></p>
-              </div>
-              <div class={css({ gridColumn: { base: '2', md: 'auto' } })}>
-                <p class={css({ fontWeight: 'bold', m: '0 0 2', lineHeight: 'tight' })}>{item.pergunta}</p>
-                <p class={css({ color: 'textMuted', m: '0', lineHeight: 'body' })}>{item.resumo}</p>
-              </div>
-              <span class={css({ gridColumn: { base: '2', md: 'auto' }, justifySelf: { md: 'end' }, fontWeight: 'black', fontSize: 'xl' })}>→</span>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderColor: 'border' })}>
-        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '18' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10' })}>
-          <div><p class={css({ textStyle: 'eyebrow', color: 'info', m: '0 0 3' })}>Método</p><h2 class={css({ textStyle: 'title', m: '0', maxW: '13ch' })}>Olhar primeiro. Traduzir depois.</h2></div>
-          <div class={css({ lineHeight: 'body', fontSize: 'lg' })}>
-            <p class={css({ mt: '0' })}>Referência não vira regra por admiração. Ela vira pergunta visual, variantes comparáveis, specimen publicado e crítica situada.</p>
-            <div class={css({ display: 'flex', gap: '2', flexWrap: 'wrap', mt: '6' })}>
-              {['Referência', 'Estudo', 'Exploração', 'Specimen', 'Crítica', 'Linguagem'].map((item) => <span class={badge()}>{item}</span>)}
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </body>
-</html>
+<html lang="pt-BR"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content="Laboratório visual do Cobogó: investigações abertas, concluídas, rejeitadas e decisões de linguagem." /><title>Laboratório — Cobogó</title></head><body>
+<header class={css({ maxW:'content',mx:'auto',px:{base:'5',md:'8'},minH:'20',display:'flex',alignItems:'center',justifyContent:'space-between',gap:'6',borderBottom:'1px solid',borderColor:'border' })}><a href="/cobogo/" class={css({fontWeight:'black',fontSize:'xl',textDecoration:'none',letterSpacing:'-0.04em'})}>COBOGÓ</a><nav class={css({display:'flex',gap:{base:'4',md:'8'},flexWrap:'wrap',justifyContent:'end'})} aria-label="Principal"><a class={navLink()} href="/cobogo/">Início</a><a class={navLink()} href="/cobogo/comece/">Comece</a><a class={navLink({active:true})} href="/cobogo/laboratorio/">Laboratório</a></nav></header>
+<main>
+<section class={css({background:'text',color:'canvas',borderBottom:'1px solid',borderColor:'text'})}><div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'16',md:'24'},display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.7fr 1.3fr'},gap:'10',alignItems:'end'})}><div><p class={css({textStyle:'eyebrow',color:'accent',m:'0'})}>Laboratório visual</p><p class={css({mt:'5',mb:'0',color:'surfaceMuted',lineHeight:'body',maxW:'30rem'})}>Aqui cabem explorações inacabadas, em andamento, inconclusivas, rejeitadas e abandonadas. O laboratório não existe para fabricar vencedores.</p></div><div><h1 class={css({textStyle:'display',color:'canvas',m:'0',maxW:'11ch'})}>Veja a linguagem sendo investigada.</h1><p class={css({mt:'6',mb:'0',color:'surfaceMuted',lineHeight:'body',fontSize:'lg',maxW:'42rem'})}>Materializar, avaliar e canonizar são decisões diferentes. Uma variante pode vencer sua exploração e nunca virar Cobogó.</p></div></div></section>
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'10',md:'12'},borderBottom:'1px solid',borderColor:'border'})}><div class={css({display:'grid',gridTemplateColumns:{base:'1fr 1fr',md:'repeat(4,1fr)'},gap:'6'})}><div><p class={css({textStyle:'eyebrow',color:'textMuted',m:'0 0 2'})}>Explorações</p><strong class={css({fontSize:'2xl'})}>{String(exploracoes.length).padStart(2,'0')}</strong></div><div><p class={css({textStyle:'eyebrow',color:'textMuted',m:'0 0 2'})}>Em aberto</p><strong class={css({fontSize:'2xl'})}>{String(abertas).padStart(2,'0')}</strong></div><div><p class={css({textStyle:'eyebrow',color:'textMuted',m:'0 0 2'})}>Famílias</p><strong class={css({fontSize:'2xl'})}>{String(familias.length).padStart(2,'0')}</strong></div><div><p class={css({textStyle:'eyebrow',color:'textMuted',m:'0 0 2'})}>Mais recente</p><a href={maisRecente.href} class={css({color:'text',fontWeight:'black',fontSize:'2xl'})}>{maisRecente.numero} →</a></div></div></section>
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'}})}><div class={css({display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.7fr 1.3fr'},gap:'10',alignItems:'start',mb:{base:'10',md:'14'}})}><div><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>Catálogo</p><h2 class={css({textStyle:'title',m:'0',maxW:'12ch'})}>{exploracoes.length} perguntas, sem obrigação de resposta.</h2></div><p class={css({fontSize:'lg',lineHeight:'body',color:'textMuted',m:'0',maxW:'42rem'})}>Cada página começa pela referência, explica as traduções e mostra separadamente o estado do trabalho, o resultado da exploração e eventual decisão canônica.</p></div><div class={css({display:'grid',gap:'0',borderTop:'1px solid',borderColor:'text'})}>{exploracoes.map((item)=><a href={item.href} class={css({color:'text',textDecoration:'none',display:'grid',gridTemplateColumns:{base:'4.5rem 1fr',md:'6rem 0.8fr 1.2fr auto'},gap:{base:'4',md:'6'},alignItems:'start',py:{base:'6',md:'7'},borderBottom:'1px solid',borderColor:'text',_hover:{background:'surfaceMuted'},_focusVisible:{outline:'3px solid',outlineColor:'info',outlineOffset:'-3px'}})}><span class={css({textStyle:'eyebrow',color:'textMuted',pt:'1'})}>{item.numero}</span><div><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 2'})}>{item.familia}</p><strong class={css({fontSize:{base:'xl',md:'2xl'},lineHeight:'tight'})}>{item.titulo}</strong><div class={css({display:'flex',gap:'2',flexWrap:'wrap',mt:'3'})}><span class={badge({tone:item.status==='exploring'?'accent':undefined})}>{labelEstado(item.status)}</span>{item.result && <span class={badge()}>resultado: {item.result}</span>}</div></div><div class={css({gridColumn:{base:'2',md:'auto'}})}><p class={css({fontWeight:'bold',m:'0 0 2',lineHeight:'tight'})}>{item.pergunta}</p><p class={css({color:'textMuted',m:'0',lineHeight:'body'})}>{item.resumo}</p></div><span class={css({gridColumn:{base:'2',md:'auto'},justifySelf:{md:'end'},fontWeight:'black',fontSize:'xl'})}>→</span></a>)}</div></section>
+<section class={css({background:'surfaceMuted',borderTop:'1px solid',borderColor:'border'})}><div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'18'},display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.7fr 1.3fr'},gap:'10'})}><div><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>Ciclo</p><h2 class={css({textStyle:'title',m:'0',maxW:'13ch'})}>Olhar. Traduzir. Publicar. Depois julgar.</h2></div><div class={css({lineHeight:'body',fontSize:'lg'})}><p class={css({mt:'0'})}>A rodada que constrói variantes não escolhe vencedora. Outra rodada observa a superfície publicada e pode selecionar, rejeitar, concluir sem resposta ou continuar explorando. Canonização vem depois e precisa explicar em prosa por que algo merece entrar no Cobogó.</p><div class={css({display:'flex',gap:'2',flexWrap:'wrap',mt:'6'})}>{['Referência','Leitura','Traduções','Publicação','Crítica posterior','Resultado','Decisão canônica'].map((item)=><span class={badge()}>{item}</span>)}</div></div></div></section>
+</main></body></html>

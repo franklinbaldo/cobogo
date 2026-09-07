@@ -27,10 +27,15 @@ tensions_to_watch:
   - "A ordem visual divergir da ordem semântica."
   - "A referência precisar ser explicada para a composição parecer interessante."
 skill_path: skills/explorations/cheio-vazio-grid-001/SKILL.md
-status: selected
-reflection: "Três variantes com conteúdo idêntico foram comparadas e publicadas pela PR #599. A variante B (contrapeso diagonal) tem mais força na relação entre massas; A é legível, mas pouco expressiva; C separa excessivamente blocos relacionados. No merge 7adf8bf803e0633ca9df1734bad369ba797ecf8b, os contratos OKF e builds passaram, o Deploy Pages #474 publicou a comparação e o gate pós-publicação verificou /laboratorio/ em 1600×1000 e 390×844 sem falhas estruturais ou overflow móvel. B fica selecionada como direção a continuar, sem transformar gosto ou recorrência local em prova científica."
+status: concluded
+result: selected
+result_rationale: "B foi a tradução mais forte nesta comparação porque o vazio atua como contrapeso entre massas sem comprometer hierarquia, ordem semântica ou relinearização móvel; A permaneceu funcional mas pouco expressiva, e C separou demais blocos relacionados."
+canonical_status: not_evaluated
+canonical_rationale: null
+canonical_targets: []
+reflection: "Três variantes com conteúdo idêntico foram comparadas e publicadas pela PR #599. A variante B (contrapeso diagonal) tem mais força na relação entre massas; A é legível, mas pouco expressiva; C separa excessivamente blocos relacionados. No merge 7adf8bf803e0633ca9df1734bad369ba797ecf8b, os contratos OKF e builds passaram, o Deploy Pages #474 publicou a comparação e o gate pós-publicação verificou /laboratorio/ em 1600×1000 e 390×844 sem falhas estruturais ou overflow móvel. B foi selecionada dentro desta exploração; nenhuma adoção canônica foi avaliada."
 ---
 
 # Exploração: Grid vazado 001
 
-A comparação expõe três distribuições estruturais com o mesmo conteúdo. O achado crítico é relacional, não uma hipótese provada: nesta exploração, o vazio como contrapeso entre massas tem mais força que o corredor central ou a simples margem lateral. A direção foi `selected`; outras aplicações podem aprofundá-la, contradizê-la ou abandoná-la.
+A comparação expõe três distribuições estruturais com o mesmo conteúdo. B foi selecionada dentro da exploração; isso registra um resultado local, não uma regra canônica do Cobogó.
