@@ -2,7 +2,7 @@
 type: VisualSpecimen
 id: specimens/cheio-vazio-mapa-002
 title: "Comparação do mapa vazado 002"
-exploration_id: experiments/cheio-vazio-mapa-002
+exploration_id: explorations/cheio-vazio-mapa-002
 route: "/laboratorio/mapa-002/"
 artifact_path: "src/pages/laboratorio/mapa-002.astro"
 status: published
