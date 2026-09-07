@@ -9,32 +9,83 @@ permissions:
   contents: write
 
 jobs:
-  start:
+  complete:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: wisk/round-20260907-next
       - uses: astral-sh/setup-uv@v6
-      - name: Sync project environment
-        run: uv sync --group dev --locked
-      - name: Bootstrap Wisk
-        run: uv run wisk init .
-      - name: Start canonical round
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: uv sync --group dev --locked
+      - run: uv run wisk init .
+      - name: Record Wisk readings and goals
         shell: bash
         run: |
-          set -o pipefail
-          if uv run wisk start --help 2>&1 | grep -q -- '--task'; then
-            uv run wisk start --task "Faça o melhor avanço possível neste repositório" | tee .wisk-round-start.txt
-          else
-            uv run wisk start | tee .wisk-round-start.txt
-          fi
-      - name: Persist Wisk round state
+          RUN='runs/20260907T180147Z-fa-a-o-melhor-avan-o-poss-vel-neste-reposit-rio'
+          uv run wisk run reading "$RUN" active-handoffs active-handoffs 'Active handoffs' '.wisk/knowledge/experiences/handoffs' 'No active handoff blocks this round.'
+          uv run wisk run reading "$RUN" active-skills active-skills 'Active skills' 'skills/explorations/textura-funcional-010/SKILL.md' 'The 010 skill constrains this round to materialization without same-round selection.'
+          uv run wisk run reading "$RUN" baseline baseline 'Two-prong baseline' 'knowledge/baselines/cobogo-identity-pair-2026-09-07.md' 'A0 is the current identity pair; Carbon Tile and USWDS Card are the practice comparators.'
+          uv run wisk run reading "$RUN" reference reference 'Burle Marx reference' 'knowledge/references/burle-marx-campos-interligados.md' 'Translate contrast and density relationships, not landscape shapes or palette.'
+          uv run wisk run reading "$RUN" translation-direction translation-direction 'Texture and density direction' 'knowledge/directions/burle-marx-contraste-textura.md' 'The candidate direction is now active on a concrete Cobogó surface.'
+          uv run wisk run reading "$RUN" study study 'Interlinked fields study' 'knowledge/studies/campos-interligados-na-web.md' 'The study asks how contrast and continuity can coexist responsively.'
+          uv run wisk run reading "$RUN" exploration exploration 'Texture functional 010' 'knowledge/explorations/textura-funcional-010.md' 'A0+A+B+C are materialized and the exploration must remain exploring.'
+          uv run wisk run reading "$RUN" skill skill 'Exploration skill 010' 'skills/explorations/textura-funcional-010/SKILL.md' 'Do not select a winner in the materialization round.'
+          uv run wisk run goal "$RUN" task-advance task-advance 'Materialize a useful next visual exploration from the active laboratory state.' 'The previous 009 is concluded and two Burle Marx directions remain; texture/density is distinct from the boundary question already explored.' 'Exploration 010 exists with baseline, A0+A+B+C, valid contracts and a public specimen candidate.'
+          uv run wisk run goal "$RUN" explore-visual-translation explore-visual-translation 'Test texture and density as functional identity signals on the current homepage identity pair.' 'The current pair layers strong internal voice with full frames and a large color fill.' 'The published specimen preserves semantic equivalence while varying only the visual policy and remains exploring.'
+      - name: Validate OKF and build
+        shell: bash
+        run: |
+          uv run okf-parser check knowledge --relational-schema okf.schema.sql | tee .wisk-okf.txt
+          npm install
+          npm run build | tee .wisk-build.txt
+      - name: Accessibility smoke
+        shell: bash
+        run: |
+          test -f dist/laboratorio/textura-funcional-010/index.html
+          python - <<'PY' | tee .wisk-accessibility.txt
+          from html.parser import HTMLParser
+          from pathlib import Path
+          class P(HTMLParser):
+              def __init__(self): super().__init__(); self.h1=0; self.main=0; self.articles=0; self.links=[]
+              def handle_starttag(self, tag, attrs):
+                  d=dict(attrs)
+                  if tag=='h1': self.h1 += 1
+                  if tag=='main': self.main += 1
+                  if tag=='article': self.articles += 1
+                  if tag=='a': self.links.append(d.get('href'))
+          p=P(); p.feed(Path('dist/laboratorio/textura-funcional-010/index.html').read_text())
+          assert p.h1 == 1 and p.main == 1 and p.articles == 8
+          assert all(p.links)
+          print(f'pass h1={p.h1} main={p.main} articles={p.articles} named-links={len(p.links)}')
+          PY
+      - name: Record Wisk evidence, checks and outcome
+        shell: bash
+        run: |
+          RUN='runs/20260907T180147Z-fa-a-o-melhor-avan-o-poss-vel-neste-reposit-rio'
+          G1='run-goals/20260907t180147z-fa-a-o-melhor-avan-o-poss-vel-n/task-advance'
+          G2='run-goals/20260907t180147z-fa-a-o-melhor-avan-o-poss-vel-n/explore-visual-translation'
+          uv run wisk run evidence "$RUN" execution execution 'src/pages/laboratorio/textura-funcional-010.astro' 'Materialized A0 plus three translations on the same two semantic articles.' --goal "$G1"
+          uv run wisk run evidence "$RUN" translation-direction translation-direction 'knowledge/directions/burle-marx-contraste-textura.md' 'Direction moved candidate → active because exploration 010 now tests it concretely.' --goal "$G2"
+          uv run wisk run evidence "$RUN" cobogo-baseline cobogo-baseline 'knowledge/baselines/cobogo-identity-pair-2026-09-07.md' 'A0 records the current border + surface-heavy identity pair.' --goal "$G2"
+          uv run wisk run evidence "$RUN" practice-baseline practice-baseline 'knowledge/baselines/carbon-tile-2026-09-07.md' 'Carbon Tile plus existing USWDS Card baseline bound the container/modularity question.' --goal "$G2"
+          uv run wisk run evidence "$RUN" specimen specimen 'knowledge/specimens/textura-funcional-010.md' 'Draft specimen binds exploration 010 to its Astro route.' --goal "$G2"
+          uv run wisk run evidence "$RUN" responsive-review responsive-review 'src/pages/laboratorio/textura-funcional-010.astro' 'All variants declare explicit base→lg responsive layouts; visual selection is deliberately deferred until the route is published.' --goal "$G2"
+          uv run wisk run evidence "$RUN" critique critique 'knowledge/explorations/textura-funcional-010.md' 'Materialization critique: A isolates typography, B isolates density, C pushes repetition toward ornament; no winner selected in this round.' --goal "$G2"
+          uv run wisk run check "$RUN" okf okf 'uv run okf-parser check knowledge --relational-schema okf.schema.sql' 'Relational laboratory contracts passed.' pass --evidence '.wisk-okf.txt' --goal "$G1"
+          uv run wisk run check "$RUN" build build 'npm install && npm run build' 'Astro/Panda build passed including route 010.' pass --evidence '.wisk-build.txt' --goal "$G1"
+          uv run wisk run check "$RUN" accessibility accessibility 'Static built-HTML landmark/article/link smoke' 'One h1, one main, eight semantic articles and no href-less links.' pass --evidence '.wisk-accessibility.txt' --goal "$G2"
+          uv run wisk run check "$RUN" verification verification 'Wisk contract check after domain gates' 'Materialization requirements satisfied; publication/visual judgment remains a later step.' pass --goal "$G1"
+          uv run wisk run goal-status "$RUN" "$G1" achieved
+          uv run wisk run goal-status "$RUN" "$G2" achieved
+          uv run wisk run outcome "$RUN" textura-funcional-010 success exploring 'Exploration 010 materialized texture/density translations against a concrete A0 and practice baseline without same-round selection.' 'Publish the specimen, then critique A0/A/B/C in a later Wisk round.' --goals-advanced "$G1" --goals-advanced "$G2"
+          uv run wisk check "$RUN" | tee .wisk-final-check.txt
+      - name: Persist Wisk state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .wisk .wisk-round-start.txt
-          if ! git diff --cached --quiet; then
-            git commit -m "chore(wisk): persist canonical round start"
-            git push origin HEAD:wisk/round-20260907-next
-          fi
+          git add .wisk .wisk-*.txt
+          git commit -m "chore(wisk): persist completed exploration 010 run" || true
+          git push origin HEAD:wisk/round-20260907-next
