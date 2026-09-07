@@ -1,0 +1,86 @@
+---
+import '../../styles/index.css'
+import { css } from '../../../styled-system/css'
+import { badge, navLink } from '../../../styled-system/recipes'
+
+const blocos = [
+  { rotulo: '01 · Contexto', titulo: 'A relação vem antes do componente.', texto: 'Primeiro identifique o que precisa permanecer verdadeiro quando a aparência mudar.' },
+  { rotulo: '02 · Decisão', titulo: 'Compartilhe só o que merece sobreviver.', texto: 'Hierarquia, estado, ritmo, leitura, foco e ação podem atravessar produtos sem apagar a voz local.' },
+  { rotulo: '03 · Próximo passo', titulo: 'Teste no produto e devolva evidência.', texto: 'Uma solução só amadurece quando funciona em uso real e seus limites também ficam registrados.' },
+]
+
+const bloco = css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: '6', minH: '12rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '6' })
+const pilha = css({ maxW: '25rem', mx: 'auto' })
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Experimento do laboratório Cobogó sobre cheio e vazio em telas móveis." />
+    <title>Vazio móvel 003 — Laboratório Cobogó</title>
+  </head>
+  <body>
+    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
+      <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
+      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
+        <a class={navLink()} href="/cobogo/">Início</a>
+        <a class={navLink({ active: true })} href="/cobogo/laboratorio/">Laboratório</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class={css({ background: 'text', color: 'canvas', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.75fr 1.25fr' }, gap: '10', alignItems: 'end' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'accent', m: '0' })}>Experimento 003 · mobile</p>
+            <div class={css({ display: 'flex', gap: '2', flexWrap: 'wrap', mt: '5' })}><span class={badge({ tone: 'accent' })}>running</span><span class={badge()}>mesmo conteúdo</span></div>
+          </div>
+          <div>
+            <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '11ch' })}>O vazio ainda funciona quando a tela estreita?</h1>
+            <p class={css({ mt: '6', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '44rem' })}>Nos experimentos anteriores, os vazios desapareciam no mobile. Aqui eles viram a própria variável: quanto intervalo vertical ainda parece ritmo antes de parecer desperdício ou quebra?</p>
+          </div>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
+        <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Controle</p>
+        <h2 class={css({ textStyle: 'title', m: '0', maxW: '18ch' })}>Três pilhas. Uma única diferença: a pausa.</h2>
+        <p class={css({ lineHeight: 'body', color: 'textMuted', maxW: '46rem', mt: '5', mb: '0' })}>Conteúdo, ordem e semântica são idênticos. O espaço extra só aparece depois do segundo bloco, quando um grupo de leitura já está completo.</p>
+      </section>
+
+      <section class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: 'repeat(3, 1fr)' }, gap: '10', alignItems: 'start' })}>
+          <figure class={css({ m: '0' })}>
+            <figcaption class={css({ borderTop: '1px solid', borderColor: 'text', pt: '3', mb: '5' })}><strong>A — fluxo contínuo</strong><p class={css({ mt: '2', mb: '0', color: 'textMuted' })}>Controle: ritmo normal do sistema.</p></figcaption>
+            <div class={`${pilha} ${css({ display: 'grid', gap: '3' })}`}>
+              {blocos.map((item) => <article class={bloco}><p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>{item.rotulo}</p><div><h3 class={css({ fontSize: '2xl', lineHeight: 'tight', m: '0' })}>{item.titulo}</h3><p class={css({ mb: '0', lineHeight: 'body' })}>{item.texto}</p></div></article>)}
+            </div>
+          </figure>
+
+          <figure class={css({ m: '0' })}>
+            <figcaption class={css({ borderTop: '4px solid', borderColor: 'accent', pt: '3', mb: '5' })}><strong>B — pausa curta</strong><p class={css({ mt: '2', mb: '0', color: 'textMuted' })}>Um intervalo deliberado depois do bloco 02.</p></figcaption>
+            <div class={`${pilha} ${css({ display: 'grid', gap: '3' })}`}>
+              {blocos.map((item, index) => <article class={`${bloco} ${index === 2 ? css({ mt: { base: '8', md: '10' } }) : ''}`}><p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>{item.rotulo}</p><div><h3 class={css({ fontSize: '2xl', lineHeight: 'tight', m: '0' })}>{item.titulo}</h3><p class={css({ mb: '0', lineHeight: 'body' })}>{item.texto}</p></div></article>)}
+            </div>
+          </figure>
+
+          <figure class={css({ m: '0' })}>
+            <figcaption class={css({ borderTop: '1px solid', borderColor: 'text', pt: '3', mb: '5' })}><strong>C — pausa longa</strong><p class={css({ mt: '2', mb: '0', color: 'textMuted' })}>Teste de limite: o intervalo domina a tela.</p></figcaption>
+            <div class={`${pilha} ${css({ display: 'grid', gap: '3' })}`}>
+              {blocos.map((item, index) => <article class={`${bloco} ${index === 2 ? css({ mt: { base: '24', md: '28' } }) : ''}`}><p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>{item.rotulo}</p><div><h3 class={css({ fontSize: '2xl', lineHeight: 'tight', m: '0' })}>{item.titulo}</h3><p class={css({ mb: '0', lineHeight: 'body' })}>{item.texto}</p></div></article>)}
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '0.7fr 1.3fr' }, gap: '8' })}>
+        <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>O que observar</p>
+        <div class={css({ lineHeight: 'body', fontSize: 'lg' })}>
+          <p class={css({ mt: '0' })}>A pausa só vale se continuar parecendo uma decisão de ritmo em 320px e 390px. Se for preciso procurar o bloco 03 ou interpretar o intervalo como falha, o vazio perdeu.</p>
+          <p class={css({ mb: '0' })}><strong>Sem truques:</strong> os três fluxos têm a mesma ordem semântica e nenhum elemento de interface ocupa o vazio.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
