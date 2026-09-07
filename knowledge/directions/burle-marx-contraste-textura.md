@@ -10,9 +10,9 @@ scope:
   - "densidade tipografica"
   - "espacamento"
   - "repeticao e ritmo"
-status: candidate
+status: active
 ---
 
 # Contraste por textura e densidade
 
-Direcao candidata. A hipotese e que textura funcional possa carregar parte do trabalho hoje entregue a containers e divisores. Nao presume que isso seja melhor: primeiro precisa ser encontrada uma superficie concreta em que a diferenciacao atual seja excessivamente dependente de molduras.
+Direção ativa na exploração `explorations/textura-funcional-010`. A superfície escolhida é a dupla de identidades da home: dois exemplos semanticamente equivalentes que hoje acumulam borda completa, mudança tipográfica e grande diferença de superfície. A 010 testa se textura funcional interna pode assumir mais dessa distinção sem reduzir clareza nem equivalência.
