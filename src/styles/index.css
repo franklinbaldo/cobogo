@@ -1,1 +1,13 @@
 @layer reset, base, tokens, recipes, utilities;
+
+@layer base {
+  :where(h1, h2, h3) {
+    overflow-wrap: break-word;
+  }
+
+  pre {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
