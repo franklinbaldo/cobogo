@@ -52,7 +52,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Wait for the published site
         run: |
-          for route in / /problemas/ /comece/ /acoes/ /estados/ /leitura/ /identidade/ /laboratorio/ /laboratorio/mapa-002/; do
+          for route in / /problemas/ /comece/ /acoes/ /estados/ /leitura/ /identidade/ /laboratorio/; do
             for i in {1..30}; do
               if curl -fsS "https://franklinbaldo.github.io/cobogo${route}" >/dev/null; then
                 break
@@ -68,14 +68,15 @@ jobs:
           EVALUATED_SHA: ${{ github.sha }}
         run: |
           node --input-type=module <<'NODE'
-          import { mkdirSync, writeFileSync } from 'node:fs';
+          import { mkdirSync, readdirSync, writeFileSync } from 'node:fs';
           import { chromium } from 'playwright';
 
           const viewports = [
             { name: 'desktop', width: 1600, height: 1000 },
             { name: 'mobile', width: 390, height: 844 },
+            { name: 'mobile-320', width: 320, height: 800 },
           ];
-          const routes = [
+          const coreRoutes = [
             { path: '/', name: 'home' },
             { path: '/problemas/', name: 'problemas' },
             { path: '/comece/', name: 'comece' },
@@ -84,8 +85,14 @@ jobs:
             { path: '/leitura/', name: 'leitura' },
             { path: '/identidade/', name: 'identidade' },
             { path: '/laboratorio/', name: 'laboratorio' },
-            { path: '/laboratorio/mapa-002/', name: 'laboratorio-mapa-002' },
           ];
+          const laboratoryRoutes = readdirSync('src/pages/laboratorio', { withFileTypes: true })
+            .filter((entry) => entry.isFile() && entry.name.endsWith('.astro'))
+            .map((entry) => {
+              const slug = entry.name.replace(/\.astro$/, '');
+              return { path: `/laboratorio/${slug}/`, name: `laboratorio-${slug}` };
+            });
+          const routes = [...coreRoutes, ...laboratoryRoutes];
           const root = 'artifacts/published';
           const base = 'https://franklinbaldo.github.io/cobogo';
           mkdirSync(root, { recursive: true });
@@ -125,7 +132,7 @@ jobs:
                 image,
               });
               if (status !== 200) failures.push(`${route.path} returned HTTP ${status}`);
-              if (viewport.name === 'mobile' && facts.documentWidth > viewport.width) failures.push(`${route.path} is ${facts.documentWidth}px wide in a ${viewport.width}px viewport`);
+              if (viewport.width < 768 && facts.documentWidth > viewport.width) failures.push(`${route.path} is ${facts.documentWidth}px wide in a ${viewport.width}px viewport`);
               if (facts.lang !== 'pt-BR') failures.push(`${route.path} must declare lang=pt-BR`);
               if (facts.h1Count !== 1) failures.push(`${route.path} has ${facts.h1Count} h1 elements`);
               if (facts.mainCount !== 1) failures.push(`${route.path} has ${facts.mainCount} main elements`);
