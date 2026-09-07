@@ -1,0 +1,126 @@
+---
+import '../../styles/index.css'
+import { css } from '../../../styled-system/css'
+import { badge, navLink } from '../../../styled-system/recipes'
+
+const blocks = [
+  { kind: '01 · Título', title: 'Uma hierarquia precisa respirar sem perder direção.', body: 'O bloco dominante abre a sequência e fixa o assunto antes que a composição se desloque.' },
+  { kind: '02 · Explicação', title: 'Ritmo não é aleatoriedade.', body: 'Diferenças de largura e posição só ajudam quando a relação entre os blocos continua imediatamente compreensível.' },
+  { kind: '03 · Evidência', title: 'Mesmo conteúdo, outra geometria.', body: 'As três variantes preservam texto, tipografia, cor e ordem DOM. Apenas spans e deslocamentos mudam.' },
+  { kind: '04 · Ação', title: 'Continue pelo próximo passo.', body: 'Uma ação precisa continuar fácil de localizar mesmo quando a grade deixa de ser perfeitamente regular.' },
+]
+
+const card = css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: { base: '5', md: '6' }, minW: '0' })
+const dominant = css({ border: '1px solid', borderColor: 'text', background: 'text', color: 'canvas', p: { base: '5', md: '6' }, minW: '0' })
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Experimento do Laboratório Cobogó sobre o limite entre irregularidade, ritmo e hierarquia em grids editoriais." />
+    <title>Irregularidade 004 — Laboratório Cobogó</title>
+  </head>
+  <body>
+    <header class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, minH: '20', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6', borderBottom: '1px solid', borderColor: 'border' })}>
+      <a href="/cobogo/" class={css({ fontWeight: 'black', fontSize: 'xl', textDecoration: 'none', letterSpacing: '-0.04em' })}>COBOGÓ</a>
+      <nav class={css({ display: 'flex', gap: { base: '4', md: '8' }, flexWrap: 'wrap', justifyContent: 'end' })} aria-label="Principal">
+        <a class={navLink()} href="/cobogo/">Início</a>
+        <a class={navLink()} href="/cobogo/comece/">Comece</a>
+        <a class={navLink({ active: true })} href="/cobogo/laboratorio/">Laboratório</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class={css({ background: 'text', color: 'canvas', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10', alignItems: 'end' })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'accent', m: '0' })}>Experimento 004 · running</p>
+            <p class={css({ mt: '5', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '32rem' })}>A terceira pergunta do estudo: quanta irregularidade uma composição suporta antes de perder hierarquia?</p>
+          </div>
+          <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '11ch' })}>Quando ritmo vira ruído?</h1>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '12', md: '16' } })}>
+        <div class={css({ display: 'flex', gap: '2', flexWrap: 'wrap', mb: '6' })}>
+          <span class={badge({ tone: 'accent' })}>mesmo conteúdo</span>
+          <span class={badge()}>mesma ordem DOM</span>
+          <span class={badge()}>só geometria varia</span>
+        </div>
+        <p class={css({ fontSize: 'lg', lineHeight: 'body', maxW: '48rem', m: '0' })}>O controle estabelece uma grade previsível. A segunda variante introduz um contrapeso moderado. A terceira força deslocamentos e alternâncias maiores para revelar o ponto em que a composição começa a competir com a leitura.</p>
+      </section>
+
+      <section class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gap: { base: '14', md: '18' } })}>
+          <figure class={css({ m: '0' })}>
+            <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '5', borderTop: '1px solid', borderColor: 'text', pt: '3', flexWrap: 'wrap' })}>
+              <strong>Variante A — regular</strong>
+              <span class={css({ color: 'textMuted', fontSize: 'sm' })}>controle</span>
+            </figcaption>
+            <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(2, minmax(0, 1fr))' }, gap: '3' })}>
+              {blocks.map((block, index) => (
+                <article class={index === 0 ? dominant : card}>
+                  <p class={css({ textStyle: 'eyebrow', color: index === 0 ? 'accent' : 'info', mt: '0', mb: '4' })}>{block.kind}</p>
+                  <h2 class={css({ fontSize: { base: 'xl', md: index === 0 ? '3xl' : '2xl' }, lineHeight: 'tight', letterSpacing: '-0.03em', m: '0 0 4' })}>{block.title}</h2>
+                  <p class={css({ m: '0', lineHeight: 'body', color: index === 0 ? 'surfaceMuted' : 'textMuted' })}>{block.body}</p>
+                </article>
+              ))}
+            </div>
+          </figure>
+
+          <figure class={css({ m: '0' })}>
+            <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '5', borderTop: '4px solid', borderColor: 'accent', pt: '3', flexWrap: 'wrap' })}>
+              <strong>Variante B — irregularidade moderada</strong>
+              <span class={badge({ tone: 'accent' })}>candidata</span>
+            </figcaption>
+            <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(6, minmax(0, 1fr))' }, gap: '3', alignItems: 'stretch' })}>
+              <article class={`${dominant} ${css({ gridColumn: { md: '1 / span 4' }, minH: { md: '14rem' } })}`}>
+                <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0', mb: '4' })}>{blocks[0].kind}</p><h2 class={css({ fontSize: { base: 'xl', md: '3xl' }, lineHeight: 'tight', letterSpacing: '-0.03em', m: '0 0 4' })}>{blocks[0].title}</h2><p class={css({ m: '0', lineHeight: 'body', color: 'surfaceMuted' })}>{blocks[0].body}</p>
+              </article>
+              <article class={`${card} ${css({ gridColumn: { md: '5 / span 2' }, alignSelf: { md: 'end' } })}`}>
+                <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>{blocks[1].kind}</p><h2 class={css({ fontSize: '2xl', lineHeight: 'tight', letterSpacing: '-0.03em', m: '0 0 4' })}>{blocks[1].title}</h2><p class={css({ m: '0', lineHeight: 'body', color: 'textMuted' })}>{blocks[1].body}</p>
+              </article>
+              <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '1' })}></div>
+              <article class={`${card} ${css({ gridColumn: { md: '2 / span 2' } })}`}>
+                <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>{blocks[2].kind}</p><h2 class={css({ fontSize: '2xl', lineHeight: 'tight', letterSpacing: '-0.03em', m: '0 0 4' })}>{blocks[2].title}</h2><p class={css({ m: '0', lineHeight: 'body', color: 'textMuted' })}>{blocks[2].body}</p>
+              </article>
+              <article class={`${card} ${css({ gridColumn: { md: '4 / span 3' } })}`}>
+                <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>{blocks[3].kind}</p><h2 class={css({ fontSize: '2xl', lineHeight: 'tight', letterSpacing: '-0.03em', m: '0 0 4' })}>{blocks[3].title}</h2><p class={css({ m: '0', lineHeight: 'body', color: 'textMuted' })}>{blocks[3].body}</p>
+              </article>
+            </div>
+          </figure>
+
+          <figure class={css({ m: '0' })}>
+            <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '5', borderTop: '1px solid', borderColor: 'text', pt: '3', flexWrap: 'wrap' })}>
+              <strong>Variante C — irregularidade alta</strong>
+              <span class={css({ color: 'textMuted', fontSize: 'sm' })}>teste de limite</span>
+            </figcaption>
+            <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(8, minmax(0, 1fr))' }, gap: '3' })}>
+              <article class={`${dominant} ${css({ gridColumn: { md: '2 / span 5' } })}`}>
+                <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0', mb: '4' })}>{blocks[0].kind}</p><h2 class={css({ fontSize: { base: 'xl', md: '3xl' }, lineHeight: 'tight', letterSpacing: '-0.03em', m: '0 0 4' })}>{blocks[0].title}</h2><p class={css({ m: '0', lineHeight: 'body', color: 'surfaceMuted' })}>{blocks[0].body}</p>
+              </article>
+              <article class={`${card} ${css({ gridColumn: { md: '6 / span 3' } })}`}>
+                <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>{blocks[1].kind}</p><h2 class={css({ fontSize: '2xl', lineHeight: 'tight', letterSpacing: '-0.03em', m: '0 0 4' })}>{blocks[1].title}</h2><p class={css({ m: '0', lineHeight: 'body', color: 'textMuted' })}>{blocks[1].body}</p>
+              </article>
+              <article class={`${card} ${css({ gridColumn: { md: '1 / span 3' } })}`}>
+                <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>{blocks[2].kind}</p><h2 class={css({ fontSize: '2xl', lineHeight: 'tight', letterSpacing: '-0.03em', m: '0 0 4' })}>{blocks[2].title}</h2><p class={css({ m: '0', lineHeight: 'body', color: 'textMuted' })}>{blocks[2].body}</p>
+              </article>
+              <article class={`${card} ${css({ gridColumn: { md: '5 / span 3' } })}`}>
+                <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>{blocks[3].kind}</p><h2 class={css({ fontSize: '2xl', lineHeight: 'tight', letterSpacing: '-0.03em', m: '0 0 4' })}>{blocks[3].title}</h2><p class={css({ m: '0', lineHeight: 'body', color: 'textMuted' })}>{blocks[3].body}</p>
+              </article>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '12', md: '16' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 2fr' }, gap: '6' })}>
+        <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>O que observar</p>
+        <div class={css({ fontSize: 'lg', lineHeight: 'body' })}>
+          <p class={css({ mt: '0' })}>A pergunta não é qual variante parece mais “criativa”, mas em qual ponto a geometria começa a disputar atenção com título, explicação, evidência e ação.</p>
+          <p class={css({ mb: '0' })}><a href="/cobogo/laboratorio/">Voltar ao Laboratório</a></p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
