@@ -1,0 +1,8 @@
+{
+  "concept_count": 42,
+  "conformant": true,
+  "diagnostics": [],
+  "markdown_count": 42,
+  "reserved_count": 0,
+  "root": "/home/runner/work/cobogo/cobogo/knowledge"
+}
