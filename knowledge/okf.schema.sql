@@ -16,6 +16,18 @@ CREATE TABLE "VisualReference" (
     cautions VARCHAR[]
 );
 
+CREATE TABLE "TranslationDirection" (
+    id VARCHAR PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    reference_id VARCHAR NOT NULL REFERENCES "VisualReference"(id),
+    target VARCHAR NOT NULL,
+    reading VARCHAR NOT NULL,
+    why_it_might_matter VARCHAR NOT NULL,
+    scope VARCHAR[] NOT NULL,
+    status VARCHAR NOT NULL CHECK (status IN ('candidate', 'active', 'explored', 'rejected', 'retired')),
+    rationale VARCHAR
+);
+
 CREATE TABLE "PracticeBaseline" (
     id VARCHAR PRIMARY KEY,
     title VARCHAR NOT NULL,
@@ -44,6 +56,7 @@ CREATE TABLE "VisualExploration" (
     id VARCHAR PRIMARY KEY,
     title VARCHAR NOT NULL,
     study_id VARCHAR NOT NULL REFERENCES "VisualStudy"(id),
+    direction_id VARCHAR REFERENCES "TranslationDirection"(id),
     cobogo_baseline_id VARCHAR REFERENCES "PracticeBaseline"(id),
     practice_baseline_ids VARCHAR[],
     baseline_question VARCHAR,
