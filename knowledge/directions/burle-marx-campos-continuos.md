@@ -10,9 +10,10 @@ scope:
   - "limites entre secoes"
   - "agrupamento editorial"
   - "relacao entre conteudo principal e contexto"
-status: candidate
+status: active
+rationale: "A exploração 009 ativou esta direção na RelationCollection, onde quatro relações semanticamente irmãs usam hoje caixas completas separadas por gap. A superfície oferece um teste concreto de continuidade versus modularidade sem inventar um problema abstrato."
 ---
 
 # Campos continuos entre zonas de informacao
 
-Direcao candidata derivada da leitura de Burle Marx. O ponto nao e importar curvas: e testar se duas ou mais zonas podem conservar funcao propria e, ainda assim, ser percebidas como uma composicao continua. Uma exploracao futura deve localizar uma superficie real do Cobogo em que a fragmentacao por caixas seja um problema observavel antes de estabelecer A0 e o estado da pratica.
+Direção ativa na exploração 009. O ponto não é importar curvas: é testar se quatro destinos relacionados podem conservar função própria e, ainda assim, ser percebidos como uma composição contínua.
