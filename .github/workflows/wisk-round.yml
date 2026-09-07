@@ -27,9 +27,9 @@ jobs:
       - name: Validate OKF and build
         run: |
           set -euxo pipefail
-          uv run okf-parser check knowledge --relational-schema okf.schema.sql | tee .wisk-okf.txt
+          uv run okf-parser check knowledge --relational-schema okf.schema.sql
           npm install
-          npm run build | tee .wisk-build.txt
+          npm run build
       - name: Responsive and accessibility surface check
         run: |
           set -euxo pipefail
@@ -42,6 +42,7 @@ jobs:
             if curl -fsS http://127.0.0.1:4321/laboratorio/percurso-visual-010/ >/dev/null; then break; fi
             sleep 1
           done
+          mkdir -p artifacts/lab
           node --input-type=module <<'NODE'
           import { writeFileSync } from 'node:fs';
           import { chromium } from 'playwright';
@@ -58,7 +59,7 @@ jobs:
               mainCount: document.querySelectorAll('main').length,
               navCount: document.querySelectorAll('nav').length,
               unnamedActions: [...document.querySelectorAll('a,button')].filter((el)=>!((el.getAttribute('aria-label')||el.textContent||'').trim())).length,
-              variants: [...document.querySelectorAll('main > section')].length,
+              sectionCount: document.querySelectorAll('main > section').length,
             }));
             observations.push({ viewport, status:response?.status()??0, ...facts });
             if ((response?.status()??0) !== 200) failures.push(`${viewport.name}: HTTP ${response?.status()}`);
@@ -70,7 +71,7 @@ jobs:
             await page.close();
           }
           await browser.close();
-          writeFileSync('.wisk-responsive.json', JSON.stringify({route:'/laboratorio/percurso-visual-010/', observations, failures}, null, 2));
+          writeFileSync('artifacts/lab/percurso-visual-010-responsive.json', JSON.stringify({route:'/laboratorio/percurso-visual-010/', observations, failures}, null, 2));
           if (failures.length) { console.error(failures.join('\n')); process.exit(1); }
           NODE
       - name: Complete current Wisk run
@@ -95,20 +96,20 @@ jobs:
           uv run wisk run evidence "$RUN" run-evidence/cobogo-baseline-percurso-010 cobogo-baseline 'knowledge/baselines/cobogo-laboratorio-catalogo-2026-09-07.md' 'Recorded the current uniform Laboratory ledger as A0, including its strengths and flat-cadence limitation.' --goal "$GOAL_VISUAL"
           uv run wisk run evidence "$RUN" run-evidence/practice-baseline-percurso-010 practice-baseline 'knowledge/baselines/govuk-layout-reading-flow-2026-09-07.md; knowledge/baselines/carbon-2x-grid-reading-flow-2026-09-07.md; knowledge/baselines/uswds-layout-grid-reading-flow-2026-09-07.md' 'Recorded three primary-source design-system observations relevant to measure, responsive spacing and controlled layout variation.' --goal "$GOAL_VISUAL"
           uv run wisk run evidence "$RUN" run-evidence/specimen-percurso-010 specimen 'src/pages/laboratorio/percurso-visual-010.astro' 'Materialized A0, A, B and C on one public specimen with identical nine-item content and order.' --goal "$GOAL_VISUAL"
-          uv run wisk run evidence "$RUN" run-evidence/responsive-percurso-010 responsive-review '.wisk-responsive.json' 'Local built specimen returned 200 at 1600, 390 and 320px with no horizontal overflow, unnamed actions or landmark-count failures.' --goal "$GOAL_VISUAL"
+          uv run wisk run evidence "$RUN" run-evidence/responsive-percurso-010 responsive-review 'artifacts/lab/percurso-visual-010-responsive.json' 'Local built specimen returned 200 at 1600, 390 and 320px with no horizontal overflow, unnamed actions or landmark-count failures.' --goal "$GOAL_VISUAL"
           uv run wisk run evidence "$RUN" run-evidence/critique-percurso-010 critique 'knowledge/explorations/percurso-visual-010.md' 'Construction critique records the key risks before publication: ordinal variation may look like ranking; offsets may waste measure; rhythm may become noise. No alternative is selected in this materialization round.' --goal "$GOAL_VISUAL"
           uv run wisk run check "$RUN" run-checks/verification verification 'uv sync --group dev; uv run wisk init .; OKF; build; responsive surface check' 'The Wisk bundle, project environment and materialized exploration were verified together.' passed --goal "$GOAL_TASK" --evidence 'knowledge/explorations/percurso-visual-010.md'
-          uv run wisk run check "$RUN" run-checks/okf okf 'uv run okf-parser check knowledge --relational-schema okf.schema.sql' 'The current knowledge graph satisfies the relational OKF schema.' passed --goal "$GOAL_VISUAL" --evidence '.wisk-okf.txt'
-          uv run wisk run check "$RUN" run-checks/build build 'npm install; npm run build' 'Astro/Panda static build completed successfully with exploration 010 included.' passed --goal "$GOAL_VISUAL" --evidence '.wisk-build.txt'
-          uv run wisk run check "$RUN" run-checks/accessibility accessibility 'Playwright at 1600x1000, 390x844 and 320x800' 'The built 010 route had one h1/main, a navigation landmark, named actions and no horizontal overflow at all tested viewports.' passed --goal "$GOAL_VISUAL" --evidence '.wisk-responsive.json'
+          uv run wisk run check "$RUN" run-checks/okf okf 'uv run okf-parser check knowledge --relational-schema okf.schema.sql' 'The current knowledge graph satisfies the relational OKF schema.' passed --goal "$GOAL_VISUAL" --evidence 'GitHub Actions Wisk round: Validate OKF and build'
+          uv run wisk run check "$RUN" run-checks/build build 'npm install; npm run build' 'Astro/Panda static build completed successfully with exploration 010 included.' passed --goal "$GOAL_VISUAL" --evidence 'GitHub Actions Wisk round: Validate OKF and build'
+          uv run wisk run check "$RUN" run-checks/accessibility accessibility 'Playwright at 1600x1000, 390x844 and 320x800' 'The built 010 route had one h1/main, a navigation landmark, named actions and no horizontal overflow at all tested viewports.' passed --goal "$GOAL_VISUAL" --evidence 'artifacts/lab/percurso-visual-010-responsive.json'
           uv run wisk run goal-status "$RUN" "$GOAL_TASK" achieved
           uv run wisk run goal-status "$RUN" "$GOAL_VISUAL" achieved
           uv run wisk run outcome "$RUN" run-outcomes/percurso-visual-010 exploring completed 'Exploration 010 materializes the reading-flow direction against a real Cobogó A0 and three state-of-practice baselines; judgment is intentionally deferred.' 'Merge and publish the specimen, then a later visual-explorer round may critique the pre-existing published surface against A0.' --goals-advanced "$GOAL_TASK" --goals-advanced "$GOAL_VISUAL" --evidence run-evidence/specimen-percurso-010 --checks run-checks/okf --checks run-checks/build --checks run-checks/accessibility
-          uv run wisk check "$RUN" | tee .wisk-check-final.json
+          uv run wisk check "$RUN" | tee artifacts/lab/percurso-visual-010-wisk-check.json
       - name: Persist completed Wisk state
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .wisk .wisk-okf.txt .wisk-build.txt .wisk-responsive.json .wisk-check-final.json uv.lock
+          git add .wisk artifacts/lab/percurso-visual-010-responsive.json artifacts/lab/percurso-visual-010-wisk-check.json uv.lock
           git commit -m 'chore(wisk): persist percurso 010 experience'
           git push
