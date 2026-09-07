@@ -10,9 +10,9 @@ scope:
   - "ritmo vertical"
   - "mudanca de escala entre secoes"
   - "largura e alinhamento de blocos"
-status: candidate
+status: active
 ---
 
 # Percurso visual entre campos
 
-Direcao candidata para investigar movimento sem animacao. O interesse e a sequencia de relacoes espaciais que conduz a leitura. Uma exploracao deve preservar ordem semantica e acessibilidade e comparar qualquer proposta com uma pagina real do Cobogo como A0.
+Direcao ativa na exploracao 010. O primeiro teste usa o catalogo do Laboratorio, onde nove exploracoes aparecem hoje como linhas equivalentes de um ledger. A pergunta nao e como tornar a lista decorativa, mas se mudancas recorrentes de medida, respiro ou alinhamento conseguem orientar o percurso sem inventar prioridade entre itens semanticamente equivalentes.

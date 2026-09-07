@@ -1,0 +1,41 @@
+---
+import '../../styles/index.css'
+import { css } from '../../../styled-system/css'
+import { badge, navLink } from '../../../styled-system/recipes'
+import { exploracoes } from '../../data/laboratorio'
+
+const itens = exploracoes.slice(0, 9)
+const labelEstado = (status: string) => ({ rough:'inacabada', exploring:'em andamento', concluded:'concluída', abandoned:'abandonada' }[status] ?? status)
+const baseRow = css({ color:'text', textDecoration:'none', display:'grid', gridTemplateColumns:{base:'4.5rem 1fr',md:'6rem 0.8fr 1.2fr'}, gap:{base:'4',md:'6'}, alignItems:'start', borderBottom:'1px solid', borderColor:'text' })
+const a0Row = css({ py:{base:'6',md:'7'} })
+const aTight = css({ py:{base:'5',md:'6'} })
+const aBreath = css({ py:{base:'9',md:'12'} })
+const bLeft = css({ py:{base:'6',md:'7'}, width:{base:'100%',md:'92%'}, mr:'auto' })
+const bRight = css({ py:{base:'6',md:'7'}, width:{base:'100%',md:'92%'}, ml:{base:'0',md:'auto'} })
+const cRegular = css({ py:{base:'6',md:'7'} })
+const cAnchor = css({ py:{base:'9',md:'11'}, '& strong':{fontSize:{base:'2xl',md:'3xl'}} })
+const section = css({ maxW:'content', mx:'auto', px:{base:'5',md:'8'}, py:{base:'14',md:'20'} })
+const specimen = css({ borderTop:'1px solid', borderColor:'text' })
+const rationale = css({ color:'textMuted', lineHeight:'body', maxW:'48rem', mb:'8' })
+---
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="description" content="Exploração 010 do Laboratório Cobogó sobre percurso visual em listas longas."/><title>Percurso visual 010 — Laboratório Cobogó</title></head>
+<body>
+<header class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},minH:'20',display:'flex',alignItems:'center',justifyContent:'space-between',gap:'6',borderBottom:'1px solid',borderColor:'border'})}><a href="/cobogo/" class={css({fontWeight:'black',fontSize:'xl',textDecoration:'none',letterSpacing:'-0.04em'})}>COBOGÓ</a><nav class={css({display:'flex',gap:{base:'4',md:'8'},flexWrap:'wrap',justifyContent:'end'})} aria-label="Principal"><a class={navLink()} href="/cobogo/">Início</a><a class={navLink({active:true})} href="/cobogo/laboratorio/">Laboratório</a></nav></header>
+<main>
+<section class={css({background:'text',color:'canvas',borderBottom:'1px solid',borderColor:'text'})}><div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'16',md:'24'},display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.7fr 1.3fr'},gap:'10',alignItems:'end'})}><div><p class={css({textStyle:'eyebrow',color:'accent',m:'0 0 4'})}>010 · percurso visual</p><span class={badge({tone:'accent'})}>exploring</span></div><div><h1 class={css({textStyle:'display',color:'canvas',m:'0',maxW:'11ch'})}>Movimento sem animação.</h1><p class={css({mt:'6',mb:'0',color:'surfaceMuted',lineHeight:'body',fontSize:'lg',maxW:'44rem'})}>Burle Marx conduz o olhar por sequência espacial. Aqui a tradução é austera: o mesmo catálogo, na mesma ordem, testando se medida, respiro e alinhamento criam percurso sem fabricar prioridade.</p></div></div></section>
+
+<section class={section}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>Pergunta</p><h2 class={css({textStyle:'title',m:'0 0 5',maxW:'16ch'})}>Ritmo pode orientar sem virar ranking?</h2><p class={rationale}>A0 é o ledger uniforme do Laboratório. GOV.UK reforça medida e spacing responsivos; Carbon mostra variação dentro de uma fundação recorrente; USWDS separa container global de colunas locais. As traduções mexem em uma variável espacial por vez e preservam os mesmos nove itens.</p></section>
+
+<section class={section}><p class={css({textStyle:'eyebrow',color:'textMuted',m:'0 0 2'})}>A0 · Cobogó atual</p><h2 class={css({textStyle:'title',m:'0 0 4'})}>Ledger uniforme</h2><p class={rationale}>Mesma grade, medida e respiro em todas as linhas. É previsível e semanticamente honesto; o custo é uma cadência quase plana numa sequência longa.</p><div class={specimen}>{itens.map((item)=><a href={item.href} class={`${baseRow} ${a0Row}`}><span class={css({textStyle:'eyebrow',color:'textMuted',pt:'1'})}>{item.numero}</span><div><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 2'})}>{item.familia}</p><strong class={css({fontSize:{base:'xl',md:'2xl'},lineHeight:'tight'})}>{item.titulo}</strong><div class={css({mt:'3'})}><span class={badge()}>{labelEstado(item.status)}</span></div></div><div class={css({gridColumn:{base:'2',md:'auto'}})}><p class={css({fontWeight:'bold',m:'0 0 2',lineHeight:'tight'})}>{item.pergunta}</p><p class={css({color:'textMuted',m:'0',lineHeight:'body'})}>{item.resumo}</p></div></a>)}</div></section>
+
+<section class={css({background:'surfaceMuted'})}><div class={section}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 2'})}>A · cadência de respiro</p><h2 class={css({textStyle:'title',m:'0 0 4'})}>Pausas recorrentes, mesma hierarquia</h2><p class={rationale}>A não muda medida, alinhamento nem escala tipográfica. Só alterna respiro num ciclo curto 1–2–3, tentando criar pontos de retomada sem transformar nenhum item em destaque.</p><div class={specimen}>{itens.map((item,index)=><a href={item.href} class={`${baseRow} ${index % 3 === 2 ? aBreath : aTight}`}><span class={css({textStyle:'eyebrow',color:'textMuted',pt:'1'})}>{item.numero}</span><div><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 2'})}>{item.familia}</p><strong class={css({fontSize:{base:'xl',md:'2xl'},lineHeight:'tight'})}>{item.titulo}</strong></div><div class={css({gridColumn:{base:'2',md:'auto'}})}><p class={css({fontWeight:'bold',m:'0 0 2',lineHeight:'tight'})}>{item.pergunta}</p><p class={css({color:'textMuted',m:'0',lineHeight:'body'})}>{item.resumo}</p></div></a>)}</div></div></section>
+
+<section class={section}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 2'})}>B · percurso por medida</p><h2 class={css({textStyle:'title',m:'0 0 4'})}>Um zigue-zague contido</h2><p class={rationale}>B alterna um recuo discreto dentro do mesmo container, mantendo tipografia e respiro equivalentes. Em telas estreitas o recuo desaparece para não sacrificar medida útil.</p><div class={specimen}>{itens.map((item,index)=><a href={item.href} class={`${baseRow} ${index % 2 === 0 ? bLeft : bRight}`}><span class={css({textStyle:'eyebrow',color:'textMuted',pt:'1'})}>{item.numero}</span><div><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 2'})}>{item.familia}</p><strong class={css({fontSize:{base:'xl',md:'2xl'},lineHeight:'tight'})}>{item.titulo}</strong></div><div class={css({gridColumn:{base:'2',md:'auto'}})}><p class={css({fontWeight:'bold',m:'0 0 2',lineHeight:'tight'})}>{item.pergunta}</p><p class={css({color:'textMuted',m:'0',lineHeight:'body'})}>{item.resumo}</p></div></a>)}</div></section>
+
+<section class={css({background:'attention'})}><div class={section}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 2'})}>C · marcos de escala</p><h2 class={css({textStyle:'title',m:'0 0 4'})}>Landmarks fortes — talvez fortes demais</h2><p class={rationale}>C aumenta título e respiro a cada terceiro item. É a tradução mais explícita da mudança de escala da referência e também a mais suspeita: pode fazer posição ordinal parecer importância.</p><div class={specimen}>{itens.map((item,index)=><a href={item.href} class={`${baseRow} ${index % 3 === 2 ? cAnchor : cRegular}`}><span class={css({textStyle:'eyebrow',color:'textMuted',pt:'1'})}>{item.numero}</span><div><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 2'})}>{item.familia}</p><strong>{item.titulo}</strong></div><div class={css({gridColumn:{base:'2',md:'auto'}})}><p class={css({fontWeight:'bold',m:'0 0 2',lineHeight:'tight'})}>{item.pergunta}</p><p class={css({color:'textMuted',m:'0',lineHeight:'body'})}>{item.resumo}</p></div></a>)}</div></div></section>
+
+<section class={section}><p class={css({textStyle:'eyebrow',color:'textMuted',m:'0 0 3'})}>Estado da rodada</p><h2 class={css({textStyle:'title',m:'0 0 4'})}>Publicado para crítica posterior.</h2><p class={rationale}>Nenhuma alternativa é selecionada aqui. A próxima rodada deve observar esta superfície publicada em desktop e mobile e perguntar primeiro se A, B ou C realmente melhora o ledger uniforme — e a que custo semântico.</p><a href="/cobogo/laboratorio/" class={navLink()}>← Voltar ao laboratório</a></section>
+</main>
+</body>
+</html>
