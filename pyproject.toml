@@ -6,7 +6,7 @@ dependencies = []
 
 [dependency-groups]
 dev = [
-    "wisk>=0.3.0,<0.4",
+    "wisk",
 ]
 
 [tool.uv]
