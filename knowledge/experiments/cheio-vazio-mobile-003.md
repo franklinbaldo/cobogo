@@ -28,10 +28,10 @@ failure_signals:
   - "A técnica só funciona em tablet e perde sentido em 320px ou 390px."
   - "A pausa precisa de ornamento, seta ou explicação para parecer intencional."
 skill_path: skills/experiments/cheio-vazio-mobile-003/SKILL.md
-status: running
-outcome:
+status: promising
+outcome: "A comparação publicada foi observada no artefato `cobogo-published-preview-6d485a10bc29d5d571d405ad2e2fb867e0f26040`. Em 320×800 e 390×844, a variante B preserva continuidade e cria uma pausa perceptível depois de um grupo semanticamente completo sem parecer conteúdo ausente; a variante C cria uma ruptura vertical forte demais e faz o terceiro bloco parecer mais desconectado. O gate pós-publicação registrou HTTP 200, largura exata do viewport, `lang=pt-BR`, um `h1`, um `main`, navegação presente e zero ações sem nome nas duas larguras. A hipótese sobrevive como `promising`: vazio curto pode continuar estrutural no mobile, mas vazio longo cruza rapidamente o limite entre ritmo e quebra."
 ---
 
 # Experimento: Vazio móvel 003
 
-Os dois primeiros experimentos desligaram os vazios no mobile. Este experimento testa a pergunta ainda aberta do estudo: se a ausência pode continuar sendo estrutura em tela estreita, em vez de simplesmente desaparecer quando a grade colapsa.
+A ausência não precisa desaparecer quando a grade colapsa. Neste specimen, uma pausa curta entre grupos já compreendidos continua funcionando em 320px e 390px; a pausa longa, porém, dilui a continuidade e começa a parecer ruptura. O aprendizado é relacional: em tela estreita, o orçamento de vazio é menor e depende de o leitor já ter fechado semanticamente o grupo anterior.
