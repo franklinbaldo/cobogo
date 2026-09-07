@@ -1,0 +1,78 @@
+---
+import '../../styles/index.css'
+import { css } from '../../../styled-system/css'
+import { badge, navLink } from '../../../styled-system/recipes'
+
+const publicIdentity = {
+  eyebrow: 'Serviço público',
+  title: 'Portal de serviços',
+  text: 'Acesso direto, sóbrio e documental.',
+}
+const culturalIdentity = {
+  eyebrow: 'Cultura',
+  title: 'Caderno Vazante',
+  text: 'Arte, cidade e Amazônia com voz editorial própria.',
+}
+---
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content="Exploração 010 do laboratório visual: contraste por textura e densidade." />
+  <title>Textura funcional 010 — Laboratório Cobogó</title>
+</head>
+<body>
+<header class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},minH:'20',display:'flex',alignItems:'center',justifyContent:'space-between',gap:'6',borderBottom:'1px solid',borderColor:'border'})}>
+  <a href="/cobogo/" class={css({fontWeight:'black',fontSize:'xl',textDecoration:'none'})}>COBOGÓ</a>
+  <nav aria-label="Principal" class={css({display:'flex',gap:'6',flexWrap:'wrap'})}><a class={navLink()} href="/cobogo/">Início</a><a class={navLink({active:true})} href="/cobogo/laboratorio/">Laboratório</a></nav>
+</header>
+<main>
+<section class={css({background:'text',color:'canvas'})}>
+  <div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'16',md:'22'},display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.7fr 1.3fr'},gap:'10',alignItems:'end'})}>
+    <div><p class={css({textStyle:'eyebrow',color:'accent',m:'0 0 4'})}>010 · textura funcional</p><span class={badge({tone:'accent'})}>exploring</span></div>
+    <div><h1 class={css({textStyle:'display',color:'canvas',m:'0',maxW:'12ch'})}>Quanto da identidade precisa morar na caixa?</h1><p class={css({fontSize:'lg',lineHeight:'body',color:'surfaceMuted',mt:'6',mb:'0',maxW:'46rem'})}>A mesma dupla da home é mantida em quatro políticas. A pergunta é se tipografia, densidade, espaço e repetição conseguem carregar mais da diferença sem perder equivalência.</p></div>
+  </div>
+</section>
+
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'}})}>
+  <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.7fr 1.3fr'},gap:'10'})}>
+    <div><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>Cadeia de tradução</p><h2 class={css({textStyle:'title',m:'0'})}>Referência → direção → superfície.</h2></div>
+    <div class={css({lineHeight:'body'})}><p><strong>Referência.</strong> Campos de Burle Marx ganham identidade por contraste de densidade, peso e textura enquanto continuam na mesma composição.</p><p><strong>Direção.</strong> Traduzir textura como propriedades funcionais do conteúdo — não como ornamento.</p><p><strong>Superfície.</strong> A seção “Mesma estrutura” da home já usa duas vozes fortes, mas também duas bordas completas e um grande preenchimento azul.</p></div>
+  </div>
+</section>
+
+<section class={css({background:'surfaceMuted',borderTop:'1px solid',borderBottom:'1px solid',borderColor:'border'})}>
+  <div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'}})}>
+    <p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>Baseline de dois prongs</p><h2 class={css({textStyle:'title',m:'0 0 8'})}>Cobogó atual versus prática madura.</h2>
+    <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',lg:'1fr 1fr'},gap:'8'})}><article><h3>A0 · Cobogó hoje</h3><p class={css({lineHeight:'body'})}>Dois articles equivalentes; ambos têm borda completa, e a identidade cultural soma superfície azul, serif italic e marcador circular. A distinção é excelente, mas muitos sinais trabalham ao mesmo tempo.</p></article><article><h3>Estado da prática</h3><p class={css({lineHeight:'body'})}><strong>Carbon</strong> trata tile como layer + tipografia compacta + espaçamento interno; borda não é universal no tile base. <strong>USWDS</strong> recomenda cards para unidades realmente modulares e alerta contra usar card só como decoração. A prática não manda retirar contêineres: manda fazer o contêiner corresponder à semântica.</p></article></div>
+  </div>
+</section>
+
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'}})}>
+  <p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>Comparação</p><h2 class={css({textStyle:'title',m:'0 0 10'})}>Mesmo conteúdo. Quatro políticas de textura.</h2>
+
+  <figure class={css({m:'0 0 16'})}><figcaption class={css({mb:'5'})}><strong>A0 — moldura + superfície</strong><p class={css({m:'2 0 0',color:'textMuted'})}>Controle vigente: identidade interna forte e contêiner igualmente forte.</p></figcaption><div class={css({display:'grid',gridTemplateColumns:{base:'1fr',lg:'1fr 1fr'},gap:'4'})}>
+    <article class={css({background:'canvas',border:'1px solid',borderColor:'text',p:{base:'6',md:'8'},minH:'18rem',display:'flex',flexDirection:'column',justifyContent:'space-between'})}><div class={css({display:'flex',alignItems:'center',gap:'4'})}><span class={css({w:'10',h:'10',background:'text'})} aria-hidden="true"></span><span class={css({fontSize:'xs',fontWeight:'bold',letterSpacing:'0.14em',textTransform:'uppercase'})}>{publicIdentity.eyebrow}</span></div><div><h3 class={css({fontSize:{base:'2xl',md:'3xl'},lineHeight:'tight',m:'0',textTransform:'uppercase',letterSpacing:'-0.03em'})}>{publicIdentity.title}</h3><p class={css({mt:'3',mb:'0',color:'textMuted'})}>{publicIdentity.text}</p></div></article>
+    <article class={css({background:'info',color:'canvas',border:'1px solid',borderColor:'text',p:{base:'6',md:'8'},minH:'18rem',display:'flex',flexDirection:'column',justifyContent:'space-between'})}><div class={css({display:'flex',alignItems:'center',gap:'4'})}><span class={css({w:'10',h:'10',borderRadius:'full',border:'2px solid',borderColor:'accent'})} aria-hidden="true"></span><span class={css({fontSize:'xs',fontWeight:'bold',letterSpacing:'0.14em',textTransform:'uppercase',color:'accent'})}>{culturalIdentity.eyebrow}</span></div><div><h3 class={css({fontFamily:'serif',fontSize:{base:'3xl',md:'4xl'},fontStyle:'italic',fontWeight:'medium',lineHeight:'tight',m:'0',letterSpacing:'-0.04em'})}>{culturalIdentity.title}</h3><p class={css({mt:'3',mb:'0',color:'surfaceMuted',fontFamily:'serif'})}>{culturalIdentity.text}</p></div></article>
+  </div></figure>
+
+  <figure class={css({m:'0 0 16'})}><figcaption class={css({mb:'5'})}><strong>A — contraste tipográfico</strong><p class={css({m:'2 0 0',color:'textMuted'})}>Uma superfície comum e quase sem perímetro; voz tipográfica, símbolo e intervalo carregam a diferença.</p></figcaption><div class={css({display:'grid',gridTemplateColumns:{base:'1fr',lg:'1fr 1fr'},borderTop:'1px solid',borderBottom:'1px solid',borderColor:'text'})}>
+    <article class={css({p:{base:'6',md:'8'},minH:'18rem',display:'flex',flexDirection:'column',justifyContent:'space-between',borderRight:{lg:'1px solid'},borderBottom:{base:'1px solid',lg:'0'},borderColor:'border'})}><div class={css({display:'flex',alignItems:'center',gap:'4'})}><span class={css({w:'8',h:'8',background:'text'})} aria-hidden="true"></span><span class={css({fontSize:'xs',fontWeight:'black',letterSpacing:'0.18em',textTransform:'uppercase'})}>{publicIdentity.eyebrow}</span></div><div><h3 class={css({fontSize:{base:'2xl',md:'3xl'},lineHeight:'tight',m:'0',textTransform:'uppercase',letterSpacing:'-0.04em'})}>{publicIdentity.title}</h3><p class={css({mt:'3',mb:'0',color:'textMuted',maxW:'30rem'})}>{publicIdentity.text}</p></div></article>
+    <article class={css({p:{base:'6',md:'8'},minH:'18rem',display:'flex',flexDirection:'column',justifyContent:'space-between'})}><div class={css({display:'flex',alignItems:'center',gap:'4'})}><span class={css({w:'8',h:'8',borderRadius:'full',border:'2px solid',borderColor:'info'})} aria-hidden="true"></span><span class={css({fontFamily:'serif',fontSize:'sm',fontStyle:'italic',color:'info'})}>{culturalIdentity.eyebrow}</span></div><div><h3 class={css({fontFamily:'serif',fontSize:{base:'3xl',md:'4xl'},fontStyle:'italic',fontWeight:'medium',lineHeight:'tight',m:'0',letterSpacing:'-0.04em'})}>{culturalIdentity.title}</h3><p class={css({mt:'4',mb:'0',fontFamily:'serif',maxW:'30rem'})}>{culturalIdentity.text}</p></div></article>
+  </div></figure>
+
+  <figure class={css({m:'0 0 16'})}><figcaption class={css({mb:'5'})}><strong>B — contraste de densidade</strong><p class={css({m:'2 0 0',color:'textMuted'})}>Mesma superfície e mesma família sans; compactação versus respiro tenta produzir textura sem mudar a importância.</p></figcaption><div class={css({display:'grid',gridTemplateColumns:{base:'1fr',lg:'1fr 1fr'},gap:{base:'8',lg:'12'}})}>
+    <article class={css({borderTop:'6px solid',borderColor:'text',py:'5',display:'grid',gap:'2',alignContent:'start',minH:'18rem'})}><span class={css({fontSize:'xs',fontWeight:'black',letterSpacing:'0.18em',textTransform:'uppercase'})}>{publicIdentity.eyebrow}</span><div aria-hidden="true" class={css({display:'flex',gap:'1',my:'2'})}>{[0,1,2,3,4].map(()=><span class={css({h:'1',w:'8',background:'text'})}></span>)}</div><h3 class={css({fontSize:{base:'2xl',md:'3xl'},lineHeight:'none',m:'0',textTransform:'uppercase',letterSpacing:'-0.04em'})}>{publicIdentity.title}</h3><p class={css({m:'0',color:'textMuted',maxW:'26rem',lineHeight:'tight'})}>{publicIdentity.text}</p></article>
+    <article class={css({borderTop:'6px solid',borderColor:'info',py:'8',display:'flex',flexDirection:'column',justifyContent:'space-between',gap:'10',minH:'18rem'})}><span class={css({fontSize:'xs',fontWeight:'medium',letterSpacing:'0.08em',color:'info'})}>{culturalIdentity.eyebrow}</span><div><h3 class={css({fontSize:{base:'3xl',md:'4xl'},fontWeight:'medium',lineHeight:'tight',m:'0',letterSpacing:'-0.04em'})}>{culturalIdentity.title}</h3><p class={css({mt:'6',mb:'0',maxW:'30rem',lineHeight:'relaxed'})}>{culturalIdentity.text}</p></div></article>
+  </div></figure>
+
+  <figure class={css({m:'0'})}><figcaption class={css({mb:'5'})}><strong>C — faixas repetidas</strong><p class={css({m:'2 0 0',color:'textMuted'})}>Textura vira sinal explícito por repetição. É a opção deliberadamente próxima do limite entre estrutura e ornamento.</p></figcaption><div class={css({display:'grid',gridTemplateColumns:{base:'1fr',lg:'1fr 1fr'},gap:'6'})}>
+    <article class={css({borderLeft:'6px solid',borderColor:'text',pl:{base:'5',md:'7'},py:'4',minH:'18rem',display:'flex',flexDirection:'column',justifyContent:'space-between'})}><div aria-hidden="true" class={css({display:'grid',gridTemplateColumns:'repeat(6,1fr)',gap:'1',maxW:'14rem'})}>{[0,1,2,3,4,5].map(()=><span class={css({h:'2',background:'text'})}></span>)}</div><div><span class={css({fontSize:'xs',fontWeight:'black',letterSpacing:'0.16em',textTransform:'uppercase'})}>{publicIdentity.eyebrow}</span><h3 class={css({fontSize:{base:'2xl',md:'3xl'},lineHeight:'tight',m:'2 0 0',textTransform:'uppercase'})}>{publicIdentity.title}</h3><p class={css({mt:'3',mb:'0',color:'textMuted'})}>{publicIdentity.text}</p></div></article>
+    <article class={css({borderLeft:'6px solid',borderColor:'info',pl:{base:'5',md:'7'},py:'4',minH:'18rem',display:'flex',flexDirection:'column',justifyContent:'space-between'})}><div aria-hidden="true" class={css({display:'flex',gap:'2',alignItems:'center'})}>{[0,1,2].map(()=><span class={css({w:'5',h:'5',borderRadius:'full',border:'1px solid',borderColor:'info'})}></span>)}</div><div><span class={css({fontFamily:'serif',fontSize:'sm',fontStyle:'italic',color:'info'})}>{culturalIdentity.eyebrow}</span><h3 class={css({fontFamily:'serif',fontSize:{base:'3xl',md:'4xl'},fontStyle:'italic',fontWeight:'medium',lineHeight:'tight',m:'2 0 0'})}>{culturalIdentity.title}</h3><p class={css({mt:'4',mb:'0',fontFamily:'serif'})}>{culturalIdentity.text}</p></div></article>
+  </div></figure>
+</section>
+
+<section class={css({background:'text',color:'canvas'})}><div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'}})}><p class={css({textStyle:'eyebrow',color:'accent',m:'0 0 3'})}>Estado da rodada</p><h2 class={css({textStyle:'title',color:'canvas',m:'0 0 4'})}>As opções existem; a decisão ainda não.</h2><p class={css({color:'surfaceMuted',lineHeight:'body',maxW:'48rem'})}>Esta rodada materializa A0, A, B e C. A exploração permanece em andamento por contrato: a crítica deve acontecer só numa rodada posterior, olhando esta superfície já publicada e comparando desktop e mobile.</p></div></section>
+</main>
+</body>
+</html>
