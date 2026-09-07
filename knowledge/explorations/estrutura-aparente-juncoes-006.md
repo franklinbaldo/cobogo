@@ -27,9 +27,10 @@ tensions_to_watch:
   - "A versão mais polida parecer mais franca e convincente que as alternativas aparentes."
   - "A referência ser reduzida a concreto, cinza ou aparência inacabada."
 skill_path: skills/explorations/estrutura-aparente-juncoes-006/SKILL.md
-status: rough
+status: exploring
+reflection: "A exploração já foi materializada em A/B/C com conteúdo e ordem DOM compartilhados. A esconde quase todas as junções, B compartilha bordas apenas onde a montagem quer comunicar continuidade e C explicita divisões deliberadamente em excesso. A superfície está pronta para build, publicação e crítica visual; nenhuma direção foi selecionada antes de observar o resultado em desktop e mobile."
 ---
 
 # Exploração: Estrutura aparente 006
 
-Esta exploração isola a franqueza de montagem. O objetivo não é fazer uma página “brutalista”, mas descobrir se mostrar seletivamente como os blocos se apoiam, continuam ou se encaixam pode produzir uma linguagem mais direta e característica do que esconder todas as junções sob acabamento neutro.
+A direção deixou de ser abstrata e agora pode ser julgada por comparação. A implementação evita atalhos de aparência: não há concreto falso, textura ou paleta brutalista fabricando caráter. O que muda é somente quanto da montagem fica visível. A próxima decisão deve vir da superfície publicada: quais junções realmente explicam relações e quais apenas desenham caixas.
