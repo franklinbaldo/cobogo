@@ -5,6 +5,7 @@ import { badge, navLink } from '../../styled-system/recipes'
 import { exploracoes } from '../data/laboratorio'
 
 const familias = [...new Set(exploracoes.map((item) => item.familia))]
+const maisRecente = exploracoes.at(-1)!
 ---
 
 <html lang="pt-BR">
@@ -29,11 +30,11 @@ const familias = [...new Set(exploracoes.map((item) => item.familia))]
         <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10', alignItems: 'end' })}>
           <div>
             <p class={css({ textStyle: 'eyebrow', color: 'accent', m: '0' })}>Laboratório visual</p>
-            <p class={css({ mt: '5', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '30rem' })}>Cada exploração tem uma pergunta, variantes comparáveis, crítica publicada e agora uma URL própria.</p>
+            <p class={css({ mt: '5', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '30rem' })}>Cada exploração tem uma pergunta, variantes comparáveis, crítica publicada e uma URL própria.</p>
           </div>
           <div>
             <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '11ch' })}>Veja a linguagem sendo construída.</h1>
-            <p class={css({ mt: '6', mb: '0', color: 'surfaceMuted', lineHeight: 'body', fontSize: 'lg', maxW: '42rem' })}>Não é uma galeria de respostas prontas. É o histórico navegável das decisões visuais que o Cobogó testou, criticou e decidiu manter.</p>
+            <p class={css({ mt: '6', mb: '0', color: 'surfaceMuted', lineHeight: 'body', fontSize: 'lg', maxW: '42rem' })}>Não é uma galeria de respostas prontas. É o histórico navegável das decisões visuais que o Cobogó testou, criticou e decidiu manter ou continuar explorando.</p>
           </div>
         </div>
       </section>
@@ -42,8 +43,8 @@ const familias = [...new Set(exploracoes.map((item) => item.familia))]
         <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr 1fr', md: 'repeat(4, 1fr)' }, gap: '6' })}>
           <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Explorações</p><strong class={css({ fontSize: '2xl' })}>{String(exploracoes.length).padStart(2, '0')}</strong></div>
           <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Famílias</p><strong class={css({ fontSize: '2xl' })}>{String(familias.length).padStart(2, '0')}</strong></div>
-          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Estado atual</p><strong class={css({ fontSize: '2xl' })}>selected</strong></div>
-          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Comece por</p><a href={exploracoes.at(-1)?.href} class={css({ color: 'text', fontWeight: 'black', fontSize: '2xl' })}>007 →</a></div>
+          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Mais recente</p><strong class={css({ fontSize: '2xl' })}>{maisRecente.status}</strong></div>
+          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Continue por</p><a href={maisRecente.href} class={css({ color: 'text', fontWeight: 'black', fontSize: '2xl' })}>{maisRecente.numero} →</a></div>
         </div>
       </section>
 
@@ -51,7 +52,7 @@ const familias = [...new Set(exploracoes.map((item) => item.familia))]
         <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10', alignItems: 'start', mb: { base: '10', md: '14' } })}>
           <div>
             <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0 0 3' })}>Catálogo</p>
-            <h2 class={css({ textStyle: 'title', m: '0', maxW: '12ch' })}>Sete perguntas. Uma sequência de aprendizado.</h2>
+            <h2 class={css({ textStyle: 'title', m: '0', maxW: '12ch' })}>{exploracoes.length} perguntas. Uma sequência de aprendizado.</h2>
           </div>
           <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'textMuted', m: '0', maxW: '42rem' })}>Leia em ordem para acompanhar a evolução do repertório, ou entre direto numa família. Cada página oferece anterior, próxima e retorno ao catálogo.</p>
         </div>
@@ -63,6 +64,7 @@ const familias = [...new Set(exploracoes.map((item) => item.familia))]
               <div>
                 <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0 0 2' })}>{item.familia}</p>
                 <strong class={css({ fontSize: { base: 'xl', md: '2xl' }, lineHeight: 'tight' })}>{item.titulo}</strong>
+                <p class={css({ mt: '3', mb: '0' })}><span class={badge({ tone: item.status === 'selected' ? 'accent' : undefined })}>{item.status}</span></p>
               </div>
               <div class={css({ gridColumn: { base: '2', md: 'auto' } })}>
                 <p class={css({ fontWeight: 'bold', m: '0 0 2', lineHeight: 'tight' })}>{item.pergunta}</p>
