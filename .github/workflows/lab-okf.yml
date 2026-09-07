@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "knowledge/**"
-      - "skills/experiments/**"
+      - "skills/explorations/**"
       - "src/pages/laboratorio.astro"
       - "src/pages/laboratorio/**"
       - ".github/workflows/lab-okf.yml"
@@ -12,7 +12,7 @@ on:
     branches: [main]
     paths:
       - "knowledge/**"
-      - "skills/experiments/**"
+      - "skills/explorations/**"
       - "src/pages/laboratorio.astro"
       - "src/pages/laboratorio/**"
       - ".github/workflows/lab-okf.yml"
@@ -44,22 +44,22 @@ jobs:
           uv run --project .okf-parser --frozen okf-parser check knowledge
           --relational-schema okf.schema.sql
 
-      - name: Ensure every experiment skill exists
+      - name: Ensure every exploration skill exists
         run: |
           python - <<'PY'
           from pathlib import Path
           import re
 
           failures = []
-          for experiment in Path("knowledge/experiments").glob("*.md"):
-              text = experiment.read_text()
+          for exploration in Path("knowledge/explorations").glob("*.md"):
+              text = exploration.read_text()
               match = re.search(r"^skill_path:\s*(.+)$", text, re.MULTILINE)
               if not match:
-                  failures.append(f"{experiment}: missing skill_path")
+                  failures.append(f"{exploration}: missing skill_path")
                   continue
               path = Path(match.group(1).strip().strip('"'))
               if not path.is_file():
-                  failures.append(f"{experiment}: missing generated skill {path}")
+                  failures.append(f"{exploration}: missing generated skill {path}")
           if failures:
               raise SystemExit("\n".join(failures))
           PY
