@@ -18,16 +18,16 @@
       "message": "Record RunReading kind 'active-handoffs'.",
       "requirement": "reading:active-handoffs"
     },
-    "run_id": "runs/20260907T180523Z-fa-a-o-melhor-avan-o-poss-vel-neste-reposit-rio",
+    "run_id": "runs/20260907T180618Z-fa-a-o-melhor-avan-o-poss-vel-neste-reposit-rio",
     "run_spec": "run-specs/visual-exploration",
     "run_spec_digest": "sha256:c1ef5f5e3fa461ab233e6599c5ae518f1f3e6f9c96a9b016ad7e611c11d85b89",
     "run_spec_pinned": true,
     "run_spec_version": "6.0.0",
     "structural": {
-      "concept_count": 27,
+      "concept_count": 28,
       "conformant": true,
       "diagnostics": [],
-      "markdown_count": 27,
+      "markdown_count": 28,
       "reserved_count": 0,
       "root": "/home/runner/work/cobogo/cobogo/.wisk/knowledge"
     },
@@ -170,8 +170,8 @@
       }
     ]
   },
-  "path": "/home/runner/work/cobogo/cobogo/.wisk/knowledge/experiences/runs/20260907T180523Z-fa-a-o-melhor-avan-o-poss-vel-neste-reposit-rio.md",
-  "run_id": "runs/20260907T180523Z-fa-a-o-melhor-avan-o-poss-vel-neste-reposit-rio",
+  "path": "/home/runner/work/cobogo/cobogo/.wisk/knowledge/experiences/runs/20260907T180618Z-fa-a-o-melhor-avan-o-poss-vel-neste-reposit-rio.md",
+  "run_id": "runs/20260907T180618Z-fa-a-o-melhor-avan-o-poss-vel-neste-reposit-rio",
   "run_spec": "run-specs/visual-exploration",
   "run_spec_digest": "sha256:c1ef5f5e3fa461ab233e6599c5ae518f1f3e6f9c96a9b016ad7e611c11d85b89",
   "run_spec_version": "6.0.0",
