@@ -28,10 +28,10 @@ tensions_to_watch:
   - "A geometria depender de cor, ornamento ou explicação para recuperar hierarquia."
   - "O efeito só funcionar em uma largura específica."
 skill_path: skills/experiments/cheio-vazio-irregularidade-004/SKILL.md
-status: exploring
-reflection: "A PR #609 publicou A/B/C no merge b53d58da2c3ec5649bfe3dc0a3c10eaeaa6d9f7b e a publicação passou pelos gates técnicos. As capturas, porém, não ficaram recuperáveis para inspeção visual na sessão anterior. A exploração permanece `exploring`: não porque uma hipótese esteja indecidida, mas porque ainda falta a crítica perceptiva necessária para escolher, continuar ou abandonar esta direção."
+status: selected
+reflection: "A captura publicada do SHA b86b9129ba1352bb6deb6711c20796179bf622d9 foi recuperada do Deploy Pages #487 e permitiu comparar A/B/C diretamente em 1600×1000, 390×844 e 320×800. A é clara e robusta, mas sua simetria 2×2 é genérica e pouco acrescenta ao repertório. B é a direção com mais força: o bloco dominante continua inequívoco, a explicação se encaixa como contrapeso à direita e evidência/ação recompõem uma base sem perder a ordem percebida. C ultrapassa o ponto útil: os blocos passam a flutuar em ilhas, surgem vazios grandes demais e a geometria começa a competir com a sequência. No mobile, as três relinearizam para a mesma pilha sem penalidade estrutural, então a escolha é deliberadamente de linguagem no desktop. B fica `selected`; a exploração ensina que irregularidade funciona melhor como contrapeso localizado do que como dispersão geral."
 ---
 
 # Exploração: Irregularidade 004
 
-As três variações estão publicadas e tecnicamente íntegras. O trabalho pendente é olhar, comparar e exercer crítica visual. O laboratório não precisa fingir uma decisão científica onde existe uma escolha de linguagem ainda não amadurecida.
+A crítica visual finalmente pôde acontecer sobre a superfície publicada. A variante B foi selecionada porque introduz assimetria suficiente para dar caráter sem desmontar a hierarquia; A serve como referência segura, mas banal, e C deixa o deslocamento virar assunto demais. O aprendizado não é um limiar numérico: é uma preferência de composição — irregularidade localizada como contrapeso, não dispersão uniforme de atenção.
