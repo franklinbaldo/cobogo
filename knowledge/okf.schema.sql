@@ -8,6 +8,21 @@ CREATE TABLE "VisualReference" (
     cautions VARCHAR[]
 );
 
+CREATE TABLE "PracticeBaseline" (
+    id VARCHAR PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    kind VARCHAR NOT NULL CHECK (kind IN ('cobogo_current', 'design_system')),
+    source_url VARCHAR,
+    source_name VARCHAR NOT NULL,
+    observed_surface VARCHAR NOT NULL,
+    observed_at VARCHAR NOT NULL,
+    strengths VARCHAR[] NOT NULL,
+    limitations VARCHAR[] NOT NULL,
+    findings VARCHAR[] NOT NULL,
+    evidence VARCHAR[] NOT NULL,
+    status VARCHAR NOT NULL CHECK (status IN ('current', 'superseded', 'retired'))
+);
+
 CREATE TABLE "VisualStudy" (
     id VARCHAR PRIMARY KEY,
     title VARCHAR NOT NULL,
@@ -21,6 +36,9 @@ CREATE TABLE "VisualExploration" (
     id VARCHAR PRIMARY KEY,
     title VARCHAR NOT NULL,
     study_id VARCHAR NOT NULL REFERENCES "VisualStudy"(id),
+    cobogo_baseline_id VARCHAR REFERENCES "PracticeBaseline"(id),
+    practice_baseline_ids VARCHAR[],
+    baseline_question VARCHAR,
     direction VARCHAR NOT NULL,
     medium VARCHAR NOT NULL,
     constraints VARCHAR[] NOT NULL,
@@ -31,6 +49,7 @@ CREATE TABLE "VisualExploration" (
     status VARCHAR NOT NULL CHECK (status IN ('rough', 'exploring', 'concluded', 'abandoned')),
     result VARCHAR CHECK (result IS NULL OR result IN ('selected', 'rejected', 'inconclusive')),
     result_rationale VARCHAR,
+    baseline_comparison VARCHAR,
     canonical_status VARCHAR NOT NULL DEFAULT 'not_evaluated' CHECK (canonical_status IN ('not_evaluated', 'candidate', 'adopted', 'declined')),
     canonical_rationale VARCHAR,
     canonical_targets VARCHAR[],
