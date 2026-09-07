@@ -24,12 +24,12 @@ CREATE TABLE "VisualExperiment" (
     direction VARCHAR NOT NULL,
     medium VARCHAR NOT NULL,
     constraints VARCHAR[] NOT NULL,
-    exploration VARCHAR[] NOT NULL,
-    qualities_to_seek VARCHAR[] NOT NULL,
-    tensions_to_watch VARCHAR[] NOT NULL,
+    procedure VARCHAR[] NOT NULL,
+    critique_prompts VARCHAR[] NOT NULL,
+    warning_signs VARCHAR[] NOT NULL,
     skill_path VARCHAR NOT NULL,
     status VARCHAR NOT NULL CHECK (status IN ('proposed', 'exploring', 'selected', 'incorporated', 'abandoned', 'partial')),
-    critique VARCHAR
+    outcome VARCHAR
 );
 
 CREATE TABLE "VisualSpecimen" (
