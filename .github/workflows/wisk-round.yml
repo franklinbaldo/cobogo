@@ -1,5 +1,6 @@
 name: Wisk round
 
+# Ephemeral executor for the current repository round.
 on:
   push:
     branches:
