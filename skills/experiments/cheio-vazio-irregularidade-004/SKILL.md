@@ -1,44 +1,33 @@
-# Skill — irregularidade 004
+# Skill — explorar irregularidade 004
 
 ## Objetivo
 
-Encontrar o limite em que uma composição editorial deixa de ganhar ritmo com irregularidade e começa a perder hierarquia.
+Explorar quando irregularidade acrescenta ritmo e personalidade a uma composição editorial e quando começa a competir com a hierarquia.
 
 ## Leitura obrigatória
 
-Antes de alterar a superfície, leia:
-
-- `knowledge/references/cobogo-cheio-vazio.md`;
-- `knowledge/studies/cheio-vazio-na-web.md`;
-- `knowledge/experiments/cheio-vazio-grid-001.md`;
-- `knowledge/experiments/cheio-vazio-mapa-002.md`;
-- `knowledge/experiments/cheio-vazio-mobile-003.md`;
-- `knowledge/experiments/cheio-vazio-irregularidade-004.md`.
-
-O contrato do teste é o `VisualExperiment`. Não transforme a referência arquitetônica em decoração.
+Leia a referência, o estudo e as explorações 001–004. O contrato é o `VisualExploration`. Não transforme a referência arquitetônica em decoração.
 
 ## Procedimento operacional
 
-1. Use os mesmos quatro blocos editoriais nas três variantes, na mesma ordem DOM: título, explicação, evidência e ação.
-2. Variante A é controle: grid regular, alinhamentos previsíveis e spans equilibrados.
-3. Variante B introduz irregularidade moderada: um deslocamento e diferenças de span suficientes para criar contrapeso, sem inverter a sequência percebida.
-4. Variante C aumenta deliberadamente deslocamentos e alternância de spans até testar o limite de variação tolerável.
-5. Não mude conteúdo, tipografia, cor ou semântica entre variantes. A única variável é geometria.
-6. Observe 1440×900 e 768×900 para hierarquia; confirme 390×844 e 320×800 para relinearização.
-7. Verifique rolagem horizontal, landmarks, ordem de foco e legibilidade.
-8. Preserve a variante que falhar; o contraste entre B e C é evidência central.
-9. Publique em `/laboratorio/irregularidade-004/`.
-10. Depois do deploy verificado, registre outcome e estado do specimen.
-11. Trate o gate pós-publicação como evidência de integridade técnica, não como substituto da comparação perceptiva. Se as capturas existirem mas não puderem ser inspecionadas visualmente na sessão, registre o experimento como `partial` em vez de inferir o resultado.
+1. Use os mesmos quatro blocos nas três variações, na mesma ordem DOM.
+2. A: grid regular. B: irregularidade moderada. C: irregularidade alta.
+3. Não mude conteúdo, tipografia, cor ou semântica; varie geometria.
+4. Observe 1440×900 e 768×900; confirme 390×844 e 320×800.
+5. Verifique overflow, landmarks, foco e legibilidade.
+6. Preserve A/B/C; contraste é material de crítica.
+7. Publique em `/laboratorio/irregularidade-004/`.
+8. Depois do deploy, registre `reflection` e estado.
+9. Gate pós-publicação prova integridade técnica, não qualidade estética. Se as capturas não puderem ser observadas, mantenha `exploring` em vez de fabricar uma escolha.
 
 ## Critério de interpretação
 
-A hipótese sobrevive se B for mais expressiva que A sem aumentar esforço de leitura, enquanto C mostrar perda clara de hierarquia ou continuidade. Se B e C forem igualmente legíveis, o experimento não encontrou o limiar e deve terminar `partial`. Se B já prejudicar a sequência, registre `rejected`. Sem observação visual recuperável das variantes publicadas, o resultado também é `partial`: build, acessibilidade e ausência de overflow não demonstram por si sós hierarquia percebida.
+Olhe A/B/C e descreva onde há força, banalidade, ruído, caráter e perda de continuidade. Se uma direção convencer, marque `selected`; se nenhuma convencer, `abandoned`; se o olhar ainda não estiver suficientemente informado, permaneça `exploring`. Não use vocabulário de hipótese aceita/rejeitada para taste.
 
 ## Evidência mínima
 
-Build, contrato OKF, verificação de acessibilidade/superfície, observação visual recuperável em desktop/tablet/mobile, comparação A/B/C e decisão explícita sobre o limiar.
+Build, OKF, acessibilidade/superfície, observação visual em desktop/tablet/mobile e crítica comparativa A/B/C.
 
 ## Saída para WikiSkill
 
-Registre o achado como relação entre irregularidade, hierarquia e ordem percebida. Não promova diretamente para token, recipe ou primitive sem repetição em outro contexto real. Preserve explicitamente a diferença entre evidência técnica e evidência perceptiva para que uma sessão futura saiba exatamente o que falta.
+Registre a relação percebida entre irregularidade, hierarquia e ordem. Preserve a diferença entre integridade técnica e crítica visual e deixe a síntese futura decidir se algo merece ser incorporado à linguagem.

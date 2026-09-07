@@ -1,9 +1,9 @@
 ---
-type: VisualExperiment
+type: VisualExploration
 id: experiments/cheio-vazio-grid-001
 title: "Grid vazado 001"
 study_id: studies/cheio-vazio-na-web
-hypothesis: "Vazios deliberados em um grid editorial podem criar ritmo e identidade sem reduzir a legibilidade nem depender de ornamentação figurativa."
+direction: "Explorar vazios deliberados em um grid editorial como fonte de ritmo e identidade, sem depender de ornamentação figurativa."
 medium: "Astro + Panda CSS responsive grid"
 constraints:
   - "Não desenhar blocos de cobogó nem reproduzir padrões arquitetônicos literais."
@@ -14,23 +14,23 @@ procedure:
   - "Produzir três composições com o mesmo conteúdo e diferentes distribuições de cheios e vazios."
   - "Comparar as três em 390px, 768px e 1440px."
   - "Testar navegação por teclado e leitura sem CSS para confirmar ordem semântica."
-  - "Escolher a variante mais expressiva que preserve hierarquia e legibilidade."
-  - "Publicar o specimen escolhido em /laboratorio/ e registrar o resultado no experimento."
-success_signals:
-  - "A composição parece intencional mesmo sem elementos decorativos adicionais."
-  - "Os vazios ajudam a separar ritmos e níveis de informação em desktop."
-  - "No mobile, a composição relineariza sem buracos arbitrários ou perda de contexto."
-  - "A leitura permanece clara com zoom e navegação por teclado."
-failure_signals:
-  - "O vazio parece erro de layout ou conteúdo faltando."
-  - "A composição só funciona em uma largura específica."
-  - "A técnica força ordem visual diferente da ordem semântica."
-  - "O efeito depende de explicar a referência para parecer interessante."
+  - "Selecionar a variante com mais força visual que preserve hierarquia e legibilidade."
+  - "Publicar o specimen selecionado em /laboratorio/ e registrar a crítica."
+qualities_to_seek:
+  - "Intencionalidade mesmo sem elementos decorativos adicionais."
+  - "Vazios que organizem ritmos e níveis de informação em desktop."
+  - "Relinearização móvel sem buracos arbitrários ou perda de contexto."
+  - "Leitura clara com zoom e navegação por teclado."
+tensions_to_watch:
+  - "O vazio parecer erro de layout ou conteúdo faltando."
+  - "A composição depender de uma largura específica."
+  - "A ordem visual divergir da ordem semântica."
+  - "A referência precisar ser explicada para a composição parecer interessante."
 skill_path: skills/experiments/cheio-vazio-grid-001/SKILL.md
-status: promising
-outcome: "Três variantes com conteúdo idêntico foram comparadas e publicadas pela PR #599. A variante B (contrapeso diagonal) preserva melhor o ritmo e a relação entre massas; A é legível, mas pouco expressiva; C foi rejeitada por separar excessivamente blocos relacionados. No merge 7adf8bf803e0633ca9df1734bad369ba797ecf8b, os contratos OKF e builds passaram, o Deploy Pages #474 publicou a comparação e o gate pós-publicação verificou /laboratorio/ em 1600×1000 e 390×844 sem falhas estruturais ou overflow móvel. O resultado é promissor, mas ainda não justifica princípio ou primitive sem evidência em outro contexto."
+status: selected
+reflection: "Três variantes com conteúdo idêntico foram comparadas e publicadas pela PR #599. A variante B (contrapeso diagonal) tem mais força na relação entre massas; A é legível, mas pouco expressiva; C separa excessivamente blocos relacionados. No merge 7adf8bf803e0633ca9df1734bad369ba797ecf8b, os contratos OKF e builds passaram, o Deploy Pages #474 publicou a comparação e o gate pós-publicação verificou /laboratorio/ em 1600×1000 e 390×844 sem falhas estruturais ou overflow móvel. B fica selecionada como direção a continuar, sem transformar gosto ou recorrência local em prova científica."
 ---
 
-# Experimento: Grid vazado 001
+# Exploração: Grid vazado 001
 
-A comparação deixou de ser implícita: o laboratório expõe três distribuições estruturais com o mesmo conteúdo e registra inclusive a variante rejeitada. O achado desta rodada é relacional, não ornamental: o vazio funcionou melhor como contrapeso entre massas do que como corredor central ou simples margem lateral. A hipótese avançou para `promising`; uma sessão de síntese futura deve procurar repetição desse efeito antes de transformá-lo em recomendação durável.
+A comparação expõe três distribuições estruturais com o mesmo conteúdo. O achado crítico é relacional, não uma hipótese provada: nesta exploração, o vazio como contrapeso entre massas tem mais força que o corredor central ou a simples margem lateral. A direção foi `selected`; outras aplicações podem aprofundá-la, contradizê-la ou abandoná-la.
