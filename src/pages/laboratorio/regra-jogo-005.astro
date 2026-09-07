@@ -33,32 +33,32 @@ const action = css({ mt: 'auto', pt: '4', borderTop: '1px solid', borderColor: '
     <main>
       <section class={css({ background: 'text', color: 'canvas', borderBottom: '1px solid', borderColor: 'text' })}>
         <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.75fr 1.25fr' }, gap: '10', alignItems: 'end' })}>
-          <div><p class={css({ textStyle: 'eyebrow', color: 'accent', m: '0' })}>Exploração 005 · exploring</p><p class={css({ mt: '5', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '31rem' })}>A mesma anatomia pode aceitar pequenas liberdades internas sem virar quatro componentes diferentes?</p></div>
+          <div><p class={css({ textStyle: 'eyebrow', color: 'accent', m: '0' })}>Exploração 005 · selected</p><p class={css({ mt: '5', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '31rem' })}>A mesma anatomia suporta bastante liberdade quando as diferenças respondem à composição inteira, e não apenas a uma exceção isolada.</p></div>
           <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '11ch' })}>Regra suficiente. Jogo suficiente.</h1>
         </div>
       </section>
 
       <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '12', md: '16' } })}>
         <div class={css({ display: 'flex', gap: '2', flexWrap: 'wrap', mb: '6' })}><span class={badge({ tone: 'accent' })}>mesmo conteúdo</span><span class={badge()}>mesma anatomia</span><span class={badge()}>liberdade interna varia</span></div>
-        <p class={css({ fontSize: 'lg', lineHeight: 'body', maxW: '48rem', m: '0' })}>A repete a gramática sem exceções. B permite uma liberdade localizada por módulo. C combina liberdades suficientes para tensionar o parentesco. A referência alimenta a relação entre sistema e liberdade; nenhuma forma, cor ou padrão de Athos Bulcão é reproduzido.</p>
+        <p class={css({ fontSize: 'lg', lineHeight: 'body', maxW: '48rem', m: '0' })}>A repete a gramática sem exceções. B tenta concentrar a liberdade, mas acaba dando peso demais a uma única peça. C combina várias diferenças e, ainda assim, mantém a voz mais coesa porque proporção, escala e deslocamento formam uma composição comum. A referência alimenta a relação entre sistema e liberdade; nenhuma forma, cor ou padrão de Athos Bulcão é reproduzido.</p>
       </section>
 
       <section class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}>
         <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gap: { base: '14', md: '18' } })}>
           <figure class={css({ m: '0' })}>
-            <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '5', borderTop: '1px solid', borderColor: 'text', pt: '3', flexWrap: 'wrap' })}><strong>Variação A — repetição estrita</strong><span class={css({ color: 'textMuted', fontSize: 'sm' })}>controle de monotonia</span></figcaption>
+            <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '5', borderTop: '1px solid', borderColor: 'text', pt: '3', flexWrap: 'wrap' })}><strong>Variação A — repetição estrita</strong><span class={css({ color: 'textMuted', fontSize: 'sm' })}>coesa, mas previsível</span></figcaption>
             <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(4, minmax(0, 1fr))' }, gap: '3' })}>{modules.map((item) => (<article class={shell}><div class={body}><p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>{item.label}</p><h2 class={css({ fontSize: '2xl', lineHeight: 'tight', letterSpacing: '-0.03em', m: '0' })}>{item.title}</h2><p class={css({ color: 'textMuted', lineHeight: 'body', m: '0' })}>{item.body}</p><p class={action}>Ler módulo →</p></div></article>))}</div>
           </figure>
 
           <figure class={css({ m: '0' })}>
-            <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '5', borderTop: '4px solid', borderColor: 'accent', pt: '3', flexWrap: 'wrap' })}><strong>Variação B — liberdade localizada</strong><span class={badge({ tone: 'accent' })}>para crítica</span></figcaption>
+            <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '5', borderTop: '1px solid', borderColor: 'text', pt: '3', flexWrap: 'wrap' })}><strong>Variação B — liberdade localizada</strong><span class={css({ color: 'textMuted', fontSize: 'sm' })}>exceção concentra peso demais</span></figcaption>
             <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(12, minmax(0, 1fr))' }, gap: '3', alignItems: 'stretch' })}>
               {modules.map((item, index) => (<article class={`${shell} ${css({ gridColumn: { lg: index === 0 ? '1 / span 4' : index === 1 ? '5 / span 3' : index === 2 ? '8 / span 5' : '3 / span 4' }, mt: { lg: index === 1 ? '8' : index === 3 ? '3' : '0' } })}`}><div class={body}><p class={css({ textStyle: 'eyebrow', color: 'info', m: '0', textAlign: { lg: index === 1 ? 'right' : 'left' } })}>{item.label}</p><h2 class={css({ fontSize: { base: '2xl', lg: index === 2 ? '3xl' : '2xl' }, lineHeight: 'tight', letterSpacing: '-0.03em', m: '0' })}>{item.title}</h2><p class={css({ color: 'textMuted', lineHeight: 'body', m: '0' })}>{item.body}</p><p class={action}>Ler módulo →</p></div></article>))}
             </div>
           </figure>
 
           <figure class={css({ m: '0' })}>
-            <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '5', borderTop: '1px solid', borderColor: 'text', pt: '3', flexWrap: 'wrap' })}><strong>Variação C — liberdades simultâneas</strong><span class={css({ color: 'textMuted', fontSize: 'sm' })}>limite de parentesco</span></figcaption>
+            <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '5', borderTop: '4px solid', borderColor: 'accent', pt: '3', flexWrap: 'wrap' })}><strong>Variação C — liberdades simultâneas</strong><span class={badge({ tone: 'accent' })}>direção selecionada</span></figcaption>
             <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(10, minmax(0, 1fr))' }, gap: '3', alignItems: 'start' })}>
               {modules.map((item, index) => (<article class={`${shell} ${css({ gridColumn: { lg: index === 0 ? '1 / span 6' : index === 1 ? '7 / span 4' : index === 2 ? '2 / span 3' : '6 / span 5' }, mt: { lg: index === 1 ? '12' : index === 2 ? '6' : '0' }, minH: { lg: index === 0 ? '18rem' : index === 2 ? '13rem' : 'auto' } })}`}><div class={body}><p class={css({ textStyle: 'eyebrow', color: index === 2 ? 'accent' : 'info', m: '0', textAlign: { lg: index % 2 ? 'right' : 'left' } })}>{item.label}</p><h2 class={css({ fontSize: { base: '2xl', lg: index === 0 ? '4xl' : index === 2 ? 'xl' : '2xl' }, lineHeight: 'tight', letterSpacing: '-0.03em', m: '0', maxW: index === 0 ? '12ch' : 'none' })}>{item.title}</h2><p class={css({ color: 'textMuted', lineHeight: 'body', m: '0' })}>{item.body}</p><p class={`${action} ${css({ textAlign: { lg: index === 3 ? 'right' : 'left' } })}`}>Ler módulo →</p></div></article>))}
             </div>
@@ -67,8 +67,8 @@ const action = css({ mt: 'auto', pt: '4', borderTop: '1px solid', borderColor: '
       </section>
 
       <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '12', md: '16' }, display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 2fr' }, gap: '6' })}>
-        <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Crítica aberta</p>
-        <div class={css({ fontSize: 'lg', lineHeight: 'body' })}><p class={css({ mt: '0' })}>A superfície está pronta para observação. A pergunta não é qual variação “passa”, mas onde aparece mais caráter sem perder voz comum entre as quatro peças.</p><p class={css({ mb: '0', fontWeight: 'bold' })}>Olhar por: parentesco, ritmo, monotonia, surpresa, hierarquia e ruído.</p><p><a href="/cobogo/laboratorio/">Voltar ao Laboratório</a></p></div>
+        <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Crítica</p>
+        <div class={css({ fontSize: 'lg', lineHeight: 'body' })}><p class={css({ mt: '0' })}>A primeira observação publicada derrubou uma suposição útil de derrubar: mais liberdades não produzem necessariamente menos parentesco. A é segura e plana. B concentra a exceção no módulo 03 até ele pedir uma leitura própria. C distribui contrastes pela composição inteira e, por isso, mantém melhor a sensação de família enquanto ganha hierarquia, ritmo e surpresa.</p><p><strong>Direção selecionada:</strong> C. O que segura a família é a gramática compartilhada e a coordenação entre diferenças, não a contagem de propriedades que permanecem iguais.</p><p class={css({ mb: '0', fontWeight: 'bold' })}>Taste que fica: liberdade funciona melhor quando responde ao conjunto do que quando aparece como exceção autônoma.</p><p><a href="/cobogo/laboratorio/">Voltar ao Laboratório</a></p></div>
       </section>
     </main>
   </body>
