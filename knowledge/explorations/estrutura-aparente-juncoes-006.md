@@ -27,10 +27,10 @@ tensions_to_watch:
   - "A versão mais polida parecer mais franca e convincente que as alternativas aparentes."
   - "A referência ser reduzida a concreto, cinza ou aparência inacabada."
 skill_path: skills/explorations/estrutura-aparente-juncoes-006/SKILL.md
-status: exploring
-reflection: "A exploração já foi materializada em A/B/C com conteúdo e ordem DOM compartilhados. A esconde quase todas as junções, B compartilha bordas apenas onde a montagem quer comunicar continuidade e C explicita divisões deliberadamente em excesso. A superfície está pronta para build, publicação e crítica visual; nenhuma direção foi selecionada antes de observar o resultado em desktop e mobile."
+status: selected
+reflection: "A superfície publicada no SHA 08d2f7fe8d556d60b978c9a015cfa0a425da80be foi observada nas capturas desktop e mobile do artefato cobogo-published-preview correspondente. A é limpa e legível, mas a separação por espaço faz os três blocos parecerem cards independentes e produz pouco caráter próprio. B é a composição mais convincente: a borda externa e as divisões compartilhadas tornam a família e a continuidade imediatamente legíveis, sem competir com títulos ou texto; no mobile, a mesma lógica vira uma sequência vertical clara. C confirma o limite: bordas aninhadas e linhas internas repetem a mesma informação estrutural, criam caixas dentro de caixas e aumentam muito o ruído, sobretudo na tela estreita. A direção fica `selected`, com B como variação escolhida. O aprendizado crítico é seletividade: estrutura aparente tem força quando uma linha carrega uma relação real entre partes; repetir contornos para reafirmar relações já compreendidas vira acabamento gráfico, não franqueza construtiva."
 ---
 
 # Exploração: Estrutura aparente 006
 
-A direção deixou de ser abstrata e agora pode ser julgada por comparação. A implementação evita atalhos de aparência: não há concreto falso, textura ou paleta brutalista fabricando caráter. O que muda é somente quanto da montagem fica visível. A próxima decisão deve vir da superfície publicada: quais junções realmente explicam relações e quais apenas desenham caixas.
+A comparação publicada separou franqueza de excesso. A não mostra montagem suficiente para ganhar uma voz particular; C mostra a mesma montagem vezes demais. B encontra o gesto mais forte: bordas compartilhadas fazem três partes parecerem um conjunto e explicam continuidade sem transformar a interface em diagrama. A direção foi selecionada porque a estrutura visível trabalha como relação, não como textura.
