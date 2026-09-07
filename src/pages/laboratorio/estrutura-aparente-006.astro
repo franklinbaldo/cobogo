@@ -2,6 +2,7 @@
 import '../../styles/index.css'
 import { css } from '../../../styled-system/css'
 import { badge, navLink } from '../../../styled-system/recipes'
+import LabNavigation from '../../components/LabNavigation.astro'
 
 const blocks = [
   { label: '01 · Título', title: 'A estrutura pode falar antes do ornamento.', body: 'A composição mostra como as partes se relacionam sem transformar a página em diagrama.' },
@@ -22,4 +23,5 @@ const blocks = [
 <figure class={css({m:'0'})}><figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação C — estrutura em excesso</strong></figcaption><div class={css({border:'2px solid',borderColor:'text',background:'canvas',p:'2'})}>{blocks.map(item=><article class={css({border:'1px solid',borderColor:'text',p:'2',mb:'2'})}><div class={css({border:'1px solid',borderColor:'text',p:'4'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3',borderBottom:'1px solid',borderColor:'text',pb:'2'})}>{item.label}</p><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0',borderBottom:'1px solid',borderColor:'text',pb:'3',mb:'3'})}>{item.title}</h2><p class={css({m:'0',lineHeight:'body',color:'textMuted'})}>{item.body}</p></div></article>)}</div></figure>
 </div></section>
 <section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'},display:'grid',gridTemplateColumns:{base:'1fr',md:'1fr 2fr'},gap:'6'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0'})}>Crítica</p><div class={css({fontSize:'lg',lineHeight:'body'})}><p class={css({mt:'0'})}>A publicação deixou a diferença nítida. A preserva legibilidade, mas o espaço entre os blocos faz cada peça pedir leitura própria. B usa uma borda externa e divisões compartilhadas para transformar as três partes em um conjunto contínuo; a estrutura aparece exatamente onde existe relação. C repete fronteiras já compreendidas e cria caixas dentro de caixas — no mobile, esse acúmulo fica ainda mais ruidoso.</p><p><strong>Direção selecionada:</strong> B. Uma junção aparente precisa comprar uma relação perceptível; se a linha pode sumir sem mudar como entendemos o conjunto, ela é acabamento, não estrutura.</p><p class={css({mb:'0',fontWeight:'bold'})}>Taste que fica: franqueza visual depende menos de mostrar tudo e mais de não esconder a relação certa.</p></div></section>
+<LabNavigation id="estrutura-aparente-006" />
 </main></body></html>
