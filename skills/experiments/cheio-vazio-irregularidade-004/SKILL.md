@@ -29,15 +29,16 @@ O contrato do teste é o `VisualExperiment`. Não transforme a referência arqui
 8. Preserve a variante que falhar; o contraste entre B e C é evidência central.
 9. Publique em `/laboratorio/irregularidade-004/`.
 10. Depois do deploy verificado, registre outcome e estado do specimen.
+11. Trate o gate pós-publicação como evidência de integridade técnica, não como substituto da comparação perceptiva. Se as capturas existirem mas não puderem ser inspecionadas visualmente na sessão, registre o experimento como `partial` em vez de inferir o resultado.
 
 ## Critério de interpretação
 
-A hipótese sobrevive se B for mais expressiva que A sem aumentar esforço de leitura, enquanto C mostrar perda clara de hierarquia ou continuidade. Se B e C forem igualmente legíveis, o experimento não encontrou o limiar e deve terminar `partial`. Se B já prejudicar a sequência, registre `rejected`.
+A hipótese sobrevive se B for mais expressiva que A sem aumentar esforço de leitura, enquanto C mostrar perda clara de hierarquia ou continuidade. Se B e C forem igualmente legíveis, o experimento não encontrou o limiar e deve terminar `partial`. Se B já prejudicar a sequência, registre `rejected`. Sem observação visual recuperável das variantes publicadas, o resultado também é `partial`: build, acessibilidade e ausência de overflow não demonstram por si sós hierarquia percebida.
 
 ## Evidência mínima
 
-Build, contrato OKF, verificação de acessibilidade/superfície, observação em desktop/tablet/mobile, comparação A/B/C e decisão explícita sobre o limiar.
+Build, contrato OKF, verificação de acessibilidade/superfície, observação visual recuperável em desktop/tablet/mobile, comparação A/B/C e decisão explícita sobre o limiar.
 
 ## Saída para WikiSkill
 
-Registre o achado como relação entre irregularidade, hierarquia e ordem percebida. Não promova diretamente para token, recipe ou primitive sem repetição em outro contexto real.
+Registre o achado como relação entre irregularidade, hierarquia e ordem percebida. Não promova diretamente para token, recipe ou primitive sem repetição em outro contexto real. Preserve explicitamente a diferença entre evidência técnica e evidência perceptiva para que uma sessão futura saiba exatamente o que falta.
