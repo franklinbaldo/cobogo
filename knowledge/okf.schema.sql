@@ -17,25 +17,25 @@ CREATE TABLE "VisualStudy" (
     status VARCHAR NOT NULL CHECK (status IN ('open', 'synthesized', 'retired'))
 );
 
-CREATE TABLE "VisualExperiment" (
+CREATE TABLE "VisualExploration" (
     id VARCHAR PRIMARY KEY,
     title VARCHAR NOT NULL,
     study_id VARCHAR NOT NULL REFERENCES "VisualStudy"(id),
-    hypothesis VARCHAR NOT NULL,
+    direction VARCHAR NOT NULL,
     medium VARCHAR NOT NULL,
     constraints VARCHAR[] NOT NULL,
     procedure VARCHAR[] NOT NULL,
-    success_signals VARCHAR[] NOT NULL,
-    failure_signals VARCHAR[] NOT NULL,
+    qualities_to_seek VARCHAR[] NOT NULL,
+    tensions_to_watch VARCHAR[] NOT NULL,
     skill_path VARCHAR NOT NULL,
-    status VARCHAR NOT NULL CHECK (status IN ('proposed', 'running', 'promising', 'rejected', 'promoted')),
-    outcome VARCHAR
+    status VARCHAR NOT NULL CHECK (status IN ('rough', 'exploring', 'selected', 'incorporated', 'abandoned')),
+    reflection VARCHAR
 );
 
 CREATE TABLE "VisualSpecimen" (
     id VARCHAR PRIMARY KEY,
     title VARCHAR NOT NULL,
-    experiment_id VARCHAR NOT NULL REFERENCES "VisualExperiment"(id),
+    exploration_id VARCHAR NOT NULL REFERENCES "VisualExploration"(id),
     route VARCHAR NOT NULL,
     artifact_path VARCHAR,
     status VARCHAR NOT NULL CHECK (status IN ('draft', 'published', 'retired')),
@@ -46,7 +46,7 @@ CREATE TABLE "DesignPrinciple" (
     id VARCHAR PRIMARY KEY,
     title VARCHAR NOT NULL,
     summary VARCHAR NOT NULL,
-    evidence_experiment_ids VARCHAR[] NOT NULL,
+    evidence_exploration_ids VARCHAR[] NOT NULL,
     maturity VARCHAR NOT NULL CHECK (maturity IN ('opinionated', 'validated', 'stable', 'retired'))
 );
 
