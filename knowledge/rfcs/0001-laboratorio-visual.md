@@ -17,62 +17,140 @@ scope:
 
 O Laboratório é o mecanismo pelo qual o Cobogó investiga, compara, critica e eventualmente incorpora decisões visuais. Ele não é uma galeria de componentes nem uma fábrica de vencedores.
 
-A unidade de trabalho é `VisualExploration`. Cada nova exploração parte de um problema observável no Cobogó, estabelece um baseline de dois prongs, introduz uma referência visual como fonte de tradução, materializa alternativas comparáveis, publica antes de julgar e separa explicitamente resultado experimental de adoção canônica.
+Uma referência visual não corresponde a uma única exploração. Ela pode sugerir vários pontos de consequência no Cobogó — tipografia, composição, cor, bordas, densidade, escala, navegação ou qualquer outra relação concreta — e cada um desses pontos pode ser investigado, rejeitado ou deixado em aberto independentemente.
 
-O ciclo canônico é:
+A arquitetura canônica passa a ser:
 
-**problema → baseline Cobogó → estado da prática → referência → leitura → pergunta de tradução → A0 + traduções → publicação → crítica posterior → resultado → eventual adoção canônica**.
+**VisualReference → TranslationDirection → VisualExploration → resultado → eventual adoção canônica**.
+
+O ciclo de uma exploração é:
+
+**referência → leitura → direções prováveis → escolher uma direção → problema → baseline Cobogó → estado da prática → A0 + traduções → publicação → crítica posterior → resultado → eventual adoção canônica**.
 
 ## Motivação
 
-As primeiras explorações do laboratório revelaram quatro riscos estruturais:
+As primeiras explorações do laboratório revelaram cinco riscos estruturais:
 
 1. variantes podiam parecer alternativas arbitrárias porque a referência e a lógica de tradução não estavam suficientemente expostas;
 2. o agente tendia a construir e escolher na mesma rodada, favorecendo racionalização pós-hoc;
 3. `selected` podia ser confundido com “virou Cobogó”, apesar de uma preferência local não demonstrar transferibilidade;
-4. comparar apenas A/B/C não respondia à pergunta mais importante: **alguma alternativa é realmente melhor que o Cobogó atual?**
+4. comparar apenas A/B/C não respondia à pergunta mais importante: **alguma alternativa é realmente melhor que o Cobogó atual?**;
+5. tratar uma referência como se ela tivesse uma única consequência desperdiça seu repertório: a mesma leitura pode chamar atenção para várias relações diferentes no sistema.
 
-Além disso, uma exploração sem contexto do estado da prática pode reinventar soluções já maduras, ou tratar uma referência artística como único universo comparativo.
+O extremo oposto também é ruim. Não faz sentido cruzar cada referência com todas as variáveis possíveis do design system. O espaço de decisões do Cobogó é grande demais, e esse procedimento transformaria julgamento visual em burocracia combinatória.
+
+O laboratório precisa preservar **seleção por feeling informado**: observar a referência, reconhecer os poucos lugares em que ela parece ter maior potência de tradução e investigar esses lugares separadamente.
 
 ## Decisão
 
-### 1. Baseline de dois prongs é obrigatório para novas explorações
+### 1. Referência gera direções de tradução, não uma exploração única
+
+`VisualReference` é repertório visual/cultural. Depois de observar a referência, o agente identifica um pequeno conjunto de `TranslationDirection`.
+
+Uma `TranslationDirection` registra:
+
+- `reference_id`: a referência de origem;
+- `target`: o aspecto concreto do Cobogó que pode ser afetado;
+- `reading`: qual relação da referência está sendo lida;
+- `why_it_might_matter`: por que essa leitura parece promissora para aquele alvo;
+- `scope[]`: superfícies, componentes ou classes de decisão potencialmente atingidas;
+- `status`: `candidate`, `active`, `explored`, `rejected` ou `retired`;
+- `rationale`: prosa opcional para explicar mudança de estado, rejeição ou encerramento.
+
+O `target` não é uma enumeração fechada. Exemplos possíveis são `typography/scale`, `color/contrast`, `layout/field-relation`, `component/card-boundary` ou descrições igualmente concretas. O modelo não deve pretender listar todas as dimensões do design.
+
+### 2. A curadoria de consequências é deliberadamente não exaustiva
+
+Ao curar uma referência, o agente normalmente deve registrar **os 2–4 pontos de consequência mais promissores**. Esse número é orientação de foco, não limite normativo: uma referência pode produzir uma única direção forte ou mais de quatro quando houver justificativa real.
+
+A pergunta é:
+
+> “Olhando para esta referência, onde ela parece querer mexer no Cobogó?”
+
+Não é:
+
+> “Quais de todas as variáveis do Cobogó esta referência afeta?”
+
+Ausência de uma direção não significa que a referência não possa inspirar aquele aspecto no futuro. Significa apenas que ele não foi selecionado como promissor nesta leitura.
+
+### 3. Cada direção tem vida independente
+
+Uma referência pode gerar, por exemplo:
+
+- uma direção sobre hierarquia tipográfica;
+- outra sobre relação entre massas;
+- outra sobre contraste de campos;
+- outra sobre bordas estruturais.
+
+Cada direção pode:
+
+- nunca chegar a uma exploração;
+- ser rejeitada ainda na leitura;
+- abrir uma ou várias `VisualExploration` ao longo do tempo;
+- produzir resultado `selected`, `rejected` ou `inconclusive` em cada exploração;
+- eventualmente contribuir para uma decisão canônica.
+
+Rejeitar uma direção **não rejeita a referência**. Selecionar uma exploração **não valida todas as outras direções da referência**.
+
+### 4. A/B/C pertencem à exploração, não à referência
+
+As letras A/B/C são apenas identificadores locais de traduções dentro de uma `VisualExploration`. Não existe um conjunto global de variantes por referência.
+
+Se uma referência gerar três direções, pode haver algo como:
+
+```text
+Referência X
+├─ Direção: tipografia / escala
+│  └─ Exploração 009: A0 + A + B + C
+├─ Direção: composição / massas
+│  └─ Exploração 010: A0 + A + B
+└─ Direção: cor / contraste
+   └─ rejeitada antes de materialização
+```
+
+Também não há obrigação de exatamente três traduções. A exploração produz quantas alternativas forem úteis para discriminar sua pergunta.
+
+### 5. Baseline de dois prongs é obrigatório por exploração
+
+Uma `TranslationDirection` indica **onde olhar**. A `VisualExploration` é que formula um problema testável e estabelece baseline.
 
 #### Prong A — Cobogó atual
 
-Antes de criar variantes, o agente identifica a superfície real equivalente no Cobogó atual e registra um `PracticeBaseline(kind: cobogo_current)`.
+Antes de criar traduções, a exploração identifica a superfície real equivalente no Cobogó atual e registra um `PracticeBaseline(kind: cobogo_current)`.
 
-O registro contém superfície/rota/artefato observado, data, forças, limitações relevantes à pergunta, achados e evidência reproduzível. Essa solução é materializada no specimen como **A0 — Cobogó atual**. A0 é controle, não proposta.
+Essa solução é materializada no specimen como **A0 — Cobogó atual**. A0 é controle, não proposta.
 
 #### Prong B — estado da prática
 
-O agente pesquisa design systems maduros relevantes **para a classe de problema**, usando preferencialmente documentação e superfícies primárias. Não existe lista fixa nem ranking universal de “bons design systems”.
+A exploração pesquisa design systems maduros relevantes **para aquela direção e problema**, usando preferencialmente documentação e superfícies primárias. Não existe lista fixa de marcas.
 
-Cada sistema materialmente usado vira `PracticeBaseline(kind: design_system)`, registrando fonte, superfície, data, forças, limitações, achados e evidência. A síntese procura convergências, divergências, trade-offs e soluções condicionadas pelo contexto. O objetivo é conhecer o estado da prática, não copiar aparência nem usar popularidade como prova.
+Cada sistema materialmente usado vira `PracticeBaseline(kind: design_system)`. A síntese procura convergências, divergências e trade-offs. O objetivo é conhecer o estado da prática, não copiar aparência nem usar popularidade como prova.
 
-Os baselines são persistentes e reutilizáveis. Uma exploração futura pode reutilizar observações ainda atuais, registrando nova observação quando a superfície tiver mudado ou quando a pergunta exigir outro recorte. Registros antigos passam a `superseded`; não se reescreve retrospectivamente o que foi observado.
+Baselines são persistentes e reutilizáveis quando continuam atuais e pertinentes.
 
-### 2. A referência visual vem depois do baseline
+### 6. A referência continua visível dentro da exploração
 
-`VisualReference` continua sendo repertório visual/cultural. Sua função é abrir possibilidades de tradução, não substituir análise do produto nem benchmark profissional.
+Mesmo quando uma direção já foi criada, a exploração deve tornar visível a referência de origem e explicar a cadeia:
 
-A página pública deve mostrar a referência e a leitura feita dela antes das traduções. Quando a imagem não puder ser incorporada adequadamente, deve haver fonte navegável e descrição suficiente da observação; a ausência de imagem não autoriza fingir que ela foi observada.
+**o que foi observado → qual direção foi extraída → por que esta exploração investiga essa direção → como cada tradução responde a ela**.
 
-### 3. Toda tradução tem racional em prosa
+A referência não substitui o baseline profissional nem a análise do Cobogó atual.
 
-Cada variante deve explicar **por que aquela composição é uma tradução da referência para o problema identificado**. O racional deve mencionar relações visuais concretas; nomes como “A”, “B” e “C” não são justificativa.
+### 7. Toda tradução tem racional em prosa
 
-Não há obrigação de exatamente três variantes. O número deve responder à pergunta da exploração.
+Cada variante explica por que aquela composição traduz a direção escolhida para o problema identificado.
 
-### 4. Construir e julgar são rodadas diferentes
+O racional deve mencionar relações visuais concretas. “A”, “B”, “C”, “mais ousada” ou “mais moderna” não constituem justificativa suficiente sem explicar o que mudou perceptualmente.
+
+### 8. Construir e julgar são rodadas diferentes
 
 Uma rodada que cria A0 ou cria/altera substancialmente variantes termina `exploring` depois da publicação.
 
-Uma rodada posterior pode avaliar apenas uma superfície que já estava publicada antes de começar. Isso cria distância entre autoria e julgamento e torna screenshot/superfície publicada evidência, não cerimônia de CI.
+Uma rodada posterior pode avaliar apenas uma superfície que já estava publicada antes de começar. Isso cria distância entre autoria e julgamento.
 
 Explorações podem permanecer abertas indefinidamente ou terminar `abandoned`.
 
-### 5. Estado, resultado e canonização são eixos diferentes
+### 9. Estado, resultado e canonização são eixos diferentes
 
 #### Estado do trabalho
 
@@ -91,93 +169,152 @@ Quando `concluded`:
 
 A avaliação registra `result_rationale` e `baseline_comparison` em prosa.
 
+O resultado pertence à exploração específica. Uma mesma `TranslationDirection` pode acumular mais de uma exploração ao longo do tempo.
+
 #### Canonização
 
 É um eixo posterior: `not_evaluated`, `candidate`, `adopted`, `declined`.
 
-Uma tradução selecionada **não** vira Cobogó automaticamente. `adopted` exige `canonical_rationale` que explique: qual ganho demonstrou sobre A0; por que o aprendizado é transferível além do specimen; qual trade-off assume diante do estado da prática; quais evidências sustentam a decisão; e onde a mudança entra no sistema (`canonical_targets`).
+Uma tradução selecionada **não** vira Cobogó automaticamente. `adopted` exige `canonical_rationale` que explique:
 
-A página pública apresenta essa decisão em prosa como **“O que entrou no Cobogó — e por quê”**. Se não houve adoção, isso também é explícito.
+1. qual ganho demonstrou sobre A0;
+2. por que o aprendizado é transferível além do specimen;
+3. qual trade-off assume diante do estado da prática;
+4. quais evidências sustentam a decisão;
+5. onde a mudança entra no sistema (`canonical_targets`).
 
-### 6. Rejeição é conhecimento
+### 10. Rejeição é conhecimento em todos os níveis
 
-O laboratório preserva explorações rejeitadas, inconclusivas e abandonadas. Uma exploração em que A0 continua melhor é bem-sucedida se produziu evidência útil. Isso reduz a pressão para fabricar novidade.
+O laboratório preserva:
 
-### 7. Ordem narrativa da página pública
+- direções candidatas que não foram perseguidas;
+- direções explicitamente rejeitadas;
+- explorações rejeitadas;
+- explorações inconclusivas;
+- explorações abandonadas.
+
+Uma referência continua útil mesmo que várias de suas direções sejam rejeitadas. Uma exploração em que A0 continua melhor é bem-sucedida se produziu evidência útil.
+
+## Ordem narrativa pública
+
+### Página/repertório da referência
+
+Quando houver superfície pública própria para a referência, ela deve permitir entender:
+
+1. a referência observada;
+2. a leitura geral;
+3. **onde ela talvez possa mexer no Cobogó**;
+4. as `TranslationDirection` identificadas e seus estados;
+5. links para explorações relacionadas.
+
+Isso transforma a referência em um nó de repertório, não em uma página subordinada a uma única experiência.
+
+### Página da exploração
 
 Toda nova página de exploração segue, conceitualmente:
 
-1. problema investigado;
-2. **Cobogó hoje** — A0 e sua análise;
-3. **Estado da prática** — design systems observados e síntese;
-4. referência visual;
-5. leitura da referência e pergunta de tradução;
-6. A0 + variantes, cada uma com racional em prosa;
-7. estado/crítica acumulada;
-8. resultado, quando existir, incluindo comparação com A0;
-9. decisão canônica, quando existir;
-10. navegação entre explorações.
-
-A ordem pode variar visualmente, mas não deve ocultar a cadeia de raciocínio.
+1. referência de origem;
+2. direção de tradução escolhida;
+3. problema investigado;
+4. **Cobogó hoje** — A0 e sua análise;
+5. **Estado da prática** — design systems observados e síntese;
+6. leitura específica e pergunta de tradução;
+7. A0 + variantes, cada uma com racional em prosa;
+8. estado/crítica acumulada;
+9. resultado, quando existir, incluindo comparação com A0;
+10. decisão canônica, quando existir;
+11. navegação para a referência, direções irmãs e outras explorações.
 
 ## Modelo OKF
 
-`PracticeBaseline` registra `id`, `title`, `kind`, `source_url`, `source_name`, `observed_surface`, `observed_at`, `strengths[]`, `limitations[]`, `findings[]`, `evidence[]` e `status`.
+### `TranslationDirection`
 
-`VisualExploration` ganha `cobogo_baseline_id`, `practice_baseline_ids[]`, `baseline_question` e `baseline_comparison`.
+```text
+id
+title
+reference_id -> VisualReference
+target
+reading
+why_it_might_matter
+scope[]
+status: candidate | active | explored | rejected | retired
+rationale?
+```
 
-Os campos são inicialmente opcionais para não falsificar baselines retroativos nas explorações 001–008. O RunSpec, e não uma migração inventada, torna-os obrigatórios operacionalmente para **novas** explorações. Uma rodada futura pode enriquecer explorações históricas quando houver evidência real.
+### `VisualExploration`
 
-Os arquivos `PracticeBaseline` vivem em `knowledge/baselines/`. Não se criam placeholders: um baseline só existe após observação real e evidência reproduzível.
+Ganha `direction_id -> TranslationDirection`.
+
+O campo textual histórico `direction` permanece por compatibilidade e para registrar o enunciado específico da exploração. Para novas explorações, `direction_id` é operacionalmente obrigatório no RunSpec.
+
+Os campos `direction_id`, `cobogo_baseline_id`, `practice_baseline_ids` e `baseline_question` permanecem opcionais no schema para não falsificar relações retroativas nas explorações 001–008. O contrato operacional torna-os obrigatórios para novas explorações.
 
 ## Contrato operacional WikiSkill
 
-`run-specs/visual-exploration` v4 é a implementação normativa deste RFC. `session-types/visual-explorer` fornece os nudges operacionais.
+`run-specs/visual-exploration` v5 é a implementação normativa deste RFC. `session-types/visual-explorer` fornece os nudges operacionais.
 
-O gate esperado para uma nova exploração deve conseguir demonstrar:
+Antes de abrir uma nova exploração, a sessão deve conseguir responder:
 
+- qual referência a inspirou;
+- quais direções promissoras já foram identificadas nessa referência;
+- qual direção específica esta exploração investiga;
+- por que essa direção merece trabalho agora;
+- qual superfície atual do Cobogó será A0;
+- qual estado da prática é relevante para esse recorte.
+
+O gate estrutural futuro deve conseguir demonstrar:
+
+- nova exploração possui `direction_id` válido;
+- a direção pertence à mesma referência estudada pela exploração;
 - existe exatamente um baseline `cobogo_current` aplicável e ele aparece como A0;
-- existe pelo menos uma observação externa relevante, e quantidade maior é preferível quando acrescenta perspectivas materialmente distintas;
-- fontes e superfícies foram realmente observadas;
+- existe pelo menos uma observação externa relevante;
 - cada tradução possui racional em prosa;
 - materialização não fecha a exploração na mesma rodada;
 - avaliação posterior compara alternativas com A0;
 - canonização, se houver, possui racional e targets.
 
-A validação deve evoluir para automatizar o que é estruturalmente verificável sem tentar transformar julgamento visual em lint.
+A validação automatiza o que é estruturalmente verificável sem tentar transformar julgamento visual em lint.
 
 ## Migração
 
 ### Agora
 
-- adicionar `PracticeBaseline` ao schema OKF;
-- adicionar vínculos de baseline e `baseline_comparison` a `VisualExploration`;
-- atualizar RunSpec para v4;
+- adicionar `TranslationDirection` ao schema OKF;
+- adicionar `direction_id` a `VisualExploration`;
+- atualizar RunSpec para v5;
 - atualizar SessionType;
-- adotar este RFC como fonte arquitetural do laboratório.
+- atualizar este RFC como fonte arquitetural do laboratório.
+
+### Próximas referências
+
+Toda nova referência curada deve registrar explicitamente os poucos pontos de consequência mais promissores antes de o agente começar a produzir variantes.
 
 ### Próxima exploração
 
-A primeira exploração criada após este RFC deve ser o specimen de referência do novo processo completo. Ela não pode começar pelas variantes: começa registrando A0 e o estado da prática.
+A primeira exploração criada após esta revisão deve partir de uma `TranslationDirection` explícita e usar o processo completo de baseline de dois prongs.
 
 ### Explorações 001–008
 
-Permanecem como registro histórico válido. Não criar baselines retroativos por inferência. Elas podem ser enriquecidas posteriormente se uma rodada observar e documentar os controles de forma reproduzível.
+Permanecem como registro histórico válido. Não criar `TranslationDirection` retroativas por inferência automática. Elas podem ser enriquecidas posteriormente quando uma rodada reler a referência e documentar a direção com evidência real.
 
 ## Alternativas rejeitadas
 
+**Uma referência = uma exploração.** Rejeitado porque uma mesma referência pode alterar o olhar sobre várias relações do sistema.
+
+**Matriz referência × todas as variáveis do Cobogó.** Rejeitado porque é impraticável e transforma feeling visual em cobertura burocrática.
+
+**A/B/C globais por referência.** Rejeitado porque alternativas só fazem sentido dentro de uma pergunta concreta e um baseline específico.
+
 **Usar apenas a referência visual como baseline.** Rejeitado porque repertório cultural responde “que relações podemos traduzir?”, não “como o produto resolve hoje?” nem “qual é o estado da prática?”.
 
-**Comparar apenas as variantes entre si.** Rejeitado porque sempre produz uma vencedora relativa mesmo quando todas são piores que a solução atual.
+**Comparar apenas as variantes entre si.** Rejeitado porque pode produzir uma vencedora relativa mesmo quando todas são piores que A0.
 
-**Manter uma lista fixa de design systems de excelência.** Rejeitado porque relevância depende da pergunta e sistemas mudam. O contrato exige maturidade, pertinência e evidência, não marcas específicas.
+**Manter uma lista fixa de design systems de excelência.** Rejeitado porque relevância depende da pergunta e sistemas mudam.
 
 **Canonizar automaticamente a variante selecionada.** Rejeitado porque vitória local não demonstra transferibilidade sistêmica.
 
-**Exigir fechamento em toda rodada.** Rejeitado porque transforma exploração em produção de decisões e reduz a utilidade de resultados negativos/inconclusivos.
-
 ## Consequências
 
-O laboratório fica mais lento por exploração e mais forte como mecanismo de decisão. Pesquisa de baseline passa a ser trabalho de primeira classe. Em troca, cada escolha futura pode responder três perguntas diferentes: **o que tínhamos**, **o que a prática profissional ensina** e **o que a referência nos permitiu imaginar**.
+O laboratório passa a preservar melhor a natureza do repertório visual: **uma referência amplia o olhar em vários lugares; cada lugar vira uma direção; cada direção pode ou não merecer exploração; e cada exploração precisa demonstrar ganho real antes de qualquer canonização**.
 
-O resultado desejado não é mais “B venceu A e C”. É uma afirmação auditável do tipo: **“B melhora o Cobogó atual nesta relação observável, por estes motivos, assumindo estes trade-offs; ainda assim, isso só vira Cobogó canônico quando houver evidência de transferibilidade.”**
+Isso também evita que o agente “gaste” uma referência inteira numa única experiência. Referências fortes podem continuar produzindo trabalho útil ao longo do tempo, sem obrigação de exaurir todas as suas possíveis interpretações.
