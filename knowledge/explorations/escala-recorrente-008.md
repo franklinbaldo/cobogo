@@ -13,8 +13,9 @@ constraints:
 procedure:
   - "Construir três módulos semanticamente equivalentes em escalas pequena, média e dominante."
   - "A deve repetir a mesma caixa quase literalmente; B deve preservar anatomia e ritmo, liberando proporção e densidade; C deve liberar tantas relações que o parentesco fique tensionado."
+  - "Explicar em prosa, para A/B/C, como cada estratégia pretende traduzir o caráter programático da referência."
   - "Comparar reconhecimento de família antes de julgar novidade visual."
-  - "Publicar A/B/C juntas e registrar crítica depois da observação da superfície publicada."
+  - "Publicar A/B/C juntas e terminar a rodada de materialização em exploring; avaliação de resultado só pode ocorrer numa rodada posterior."
 qualities_to_seek:
   - "Parentesco imediato entre escalas diferentes."
   - "Hierarquia clara sem clonagem mecânica."
@@ -26,10 +27,15 @@ tensions_to_watch:
   - "Escala dominante apagar a função dos módulos menores."
   - "A referência ser confundida com licença para copiar identidade visual histórica."
 skill_path: skills/explorations/escala-recorrente-008/SKILL.md
-status: rough
-reflection: "Exploração aberta nesta rodada para testar parentesco através de mudança de escala. A comparação publicada deve decidir se anatomia e ritmo compartilhados bastam para manter identidade quando proporção e densidade divergem."
+status: exploring
+result: null
+result_rationale: null
+canonical_status: not_evaluated
+canonical_rationale: null
+canonical_targets: []
+reflection: "A exploração foi materializada e publicada, mas permanece deliberadamente aberta. A crítica feita durante a construção é evidência inicial, não decisão. Uma rodada posterior deve observar a superfície publicada e pode selecionar, rejeitar ou concluir de forma inconclusiva; só depois, em decisão separada, cabe discutir eventual adoção canônica."
 ---
 
 # Exploração: Escala recorrente 008
 
-A rodada começa separando consistência de clonagem. O objetivo é descobrir quanto uma família pode mudar de tamanho e densidade sem deixar de parecer a mesma linguagem.
+A exploração permanece em andamento. A rodada que produziu as variantes não decide qual delas venceu e não antecipa incorporação ao Cobogó.
