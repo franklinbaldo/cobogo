@@ -9,30 +9,106 @@ permissions:
   contents: write
 
 jobs:
-  start:
-    if: github.actor != 'github-actions[bot]'
+  complete:
+    if: contains(github.event.head_commit.message, 'run-wisk-round-completion')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - name: Sync project environment
         run: uv sync --group dev
       - name: Bootstrap Wisk idempotently
         run: uv run wisk init .
-      - name: Start canonical Wisk round
+      - name: Validate OKF and build
         run: |
-          set -o pipefail
-          uv run wisk session start-next "Faça o melhor avanço possível neste repositório" | tee .wisk-start.txt
-      - name: Persist Wisk state
+          set -euxo pipefail
+          uv run okf-parser check knowledge --relational-schema okf.schema.sql | tee .wisk-okf.txt
+          npm install
+          npm run build | tee .wisk-build.txt
+      - name: Responsive and accessibility surface check
+        run: |
+          set -euxo pipefail
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+          python -m http.server 4321 -d dist > /tmp/cobogo-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4321/laboratorio/percurso-visual-010/ >/dev/null; then break; fi
+            sleep 1
+          done
+          node --input-type=module <<'NODE'
+          import { writeFileSync } from 'node:fs';
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({ headless: true });
+          const observations = [];
+          const failures = [];
+          for (const viewport of [{name:'desktop',width:1600,height:1000},{name:'mobile',width:390,height:844},{name:'mobile-320',width:320,height:800}]) {
+            const page = await browser.newPage({ viewport });
+            const response = await page.goto('http://127.0.0.1:4321/laboratorio/percurso-visual-010/', { waitUntil:'networkidle' });
+            const facts = await page.evaluate(() => ({
+              documentWidth: document.documentElement.scrollWidth,
+              bodyWidth: document.body.scrollWidth,
+              h1Count: document.querySelectorAll('h1').length,
+              mainCount: document.querySelectorAll('main').length,
+              navCount: document.querySelectorAll('nav').length,
+              unnamedActions: [...document.querySelectorAll('a,button')].filter((el)=>!((el.getAttribute('aria-label')||el.textContent||'').trim())).length,
+              variants: [...document.querySelectorAll('main > section')].length,
+            }));
+            observations.push({ viewport, status:response?.status()??0, ...facts });
+            if ((response?.status()??0) !== 200) failures.push(`${viewport.name}: HTTP ${response?.status()}`);
+            if (facts.documentWidth > viewport.width) failures.push(`${viewport.name}: overflow ${facts.documentWidth}>${viewport.width}`);
+            if (facts.h1Count !== 1) failures.push(`${viewport.name}: h1=${facts.h1Count}`);
+            if (facts.mainCount !== 1) failures.push(`${viewport.name}: main=${facts.mainCount}`);
+            if (facts.navCount < 1) failures.push(`${viewport.name}: nav=${facts.navCount}`);
+            if (facts.unnamedActions > 0) failures.push(`${viewport.name}: unnamedActions=${facts.unnamedActions}`);
+            await page.close();
+          }
+          await browser.close();
+          writeFileSync('.wisk-responsive.json', JSON.stringify({route:'/laboratorio/percurso-visual-010/', observations, failures}, null, 2));
+          if (failures.length) { console.error(failures.join('\n')); process.exit(1); }
+          NODE
+      - name: Complete current Wisk run
+        run: |
+          set -euxo pipefail
+          RUN='runs/20260907T160737Z-fa-a-o-melhor-avan-o-poss-vel-neste-reposit-rio'
+          GOAL_TASK='run-goals/20260907t160737z-fa-a-o-melhor-avan-o-poss-vel-n/task-advance-percurso-010'
+          GOAL_VISUAL='run-goals/20260907t160737z-fa-a-o-melhor-avan-o-poss-vel-n/explore-percurso-010'
+          uv run wisk run reading "$RUN" run-readings/active-handoffs active-handoffs 'Active handoffs' '.wisk/knowledge/experiences/handoffs' 'No active handoffs were present when the canonical round started.'
+          uv run wisk run reading "$RUN" run-readings/active-skills active-skills 'Active visual-lab contracts' '.wisk/knowledge/local/session-types/visual-explorer.md' 'Wisk selected visual-explorer with visual-exploration v6; the local contract requires a TranslationDirection, two-prong baseline, A0 plus translations, publication before judgment, and later critique.'
+          uv run wisk run reading "$RUN" run-readings/baseline baseline 'Current and practice baselines' 'knowledge/baselines/' 'The laboratory catalog is the current Cobogó control; GOV.UK, Carbon and USWDS were observed as relevant state-of-practice sources for measure, responsive spacing and controlled grid variation.'
+          uv run wisk run reading "$RUN" run-readings/reference reference 'Burle Marx reference' 'knowledge/references/burle-marx-campos-interligados.md' 'The reference contributes movement through sequence, adjacency and changes of scale rather than literal landscape forms.'
+          uv run wisk run reading "$RUN" run-readings/translation-direction translation-direction 'Percurso visual entre campos' 'knowledge/directions/burle-marx-percurso-visual.md' 'The candidate direction targets layout/reading-flow and is concrete in the long, repetitive Laboratory catalog.'
+          uv run wisk run reading "$RUN" run-readings/study study 'Campos interligados na web' 'knowledge/studies/campos-interligados-na-web.md' 'The study frames movement as a relational property of adjacent fields and supports testing sequence without animation.'
+          uv run wisk run reading "$RUN" run-readings/exploration exploration 'Percurso visual 010' 'knowledge/explorations/percurso-visual-010.md' 'Exploration 010 isolates vertical rhythm, lateral measure and recurring scale landmarks over the same nine catalog items.'
+          uv run wisk run reading "$RUN" run-readings/skill skill 'Percurso visual 010 skill' 'skills/explorations/percurso-visual-010/SKILL.md' 'The skill protects semantic equivalence: perceived rhythm must not silently become ranking.'
+          uv run wisk run goal "$RUN" "$GOAL_TASK" task-advance 'Materialize the next useful Cobogó visual-lab exploration under the Wisk-selected visual-explorer contract.' 'Two Burle Marx TranslationDirections remained candidates after exploration 009; the Laboratory catalog provides a concrete long sequence for reading-flow.' 'Exploration 010 is structurally valid, built, responsive, published-ready and remains exploring without same-round selection.'
+          uv run wisk run goal "$RUN" "$GOAL_VISUAL" explore-visual-translation 'Test directions/burle-marx-percurso-visual against the current Laboratory catalog and relevant design-system practice.' 'The catalog is semantically equivalent but visually repetitive, making it a controlled surface for testing movement by space and measure.' 'A0 plus three rationalized translations are materialized with identical content/order and no winner is selected in this round.'
+          uv run wisk run decision "$RUN" run-decisions/percurso-010-surface 'Which surface should test the reading-flow TranslationDirection?' 'Use the Laboratory catalog as A0 and materialize exploration 010 with space cadence, alternating measure and scale landmarks.' 'The catalog has nine equivalent rows, so it exposes the central tension directly: improving visual route without inventing semantic priority.' --goal "$GOAL_VISUAL"
+          uv run wisk run evidence "$RUN" run-evidence/execution-percurso-010 execution 'knowledge/explorations/percurso-visual-010.md' 'Implemented exploration 010, its specimen, skill, catalog entry and direction activation.' --goal "$GOAL_TASK"
+          uv run wisk run evidence "$RUN" run-evidence/translation-direction-percurso-010 translation-direction 'knowledge/directions/burle-marx-percurso-visual.md' 'Activated the explicit layout/reading-flow direction chosen for this exploration.' --goal "$GOAL_VISUAL"
+          uv run wisk run evidence "$RUN" run-evidence/cobogo-baseline-percurso-010 cobogo-baseline 'knowledge/baselines/cobogo-laboratorio-catalogo-2026-09-07.md' 'Recorded the current uniform Laboratory ledger as A0, including its strengths and flat-cadence limitation.' --goal "$GOAL_VISUAL"
+          uv run wisk run evidence "$RUN" run-evidence/practice-baseline-percurso-010 practice-baseline 'knowledge/baselines/govuk-layout-reading-flow-2026-09-07.md; knowledge/baselines/carbon-2x-grid-reading-flow-2026-09-07.md; knowledge/baselines/uswds-layout-grid-reading-flow-2026-09-07.md' 'Recorded three primary-source design-system observations relevant to measure, responsive spacing and controlled layout variation.' --goal "$GOAL_VISUAL"
+          uv run wisk run evidence "$RUN" run-evidence/specimen-percurso-010 specimen 'src/pages/laboratorio/percurso-visual-010.astro' 'Materialized A0, A, B and C on one public specimen with identical nine-item content and order.' --goal "$GOAL_VISUAL"
+          uv run wisk run evidence "$RUN" run-evidence/responsive-percurso-010 responsive-review '.wisk-responsive.json' 'Local built specimen returned 200 at 1600, 390 and 320px with no horizontal overflow, unnamed actions or landmark-count failures.' --goal "$GOAL_VISUAL"
+          uv run wisk run evidence "$RUN" run-evidence/critique-percurso-010 critique 'knowledge/explorations/percurso-visual-010.md' 'Construction critique records the key risks before publication: ordinal variation may look like ranking; offsets may waste measure; rhythm may become noise. No alternative is selected in this materialization round.' --goal "$GOAL_VISUAL"
+          uv run wisk run check "$RUN" run-checks/verification verification 'uv sync --group dev; uv run wisk init .; OKF; build; responsive surface check' 'The Wisk bundle, project environment and materialized exploration were verified together.' passed --goal "$GOAL_TASK" --evidence 'knowledge/explorations/percurso-visual-010.md'
+          uv run wisk run check "$RUN" run-checks/okf okf 'uv run okf-parser check knowledge --relational-schema okf.schema.sql' 'The current knowledge graph satisfies the relational OKF schema.' passed --goal "$GOAL_VISUAL" --evidence '.wisk-okf.txt'
+          uv run wisk run check "$RUN" run-checks/build build 'npm install; npm run build' 'Astro/Panda static build completed successfully with exploration 010 included.' passed --goal "$GOAL_VISUAL" --evidence '.wisk-build.txt'
+          uv run wisk run check "$RUN" run-checks/accessibility accessibility 'Playwright at 1600x1000, 390x844 and 320x800' 'The built 010 route had one h1/main, a navigation landmark, named actions and no horizontal overflow at all tested viewports.' passed --goal "$GOAL_VISUAL" --evidence '.wisk-responsive.json'
+          uv run wisk run goal-status "$RUN" "$GOAL_TASK" achieved
+          uv run wisk run goal-status "$RUN" "$GOAL_VISUAL" achieved
+          uv run wisk run outcome "$RUN" run-outcomes/percurso-visual-010 exploring completed 'Exploration 010 materializes the reading-flow direction against a real Cobogó A0 and three state-of-practice baselines; judgment is intentionally deferred.' 'Merge and publish the specimen, then a later visual-explorer round may critique the pre-existing published surface against A0.' --goals-advanced "$GOAL_TASK" --goals-advanced "$GOAL_VISUAL" --evidence run-evidence/specimen-percurso-010 --checks run-checks/okf --checks run-checks/build --checks run-checks/accessibility
+          uv run wisk check "$RUN" | tee .wisk-check-final.json
+      - name: Persist completed Wisk state
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .wisk .wisk-start.txt uv.lock
-          if git diff --cached --quiet; then
-            echo 'No Wisk state changes to persist.'
-            exit 0
-          fi
-          git commit -m 'chore(wisk): persist round start state'
+          git add .wisk .wisk-okf.txt .wisk-build.txt .wisk-responsive.json .wisk-check-final.json uv.lock
+          git commit -m 'chore(wisk): persist percurso 010 experience'
           git push
