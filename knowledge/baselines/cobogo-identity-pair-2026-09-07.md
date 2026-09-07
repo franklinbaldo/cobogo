@@ -1,9 +1,10 @@
 ---
-type: CobogoBaseline
+type: PracticeBaseline
 id: baselines/cobogo-identity-pair-2026-09-07
 title: "Cobogó atual — dupla de identidades"
-kind: current_surface
-surface: "src/pages/index.astro — seção Mesma estrutura"
+kind: cobogo_current
+source_name: "Cobogó"
+observed_surface: "src/pages/index.astro — seção Mesma estrutura"
 observed_at: "2026-09-07"
 strengths:
   - "As duas identidades são imediatamente distinguíveis por tipografia, cor de fundo, símbolo e linguagem."
@@ -16,6 +17,9 @@ limitations:
 findings:
   - "A0 é deliberadamente forte: qualquer tradução precisa manter duas identidades inequívocas sem perder equivalência."
   - "A tensão útil é retirar moldura ou preenchimento, não retirar personalidade."
+evidence:
+  - "Código vigente observado em src/pages/index.astro no main 16ca144adfb570cc58ba94454243112037808b48."
+  - "A seção usa dois articles com border 1px; o segundo também usa background info e tipografia serif/italic."
 status: current
 ---
 
