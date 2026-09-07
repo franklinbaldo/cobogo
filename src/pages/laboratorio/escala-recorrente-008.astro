@@ -1,0 +1,74 @@
+---
+import '../../styles/index.css'
+import { css } from '../../../styled-system/css'
+import { badge, navLink } from '../../../styled-system/recipes'
+import LabNavigation from '../../components/LabNavigation.astro'
+
+const items = [
+  { label: '01 · Sinal', title: 'Reconhecer antes de ler tudo.', body: 'A menor peça precisa carregar parentesco suficiente sem parecer uma miniatura apertada.' },
+  { label: '02 · Contexto', title: 'A família cresce sem trocar de idioma.', body: 'A escala média ganha espaço para explicar, mas continua reconhecível como parte do mesmo sistema.' },
+  { label: '03 · Abertura', title: 'A peça dominante pode mudar de proporção sem romper a família.', body: 'Hierarquia maior pede outra densidade e outro ritmo, não uma caixa simplesmente inflada.' },
+]
+
+const baseCard = css({ border: '1px solid', borderColor: 'text', background: 'canvas', minW: '0' })
+---
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content="Exploração visual 008 do Laboratório Cobogó sobre parentesco através de mudanças de escala." />
+  <title>Escala recorrente 008 — Laboratório Cobogó</title>
+</head>
+<body>
+<header class={css({ maxW:'content', mx:'auto', px:{base:'5',md:'8'}, minH:'20', display:'flex', alignItems:'center', justifyContent:'space-between', gap:'6', borderBottom:'1px solid', borderColor:'border' })}>
+  <a href="/cobogo/" class={css({fontWeight:'black',fontSize:'xl',textDecoration:'none',letterSpacing:'-0.04em'})}>COBOGÓ</a>
+  <nav class={css({display:'flex',gap:{base:'4',md:'8'},flexWrap:'wrap'})} aria-label="Principal"><a class={navLink()} href="/cobogo/">Início</a><a class={navLink({active:true})} href="/cobogo/laboratorio/">Laboratório</a></nav>
+</header>
+<main>
+<section class={css({background:'text',color:'canvas'})}>
+  <div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'},display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.72fr 1.28fr'},gap:'10',alignItems:'end'})}>
+    <div><p class={css({textStyle:'eyebrow',color:'accent',m:'0'})}>Exploração 008 · exploring</p><p class={css({mt:'5',mb:'0',color:'surfaceMuted',lineHeight:'body',maxW:'32rem'})}>Mesmo conteúdo e mesma ordem. A variável é quanto da gramática precisa permanecer idêntica quando a escala muda.</p></div>
+    <h1 class={css({textStyle:'display',color:'canvas',m:'0',maxW:'10ch'})}>Uma família não precisa ter o mesmo tamanho.</h1>
+  </div>
+</section>
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'}})}>
+  <div class={css({display:'flex',gap:'2',flexWrap:'wrap',mb:'6'})}><span class={badge({tone:'accent'})}>mesmo conteúdo</span><span class={badge()}>mesma ordem DOM</span><span class={badge()}>escala + densidade variam</span></div>
+  <p class={css({fontSize:'lg',lineHeight:'body',maxW:'48rem',m:'0'})}>A repete uma caixa quase literalmente e só aumenta dimensões. B preserva anatomia e ritmo, mas deixa densidade, proporção e alinhamento responderem ao tamanho. C libera também a anatomia e testa o ponto em que a família vira coleção.</p>
+</section>
+<section class={css({background:'surfaceMuted',borderTop:'1px solid',borderBottom:'1px solid',borderColor:'text'})}>
+<div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'},display:'grid',gap:'16'})}>
+
+<figure class={css({m:'0'})}>
+  <figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação A — caixa ampliada</strong><p class={css({mt:'2',mb:'0',color:'textMuted'})}>Consistência literal: mesma anatomia, mesmo alinhamento, mesmo ritmo.</p></figcaption>
+  <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(6,1fr)'},gap:'3',alignItems:'start'})}>
+    {items.map((item,index)=><article class={`${baseCard} ${css({p:'5',gridColumn:{md:index===0?'1 / span 2':index===1?'3 / span 2':'5 / span 2'},minH:{md:index===0?'10rem':index===1?'14rem':'18rem'},display:'flex',flexDirection:'column',justifyContent:'space-between'})}`}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 4'})}>{item.label}</p><div><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{item.title}</h2><p class={css({m:'0',lineHeight:'body',color:'textMuted'})}>{item.body}</p></div></article>)}
+  </div>
+</figure>
+
+<figure class={css({m:'0'})}>
+  <figcaption class={css({display:'flex',justifyContent:'space-between',gap:'4',alignItems:'baseline',flexWrap:'wrap',borderTop:'4px solid',borderColor:'accent',pt:'3',mb:'5'})}><strong>Variação B — gramática recorrente</strong><span class={badge({tone:'accent'})}>direção candidata</span></figcaption>
+  <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(8,1fr)'},gap:'3',alignItems:'stretch'})}>
+    <article class={css({background:'canvas',border:'1px solid',borderColor:'text',p:'5',gridColumn:{md:'1 / span 2'},alignSelf:{md:'end'}})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{items[0].label}</p><h2 class={css({fontSize:'xl',lineHeight:'tight',m:'0 0 3'})}>{items[0].title}</h2><p class={css({m:'0',lineHeight:'body',color:'textMuted',fontSize:'sm'})}>{items[0].body}</p></article>
+    <article class={css({background:'accent',p:'6',gridColumn:{md:'3 / span 3'},minH:{md:'15rem'},display:'flex',flexDirection:'column',justifyContent:'space-between'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{items[1].label}</p><div><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{items[1].title}</h2><p class={css({m:'0',lineHeight:'body'})}>{items[1].body}</p></div></article>
+    <article class={css({background:'text',color:'canvas',p:{base:'6',md:'8'},gridColumn:{md:'6 / span 3'},minH:{md:'21rem'},display:'flex',flexDirection:'column',justifyContent:'space-between'})}><p class={css({textStyle:'eyebrow',color:'accent',m:'0 0 3'})}>{items[2].label}</p><div><h2 class={css({fontSize:{base:'2xl',md:'3xl'},lineHeight:'tight',m:'0 0 4'})}>{items[2].title}</h2><p class={css({m:'0',lineHeight:'body',color:'surfaceMuted'})}>{items[2].body}</p></div></article>
+  </div>
+</figure>
+
+<figure class={css({m:'0'})}>
+  <figcaption class={css({borderTop:'1px solid',borderColor:'text',pt:'3',mb:'5'})}><strong>Variação C — família tensionada</strong><p class={css({mt:'2',mb:'0',color:'textMuted'})}>Escala, alinhamento e anatomia mudam ao mesmo tempo.</p></figcaption>
+  <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(7,1fr)'},gap:'4',alignItems:'start'})}>
+    <article class={css({background:'canvas',border:'1px solid',borderColor:'text',p:'4',gridColumn:{md:'1 / span 2'},borderRadius:'0'})}><strong>{items[0].title}</strong><p class={css({mb:'0',fontSize:'sm',color:'textMuted'})}>{items[0].body}</p></article>
+    <article class={css({background:'info',color:'canvas',p:'7',gridColumn:{md:'4 / span 2'},mt:{md:'10'}})}><p class={css({m:'0 0 4',fontWeight:'black'})}>{items[1].label}</p><p class={css({m:'0',fontSize:'2xl',lineHeight:'tight'})}>{items[1].title}</p></article>
+    <article class={css({background:'accent',p:'5',gridColumn:{md:'2 / span 6'},mt:{md:'4'},display:'grid',gridTemplateColumns:{md:'1fr 1fr'},gap:'8'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0'})}>{items[2].label}</p><div><h2 class={css({fontSize:'3xl',lineHeight:'tight',m:'0 0 4'})}>{items[2].title}</h2><p class={css({m:'0',lineHeight:'body'})}>{items[2].body}</p></div></article>
+  </div>
+</figure>
+
+</div></section>
+<section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'},display:'grid',gridTemplateColumns:{base:'1fr',md:'1fr 2fr'},gap:'6'})}>
+  <p class={css({textStyle:'eyebrow',color:'info',m:'0'})}>Crítica inicial</p>
+  <div class={css({fontSize:'lg',lineHeight:'body'})}><p class={css({mt:'0'})}>A mantém parentesco incontestável, mas trata escala como zoom: o módulo dominante parece apenas uma caixa maior. B parece mais fértil porque conserva a sequência rótulo → título → texto e um ritmo comum, enquanto deixa cada escala encontrar densidade e proporção próprias. C ainda compartilha conteúdo, mas muda relações demais; a leitura tende a percebê-la como três peças desenhadas separadamente.</p><p class={css({mb:'0',fontWeight:'bold'})}>Hipótese de taste para observar na superfície publicada: parentesco parece depender mais de anatomia e ritmo recorrentes do que de proporções idênticas.</p></div>
+</section>
+<LabNavigation id="escala-recorrente-008" />
+</main>
+</body>
+</html>
