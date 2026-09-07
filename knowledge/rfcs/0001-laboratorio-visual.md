@@ -1,8 +1,17 @@
-# RFC 0001 — Laboratório visual do Cobogó
+---
+type: RFC
+id: rfcs/0001-laboratorio-visual
+title: "Laboratório visual do Cobogó"
+status: accepted
+date: "2026-09-07"
+scope:
+  - knowledge
+  - wikiskill
+  - okf
+  - laboratorio-publico
+---
 
-- Status: **Accepted / initial implementation**
-- Data: 2026-09-07
-- Escopo: `knowledge/`, WikiSkill, contratos OKF e superfície pública `/laboratorio/`
+# RFC 0001 — Laboratório visual do Cobogó
 
 ## Resumo
 
@@ -33,31 +42,15 @@ Além disso, uma exploração sem contexto do estado da prática pode reinventar
 
 Antes de criar variantes, o agente identifica a superfície real equivalente no Cobogó atual e registra um `PracticeBaseline(kind: cobogo_current)`.
 
-O registro contém:
-
-- superfície/rota/artefato observado;
-- data da observação;
-- o que a solução atual faz bem;
-- limitações relevantes à pergunta;
-- achados;
-- evidência reproduzível.
-
-Essa solução é materializada no specimen como **A0 — Cobogó atual**. A0 é controle, não proposta.
+O registro contém superfície/rota/artefato observado, data, forças, limitações relevantes à pergunta, achados e evidência reproduzível. Essa solução é materializada no specimen como **A0 — Cobogó atual**. A0 é controle, não proposta.
 
 #### Prong B — estado da prática
 
 O agente pesquisa design systems maduros relevantes **para a classe de problema**, usando preferencialmente documentação e superfícies primárias. Não existe lista fixa nem ranking universal de “bons design systems”.
 
-Cada sistema materialmente usado vira `PracticeBaseline(kind: design_system)`, registrando fonte, superfície, data, forças, limitações, achados e evidência. A síntese procura:
+Cada sistema materialmente usado vira `PracticeBaseline(kind: design_system)`, registrando fonte, superfície, data, forças, limitações, achados e evidência. A síntese procura convergências, divergências, trade-offs e soluções condicionadas pelo contexto. O objetivo é conhecer o estado da prática, não copiar aparência nem usar popularidade como prova.
 
-- convergências;
-- divergências;
-- trade-offs;
-- soluções condicionadas pelo contexto.
-
-O objetivo é conhecer o estado da prática, não copiar aparência nem usar popularidade como prova.
-
-Os baselines são persistentes e reutilizáveis. Uma exploração futura pode reutilizar observações ainda atuais, registrando nova observação quando a superfície tiver mudado ou quando a pergunta exigir outro recorte.
+Os baselines são persistentes e reutilizáveis. Uma exploração futura pode reutilizar observações ainda atuais, registrando nova observação quando a superfície tiver mudado ou quando a pergunta exigir outro recorte. Registros antigos passam a `superseded`; não se reescreve retrospectivamente o que foi observado.
 
 ### 2. A referência visual vem depois do baseline
 
@@ -102,13 +95,7 @@ A avaliação registra `result_rationale` e `baseline_comparison` em prosa.
 
 É um eixo posterior: `not_evaluated`, `candidate`, `adopted`, `declined`.
 
-Uma tradução selecionada **não** vira Cobogó automaticamente. `adopted` exige `canonical_rationale` que explique:
-
-1. qual ganho demonstrou sobre A0;
-2. por que o aprendizado é transferível além do specimen;
-3. qual trade-off assume diante do estado da prática;
-4. quais evidências sustentam a decisão;
-5. onde a mudança entra no sistema (`canonical_targets`).
+Uma tradução selecionada **não** vira Cobogó automaticamente. `adopted` exige `canonical_rationale` que explique: qual ganho demonstrou sobre A0; por que o aprendizado é transferível além do specimen; qual trade-off assume diante do estado da prática; quais evidências sustentam a decisão; e onde a mudança entra no sistema (`canonical_targets`).
 
 A página pública apresenta essa decisão em prosa como **“O que entrou no Cobogó — e por quê”**. Se não houve adoção, isso também é explícito.
 
@@ -135,33 +122,13 @@ A ordem pode variar visualmente, mas não deve ocultar a cadeia de raciocínio.
 
 ## Modelo OKF
 
-### `PracticeBaseline`
+`PracticeBaseline` registra `id`, `title`, `kind`, `source_url`, `source_name`, `observed_surface`, `observed_at`, `strengths[]`, `limitations[]`, `findings[]`, `evidence[]` e `status`.
 
-```text
-id
-title
-kind: cobogo_current | design_system
-source_url?
-source_name
-observed_surface
-observed_at
-strengths[]
-limitations[]
-findings[]
-evidence[]
-status: current | superseded | retired
-```
-
-### extensões de `VisualExploration`
-
-```text
-cobogo_baseline_id?
-practice_baseline_ids[]?
-baseline_question?
-baseline_comparison?
-```
+`VisualExploration` ganha `cobogo_baseline_id`, `practice_baseline_ids[]`, `baseline_question` e `baseline_comparison`.
 
 Os campos são inicialmente opcionais para não falsificar baselines retroativos nas explorações 001–008. O RunSpec, e não uma migração inventada, torna-os obrigatórios operacionalmente para **novas** explorações. Uma rodada futura pode enriquecer explorações históricas quando houver evidência real.
+
+Os arquivos `PracticeBaseline` vivem em `knowledge/baselines/`. Não se criam placeholders: um baseline só existe após observação real e evidência reproduzível.
 
 ## Contrato operacional WikiSkill
 
