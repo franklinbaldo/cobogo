@@ -11,9 +11,9 @@ scope:
   - "agrupamento editorial"
   - "relacao entre conteudo principal e contexto"
 status: active
-rationale: "A exploração 009 ativou esta direção na RelationCollection, onde quatro relações semanticamente irmãs usam hoje caixas completas separadas por gap. A superfície oferece um teste concreto de continuidade versus modularidade sem inventar um problema abstrato."
+rationale: "A exploração 009 testou esta direção na RelationCollection e selecionou o ledger contínuo sobre o A0: divisores compartilhados reduziram isolamento sem apagar foco ou acionabilidade, enquanto um mosaico ainda pareceu compartimentado e uma hierarquia editorial forte quebrou equivalência. A evidência é suficiente para a superfície de relações, mas não esgota a direção em outros limites de seção; por isso ela permanece active em vez de explored."
 ---
 
 # Campos continuos entre zonas de informacao
 
-Direção ativa na exploração 009. O ponto não é importar curvas: é testar se quatro destinos relacionados podem conservar função própria e, ainda assim, ser percebidos como uma composição contínua.
+A exploração 009 produziu o primeiro resultado positivo desta direção: quando itens são semanticamente irmãos, **fronteiras compartilhadas podem comunicar unidade melhor que perímetros independentes**. Isso ainda é aprendizado local da `RelationCollection`, não regra geral para todas as seções do Cobogó.
