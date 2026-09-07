@@ -2,7 +2,7 @@
 type: VisualSpecimen
 id: specimens/cheio-vazio-grid-001
 title: "Grid vazado 001 — composição escolhida"
-exploration_id: experiments/cheio-vazio-grid-001
+exploration_id: explorations/cheio-vazio-grid-001
 route: "/laboratorio/#cheio-vazio-grid-001"
 artifact_path: "src/pages/laboratorio.astro"
 status: published

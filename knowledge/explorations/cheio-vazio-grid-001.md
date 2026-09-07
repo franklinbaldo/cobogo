@@ -1,6 +1,6 @@
 ---
 type: VisualExploration
-id: experiments/cheio-vazio-grid-001
+id: explorations/cheio-vazio-grid-001
 title: "Grid vazado 001"
 study_id: studies/cheio-vazio-na-web
 direction: "Explorar vazios deliberados em um grid editorial como fonte de ritmo e identidade, sem depender de ornamentação figurativa."
@@ -26,7 +26,7 @@ tensions_to_watch:
   - "A composição depender de uma largura específica."
   - "A ordem visual divergir da ordem semântica."
   - "A referência precisar ser explicada para a composição parecer interessante."
-skill_path: skills/experiments/cheio-vazio-grid-001/SKILL.md
+skill_path: skills/explorations/cheio-vazio-grid-001/SKILL.md
 status: selected
 reflection: "Três variantes com conteúdo idêntico foram comparadas e publicadas pela PR #599. A variante B (contrapeso diagonal) tem mais força na relação entre massas; A é legível, mas pouco expressiva; C separa excessivamente blocos relacionados. No merge 7adf8bf803e0633ca9df1734bad369ba797ecf8b, os contratos OKF e builds passaram, o Deploy Pages #474 publicou a comparação e o gate pós-publicação verificou /laboratorio/ em 1600×1000 e 390×844 sem falhas estruturais ou overflow móvel. B fica selecionada como direção a continuar, sem transformar gosto ou recorrência local em prova científica."
 ---

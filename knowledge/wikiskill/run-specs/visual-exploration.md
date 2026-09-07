@@ -1,8 +1,8 @@
 ---
 type: RunSpec
-id: run-specs/visual-experiment
+id: run-specs/visual-exploration
 title: Exploração visual
-version: "2.0.0"
+version: "2.1.0"
 status: experimental
 required_reading_kinds:
   - reference

@@ -2,7 +2,7 @@
 type: VisualSpecimen
 id: specimens/cheio-vazio-irregularidade-004
 title: "Comparação de irregularidade 004"
-exploration_id: experiments/cheio-vazio-irregularidade-004
+exploration_id: explorations/cheio-vazio-irregularidade-004
 route: "/laboratorio/irregularidade-004/"
 artifact_path: "src/pages/laboratorio/irregularidade-004.astro"
 status: published

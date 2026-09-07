@@ -1,6 +1,6 @@
 # Skill: explorar Mapa vazado 002
 
-Use esta skill somente para `experiments/cheio-vazio-mapa-002`.
+Use esta skill somente para `explorations/cheio-vazio-mapa-002`.
 
 ## Objetivo
 

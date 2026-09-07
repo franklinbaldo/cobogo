@@ -1,9 +1,9 @@
 ---
 type: SessionType
-id: session-types/visual-experimenter
+id: session-types/visual-explorer
 title: Explorador visual
 purpose: "Transformar um estudo visual em exploração web executável, produzir variações e specimen e exercer crítica sem confundir gosto informado com hipótese científica."
-run_spec: run-specs/visual-experiment
+run_spec: run-specs/visual-exploration
 extends: session-types/skill
 nudges:
   - "Leia a referência e o estudo antes de implementar."

@@ -1,6 +1,6 @@
 ---
 type: VisualExploration
-id: experiments/cheio-vazio-mobile-003
+id: explorations/cheio-vazio-mobile-003
 title: "Vazio móvel 003"
 study_id: studies/cheio-vazio-na-web
 direction: "Explorar pausas de vazio em telas estreitas depois de grupos semanticamente completos, procurando ritmo sem desperdiçar o orçamento vertical."
@@ -27,7 +27,7 @@ tensions_to_watch:
   - "Próxima informação distante a ponto de exigir rolagem exploratória sem pista."
   - "Direção que só funcione em tablet."
   - "Pausa que precise de ornamento, seta ou explicação para parecer intencional."
-skill_path: skills/experiments/cheio-vazio-mobile-003/SKILL.md
+skill_path: skills/explorations/cheio-vazio-mobile-003/SKILL.md
 status: selected
 reflection: "A comparação publicada foi observada no artefato `cobogo-published-preview-6d485a10bc29d5d571d405ad2e2fb867e0f26040`. Em 320×800 e 390×844, B preserva continuidade e cria uma pausa perceptível depois de um grupo semanticamente completo; C cria uma ruptura vertical forte demais. O gate pós-publicação verificou integridade técnica nas duas larguras. A crítica seleciona B como direção mais convincente para esta exploração: em tela estreita, o orçamento de vazio parece menor."
 ---

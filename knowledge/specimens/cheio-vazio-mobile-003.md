@@ -2,7 +2,7 @@
 type: VisualSpecimen
 id: specimens/cheio-vazio-mobile-003
 title: "Comparação do vazio móvel 003"
-exploration_id: experiments/cheio-vazio-mobile-003
+exploration_id: explorations/cheio-vazio-mobile-003
 route: "/laboratorio/mobile-003/"
 artifact_path: "src/pages/laboratorio/mobile-003.astro"
 status: published

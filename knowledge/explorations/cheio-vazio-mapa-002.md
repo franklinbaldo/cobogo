@@ -1,6 +1,6 @@
 ---
 type: VisualExploration
-id: experiments/cheio-vazio-mapa-002
+id: explorations/cheio-vazio-mapa-002
 title: "Mapa vazado 002"
 study_id: studies/cheio-vazio-na-web
 direction: "Explorar o vazio como contrapeso no fechamento de um mapa de navegação ímpar, preservando sequência, área clicável e sensação de conjunto."
@@ -28,7 +28,7 @@ tensions_to_watch:
   - "O deslocamento do item 05 enfraquecer o encerramento da sequência."
   - "A técnica diminuir área clicável ou exigir reordenar o DOM."
   - "A composição só parecer intencional depois de ler sua explicação."
-skill_path: skills/experiments/cheio-vazio-mapa-002/SKILL.md
+skill_path: skills/explorations/cheio-vazio-mapa-002/SKILL.md
 status: selected
 reflection: "A comparação foi publicada pela PR #601 no merge d9ad7ac22d1630ccb1720eac44d119cea78b5ac5. A variante A é previsível; B preserva DOM, área clicável e sequência 01→05 e usa o vazio como contrapeso do fechamento; C fragmenta a varredura entre 03 e 04. Build, OKF e publicação foram verificados. B foi selecionada porque a crítica visual favoreceu essa direção neste contexto, não porque o laboratório tenha provado uma lei sobre composição."
 ---

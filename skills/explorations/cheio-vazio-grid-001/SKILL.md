@@ -1,6 +1,6 @@
 # Skill: explorar Grid vazado 001
 
-Use esta skill somente para `experiments/cheio-vazio-grid-001`.
+Use esta skill somente para `explorations/cheio-vazio-grid-001`.
 
 ## Objetivo
 
