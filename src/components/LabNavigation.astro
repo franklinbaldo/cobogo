@@ -1,10 +1,11 @@
 ---
 import { css } from '../../styled-system/css'
-import { vizinhosDaExploracao, type ExploracaoId } from '../data/laboratorio'
+import { exploracoes, vizinhosDaExploracao, type ExploracaoId } from '../data/laboratorio'
 
 interface Props { id: ExploracaoId }
 const { id } = Astro.props
 const { atual, anterior, proxima } = vizinhosDaExploracao(id)
+const total = String(exploracoes.length).padStart(3, '0')
 
 const link = css({
   color: 'text',
@@ -25,7 +26,7 @@ const link = css({
 <nav aria-label="Navegação entre explorações" class={css({ borderTop: '1px solid', borderColor: 'border', background: 'canvas' })}>
   <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '10', md: '12' } })}>
     <div class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '6', flexWrap: 'wrap' })}>
-      <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Exploração {atual.numero} de 007</p>
+      <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Exploração {atual.numero} de {total}</p>
       <a href="/cobogo/laboratorio/" class={css({ fontWeight: 'bold', color: 'text' })}>Ver todas as explorações</a>
     </div>
     <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 1fr' }, gap: { base: '7', md: '10' } })}>
