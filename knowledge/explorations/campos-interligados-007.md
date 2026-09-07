@@ -27,10 +27,10 @@ tensions_to_watch:
   - "Sobreposição ou contato tornarem fronteiras e leitura ambíguas."
   - "A referência virar justificativa para formas gratuitas."
 skill_path: skills/explorations/campos-interligados-007/SKILL.md
-status: exploring
-reflection: "A exploração foi materializada em três variações com conteúdo e ordem DOM constantes. A separa totalmente os campos; B usa contato, alternância de massa e deslocamentos coordenados; C intensifica deslocamento e sobreposição para tornar o limite observável. A escolha permanece aberta até a superfície publicada ser inspecionada em desktop e mobile."
+status: selected
+reflection: "A superfície publicada no SHA ee1e13fda3e3c17e921c7255dcb84b6ef57d0820 foi observada nas capturas desktop, 390px e 320px do artefato cobogo-published-preview correspondente. A é legível, mas o respiro e os contornos mantêm as quatro zonas como cards independentes. B é a composição mais convincente: a massa escura conduz para o campo ácido, a terceira zona funciona como passagem e o fecho azul encerra a sequência; contato, contraste e alternância de largura fazem os quatro campos parecerem partes da mesma superfície sem alterar a ordem semântica. C aumenta deslocamentos, mas paradoxalmente perde interligação: os campos viram ilhas escalonadas separadas por fundo neutro, e movimento passa a parecer posição gratuita em vez de continuidade. No mobile, B e C convergem para a mesma pilha contínua, preservando leitura e mostrando que a diferença relevante está na relação espacial de desktop. A direção fica `selected`, com B escolhida. O aprendizado crítico é preciso: deslocar não é interligar; movimento visual nasce quando existe contato ou passagem perceptível entre massas, não da mera diferença de posição."
 ---
 
 # Exploração: Campos interligados 007
 
-A rodada abriu uma terceira maneira de fugir da coleção de cards sem repetir cheio/vazio ou estrutura aparente. Aqui a unidade deve vir da relação entre campos: massas que se encostam e respondem umas às outras. O specimen precisa mostrar se esse contato produz continuidade de verdade ou apenas uma geometria mais barulhenta.
+A comparação separou movimento de deslocamento. A é uma coleção clara, mas ainda uma coleção. C move mais as peças e, justamente por quebrar contato, fragmenta o conjunto. B encontra a relação mais forte: campos com pesos diferentes se encostam e passam a orientar uns aos outros. A direção foi selecionada porque continuidade aparece como passagem entre massas, não como ornamento ou irregularidade por si só.
