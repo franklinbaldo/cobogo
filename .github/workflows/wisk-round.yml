@@ -1,0 +1,40 @@
+name: Wisk round
+
+on:
+  push:
+    branches:
+      - wisk/round-20260907-next
+
+permissions:
+  contents: write
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: wisk/round-20260907-next
+      - uses: astral-sh/setup-uv@v6
+      - name: Sync project environment
+        run: uv sync --group dev --locked
+      - name: Bootstrap Wisk
+        run: uv run wisk init .
+      - name: Start canonical round
+        shell: bash
+        run: |
+          set -o pipefail
+          if uv run wisk start --help 2>&1 | grep -q -- '--task'; then
+            uv run wisk start --task "Faça o melhor avanço possível neste repositório" | tee .wisk-round-start.txt
+          else
+            uv run wisk start | tee .wisk-round-start.txt
+          fi
+      - name: Persist Wisk round state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .wisk .wisk-round-start.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(wisk): persist canonical round start"
+            git push origin HEAD:wisk/round-20260907-next
+          fi
