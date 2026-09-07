@@ -27,9 +27,10 @@ tensions_to_watch:
   - "A repeticao estrita parecer mais forte que qualquer variacao."
   - "A referencia virar imitacao visual de azulejaria."
 skill_path: skills/explorations/regra-jogo-modulos-005/SKILL.md
-status: rough
+status: exploring
+reflection: "A/B/C foram materializadas com o mesmo conteúdo, anatomia, tipografia e semântica. A controla a repetição estrita; B introduz uma liberdade localizada de proporção ou alinhamento por módulo; C combina diferenças de proporção, deslocamento e escala para tensionar a família. A exploração permanece `exploring` até a superfície publicada ser observada em desktop e mobile e a crítica decidir onde caráter deixa de parecer gramática compartilhada."
 ---
 
 # Exploracao: Regra e jogo 005
 
-A exploracao abre uma segunda linhagem do laboratorio. Em vez de aprofundar cheio/vazio, pergunta como o proprio sistema pode oferecer liberdade composicional sem perder unidade. O alvo e taste de sistema: reconhecer quando variacao vira carater e quando vira ruido.
+A exploração já tem superfície comparativa. O próximo julgamento é visual: reconhecer se a liberdade localizada de B produz voz sem quebrar parentesco e se C torna explícito um limite útil entre sistema e coleção.
