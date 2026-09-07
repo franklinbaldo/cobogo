@@ -2,6 +2,7 @@
 import '../../styles/index.css'
 import { css } from '../../../styled-system/css'
 import { badge, navLink } from '../../../styled-system/recipes'
+import LabNavigation from '../../components/LabNavigation.astro'
 
 const blocos = [
   { rotulo: '01 · Contexto', titulo: 'A relação vem antes do componente.', texto: 'Primeiro identifique o que precisa permanecer verdadeiro quando a aparência mudar.' },
@@ -81,6 +82,7 @@ const pilha = css({ maxW: '25rem', mx: 'auto' })
           <p class={css({ mb: '0' })}><strong>Aprendizado:</strong> em tela estreita, o vazio pode continuar estrutural, mas seu orçamento é menor e funciona melhor depois que um grupo semântico já terminou.</p>
         </div>
       </section>
+      <LabNavigation id="mobile-003" />
     </main>
   </body>
 </html>

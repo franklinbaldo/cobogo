@@ -1,0 +1,52 @@
+---
+import { css } from '../../styled-system/css'
+import { exploracoes, vizinhosDaExploracao, type ExploracaoId } from '../data/laboratorio'
+
+interface Props { id: ExploracaoId }
+const { id } = Astro.props
+const { atual, anterior, proxima } = vizinhosDaExploracao(id)
+const total = String(exploracoes.length).padStart(3, '0')
+
+const link = css({
+  color: 'text',
+  textDecoration: 'none',
+  borderTop: '1px solid',
+  borderColor: 'text',
+  pt: '4',
+  minH: '7rem',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  gap: '4',
+  _hover: { borderTopWidth: '4px', borderColor: 'accent', pt: '3' },
+  _focusVisible: { outline: '3px solid', outlineColor: 'info', outlineOffset: '3px' },
+})
+---
+
+<nav aria-label="Navegação entre explorações" class={css({ borderTop: '1px solid', borderColor: 'border', background: 'canvas' })}>
+  <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '10', md: '12' } })}>
+    <div class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '6', flexWrap: 'wrap' })}>
+      <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Exploração {atual.numero} de {total}</p>
+      <a href="/cobogo/laboratorio/" class={css({ fontWeight: 'bold', color: 'text' })}>Ver todas as explorações</a>
+    </div>
+    <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 1fr' }, gap: { base: '7', md: '10' } })}>
+      {anterior ? (
+        <a href={anterior.href} rel="prev" class={link}>
+          <span class={css({ textStyle: 'eyebrow', color: 'textMuted' })}>← Anterior · {anterior.numero}</span>
+          <strong class={css({ fontSize: { base: 'xl', md: '2xl' }, lineHeight: 'tight' })}>{anterior.titulo}</strong>
+        </a>
+      ) : <div aria-hidden="true"></div>}
+      {proxima ? (
+        <a href={proxima.href} rel="next" class={`${link} ${css({ textAlign: { md: 'right' } })}`}>
+          <span class={css({ textStyle: 'eyebrow', color: 'textMuted' })}>Próxima · {proxima.numero} →</span>
+          <strong class={css({ fontSize: { base: 'xl', md: '2xl' }, lineHeight: 'tight' })}>{proxima.titulo}</strong>
+        </a>
+      ) : (
+        <a href="/cobogo/laboratorio/" class={`${link} ${css({ textAlign: { md: 'right' } })}`}>
+          <span class={css({ textStyle: 'eyebrow', color: 'textMuted' })}>Fim da sequência</span>
+          <strong class={css({ fontSize: { base: 'xl', md: '2xl' }, lineHeight: 'tight' })}>Voltar ao catálogo →</strong>
+        </a>
+      )}
+    </div>
+  </div>
+</nav>

@@ -2,13 +2,16 @@
 import '../styles/index.css'
 import { css } from '../../styled-system/css'
 import { badge, navLink } from '../../styled-system/recipes'
+import { exploracoes } from '../data/laboratorio'
+
+const familias = [...new Set(exploracoes.map((item) => item.familia))]
 ---
 
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Laboratório visual do Cobogó: referências brasileiras, estudos e explorações que traduzem relações visuais para a web." />
+    <meta name="description" content="Laboratório visual do Cobogó: catálogo navegável de explorações, referências, estudos e críticas." />
     <title>Laboratório — Cobogó</title>
   </head>
   <body>
@@ -26,122 +29,60 @@ import { badge, navLink } from '../../styled-system/recipes'
         <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '16', md: '24' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10', alignItems: 'end' })}>
           <div>
             <p class={css({ textStyle: 'eyebrow', color: 'accent', m: '0' })}>Laboratório visual</p>
-            <p class={css({ mt: '5', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '28rem' })}>Aqui referência não vira regra por admiração. Ela vira estudo, direção, exploração e crítica.</p>
+            <p class={css({ mt: '5', mb: '0', color: 'surfaceMuted', lineHeight: 'body', maxW: '30rem' })}>Cada exploração tem uma pergunta, variantes comparáveis, crítica publicada e agora uma URL própria.</p>
           </div>
-          <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '10ch' })}>Olhar primeiro. Traduzir depois.</h1>
+          <div>
+            <h1 class={css({ textStyle: 'display', color: 'canvas', m: '0', maxW: '11ch' })}>Veja a linguagem sendo construída.</h1>
+            <p class={css({ mt: '6', mb: '0', color: 'surfaceMuted', lineHeight: 'body', fontSize: 'lg', maxW: '42rem' })}>Não é uma galeria de respostas prontas. É o histórico navegável das decisões visuais que o Cobogó testou, criticou e decidiu manter.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '10', md: '12' }, borderBottom: '1px solid', borderColor: 'border' })}>
+        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr 1fr', md: 'repeat(4, 1fr)' }, gap: '6' })}>
+          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Explorações</p><strong class={css({ fontSize: '2xl' })}>{String(exploracoes.length).padStart(2, '0')}</strong></div>
+          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Famílias</p><strong class={css({ fontSize: '2xl' })}>{String(familias.length).padStart(2, '0')}</strong></div>
+          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Estado atual</p><strong class={css({ fontSize: '2xl' })}>selected</strong></div>
+          <div><p class={css({ textStyle: 'eyebrow', color: 'textMuted', m: '0 0 2' })}>Comece por</p><a href={exploracoes.at(-1)?.href} class={css({ color: 'text', fontWeight: 'black', fontSize: '2xl' })}>007 →</a></div>
         </div>
       </section>
 
       <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
-        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(5, 1fr)' }, gap: '3' })} aria-label="Fluxo do laboratório">
-          {['Referência', 'Estudo', 'Exploração', 'Specimen', 'Linguagem'].map((item, index) => (
-            <div class={css({ borderTop: '4px solid', borderColor: index === 3 ? 'accent' : 'text', pt: '4', minH: '7rem' })}>
-              <span class={css({ fontSize: 'xs', color: 'textMuted' })}>0{index + 1}</span>
-              <p class={css({ fontWeight: 'black', fontSize: 'lg', mt: '2', mb: '0' })}>{item}</p>
-            </div>
+        <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10', alignItems: 'start', mb: { base: '10', md: '14' } })}>
+          <div>
+            <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0 0 3' })}>Catálogo</p>
+            <h2 class={css({ textStyle: 'title', m: '0', maxW: '12ch' })}>Sete perguntas. Uma sequência de aprendizado.</h2>
+          </div>
+          <p class={css({ fontSize: 'lg', lineHeight: 'body', color: 'textMuted', m: '0', maxW: '42rem' })}>Leia em ordem para acompanhar a evolução do repertório, ou entre direto numa família. Cada página oferece anterior, próxima e retorno ao catálogo.</p>
+        </div>
+
+        <div class={css({ display: 'grid', gap: '0', borderTop: '1px solid', borderColor: 'text' })}>
+          {exploracoes.map((item) => (
+            <a href={item.href} class={css({ color: 'text', textDecoration: 'none', display: 'grid', gridTemplateColumns: { base: '4.5rem 1fr', md: '6rem 0.8fr 1.2fr auto' }, gap: { base: '4', md: '6' }, alignItems: 'start', py: { base: '6', md: '7' }, borderBottom: '1px solid', borderColor: 'text', transition: 'background 120ms ease', _hover: { background: 'surfaceMuted' }, _focusVisible: { outline: '3px solid', outlineColor: 'info', outlineOffset: '-3px' } })}>
+              <span class={css({ textStyle: 'eyebrow', color: 'textMuted', pt: '1' })}>{item.numero}</span>
+              <div>
+                <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0 0 2' })}>{item.familia}</p>
+                <strong class={css({ fontSize: { base: 'xl', md: '2xl' }, lineHeight: 'tight' })}>{item.titulo}</strong>
+              </div>
+              <div class={css({ gridColumn: { base: '2', md: 'auto' } })}>
+                <p class={css({ fontWeight: 'bold', m: '0 0 2', lineHeight: 'tight' })}>{item.pergunta}</p>
+                <p class={css({ color: 'textMuted', m: '0', lineHeight: 'body' })}>{item.resumo}</p>
+              </div>
+              <span class={css({ gridColumn: { base: '2', md: 'auto' }, justifySelf: { md: 'end' }, fontWeight: 'black', fontSize: 'xl' })}>→</span>
+            </a>
           ))}
         </div>
       </section>
 
-      <section id="cheio-vazio-grid-001" class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'text' })}>
-        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' } })}>
-          <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.72fr 1.28fr' }, gap: { base: '10', lg: '14' }, alignItems: 'start', mb: { base: '12', md: '16' } })}>
-            <div>
-              <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Exploração 001</p>
-              <h2 class={css({ textStyle: 'title', m: '0', maxW: '12ch' })}>Cheio e vazio sem desenhar um cobogó.</h2>
-            </div>
-            <div>
-              <p class={css({ lineHeight: 'body', color: 'textMuted', mt: '0', maxW: '38rem' })}>A direção: explorar vazios deliberados em um grid editorial como fonte de ritmo e identidade, sem depender de ornamentação figurativa.</p>
-              <div class={css({ display: 'flex', gap: '2', flexWrap: 'wrap', mt: '6' })}>
-                <span class={badge({ tone: 'accent' })}>selected</span>
-                <span class={badge()}>3 variantes</span>
-                <span class={badge()}>Astro + Panda</span>
-              </div>
+      <section class={css({ background: 'surfaceMuted', borderTop: '1px solid', borderColor: 'border' })}>
+        <div class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '18' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.7fr 1.3fr' }, gap: '10' })}>
+          <div><p class={css({ textStyle: 'eyebrow', color: 'info', m: '0 0 3' })}>Método</p><h2 class={css({ textStyle: 'title', m: '0', maxW: '13ch' })}>Olhar primeiro. Traduzir depois.</h2></div>
+          <div class={css({ lineHeight: 'body', fontSize: 'lg' })}>
+            <p class={css({ mt: '0' })}>Referência não vira regra por admiração. Ela vira pergunta visual, variantes comparáveis, specimen publicado e crítica situada.</p>
+            <div class={css({ display: 'flex', gap: '2', flexWrap: 'wrap', mt: '6' })}>
+              {['Referência', 'Estudo', 'Exploração', 'Specimen', 'Crítica', 'Linguagem'].map((item) => <span class={badge()}>{item}</span>)}
             </div>
           </div>
-
-          <div class={css({ display: 'grid', gap: { base: '10', md: '12' } })}>
-            <figure class={css({ m: '0' })}>
-              <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '4', borderTop: '1px solid', borderColor: 'text', pt: '3' })}>
-                <strong>Variante A — intervalo lateral</strong>
-                <span class={css({ color: 'textMuted', fontSize: 'sm' })}>legível, mas previsível</span>
-              </figcaption>
-              <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(6, 1fr)' }, gap: '3' })}>
-                <article class={css({ background: 'text', color: 'canvas', p: '6', gridColumn: { md: '1 / span 3' }, minH: '12rem' })}>
-                  <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0' })}>Cheio</p>
-                  <p class={css({ fontSize: { base: '2xl', md: '3xl' }, fontWeight: 'black', lineHeight: 'tight', letterSpacing: '-0.04em', m: '0', maxW: '12ch' })}>Presença suficiente para sustentar a leitura.</p>
-                </article>
-                <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '4' })}></div>
-                <aside class={css({ background: 'accent', p: '6', gridColumn: { md: '5 / span 2' } })}>
-                  <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0' })}>Vazio</p>
-                  <p class={css({ m: '0', lineHeight: 'body', fontWeight: 'bold' })}>Não é ausência de projeto. É intervalo que organiza o próximo peso.</p>
-                </aside>
-                <article class={css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: '6', gridColumn: { md: '1 / span 3' } })}>
-                  <p class={css({ m: '0', lineHeight: 'body' })}><strong>Restrição da exploração:</strong> no mobile, os vazios somem e a ordem volta a ser linear.</p>
-                </article>
-              </div>
-            </figure>
-
-            <figure class={css({ m: '0' })}>
-              <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '4', borderTop: '4px solid', borderColor: 'accent', pt: '3' })}>
-                <strong>Variante B — contrapeso diagonal</strong>
-                <span class={badge({ tone: 'accent' })}>selecionada</span>
-              </figcaption>
-              <div aria-label="Specimen selecionado de cheio e vazio" class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(6, 1fr)' }, gridAutoRows: { md: 'minmax(5rem, auto)' }, gap: '3' })}>
-                <article class={css({ background: 'text', color: 'canvas', p: { base: '6', md: '7' }, gridColumn: { md: '1 / span 4' }, gridRow: { md: '1 / span 2' }, minH: '14rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' })}>
-                  <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0' })}>Cheio</p>
-                  <p class={css({ fontSize: { base: '2xl', md: '4xl' }, fontWeight: 'black', lineHeight: 'tight', letterSpacing: '-0.04em', m: '0', maxW: '12ch' })}>Presença suficiente para sustentar a leitura.</p>
-                </article>
-                <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '5 / span 2', gridRow: '1' })}></div>
-                <aside class={css({ background: 'accent', color: 'text', p: '6', gridColumn: { md: '5 / span 2' }, gridRow: { md: '2 / span 2' }, minH: '11rem' })}>
-                  <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0', mb: '4' })}>Vazio</p>
-                  <p class={css({ m: '0', lineHeight: 'body', fontWeight: 'bold' })}>Não é ausência de projeto. É intervalo que organiza o próximo peso.</p>
-                </aside>
-                <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '1 / span 2', gridRow: '3' })}></div>
-                <article class={css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: '6', gridColumn: { md: '3 / span 2' }, gridRow: { md: '3' } })}>
-                  <p class={css({ m: '0', lineHeight: 'body' })}><strong>Restrição da exploração:</strong> no mobile, os vazios somem e a ordem volta a ser linear.</p>
-                </article>
-              </div>
-            </figure>
-
-            <figure class={css({ m: '0' })}>
-              <figcaption class={css({ display: 'flex', justifyContent: 'space-between', gap: '4', alignItems: 'baseline', mb: '4', borderTop: '1px solid', borderColor: 'text', pt: '3' })}>
-                <strong>Variante C — vazio central</strong>
-                <span class={css({ color: 'textMuted', fontSize: 'sm' })}>menos convincente: separa demais</span>
-              </figcaption>
-              <div class={css({ display: 'grid', gridTemplateColumns: { base: '1fr', md: 'repeat(6, 1fr)' }, gap: '3' })}>
-                <article class={css({ background: 'text', color: 'canvas', p: '6', gridColumn: { md: '1 / span 2' } })}>
-                  <p class={css({ textStyle: 'eyebrow', color: 'accent', mt: '0' })}>Cheio</p>
-                  <p class={css({ fontSize: { base: '2xl', md: '3xl' }, fontWeight: 'black', lineHeight: 'tight', letterSpacing: '-0.04em', m: '0' })}>Presença suficiente para sustentar a leitura.</p>
-                </article>
-                <div aria-hidden="true" class={css({ display: { base: 'none', md: 'block' }, gridColumn: '3 / span 2' })}></div>
-                <aside class={css({ background: 'accent', p: '6', gridColumn: { md: '5 / span 2' } })}>
-                  <p class={css({ textStyle: 'eyebrow', color: 'info', mt: '0' })}>Vazio</p>
-                  <p class={css({ m: '0', lineHeight: 'body', fontWeight: 'bold' })}>Não é ausência de projeto. É intervalo que organiza o próximo peso.</p>
-                </aside>
-                <article class={css({ border: '1px solid', borderColor: 'text', background: 'canvas', p: '6', gridColumn: { md: '5 / span 2' } })}>
-                  <p class={css({ m: '0', lineHeight: 'body' })}><strong>Restrição da exploração:</strong> no mobile, os vazios somem e a ordem volta a ser linear.</p>
-                </article>
-              </div>
-            </figure>
-          </div>
-
-          <div class={css({ mt: { base: '12', md: '16' }, pt: '6', borderTop: '1px solid', borderColor: 'text', display: 'grid', gridTemplateColumns: { base: '1fr', md: '1fr 2fr' }, gap: '6' })}>
-            <p class={css({ textStyle: 'eyebrow', color: 'info', m: '0' })}>Crítica</p>
-            <p class={css({ m: '0', lineHeight: 'body', fontSize: 'lg' })}>A variante B tem mais força sem depender de ornamento: o vazio funciona como contrapeso entre massas, mas desaparece no fluxo móvel sem deixar lacunas arbitrárias. A variante A é funcional porém pouco expressiva; a C cria distância excessiva entre blocos relacionados.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class={css({ maxW: 'content', mx: 'auto', px: { base: '5', md: '8' }, py: { base: '14', md: '20' }, display: 'grid', gridTemplateColumns: { base: '1fr', lg: '0.8fr 1.2fr' }, gap: '10' })}>
-        <div>
-          <p class={css({ textStyle: 'eyebrow', color: 'info', mb: '3' })}>Como o laboratório trabalha</p>
-          <h2 class={css({ textStyle: 'title', m: '0', maxW: '14ch' })}>Cada exploração ganha uma skill própria.</h2>
-        </div>
-        <div class={css({ lineHeight: 'body', fontSize: 'lg' })}>
-          <p class={css({ mt: '0' })}>O OKF registra referência, estudo, direção, restrições, qualidades procuradas e tensões a observar. O WikiSkill conduz a sessão. A skill da exploração ensina como construir variações, em quais larguras olhar, o que verificar e como devolver a crítica.</p>
-          <p>Explorações podem continuar abertas, ser selecionadas, incorporadas ou abandonadas. Checks técnicos garantem integridade; a escolha de linguagem vem de comparação e crítica situada.</p>
-          <p class={css({ mb: '0', fontWeight: 'bold' })}>Referência → estudo → direção → exploração → crítica → linguagem.</p>
         </div>
       </section>
     </main>

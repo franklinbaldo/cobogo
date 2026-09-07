@@ -2,6 +2,7 @@
 import '../../styles/index.css'
 import { css } from '../../../styled-system/css'
 import { badge, navLink } from '../../../styled-system/recipes'
+import LabNavigation from '../../components/LabNavigation.astro'
 
 const destinos = [
   { href: '/cobogo/identidade/', numero: '01', titulo: 'Identidade', texto: 'O que pode mudar sem quebrar a relação compartilhada.' },
@@ -151,6 +152,7 @@ const card = css({
           <p class={css({ mb: '0' })}><strong>Teclado:</strong> em todas as variantes, o DOM e o foco continuam 01 → 02 → 03 → 04 → 05. Os vazios são apresentação e desaparecem no mobile.</p>
         </div>
       </section>
+      <LabNavigation id="mapa-002" />
     </main>
   </body>
 </html>
