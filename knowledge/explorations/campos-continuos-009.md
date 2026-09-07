@@ -34,16 +34,16 @@ tensions_to_watch:
   - "Variação editorial quebrar equivalência entre relações."
   - "Remover bordas úteis em nome de minimalismo."
 skill_path: skills/explorations/campos-continuos-009/SKILL.md
-status: exploring
-result: null
-result_rationale: null
-baseline_comparison: null
+status: concluded
+result: selected
+result_rationale: "A — ledger contínuo — respondeu melhor à pergunta da 009. Na superfície publicada, A transforma as quatro relações em uma coleção perceptivelmente única sem apagar os alvos: divisores compartilhados mantêm fronteiras, o item atual continua imediato e a ordem permanece escaneável. A0 é inequívoco, mas o gap e quatro molduras completas reforçam autonomia demais. B melhora A0 no desktop, porém ainda lê como células/caixas e, no mobile, a moldura acumulada volta a enfatizar compartimentos. C compra continuidade ao custo de uma hierarquia editorial que não corresponde à equivalência funcional das quatro relações; o destaque de Ação domina a composição sem justificativa semântica. A preserva a equivalência melhor que B e C e continua coerente em 390px e 320px."
+baseline_comparison: "Contra A0, A reduz quatro perímetros independentes a uma estrutura compartilhada com divisores. O ganho não é simplesmente menos borda: a coleção passa a ser percebida como uma relação contínua enquanto cada linha segue clicável e separável. O custo é perder parte da presença modular dos cards, aceitável nesta superfície porque as quatro relações são irmãs e não módulos autônomos. Isso também converge com o estado da prática observado: GOV.UK e Carbon usam divisores em informação relacionada, e USWDS reserva cards para modularidade mais forte."
 canonical_status: not_evaluated
 canonical_rationale: null
 canonical_targets: []
-reflection: "Primeira exploração criada sob o contrato de TranslationDirection + baseline de dois prongs. A superfície real escolhida foi RelationCollection: quatro links semanticamente irmãos que hoje usam gap e moldura completa individual. GOV.UK, Carbon e USWDS convergem em uma ideia útil sem prescrever a mesma aparência: itens relacionados podem compartilhar estrutura, divisores ou camada; cards completos fazem mais sentido quando a modularidade autônoma é parte do significado. A rodada materializa alternativas, portanto não avalia resultado."
+reflection: "A segunda rodada observou a superfície publicada do SHA 8ad82aa8daf802cb2f33949ef624281c5402552b no artefato cobogo-published-preview do Deploy Pages #508. O gate publicado registrou HTTP 200, largura documental igual ao viewport e nenhuma ação sem nome em 1600px, 390px e 320px. Visualmente, A0 preserva modularidade com ruído de quatro perímetros; A cria uma coleção única por divisores e funciona igualmente bem nos três viewports; B encontra um meio-termo útil no desktop, mas no mobile volta a parecer uma pilha de caixas; C quebra equivalência ao transformar uma das relações em massa dominante. O aprendizado local é que continuidade entre itens semanticamente irmãos funciona melhor quando a fronteira vira relação compartilhada — divisores e ritmo — sem introduzir hierarquia que o conteúdo não possui."
 ---
 
 # Exploração: Campos contínuos 009
 
-A exploração testa uma consequência específica da referência de Burle Marx em uma superfície real do Cobogó: a coleção navegável de relações. Esta rodada estabelece A0, estado da prática e três traduções, mas termina deliberadamente em `exploring`.
+A exploração foi concluída numa rodada posterior à materialização. **A — ledger contínuo** foi selecionada porque supera o A0 na pergunta específica da coleção: comunica unidade sem dissolver os quatro destinos. A seleção é local à exploração e ainda não constitui adoção canônica.
