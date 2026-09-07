@@ -80,7 +80,7 @@ jobs:
           uv run wisk run check "$RUN" verification verification 'Wisk contract check after domain gates' 'Materialization requirements satisfied; publication/visual judgment remains a later step.' pass --goal "$G1"
           uv run wisk run goal-status "$RUN" "$G1" achieved
           uv run wisk run goal-status "$RUN" "$G2" achieved
-          uv run wisk run outcome "$RUN" textura-funcional-010 success complete 'Exploration 010 materialized texture/density translations against a concrete A0 and practice baseline without same-round selection.' 'Publish the specimen, then critique A0/A/B/C in a later Wisk round.' --goals-advanced "$G1" --goals-advanced "$G2"
+          uv run wisk run outcome "$RUN" textura-funcional-010 exploring complete 'Exploration 010 materialized texture/density translations against a concrete A0 and practice baseline without same-round selection.' 'Publish the specimen, then critique A0/A/B/C in a later Wisk round.' --goals-advanced "$G1" --goals-advanced "$G2"
           uv run wisk check "$RUN" | tee .wisk-final-check.txt
       - name: Persist Wisk state
         run: |
