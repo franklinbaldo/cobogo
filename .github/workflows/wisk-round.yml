@@ -57,7 +57,7 @@ jobs:
                   if tag=='article': self.articles += 1
                   if tag=='a': self.links.append(d.get('href'))
           p=P(); p.feed(Path('dist/laboratorio/textura-funcional-010/index.html').read_text())
-          assert p.h1 == 1 and p.main == 1 and p.articles == 8
+          assert p.h1 == 1 and p.main == 1 and p.articles == 10
           assert all(p.links)
           print(f'pass h1={p.h1} main={p.main} articles={p.articles} named-links={len(p.links)}')
           PY
@@ -76,7 +76,7 @@ jobs:
           uv run wisk run evidence "$RUN" critique critique 'knowledge/explorations/textura-funcional-010.md' 'Materialization critique: A isolates typography, B isolates density, C pushes repetition toward ornament; no winner selected in this round.' --goal "$G2"
           uv run wisk run check "$RUN" okf okf 'uv run okf-parser check knowledge --relational-schema okf.schema.sql' 'Relational laboratory contracts passed.' pass --evidence '.wisk-okf.txt' --goal "$G1"
           uv run wisk run check "$RUN" build build 'npm install && npm run build' 'Astro/Panda build passed including route 010.' pass --evidence '.wisk-build.txt' --goal "$G1"
-          uv run wisk run check "$RUN" accessibility accessibility 'Static built-HTML landmark/article/link smoke' 'One h1, one main, eight semantic articles and no href-less links.' pass --evidence '.wisk-accessibility.txt' --goal "$G2"
+          uv run wisk run check "$RUN" accessibility accessibility 'Static built-HTML landmark/article/link smoke' 'One h1, one main, ten semantic articles including the two baseline articles, and no href-less links.' pass --evidence '.wisk-accessibility.txt' --goal "$G2"
           uv run wisk run check "$RUN" verification verification 'Wisk contract check after domain gates' 'Materialization requirements satisfied; publication/visual judgment remains a later step.' pass --goal "$G1"
           uv run wisk run goal-status "$RUN" "$G1" achieved
           uv run wisk run goal-status "$RUN" "$G2" achieved
