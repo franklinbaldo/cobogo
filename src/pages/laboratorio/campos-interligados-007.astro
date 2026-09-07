@@ -25,13 +25,13 @@ const fields = [
 <main>
 <section class={css({background:'text',color:'canvas'})}>
   <div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'},display:'grid',gridTemplateColumns:{base:'1fr',lg:'0.75fr 1.25fr'},gap:'10',alignItems:'end'})}>
-    <div><p class={css({textStyle:'eyebrow',color:'accent',m:'0'})}>Exploração 007 · exploring</p><p class={css({mt:'5',mb:'0',color:'surfaceMuted',lineHeight:'body',maxW:'32rem'})}>Mesmas quatro zonas, três relações espaciais. A pergunta não é qual forma parece mais diferente, mas quando os campos começam a agir como uma composição contínua.</p></div>
+    <div><p class={css({textStyle:'eyebrow',color:'accent',m:'0'})}>Exploração 007 · selected</p><p class={css({mt:'5',mb:'0',color:'surfaceMuted',lineHeight:'body',maxW:'32rem'})}>A escolha ficou no contato coordenado. O movimento mais forte não veio de deslocar mais as peças, mas de fazer uma massa entregar a leitura à seguinte.</p></div>
     <h1 class={css({textStyle:'display',color:'canvas',m:'0',maxW:'10ch'})}>Campos que respondem uns aos outros.</h1>
   </div>
 </section>
 <section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'}})}>
   <div class={css({display:'flex',gap:'2',flexWrap:'wrap',mb:'6'})}><span class={badge({tone:'accent'})}>mesmo conteúdo</span><span class={badge()}>mesma ordem DOM</span><span class={badge()}>relação espacial varia</span></div>
-  <p class={css({fontSize:'lg',lineHeight:'body',maxW:'48rem',m:'0'})}>A separa cada zona; B usa contato e alternância de massa para conduzir o olhar; C intensifica deslocamento e sobreposição para revelar quando continuidade vira competição.</p>
+  <p class={css({fontSize:'lg',lineHeight:'body',maxW:'48rem',m:'0'})}>A separa cada zona; B usa contato e alternância de massa para conduzir o olhar; C desloca mais, mas rompe as passagens e transforma os campos em ilhas.</p>
 </section>
 <section class={css({background:'surfaceMuted',borderTop:'1px solid',borderBottom:'1px solid',borderColor:'text'})}>
 <div class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'14',md:'20'},display:'grid',gap:'16'})}>
@@ -44,7 +44,7 @@ const fields = [
 </figure>
 
 <figure class={css({m:'0'})}>
-  <figcaption class={css({borderTop:'4px solid',borderColor:'accent',pt:'3',mb:'5'})}><strong>Variação B — contato coordenado</strong></figcaption>
+  <figcaption class={css({display:'flex',justifyContent:'space-between',gap:'4',alignItems:'baseline',flexWrap:'wrap',borderTop:'4px solid',borderColor:'accent',pt:'3',mb:'5'})}><strong>Variação B — contato coordenado</strong><span class={badge({tone:'accent'})}>direção selecionada</span></figcaption>
   <div class={css({display:'grid',gridTemplateColumns:{base:'1fr',md:'repeat(6,1fr)'},gap:'0',alignItems:'stretch'})}>
     <article class={css({background:'text',color:'canvas',p:{base:'6',md:'8'},gridColumn:{md:'1 / span 4'},minH:{md:'15rem'},display:'flex',flexDirection:'column',justifyContent:'space-between'})}><p class={css({textStyle:'eyebrow',color:'accent',m:'0 0 3'})}>{fields[0].label}</p><div><h2 class={css({fontSize:{base:'2xl',md:'3xl'},lineHeight:'tight',m:'0 0 4',maxW:'15ch'})}>{fields[0].title}</h2><p class={css({m:'0',lineHeight:'body',color:'surfaceMuted',maxW:'32rem'})}>{fields[0].body}</p></div></article>
     <article class={css({background:'accent',p:'6',gridColumn:{md:'5 / span 2'},display:'flex',flexDirection:'column',justifyContent:'end'})}><p class={css({textStyle:'eyebrow',color:'info',m:'0 0 3'})}>{fields[1].label}</p><h2 class={css({fontSize:'2xl',lineHeight:'tight',m:'0 0 4'})}>{fields[1].title}</h2><p class={css({m:'0',lineHeight:'body'})}>{fields[1].body}</p></article>
@@ -66,8 +66,8 @@ const fields = [
 </div>
 </section>
 <section class={css({maxW:'content',mx:'auto',px:{base:'5',md:'8'},py:{base:'12',md:'16'},display:'grid',gridTemplateColumns:{base:'1fr',md:'1fr 2fr'},gap:'6'})}>
-  <p class={css({textStyle:'eyebrow',color:'info',m:'0'})}>Crítica pendente</p>
-  <div class={css({fontSize:'lg',lineHeight:'body'})}><p class={css({mt:'0'})}>A/B/C já tornam a pergunta observável, mas a direção continua `exploring` até a superfície publicada ser vista em desktop e mobile.</p><p class={css({mb:'0',fontWeight:'bold'})}>Olhar especialmente para passagem entre campos, ordem percebida e se o contato cria parentesco real ou apenas uma geometria diferente.</p></div>
+  <p class={css({textStyle:'eyebrow',color:'info',m:'0'})}>Crítica</p>
+  <div class={css({fontSize:'lg',lineHeight:'body'})}><p class={css({mt:'0'})}>A publicação deixou a diferença nítida. A continua parecendo quatro componentes autônomos. B transforma contraste em passagem: a massa escura entrega a leitura ao campo ácido, a zona clara funciona como transição e o azul fecha o percurso. C desloca mais, mas perde contato; o fundo neutro reaparece entre as massas e a composição vira uma sequência de ilhas escalonadas.</p><p>No mobile, B e C relinearizam para a mesma pilha e mantêm a ordem DOM. Isso ajuda a isolar o achado: o ganho de B está na relação espacial do desktop, não numa decoração que sobrevive por inércia.</p><p class={css({mb:'0',fontWeight:'bold'})}>Direção selecionada: B. Deslocar não é interligar; movimento visual precisa de contato ou passagem perceptível entre massas.</p></div>
 </section>
 </main>
 </body>
